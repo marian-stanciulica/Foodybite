@@ -8,17 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BA2841F8340058757A /* FoodybiteApp.swift */; };
-		0F7137BD2841F8340058757A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* ContentView.swift */; };
+		0F7137BD2841F8340058757A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* LoginView.swift */; };
 		0F7137BF2841F8370058757A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137BE2841F8370058757A /* Assets.xcassets */; };
 		0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137C12841F8370058757A /* Preview Assets.xcassets */; };
+		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
+		A2E64B9B2842103300FC41B7 /* LoginBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* LoginBackground.swift */; };
+		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
+		A2E64BAE284222DA00FC41B7 /* JosefinSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA0284222DA00FC41B7 /* JosefinSans-Medium.ttf */; };
+		A2E64BAF284222DA00FC41B7 /* JosefinSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA1284222DA00FC41B7 /* JosefinSans-Italic.ttf */; };
+		A2E64BB0284222DA00FC41B7 /* JosefinSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA2284222DA00FC41B7 /* JosefinSans-LightItalic.ttf */; };
+		A2E64BB1284222DA00FC41B7 /* JosefinSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA3284222DA00FC41B7 /* JosefinSans-SemiBoldItalic.ttf */; };
+		A2E64BB2284222DA00FC41B7 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA4284222DA00FC41B7 /* JosefinSans-Bold.ttf */; };
+		A2E64BB3284222DA00FC41B7 /* JosefinSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA5284222DA00FC41B7 /* JosefinSans-ExtraLightItalic.ttf */; };
+		A2E64BB4284222DA00FC41B7 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA6284222DA00FC41B7 /* JosefinSans-ThinItalic.ttf */; };
+		A2E64BB5284222DA00FC41B7 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA7284222DA00FC41B7 /* JosefinSans-SemiBold.ttf */; };
+		A2E64BB6284222DA00FC41B7 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA8284222DA00FC41B7 /* JosefinSans-Light.ttf */; };
+		A2E64BB7284222DA00FC41B7 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA9284222DA00FC41B7 /* JosefinSans-Regular.ttf */; };
+		A2E64BB8284222DA00FC41B7 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAA284222DA00FC41B7 /* JosefinSans-Thin.ttf */; };
+		A2E64BB9284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAB284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf */; };
+		A2E64BBA284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAC284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf */; };
+		A2E64BBB284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAD284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F7137B72841F8340058757A /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodybite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7137BA2841F8340058757A /* FoodybiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteApp.swift; sourceTree = "<group>"; };
-		0F7137BC2841F8340058757A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0F7137BC2841F8340058757A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0F7137BE2841F8370058757A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F7137C12841F8370058757A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
+		A2E64B9A2842103300FC41B7 /* LoginBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackground.swift; sourceTree = "<group>"; };
+		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		A2E64BA0284222DA00FC41B7 /* JosefinSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Medium.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Medium.ttf"; sourceTree = "<group>"; };
+		A2E64BA1284222DA00FC41B7 /* JosefinSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Italic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Italic.ttf"; sourceTree = "<group>"; };
+		A2E64BA2284222DA00FC41B7 /* JosefinSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-LightItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		A2E64BA3284222DA00FC41B7 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-SemiBoldItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		A2E64BA4284222DA00FC41B7 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Bold.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
+		A2E64BA5284222DA00FC41B7 /* JosefinSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-ExtraLightItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		A2E64BA6284222DA00FC41B7 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-ThinItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		A2E64BA7284222DA00FC41B7 /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-SemiBold.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		A2E64BA8284222DA00FC41B7 /* JosefinSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Light.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Light.ttf"; sourceTree = "<group>"; };
+		A2E64BA9284222DA00FC41B7 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Regular.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
+		A2E64BAA284222DA00FC41B7 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Thin.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Thin.ttf"; sourceTree = "<group>"; };
+		A2E64BAB284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-MediumItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A2E64BAC284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-ExtraLight.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		A2E64BAD284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-BoldItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A2E64BBC2842234400FC41B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +87,11 @@
 			isa = PBXGroup;
 			children = (
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
-				0F7137BC2841F8340058757A /* ContentView.swift */,
-				0F7137BE2841F8370058757A /* Assets.xcassets */,
-				0F7137C02841F8370058757A /* Preview Content */,
+				A2E64B9F2842228000FC41B7 /* Fonts */,
+				A2E64B9C2842145900FC41B7 /* Extension */,
+				A2032BA2284205B600F8D8C8 /* Components */,
+				A2032BA0284204A700F8D8C8 /* Views */,
+				A2032B9F2842049300F8D8C8 /* Resources */,
 			);
 			path = Foodybite;
 			sourceTree = "<group>";
@@ -65,6 +102,70 @@
 				0F7137C12841F8370058757A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A2032B9F2842049300F8D8C8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64BBC2842234400FC41B7 /* Info.plist */,
+				0F7137C02841F8370058757A /* Preview Content */,
+				0F7137BE2841F8370058757A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A2032BA0284204A700F8D8C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A2032BA12842052400F8D8C8 /* Login */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A2032BA12842052400F8D8C8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0F7137BC2841F8340058757A /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A2032BA2284205B600F8D8C8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */,
+				A2E64B9A2842103300FC41B7 /* LoginBackground.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A2E64B9C2842145900FC41B7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64B9D2842146C00FC41B7 /* Color+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A2E64B9F2842228000FC41B7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64BA4284222DA00FC41B7 /* JosefinSans-Bold.ttf */,
+				A2E64BAD284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf */,
+				A2E64BAC284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf */,
+				A2E64BA5284222DA00FC41B7 /* JosefinSans-ExtraLightItalic.ttf */,
+				A2E64BA1284222DA00FC41B7 /* JosefinSans-Italic.ttf */,
+				A2E64BA8284222DA00FC41B7 /* JosefinSans-Light.ttf */,
+				A2E64BA2284222DA00FC41B7 /* JosefinSans-LightItalic.ttf */,
+				A2E64BA0284222DA00FC41B7 /* JosefinSans-Medium.ttf */,
+				A2E64BAB284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf */,
+				A2E64BA9284222DA00FC41B7 /* JosefinSans-Regular.ttf */,
+				A2E64BA7284222DA00FC41B7 /* JosefinSans-SemiBold.ttf */,
+				A2E64BA3284222DA00FC41B7 /* JosefinSans-SemiBoldItalic.ttf */,
+				A2E64BAA284222DA00FC41B7 /* JosefinSans-Thin.ttf */,
+				A2E64BA6284222DA00FC41B7 /* JosefinSans-ThinItalic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +226,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2E64BAF284222DA00FC41B7 /* JosefinSans-Italic.ttf in Resources */,
+				A2E64BBA284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf in Resources */,
+				A2E64BB7284222DA00FC41B7 /* JosefinSans-Regular.ttf in Resources */,
 				0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */,
+				A2E64BB6284222DA00FC41B7 /* JosefinSans-Light.ttf in Resources */,
+				A2E64BB4284222DA00FC41B7 /* JosefinSans-ThinItalic.ttf in Resources */,
+				A2E64BB5284222DA00FC41B7 /* JosefinSans-SemiBold.ttf in Resources */,
 				0F7137BF2841F8370058757A /* Assets.xcassets in Resources */,
+				A2E64BB1284222DA00FC41B7 /* JosefinSans-SemiBoldItalic.ttf in Resources */,
+				A2E64BB3284222DA00FC41B7 /* JosefinSans-ExtraLightItalic.ttf in Resources */,
+				A2E64BAE284222DA00FC41B7 /* JosefinSans-Medium.ttf in Resources */,
+				A2E64BB0284222DA00FC41B7 /* JosefinSans-LightItalic.ttf in Resources */,
+				A2E64BB9284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf in Resources */,
+				A2E64BBB284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf in Resources */,
+				A2E64BB8284222DA00FC41B7 /* JosefinSans-Thin.ttf in Resources */,
+				A2E64BB2284222DA00FC41B7 /* JosefinSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F7137BD2841F8340058757A /* ContentView.swift in Sources */,
+				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
+				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
+				A2E64B9B2842103300FC41B7 /* LoginBackground.swift in Sources */,
+				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,10 +384,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Foodybite/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Foodybite/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -295,10 +414,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Foodybite/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Foodybite/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
