@@ -36,6 +36,7 @@
 		A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD02842461200FC41B7 /* HeaderView.swift */; };
 		A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */; };
 		A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */; };
+		A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD62842618100FC41B7 /* HomeCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		A2E64BD02842461200FC41B7 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
+		A2E64BD62842618100FC41B7 /* HomeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */,
 				A2E64BD02842461200FC41B7 /* HeaderView.swift */,
 				A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */,
+				A2E64BD62842618100FC41B7 /* HomeCategoryView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
+				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
 				A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */,
