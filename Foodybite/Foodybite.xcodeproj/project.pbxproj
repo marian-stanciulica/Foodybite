@@ -12,7 +12,7 @@
 		0F7137BF2841F8370058757A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137BE2841F8370058757A /* Assets.xcassets */; };
 		0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137C12841F8370058757A /* Preview Assets.xcassets */; };
 		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
-		A2E64B9B2842103300FC41B7 /* LoginBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* LoginBackground.swift */; };
+		A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */; };
 		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
 		A2E64BAE284222DA00FC41B7 /* JosefinSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA0284222DA00FC41B7 /* JosefinSans-Medium.ttf */; };
 		A2E64BAF284222DA00FC41B7 /* JosefinSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BA1284222DA00FC41B7 /* JosefinSans-Italic.ttf */; };
@@ -28,6 +28,9 @@
 		A2E64BB9284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAB284222DA00FC41B7 /* JosefinSans-MediumItalic.ttf */; };
 		A2E64BBA284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAC284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf */; };
 		A2E64BBB284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E64BAD284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf */; };
+		A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC1284227A700FC41B7 /* RegisterView.swift */; };
+		A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC32842281B00FC41B7 /* RoundedButton.swift */; };
+		A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC528422CE600FC41B7 /* ProfileImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +40,7 @@
 		0F7137BE2841F8370058757A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F7137C12841F8370058757A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
-		A2E64B9A2842103300FC41B7 /* LoginBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackground.swift; sourceTree = "<group>"; };
+		A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A2E64BA0284222DA00FC41B7 /* JosefinSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Medium.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Medium.ttf"; sourceTree = "<group>"; };
 		A2E64BA1284222DA00FC41B7 /* JosefinSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-Italic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -54,6 +57,9 @@
 		A2E64BAC284222DA00FC41B7 /* JosefinSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-ExtraLight.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		A2E64BAD284222DA00FC41B7 /* JosefinSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSans-BoldItalic.ttf"; path = "../../../../../Downloads/Josefin_Sans/static/JosefinSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A2E64BBC2842234400FC41B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2E64BC1284227A700FC41B7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		A2E64BC32842281B00FC41B7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		A2E64BC528422CE600FC41B7 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 		A2032BA0284204A700F8D8C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2E64BC02842277300FC41B7 /* Register */,
 				A2032BA12842052400F8D8C8 /* Login */,
 			);
 			path = Views;
@@ -134,7 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */,
-				A2E64B9A2842103300FC41B7 /* LoginBackground.swift */,
+				A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */,
+				A2E64BC32842281B00FC41B7 /* RoundedButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -166,6 +174,15 @@
 				A2E64BA6284222DA00FC41B7 /* JosefinSans-ThinItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A2E64BC02842277300FC41B7 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64BC528422CE600FC41B7 /* ProfileImage.swift */,
+				A2E64BC1284227A700FC41B7 /* RegisterView.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,8 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
+				A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
-				A2E64B9B2842103300FC41B7 /* LoginBackground.swift in Sources */,
+				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
+				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
+				A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 			);

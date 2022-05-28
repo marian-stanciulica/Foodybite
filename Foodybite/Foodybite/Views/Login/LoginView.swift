@@ -24,10 +24,12 @@ struct LoginView: View {
             ImageTextField(placeholder: "Email",
                            imageName: "envelope",
                            text: $email)
+                .padding(.bottom)
 
             ImageTextField(placeholder: "Password",
                            imageName: "lock.circle",
                            text: $password)
+                .padding(.bottom)
 
             HStack {
                 Spacer()
@@ -38,14 +40,9 @@ struct LoginView: View {
 
             Spacer()
 
-            Button("Login") {
+            RoundedButton(title: "Login") {
 
             }
-            .frame(maxWidth: .infinity, minHeight: 54)
-            .foregroundColor(.white)
-            .background(Color.marineBlue)
-            .cornerRadius(16)
-            .font(.headline)
 
             Spacer()
 
@@ -55,7 +52,7 @@ struct LoginView: View {
         }
         .padding(.horizontal)
         .background(
-            LoginBackground()
+            BackgroundImage(imageName: "login_background")
         )
     }
 }
