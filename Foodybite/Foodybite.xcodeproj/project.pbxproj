@@ -32,6 +32,10 @@
 		A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC32842281B00FC41B7 /* RoundedButton.swift */; };
 		A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC528422CE600FC41B7 /* ProfileImage.swift */; };
 		A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */; };
+		A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BCE2842456300FC41B7 /* HomeView.swift */; };
+		A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD02842461200FC41B7 /* HeaderView.swift */; };
+		A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */; };
+		A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		A2E64BC32842281B00FC41B7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A2E64BC528422CE600FC41B7 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnOnLocationView.swift; sourceTree = "<group>"; };
+		A2E64BCE2842456300FC41B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A2E64BD02842461200FC41B7 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +133,7 @@
 		A2032BA0284204A700F8D8C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2E64BCD2842455800FC41B7 /* Home */,
 				A2E64BC728423CB600FC41B7 /* Turn On Location */,
 				A2E64BC02842277300FC41B7 /* Register */,
 				A2032BA12842052400F8D8C8 /* Login */,
@@ -194,6 +203,17 @@
 				A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */,
 			);
 			path = "Turn On Location";
+			sourceTree = "<group>";
+		};
+		A2E64BCD2842455800FC41B7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64BCE2842456300FC41B7 /* HomeView.swift */,
+				A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */,
+				A2E64BD02842461200FC41B7 /* HeaderView.swift */,
+				A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,13 +300,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */,
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
 				A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */,
 				A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */,
+				A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
+				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
 				A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */,
+				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 			);
