@@ -31,6 +31,7 @@
 		A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC1284227A700FC41B7 /* RegisterView.swift */; };
 		A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC32842281B00FC41B7 /* RoundedButton.swift */; };
 		A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC528422CE600FC41B7 /* ProfileImage.swift */; };
+		A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		A2E64BC1284227A700FC41B7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A2E64BC32842281B00FC41B7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		A2E64BC528422CE600FC41B7 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnOnLocationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		A2032BA0284204A700F8D8C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2E64BC728423CB600FC41B7 /* Turn On Location */,
 				A2E64BC02842277300FC41B7 /* Register */,
 				A2032BA12842052400F8D8C8 /* Login */,
 			);
@@ -183,6 +186,14 @@
 				A2E64BC1284227A700FC41B7 /* RegisterView.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		A2E64BC728423CB600FC41B7 /* Turn On Location */ = {
+			isa = PBXGroup;
+			children = (
+				A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */,
+			);
+			path = "Turn On Location";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 			files = (
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
 				A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */,
+				A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
