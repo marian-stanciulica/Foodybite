@@ -15,6 +15,8 @@
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
 		0F7516382843502400A05A92 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516372843502400A05A92 /* UIScreen+.swift */; };
 		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
+		0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163D28435FBE00A05A92 /* NotificationsView.swift */; };
+		0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163F28435FD100A05A92 /* NotificationCell.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
 		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
@@ -41,6 +43,8 @@
 		0F75163528434D3300A05A92 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0F7516372843502400A05A92 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		0F75163D28435FBE00A05A92 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		0F75163F28435FD100A05A92 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
@@ -113,6 +117,15 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+		0F75163C28435F9200A05A92 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				0F75163D28435FBE00A05A92 /* NotificationsView.swift */,
+				0F75163F28435FD100A05A92 /* NotificationCell.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		0FAFCA24284297CB00778E45 /* Tab Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,8 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				0FAFCA24284297CB00778E45 /* Tab Navigation */,
-				0F75163928435B7B00A05A92 /* Favorites */,
 				A2E64BCD2842455800FC41B7 /* Home */,
+				0F75163928435B7B00A05A92 /* Favorites */,
+				0F75163C28435F9200A05A92 /* Notifications */,
 				A2E64BC728423CB600FC41B7 /* Turn On Location */,
 				A2E64BC02842277300FC41B7 /* Register */,
 				A2032BA12842052400F8D8C8 /* Login */,
@@ -285,6 +299,7 @@
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
+				0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */,
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
@@ -293,6 +308,7 @@
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
+				0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

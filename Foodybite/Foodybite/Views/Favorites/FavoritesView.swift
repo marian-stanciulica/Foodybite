@@ -16,7 +16,6 @@ struct FavoritesView: View {
                     
                     Text("My Favorite")
                         .font(.title)
-                        .layoutPriority(1)
                     
                     Spacer()
                 }

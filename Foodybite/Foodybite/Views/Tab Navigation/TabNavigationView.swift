@@ -22,8 +22,7 @@ struct TabNavigationView: View {
                 case .favorites:
                     FavoritesView()
                 case .notifications:
-                    RegisterView()
-                        .background(.yellow)
+                    NotificationsView()
                 case .account:
                     TurnOnLocationView()
                         .background(.pink)
