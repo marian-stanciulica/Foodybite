@@ -42,7 +42,7 @@ struct RegisterView: View {
 
             Spacer()
 
-            RoundedButton(title: "Register") {
+            MarineButton(title: "Register") {
 
             }
 

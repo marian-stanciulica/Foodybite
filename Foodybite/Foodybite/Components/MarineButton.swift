@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoundedButton: View {
+struct MarineButton: View {
     let title: String
     let action: () -> Void
 
@@ -23,7 +23,7 @@ struct RoundedButton: View {
 
 struct RoundedButton_Previews: PreviewProvider {
     static var previews: some View {
-        RoundedButton(title: "Title") {
+        MarineButton(title: "Title") {
             
         }
     }

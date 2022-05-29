@@ -17,13 +17,16 @@
 		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
 		0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163D28435FBE00A05A92 /* NotificationsView.swift */; };
 		0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163F28435FD100A05A92 /* NotificationCell.swift */; };
+		0F751643284363B000A05A92 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751642284363B000A05A92 /* ProfileView.swift */; };
+		0F751645284364B600A05A92 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751644284364B600A05A92 /* StatsView.swift */; };
+		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
 		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
 		A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */; };
 		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
 		A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC1284227A700FC41B7 /* RegisterView.swift */; };
-		A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC32842281B00FC41B7 /* RoundedButton.swift */; };
+		A2E64BC42842281B00FC41B7 /* MarineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC32842281B00FC41B7 /* MarineButton.swift */; };
 		A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC528422CE600FC41B7 /* ProfileImage.swift */; };
 		A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */; };
 		A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BCE2842456300FC41B7 /* HomeView.swift */; };
@@ -45,6 +48,9 @@
 		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		0F75163D28435FBE00A05A92 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		0F75163F28435FD100A05A92 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		0F751642284363B000A05A92 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0F751644284364B600A05A92 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
@@ -52,7 +58,7 @@
 		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A2E64BBC2842234400FC41B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2E64BC1284227A700FC41B7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		A2E64BC32842281B00FC41B7 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		A2E64BC32842281B00FC41B7 /* MarineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarineButton.swift; sourceTree = "<group>"; };
 		A2E64BC528422CE600FC41B7 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		A2E64BC828423CD000FC41B7 /* TurnOnLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnOnLocationView.swift; sourceTree = "<group>"; };
 		A2E64BCE2842456300FC41B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -126,6 +132,15 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		0F751641284363A100A05A92 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F751642284363B000A05A92 /* ProfileView.swift */,
+				0F751644284364B600A05A92 /* StatsView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		0FAFCA24284297CB00778E45 /* Tab Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +169,7 @@
 				A2E64BCD2842455800FC41B7 /* Home */,
 				0F75163928435B7B00A05A92 /* Favorites */,
 				0F75163C28435F9200A05A92 /* Notifications */,
+				0F751641284363A100A05A92 /* Profile */,
 				A2E64BC728423CB600FC41B7 /* Turn On Location */,
 				A2E64BC02842277300FC41B7 /* Register */,
 				A2032BA12842052400F8D8C8 /* Login */,
@@ -174,7 +190,8 @@
 			children = (
 				A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */,
 				A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */,
-				A2E64BC32842281B00FC41B7 /* RoundedButton.swift */,
+				A2E64BC32842281B00FC41B7 /* MarineButton.swift */,
+				0F7516462843666900A05A92 /* WhiteButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -291,6 +308,7 @@
 				A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */,
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
 				0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */,
+				0F7516472843666900A05A92 /* WhiteButton.swift in Sources */,
 				A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */,
 				A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */,
 				A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */,
@@ -303,9 +321,11 @@
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
-				A2E64BC42842281B00FC41B7 /* RoundedButton.swift in Sources */,
+				A2E64BC42842281B00FC41B7 /* MarineButton.swift in Sources */,
+				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F7516382843502400A05A92 /* UIScreen+.swift in Sources */,
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
+				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 				0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */,

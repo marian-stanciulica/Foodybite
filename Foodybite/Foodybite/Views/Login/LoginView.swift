@@ -40,7 +40,7 @@ struct LoginView: View {
 
             Spacer()
 
-            RoundedButton(title: "Login") {
+            MarineButton(title: "Login") {
 
             }
 

@@ -46,7 +46,7 @@ struct TurnOnLocationView: View {
 
             Spacer()
 
-            RoundedButton(title: "Turn On GPS") {
+            MarineButton(title: "Turn On GPS") {
 
             }
         }
