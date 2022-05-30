@@ -20,7 +20,8 @@ struct HeaderView: View {
                 .foregroundColor(.gray)
                 .font(.body)
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.top)
     }
 }
 

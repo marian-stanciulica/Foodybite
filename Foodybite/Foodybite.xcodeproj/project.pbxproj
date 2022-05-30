@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CAF28453E85004D0EF7 /* SearchView.swift */; };
+		0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */; };
+		0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */; };
+		0F2B4CB628454173004D0EF7 /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB528454173004D0EF7 /* FriendsListView.swift */; };
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */; };
@@ -39,6 +43,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F2B4CAF28453E85004D0EF7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRestaurantsView.swift; sourceTree = "<group>"; };
+		0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
+		0F2B4CB528454173004D0EF7 /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
@@ -240,10 +248,14 @@
 			isa = PBXGroup;
 			children = (
 				A2E64BCE2842456300FC41B7 /* HomeView.swift */,
-				A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */,
 				A2E64BD02842461200FC41B7 /* HeaderView.swift */,
 				A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */,
 				A2E64BD62842618100FC41B7 /* HomeCategoryView.swift */,
+				0F2B4CAF28453E85004D0EF7 /* SearchView.swift */,
+				0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */,
+				A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */,
+				0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */,
+				0F2B4CB528454173004D0EF7 /* FriendsListView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -331,7 +343,10 @@
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
+				0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */,
+				0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
+				0F2B4CB628454173004D0EF7 /* FriendsListView.swift in Sources */,
 				0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */,
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
@@ -342,6 +357,7 @@
 				0F7516382843502400A05A92 /* UIScreen+.swift in Sources */,
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
+				0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 				0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */,
