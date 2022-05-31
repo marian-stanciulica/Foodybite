@@ -11,7 +11,7 @@ import SwiftUI
 struct FoodybiteApp: App {
     var body: some Scene {
         WindowGroup {
-            TabNavigationView(viewRouter: ViewRouter())
+            SearchCriteriaView()
         }
     }
 }

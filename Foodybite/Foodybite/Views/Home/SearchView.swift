@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @Binding var searchText: String
+    @State private var isSearchCriteriaPresented = false
     
     var body: some View {
         HStack {
@@ -18,9 +19,17 @@ struct SearchView: View {
                  TextField("Find Restaurants", text: $searchText)
                     .foregroundColor(.gray)
                 Spacer()
-                Image("filters_icon")
-                    .resizable()
-                    .frame(width: 24, height: 24)
+                
+                Button {
+                    isSearchCriteriaPresented = true
+                } label: {
+                    Image("filters_icon")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                }
+                .fullScreenCover(isPresented: $isSearchCriteriaPresented) {
+                    SearchCriteriaView()
+                }
              }
             .padding()
         }
