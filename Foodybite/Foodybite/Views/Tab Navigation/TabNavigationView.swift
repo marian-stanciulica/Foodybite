@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabNavigationView: View {
-    @StateObject var viewRouter: ViewRouter
+    @EnvironmentObject var viewRouter: ViewRouter
         
     @State var plusButtonActive = false
     
@@ -16,20 +16,25 @@ struct TabNavigationView: View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
-                switch viewRouter.currentPage {
-                case .home:
-                    HomeView()
-                case .favorites:
-                    FavoritesView()
-                case .notifications:
-                    NotificationsView()
-                case .account:
-                    ProfileView()
+                
+                Group {
+                    switch viewRouter.currentPage {
+                    case .home:
+                        HomeView()
+                    case .favorites:
+                        FavoritesView()
+                    case .newReview:
+                        NewReviewView(plusButtonActive: $plusButtonActive)
+                    case .notifications:
+                        NotificationsView()
+                    case .account:
+                        ProfileView()
+                    }
                 }
+                
                 Spacer()
                 
                 TabBarView(plusButtonActive: $plusButtonActive,
-                           viewRouter: viewRouter,
                            tabBarWidth: geometry.size.width,
                            tabBarHeight: geometry.size.height / 6,
                            iconWidth: geometry.size.width / 5,
@@ -43,6 +48,7 @@ struct TabNavigationView: View {
 
 struct TabNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        TabNavigationView(viewRouter: ViewRouter())
+        TabNavigationView()
+            .environmentObject(ViewRouter())
     }
 }

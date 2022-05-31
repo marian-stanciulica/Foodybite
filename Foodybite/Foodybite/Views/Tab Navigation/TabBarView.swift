@@ -10,7 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     @Binding var plusButtonActive: Bool
     
-    let viewRouter: ViewRouter
+    @EnvironmentObject var viewRouter: ViewRouter
     
     let tabBarWidth: CGFloat
     let tabBarHeight: CGFloat
@@ -21,13 +21,11 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             HStack {
-                TabBarIcon(viewRouter: viewRouter,
-                           assignedPage: .home,
+                TabBarIcon(assignedPage: .home,
                            width: iconWidth,
                            height: iconHeight)
                 
-                TabBarIcon(viewRouter: viewRouter,
-                           assignedPage: .favorites,
+                TabBarIcon(assignedPage: .favorites,
                            width: iconWidth,
                            height: iconHeight)
                 
@@ -59,16 +57,20 @@ struct TabBarView: View {
                 .onTapGesture {
                     withAnimation {
                         plusButtonActive.toggle()
+                        
+                        if viewRouter.currentPage != .newReview {
+                            viewRouter.currentPage = .newReview
+                        } else {
+                            viewRouter.currentPage = .home
+                        }
                     }
                 }
                 
-                TabBarIcon(viewRouter: viewRouter,
-                           assignedPage: .notifications,
+                TabBarIcon(assignedPage: .notifications,
                            width: iconWidth,
                            height: iconHeight)
                 
-                TabBarIcon(viewRouter: viewRouter,
-                           assignedPage: .account,
+                TabBarIcon(assignedPage: .account,
                            width: iconWidth,
                            height: iconHeight)
             }
@@ -83,9 +85,10 @@ struct TabBarView: View {
 }
 
 struct TabBarView_Previews: PreviewProvider {
+    
+    
     static var previews: some View {
         TabBarView(plusButtonActive: .constant(false),
-                    viewRouter: ViewRouter(),
                    tabBarWidth: UIScreen.screenWidth,
                    tabBarHeight: UIScreen.screenHeight / 6,
                    iconWidth: UIScreen.screenWidth / 5,

@@ -20,9 +20,14 @@ struct RatingView: View {
                         .resizable()
                         .aspectRatio(1.0, contentMode: .fit)
                 }
+                .padding(.horizontal, 4)
             }
         }
         .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .foregroundColor(.gray.opacity(0.05))
+        )
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarIcon: View {
-    @StateObject var viewRouter: ViewRouter
+    @EnvironmentObject var viewRouter: ViewRouter
     let assignedPage: Page
     
     let width: CGFloat
@@ -38,6 +38,8 @@ struct TabBarIcon: View {
             return viewRouter.currentPage == assignedPage ? "notifications_active" : "notifications_inactive"
         case .account:
             return viewRouter.currentPage == assignedPage ? "account_active" : "account_inactive"
+        case .newReview:
+            return ""
         }
     }
 }

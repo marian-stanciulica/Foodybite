@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct FoodybiteApp: App {
+    @EnvironmentObject var viewRouter: ViewRouter
+    
     var body: some Scene {
         WindowGroup {
-            SearchCriteriaView()
+            TabNavigationView()
+                .environmentObject(ViewRouter())
         }
     }
 }
