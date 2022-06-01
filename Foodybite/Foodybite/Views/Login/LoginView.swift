@@ -21,12 +21,12 @@ struct LoginView: View {
 
             Spacer()
 
-            ImageTextField(placeholder: "Email",
+            ImageWhiteTextField(placeholder: "Email",
                            imageName: "envelope",
                            text: $email)
                 .padding(.bottom)
 
-            ImageTextField(placeholder: "Password",
+            ImageWhiteTextField(placeholder: "Password",
                            imageName: "lock.circle",
                            text: $password)
                 .padding(.bottom)

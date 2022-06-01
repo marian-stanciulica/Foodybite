@@ -49,7 +49,10 @@
 		A2C2423A28477A7500CB233B /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423928477A7500CB233B /* PeopleListView.swift */; };
 		A2C2423C28477B1300CB233B /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423B28477B1300CB233B /* AccountType.swift */; };
 		A2C2423E28477BA600CB233B /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423D28477BA600CB233B /* PeopleListCell.swift */; };
-		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
+		A2C24243284780D100CB233B /* SeetingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24242284780D100CB233B /* SeetingsView.swift */; };
+		A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2424428478A4500CB233B /* ChangePasswordView.swift */; };
+		A2C2424728478BCB00CB233B /* ImageGrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */; };
+		A2E64B9928420C2D00FC41B7 /* ImageWhiteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageWhiteTextField.swift */; };
 		A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */; };
 		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
 		A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64BC1284227A700FC41B7 /* RegisterView.swift */; };
@@ -107,7 +110,10 @@
 		A2C2423928477A7500CB233B /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
 		A2C2423B28477B1300CB233B /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		A2C2423D28477BA600CB233B /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
-		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
+		A2C24242284780D100CB233B /* SeetingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeetingsView.swift; sourceTree = "<group>"; };
+		A2C2424428478A4500CB233B /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrayTextField.swift; sourceTree = "<group>"; };
+		A2E64B9828420C2D00FC41B7 /* ImageWhiteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWhiteTextField.swift; sourceTree = "<group>"; };
 		A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A2E64BBC2842234400FC41B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 			children = (
 				0F751642284363B000A05A92 /* ProfileView.swift */,
 				0F751644284364B600A05A92 /* StatsView.swift */,
+				A2C24241284780BF00CB233B /* Settings */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -285,7 +292,8 @@
 		A2032BA2284205B600F8D8C8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */,
+				A2E64B9828420C2D00FC41B7 /* ImageWhiteTextField.swift */,
+				A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */,
 				A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */,
 				A2E64BC32842281B00FC41B7 /* MarineButton.swift */,
 				0F7516462843666900A05A92 /* WhiteButton.swift */,
@@ -351,6 +359,15 @@
 				A2C2423D28477BA600CB233B /* PeopleListCell.swift */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		A2C24241284780BF00CB233B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A2C24242284780D100CB233B /* SeetingsView.swift */,
+				A2C2424428478A4500CB233B /* ChangePasswordView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A2E64B9C2842145900FC41B7 /* Extension */ = {
@@ -484,6 +501,7 @@
 				0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */,
 				A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
+				A2C2424728478BCB00CB233B /* ImageGrayTextField.swift in Sources */,
 				A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */,
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
 				A2C24222284755AE00CB233B /* Blur.swift in Sources */,
@@ -497,6 +515,7 @@
 				0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */,
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
+				A2C24243284780D100CB233B /* SeetingsView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
 				A2C2423A28477A7500CB233B /* PeopleListView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
@@ -510,9 +529,10 @@
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
 				A2C2423728476EE700CB233B /* RatingStar.swift in Sources */,
+				A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */,
 				0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */,
 				A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */,
-				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
+				A2E64B9928420C2D00FC41B7 /* ImageWhiteTextField.swift in Sources */,
 				A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */,
 				A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,

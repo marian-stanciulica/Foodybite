@@ -19,22 +19,22 @@ struct RegisterView: View {
                 .padding(.vertical)
 
             Group {
-            ImageTextField(placeholder: "Name",
+            ImageWhiteTextField(placeholder: "Name",
                            imageName: "person",
                            text: $email)
             .padding(.bottom)
 
-            ImageTextField(placeholder: "Email",
+            ImageWhiteTextField(placeholder: "Email",
                            imageName: "envelope",
                            text: $email)
                 .padding(.bottom)
 
-            ImageTextField(placeholder: "Password",
+            ImageWhiteTextField(placeholder: "Password",
                            imageName: "lock.circle",
                            text: $password)
                 .padding(.bottom)
 
-            ImageTextField(placeholder: "Confirm Password",
+            ImageWhiteTextField(placeholder: "Confirm Password",
                            imageName: "lock.circle",
                            text: $password)
                 .padding(.bottom)

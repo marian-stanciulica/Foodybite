@@ -1,13 +1,13 @@
 //
-//  ImageTextField.swift
+//  ImageGrayTextField.swift
 //  Foodybite
 //
-//  Created by Marian Stanciulica on 28.05.2022.
+//  Created by Marian Stanciulica on 01.06.2022.
 //
 
 import SwiftUI
 
-struct ImageTextField: View {
+struct ImageGrayTextField: View {
     let placeholder: String
     let imageName: String
     @Binding var text: String
@@ -15,7 +15,7 @@ struct ImageTextField: View {
     var body: some View {
         HStack {
             Image(systemName: imageName)
-                .foregroundColor(.white)
+                .foregroundColor(.gray)
 
             ZStack(alignment: .leading) {
                 if text.isEmpty {
@@ -23,20 +23,20 @@ struct ImageTextField: View {
                 }
                 TextField("", text: $text)
             }
-            .foregroundColor(.white)
+            .foregroundColor(.gray)
         }
         .padding()
-        .background(.white.opacity(0.25))
-        .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+        )
     }
-
 }
 
-struct ImageTextField_Previews: PreviewProvider {
+struct ImageGrayTextField_Previews: PreviewProvider {
     static var previews: some View {
-        ImageTextField(placeholder: "Placeholder",
+        ImageGrayTextField(placeholder: "Placeholder",
                        imageName: "envelope",
                        text: .constant("Email"))
     }
 }
-
