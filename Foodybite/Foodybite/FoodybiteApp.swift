@@ -13,10 +13,8 @@ struct FoodybiteApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            TabNavigationView()
-//                .environmentObject(ViewRouter())
-
-            RestaurantDetailsView()
+            TabNavigationView()
+                .environmentObject(ViewRouter())
         }
     }
 }

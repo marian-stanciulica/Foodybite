@@ -13,14 +13,14 @@ struct WhiteButton: View {
 
     var body: some View {
        Button(title, action: action)
-           .frame(maxWidth: .infinity, minHeight: 54)
-           .foregroundColor(.gray)
-           
-           .font(.headline)
-           .overlay(
+            .frame(maxWidth: .infinity, minHeight: 48)
+            .foregroundColor(.gray)
+
+            .font(.headline)
+            .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-           )
+            )
     }
 }
 

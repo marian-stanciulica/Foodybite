@@ -46,6 +46,9 @@
 		A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */; };
 		A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423428476E1300CB233B /* ReviewCell.swift */; };
 		A2C2423728476EE700CB233B /* RatingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423628476EE700CB233B /* RatingStar.swift */; };
+		A2C2423A28477A7500CB233B /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423928477A7500CB233B /* PeopleListView.swift */; };
+		A2C2423C28477B1300CB233B /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423B28477B1300CB233B /* AccountType.swift */; };
+		A2C2423E28477BA600CB233B /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423D28477BA600CB233B /* PeopleListCell.swift */; };
 		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
 		A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */; };
 		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
@@ -101,6 +104,9 @@
 		A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosView.swift; sourceTree = "<group>"; };
 		A2C2423428476E1300CB233B /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		A2C2423628476EE700CB233B /* RatingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStar.swift; sourceTree = "<group>"; };
+		A2C2423928477A7500CB233B /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
+		A2C2423B28477B1300CB233B /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
+		A2C2423D28477BA600CB233B /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
 		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
 		A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				0F2B4CBD28454ED9004D0EF7 /* Category.swift */,
+				A2C2423B28477B1300CB233B /* AccountType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -258,6 +265,7 @@
 				0F3F73F528467BE100A5D2BF /* New Review */,
 				0F75163C28435F9200A05A92 /* Notifications */,
 				0F751641284363A100A05A92 /* Profile */,
+				A2C2423828477A5700CB233B /* Friends */,
 				0F415CCC2843CDDA005B54DC /* Review & Ratings */,
 				A2E64BC728423CB600FC41B7 /* Turn On Location */,
 				A2E64BC02842277300FC41B7 /* Register */,
@@ -334,6 +342,15 @@
 				A2C2423428476E1300CB233B /* ReviewCell.swift */,
 			);
 			path = "Restaurant Reviews";
+			sourceTree = "<group>";
+		};
+		A2C2423828477A5700CB233B /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				A2C2423928477A7500CB233B /* PeopleListView.swift */,
+				A2C2423D28477BA600CB233B /* PeopleListCell.swift */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 		A2E64B9C2842145900FC41B7 /* Extension */ = {
@@ -461,6 +478,7 @@
 				A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */,
 				A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */,
 				A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */,
+				A2C2423C28477B1300CB233B /* AccountType.swift in Sources */,
 				0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */,
 				0F2B4CBB28454DF4004D0EF7 /* SelectCategoryView.swift in Sources */,
 				0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */,
@@ -480,12 +498,14 @@
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
+				A2C2423A28477A7500CB233B /* PeopleListView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
 				A2E64BC42842281B00FC41B7 /* MarineButton.swift in Sources */,
 				0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */,
 				0F2B4CB928454DD6004D0EF7 /* SearchCriteriaView.swift in Sources */,
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
+				A2C2423E28477BA600CB233B /* PeopleListCell.swift in Sources */,
 				0F7516382843502400A05A92 /* UIScreen+.swift in Sources */,
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,

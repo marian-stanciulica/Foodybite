@@ -13,7 +13,7 @@ struct MarineButton: View {
 
     var body: some View {
        Button(title, action: action)
-           .frame(maxWidth: .infinity, minHeight: 54)
+           .frame(maxWidth: .infinity, minHeight: 48)
            .foregroundColor(.white)
            .background(Color.marineBlue)
            .cornerRadius(16)
