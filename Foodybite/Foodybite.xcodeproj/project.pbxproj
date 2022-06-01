@@ -52,6 +52,7 @@
 		A2C24243284780D100CB233B /* SeetingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24242284780D100CB233B /* SeetingsView.swift */; };
 		A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2424428478A4500CB233B /* ChangePasswordView.swift */; };
 		A2C2424728478BCB00CB233B /* ImageGrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */; };
+		A2C2424A2847A29100CB233B /* ArrowBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C242492847A29100CB233B /* ArrowBackButton.swift */; };
 		A2E64B9928420C2D00FC41B7 /* ImageWhiteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageWhiteTextField.swift */; };
 		A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */; };
 		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
@@ -113,6 +114,7 @@
 		A2C24242284780D100CB233B /* SeetingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeetingsView.swift; sourceTree = "<group>"; };
 		A2C2424428478A4500CB233B /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrayTextField.swift; sourceTree = "<group>"; };
+		A2C242492847A29100CB233B /* ArrowBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowBackButton.swift; sourceTree = "<group>"; };
 		A2E64B9828420C2D00FC41B7 /* ImageWhiteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWhiteTextField.swift; sourceTree = "<group>"; };
 		A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
 				0F2B4CBC28454EC2004D0EF7 /* Enums */,
 				A2E64B9C2842145900FC41B7 /* Extension */,
+				A2C242482847A26700CB233B /* View Modifiers */,
 				A2032BA2284205B600F8D8C8 /* Components */,
 				A2032BA0284204A700F8D8C8 /* Views */,
 				A2032B9F2842049300F8D8C8 /* Resources */,
@@ -370,6 +373,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		A2C242482847A26700CB233B /* View Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				A2C242492847A29100CB233B /* ArrowBackButton.swift */,
+			);
+			path = "View Modifiers";
+			sourceTree = "<group>";
+		};
 		A2E64B9C2842145900FC41B7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,6 +533,7 @@
 				A2E64BC42842281B00FC41B7 /* MarineButton.swift in Sources */,
 				0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */,
 				0F2B4CB928454DD6004D0EF7 /* SearchCriteriaView.swift in Sources */,
+				A2C2424A2847A29100CB233B /* ArrowBackButton.swift in Sources */,
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
 				A2C2423E28477BA600CB233B /* PeopleListCell.swift in Sources */,

@@ -26,8 +26,7 @@ struct ProfileImage: View {
                 .background(Circle().fill(Color.marineBlue))
                 .font(.system(size: 30, weight: .bold))
             }
-        .frame(maxWidth: 180, maxHeight: 180)
-        .padding()
+        .frame(width: 180, height: 180)
     }
 }
 

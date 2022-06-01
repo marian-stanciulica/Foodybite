@@ -16,7 +16,9 @@ struct RegisterView: View {
     var body: some View {
         VStack {
             ProfileImage()
-                .padding(.vertical)
+                .padding(.bottom)
+
+            Spacer()
 
             Group {
             ImageWhiteTextField(placeholder: "Name",
@@ -59,11 +61,14 @@ struct RegisterView: View {
         .background(
             BackgroundImage(imageName: "register_background")
         )
+        .arrowBackButtonStyle()
     }
 }
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        NavigationView {
+            RegisterView()
+        }
     }
 }

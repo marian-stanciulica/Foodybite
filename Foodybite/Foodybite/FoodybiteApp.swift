@@ -9,12 +9,16 @@ import SwiftUI
 
 @main
 struct FoodybiteApp: App {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @AppStorage("userLoggedIn") var userLoggedIn = false
     
     var body: some Scene {
         WindowGroup {
-            TabNavigationView()
-                .environmentObject(ViewRouter())
+            if userLoggedIn {
+                TabNavigationView()
+                    .environmentObject(ViewRouter())
+            } else {
+                LoginView()
+            }
         }
     }
 }
