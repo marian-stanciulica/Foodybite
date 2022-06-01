@@ -35,6 +35,17 @@
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
+		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
+		A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421D28474D9700CB233B /* RestaurantImageView.swift */; };
+		A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */; };
+		A2C24222284755AE00CB233B /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24221284755AE00CB233B /* Blur.swift */; };
+		A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422628475CE600CB233B /* OpenHoursView.swift */; };
+		A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */; };
+		A2C2422B28475D5800CB233B /* CategoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422A28475D5800CB233B /* CategoryText.swift */; };
+		A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422C28475D9200CB233B /* DistanceText.swift */; };
+		A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */; };
+		A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423428476E1300CB233B /* ReviewCell.swift */; };
+		A2C2423728476EE700CB233B /* RatingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423628476EE700CB233B /* RatingStar.swift */; };
 		A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */; };
 		A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */; };
 		A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E64B9D2842146C00FC41B7 /* Color+.swift */; };
@@ -79,6 +90,17 @@
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
+		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
+		A2C2421D28474D9700CB233B /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
+		A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAndDirectionsView.swift; sourceTree = "<group>"; };
+		A2C24221284755AE00CB233B /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		A2C2422628475CE600CB233B /* OpenHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenHoursView.swift; sourceTree = "<group>"; };
+		A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenHoursRatingView.swift; sourceTree = "<group>"; };
+		A2C2422A28475D5800CB233B /* CategoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryText.swift; sourceTree = "<group>"; };
+		A2C2422C28475D9200CB233B /* DistanceText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceText.swift; sourceTree = "<group>"; };
+		A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosView.swift; sourceTree = "<group>"; };
+		A2C2423428476E1300CB233B /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		A2C2423628476EE700CB233B /* RatingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStar.swift; sourceTree = "<group>"; };
 		A2E64B9828420C2D00FC41B7 /* ImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextField.swift; sourceTree = "<group>"; };
 		A2E64B9A2842103300FC41B7 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		A2E64B9D2842146C00FC41B7 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -230,6 +252,7 @@
 			children = (
 				0FAFCA24284297CB00778E45 /* Tab Navigation */,
 				A2E64BCD2842455800FC41B7 /* Home */,
+				A2C2421828474C2500CB233B /* Restaurant Details */,
 				0F2B4CB728454D87004D0EF7 /* Search Filtering */,
 				0F75163928435B7B00A05A92 /* Favorites */,
 				0F3F73F528467BE100A5D2BF /* New Review */,
@@ -259,8 +282,58 @@
 				A2E64BC32842281B00FC41B7 /* MarineButton.swift */,
 				0F7516462843666900A05A92 /* WhiteButton.swift */,
 				0F2B4CBF28455007004D0EF7 /* OrangeButton.swift */,
+				A2C24221284755AE00CB233B /* Blur.swift */,
+				A2C2422A28475D5800CB233B /* CategoryText.swift */,
+				A2C2422C28475D9200CB233B /* DistanceText.swift */,
+				A2C2423628476EE700CB233B /* RatingStar.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		A2C2421828474C2500CB233B /* Restaurant Details */ = {
+			isa = PBXGroup;
+			children = (
+				A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */,
+				A2C2422328475C4600CB233B /* Restaurant Image */,
+				A2C2422528475C9C00CB233B /* Restaurant Order Hours */,
+				A2C2422E284763CD00CB233B /* Restaurant Photos */,
+				A2C2423128476DB800CB233B /* Restaurant Reviews */,
+			);
+			path = "Restaurant Details";
+			sourceTree = "<group>";
+		};
+		A2C2422328475C4600CB233B /* Restaurant Image */ = {
+			isa = PBXGroup;
+			children = (
+				A2C2421D28474D9700CB233B /* RestaurantImageView.swift */,
+				A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */,
+			);
+			path = "Restaurant Image";
+			sourceTree = "<group>";
+		};
+		A2C2422528475C9C00CB233B /* Restaurant Order Hours */ = {
+			isa = PBXGroup;
+			children = (
+				A2C2422628475CE600CB233B /* OpenHoursView.swift */,
+				A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */,
+			);
+			path = "Restaurant Order Hours";
+			sourceTree = "<group>";
+		};
+		A2C2422E284763CD00CB233B /* Restaurant Photos */ = {
+			isa = PBXGroup;
+			children = (
+				A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */,
+			);
+			path = "Restaurant Photos";
+			sourceTree = "<group>";
+		};
+		A2C2423128476DB800CB233B /* Restaurant Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				A2C2423428476E1300CB233B /* ReviewCell.swift */,
+			);
+			path = "Restaurant Reviews";
 			sourceTree = "<group>";
 		};
 		A2E64B9C2842145900FC41B7 /* Extension */ = {
@@ -386,19 +459,26 @@
 				A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */,
 				A2E64BC928423CD000FC41B7 /* TurnOnLocationView.swift in Sources */,
 				A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */,
+				A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */,
+				A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */,
 				0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */,
 				0F2B4CBB28454DF4004D0EF7 /* SelectCategoryView.swift in Sources */,
 				0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */,
+				A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
+				A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */,
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
+				A2C24222284755AE00CB233B /* Blur.swift in Sources */,
 				0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */,
 				0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */,
+				A2C2422B28475D5800CB233B /* CategoryText.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
 				0F2B4CB628454173004D0EF7 /* FriendsListView.swift in Sources */,
 				0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */,
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
+				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
 				A2E64BC42842281B00FC41B7 /* MarineButton.swift in Sources */,
@@ -409,8 +489,12 @@
 				0F7516382843502400A05A92 /* UIScreen+.swift in Sources */,
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
+				A2C2423728476EE700CB233B /* RatingStar.swift in Sources */,
 				0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */,
+				A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageTextField.swift in Sources */,
+				A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */,
+				A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 				0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */,
 			);

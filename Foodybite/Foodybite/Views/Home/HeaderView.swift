@@ -21,7 +21,7 @@ struct HeaderView: View {
                 .font(.body)
         }
         .padding(.horizontal)
-        .padding(.top)
+        .padding(.top, 4)
     }
 }
 

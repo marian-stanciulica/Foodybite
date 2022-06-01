@@ -27,20 +27,7 @@ struct RestaurantCell: View {
 
                     Spacer()
 
-                    HStack {
-                        Image("rating_yellow_star")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-
-                        Text("4.5")
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 4)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(.white)
-                    )
-
+                    RatingStar()
                 }
                 .padding()
             }

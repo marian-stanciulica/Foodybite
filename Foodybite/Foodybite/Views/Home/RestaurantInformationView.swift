@@ -14,21 +14,9 @@ struct RestaurantInformationView: View {
                 Text("Happy Bones")
                     .font(.headline.weight(.bold))
 
-                Text("Category")
-                    .padding(.horizontal, 4)
-                    .foregroundColor(.white)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(.orange.opacity(0.5))
-                    )
+                CategoryText()
 
-                Text("1.2 km")
-                    .padding(.horizontal, 4)
-                    .foregroundColor(.white)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(.blue.opacity(0.5))
-                    )
+                DistanceText(distance: 1.2)
 
                 Spacer()
 
