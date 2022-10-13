@@ -10,6 +10,11 @@ import XCTest
 
 final class ServerEndpointTests: XCTestCase {
 
+    func test_baseURL() {
+        XCTAssertEqual(makeSignUpSUT().host, "localhost")
+        XCTAssertEqual(makeLoginSUT().host, "localhost")
+    }
+    
     func test_signup_path() {
         XCTAssertEqual(makeSignUpSUT().path, "/auth/signup")
     }

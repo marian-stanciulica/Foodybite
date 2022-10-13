@@ -9,6 +9,10 @@ enum ServerEndpoint: Endpoint {
     case signup(name: String, email: String, password: String, confirmPassword: String)
     case login(email: String, password: String)
     
+    var host: String {
+        "localhost"
+    }
+    
     var path: String {
         switch self {
         case .signup:
