@@ -10,6 +10,7 @@
 		0F0BDA2128F83FD500E91FD0 /* FoodybiteNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0BDA1928F83FD500E91FD0 /* FoodybiteNetworking.framework */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
+		0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */; };
 		0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CAF28453E85004D0EF7 /* SearchView.swift */; };
 		0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */; };
 		0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */; };
@@ -85,6 +86,7 @@
 		0F0BDA2028F83FD500E91FD0 /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
 		0F2B4CAF28453E85004D0EF7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRestaurantsView.swift; sourceTree = "<group>"; };
 		0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		0F0BDA2428F83FD500E91FD0 /* FoodybiteNetworkingTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */,
 			);
 			path = FoodybiteNetworkingTests;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 					};
 					0F0BDA1F28F83FD500E91FD0 = {
 						CreatedOnToolsVersion = 14.0.1;
+						LastSwiftMigration = 1400;
 					};
 					0F7137B62841F8340058757A = {
 						CreatedOnToolsVersion = 13.4;
@@ -623,6 +627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,10 +786,16 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteNetworkingTests;
@@ -793,6 +804,7 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -803,10 +815,16 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteNetworkingTests;
