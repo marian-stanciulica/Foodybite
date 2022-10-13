@@ -105,6 +105,10 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeLoginSUT().headers["Content-Type"], "application/json")
     }
     
+    func test_login_emptyUrlParams() {
+        XCTAssertTrue(makeLoginSUT().urlParams.isEmpty)
+    }
+    
     
     // MARK: - Helpers
     
