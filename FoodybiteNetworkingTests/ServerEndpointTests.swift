@@ -88,6 +88,10 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeLoginSUT().path, "/auth/login")
     }
     
+    func test_login_methodIsPost() {
+        XCTAssertEqual(makeLoginSUT().method, "POST")
+    }
+    
     
     // MARK: - Helpers
     
