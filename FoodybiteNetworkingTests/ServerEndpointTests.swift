@@ -18,6 +18,10 @@ enum ServerEndpoint {
         "POST"
     }
     
+    var headers: [String : String] {
+        ["Content-Type" : "application/json"]
+    }
+    
     var body: [String : String] {
         var body = [String : String]()
         
@@ -32,8 +36,8 @@ enum ServerEndpoint {
         return body
     }
     
-    var headers: [String : String] {
-        ["Content-Type" : "application/json"]
+    var urlParams: [String : String] {
+        [:]
     }
 }
 
@@ -65,6 +69,10 @@ final class ServerEndpointTests: XCTestCase {
     
     func test_signup_headersContainContentTypeJson() {
         XCTAssertEqual(makeSUT().headers["Content-Type"], "application/json")
+    }
+    
+    func test_signup_emptyUrlParams() {
+        XCTAssertTrue(makeSUT().urlParams.isEmpty)
     }
     
     
