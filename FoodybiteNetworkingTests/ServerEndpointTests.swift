@@ -101,6 +101,10 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeLoginSUT().body["password"], anyPassword())
     }
     
+    func test_login_headersContainContentTypeJson() {
+        XCTAssertEqual(makeLoginSUT().headers["Content-Type"], "application/json")
+    }
+    
     
     // MARK: - Helpers
     
