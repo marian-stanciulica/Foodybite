@@ -43,10 +43,6 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeSignUpSUT().headers["Content-Type"], "application/json")
     }
     
-    func test_signup_emptyUrlParams() {
-        XCTAssertTrue(makeSignUpSUT().urlParams.isEmpty)
-    }
-    
     func test_login_path() {
         XCTAssertEqual(makeLoginSUT().path, "/auth/login")
     }
@@ -65,10 +61,6 @@ final class ServerEndpointTests: XCTestCase {
     
     func test_login_headersContainContentTypeJson() {
         XCTAssertEqual(makeLoginSUT().headers["Content-Type"], "application/json")
-    }
-    
-    func test_login_emptyUrlParams() {
-        XCTAssertTrue(makeLoginSUT().urlParams.isEmpty)
     }
     
     

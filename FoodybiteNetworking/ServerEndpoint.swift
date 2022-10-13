@@ -46,8 +46,4 @@ enum ServerEndpoint: Endpoint {
         
         return body
     }
-    
-    var urlParams: [String : String] {
-        [:]
-    }
 }

@@ -98,10 +98,6 @@ final class EndpointTests: XCTestCase {
                 return [:]
             }
         }
-        
-        var urlParams: [String : String] {
-            [:]
-        }
     }
     
     // MARK: - Helpers

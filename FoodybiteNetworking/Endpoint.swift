@@ -13,7 +13,6 @@ protocol Endpoint {
     var method: RequestMethod { get }
     var headers: [String: String] { get }
     var body: [String: String] { get }
-    var urlParams: [String: String] { get }
 }
 
 extension Endpoint {
