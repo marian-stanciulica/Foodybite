@@ -15,3 +15,9 @@ protocol Endpoint {
     var body: [String: String] { get }
     var urlParams: [String: String] { get }
 }
+
+extension Endpoint {
+    func createURLRequest() throws {
+        throw NetworkError.invalidURL
+    }
+}
