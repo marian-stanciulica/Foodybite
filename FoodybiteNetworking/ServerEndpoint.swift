@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 13.10.2022.
 //
 
-enum ServerEndpoint {
+enum ServerEndpoint: Endpoint {
     case signup(name: String, email: String, password: String, confirmPassword: String)
     case login(email: String, password: String)
     
@@ -18,8 +18,8 @@ enum ServerEndpoint {
         }
     }
     
-    var method: String {
-        "POST"
+    var method: RequestMethod {
+        .post
     }
     
     var headers: [String : String] {

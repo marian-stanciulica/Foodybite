@@ -15,7 +15,7 @@ final class ServerEndpointTests: XCTestCase {
     }
     
     func test_signup_methodIsPost() {
-        XCTAssertEqual(makeSignUpSUT().method, "POST")
+        XCTAssertEqual(makeSignUpSUT().method, .post)
     }
     
     func test_signup_bodyContainsName() {
@@ -47,7 +47,7 @@ final class ServerEndpointTests: XCTestCase {
     }
     
     func test_login_methodIsPost() {
-        XCTAssertEqual(makeLoginSUT().method, "POST")
+        XCTAssertEqual(makeLoginSUT().method, .post)
     }
     
     func test_login_bodyContainsEmail() {
