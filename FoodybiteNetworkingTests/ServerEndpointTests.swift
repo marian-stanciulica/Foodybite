@@ -13,12 +13,21 @@ enum ServerEndpoint {
     var path: String {
         "/auth/signup"
     }
+    
+    var method: String {
+        "POST"
+    }
+    
 }
 
 final class ServerEndpointTests: XCTestCase {
 
     func test_signup_path() {
         XCTAssertEqual(ServerEndpoint.signup.path, "/auth/signup")
+    }
+    
+    func test_signup_methodIsPost() {
+        XCTAssertEqual(ServerEndpoint.signup.method, "POST")
     }
     
 
