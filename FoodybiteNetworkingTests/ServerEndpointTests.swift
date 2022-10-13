@@ -31,6 +31,10 @@ enum ServerEndpoint {
         
         return body
     }
+    
+    var headers: [String : String] {
+        ["Content-Type" : "application/json"]
+    }
 }
 
 final class ServerEndpointTests: XCTestCase {
@@ -57,6 +61,10 @@ final class ServerEndpointTests: XCTestCase {
     
     func test_signup_bodyContainsConfirmPassword() {
         XCTAssertEqual(makeSUT().body["confirm_password"], anyPassword())
+    }
+    
+    func test_signup_headersContainContentTypeJson() {
+        XCTAssertEqual(makeSUT().headers["Content-Type"], "application/json")
     }
     
     
