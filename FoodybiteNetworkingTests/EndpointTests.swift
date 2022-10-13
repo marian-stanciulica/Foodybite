@@ -52,56 +52,8 @@ final class EndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, anyBody())
     }
     
-    enum EndpointStub: Endpoint {
-        case invalidPath
-        case validPath
-        case postMethod(method: RequestMethod)
-        case headers(headers: [String : String])
-        case body(body: [String : String])
-        
-        var host: String {
-            "host"
-        }
-        
-        var path: String {
-            switch self {
-            case .invalidPath:
-                return "invalid path"
-            default:
-                return "/auth/login"
-            }
-        }
-        
-        var method: FoodybiteNetworking.RequestMethod {
-            switch self {
-            case let .postMethod(method):
-                return method
-            default:
-                return .get
-            }
-        }
-        
-        var headers: [String : String] {
-            switch self {
-            case let .headers(headers):
-                return headers
-            default:
-                return [:]
-            }
-        }
-        
-        var body: [String : String] {
-            switch self {
-            case let .body(body):
-                return body
-            default:
-                return [:]
-            }
-        }
-    }
-    
     // MARK: - Helpers
-    
+
     private func someHeaders() -> [String : String] {
         return [
             "header 1 key" : "header 1 value",
@@ -109,7 +61,7 @@ final class EndpointTests: XCTestCase {
             "header 3 key" : "header 3 value",
         ]
     }
-    
+
     private func anyBody() -> [String : String] {
         return [
             "body 1 key" : "body 1 value",
