@@ -35,19 +35,29 @@ final class EndpointTests: XCTestCase {
         }
     }
     
-    func test_createURLRequest_returnsURLRequestWithCorrectHeader() throws {
+    func test_createURLRequest_returnsURLRequestWithCorrectHeaders() throws {
         let endpoint = EndpointStub.headers(headers: someHeaders())
         let urlRequest = try endpoint.createURLRequest()
         
         XCTAssertEqual(urlRequest.allHTTPHeaderFields, someHeaders())
     }
     
+    func test_createURLRequest_returnsURLRequestWithCorrectBody() throws {
+        let endpoint = EndpointStub.body(body: anyBody())
+        let urlRequest = try endpoint.createURLRequest()
+        
+        let receivedBodyData = try XCTUnwrap(urlRequest.httpBody)
+        let receivedBody = try JSONSerialization.jsonObject(with: receivedBodyData) as? [String : String]
+        
+        XCTAssertEqual(receivedBody, anyBody())
+    }
     
     enum EndpointStub: Endpoint {
         case invalidPath
         case validPath
         case postMethod(method: RequestMethod)
         case headers(headers: [String : String])
+        case body(body: [String : String])
         
         var host: String {
             "host"
@@ -81,7 +91,12 @@ final class EndpointTests: XCTestCase {
         }
         
         var body: [String : String] {
-            [:]
+            switch self {
+            case let .body(body):
+                return body
+            default:
+                return [:]
+            }
         }
         
         var urlParams: [String : String] {
@@ -96,6 +111,13 @@ final class EndpointTests: XCTestCase {
             "header 1 key" : "header 1 value",
             "header 2 key" : "header 2 value",
             "header 3 key" : "header 3 value",
+        ]
+    }
+    
+    private func anyBody() -> [String : String] {
+        return [
+            "body 1 key" : "body 1 value",
+            "body 2 key" : "body 2 value"
         ]
     }
     

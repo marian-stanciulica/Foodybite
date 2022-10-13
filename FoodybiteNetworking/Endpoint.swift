@@ -33,6 +33,10 @@ extension Endpoint {
             urlRequest.allHTTPHeaderFields = headers
         }
         
+        if !body.isEmpty {
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: body)
+        }
+        
         return urlRequest
     }
 }
