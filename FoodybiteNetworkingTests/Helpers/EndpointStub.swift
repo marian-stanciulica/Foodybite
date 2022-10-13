@@ -8,6 +8,7 @@
 @testable import FoodybiteNetworking
 
 enum EndpointStub: Endpoint {
+    case stub
     case invalidPath
     case validPath
     case postMethod(method: RequestMethod)
