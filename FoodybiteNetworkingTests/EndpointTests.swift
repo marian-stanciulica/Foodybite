@@ -25,17 +25,21 @@ final class EndpointTests: XCTestCase {
     }
     
     func test_createURLRequest_returnsURLRequestWithCorrectRequestMethod() throws {
-        let endpoint = EndpointStub.postMethod
-        let urlRequest = try endpoint.createURLRequest()
+        let allMethods: [RequestMethod] = [.delete, .get, .post, .patch, .put]
         
-        XCTAssertEqual(urlRequest.httpMethod, RequestMethod.post.rawValue)
+        try allMethods.forEach { method in
+            let endpoint = EndpointStub.postMethod(method: method)
+            let urlRequest = try endpoint.createURLRequest()
+            
+            XCTAssertEqual(urlRequest.httpMethod, method.rawValue)
+        }
     }
     
     
     enum EndpointStub: Endpoint {
         case invalidPath
         case validPath
-        case postMethod
+        case postMethod(method: RequestMethod)
         
         var host: String {
             "host"
@@ -52,8 +56,8 @@ final class EndpointTests: XCTestCase {
         
         var method: FoodybiteNetworking.RequestMethod {
             switch self {
-            case .postMethod:
-                return .post
+            case let .postMethod(method):
+                return method
             default:
                 return .get
             }
