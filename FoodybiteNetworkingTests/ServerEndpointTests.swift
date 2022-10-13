@@ -9,9 +9,16 @@ import XCTest
 
 enum ServerEndpoint {
     case signup(name: String, email: String, password: String, confirmPassword: String)
+    case login
     
     var path: String {
-        "/auth/signup"
+        switch self {
+        case .signup:
+            return "/auth/signup"
+        case .login:
+            return "/auth/login"
+        }
+        
     }
     
     var method: String {
@@ -31,6 +38,8 @@ enum ServerEndpoint {
             body["email"] = email
             body["password"] = password
             body["confirm_password"] = confirmPassword
+        case .login:
+            break
         }
         
         return body
@@ -44,35 +53,39 @@ enum ServerEndpoint {
 final class ServerEndpointTests: XCTestCase {
 
     func test_signup_path() {
-        XCTAssertEqual(makeSUT().path, "/auth/signup")
+        XCTAssertEqual(makeSignUpSUT().path, "/auth/signup")
     }
     
     func test_signup_methodIsPost() {
-        XCTAssertEqual(makeSUT().method, "POST")
+        XCTAssertEqual(makeSignUpSUT().method, "POST")
     }
     
     func test_signup_bodyContainsName() {
-        XCTAssertEqual(makeSUT().body["name"], anyName())
+        XCTAssertEqual(makeSignUpSUT().body["name"], anyName())
     }
     
     func test_signup_bodyContainsEmail() {
-        XCTAssertEqual(makeSUT().body["email"], anyEmail())
+        XCTAssertEqual(makeSignUpSUT().body["email"], anyEmail())
     }
     
     func test_signup_bodyContainsPassword() {
-        XCTAssertEqual(makeSUT().body["password"], anyPassword())
+        XCTAssertEqual(makeSignUpSUT().body["password"], anyPassword())
     }
     
     func test_signup_bodyContainsConfirmPassword() {
-        XCTAssertEqual(makeSUT().body["confirm_password"], anyPassword())
+        XCTAssertEqual(makeSignUpSUT().body["confirm_password"], anyPassword())
     }
     
     func test_signup_headersContainContentTypeJson() {
-        XCTAssertEqual(makeSUT().headers["Content-Type"], "application/json")
+        XCTAssertEqual(makeSignUpSUT().headers["Content-Type"], "application/json")
     }
     
     func test_signup_emptyUrlParams() {
-        XCTAssertTrue(makeSUT().urlParams.isEmpty)
+        XCTAssertTrue(makeSignUpSUT().urlParams.isEmpty)
+    }
+    
+    func test_login_path() {
+        XCTAssertEqual(makeLoginSUT().path, "/auth/login")
     }
     
     
@@ -90,8 +103,12 @@ final class ServerEndpointTests: XCTestCase {
         "123$Password@321"
     }
     
-    private func makeSUT() -> ServerEndpoint {
+    private func makeSignUpSUT() -> ServerEndpoint {
         return .signup(name: anyName(), email: anyEmail(), password: anyPassword(), confirmPassword: anyPassword())
+    }
+    
+    private func makeLoginSUT() -> ServerEndpoint {
+        return .login
     }
 
 }
