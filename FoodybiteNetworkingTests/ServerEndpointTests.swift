@@ -9,7 +9,7 @@ import XCTest
 
 enum ServerEndpoint {
     case signup(name: String, email: String, password: String, confirmPassword: String)
-    case login
+    case login(email: String, password: String)
     
     var path: String {
         switch self {
@@ -38,8 +38,9 @@ enum ServerEndpoint {
             body["email"] = email
             body["password"] = password
             body["confirm_password"] = confirmPassword
-        case .login:
-            break
+        case let .login(email, password):
+            body["email"] = email
+            body["password"] = password
         }
         
         return body
@@ -92,6 +93,14 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeLoginSUT().method, "POST")
     }
     
+    func test_login_bodyContainsEmail() {
+        XCTAssertEqual(makeLoginSUT().body["email"], anyEmail())
+    }
+    
+    func test_login_bodyContainsPassword() {
+        XCTAssertEqual(makeLoginSUT().body["password"], anyPassword())
+    }
+    
     
     // MARK: - Helpers
     
@@ -112,7 +121,7 @@ final class ServerEndpointTests: XCTestCase {
     }
     
     private func makeLoginSUT() -> ServerEndpoint {
-        return .login
+        return .login(email: anyEmail(), password: anyPassword())
     }
 
 }
