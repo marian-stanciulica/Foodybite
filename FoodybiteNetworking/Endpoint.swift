@@ -17,7 +17,15 @@ protocol Endpoint {
 }
 
 extension Endpoint {
-    func createURLRequest() throws {
-        throw NetworkError.invalidURL
+    func createURLRequest() throws -> URLRequest {
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = host
+        components.port = 8080
+        components.path = path
+
+        guard let url = components.url else { throw  NetworkError.invalidURL }
+        
+        return URLRequest(url: url)
     }
 }

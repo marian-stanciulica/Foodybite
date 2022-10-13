@@ -14,16 +14,31 @@ final class EndpointTests: XCTestCase {
         let endpoint = EndpointStub.invalidPath
         XCTAssertThrowsError(try endpoint.createURLRequest())
     }
+    
+    func test_createURLRequest_returnsValidURL() throws {
+        let endpoint = EndpointStub.validPath
+        let expectedURLString = "http://" + endpoint.host + ":8080" + endpoint.path
+        
+        let urlRequest = try endpoint.createURLRequest()
+        
+        XCTAssertEqual(urlRequest.url?.absoluteString, expectedURLString)
+    }
 
     enum EndpointStub: Endpoint {
         case invalidPath
+        case validPath
         
         var host: String {
             "host"
         }
         
         var path: String {
-            "invalid path"
+            switch self {
+            case .invalidPath:
+                return "invalid path"
+            case .validPath:
+                return "/auth/login"
+            }
         }
         
         var method: FoodybiteNetworking.RequestMethod {
