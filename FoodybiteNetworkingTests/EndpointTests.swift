@@ -35,11 +35,19 @@ final class EndpointTests: XCTestCase {
         }
     }
     
+    func test_createURLRequest_returnsURLRequestWithCorrectHeader() throws {
+        let endpoint = EndpointStub.headers(headers: someHeaders())
+        let urlRequest = try endpoint.createURLRequest()
+        
+        XCTAssertEqual(urlRequest.allHTTPHeaderFields, someHeaders())
+    }
+    
     
     enum EndpointStub: Endpoint {
         case invalidPath
         case validPath
         case postMethod(method: RequestMethod)
+        case headers(headers: [String : String])
         
         var host: String {
             "host"
@@ -49,7 +57,7 @@ final class EndpointTests: XCTestCase {
             switch self {
             case .invalidPath:
                 return "invalid path"
-            case .validPath, .postMethod:
+            default:
                 return "/auth/login"
             }
         }
@@ -64,7 +72,12 @@ final class EndpointTests: XCTestCase {
         }
         
         var headers: [String : String] {
-            [:]
+            switch self {
+            case let .headers(headers):
+                return headers
+            default:
+                return [:]
+            }
         }
         
         var body: [String : String] {
@@ -74,6 +87,16 @@ final class EndpointTests: XCTestCase {
         var urlParams: [String : String] {
             [:]
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func someHeaders() -> [String : String] {
+        return [
+            "header 1 key" : "header 1 value",
+            "header 2 key" : "header 2 value",
+            "header 3 key" : "header 3 value",
+        ]
     }
     
 }

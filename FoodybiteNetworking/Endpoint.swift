@@ -28,6 +28,11 @@ extension Endpoint {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
+        
+        if !headers.isEmpty {
+            urlRequest.allHTTPHeaderFields = headers
+        }
+        
         return urlRequest
     }
 }
