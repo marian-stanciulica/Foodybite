@@ -26,6 +26,8 @@ extension Endpoint {
 
         guard let url = components.url else { throw  NetworkError.invalidURL }
         
-        return URLRequest(url: url)
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+        return urlRequest
     }
 }
