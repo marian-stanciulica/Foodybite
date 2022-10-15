@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ResourceLoader {
-    func get<T: Decodable>(for urlRequest: URLRequest) throws -> T
+    func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T
 }
