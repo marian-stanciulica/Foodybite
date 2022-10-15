@@ -15,16 +15,16 @@ class URLSessionHTTPClient {
         self.urlSession = urlSession
     }
     
-    struct UnexpectedValuesRepresentation: Error {}
+    struct UnexpectedRepresentation: Error {}
     
     func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
         let (data, response) = try await urlSession.data(for: urlRequest, delegate: nil)
         
-        if let response = response as? HTTPURLResponse {
-            return (data, response)
-        } else {
-            throw UnexpectedValuesRepresentation()
+        guard let response = response as? HTTPURLResponse else {
+            throw UnexpectedRepresentation()
         }
+        
+        return (data, response)
     }
 }
 
