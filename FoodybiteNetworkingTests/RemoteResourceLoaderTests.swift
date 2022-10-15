@@ -35,16 +35,14 @@ class HTTPClientSpy {
 final class RemoteResourceLoaderTests: XCTestCase {
 
     func test_init_noRequestTriggered() {
-        let client = HTTPClientSpy()
-        _ = RemoteResourceLoader(client: client)
+        let (_, client) = makeSUT()
         
         XCTAssertEqual(client.urlRequests, [])
     }
     
     func test_get_requestDataForEndpoint() throws {
         let urlRequest = try EndpointStub.stub.createURLRequest()
-        let client = HTTPClientSpy()
-        let sut = RemoteResourceLoader(client: client)
+        let (sut, client) = makeSUT()
         
         try sut.get(for: urlRequest)
         
@@ -53,8 +51,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
     
     func test_get_requestsDataForEndpointTwice() throws {
         let urlRequest = try EndpointStub.stub.createURLRequest()
-        let client = HTTPClientSpy()
-        let sut = RemoteResourceLoader(client: client)
+        let (sut, client) = makeSUT()
         
         try sut.get(for: urlRequest)
         try sut.get(for: urlRequest)
@@ -63,15 +60,13 @@ final class RemoteResourceLoaderTests: XCTestCase {
     }
     
     func test_get_throwErrorOnClientError() throws {
+        let (sut, client) = makeSUT()
         let urlRequest = try EndpointStub.stub.createURLRequest()
-        let client = HTTPClientSpy()
         let expectedError = NSError(domain: "any error", code: 1)
-        let sut = RemoteResourceLoader(client: client)
         
         client.errorToThrow = expectedError
         
         var receivedError: NSError?
-        
         do {
             try sut.get(for: urlRequest)
         } catch {
@@ -80,6 +75,15 @@ final class RemoteResourceLoaderTests: XCTestCase {
         
         XCTAssertEqual(receivedError?.domain, expectedError.domain)
         XCTAssertEqual(receivedError?.code, expectedError.code)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: RemoteResourceLoader, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = RemoteResourceLoader(client: client)
+        
+        return (sut, client)
     }
     
     
