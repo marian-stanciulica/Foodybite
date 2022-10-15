@@ -31,6 +31,21 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         XCTAssertEqual(session.requests, [urlRequest])
     }
+    
+    func test_send_throwsErrorOnRequestError() async {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let expectedError = NSError(domain: "any error", code: 1)
+        let session = URLSessionSpy(result: .failure(expectedError))
+        let sut = URLSessionHTTPClient(urlSession: session)
+        
+        do {
+            try await sut.send(urlRequest)
+            XCTFail("SUT should throw error on request error")
+        } catch {
+            XCTAssertEqual(expectedError, error as NSError)
+        }
+    }
+    
 
 }
 
