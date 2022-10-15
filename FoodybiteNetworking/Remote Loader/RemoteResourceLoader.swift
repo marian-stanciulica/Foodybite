@@ -21,7 +21,7 @@ class RemoteResourceLoader {
     }
     
     func get<T: Decodable>(for urlRequest: URLRequest) throws -> T {
-        guard let result = try? client.get(for: urlRequest) else {
+        guard let result = try? client.send(urlRequest) else {
             throw Error.connectivity
         }
         

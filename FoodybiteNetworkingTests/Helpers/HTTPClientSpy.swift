@@ -12,7 +12,7 @@ class HTTPClientSpy: HTTPClient {
     var urlRequests = [URLRequest]()
     var result: Result<(Data, HTTPURLResponse), NSError>?
     
-    func get(for urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse) {
+    func send(_ urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse) {
         urlRequests.append(urlRequest)
         
         if let result = result {

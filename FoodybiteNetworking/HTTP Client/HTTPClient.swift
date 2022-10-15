@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HTTPClient {
-    func get(for urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse)
+    func send(_ urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse)
 }
