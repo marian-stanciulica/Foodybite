@@ -16,12 +16,12 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [])
     }
     
-    func test_get_requestDataForEndpoint() {
+    func test_get_requestDataForEndpoint() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
         do {
-            let _: [CodableMock] = try sut.get(for: urlRequest)
+            let _: [CodableMock] = try await sut.get(for: urlRequest)
         } catch {
             XCTFail("Decoding failed")
         }
@@ -29,13 +29,13 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [urlRequest])
     }
     
-    func test_get_requestsDataForEndpointTwice() {
+    func test_get_requestsDataForEndpointTwice() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
         do {
-            let _: [CodableMock] = try sut.get(for: urlRequest)
-            let _: [CodableMock] = try sut.get(for: urlRequest)
+            let _: [CodableMock] = try await sut.get(for: urlRequest)
+            let _: [CodableMock] = try await sut.get(for: urlRequest)
         } catch {
             XCTFail("Decoding failed")
         }
@@ -43,36 +43,42 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
     }
     
-    func test_get_throwErrorOnClientError() {
-        expect(forClientResult: .failure(anyError()),
+    func test_get_throwErrorOnClientError() async {
+        await expect(forClientResult: .failure(anyError()),
                expected: .failure(.connectivity))
     }
     
-    func test_get_throwErrorOnNon2xxStatusCodeResponse() {
-        let samples = [150, 199, 300, 301, 400, 500]
-        
-        samples.forEach { code in
-            expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code))),
-                   expected: .failure(.invalidData))
-        }
+    func test_get_throwErrorOnNon2xxStatusCodeResponse() async {
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(150))),
+                     expected: .failure(.invalidData))
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(199))),
+                     expected: .failure(.invalidData))
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(300))),
+                     expected: .failure(.invalidData))
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(301))),
+                     expected: .failure(.invalidData))
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(400))),
+                     expected: .failure(.invalidData))
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(500))),
+                     expected: .failure(.invalidData))
     }
     
-    func test_get_throwErrorOn2xxStatusCodeWithInvalidJSON() {
-        expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse())),
+    func test_get_throwErrorOn2xxStatusCodeWithInvalidJSON() async {
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse())),
                expected: .failure(.invalidData))
     }
     
-    func test_get_returnsEmptyArrayOn2xxStatusWithEmptyJSONList() {
+    func test_get_returnsEmptyArrayOn2xxStatusWithEmptyJSONList() async {
         let emptyArrayData = "{\"mocks\":[]}".data(using: .utf8)!
         
-        expect(forClientResult: .success((data: emptyArrayData, response: anyHttpUrlResponse())),
+        await expect(forClientResult: .success((data: emptyArrayData, response: anyHttpUrlResponse())),
                expected: .success([]))
     }
     
-    func test_get_returnsMocksArrayOn2xxStatusWithValidMocksJSONList() {
+    func test_get_returnsMocksArrayOn2xxStatusWithValidMocksJSONList() async {
         let anyMocks = anyMocks()
         
-        expect(forClientResult: .success((data: anyMocks.data, response: anyHttpUrlResponse())),
+        await expect(forClientResult: .success((data: anyMocks.data, response: anyHttpUrlResponse())),
                expected: .success(anyMocks.container.mocks))
     }
     
@@ -88,7 +94,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
     private func expect(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
                         expected:  Result<[CodableMock], RemoteResourceLoader.Error>,
                         file: StaticString = #filePath,
-                        line: UInt = #line) {
+                        line: UInt = #line) async {
         let (sut, client) = makeSUT()
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         client.result = result
@@ -97,7 +103,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
         var receivedMocks: CodableArrayMock?
         
         do {
-            receivedMocks = try sut.get(for: urlRequest)
+            receivedMocks = try await sut.get(for: urlRequest)
         } catch {
             receivedError = error as NSError
         }

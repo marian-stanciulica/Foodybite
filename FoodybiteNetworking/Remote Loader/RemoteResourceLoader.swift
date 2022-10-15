@@ -20,8 +20,8 @@ class RemoteResourceLoader {
         self.client = client
     }
     
-    func get<T: Decodable>(for urlRequest: URLRequest) throws -> T {
-        guard let result = try? client.send(urlRequest) else {
+    func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T {
+        guard let result = try? await client.send(urlRequest) else {
             throw Error.connectivity
         }
         
