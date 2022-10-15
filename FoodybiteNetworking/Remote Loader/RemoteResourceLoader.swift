@@ -21,11 +21,7 @@ class RemoteResourceLoader {
     }
     
     func get<T: Decodable>(for urlRequest: URLRequest) throws -> T {
-        let result: (data: Data, response: HTTPURLResponse)
-        
-        do {
-            result = try client.get(for: urlRequest)
-        } catch {
+        guard let result = try? client.get(for: urlRequest) else {
             throw Error.connectivity
         }
         
@@ -33,10 +29,10 @@ class RemoteResourceLoader {
             throw Error.invalidData
         }
         
-        do {
-            return try codableDataParser.decode(data: result.data)
-        } catch {
+        guard let decodable: T = try? codableDataParser.decode(data: result.data) else {
             throw Error.invalidData
         }
+        
+        return decodable
     }
 }
