@@ -8,50 +8,7 @@
 import XCTest
 @testable import FoodybiteNetworking
 
-class CodableDataParser {
-    private let jsonDecoder = JSONDecoder()
-    
-    func decode<T: Decodable>(data: Data) throws -> T {
-        try jsonDecoder.decode(T.self, from: data)
-    }
-    
-}
-
-class RemoteResourceLoader {
-    private let client: HTTPClientSpy
-    private let codableDataParser = CodableDataParser()
-    
-    enum Error: Swift.Error {
-        case connectivity
-        case invalidData
-    }
-    
-    init(client: HTTPClientSpy) {
-        self.client = client
-    }
-    
-    func get<T: Decodable>(for urlRequest: URLRequest) throws -> T {
-        let result: (data: Data, response: HTTPURLResponse)
-        
-        do {
-            result = try client.get(for: urlRequest)
-        } catch {
-            throw Error.connectivity
-        }
-        
-        guard (200..<300).contains(result.response.statusCode) else {
-            throw Error.invalidData
-        }
-        
-        do {
-            return try codableDataParser.decode(data: result.data)
-        } catch {
-            throw Error.invalidData
-        }
-    }
-}
-
-class HTTPClientSpy {
+class HTTPClientSpy: HTTPClient {
     var urlRequests = [URLRequest]()
     var result: Result<(Data, HTTPURLResponse), NSError>?
     

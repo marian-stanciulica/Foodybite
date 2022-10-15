@@ -31,6 +31,9 @@
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
+		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
+		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
+		0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */; };
 		0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */; };
 		0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BA2841F8340058757A /* FoodybiteApp.swift */; };
 		0F7137BD2841F8340058757A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* LoginView.swift */; };
@@ -114,6 +117,9 @@
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
+		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
+		0F447CAD28FAC1810026C5DB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
 		0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		0F7137B72841F8340058757A /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodybite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7137BA2841F8340058757A /* FoodybiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteApp.swift; sourceTree = "<group>"; };
@@ -192,11 +198,14 @@
 		0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */,
 				0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */,
 				0F0BDA3028F8411900E91FD0 /* Endpoint.swift */,
 				0F0BDA3428F8476E00E91FD0 /* RequestMethod.swift */,
 				0F0BDA3828F8679100E91FD0 /* ServerEndpoint.swift */,
 				0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */,
+				0F447CAD28FAC1810026C5DB /* HTTPClient.swift */,
+				0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */,
 			);
 			path = FoodybiteNetworking;
 			sourceTree = "<group>";
@@ -649,6 +658,9 @@
 			files = (
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
+				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
+				0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */,
+				0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */,
 				0F0BDA3528F8476E00E91FD0 /* RequestMethod.swift in Sources */,
 				0F0BDA3928F8679100E91FD0 /* ServerEndpoint.swift in Sources */,
 				0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */,
