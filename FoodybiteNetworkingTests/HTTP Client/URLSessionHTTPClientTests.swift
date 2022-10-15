@@ -17,11 +17,11 @@ class URLSessionHTTPClient {
     
     struct UnexpectedValuesRepresentation: Error {}
     
-    func send(_ urlRequest: URLRequest) async throws {
-        let (_, response) = try await urlSession.data(for: urlRequest, delegate: nil)
+    func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
+        let (data, response) = try await urlSession.data(for: urlRequest, delegate: nil)
         
-        if let _ = response as? HTTPURLResponse {
-            
+        if let response = response as? HTTPURLResponse {
+            return (data, response)
         } else {
             throw UnexpectedValuesRepresentation()
         }
@@ -35,7 +35,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let session = URLSessionSpy()
         let sut = URLSessionHTTPClient(urlSession: session)
         
-        try? await sut.send(urlRequest)
+        _ = try? await sut.send(urlRequest)
         
         XCTAssertEqual(session.requests, [urlRequest])
     }
@@ -47,7 +47,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let sut = URLSessionHTTPClient(urlSession: session)
         
         do {
-            try await sut.send(urlRequest)
+            _ = try await sut.send(urlRequest)
             XCTFail("SUT should throw error on request error")
         } catch {
             XCTAssertEqual(expectedError, error as NSError)
@@ -60,9 +60,26 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let sut = URLSessionHTTPClient(urlSession: session)
         
         do {
-            try await sut.send(urlRequest)
+            _ = try await sut.send(urlRequest)
             XCTFail("SUT should throw error if response is URLResponse")
         } catch {}
+    }
+    
+    func test_send_succeedsOnHTTPUrlResponseWithData() async {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let anyData = "any data".data(using: .utf8)!
+        let anyHttpUrlResponse = HTTPURLResponse(url: URL(string: "http://any-url.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        let session = URLSessionSpy(result: .success((anyData, anyHttpUrlResponse)))
+        let sut = URLSessionHTTPClient(urlSession: session)
+        
+        do {
+            let (receivedData, receivedResponse) = try await sut.send(urlRequest)
+            XCTAssertEqual(receivedData, anyData)
+            XCTAssertEqual(receivedResponse.url, anyHttpUrlResponse.url)
+            XCTAssertEqual(receivedResponse.statusCode, anyHttpUrlResponse.statusCode)
+        } catch {
+            XCTFail("Should receive data and response, got \(error) instead")
+        }
     }
 
 }
