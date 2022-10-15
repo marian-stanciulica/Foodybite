@@ -41,6 +41,9 @@
 		0F447CC128FB06C90026C5DB /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CC028FB06C90026C5DB /* URLSessionProtocol.swift */; };
 		0F447CC428FB073C0026C5DB /* URLSessionSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CC328FB073C0026C5DB /* URLSessionSpy.swift */; };
 		0F447CC928FB0AB60026C5DB /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CC828FB0AB60026C5DB /* APIServiceTests.swift */; };
+		0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */; };
+		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
+		0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD128FB1A2A0026C5DB /* LoginService.swift */; };
 		0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */; };
 		0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BA2841F8340058757A /* FoodybiteApp.swift */; };
 		0F7137BD2841F8340058757A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* LoginView.swift */; };
@@ -134,6 +137,9 @@
 		0F447CC028FB06C90026C5DB /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		0F447CC328FB073C0026C5DB /* URLSessionSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionSpy.swift; sourceTree = "<group>"; };
 		0F447CC828FB0AB60026C5DB /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		0F447CCE28FB1A020026C5DB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		0F7137B72841F8340058757A /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodybite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7137BA2841F8340058757A /* FoodybiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteApp.swift; sourceTree = "<group>"; };
@@ -212,6 +218,8 @@
 		0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				0F447CCB28FB19C20026C5DB /* Models */,
+				0F447CCA28FB19990026C5DB /* API Service */,
 				0F447CB628FAC2E10026C5DB /* Data Parser */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
 				0F447CB528FAC2D50026C5DB /* HTTP Client */,
@@ -366,6 +374,31 @@
 				0F447CC828FB0AB60026C5DB /* APIServiceTests.swift */,
 			);
 			path = "API Service";
+			sourceTree = "<group>";
+		};
+		0F447CCA28FB19990026C5DB /* API Service */ = {
+			isa = PBXGroup;
+			children = (
+				0F447CD028FB1A190026C5DB /* Protocols */,
+				0F447CCE28FB1A020026C5DB /* APIService.swift */,
+			);
+			path = "API Service";
+			sourceTree = "<group>";
+		};
+		0F447CCB28FB19C20026C5DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0F447CD028FB1A190026C5DB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0F447CD128FB1A2A0026C5DB /* LoginService.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		0F7137AE2841F8340058757A = {
@@ -758,6 +791,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F447CC128FB06C90026C5DB /* URLSessionProtocol.swift in Sources */,
+				0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
@@ -766,6 +800,8 @@
 				0F0BDA3528F8476E00E91FD0 /* RequestMethod.swift in Sources */,
 				0F0BDA3928F8679100E91FD0 /* ServerEndpoint.swift in Sources */,
 				0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */,
+				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
+				0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */,
 				0F447CBF28FB06A00026C5DB /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

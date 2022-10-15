@@ -8,29 +8,6 @@
 import XCTest
 @testable import FoodybiteNetworking
 
-struct LoginResponse: Decodable {
-    let name: String
-    let email: String
-}
-
-protocol LoginService {
-    func login(email: String, password: String) async throws -> LoginResponse
-}
-
-class APIService: LoginService {
-    private let loader: ResourceLoader
-    
-    init(loader: ResourceLoader) {
-        self.loader = loader
-    }
-    
-    func login(email: String, password: String) async throws -> LoginResponse {
-        let endpoint = ServerEndpoint.login(email: email, password: password)
-        let urlRequest = try endpoint.createURLRequest()
-        return try await loader.get(for: urlRequest)
-    }
-}
-
 class ResourceLoaderSpy: ResourceLoader {
     private let response: LoginResponse
     var requests = [URLRequest]()
