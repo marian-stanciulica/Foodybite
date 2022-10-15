@@ -79,14 +79,14 @@ class HTTPClientSpy {
     
     private func anyLoginMocksData() -> Data {
         let loginMocks = [
-            LoginMock(name: "name 1", password: "password 1"),
-            LoginMock(name: "name 2", password: "password 2")
+            CodableMock(name: "name 1", password: "password 1"),
+            CodableMock(name: "name 2", password: "password 2")
         ]
         return try! JSONEncoder().encode(loginMocks)
     }
 }
 
-struct LoginMock: Codable {
+struct CodableMock: Codable {
     let name: String
     let password: String
 }
@@ -104,7 +104,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         do {
-            let _: [LoginMock] = try sut.get(for: urlRequest)
+            let _: [CodableMock] = try sut.get(for: urlRequest)
         } catch {
             XCTFail("Decoding failed")
         }
@@ -117,8 +117,8 @@ final class RemoteResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         do {
-            let _: [LoginMock] = try sut.get(for: urlRequest)
-            let _: [LoginMock] = try sut.get(for: urlRequest)
+            let _: [CodableMock] = try sut.get(for: urlRequest)
+            let _: [CodableMock] = try sut.get(for: urlRequest)
         } catch {
             XCTFail("Decoding failed")
         }
@@ -173,7 +173,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
         
         var receivedError: NSError?
         do {
-            let _: [LoginMock] = try sut.get(for: urlRequest)
+            let _: [CodableMock] = try sut.get(for: urlRequest)
         } catch {
             receivedError = error as NSError
         }
