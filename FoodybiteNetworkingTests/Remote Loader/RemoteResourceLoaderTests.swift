@@ -44,7 +44,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
     }
     
     func test_get_throwErrorOnClientError() {
-        expect(forClientResult: .failure(NSError(domain: "any error", code: 1)),
+        expect(forClientResult: .failure(anyError()),
                expected: .failure(.connectivity))
     }
     
@@ -52,47 +52,27 @@ final class RemoteResourceLoaderTests: XCTestCase {
         let samples = [150, 199, 300, 301, 400, 500]
         
         samples.forEach { code in
-            let anyData = "any data".data(using: .utf8)!
-            let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
-                                           statusCode: code,
-                                           httpVersion: nil,
-                                           headerFields: nil)!
-            
-            expect(forClientResult: .success((data: anyData, response: response)),
+            expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code))),
                    expected: .failure(.invalidData))
         }
     }
     
     func test_get_throwErrorOn2xxStatusCodeWithInvalidJSON() {
-        let anyData = "any data".data(using: .utf8)!
-        let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
-                                       statusCode: 200,
-                                       httpVersion: nil,
-                                       headerFields: nil)!
-        
-        expect(forClientResult: .success((data: anyData, response: response)),
+        expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse())),
                expected: .failure(.invalidData))
     }
     
     func test_get_returnsEmptyArrayOn2xxStatusWithEmptyJSONList() {
-        let anyData = "{\"mocks\":[]}".data(using: .utf8)!
-        let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
-                                       statusCode: 200,
-                                       httpVersion: nil,
-                                       headerFields: nil)!
+        let emptyArrayData = "{\"mocks\":[]}".data(using: .utf8)!
         
-        expect(forClientResult: .success((data: anyData, response: response)),
+        expect(forClientResult: .success((data: emptyArrayData, response: anyHttpUrlResponse())),
                expected: .success([]))
     }
     
     func test_get_returnsMocksArrayOn2xxStatusWithValidMocksJSONList() {
         let anyMocks = anyMocks()
-        let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
-                                       statusCode: 200,
-                                       httpVersion: nil,
-                                       headerFields: nil)!
         
-        expect(forClientResult: .success((data: anyMocks.data, response: response)),
+        expect(forClientResult: .success((data: anyMocks.data, response: anyHttpUrlResponse())),
                expected: .success(anyMocks.container.mocks))
     }
     

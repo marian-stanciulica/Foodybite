@@ -36,6 +36,7 @@
 		0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */; };
 		0F447CB228FAC21C0026C5DB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */; };
 		0F447CBB28FAC5010026C5DB /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CBA28FAC5010026C5DB /* URLSessionHTTPClientTests.swift */; };
+		0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CBC28FB03740026C5DB /* Helpers.swift */; };
 		0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */; };
 		0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BA2841F8340058757A /* FoodybiteApp.swift */; };
 		0F7137BD2841F8340058757A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* LoginView.swift */; };
@@ -124,6 +125,7 @@
 		0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
 		0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		0F447CBA28FAC5010026C5DB /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		0F447CBC28FB03740026C5DB /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		0F7137B72841F8340058757A /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodybite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7137BA2841F8340058757A /* FoodybiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteApp.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		0F0BDA3E28F88C0700E91FD0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0F447CBC28FB03740026C5DB /* Helpers.swift */,
 				0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */,
 				0F447CA928FAA7EE0026C5DB /* CodableMock.swift */,
 				0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */,
@@ -736,6 +739,7 @@
 				0F447CBB28FAC5010026C5DB /* URLSessionHTTPClientTests.swift in Sources */,
 				0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */,
 				0F447CB228FAC21C0026C5DB /* HTTPClientSpy.swift in Sources */,
+				0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */,
 				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
 				0F0BDA3B28F86A6C00E91FD0 /* EndpointTests.swift in Sources */,
 				0F0BDA3728F8546800E91FD0 /* ServerEndpointTests.swift in Sources */,

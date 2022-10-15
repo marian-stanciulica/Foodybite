@@ -42,7 +42,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     func test_send_throwsErrorOnRequestError() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
-        let expectedError = NSError(domain: "any error", code: 1)
+        let expectedError = anyError()
         let session = URLSessionSpy(result: .failure(expectedError))
         let sut = URLSessionHTTPClient(urlSession: session)
         
@@ -56,7 +56,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     func test_send_throwErrorOnInvalidCases() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
-        let session = URLSessionSpy(result: .success((Data(), URLResponse(url: URL(string: "http://any-url.com")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil))))
+        let session = URLSessionSpy(result: .success((anyData(), anyUrlResponse())))
         let sut = URLSessionHTTPClient(urlSession: session)
         
         do {
@@ -67,8 +67,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     func test_send_succeedsOnHTTPUrlResponseWithData() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
-        let anyData = "any data".data(using: .utf8)!
-        let anyHttpUrlResponse = HTTPURLResponse(url: URL(string: "http://any-url.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        let anyData = anyData()
+        let anyHttpUrlResponse = anyHttpUrlResponse()
         let session = URLSessionSpy(result: .success((anyData, anyHttpUrlResponse)))
         let sut = URLSessionHTTPClient(urlSession: session)
         

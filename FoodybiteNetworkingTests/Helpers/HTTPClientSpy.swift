@@ -27,13 +27,6 @@ class HTTPClientSpy: HTTPClient {
         return (anyLoginMocksData(), anyHttpUrlResponse())
     }
     
-    private func anyHttpUrlResponse() -> HTTPURLResponse {
-        HTTPURLResponse(url: URL(string: "http://any-url.com")!,
-                        statusCode: 200,
-                        httpVersion: nil,
-                        headerFields: nil)!
-    }
-    
     private func anyLoginMocksData() -> Data {
         let loginMocks = [
             CodableMock(name: "name 1", password: "password 1"),
