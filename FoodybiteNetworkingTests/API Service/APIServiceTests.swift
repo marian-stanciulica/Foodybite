@@ -35,7 +35,7 @@ class ResourceLoaderSpy: ResourceLoader {
     private let response: LoginResponse
     var requests = [URLRequest]()
     
-    init(response: LoginResponse = LoginResponse(name: "any name", email: "any@email.com")) {
+    init(response: LoginResponse) {
         self.response = response
     }
     
@@ -50,8 +50,7 @@ final class APIServiceTests: XCTestCase {
     // MARK: - LoginService Tests
     
     func test_conformsToLoginService() {
-        let loader = ResourceLoaderSpy()
-        let sut = APIService(loader: loader)
+        let (sut, _) = makeSUT()
         XCTAssertNotNil(sut as LoginService)
     }
     
@@ -59,31 +58,37 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         
+        let (sut, loader) = makeSUT()
         let loginEndpoint = ServerEndpoint.login(email: email, password: password)
-        let loader = ResourceLoaderSpy()
-        let sut = APIService(loader: loader)
+        let urlRequest = try loginEndpoint.createURLRequest()
         
         _ = try await sut.login(email: email, password: password)
         
-        let urlRequest = try loginEndpoint.createURLRequest()
         XCTAssertEqual(loader.requests, [urlRequest])
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
-        let email = anyEmail()
-        let password = anyPassword()
         let expectedResponse = LoginResponse(name: "some name", email: "some@email.com")
+        let sut = makeSUT(response: expectedResponse)
         
-        let loader = ResourceLoaderSpy(response: expectedResponse)
-        let sut = APIService(loader: loader)
-        
-        let receivedResponse = try await sut.login(email: email, password: password)
+        let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
         
         XCTAssertEqual(expectedResponse.name, receivedResponse.name)
         XCTAssertEqual(expectedResponse.email, receivedResponse.email)
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: APIService, loader: ResourceLoaderSpy) {
+        let loader = ResourceLoaderSpy(response: LoginResponse(name: "", email: ""))
+        let sut = APIService(loader: loader)
+        return (sut, loader)
+    }
+    
+    private func makeSUT(response: LoginResponse = LoginResponse(name: "any name", email: "any@email.com")) -> APIService {
+        let loader = ResourceLoaderSpy(response: response)
+        return APIService(loader: loader)
+    }
     
     private func anyEmail() -> String {
         "test@test.com"
