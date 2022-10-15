@@ -8,20 +8,6 @@
 import XCTest
 @testable import FoodybiteNetworking
 
-class ResourceLoaderSpy: ResourceLoader {
-    private let response: LoginResponse
-    var requests = [URLRequest]()
-    
-    init(response: LoginResponse) {
-        self.response = response
-    }
-    
-    func get<T>(for urlRequest: URLRequest) async throws -> T where T : Decodable {
-        requests.append(urlRequest)
-        return response as! T
-    }
-}
-
 final class APIServiceTests: XCTestCase {
     
     // MARK: - LoginService Tests
