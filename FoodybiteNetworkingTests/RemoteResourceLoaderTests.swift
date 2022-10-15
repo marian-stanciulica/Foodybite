@@ -163,6 +163,17 @@ final class RemoteResourceLoaderTests: XCTestCase {
                expected: .success([]))
     }
     
+    func test_get_returnsMocksArrayOn2xxStatusWithValidMocksJSONList() {
+        let anyMocks = anyMocks()
+        let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
+                                       statusCode: 200,
+                                       httpVersion: nil,
+                                       headerFields: nil)!
+        
+        expect(forClientResult: .success((data: anyMocks.data, response: response)),
+               expected: .success(anyMocks.container.mocks))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RemoteResourceLoader, client: HTTPClientSpy) {
@@ -195,6 +206,16 @@ final class RemoteResourceLoaderTests: XCTestCase {
         case let .failure(error):
             XCTAssertEqual(receivedError, error as NSError, file: file, line: line)
         }
+    }
+    
+    private func anyMocks() -> (container: CodableArrayMock, data: Data) {
+        let mocks = [
+            CodableMock(name: "name 1", password: "password 1"),
+            CodableMock(name: "name 2", password: "password 2")
+        ]
+        let mocksContainer = CodableArrayMock(mocks: mocks)
+        let data = try! JSONEncoder().encode(mocksContainer)
+        return (mocksContainer, data)
     }
     
 }
