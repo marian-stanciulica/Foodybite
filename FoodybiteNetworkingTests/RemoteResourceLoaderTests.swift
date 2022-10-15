@@ -97,15 +97,21 @@ final class RemoteResourceLoaderTests: XCTestCase {
     }
     
     func test_get_throwErrorOnNon2xxStatusCodeResponse() throws {
-        let anyData = "any data".data(using: .utf8)!
-        let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
-                                       statusCode: 300,
-                                       httpVersion: nil,
-                                       headerFields: nil)!
+        let samples = [150, 199, 300, 301, 400, 500]
         
-        try expect(forClientResult: .success((data: anyData, response: response)),
-                   expected: .invalidData)
+        try samples.forEach { code in
+            let anyData = "any data".data(using: .utf8)!
+            let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
+                                           statusCode: code,
+                                           httpVersion: nil,
+                                           headerFields: nil)!
+            
+            try expect(forClientResult: .success((data: anyData, response: response)),
+                       expected: .invalidData)
+        }
     }
+    
+    
     
     
     // MARK: - Helpers
