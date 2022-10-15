@@ -15,8 +15,16 @@ class URLSessionHTTPClient {
         self.urlSession = urlSession
     }
     
+    struct UnexpectedValuesRepresentation: Error {}
+    
     func send(_ urlRequest: URLRequest) async throws {
-        let _ = try await urlSession.data(for: urlRequest, delegate: nil)
+        let (_, response) = try await urlSession.data(for: urlRequest, delegate: nil)
+        
+        if let _ = response as? HTTPURLResponse {
+            
+        } else {
+            throw UnexpectedValuesRepresentation()
+        }
     }
 }
 
@@ -46,6 +54,16 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
     }
     
+    func test_send_throwErrorOnInvalidCases() async {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let session = URLSessionSpy(result: .success((Data(), URLResponse(url: URL(string: "http://any-url.com")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil))))
+        let sut = URLSessionHTTPClient(urlSession: session)
+        
+        do {
+            try await sut.send(urlRequest)
+            XCTFail("SUT should throw error if response is URLResponse")
+        } catch {}
+    }
 
 }
 
