@@ -234,8 +234,6 @@
 			children = (
 				0F447CBC28FB03740026C5DB /* Helpers.swift */,
 				0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */,
-				0F447CA928FAA7EE0026C5DB /* CodableMock.swift */,
-				0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -327,6 +325,7 @@
 		0F447CB828FAC30F0026C5DB /* Remote Loader */ = {
 			isa = PBXGroup;
 			children = (
+				0F447CC528FB07A60026C5DB /* Helpers */,
 				0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */,
 			);
 			path = "Remote Loader";
@@ -345,6 +344,15 @@
 			isa = PBXGroup;
 			children = (
 				0F447CC328FB073C0026C5DB /* URLSessionSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F447CC528FB07A60026C5DB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F447CA928FAA7EE0026C5DB /* CodableMock.swift */,
+				0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
