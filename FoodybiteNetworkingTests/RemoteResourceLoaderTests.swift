@@ -123,7 +123,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
     
     func test_get_throwErrorOnClientError() {
         expect(forClientResult: .failure(NSError(domain: "any error", code: 1)),
-                   expected: .connectivity)
+               expected: .failure(.connectivity))
     }
     
     func test_get_throwErrorOnNon2xxStatusCodeResponse() {
@@ -137,11 +137,11 @@ final class RemoteResourceLoaderTests: XCTestCase {
                                            headerFields: nil)!
             
             expect(forClientResult: .success((data: anyData, response: response)),
-                       expected: .invalidData)
+                   expected: .failure(.invalidData))
         }
     }
     
-    func test_get_throwErrorOnInvalidJSON() {
+    func test_get_throwErrorOn2xxStatusCodeWithInvalidJSON() {
         let anyData = "any data".data(using: .utf8)!
         let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
                                        statusCode: 200,
@@ -149,7 +149,18 @@ final class RemoteResourceLoaderTests: XCTestCase {
                                        headerFields: nil)!
         
         expect(forClientResult: .success((data: anyData, response: response)),
-                   expected: .invalidData)
+               expected: .failure(.invalidData))
+    }
+    
+    func test_get_returnsEmptyArrayOn2xxStatusWithEmptyJSONList() {
+        let anyData = "{\"mocks\":[]}".data(using: .utf8)!
+        let response = HTTPURLResponse(url: URL(string: "http://any-url.com")!,
+                                       statusCode: 200,
+                                       httpVersion: nil,
+                                       headerFields: nil)!
+        
+        expect(forClientResult: .success((data: anyData, response: response)),
+               expected: .success([]))
     }
     
     // MARK: - Helpers
@@ -161,19 +172,29 @@ final class RemoteResourceLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expect(forClientResult result: Result<(Data, HTTPURLResponse), NSError>, expected: RemoteResourceLoader.Error, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
+                        expected:  Result<[CodableMock], RemoteResourceLoader.Error>,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) {
         let (sut, client) = makeSUT()
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         client.result = result
         
         var receivedError: NSError?
+        var receivedMocks: CodableArrayMock?
+        
         do {
-            let _: [CodableMock] = try sut.get(for: urlRequest)
+            receivedMocks = try sut.get(for: urlRequest)
         } catch {
             receivedError = error as NSError
         }
         
-        XCTAssertEqual(receivedError, expected as NSError, file: file, line: line)
+        switch expected {
+        case let .success(expectedMocks):
+            XCTAssertEqual(receivedMocks?.mocks, expectedMocks, file: file, line: line)
+        case let .failure(error):
+            XCTAssertEqual(receivedError, error as NSError, file: file, line: line)
+        }
     }
     
 }

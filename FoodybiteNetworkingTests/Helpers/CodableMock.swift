@@ -5,7 +5,11 @@
 //  Created by Marian Stanciulica on 15.10.2022.
 //
 
-struct CodableMock: Codable {
+struct CodableArrayMock: Codable, Equatable {
+    let mocks: [CodableMock]
+}
+
+struct CodableMock: Codable, Equatable {
     let name: String
     let password: String
 }
