@@ -86,11 +86,6 @@ class HTTPClientSpy {
     }
 }
 
-struct CodableMock: Codable {
-    let name: String
-    let password: String
-}
-
 final class RemoteResourceLoaderTests: XCTestCase {
 
     func test_init_noRequestTriggered() {
