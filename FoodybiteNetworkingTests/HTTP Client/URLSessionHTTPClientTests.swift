@@ -8,26 +8,6 @@
 import XCTest
 @testable import FoodybiteNetworking
 
-class URLSessionHTTPClient {
-    private let urlSession: URLSessionProtocol
-    
-    init(urlSession: URLSessionProtocol = URLSession.shared) {
-        self.urlSession = urlSession
-    }
-    
-    struct UnexpectedRepresentation: Error {}
-    
-    func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
-        let (data, response) = try await urlSession.data(for: urlRequest, delegate: nil)
-        
-        guard let response = response as? HTTPURLResponse else {
-            throw UnexpectedRepresentation()
-        }
-        
-        return (data, response)
-    }
-}
-
 final class URLSessionHTTPClientTests: XCTestCase {
     
     func test_send_performURLRequest() async throws {
@@ -83,12 +63,6 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
 
 }
-
-protocol URLSessionProtocol {
-    func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: URLSessionProtocol {}
 
 class URLSessionSpy: URLSessionProtocol {
     private(set) var requests = [URLRequest]()
