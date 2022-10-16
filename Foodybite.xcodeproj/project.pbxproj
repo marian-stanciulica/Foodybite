@@ -61,6 +61,7 @@
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
+		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStore.swift */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
 		A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421D28474D9700CB233B /* RestaurantImageView.swift */; };
 		A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */; };
@@ -160,6 +161,7 @@
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		A2C2421D28474D9700CB233B /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
 		A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAndDirectionsView.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		0F0BDA2428F83FD500E91FD0 /* FoodybiteNetworkingTests */ = {
 			isa = PBXGroup;
 			children = (
+				0FDE6C4228FC6D8B0080A7FD /* Refresh Token */,
 				0F0BDA3E28F88C0700E91FD0 /* Helpers */,
 				0F447CB728FAC3000026C5DB /* Endpoint */,
 				0F447CB928FAC4D70026C5DB /* HTTP Client */,
@@ -507,6 +510,22 @@
 			isa = PBXGroup;
 			children = (
 				0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */,
+			);
+			path = "Token Store";
+			sourceTree = "<group>";
+		};
+		0FDE6C4228FC6D8B0080A7FD /* Refresh Token */ = {
+			isa = PBXGroup;
+			children = (
+				0FDE6C4328FC6D960080A7FD /* Token Store */,
+			);
+			path = "Refresh Token";
+			sourceTree = "<group>";
+		};
+		0FDE6C4328FC6D960080A7FD /* Token Store */ = {
+			isa = PBXGroup;
+			children = (
+				0FDE6C4428FC6DB20080A7FD /* KeychainTokenStore.swift */,
 			);
 			path = "Token Store";
 			sourceTree = "<group>";
@@ -846,6 +865,7 @@
 				0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */,
 				0F447CB228FAC21C0026C5DB /* HTTPClientSpy.swift in Sources */,
 				0F447CC928FB0AB60026C5DB /* APIServiceTests.swift in Sources */,
+				0FDE6C4528FC6DB20080A7FD /* KeychainTokenStore.swift in Sources */,
 				0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */,
 				0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */,
 				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
