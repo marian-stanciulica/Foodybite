@@ -60,6 +60,7 @@
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
+		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
 		A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421D28474D9700CB233B /* RestaurantImageView.swift */; };
 		A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */; };
@@ -158,6 +159,7 @@
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
+		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		A2C2421D28474D9700CB233B /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
 		A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAndDirectionsView.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */,
 				0F447CCB28FB19C20026C5DB /* Models */,
 				0F447CCA28FB19990026C5DB /* API Service */,
 				0F447CB628FAC2E10026C5DB /* Data Parser */,
@@ -490,6 +493,22 @@
 				0FAFCA29284298C700778E45 /* TabRouter.swift */,
 			);
 			path = "Tab Navigation";
+			sourceTree = "<group>";
+		};
+		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
+			isa = PBXGroup;
+			children = (
+				0FDE6C3F28FC6CD10080A7FD /* Token Store */,
+			);
+			path = "Refresh Token";
+			sourceTree = "<group>";
+		};
+		0FDE6C3F28FC6CD10080A7FD /* Token Store */ = {
+			isa = PBXGroup;
+			children = (
+				0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */,
+			);
+			path = "Token Store";
 			sourceTree = "<group>";
 		};
 		A2032B9F2842049300F8D8C8 /* Resources */ = {
@@ -802,6 +821,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F447CC128FB06C90026C5DB /* URLSessionProtocol.swift in Sources */,
+				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
