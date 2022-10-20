@@ -49,17 +49,17 @@ final class RemoteResourceLoaderTests: XCTestCase {
     }
     
     func test_get_throwErrorOnNon2xxStatusCodeResponse() async {
-        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(150))),
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 150))),
                      expected: .failure(.invalidData))
-        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(199))),
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 199))),
                      expected: .failure(.invalidData))
-        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(300))),
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 300))),
                      expected: .failure(.invalidData))
-        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(301))),
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 301))),
                      expected: .failure(.invalidData))
-        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(400))),
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 400))),
                      expected: .failure(.invalidData))
-        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(500))),
+        await expect(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 500))),
                      expected: .failure(.invalidData))
     }
     

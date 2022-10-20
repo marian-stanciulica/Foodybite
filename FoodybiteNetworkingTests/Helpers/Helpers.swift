@@ -14,7 +14,7 @@ func anyUrlResponse() -> URLResponse {
                 textEncodingName: nil)
 }
 
-func anyHttpUrlResponse(_ code: Int = 200) -> HTTPURLResponse {
+func anyHttpUrlResponse(code: Int = 200) -> HTTPURLResponse {
     HTTPURLResponse(url: URL(string: "http://any-url.com")!,
                     statusCode: code,
                     httpVersion: nil,

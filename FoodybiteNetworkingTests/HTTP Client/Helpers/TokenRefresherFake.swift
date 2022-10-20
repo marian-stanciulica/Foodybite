@@ -8,7 +8,10 @@
 @testable import FoodybiteNetworking
 
 class TokenRefresherFake: TokenRefresher {
+    var getRemoteTokenCalledCount = 0
+    
     func getRemoteToken() async throws -> AuthToken {
+        getRemoteTokenCalledCount += 1
         return AuthToken(accessToken: "remote access token", refreshToken: "remote refresh token")
     }
     

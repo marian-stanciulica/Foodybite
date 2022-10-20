@@ -19,7 +19,13 @@ class AuthenticatedURLSessionHTTPClient: HTTPClient {
     
     func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
         let signedURLRequest = try sign(request: urlRequest)
-        return try await decoratee.send(signedURLRequest)
+        let (data, response) = try await decoratee.send(signedURLRequest)
+        
+        if response.statusCode == 401 {
+            let token = try await tokenRefresher.getRemoteToken()
+        }
+        
+        return (data, response)
     }
     
     private func sign(request: URLRequest) throws -> URLRequest {
@@ -40,9 +46,9 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
     
     func test_send_performURLRequest() async throws {
         let urlRequest = try EndpointStub.stub.createURLRequest()
-        let (sut, httpClientSpy, tokenRefresherFake)  = makeSUT()
+        let (sut, httpClientSpy, tokenRefresherFake) = makeSUT()
         
-        _ = try? await sut.send(urlRequest)
+        _ = try await sut.send(urlRequest)
         
         let authRequest = try authorizeRequest(request: urlRequest, tokenRefresher: tokenRefresherFake)
         XCTAssertEqual(httpClientSpy.urlRequests, [authRequest])
@@ -61,6 +67,19 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         } catch {
             XCTAssertEqual(expectedError, error as NSError)
         }
+    }
+    
+    func test_send_triggersGetRemoteTokenMethodOn401StatusCodeResponse() async throws {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let anyData = anyData()
+        let anyHttpUrlResponse = anyHttpUrlResponse(code: 401)
+        
+        let (sut, httpClientSpy, tokenRefresher)  = makeSUT()
+        httpClientSpy.result = .success((anyData, anyHttpUrlResponse))
+        
+        _ = try await sut.send(urlRequest)
+
+        XCTAssertEqual(tokenRefresher.getRemoteTokenCalledCount, 1)
     }
     
     func test_send_succeedsOnHTTPUrlResponseWithData() async {
