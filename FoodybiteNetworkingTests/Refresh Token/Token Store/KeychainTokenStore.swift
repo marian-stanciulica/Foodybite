@@ -21,6 +21,7 @@ class KeychainTokenStore {
     private enum Error: Swift.Error {
         case notFound
         case invalidData
+        case writeFailed
     }
     
     init(service: String = "store", account: String = "token") {
@@ -60,7 +61,20 @@ class KeychainTokenStore {
             kSecClass: kSecClassGenericPassword
         ] as CFDictionary
 
-        SecItemAdd(query, nil)
+        let status = SecItemAdd(query, nil)
+
+        if status == errSecDuplicateItem {
+            let query = [
+                kSecAttrService: service,
+                kSecAttrAccount: account,
+                kSecClass: kSecClassGenericPassword,
+            ] as CFDictionary
+
+            let attributesToUpdate = [kSecValueData: data] as CFDictionary
+            SecItemUpdate(query, attributesToUpdate)
+        } else if status != errSecSuccess {
+            throw Error.writeFailed
+        }
     }
     
 }
@@ -96,6 +110,24 @@ final class KeychainTokenStoreTests: XCTestCase {
                                       refreshToken: "refresh_token")
         
         try sut.write(expectedToken)
+        let receivedToken = try sut.read()
+        
+        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
+        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+    }
+    
+    func test_write_shouldUpdateValueWhenKeyAlreadyInKeychain() throws {
+        let sut = makeSut()
+        let firstToken = AuthToken(accessToken: "first access token",
+                                   refreshToken: "first refresh_token")
+        
+        try sut.write(firstToken)
+        
+        let expectedToken = AuthToken(accessToken: "expected access token",
+                                      refreshToken: "expected refresh_token")
+        
+        try sut.write(expectedToken)
+        
         let receivedToken = try sut.read()
         
         XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
