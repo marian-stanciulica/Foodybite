@@ -6,5 +6,6 @@
 //
 
 protocol TokenRefresher {
-    func getToken() async throws -> AuthToken
+    func getRemoteToken() async throws -> AuthToken
+    func getLocalToken() throws -> AuthToken
 }
