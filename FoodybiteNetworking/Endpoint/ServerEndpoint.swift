@@ -8,6 +8,7 @@
 enum ServerEndpoint: Endpoint {
     case signup(name: String, email: String, password: String, confirmPassword: String)
     case login(email: String, password: String)
+    case refreshToken(String)
     
     var host: String {
         "localhost"
@@ -19,6 +20,8 @@ enum ServerEndpoint: Endpoint {
             return "/auth/signup"
         case .login:
             return "/auth/login"
+        case .refreshToken:
+            return "/auth/accessToken"
         }
     }
     
@@ -42,6 +45,8 @@ enum ServerEndpoint: Endpoint {
         case let .login(email, password):
             body["email"] = email
             body["password"] = password
+        case let .refreshToken(refreshToken):
+            body["refreshToken"] = refreshToken
         }
         
         return body
