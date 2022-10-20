@@ -17,6 +17,20 @@ final class APIServiceTests: XCTestCase {
         XCTAssertNotNil(sut as LoginService)
     }
     
+    func test_login_loginParamsUsedToCreateEndpoint() async throws {
+        let email = anyEmail()
+        let password = anyPassword()
+        
+        let (sut, loader) = makeSUT()
+        let loginEndpoint = ServerEndpoint.login(email: email, password: password)
+        let urlRequest = try loginEndpoint.createURLRequest()
+        
+        _ = try await sut.login(email: email, password: password)
+        
+        let firstRequest = loader.requests.first
+        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+    }
+    
     func test_login_useLoginEndpointToCreateURLRequest() async throws {
         let email = anyEmail()
         let password = anyPassword()
