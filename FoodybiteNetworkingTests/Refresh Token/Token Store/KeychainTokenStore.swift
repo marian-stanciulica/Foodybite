@@ -42,23 +42,24 @@ class KeychainTokenStore {
 }
 
 final class KeychainTokenStoreTests: XCTestCase {
-    private var sut: KeychainTokenStore!
-    
-    override func setUp() {
-        super.setUp()
-        
-        sut = KeychainTokenStore()
-    }
     
     func test_read_shouldThrowWhenNoTokenInStore() {
-        XCTAssertThrowsError(try sut.read())
+        XCTAssertThrowsError(try makeSut().read())
     }
     
     func test_write_shouldNotThrowError() {
         let expectedToken = AuthToken(accessToken: "access token",
                                       refreshToken: "refresh_token")
         
-        XCTAssertNoThrow(try sut.write(expectedToken))
+        XCTAssertNoThrow(try makeSut().write(expectedToken))
+    }
+    
+    
+    
+    // MARK: - Helpers
+    
+    private func makeSut() -> KeychainTokenStore {
+        return KeychainTokenStore()
     }
 
 }
