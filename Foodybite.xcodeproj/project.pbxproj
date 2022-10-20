@@ -19,6 +19,9 @@
 		0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
+		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
+		0F1FDE442901607000E12B09 /* TokenRefreshLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE432901607000E12B09 /* TokenRefreshLoaderSpy.swift */; };
+		0F1FDE46290161E000E12B09 /* TokenStoreStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE45290161E000E12B09 /* TokenStoreStub.swift */; };
 		0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CAF28453E85004D0EF7 /* SearchView.swift */; };
 		0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */; };
 		0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */; };
@@ -120,6 +123,9 @@
 		0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
+		0F1FDE432901607000E12B09 /* TokenRefreshLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshLoaderSpy.swift; sourceTree = "<group>"; };
+		0F1FDE45290161E000E12B09 /* TokenStoreStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStoreStub.swift; sourceTree = "<group>"; };
 		0F2B4CAF28453E85004D0EF7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRestaurantsView.swift; sourceTree = "<group>"; };
 		0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
@@ -257,6 +263,24 @@
 			children = (
 				0F447CBC28FB03740026C5DB /* Helpers.swift */,
 				0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F1FDE3D290158F400E12B09 /* Token Service */ = {
+			isa = PBXGroup;
+			children = (
+				0F1FDE422901605400E12B09 /* Helpers */,
+				0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */,
+			);
+			path = "Token Service";
+			sourceTree = "<group>";
+		};
+		0F1FDE422901605400E12B09 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F1FDE432901607000E12B09 /* TokenRefreshLoaderSpy.swift */,
+				0F1FDE45290161E000E12B09 /* TokenStoreStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -523,6 +547,7 @@
 		0FDE6C4228FC6D8B0080A7FD /* Refresh Token */ = {
 			isa = PBXGroup;
 			children = (
+				0F1FDE3D290158F400E12B09 /* Token Service */,
 				0FDE6C4328FC6D960080A7FD /* Token Store */,
 			);
 			path = "Refresh Token";
@@ -870,10 +895,13 @@
 			files = (
 				0F447CBB28FAC5010026C5DB /* URLSessionHTTPClientTests.swift in Sources */,
 				0F447CC428FB073C0026C5DB /* URLSessionSpy.swift in Sources */,
+				0F1FDE46290161E000E12B09 /* TokenStoreStub.swift in Sources */,
 				0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */,
 				0F447CB228FAC21C0026C5DB /* HTTPClientSpy.swift in Sources */,
 				0F447CC928FB0AB60026C5DB /* APIServiceTests.swift in Sources */,
+				0F1FDE442901607000E12B09 /* TokenRefreshLoaderSpy.swift in Sources */,
 				0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */,
+				0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */,
 				0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */,
 				0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */,
 				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
