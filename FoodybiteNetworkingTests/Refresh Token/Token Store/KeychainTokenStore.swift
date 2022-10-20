@@ -117,6 +117,14 @@ final class KeychainTokenStoreTests: XCTestCase {
         try verifyWriteRead(given: sut, for: expectedToken)
     }
     
+    func test_write_shouldDeliverTokenAfterWriteUsingAnotherInstance() throws {
+        try writeDefaultToken(using: makeSut())
+        
+        let expectedToken = AuthToken(accessToken: "expected access token",
+                                      refreshToken: "expected refresh_token")
+        try verifyWriteRead(given: makeSut(), for: expectedToken)
+    }
+    
     // MARK: - Helpers
     
     private func makeSut() -> KeychainTokenStore {
