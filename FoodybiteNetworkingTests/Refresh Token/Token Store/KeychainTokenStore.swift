@@ -98,40 +98,23 @@ final class KeychainTokenStoreTests: XCTestCase {
     }
     
     func test_write_shouldNotThrowError() {
-        let expectedToken = AuthToken(accessToken: "access token",
-                                      refreshToken: "refresh_token")
-        
-        XCTAssertNoThrow(try makeSut().write(expectedToken))
+        XCTAssertNoThrow(try writeDefaultToken(using: makeSut()))
     }
     
     func test_read_shouldDeliverTokenAfterWrite() throws {
-        let sut = makeSut()
         let expectedToken = AuthToken(accessToken: "access token",
                                       refreshToken: "refresh_token")
-        
-        try sut.write(expectedToken)
-        let receivedToken = try sut.read()
-        
-        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
-        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+        try verifyWriteRead(given: makeSut(), for: expectedToken)
     }
     
     func test_write_shouldUpdateValueWhenKeyAlreadyInKeychain() throws {
         let sut = makeSut()
-        let firstToken = AuthToken(accessToken: "first access token",
-                                   refreshToken: "first refresh_token")
         
-        try sut.write(firstToken)
+        try writeDefaultToken(using: sut)
         
         let expectedToken = AuthToken(accessToken: "expected access token",
                                       refreshToken: "expected refresh_token")
-        
-        try sut.write(expectedToken)
-        
-        let receivedToken = try sut.read()
-        
-        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
-        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+        try verifyWriteRead(given: sut, for: expectedToken)
     }
     
     // MARK: - Helpers
@@ -139,6 +122,22 @@ final class KeychainTokenStoreTests: XCTestCase {
     private func makeSut() -> KeychainTokenStore {
         return KeychainTokenStore(service: KeychainTokenStoreTests.service,
                                   account: KeychainTokenStoreTests.account)
+    }
+    
+    private func writeDefaultToken(using sut: KeychainTokenStore) throws {
+        let firstToken = AuthToken(accessToken: "default access token",
+                                   refreshToken: "default refresh_token")
+        
+        try sut.write(firstToken)
+    }
+    
+    private func verifyWriteRead(given sut: KeychainTokenStore, for expectedToken: AuthToken) throws {
+        try sut.write(expectedToken)
+        
+        let receivedToken = try sut.read()
+        
+        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
+        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
     }
     
     private func deleteKey() {
