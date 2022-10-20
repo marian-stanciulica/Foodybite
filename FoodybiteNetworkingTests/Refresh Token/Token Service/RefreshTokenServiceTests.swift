@@ -8,30 +8,6 @@
 @testable import FoodybiteNetworking
 import XCTest
 
-protocol TokenRefresher {
-    func getToken() async throws -> AuthToken
-}
-
-class RefreshTokenService: TokenRefresher {
-    private var loader: ResourceLoader
-    private var tokenStore: TokenStore
-    
-    init(loader: ResourceLoader, tokenStore: TokenStore) {
-        self.loader = loader
-        self.tokenStore = tokenStore
-    }
-    
-    func getToken() async throws -> AuthToken {
-        let authToken = try tokenStore.read()
-        let endpoint = ServerEndpoint.refreshToken(authToken.refreshToken)
-        let urlRequest = try endpoint.createURLRequest()
-        let remoteAuthToken: AuthToken = try await loader.get(for: urlRequest)
-        try tokenStore.write(remoteAuthToken)
-        return remoteAuthToken
-    }
-}
-
-
 final class RefreshTokenServiceTests: XCTestCase {
 
     func test_conformsToTokenRefresher() {
