@@ -14,16 +14,40 @@ struct AuthToken: Codable {
 }
 
 class KeychainTokenStore {
-    private let service = "store"
-    private let account = "token"
+    private let service: String
+    private let account: String
     private let codableDataParser = CodableDataParser()
     
     private enum Error: Swift.Error {
         case notFound
+        case invalidData
+    }
+    
+    init(service: String = "store", account: String = "token") {
+        self.service = service
+        self.account = account
     }
     
     func read() throws -> AuthToken {
-        throw Error.notFound
+        let query = [
+            kSecAttrService: service,
+            kSecAttrAccount: account,
+            kSecClass: kSecClassGenericPassword,
+            kSecReturnData: true
+        ] as CFDictionary
+
+        var result: AnyObject?
+        SecItemCopyMatching(query, &result)
+
+        guard let data = result as? Data else {
+            throw Error.notFound
+        }
+        
+        guard let token: AuthToken = try codableDataParser.decode(data: data) else {
+            throw Error.invalidData
+        }
+        
+        return token
     }
     
     func write(_ token: AuthToken) throws {
@@ -42,6 +66,18 @@ class KeychainTokenStore {
 }
 
 final class KeychainTokenStoreTests: XCTestCase {
+    private static let service = "test service"
+    private static let account = "test account"
+    
+    override func setUp() {
+        deleteKey()
+        super.setUp()
+    }
+    
+    override func tearDown() {
+        deleteKey()
+        super.tearDown()
+    }
     
     func test_read_shouldThrowWhenNoTokenInStore() {
         XCTAssertThrowsError(try makeSut().read())
@@ -54,12 +90,33 @@ final class KeychainTokenStoreTests: XCTestCase {
         XCTAssertNoThrow(try makeSut().write(expectedToken))
     }
     
-    
+    func test_read_shouldDeliverTokenAfterWrite() throws {
+        let sut = makeSut()
+        let expectedToken = AuthToken(accessToken: "access token",
+                                      refreshToken: "refresh_token")
+        
+        try sut.write(expectedToken)
+        let receivedToken = try sut.read()
+        
+        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
+        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+    }
     
     // MARK: - Helpers
     
     private func makeSut() -> KeychainTokenStore {
-        return KeychainTokenStore()
+        return KeychainTokenStore(service: KeychainTokenStoreTests.service,
+                                  account: KeychainTokenStoreTests.account)
+    }
+    
+    private func deleteKey() {
+        let query = [
+            kSecAttrService: KeychainTokenStoreTests.service,
+            kSecAttrAccount: KeychainTokenStoreTests.account,
+            kSecClass: kSecClassGenericPassword
+        ] as CFDictionary
+        
+        SecItemDelete(query)
     }
 
 }
