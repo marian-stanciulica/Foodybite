@@ -8,6 +8,6 @@
 import Foundation
 
 protocol TokenStore {
-    func save(_ data: Data)
-    func read() -> Data?
+    func read() throws -> AuthToken
+    func write(_ token: AuthToken) throws
 }
