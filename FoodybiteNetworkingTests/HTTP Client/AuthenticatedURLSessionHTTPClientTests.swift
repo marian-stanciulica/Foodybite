@@ -22,7 +22,9 @@ class AuthenticatedURLSessionHTTPClient: HTTPClient {
         let (data, response) = try await decoratee.send(signedURLRequest)
         
         if response.statusCode == 401 {
-            let token = try await tokenRefresher.getRemoteToken()
+            try await tokenRefresher.fetchLocallyRemoteToken()
+            let signedURLRequest = try sign(request: urlRequest)
+            return try await decoratee.send(signedURLRequest)
         }
         
         return (data, response)
@@ -56,7 +58,7 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
     
     func test_send_throwsErrorOnRequestError() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
-        let (sut, httpClientSpy, _)  = makeSUT()
+        let (sut, httpClientSpy, _) = makeSUT()
         
         let expectedError = anyError()
         httpClientSpy.result = .failure(expectedError)
@@ -74,7 +76,7 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         let anyData = anyData()
         let anyHttpUrlResponse = anyHttpUrlResponse(code: 401)
         
-        let (sut, httpClientSpy, tokenRefresher)  = makeSUT()
+        let (sut, httpClientSpy, tokenRefresher) = makeSUT()
         httpClientSpy.result = .success((anyData, anyHttpUrlResponse))
         
         _ = try await sut.send(urlRequest)
@@ -82,12 +84,27 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(tokenRefresher.getRemoteTokenCalledCount, 1)
     }
     
+    func test_send_resendRequestAgainSignedWithNewAccessTokenAfterReceiving401StatusCode() async throws {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let anyData = anyData()
+        let anyHttpUrlResponse = anyHttpUrlResponse(code: 401)
+        
+        let (sut, httpClientSpy, tokenRefresherFake) = makeSUT()
+        httpClientSpy.result = .success((anyData, anyHttpUrlResponse))
+        
+        let requestSignedWithLocalToken = try authorizeRequest(request: urlRequest, tokenRefresher: tokenRefresherFake)
+        _ = try await sut.send(urlRequest)
+        let requestSignedWithRemoteToken = try authorizeRequest(request: urlRequest, tokenRefresher: tokenRefresherFake)
+        
+        XCTAssertEqual(httpClientSpy.urlRequests, [requestSignedWithLocalToken, requestSignedWithRemoteToken])
+    }
+    
     func test_send_succeedsOnHTTPUrlResponseWithData() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let anyData = anyData()
         let anyHttpUrlResponse = anyHttpUrlResponse()
         
-        let (sut, httpClientSpy, _)  = makeSUT()
+        let (sut, httpClientSpy, _) = makeSUT()
         httpClientSpy.result = .success((anyData, anyHttpUrlResponse))
         
         do {

@@ -8,14 +8,16 @@
 @testable import FoodybiteNetworking
 
 class TokenRefresherFake: TokenRefresher {
+    private let remoteToken = AuthToken(accessToken: "remote access token", refreshToken: "remote refresh token")
+    private var localToken = AuthToken(accessToken: "local access token", refreshToken: "local refresh token")
     var getRemoteTokenCalledCount = 0
     
-    func getRemoteToken() async throws -> AuthToken {
+    func fetchLocallyRemoteToken() async throws {
         getRemoteTokenCalledCount += 1
-        return AuthToken(accessToken: "remote access token", refreshToken: "remote refresh token")
+        localToken = remoteToken
     }
     
     func getLocalToken() throws -> AuthToken {
-        return AuthToken(accessToken: "local access token", refreshToken: "local refresh token")
+        return localToken
     }
 }

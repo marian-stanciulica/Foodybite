@@ -15,7 +15,7 @@ final class RefreshTokenServiceTests: XCTestCase {
         XCTAssertNotNil(sut as TokenRefresher)
     }
 
-    func test_getLocalToken_returnsAuthTokenFromTokenStore() throws {
+    func test_fetchLocallyRemoteToken_returnsAuthTokenFromTokenStore() throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
         let receivedToken = try tokenStoreStub.read()
@@ -25,44 +25,46 @@ final class RefreshTokenServiceTests: XCTestCase {
         XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
     }
     
-    func test_getRemoteToken_refreshTokenFromStoreUsedToCreateEndpoint() async throws {
+    func test_fetchLocallyRemoteToken_refreshTokenFromStoreUsedToCreateEndpoint() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
         let refreshTokenEndpoint = ServerEndpoint.refreshToken(authToken.refreshToken)
         let urlRequest = try refreshTokenEndpoint.createURLRequest()
 
-        _ = try await sut.getRemoteToken()
+        try await sut.fetchLocallyRemoteToken()
 
         let firstRequest = loaderSpy.requests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
-    func test_getRemoteToken_useRefreshTokenEndpointToCreateURLRequest() async throws {
+    func test_fetchLocallyRemoteToken_useRefreshTokenEndpointToCreateURLRequest() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
         let refreshTokenEndpoint = ServerEndpoint.refreshToken(authToken.refreshToken)
         let urlRequest = try refreshTokenEndpoint.createURLRequest()
 
-        _ = try await sut.getRemoteToken()
+        try await sut.fetchLocallyRemoteToken()
 
         XCTAssertEqual(loaderSpy.requests, [urlRequest])
     }
 
-    func test_getRemoteToken_receiveExpectedAuthTokenResponse() async throws {
+    func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
         let expectedAccessToken = "expected access token"
         let expectedRefreshToken = "expected refresh token"
         let (sut, _, _) = makeSUT(accessToken: expectedAccessToken, refreshToken: expectedRefreshToken)
 
-        let receivedResponse = try await sut.getRemoteToken()
+        try await sut.fetchLocallyRemoteToken()
+        let receivedResponse = try sut.getLocalToken()
 
         XCTAssertEqual(expectedAccessToken, receivedResponse.accessToken)
         XCTAssertEqual(expectedRefreshToken, receivedResponse.refreshToken)
     }
     
-    func test_getRemoteToken_storesAuthTokenInTokenStore() async throws {
+    func test_fetchLocallyRemoteToken_storesAuthTokenInTokenStore() async throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
-        let expectedToken = try await sut.getRemoteToken()
+        try await sut.fetchLocallyRemoteToken()
+        let expectedToken = try sut.getLocalToken()
         let receivedToken = try tokenStoreStub.read()
         
         XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
