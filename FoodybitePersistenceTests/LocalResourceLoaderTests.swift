@@ -71,6 +71,20 @@ final class LocalResourceLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_returnsSameObjectWhenCalledTwice() {
+        let (sut, client) = makeSUT()
+        let expectedObject = "expected object"
+        
+        expect(sut, toCompleteWith: .success(expectedObject)) {
+            client.completeSuccessfully(with: expectedObject)
+        }
+        
+        expect(sut, toCompleteWith: .success(expectedObject)) {
+            client.completeSuccessfully(with: expectedObject)
+        }
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocalResourceLoader<String>, client: ResourceStoreSpy<String>) {
