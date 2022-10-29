@@ -21,9 +21,12 @@ class LocalResourceLoader {
     }
     
     func load(completion: @escaping (LoadResult) -> Void) {
-        client.read { error in
-            if let error = error {
+        client.read { result in
+            switch result {
+            case let .failure(error):
                 completion(.failure(error))
+            case let .success(object):
+                completion(.success(object))
             }
         }
     }
@@ -31,15 +34,19 @@ class LocalResourceLoader {
 
 class ResourceStoreSpy {
     private(set) var readCalled = 0
-    private(set) var readCompletions = [(Error?) -> Void]()
+    private(set) var readCompletions = [(Result<String, Error>) -> Void]()
     
-    func read(completion: @escaping (Error?) -> Void) {
+    func read(completion: @escaping (Result<String, Error>) -> Void) {
         readCalled += 1
         readCompletions.append(completion)
     }
     
     func complete(with error: Error, at index: Int = 0) {
-        readCompletions[index](error)
+        readCompletions[index](.failure(error))
+    }
+    
+    func completeSuccessfully(with object: String, at index: Int = 0) {
+        readCompletions[index](.success(object))
     }
     
 }
@@ -73,6 +80,26 @@ final class LocalResourceLoaderTests: XCTestCase {
         client.complete(with: expectedError)
         
         XCTAssertEqual(receivedError, expectedError)
+    }
+    
+    func test_load_returnsObjectSuccessfullyOnClientSuccess() {
+        let client = ResourceStoreSpy()
+        let sut = LocalResourceLoader(client: client)
+        let expectedObject = "expected object"
+        
+        var receivedObject: String?
+        sut.load { result in
+            switch result {
+            case let .success(object):
+                receivedObject = object
+            default:
+                XCTFail("Expected to receive error, got \(result) instead")
+            }
+        }
+        
+        client.completeSuccessfully(with: expectedObject)
+        
+        XCTAssertEqual(receivedObject, expectedObject)
     }
     
 }
