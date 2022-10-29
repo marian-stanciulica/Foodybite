@@ -41,7 +41,7 @@ class ResourceStoreSpy {
         readCompletions.append(completion)
     }
     
-    func complete(with error: Error, at index: Int = 0) {
+    func complete(withError error: Error, at index: Int = 0) {
         readCompletions[index](.failure(error))
     }
     
@@ -54,8 +54,7 @@ class ResourceStoreSpy {
 final class LocalResourceLoaderTests: XCTestCase {
 
     func test_load_callClientRead() {
-        let client = ResourceStoreSpy()
-        let sut = LocalResourceLoader(client: client)
+        let (sut, client) = makeSUT()
         
         sut.load { _ in }
         
@@ -63,43 +62,44 @@ final class LocalResourceLoaderTests: XCTestCase {
     }
     
     func test_load_returnsErrorOnClientError() {
-        let client = ResourceStoreSpy()
-        let sut = LocalResourceLoader(client: client)
+        let (sut, client) = makeSUT()
+        
         let expectedError = NSError(domain: "any error", code: 1)
-        
-        var receivedError: NSError?
-        sut.load { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error as NSError
-            default:
-                XCTFail("Expected to receive error, got \(result) instead")
-            }
+        expect(sut, toCompleteWith: .failure(expectedError)) {
+            client.complete(withError: expectedError)
         }
-        
-        client.complete(with: expectedError)
-        
-        XCTAssertEqual(receivedError, expectedError)
     }
     
     func test_load_returnsObjectSuccessfullyOnClientSuccess() {
-        let client = ResourceStoreSpy()
-        let sut = LocalResourceLoader(client: client)
+        let (sut, client) = makeSUT()
         let expectedObject = "expected object"
         
-        var receivedObject: String?
-        sut.load { result in
-            switch result {
-            case let .success(object):
-                receivedObject = object
+        expect(sut, toCompleteWith: .success(expectedObject)) {
+            client.completeSuccessfully(with: expectedObject)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: LocalResourceLoader, client: ResourceStoreSpy) {
+        let client = ResourceStoreSpy()
+        let sut = LocalResourceLoader(client: client)
+        return (sut, client)
+    }
+    
+    private func expect(_ sut: LocalResourceLoader, toCompleteWith expectedResult: LocalResourceLoader.LoadResult, action: () -> Void) {
+        sut.load { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError)
+            case let (.success(receivedObject), .success(expectedObject)):
+                XCTAssertEqual(receivedObject, expectedObject)
             default:
-                XCTFail("Expected to receive error, got \(result) instead")
+                XCTFail("Expected to receive result \(expectedResult), got \(receivedResult) instead")
             }
         }
         
-        client.completeSuccessfully(with: expectedObject)
-        
-        XCTAssertEqual(receivedObject, expectedObject)
+        action()
     }
     
 }
