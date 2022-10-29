@@ -7,20 +7,14 @@
 
 import XCTest
 
-class LocalResourceLoader {
-    private let client: ResourceStoreSpy
+class LocalResourceLoader<T> {
+    private let client: ResourceStoreSpy<T>
     
-    enum LoadResult {
-        case empty
-        case failure(Error)
-        case success(String)
-    }
-    
-    init(client: ResourceStoreSpy) {
+    init(client: ResourceStoreSpy<T>) {
         self.client = client
     }
     
-    func load(completion: @escaping (LoadResult) -> Void) {
+    func load(completion: @escaping (Result<T, Error>) -> Void) {
         client.read { result in
             switch result {
             case let .failure(error):
@@ -32,12 +26,10 @@ class LocalResourceLoader {
     }
 }
 
-class ResourceStoreSpy {
-    private(set) var readCalled = 0
-    private(set) var readCompletions = [(Result<String, Error>) -> Void]()
+class ResourceStoreSpy<T> {
+    private(set) var readCompletions = [(Result<T, Error>) -> Void]()
     
-    func read(completion: @escaping (Result<String, Error>) -> Void) {
-        readCalled += 1
+    func read(completion: @escaping (Result<T, Error>) -> Void) {
         readCompletions.append(completion)
     }
     
@@ -45,7 +37,7 @@ class ResourceStoreSpy {
         readCompletions[index](.failure(error))
     }
     
-    func completeSuccessfully(with object: String, at index: Int = 0) {
+    func completeSuccessfully(with object: T, at index: Int = 0) {
         readCompletions[index](.success(object))
     }
     
@@ -58,7 +50,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         
         sut.load { _ in }
         
-        XCTAssertEqual(client.readCalled, 1)
+        XCTAssertEqual(client.readCompletions.count, 1)
     }
     
     func test_load_returnsErrorOnClientError() {
@@ -81,13 +73,13 @@ final class LocalResourceLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalResourceLoader, client: ResourceStoreSpy) {
-        let client = ResourceStoreSpy()
-        let sut = LocalResourceLoader(client: client)
+    private func makeSUT() -> (sut: LocalResourceLoader<String>, client: ResourceStoreSpy<String>) {
+        let client = ResourceStoreSpy<String>()
+        let sut = LocalResourceLoader<String>(client: client)
         return (sut, client)
     }
     
-    private func expect(_ sut: LocalResourceLoader, toCompleteWith expectedResult: LocalResourceLoader.LoadResult, action: () -> Void) {
+    private func expect(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>, action: () -> Void) {
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
