@@ -24,10 +24,20 @@ class LocalResourceLoader<T> {
             }
         }
     }
+    
+    func save(completion: @escaping (Error?) -> Void) {
+        client.write { error in
+            if let error = error {
+                completion(error)
+            }
+        }
+    }
+    
 }
 
 class ResourceStoreSpy<T> {
     private(set) var readCompletions = [(Result<T, Error>) -> Void]()
+    private(set) var writeCompletions = [(Error?) -> Void]()
     
     func read(completion: @escaping (Result<T, Error>) -> Void) {
         readCompletions.append(completion)
@@ -39,6 +49,14 @@ class ResourceStoreSpy<T> {
     
     func completeSuccessfully(with object: T, at index: Int = 0) {
         readCompletions[index](.success(object))
+    }
+    
+    func write(completion: @escaping (Error?) -> Void) {
+        writeCompletions.append(completion)
+    }
+    
+    func completeSave(withError error: Error?, at index: Int = 0) {
+        writeCompletions[index](error)
     }
     
 }
@@ -57,7 +75,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         let expectedError = NSError(domain: "any error", code: 1)
-        expect(sut, toCompleteWith: .failure(expectedError)) {
+        expectLoad(sut, toCompleteWith: .failure(expectedError)) {
             client.complete(withError: expectedError)
         }
     }
@@ -66,7 +84,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         let expectedObject = "expected object"
         
-        expect(sut, toCompleteWith: .success(expectedObject)) {
+        expectLoad(sut, toCompleteWith: .success(expectedObject)) {
             client.completeSuccessfully(with: expectedObject)
         }
     }
@@ -75,15 +93,26 @@ final class LocalResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         let expectedObject = "expected object"
         
-        expect(sut, toCompleteWith: .success(expectedObject)) {
+        expectLoad(sut, toCompleteWith: .success(expectedObject)) {
             client.completeSuccessfully(with: expectedObject)
         }
         
-        expect(sut, toCompleteWith: .success(expectedObject)) {
+        expectLoad(sut, toCompleteWith: .success(expectedObject)) {
             client.completeSuccessfully(with: expectedObject)
         }
     }
     
+    func test_save_returnsErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        let expectedError = NSError(domain: "any error", code: 1)
+        
+        var receivedError: NSError?
+        sut.save { receivedError = $0 as NSError? }
+        
+        client.completeSave(withError: expectedError)
+        
+        XCTAssertEqual(receivedError, expectedError)
+    }
     
     // MARK: - Helpers
     
@@ -93,7 +122,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expect(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>, action: () -> Void) {
+    private func expectLoad(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>, action: () -> Void) {
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
