@@ -142,12 +142,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let expectedError = anyNSError()
         client.setDeletion(error: expectedError)
         
-        do {
-            try await sut.save(object: anyObject())
-            XCTFail("Error expected")
-        } catch {
-            XCTAssertEqual(error as NSError, expectedError)
-        }
+        await expectSave(sut, toCompleteWith: expectedError)
     }
     
     func test_save_writesAfterDeletionSucceeded() async {
@@ -166,12 +161,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         client.setDeletion(error: nil)
         client.setWrite(error: expectedError)
         
-        do {
-            try await sut.save(object: anyObject())
-            XCTFail("Error expected")
-        } catch {
-            XCTAssertEqual(error as NSError, expectedError)
-        }
+        await expectSave(sut, toCompleteWith: expectedError)
     }
     
     // MARK: - Helpers
@@ -188,6 +178,14 @@ final class LocalResourceLoaderTests: XCTestCase {
             XCTAssertEqual(resultObject, try expectedResult.get())
         } catch {
             XCTAssertEqual(error as NSError, expectedResult.error as NSError?)
+        }
+    }
+    
+    private func expectSave(_ sut: LocalResourceLoader<String>, toCompleteWith expectedError: Error?) async {
+        do {
+            try await sut.save(object: anyObject())
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError as NSError?)
         }
     }
     
