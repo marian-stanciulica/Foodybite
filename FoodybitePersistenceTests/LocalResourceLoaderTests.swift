@@ -153,6 +153,21 @@ final class LocalResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.messages, [.delete, .write])
     }
     
+    func test_save_returnsErrorOnWriteError() async {
+        let (sut, client) = makeSUT()
+        let expectedError = anyNSError()
+
+        client.setDeletion(error: nil)
+        client.setWrite(error: expectedError)
+        
+        do {
+            try await sut.save(object: anyObject())
+            XCTFail("Error expected")
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocalResourceLoader<String>, client: ResourceStoreSpy<String>) {
