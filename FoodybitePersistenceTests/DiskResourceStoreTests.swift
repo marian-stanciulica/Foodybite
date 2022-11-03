@@ -73,6 +73,17 @@ final class DiskResourceStoreTests: XCTestCase {
         XCTAssertEqual(receivedResource, expectedResource)
     }
     
+    func test_read_hasNoSideEffectsOnCacheHit() async throws {
+        let sut = makeSUT()
+        let expectedResource = anyResource()
+        
+        try await sut.write(expectedResource)
+        _ = try await sut.read()
+        let receivedResource = try await sut.read()
+        
+        XCTAssertEqual(receivedResource, expectedResource)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> DiskResourceStore<TestingResource> {
