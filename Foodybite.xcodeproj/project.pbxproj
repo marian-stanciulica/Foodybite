@@ -42,6 +42,7 @@
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F41D9AC2913E7A700F0E4C2 /* LocalResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalResourceLoader.swift */; };
 		0F41D9AE2913E7BE00F0E4C2 /* ResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AD2913E7BE00F0E4C2 /* ResourceStore.swift */; };
+		0F41D9B12913E82A00F0E4C2 /* ResourceStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9B02913E82A00F0E4C2 /* ResourceStoreSpy.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
 		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
 		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
@@ -163,6 +164,7 @@
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F41D9AB2913E7A700F0E4C2 /* LocalResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResourceLoader.swift; sourceTree = "<group>"; };
 		0F41D9AD2913E7BE00F0E4C2 /* ResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStore.swift; sourceTree = "<group>"; };
+		0F41D9B02913E82A00F0E4C2 /* ResourceStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStoreSpy.swift; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
 		0F447CAD28FAC1810026C5DB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -372,6 +374,14 @@
 				0F415CCF2843D481005B54DC /* RatingView.swift */,
 			);
 			path = "Review & Ratings";
+			sourceTree = "<group>";
+		};
+		0F41D9AF2913E81B00F0E4C2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F41D9B02913E82A00F0E4C2 /* ResourceStoreSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0F447CB328FAC2940026C5DB /* Endpoint */ = {
@@ -587,6 +597,7 @@
 		0F95A881290D024500806AE9 /* FoodybitePersistenceTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F41D9AF2913E81B00F0E4C2 /* Helpers */,
 				0F95A88B290D03CE00806AE9 /* LocalResourceLoaderTests.swift */,
 			);
 			path = FoodybitePersistenceTests;
@@ -1138,6 +1149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F41D9B12913E82A00F0E4C2 /* ResourceStoreSpy.swift in Sources */,
 				0F95A88C290D03CE00806AE9 /* LocalResourceLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
