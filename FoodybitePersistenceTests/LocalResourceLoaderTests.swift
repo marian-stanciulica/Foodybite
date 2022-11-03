@@ -102,45 +102,26 @@ final class LocalResourceLoaderTests: XCTestCase {
         let expectedError = NSError(domain: "any error", code: 1)
         client.setRead(error: expectedError)
         
-        do {
-            _ = try await sut.load()
-            XCTFail("Load expected to fail")
-        } catch {
-            XCTAssertEqual(expectedError, error as NSError)
-        }
+        await expectLoad(sut, toCompleteWith: .failure(expectedError))
     }
     
     func test_load_returnsObjectSuccessfullyOnClientSuccess() async {
         let (sut, client) = makeSUT()
+        
         let expectedObject = "expected object"
         client.setRead(returnedObject: expectedObject)
         
-        do {
-            let resultObject = try await sut.load()
-            XCTAssertEqual(resultObject, expectedObject)
-        } catch {
-            XCTFail("Load expected to return object")
-        }
+        await expectLoad(sut, toCompleteWith: .success(expectedObject))
     }
     
     func test_load_returnsSameObjectWhenCalledTwice() async {
         let (sut, client) = makeSUT()
+        
         let expectedObject = "expected object"
         client.setRead(returnedObject: expectedObject)
         
-        do {
-            let resultObject = try await sut.load()
-            XCTAssertEqual(resultObject, expectedObject)
-        } catch {
-            XCTFail("Load expected to return object")
-        }
-        
-        do {
-            let resultObject = try await sut.load()
-            XCTAssertEqual(resultObject, expectedObject)
-        } catch {
-            XCTFail("Load expected to return object")
-        }
+        await expectLoad(sut, toCompleteWith: .success(expectedObject))
+        await expectLoad(sut, toCompleteWith: .success(expectedObject))
     }
     
     func test_save_requestDeletion() {
@@ -180,19 +161,24 @@ final class LocalResourceLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-//    private func expectLoad(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>, action: () -> Void) {
-//        sut.load { receivedResult in
-//            switch (receivedResult, expectedResult) {
-//            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
-//                XCTAssertEqual(receivedError, expectedError)
-//            case let (.success(receivedObject), .success(expectedObject)):
-//                XCTAssertEqual(receivedObject, expectedObject)
-//            default:
-//                XCTFail("Expected to receive result \(expectedResult), got \(receivedResult) instead")
-//            }
-//        }
-//
-//        action()
-//    }
+    private func expectLoad(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>) async {
+        do {
+            let resultObject = try await sut.load()
+            XCTAssertEqual(resultObject, try expectedResult.get())
+        } catch {
+            XCTAssertEqual(error as NSError, expectedResult.error as NSError?)
+        }
+    }
     
+}
+
+private extension Result {
+    var error: Error? {
+        switch self {
+        case let .failure(error):
+            return error
+        default:
+            return nil
+        }
+    }
 }
