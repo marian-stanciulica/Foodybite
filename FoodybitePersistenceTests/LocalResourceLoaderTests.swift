@@ -26,15 +26,15 @@ class LocalResourceLoader<T> {
     }
     
     func save(object: T, completion: @escaping (Error?) -> Void) {
-        client.delete(T.self) { error in
+        client.delete(T.self) { [unowned self] error in
             if let error = error {
                 completion(error)
-            }
-        }
-        
-        client.write { error in
-            if let error = error {
-                completion(error)
+            } else {
+                self.client.write { error in
+                    if let error = error {
+                        completion(error)
+                    }
+                }
             }
         }
     }
@@ -42,35 +42,46 @@ class LocalResourceLoader<T> {
 }
 
 class ResourceStoreSpy<T> {
+    enum Message {
+        case read
+        case write
+        case delete
+    }
+    
+    private(set) var messages = [Message]()
+    
     private(set) var readCompletions = [(Result<T, Error>) -> Void]()
     private(set) var writeCompletions = [(Error?) -> Void]()
     private(set) var deletionCompletions = [(Error?) -> Void]()
     
     func read(completion: @escaping (Result<T, Error>) -> Void) {
+        messages.append(.read)
         readCompletions.append(completion)
     }
     
-    func completeLoad(withError error: Error, at index: Int = 0) {
+    func completeRead(withError error: Error, at index: Int = 0) {
         readCompletions[index](.failure(error))
     }
     
-    func completeLoadSuccessfully(with object: T, at index: Int = 0) {
+    func completeReadSuccessfully(with object: T, at index: Int = 0) {
         readCompletions[index](.success(object))
     }
     
     func write(completion: @escaping (Error?) -> Void) {
+        messages.append(.write)
         writeCompletions.append(completion)
     }
     
-    func completeSave(withError error: Error?, at index: Int = 0) {
+    func completeWrite(withError error: Error?, at index: Int = 0) {
         writeCompletions[index](error)
     }
     
     func delete(_ type: T.Type, completion: @escaping (Error?) -> Void) {
+        messages.append(.delete)
         deletionCompletions.append(completion)
     }
     
-    func completeDeletion(withError error: Error, at index: Int = 0) {
+    func completeDeletion(withError error: Error?, at index: Int = 0) {
         deletionCompletions[index](error)
     }
 }
@@ -82,7 +93,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         
         sut.load { _ in }
         
-        XCTAssertEqual(client.readCompletions.count, 1)
+        XCTAssertEqual(client.messages.count, 1)
     }
     
     func test_load_returnsErrorOnClientError() {
@@ -90,7 +101,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         
         let expectedError = NSError(domain: "any error", code: 1)
         expectLoad(sut, toCompleteWith: .failure(expectedError)) {
-            client.completeLoad(withError: expectedError)
+            client.completeRead(withError: expectedError)
         }
     }
     
@@ -99,7 +110,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let expectedObject = "expected object"
         
         expectLoad(sut, toCompleteWith: .success(expectedObject)) {
-            client.completeLoadSuccessfully(with: expectedObject)
+            client.completeReadSuccessfully(with: expectedObject)
         }
     }
     
@@ -108,36 +119,41 @@ final class LocalResourceLoaderTests: XCTestCase {
         let expectedObject = "expected object"
         
         expectLoad(sut, toCompleteWith: .success(expectedObject)) {
-            client.completeLoadSuccessfully(with: expectedObject)
+            client.completeReadSuccessfully(with: expectedObject)
         }
         
         expectLoad(sut, toCompleteWith: .success(expectedObject)) {
-            client.completeLoadSuccessfully(with: expectedObject)
+            client.completeReadSuccessfully(with: expectedObject)
         }
     }
     
-    func test_save_returnsErrorOnSavingError() {
+    func test_save_requestDeletion() {
         let (sut, client) = makeSUT()
-        let expectedError = NSError(domain: "any error", code: 1)
         
-        var receivedError: NSError?
-        sut.save(object: "any string") { receivedError = $0 as NSError? }
+        sut.save(object: "any string") { _ in }
         
-        client.completeSave(withError: expectedError)
-        
-        XCTAssertEqual(receivedError, expectedError)
+        XCTAssertEqual(client.messages, [.delete])
     }
     
-    func test_save_returnsErrorOnDeletionError() {
+    func test_save_doesntWriteOnDeletionError() {
         let (sut, client) = makeSUT()
         let expectedError = NSError(domain: "any error", code: 1)
         
-        var receivedError: NSError?
-        sut.save(object: "any string") { receivedError = $0 as NSError? }
+        sut.save(object: "any string") { _ in }
         
         client.completeDeletion(withError: expectedError)
         
-        XCTAssertEqual(receivedError, expectedError)
+        XCTAssertEqual(client.messages, [.delete])
+    }
+    
+    func test_save_writesAfterDeletionSucceeded() {
+        let (sut, client) = makeSUT()
+        
+        sut.save(object: "any string") { _ in }
+        
+        client.completeDeletion(withError: nil)
+        
+        XCTAssertEqual(client.messages, [.delete, .write])
     }
     
     // MARK: - Helpers
