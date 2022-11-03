@@ -14,15 +14,8 @@ class LocalResourceLoader<T> {
         self.client = client
     }
     
-    func load(completion: @escaping (Result<T, Error>) -> Void) {
-        client.read { result in
-            switch result {
-            case let .failure(error):
-                completion(.failure(error))
-            case let .success(object):
-                completion(.success(object))
-            }
-        }
+    func load() async throws -> T {
+        return try await client.read()
     }
     
     func save(object: T, completion: @escaping (Error?) -> Void) {
@@ -48,23 +41,30 @@ class ResourceStoreSpy<T> {
         case delete
     }
     
+    struct CompletionNotSet: Error {}
+    
     private(set) var messages = [Message]()
     
-    private(set) var readCompletions = [(Result<T, Error>) -> Void]()
+    private(set) var readCompletion: Result<T, Error>?
     private(set) var writeCompletions = [(Error?) -> Void]()
     private(set) var deletionCompletions = [(Error?) -> Void]()
     
-    func read(completion: @escaping (Result<T, Error>) -> Void) {
+    func read() async throws -> T {
         messages.append(.read)
-        readCompletions.append(completion)
+        
+        if let readCompletion = readCompletion {
+            return try readCompletion.get()
+        } else {
+            throw CompletionNotSet()
+        }
     }
     
-    func completeRead(withError error: Error, at index: Int = 0) {
-        readCompletions[index](.failure(error))
+    func setRead(error: Error) {
+        readCompletion = .failure(error)
     }
     
-    func completeReadSuccessfully(with object: T, at index: Int = 0) {
-        readCompletions[index](.success(object))
+    func setRead(returnedObject object: T) {
+        readCompletion = .success(object)
     }
     
     func write(completion: @escaping (Error?) -> Void) {
@@ -88,42 +88,58 @@ class ResourceStoreSpy<T> {
 
 final class LocalResourceLoaderTests: XCTestCase {
 
-    func test_load_callClientRead() {
+    func test_load_callClientRead() async {
         let (sut, client) = makeSUT()
         
-        sut.load { _ in }
+        _ = try? await sut.load()
         
         XCTAssertEqual(client.messages.count, 1)
     }
     
-    func test_load_returnsErrorOnClientError() {
+    func test_load_returnsErrorOnClientError() async {
         let (sut, client) = makeSUT()
         
         let expectedError = NSError(domain: "any error", code: 1)
-        expectLoad(sut, toCompleteWith: .failure(expectedError)) {
-            client.completeRead(withError: expectedError)
+        client.setRead(error: expectedError)
+        
+        do {
+            _ = try await sut.load()
+            XCTFail("Load expected to fail")
+        } catch {
+            XCTAssertEqual(expectedError, error as NSError)
         }
     }
     
-    func test_load_returnsObjectSuccessfullyOnClientSuccess() {
+    func test_load_returnsObjectSuccessfullyOnClientSuccess() async {
         let (sut, client) = makeSUT()
         let expectedObject = "expected object"
+        client.setRead(returnedObject: expectedObject)
         
-        expectLoad(sut, toCompleteWith: .success(expectedObject)) {
-            client.completeReadSuccessfully(with: expectedObject)
+        do {
+            let resultObject = try await sut.load()
+            XCTAssertEqual(resultObject, expectedObject)
+        } catch {
+            XCTFail("Load expected to return object")
         }
     }
     
-    func test_load_returnsSameObjectWhenCalledTwice() {
+    func test_load_returnsSameObjectWhenCalledTwice() async {
         let (sut, client) = makeSUT()
         let expectedObject = "expected object"
+        client.setRead(returnedObject: expectedObject)
         
-        expectLoad(sut, toCompleteWith: .success(expectedObject)) {
-            client.completeReadSuccessfully(with: expectedObject)
+        do {
+            let resultObject = try await sut.load()
+            XCTAssertEqual(resultObject, expectedObject)
+        } catch {
+            XCTFail("Load expected to return object")
         }
         
-        expectLoad(sut, toCompleteWith: .success(expectedObject)) {
-            client.completeReadSuccessfully(with: expectedObject)
+        do {
+            let resultObject = try await sut.load()
+            XCTAssertEqual(resultObject, expectedObject)
+        } catch {
+            XCTFail("Load expected to return object")
         }
     }
     
@@ -164,19 +180,19 @@ final class LocalResourceLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expectLoad(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>, action: () -> Void) {
-        sut.load { receivedResult in
-            switch (receivedResult, expectedResult) {
-            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
-                XCTAssertEqual(receivedError, expectedError)
-            case let (.success(receivedObject), .success(expectedObject)):
-                XCTAssertEqual(receivedObject, expectedObject)
-            default:
-                XCTFail("Expected to receive result \(expectedResult), got \(receivedResult) instead")
-            }
-        }
-        
-        action()
-    }
+//    private func expectLoad(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>, action: () -> Void) {
+//        sut.load { receivedResult in
+//            switch (receivedResult, expectedResult) {
+//            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+//                XCTAssertEqual(receivedError, expectedError)
+//            case let (.success(receivedObject), .success(expectedObject)):
+//                XCTAssertEqual(receivedObject, expectedObject)
+//            default:
+//                XCTFail("Expected to receive result \(expectedResult), got \(receivedResult) instead")
+//            }
+//        }
+//
+//        action()
+//    }
     
 }
