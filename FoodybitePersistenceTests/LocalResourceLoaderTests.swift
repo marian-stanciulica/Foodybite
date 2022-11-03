@@ -85,6 +85,12 @@ class ResourceStoreSpy<T> {
 
 final class LocalResourceLoaderTests: XCTestCase {
 
+    func test_init_doesNotReceiveMessagesUponCreation() {
+        let (_, client) = makeSUT()
+        
+        XCTAssertEqual(client.messages, [])
+    }
+    
     func test_load_callClientRead() async {
         let (sut, client) = makeSUT()
         
