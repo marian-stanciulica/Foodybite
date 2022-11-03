@@ -20,7 +20,7 @@ class LocalResourceLoader<T> {
     
     func save(object: T) async throws {
         try await client.delete(T.self)
-        try await client.write()
+        try await client.write(object: object)
     }
 }
 
@@ -28,7 +28,7 @@ protocol ResourceStore {
     associatedtype T
     
     func read() async throws -> T
-    func write() async throws
+    func write(object: T) async throws
     func delete(_ type: T.Type) async throws
 }
 
@@ -44,7 +44,10 @@ class ResourceStoreSpy<T>: ResourceStore {
     private(set) var messages = [Message]()
     
     private(set) var readResult: Result<T, Error>?
+    
     private(set) var writeError: Error? = nil
+    private(set) var writeParameter: T?
+
     private(set) var deleteError: Error? = nil
     
     func read() async throws -> T {
@@ -65,8 +68,9 @@ class ResourceStoreSpy<T>: ResourceStore {
         readResult = .success(object)
     }
     
-    func write() async throws {
+    func write(object: T) async throws {
         messages.append(.write)
+        writeParameter = object
         
         if let writeError = writeError {
             throw writeError
@@ -159,6 +163,15 @@ final class LocalResourceLoaderTests: XCTestCase {
         try? await sut.save(object: anyObject())
         
         XCTAssertEqual(client.messages, [.delete, .write])
+    }
+    
+    func test_save_sendsParameterToWrite() async {
+        let (sut, client) = makeSUT()
+        client.setDeletion(error: nil)
+        
+        try? await sut.save(object: anyObject())
+        
+        XCTAssertEqual(client.writeParameter, anyObject())
     }
     
     func test_save_returnsErrorOnWriteError() async {
