@@ -84,6 +84,20 @@ final class DiskResourceStoreTests: XCTestCase {
         XCTAssertEqual(receivedResource, expectedResource)
     }
     
+    func test_read_deliversErrorOnInvalidData() async throws {
+        let sut = makeSUT()
+        let invalidData = "invalid data".data(using: .utf8)
+        try invalidData?.write(to: testSpecificStoreURL())
+        
+        do {
+            let result = try await sut.read()
+            XCTFail("Expected failure, got \(result) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeSUT() -> DiskResourceStore<TestingResource> {
