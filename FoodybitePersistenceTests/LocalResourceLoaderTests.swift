@@ -20,7 +20,7 @@ class LocalResourceLoader<T> {
     
     func save(object: T) async throws {
         try await client.delete(T.self)
-        try await client.write(object: object)
+        try await client.write(object)
     }
 }
 
@@ -28,7 +28,7 @@ protocol ResourceStore {
     associatedtype T
     
     func read() async throws -> T
-    func write(object: T) async throws
+    func write(_ object: T) async throws
     func delete(_ type: T.Type) async throws
 }
 
@@ -68,7 +68,7 @@ class ResourceStoreSpy<T>: ResourceStore {
         readResult = .success(object)
     }
     
-    func write(object: T) async throws {
+    func write(_ object: T) async throws {
         messages.append(.write)
         writeParameter = object
         
