@@ -6,31 +6,7 @@
 //
 
 import XCTest
-
-class LocalResourceLoader<Client: ResourceStore> {
-    private let client: Client
-    
-    init(client: Client) {
-        self.client = client
-    }
-    
-    func load() async throws -> Client.T {
-        return try await client.read()
-    }
-    
-    func save(object: Client.T) async throws {
-        try await client.delete(Client.T.self)
-        try await client.write(object)
-    }
-}
-
-protocol ResourceStore {
-    associatedtype T
-    
-    func read() async throws -> T
-    func write(_ object: T) async throws
-    func delete(_ type: T.Type) async throws
-}
+import FoodybitePersistence
 
 class ResourceStoreSpy<T>: ResourceStore {
     enum Message {
