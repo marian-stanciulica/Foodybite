@@ -35,6 +35,26 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
+    func test_read_hasNoSideEffectsOnCacheMiss() async {
+        let sut = DiskResourceStore<TestingResource>(storeURL: testSpecificStoreURL())
+        
+        do {
+            _ = try await sut.read()
+            XCTFail("Read method expected to fail when cache miss")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+        
+        do {
+            _ = try await sut.read()
+            XCTFail("Read method expected to fail when cache miss")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    // MARK: - Helpers
+    
     private func testSpecificStoreURL() -> URL {
         return FileManager.default
             .urls(for: .cachesDirectory, in: .userDomainMask)
