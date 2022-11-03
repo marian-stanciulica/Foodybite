@@ -32,7 +32,7 @@ protocol ResourceStore {
     func delete(_ type: T.Type) async throws
 }
 
-class ResourceStoreSpy<T> {
+class ResourceStoreSpy<T>: ResourceStore {
     enum Message {
         case read
         case write
