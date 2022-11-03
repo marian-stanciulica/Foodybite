@@ -90,7 +90,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         
         _ = try? await sut.load()
         
-        XCTAssertEqual(client.messages.count, 1)
+        XCTAssertEqual(client.messages, [.read])
     }
     
     func test_load_returnsErrorOnClientError() async {
@@ -111,7 +111,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         await expectLoad(sut, toCompleteWith: .success(expectedObject))
     }
     
-    func test_load_returnsSameObjectWhenCalledTwice() async {
+    func test_load_hasNoSideEffectsWhenCalledTwice() async {
         let (sut, client) = makeSUT()
         
         let expectedObject = anyObject()
@@ -129,6 +129,19 @@ final class LocalResourceLoaderTests: XCTestCase {
         try? await sut.save(object: anyObject())
         
         XCTAssertEqual(client.messages, [.delete])
+    }
+    
+    func test_save_returnsErrorOnDeletionError() async {
+        let (sut, client) = makeSUT()
+        let expectedError = anyNSError()
+        client.setDeletion(error: expectedError)
+        
+        do {
+            try await sut.save(object: anyObject())
+            XCTFail("Error expected")
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError)
+        }
     }
     
     func test_save_writesAfterDeletionSucceeded() async {
