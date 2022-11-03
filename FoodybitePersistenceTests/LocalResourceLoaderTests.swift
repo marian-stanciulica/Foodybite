@@ -99,7 +99,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_load_returnsErrorOnClientError() async {
         let (sut, client) = makeSUT()
         
-        let expectedError = NSError(domain: "any error", code: 1)
+        let expectedError = anyNSError()
         client.setRead(error: expectedError)
         
         await expectLoad(sut, toCompleteWith: .failure(expectedError))
@@ -108,7 +108,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_load_returnsObjectSuccessfullyOnClientSuccess() async {
         let (sut, client) = makeSUT()
         
-        let expectedObject = "expected object"
+        let expectedObject = anyObject()
         client.setRead(returnedObject: expectedObject)
         
         await expectLoad(sut, toCompleteWith: .success(expectedObject))
@@ -117,7 +117,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_load_returnsSameObjectWhenCalledTwice() async {
         let (sut, client) = makeSUT()
         
-        let expectedObject = "expected object"
+        let expectedObject = anyObject()
         client.setRead(returnedObject: expectedObject)
         
         await expectLoad(sut, toCompleteWith: .success(expectedObject))
@@ -127,16 +127,16 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_save_requestDeletion() {
         let (sut, client) = makeSUT()
         
-        sut.save(object: "any string") { _ in }
+        sut.save(object: anyObject()) { _ in }
         
         XCTAssertEqual(client.messages, [.delete])
     }
     
     func test_save_doesntWriteOnDeletionError() {
         let (sut, client) = makeSUT()
-        let expectedError = NSError(domain: "any error", code: 1)
+        let expectedError = anyNSError()
         
-        sut.save(object: "any string") { _ in }
+        sut.save(object: anyObject()) { _ in }
         
         client.completeDeletion(withError: expectedError)
         
@@ -146,7 +146,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_save_writesAfterDeletionSucceeded() {
         let (sut, client) = makeSUT()
         
-        sut.save(object: "any string") { _ in }
+        sut.save(object: anyObject()) { _ in }
         
         client.completeDeletion(withError: nil)
         
@@ -168,6 +168,14 @@ final class LocalResourceLoaderTests: XCTestCase {
         } catch {
             XCTAssertEqual(error as NSError, expectedResult.error as NSError?)
         }
+    }
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 1)
+    }
+    
+    private func anyObject() -> String {
+        return "any object"
     }
     
 }
