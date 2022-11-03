@@ -25,7 +25,7 @@ class DiskResourceStore<T> {
 final class DiskResourceStoreTests: XCTestCase {
 
     func test_read_deliversErrorOnCacheMiss() async {
-        let sut = DiskResourceStore<TestingResource>(storeURL: testSpecificStoreURL())
+        let sut = makeSUT()
         
         do {
             _ = try await sut.read()
@@ -36,7 +36,7 @@ final class DiskResourceStoreTests: XCTestCase {
     }
     
     func test_read_hasNoSideEffectsOnCacheMiss() async {
-        let sut = DiskResourceStore<TestingResource>(storeURL: testSpecificStoreURL())
+        let sut = makeSUT()
         
         do {
             _ = try await sut.read()
@@ -54,6 +54,10 @@ final class DiskResourceStoreTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> DiskResourceStore<TestingResource> {
+        return DiskResourceStore<TestingResource>(storeURL: testSpecificStoreURL())
+    }
     
     private func testSpecificStoreURL() -> URL {
         return FileManager.default
