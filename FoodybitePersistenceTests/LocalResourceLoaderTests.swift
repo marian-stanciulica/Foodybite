@@ -18,18 +18,9 @@ class LocalResourceLoader<T> {
         return try await client.read()
     }
     
-    func save(object: T, completion: @escaping (Error?) -> Void) {
-        client.delete(T.self) { [unowned self] error in
-            if let error = error {
-                completion(error)
-            } else {
-                self.client.write { error in
-                    if let error = error {
-                        completion(error)
-                    }
-                }
-            }
-        }
+    func save(object: T) async throws {
+        try await client.delete(T.self)
+        try await client.write()
     }
     
 }
@@ -45,14 +36,14 @@ class ResourceStoreSpy<T> {
     
     private(set) var messages = [Message]()
     
-    private(set) var readCompletion: Result<T, Error>?
-    private(set) var writeCompletions = [(Error?) -> Void]()
-    private(set) var deletionCompletions = [(Error?) -> Void]()
+    private(set) var readResult: Result<T, Error>?
+    private(set) var writeError: Error? = nil
+    private(set) var deleteError: Error? = nil
     
     func read() async throws -> T {
         messages.append(.read)
         
-        if let readCompletion = readCompletion {
+        if let readCompletion = readResult {
             return try readCompletion.get()
         } else {
             throw CompletionNotSet()
@@ -60,29 +51,35 @@ class ResourceStoreSpy<T> {
     }
     
     func setRead(error: Error) {
-        readCompletion = .failure(error)
+        readResult = .failure(error)
     }
     
     func setRead(returnedObject object: T) {
-        readCompletion = .success(object)
+        readResult = .success(object)
     }
     
-    func write(completion: @escaping (Error?) -> Void) {
+    func write() async throws {
         messages.append(.write)
-        writeCompletions.append(completion)
+        
+        if let writeError = writeError {
+            throw writeError
+        }
     }
     
-    func completeWrite(withError error: Error?, at index: Int = 0) {
-        writeCompletions[index](error)
+    func setWrite(error: Error?) {
+        writeError = error
     }
     
-    func delete(_ type: T.Type, completion: @escaping (Error?) -> Void) {
+    func delete(_ type: T.Type) async throws {
         messages.append(.delete)
-        deletionCompletions.append(completion)
+        
+        if let deleteError = deleteError {
+            throw deleteError
+        }
     }
     
-    func completeDeletion(withError error: Error?, at index: Int = 0) {
-        deletionCompletions[index](error)
+    func setDeletion(error: Error?) {
+        deleteError = error
     }
 }
 
@@ -124,31 +121,21 @@ final class LocalResourceLoaderTests: XCTestCase {
         await expectLoad(sut, toCompleteWith: .success(expectedObject))
     }
     
-    func test_save_requestDeletion() {
-        let (sut, client) = makeSUT()
-        
-        sut.save(object: anyObject()) { _ in }
-        
-        XCTAssertEqual(client.messages, [.delete])
-    }
-    
-    func test_save_doesntWriteOnDeletionError() {
+    func test_save_doesntWriteOnDeletionError() async {
         let (sut, client) = makeSUT()
         let expectedError = anyNSError()
+        client.setDeletion(error: expectedError)
         
-        sut.save(object: anyObject()) { _ in }
-        
-        client.completeDeletion(withError: expectedError)
+        try? await sut.save(object: anyObject())
         
         XCTAssertEqual(client.messages, [.delete])
     }
     
-    func test_save_writesAfterDeletionSucceeded() {
+    func test_save_writesAfterDeletionSucceeded() async {
         let (sut, client) = makeSUT()
+        client.setDeletion(error: nil)
         
-        sut.save(object: anyObject()) { _ in }
-        
-        client.completeDeletion(withError: nil)
+        try? await sut.save(object: anyObject())
         
         XCTAssertEqual(client.messages, [.delete, .write])
     }
