@@ -22,7 +22,14 @@ class LocalResourceLoader<T> {
         try await client.delete(T.self)
         try await client.write()
     }
+}
+
+protocol ResourceStore {
+    associatedtype T
     
+    func read() async throws -> T
+    func write() async throws
+    func delete(_ type: T.Type) async throws
 }
 
 class ResourceStoreSpy<T> {
