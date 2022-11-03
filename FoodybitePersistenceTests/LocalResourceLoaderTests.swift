@@ -7,19 +7,19 @@
 
 import XCTest
 
-class LocalResourceLoader<T> {
-    private let client: ResourceStoreSpy<T>
+class LocalResourceLoader<Client: ResourceStore> {
+    private let client: Client
     
-    init(client: ResourceStoreSpy<T>) {
+    init(client: Client) {
         self.client = client
     }
     
-    func load() async throws -> T {
+    func load() async throws -> Client.T {
         return try await client.read()
     }
     
-    func save(object: T) async throws {
-        try await client.delete(T.self)
+    func save(object: Client.T) async throws {
+        try await client.delete(Client.T.self)
         try await client.write(object)
     }
 }
@@ -186,13 +186,13 @@ final class LocalResourceLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalResourceLoader<String>, client: ResourceStoreSpy<String>) {
+    private func makeSUT() -> (sut: LocalResourceLoader<ResourceStoreSpy<String>>, client: ResourceStoreSpy<String>) {
         let client = ResourceStoreSpy<String>()
-        let sut = LocalResourceLoader<String>(client: client)
+        let sut = LocalResourceLoader<ResourceStoreSpy<String>>(client: client)
         return (sut, client)
     }
     
-    private func expectLoad(_ sut: LocalResourceLoader<String>, toCompleteWith expectedResult: Result<String, Error>) async {
+    private func expectLoad(_ sut: LocalResourceLoader<ResourceStoreSpy<String>>, toCompleteWith expectedResult: Result<String, Error>) async {
         do {
             let resultObject = try await sut.load()
             XCTAssertEqual(resultObject, try expectedResult.get())
@@ -201,7 +201,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         }
     }
     
-    private func expectSave(_ sut: LocalResourceLoader<String>, toCompleteWith expectedError: Error?) async {
+    private func expectSave(_ sut: LocalResourceLoader<ResourceStoreSpy<String>>, toCompleteWith expectedError: Error?) async {
         do {
             try await sut.save(object: anyObject())
         } catch {
