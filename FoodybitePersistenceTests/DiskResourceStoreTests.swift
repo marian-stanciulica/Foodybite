@@ -155,7 +155,7 @@ final class DiskResourceStoreTests: XCTestCase {
         do {
             try await sut.delete(TestingResource.self)
         } catch {
-            XCTFail("Write should succeed on empty cache, got \(error) instead")
+            XCTFail("Delete should succeed on empty cache, got \(error) instead")
         }
     }
     
@@ -169,6 +169,18 @@ final class DiskResourceStoreTests: XCTestCase {
             XCTFail("Expected read to deliver no result, got \(result) instead")
         } catch {
             XCTAssertNotNil(error)
+        }
+    }
+    
+    func test_delete_deliversNoErrorOnNonEmptyCache() async throws {
+        let sut = makeSUT()
+        
+        try await sut.write(anyResource())
+        
+        do {
+            try await sut.delete(TestingResource.self)
+        } catch {
+            XCTFail("Delete should succeed on non empty cache, got \(error) instead")
         }
     }
     
