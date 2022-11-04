@@ -13,7 +13,7 @@ class DiskResourceStore<T: Codable> {
     private struct CacheMissError: Error {}
     
     init(storeURL: URL) {
-        self.storeURL = storeURL
+        self.storeURL = storeURL.appending(path: "\(T.self).resource")
     }
     
     func read() async throws -> T {
@@ -128,7 +128,7 @@ final class DiskResourceStoreTests: XCTestCase {
     }
     
     func test_write_deliversErrorOnWriteError() async {
-        let sut = makeSUT(storeURL: URL(string: "wrong://invalid.store"))
+        let sut = makeSUT(storeURL: invalidStoreURL())
         
         do {
             try await sut.write(anyResource())
@@ -139,7 +139,7 @@ final class DiskResourceStoreTests: XCTestCase {
     }
     
     func test_write_hasNoSideEffectsOnWriteError() async {
-        let sut = makeSUT(storeURL: URL(string: "wrong://invalid.store"))
+        let sut = makeSUT(storeURL: invalidStoreURL())
         
         try? await sut.write(anyResource())
         
@@ -245,7 +245,17 @@ final class DiskResourceStoreTests: XCTestCase {
         return FileManager.default
             .urls(for: .cachesDirectory, in: .userDomainMask)
             .first!
-            .appendingPathComponent("\(type(of: self)).store")
+    }
+    
+    private func invalidStoreURL() -> URL {
+        return FileManager.default
+            .urls(for: .adminApplicationDirectory, in: .userDomainMask)
+            .first!
+    }
+    
+    private func resourceSpecificURL() -> URL {
+        return testSpecificStoreURL()
+            .appending(path: "\(TestingResource.self).resource")
     }
     
     private func anyResource() -> TestingResource {
