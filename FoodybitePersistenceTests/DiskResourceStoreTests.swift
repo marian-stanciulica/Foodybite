@@ -94,6 +94,16 @@ final class DiskResourceStoreTests: XCTestCase {
         await expectReadToFailTwice(sut: sut)
     }
     
+    func test_write_deliversNoErrorOnEmptyCache() async {
+        let sut = makeSUT()
+        
+        do {
+            try await sut.write(anyResource())
+        } catch {
+            XCTFail("Write should succeed on empty cache, got \(error) instead")
+        }
+    }
+    
     
     // MARK: - Helpers
     
