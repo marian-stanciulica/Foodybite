@@ -115,6 +115,16 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
+    func test_write_overridesPreviouslyInsertedResource() async throws {
+        let sut = makeSUT()
+        try await sut.write(TestingResource(resource: "another resource"))
+        
+        try await sut.write(anyResource())
+        let receivedResource = try await sut.read()
+        
+        XCTAssertEqual(receivedResource, anyResource())
+    }
+    
     
     // MARK: - Helpers
     
