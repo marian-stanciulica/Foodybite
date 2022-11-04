@@ -149,6 +149,16 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
+    func test_delete_deliversNoErrorOnEmptyCache() async {
+        let sut = makeSUT()
+        
+        do {
+            try await sut.delete(TestingResource.self)
+        } catch {
+            XCTFail("Write should succeed on empty cache, got \(error) instead")
+        }
+    }
+    
     
     
     // MARK: - Helpers
