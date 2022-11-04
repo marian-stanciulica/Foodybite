@@ -125,11 +125,23 @@ final class DiskResourceStoreTests: XCTestCase {
         XCTAssertEqual(receivedResource, anyResource())
     }
     
+    func test_write_deliversErrorOnWriteError() async {
+        let sut = makeSUT(storeURL: URL(string: "wrong://invalid.store"))
+        
+        do {
+            try await sut.write(anyResource())
+            XCTFail("Expected write method to fail")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    
     
     // MARK: - Helpers
     
-    private func makeSUT() -> DiskResourceStore<TestingResource> {
-        return DiskResourceStore<TestingResource>(storeURL: testSpecificStoreURL())
+    private func makeSUT(storeURL: URL? = nil) -> DiskResourceStore<TestingResource> {
+        return DiskResourceStore<TestingResource>(storeURL: storeURL ?? testSpecificStoreURL())
     }
     
     private func expectReadToFailTwice(sut: DiskResourceStore<TestingResource>, file: StaticString = #file, line: UInt = #line) async {
