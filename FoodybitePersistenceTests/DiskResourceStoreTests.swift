@@ -104,6 +104,17 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
+    func test_write_deliversNoErrorOnNonEmptyCache() async throws {
+        let sut = makeSUT()
+        try await sut.write(anyResource())
+        
+        do {
+            try await sut.write(anyResource())
+        } catch {
+            XCTFail("Write should succeed on non empty cache, got \(error) instead")
+        }
+    }
+    
     
     // MARK: - Helpers
     
