@@ -200,6 +200,19 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
+    func test_delete_hasNoSideEffectsOnDeleteError() async {
+        let sut = makeSUT(storeURL: invalidStoreURL())
+        
+        try? await sut.delete(TestingResource.self)
+        
+        do {
+            let result = try await sut.read()
+            XCTFail("Expected read to deliver no result, got \(result) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     
     
     // MARK: - Helpers
