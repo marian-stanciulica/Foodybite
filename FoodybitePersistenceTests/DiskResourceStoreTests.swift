@@ -32,7 +32,9 @@ class DiskResourceStore<T: Codable> {
     }
     
     func delete(_ type: T.Type) async throws {
-        
+        if FileManager.default.fileExists(atPath: storeURL.path()) {
+            try FileManager.default.removeItem(at: storeURL)
+        }
     }
 }
 
@@ -81,7 +83,7 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_read_deliversErrorOnInvalidData() async {
         let sut = makeSUT()
         let invalidData = "invalid data".data(using: .utf8)
-        try! invalidData?.write(to: testSpecificStoreURL())
+        try! invalidData?.write(to: resourceSpecificURL())
         
         await expectReadToFail(sut: sut)
     }
@@ -89,7 +91,7 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_read_hasNoSideEffectOnFailure() async {
         let sut = makeSUT()
         let invalidData = "invalid data".data(using: .utf8)
-        try! invalidData?.write(to: testSpecificStoreURL())
+        try! invalidData?.write(to: resourceSpecificURL())
         
         await expectReadToFailTwice(sut: sut)
     }
@@ -181,6 +183,20 @@ final class DiskResourceStoreTests: XCTestCase {
             try await sut.delete(TestingResource.self)
         } catch {
             XCTFail("Delete should succeed on non empty cache, got \(error) instead")
+        }
+    }
+    
+    func test_delete_deletesPreviouslyWrittenResource() async throws {
+        let sut = makeSUT()
+        
+        try await sut.write(anyResource())
+        try await sut.delete(TestingResource.self)
+        
+        do {
+            let resource = try await sut.read()
+            XCTFail("Read should fail on empty cache, got \(resource) instead")
+        } catch {
+            XCTAssertNotNil(error)
         }
     }
     
