@@ -136,6 +136,19 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
+    func test_write_hasNoSideEffectsOnWriteError() async {
+        let sut = makeSUT(storeURL: URL(string: "wrong://invalid.store"))
+        
+        try? await sut.write(anyResource())
+        
+        do {
+            let result = try await sut.read()
+            XCTFail("Expected read to deliver no result, got \(result) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     
     
     // MARK: - Helpers
