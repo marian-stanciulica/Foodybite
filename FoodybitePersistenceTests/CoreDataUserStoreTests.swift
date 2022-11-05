@@ -11,9 +11,9 @@ import FoodybitePersistence
 final class CoreDataUserStoreTests: XCTestCase, UserStoreSpecs {
     
     func test_read_deliversErrorOnCacheMiss() async {
-//        let sut = makeSUT()
-//
-//        await assertThatReadDeliversErrorOnCacheMiss(on: sut)
+        let sut = makeSUT()
+
+        await assertThatReadDeliversErrorOnCacheMiss(on: sut)
     }
     
     func test_read_hasNoSideEffectsOnCacheMiss() async {
@@ -80,13 +80,9 @@ final class CoreDataUserStoreTests: XCTestCase, UserStoreSpecs {
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> UserStore {
-        return CoreDataUserStore(storeURL: storeURL ?? testSpecificStoreURL())
-    }
-    
-    private func testSpecificStoreURL() -> URL {
-        return FileManager.default
-            .urls(for: .cachesDirectory, in: .userDomainMask)
-            .first!
+        let storeBundle = Bundle(for: CoreDataUserStore.self)
+        let storeURL = URL(filePath: "dev/null/")
+        return try! CoreDataUserStore(storeURL: storeURL, bundle: storeBundle)
     }
 
 }
