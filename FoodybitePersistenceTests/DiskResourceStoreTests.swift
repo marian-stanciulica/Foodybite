@@ -61,11 +61,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_write_deliversNoErrorOnEmptyCache() async {
         let sut = makeSUT()
         
-        do {
-            try await sut.write(anyUser())
-        } catch {
-            XCTFail("Write should succeed on empty cache, got \(error) instead")
-        }
+        await assertThatWriteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_write_deliversNoErrorOnNonEmptyCache() async throws {
