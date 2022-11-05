@@ -27,6 +27,7 @@
 		0F19B4C82916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C72916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift */; };
 		0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */; };
+		0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -191,6 +192,7 @@
 		0F19B4C72916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableWriteUserStoreSpecs.swift"; sourceTree = "<group>"; };
 		0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteUserStoreSpecs.swift"; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStoreTests.swift; sourceTree = "<group>"; };
+		0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStore.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				0F19B4CF29169C0900A8FC8F /* Core Data */,
 				0F19B4BF29167ACC00A8FC8F /* Disk */,
 			);
 			path = Infrastructure;
@@ -425,6 +428,14 @@
 				0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */,
 			);
 			path = "User Store Specs";
+			sourceTree = "<group>";
+		};
+		0F19B4CF29169C0900A8FC8F /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
@@ -1330,6 +1341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */,
+				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
 				0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */,
 				0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */,
