@@ -373,8 +373,7 @@
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				0F19B49529164C6800A8FC8F /* Models */,
-				0F19B49129164A6800A8FC8F /* UserDiskStore.swift */,
+				0F19B4BF29167ACC00A8FC8F /* Disk */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -393,6 +392,15 @@
 				0F19B4BD291675DC00A8FC8F /* LocalUser.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0F19B4BF29167ACC00A8FC8F /* Disk */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B49529164C6800A8FC8F /* Models */,
+				0F19B49129164A6800A8FC8F /* UserDiskStore.swift */,
+			);
+			path = Disk;
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
