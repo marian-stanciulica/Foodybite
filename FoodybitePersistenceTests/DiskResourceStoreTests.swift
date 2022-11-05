@@ -115,59 +115,13 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_delete_hasNoSideEffectsOnDeleteError() async throws {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        try await sut.delete()
-        
-        do {
-            let result = try await sut.read()
-            XCTFail("Expected read to fail, got \(result) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        try await assertThatDeleteHasNoSideEffectsOnDeleteError(on: sut)
     }
-    
     
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> UserStore {
         return UserDiskStore(storeURL: storeURL ?? testSpecificStoreURL())
-    }
-    
-    private func expectReadToFailTwice(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
-        await expectReadToFail(sut: sut)
-        await expectReadToFail(sut: sut)
-    }
-    
-    private func expectReadToFail(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
-        do {
-            _ = try await sut.read()
-            XCTFail("Read method expected to fail when cache miss", file: file, line: line)
-        } catch {
-            XCTAssertNotNil(error, file: file, line: line)
-        }
-    }
-    
-    private func expectReadToSucceedTwice(sut: UserStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
-        do {
-            _ = try await sut.read()
-            let receivedResource = try await sut.read()
-            XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
-        } catch {
-            XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
-        }
-    }
-    
-    private func expectReadToSucceed(sut: UserStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
-        do {
-            let receivedResource = try await sut.read()
-            XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
-        } catch {
-            XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
-        }
-    }
-    
-    private func writeInvalidData() async throws {
-        let invalidData = "invalid data".data(using: .utf8)
-        try invalidData?.write(to: resourceSpecificURL())
     }
     
     private func testSpecificStoreURL() -> URL {
@@ -185,14 +139,6 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     private func resourceSpecificURL() -> URL {
         return testSpecificStoreURL()
             .appending(path: "User.resource")
-    }
-    
-    private func anyUser() -> LocalUser {
-        return LocalUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
-    }
-    
-    private func anotherUser() -> LocalUser {
-        return LocalUser(id: UUID(), name: "another name", email: "another@email.com", profileImage: URL(string: "http://another.com")!)
     }
     
     private func setupEmptyStoreState() {
