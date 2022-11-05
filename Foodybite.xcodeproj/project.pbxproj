@@ -196,15 +196,15 @@
 		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
 		0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		0F19B4DE2916B12E00A8FC8F /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Foodybite.app; path = "/Users/marian.stanciulica/Desktop/Foodybite/build/Debug-iphoneos/Foodybite.app"; sourceTree = "<absolute>"; };
-		0F19B4DF2916B12E00A8FC8F /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteNetworking.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworking.framework; sourceTree = "<absolute>"; };
-		0F19B4E02916B12E00A8FC8F /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteNetworkingTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworkingTests.xctest; sourceTree = "<absolute>"; };
-		0F19B4E12916B12E00A8FC8F /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
-		0F19B4E22916B12E00A8FC8F /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DomainModels.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModels.framework; sourceTree = "<absolute>"; };
-		0F19B4E32916B12E00A8FC8F /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
-		0F19B4E42916B12E00A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DomainModelsTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModelsTests.xctest; sourceTree = "<absolute>"; };
 		0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserStore.swift; sourceTree = "<group>"; };
 		0F19B4EA2916B8C700A8FC8F /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		0F19B4EC2916BDE300A8FC8F /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteNetworking.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworking.framework; sourceTree = "<absolute>"; };
+		0F19B4ED2916BDE300A8FC8F /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteNetworkingTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworkingTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4EE2916BDE300A8FC8F /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
+		0F19B4EF2916BDE300A8FC8F /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4F02916BDE300A8FC8F /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DomainModels.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModels.framework; sourceTree = "<absolute>"; };
+		0F19B4F12916BDE300A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DomainModelsTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModelsTests.xctest; sourceTree = "<absolute>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -1051,7 +1051,7 @@
 			);
 			name = FoodybiteNetworking;
 			productName = FoodybiteNetworking;
-			productReference = 0F19B4DF2916B12E00A8FC8F /* FoodybiteNetworking.framework */;
+			productReference = 0F19B4EC2916BDE300A8FC8F /* FoodybiteNetworking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F0BDA1F28F83FD500E91FD0 /* FoodybiteNetworkingTests */ = {
@@ -1070,7 +1070,7 @@
 			);
 			name = FoodybiteNetworkingTests;
 			productName = FoodybiteNetworkingTests;
-			productReference = 0F19B4E02916B12E00A8FC8F /* FoodybiteNetworkingTests.xctest */;
+			productReference = 0F19B4ED2916BDE300A8FC8F /* FoodybiteNetworkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F19B474291647DB00A8FC8F /* DomainModels */ = {
@@ -1089,7 +1089,7 @@
 			);
 			name = DomainModels;
 			productName = DomainModels;
-			productReference = 0F19B4E22916B12E00A8FC8F /* DomainModels.framework */;
+			productReference = 0F19B4F02916BDE300A8FC8F /* DomainModels.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F19B47B291647DB00A8FC8F /* DomainModelsTests */ = {
@@ -1108,7 +1108,7 @@
 			);
 			name = DomainModelsTests;
 			productName = DomainModelsTests;
-			productReference = 0F19B4E42916B12E00A8FC8F /* DomainModelsTests.xctest */;
+			productReference = 0F19B4F12916BDE300A8FC8F /* DomainModelsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F7137B62841F8340058757A /* Foodybite */ = {
@@ -1147,7 +1147,7 @@
 			);
 			name = FoodybitePersistence;
 			productName = FoodybitePersistence;
-			productReference = 0F19B4E12916B12E00A8FC8F /* FoodybitePersistence.framework */;
+			productReference = 0F19B4EE2916BDE300A8FC8F /* FoodybitePersistence.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */ = {
@@ -1167,7 +1167,7 @@
 			);
 			name = FoodybitePersistenceTests;
 			productName = FoodybitePersistenceTests;
-			productReference = 0F19B4E32916B12E00A8FC8F /* FoodybitePersistenceTests.xctest */;
+			productReference = 0F19B4EF2916BDE300A8FC8F /* FoodybitePersistenceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1178,7 +1178,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					0F0BDA1828F83FD500E91FD0 = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -1659,6 +1659,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1700,6 +1701,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1740,6 +1742,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1772,6 +1775,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1801,6 +1805,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1839,6 +1844,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1877,6 +1883,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -1897,6 +1904,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -2100,6 +2108,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2141,6 +2150,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2181,6 +2191,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -2213,6 +2224,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
