@@ -22,6 +22,7 @@
 		0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B49629164C7700A8FC8F /* CodableUser.swift */; };
 		0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4BD291675DC00A8FC8F /* LocalUser.swift */; };
 		0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */; };
+		0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -181,6 +182,7 @@
 		0F19B4BB29166C0A00A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DomainModelsTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModelsTests.xctest; sourceTree = "<absolute>"; };
 		0F19B4BD291675DC00A8FC8F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreSpecs.swift; sourceTree = "<group>"; };
+		0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserStoreSpecs.swift"; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 				0F95A88B290D03CE00806AE9 /* LocalResourceLoaderTests.swift */,
 				0F41D9B22913E9A700F0E4C2 /* DiskResourceStoreTests.swift */,
 				0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */,
+				0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */,
 			);
 			path = FoodybitePersistenceTests;
 			sourceTree = "<group>";
@@ -1322,6 +1325,7 @@
 				0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */,
 				0F95A88C290D03CE00806AE9 /* LocalResourceLoaderTests.swift in Sources */,
 				0F41D9B32913E9A700F0E4C2 /* DiskResourceStoreTests.swift in Sources */,
+				0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

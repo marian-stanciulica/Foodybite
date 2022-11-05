@@ -8,7 +8,7 @@
 import XCTest
 import FoodybitePersistence
 
-final class DiskResourceStoreTests: XCTestCase {
+final class DiskResourceStoreTests: XCTestCase, UserStoreSpecs {
 
     override func setUp() {
         super.setUp()
@@ -25,7 +25,7 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_read_deliversErrorOnCacheMiss() async {
         let sut = makeSUT()
         
-        await expectReadToFail(sut: sut)
+        await assertThatReadDeliversErrorOnCacheMiss(on: sut)
     }
     
     func test_read_hasNoSideEffectsOnCacheMiss() async {
@@ -189,16 +189,16 @@ final class DiskResourceStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(storeURL: URL? = nil) -> UserDiskStore {
+    private func makeSUT(storeURL: URL? = nil) -> UserStore {
         return UserDiskStore(storeURL: storeURL ?? testSpecificStoreURL())
     }
     
-    private func expectReadToFailTwice(sut: UserDiskStore, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFailTwice(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
         await expectReadToFail(sut: sut)
         await expectReadToFail(sut: sut)
     }
     
-    private func expectReadToFail(sut: UserDiskStore, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFail(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
         do {
             _ = try await sut.read()
             XCTFail("Read method expected to fail when cache miss", file: file, line: line)
@@ -207,7 +207,7 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
-    private func expectReadToSucceedTwice(sut: UserDiskStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceedTwice(sut: UserStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
         do {
             _ = try await sut.read()
             let receivedResource = try await sut.read()
@@ -217,7 +217,7 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
-    private func expectReadToSucceed(sut: UserDiskStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceed(sut: UserStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
         do {
             let receivedResource = try await sut.read()
             XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
