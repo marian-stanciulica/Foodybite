@@ -447,6 +447,15 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
+		0F19B4DD2916B01F00A8FC8F /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */,
+				0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,11 +730,10 @@
 		0F95A881290D024500806AE9 /* FoodybitePersistenceTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F19B4DD2916B01F00A8FC8F /* Infrastructure */,
 				0F19B4CC291694C800A8FC8F /* User Store Specs */,
 				0F41D9AF2913E81B00F0E4C2 /* Helpers */,
 				0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */,
-				0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */,
-				0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */,
 			);
 			path = FoodybitePersistenceTests;
 			sourceTree = "<group>";
