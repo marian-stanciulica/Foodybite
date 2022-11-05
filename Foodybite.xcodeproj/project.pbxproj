@@ -31,6 +31,8 @@
 		0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */; };
 		0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D929169D6700A8FC8F /* ManagedUser.swift */; };
 		0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */; };
+		0F19B4E62916B1DA00A8FC8F /* RealmUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */; };
+		0F19B4E92916B26400A8FC8F /* RealmUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -181,13 +183,6 @@
 		0F19B477291647DB00A8FC8F /* DomainModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainModels.h; sourceTree = "<group>"; };
 		0F19B49129164A6800A8FC8F /* DiskUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskUserStore.swift; sourceTree = "<group>"; };
 		0F19B49629164C7700A8FC8F /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
-		0F19B4B529166C0A00A8FC8F /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Foodybite.app; path = "/Users/marian.stanciulica/Desktop/Foodybite/build/Debug-iphoneos/Foodybite.app"; sourceTree = "<absolute>"; };
-		0F19B4B629166C0A00A8FC8F /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteNetworking.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworking.framework; sourceTree = "<absolute>"; };
-		0F19B4B729166C0A00A8FC8F /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteNetworkingTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworkingTests.xctest; sourceTree = "<absolute>"; };
-		0F19B4B829166C0A00A8FC8F /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
-		0F19B4B929166C0A00A8FC8F /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DomainModels.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModels.framework; sourceTree = "<absolute>"; };
-		0F19B4BA29166C0A00A8FC8F /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
-		0F19B4BB29166C0A00A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DomainModelsTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModelsTests.xctest; sourceTree = "<absolute>"; };
 		0F19B4BD291675DC00A8FC8F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreSpecs.swift; sourceTree = "<group>"; };
 		0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserStoreSpecs.swift"; sourceTree = "<group>"; };
@@ -199,6 +194,15 @@
 		0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store.xcdatamodel; sourceTree = "<group>"; };
 		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
 		0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		0F19B4DE2916B12E00A8FC8F /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Foodybite.app; path = "/Users/marian.stanciulica/Desktop/Foodybite/build/Debug-iphoneos/Foodybite.app"; sourceTree = "<absolute>"; };
+		0F19B4DF2916B12E00A8FC8F /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteNetworking.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworking.framework; sourceTree = "<absolute>"; };
+		0F19B4E02916B12E00A8FC8F /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteNetworkingTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworkingTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4E12916B12E00A8FC8F /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
+		0F19B4E22916B12E00A8FC8F /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DomainModels.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModels.framework; sourceTree = "<absolute>"; };
+		0F19B4E32916B12E00A8FC8F /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4E42916B12E00A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DomainModelsTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModelsTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserStoreTests.swift; sourceTree = "<group>"; };
+		0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserStore.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -259,6 +263,9 @@
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
+		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		43A19324D58F3592BD14C2CF /* Pods-DomainModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels.release.xcconfig"; path = "Target Support Files/Pods-DomainModels/Pods-DomainModels.release.xcconfig"; sourceTree = "<group>"; };
+		4919BDF13845039DE7903DE3 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking-FoodybiteNetworkingTests/Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		A2C2421D28474D9700CB233B /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
 		A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAndDirectionsView.swift; sourceTree = "<group>"; };
@@ -290,6 +297,17 @@
 		A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInformationView.swift; sourceTree = "<group>"; };
 		A2E64BD62842618100FC41B7 /* HomeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryView.swift; sourceTree = "<group>"; };
+		A9110A9173C019BA54EE8788 /* Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig"; sourceTree = "<group>"; };
+		BC64C41D712BE0F69E81464A /* Pods-DomainModels-DomainModelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels-DomainModelsTests.release.xcconfig"; path = "Target Support Files/Pods-DomainModels-DomainModelsTests/Pods-DomainModels-DomainModelsTests.release.xcconfig"; sourceTree = "<group>"; };
+		BFF44651F1CDEA58B47A1FC9 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking-FoodybiteNetworkingTests/Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C91594030EB9C07692C98872 /* Pods-FoodybiteNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking.release.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking/Pods-FoodybiteNetworking.release.xcconfig"; sourceTree = "<group>"; };
+		D03F9A13320F497A20278D58 /* Pods-Foodybite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foodybite.debug.xcconfig"; path = "Target Support Files/Pods-Foodybite/Pods-Foodybite.debug.xcconfig"; sourceTree = "<group>"; };
+		D8063D56B5970E3FD2A639DE /* Pods-FoodybitePersistence.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence.release.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence/Pods-FoodybitePersistence.release.xcconfig"; sourceTree = "<group>"; };
+		E023193BFC05CBA4A2B0F52A /* Pods-Foodybite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foodybite.release.xcconfig"; path = "Target Support Files/Pods-Foodybite/Pods-Foodybite.release.xcconfig"; sourceTree = "<group>"; };
+		E74BE2C6AA9EE53FA2450463 /* Pods-DomainModels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels.debug.xcconfig"; path = "Target Support Files/Pods-DomainModels/Pods-DomainModels.debug.xcconfig"; sourceTree = "<group>"; };
+		F100C5A0F23B2327EE2C3CD5 /* Pods-FoodybitePersistence.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence/Pods-FoodybitePersistence.debug.xcconfig"; sourceTree = "<group>"; };
+		F3B32F2EF1A6F558B57CE67F /* Pods-DomainModels-DomainModelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels-DomainModelsTests.debug.xcconfig"; path = "Target Support Files/Pods-DomainModels-DomainModelsTests/Pods-DomainModels-DomainModelsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4D91F6E64E84D376AFD3996 /* Pods-FoodybiteNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking.debug.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking/Pods-FoodybiteNetworking.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +411,7 @@
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				0F19B4E72916B24B00A8FC8F /* Realm */,
 				0F19B4CF29169C0900A8FC8F /* Core Data */,
 				0F19B4BF29167ACC00A8FC8F /* Disk */,
 			);
@@ -452,8 +471,17 @@
 			children = (
 				0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */,
 				0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */,
+				0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		0F19B4E72916B24B00A8FC8F /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
@@ -664,6 +692,7 @@
 				0F0BDA2428F83FD500E91FD0 /* FoodybiteNetworkingTests */,
 				0F95A877290D024400806AE9 /* FoodybitePersistence */,
 				0F95A881290D024500806AE9 /* FoodybitePersistenceTests */,
+				A4588B4147D3A291AB412E2E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -954,6 +983,27 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		A4588B4147D3A291AB412E2E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E74BE2C6AA9EE53FA2450463 /* Pods-DomainModels.debug.xcconfig */,
+				43A19324D58F3592BD14C2CF /* Pods-DomainModels.release.xcconfig */,
+				F3B32F2EF1A6F558B57CE67F /* Pods-DomainModels-DomainModelsTests.debug.xcconfig */,
+				BC64C41D712BE0F69E81464A /* Pods-DomainModels-DomainModelsTests.release.xcconfig */,
+				D03F9A13320F497A20278D58 /* Pods-Foodybite.debug.xcconfig */,
+				E023193BFC05CBA4A2B0F52A /* Pods-Foodybite.release.xcconfig */,
+				F4D91F6E64E84D376AFD3996 /* Pods-FoodybiteNetworking.debug.xcconfig */,
+				C91594030EB9C07692C98872 /* Pods-FoodybiteNetworking.release.xcconfig */,
+				BFF44651F1CDEA58B47A1FC9 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig */,
+				4919BDF13845039DE7903DE3 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig */,
+				F100C5A0F23B2327EE2C3CD5 /* Pods-FoodybitePersistence.debug.xcconfig */,
+				D8063D56B5970E3FD2A639DE /* Pods-FoodybitePersistence.release.xcconfig */,
+				3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */,
+				A9110A9173C019BA54EE8788 /* Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -986,6 +1036,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F0BDA2C28F83FD500E91FD0 /* Build configuration list for PBXNativeTarget "FoodybiteNetworking" */;
 			buildPhases = (
+				951E5AE1D8BAF9A090BFB59E /* [CP] Check Pods Manifest.lock */,
 				0F0BDA1428F83FD500E91FD0 /* Headers */,
 				0F0BDA1528F83FD500E91FD0 /* Sources */,
 				0F0BDA1628F83FD500E91FD0 /* Frameworks */,
@@ -997,13 +1048,14 @@
 			);
 			name = FoodybiteNetworking;
 			productName = FoodybiteNetworking;
-			productReference = 0F19B4B629166C0A00A8FC8F /* FoodybiteNetworking.framework */;
+			productReference = 0F19B4DF2916B12E00A8FC8F /* FoodybiteNetworking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F0BDA1F28F83FD500E91FD0 /* FoodybiteNetworkingTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F0BDA2D28F83FD500E91FD0 /* Build configuration list for PBXNativeTarget "FoodybiteNetworkingTests" */;
 			buildPhases = (
+				3724DF62D384F1E5B563BE87 /* [CP] Check Pods Manifest.lock */,
 				0F0BDA1C28F83FD500E91FD0 /* Sources */,
 				0F0BDA1D28F83FD500E91FD0 /* Frameworks */,
 				0F0BDA1E28F83FD500E91FD0 /* Resources */,
@@ -1015,13 +1067,14 @@
 			);
 			name = FoodybiteNetworkingTests;
 			productName = FoodybiteNetworkingTests;
-			productReference = 0F19B4B729166C0A00A8FC8F /* FoodybiteNetworkingTests.xctest */;
+			productReference = 0F19B4E02916B12E00A8FC8F /* FoodybiteNetworkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F19B474291647DB00A8FC8F /* DomainModels */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModels" */;
 			buildPhases = (
+				5362562B693C640B6AF91F39 /* [CP] Check Pods Manifest.lock */,
 				0F19B470291647DB00A8FC8F /* Headers */,
 				0F19B471291647DB00A8FC8F /* Sources */,
 				0F19B472291647DB00A8FC8F /* Frameworks */,
@@ -1033,13 +1086,14 @@
 			);
 			name = DomainModels;
 			productName = DomainModels;
-			productReference = 0F19B4B929166C0A00A8FC8F /* DomainModels.framework */;
+			productReference = 0F19B4E22916B12E00A8FC8F /* DomainModels.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F19B47B291647DB00A8FC8F /* DomainModelsTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F19B487291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModelsTests" */;
 			buildPhases = (
+				A99ABB094E58340A2E3BB8A3 /* [CP] Check Pods Manifest.lock */,
 				0F19B478291647DB00A8FC8F /* Sources */,
 				0F19B479291647DB00A8FC8F /* Frameworks */,
 				0F19B47A291647DB00A8FC8F /* Resources */,
@@ -1051,13 +1105,14 @@
 			);
 			name = DomainModelsTests;
 			productName = DomainModelsTests;
-			productReference = 0F19B4BB29166C0A00A8FC8F /* DomainModelsTests.xctest */;
+			productReference = 0F19B4E42916B12E00A8FC8F /* DomainModelsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F7137B62841F8340058757A /* Foodybite */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F7137C52841F8370058757A /* Build configuration list for PBXNativeTarget "Foodybite" */;
 			buildPhases = (
+				D854C6F1AAC83453C750442F /* [CP] Check Pods Manifest.lock */,
 				0F7137B32841F8340058757A /* Sources */,
 				0F7137B42841F8340058757A /* Frameworks */,
 				0F7137B52841F8340058757A /* Resources */,
@@ -1068,13 +1123,14 @@
 			);
 			name = Foodybite;
 			productName = Foodybite;
-			productReference = 0F19B4B529166C0A00A8FC8F /* Foodybite.app */;
+			productReference = 0F19B4DE2916B12E00A8FC8F /* Foodybite.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0F95A875290D024400806AE9 /* FoodybitePersistence */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F95A889290D024500806AE9 /* Build configuration list for PBXNativeTarget "FoodybitePersistence" */;
 			buildPhases = (
+				03BA35FE3F5CBBE03E553D72 /* [CP] Check Pods Manifest.lock */,
 				0F95A871290D024400806AE9 /* Headers */,
 				0F95A872290D024400806AE9 /* Sources */,
 				0F95A873290D024400806AE9 /* Frameworks */,
@@ -1088,16 +1144,18 @@
 			);
 			name = FoodybitePersistence;
 			productName = FoodybitePersistence;
-			productReference = 0F19B4B829166C0A00A8FC8F /* FoodybitePersistence.framework */;
+			productReference = 0F19B4E12916B12E00A8FC8F /* FoodybitePersistence.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F95A88A290D024500806AE9 /* Build configuration list for PBXNativeTarget "FoodybitePersistenceTests" */;
 			buildPhases = (
+				91824B238DDB279060DB5558 /* [CP] Check Pods Manifest.lock */,
 				0F95A879290D024400806AE9 /* Sources */,
 				0F95A87A290D024400806AE9 /* Frameworks */,
 				0F95A87B290D024400806AE9 /* Resources */,
+				424E0D86424C0261E6843290 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1106,7 +1164,7 @@
 			);
 			name = FoodybitePersistenceTests;
 			productName = FoodybitePersistenceTests;
-			productReference = 0F19B4BA29166C0A00A8FC8F /* FoodybitePersistenceTests.xctest */;
+			productReference = 0F19B4E32916B12E00A8FC8F /* FoodybitePersistenceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1223,6 +1281,180 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03BA35FE3F5CBBE03E553D72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodybitePersistence-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3724DF62D384F1E5B563BE87 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodybiteNetworking-FoodybiteNetworkingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		424E0D86424C0261E6843290 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5362562B693C640B6AF91F39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DomainModels-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91824B238DDB279060DB5558 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodybitePersistence-FoodybitePersistenceTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		951E5AE1D8BAF9A090BFB59E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodybiteNetworking-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A99ABB094E58340A2E3BB8A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DomainModels-DomainModelsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D854C6F1AAC83453C750442F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Foodybite-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0F0BDA1528F83FD500E91FD0 /* Sources */ = {
@@ -1359,6 +1591,7 @@
 			files = (
 				0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */,
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
+				0F19B4E92916B26400A8FC8F /* RealmUserStore.swift in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
@@ -1381,6 +1614,7 @@
 				0F41D9B32913E9A700F0E4C2 /* DiskUserStoreTests.swift in Sources */,
 				0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */,
 				0F19B4C629168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift in Sources */,
+				0F19B4E62916B1DA00A8FC8F /* RealmUserStoreTests.swift in Sources */,
 				0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1413,6 +1647,7 @@
 /* Begin XCBuildConfiguration section */
 		0F0BDA2828F83FD500E91FD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4D91F6E64E84D376AFD3996 /* Pods-FoodybiteNetworking.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1453,6 +1688,7 @@
 		};
 		0F0BDA2928F83FD500E91FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C91594030EB9C07692C98872 /* Pods-FoodybiteNetworking.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1492,6 +1728,7 @@
 		};
 		0F0BDA2A28F83FD500E91FD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFF44651F1CDEA58B47A1FC9 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1523,6 +1760,7 @@
 		};
 		0F0BDA2B28F83FD500E91FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4919BDF13845039DE7903DE3 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1553,6 +1791,7 @@
 		};
 		0F19B485291647DC00A8FC8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E74BE2C6AA9EE53FA2450463 /* Pods-DomainModels.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -1590,6 +1829,7 @@
 		};
 		0F19B486291647DC00A8FC8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43A19324D58F3592BD14C2CF /* Pods-DomainModels.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -1627,6 +1867,7 @@
 		};
 		0F19B488291647DC00A8FC8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3B32F2EF1A6F558B57CE67F /* Pods-DomainModels-DomainModelsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1646,6 +1887,7 @@
 		};
 		0F19B489291647DC00A8FC8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC64C41D712BE0F69E81464A /* Pods-DomainModels-DomainModelsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1779,6 +2021,7 @@
 		};
 		0F7137C62841F8370058757A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D03F9A13320F497A20278D58 /* Pods-Foodybite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1812,6 +2055,7 @@
 		};
 		0F7137C72841F8370058757A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E023193BFC05CBA4A2B0F52A /* Pods-Foodybite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1845,6 +2089,7 @@
 		};
 		0F95A885290D024500806AE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F100C5A0F23B2327EE2C3CD5 /* Pods-FoodybitePersistence.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
@@ -1885,6 +2130,7 @@
 		};
 		0F95A886290D024500806AE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8063D56B5970E3FD2A639DE /* Pods-FoodybitePersistence.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
@@ -1924,6 +2170,7 @@
 		};
 		0F95A887290D024500806AE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1955,6 +2202,7 @@
 		};
 		0F95A888290D024500806AE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9110A9173C019BA54EE8788 /* Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
