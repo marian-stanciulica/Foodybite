@@ -70,6 +70,16 @@ extension UserStoreSpecs where Self: XCTestCase {
         }
     }
     
+    func assertThatDeleteHasNoSideEffectsOnEmptyCache(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async throws {
+        try await sut.delete()
+        
+        do {
+            let result = try await sut.read()
+            XCTFail("Expected read to fail, got \(result) instead", file: file, line: line)
+        } catch {
+            XCTAssertNotNil(error, file: file, line: line)
+        }
+    }
     
     // MARK: - Helpers
     

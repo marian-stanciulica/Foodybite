@@ -97,14 +97,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_delete_hasNoSideEffectsOnEmptyCache() async throws {
         let sut = makeSUT()
         
-        try await sut.delete()
-        
-        do {
-            let result = try await sut.read()
-            XCTFail("Expected read to fail, got \(result) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        try await assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)
     }
     
     func test_delete_deliversNoErrorOnNonEmptyCache() async throws {
