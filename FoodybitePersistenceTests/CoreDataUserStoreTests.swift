@@ -53,9 +53,9 @@ final class CoreDataUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_delete_deliversNoErrorOnEmptyCache() async {
-//        let sut = makeSUT()
-//
-//        await assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
+        let sut = makeSUT()
+
+        await assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnEmptyCache() async throws {
