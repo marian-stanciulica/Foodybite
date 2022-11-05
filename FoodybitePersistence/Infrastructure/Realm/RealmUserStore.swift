@@ -16,11 +16,19 @@ final public class RealmUserStore: UserStore {
     }
     
     public func read() async throws -> LocalUser {
-        throw NSError(domain: "any error", code: 0)
+        let results = realm.objects(RealmUser.self)
+        
+        if let first = results.first {
+            return first.local
+        } else {
+            throw NSError(domain: "any error", code: 0)
+        }
     }
     
     public func write(_ user: LocalUser) async throws {
-        
+        try realm.write {
+            realm.add(RealmUser(user: user))
+        }
     }
     
     public func delete() async throws {
