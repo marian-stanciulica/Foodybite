@@ -31,7 +31,7 @@ final class DiskResourceStoreTests: XCTestCase, UserStoreSpecs {
     func test_read_hasNoSideEffectsOnCacheMiss() async {
         let sut = makeSUT()
         
-        await expectReadToFailTwice(sut: sut)
+        await assertThatReadHasNoSideEffectsOnCacheMiss(on: sut)
     }
     
     func test_read_deliverResourceOnCacheHit() async throws {

@@ -14,6 +14,10 @@ extension UserStoreSpecs where Self: XCTestCase {
         await expectReadToFail(sut: sut, file: file, line: line)
     }
     
+    func assertThatReadHasNoSideEffectsOnCacheMiss(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
+        await expectReadToFailTwice(sut: sut, file: file, line: line)
+    }
+    
     
     // MARK: - Helpers
     
@@ -24,6 +28,11 @@ extension UserStoreSpecs where Self: XCTestCase {
         } catch {
             XCTAssertNotNil(error, file: file, line: line)
         }
+    }
+    
+    private func expectReadToFailTwice(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
+        await expectReadToFail(sut: sut)
+        await expectReadToFail(sut: sut)
     }
     
 }
