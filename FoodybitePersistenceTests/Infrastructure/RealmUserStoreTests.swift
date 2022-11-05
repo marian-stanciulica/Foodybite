@@ -17,9 +17,9 @@ final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_read_hasNoSideEffectsOnCacheMiss() async {
-//        let sut = makeSUT()
-//
-//        await assertThatReadHasNoSideEffectsOnCacheMiss(on: sut)
+        let sut = makeSUT()
+
+        await assertThatReadHasNoSideEffectsOnCacheMiss(on: sut)
     }
     
     func test_read_deliversResourceOnCacheHit() async throws {
