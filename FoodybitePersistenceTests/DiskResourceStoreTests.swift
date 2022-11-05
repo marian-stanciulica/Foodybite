@@ -85,14 +85,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_write_hasNoSideEffectsOnWriteError() async {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        try? await sut.write(anyUser())
-        
-        do {
-            let result = try await sut.read()
-            XCTFail("Expected read to fail, got \(result) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        await assertThatWriteHasNoSideEffectsOnWriteError(on: sut)
     }
     
     func test_delete_deliversNoErrorOnEmptyCache() async {
