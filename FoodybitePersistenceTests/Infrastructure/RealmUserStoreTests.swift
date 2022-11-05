@@ -41,9 +41,9 @@ final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_write_deliversNoErrorOnNonEmptyCache() async throws {
-//        let sut = makeSUT()
-//
-//        try await assertThatWriteDeliversNoErrorOnNonEmptyCache(on: sut)
+        let sut = makeSUT()
+
+        try await assertThatWriteDeliversNoErrorOnNonEmptyCache(on: sut)
     }
     
     func test_write_overridesPreviouslyInsertedResource() async throws {
