@@ -23,9 +23,9 @@ final class CoreDataUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_read_deliversResourceOnCacheHit() async throws {
-//        let sut = makeSUT()
-//
-//        try await assertThatReadDeliversResourceOnCacheHit(on: sut)
+        let sut = makeSUT()
+
+        try await assertThatReadDeliversResourceOnCacheHit(on: sut)
     }
     
     func test_read_hasNoSideEffectsOnCacheHit() async throws {
