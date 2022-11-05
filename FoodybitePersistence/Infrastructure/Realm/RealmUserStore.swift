@@ -10,6 +10,8 @@ import RealmSwift
 final public class RealmUserStore: UserStore {
     private let realm: Realm
     
+    private struct CacheMissError: Error {}
+    
     public init(inMemoryIdentifier: String? = nil) throws {
         let configuration = Realm.Configuration(inMemoryIdentifier: inMemoryIdentifier)
         realm = try Realm(configuration: configuration)
@@ -21,7 +23,7 @@ final public class RealmUserStore: UserStore {
         if let first = results.first {
             return first.local
         } else {
-            throw NSError(domain: "any error", code: 0)
+            throw CacheMissError()
         }
     }
     
