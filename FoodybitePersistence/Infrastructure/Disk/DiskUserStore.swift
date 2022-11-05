@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class UserDiskStore: UserStore {
+public class DiskUserStore: UserStore {
     private let storeURL: URL
     
     private struct CacheMissError: Error {}

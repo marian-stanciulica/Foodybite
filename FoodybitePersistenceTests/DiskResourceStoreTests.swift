@@ -121,7 +121,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> UserStore {
-        return UserDiskStore(storeURL: storeURL ?? testSpecificStoreURL())
+        return DiskUserStore(storeURL: storeURL ?? testSpecificStoreURL())
     }
     
     private func testSpecificStoreURL() -> URL {
