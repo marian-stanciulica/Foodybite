@@ -16,6 +16,15 @@ extension FailableReadUserStoreSpecs where Self: XCTestCase {
         await expectReadToFail(sut: sut, file: file, line: line)
     }
     
+    func assertThatReadHasNoSideEffectsOnFailure(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async throws {
+        try await writeInvalidData()
+        
+        await expectReadToFailTwice(sut: sut, file: file, line: line)
+    }
+    
+    
+    // MARK: - Helpers
+    
     private func writeInvalidData() async throws {
         let invalidData = "invalid data".data(using: .utf8)
         try invalidData?.write(to: resourceSpecificURL())

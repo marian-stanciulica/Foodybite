@@ -44,7 +44,7 @@ extension UserStoreSpecs where Self: XCTestCase {
         }
     }
     
-    private func expectReadToFailTwice(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
+    func expectReadToFailTwice(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
         await expectReadToFail(sut: sut)
         await expectReadToFail(sut: sut)
     }

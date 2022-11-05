@@ -55,9 +55,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_read_hasNoSideEffectOnFailure() async throws {
         let sut = makeSUT()
         
-        try await writeInvalidData()
-        
-        await expectReadToFailTwice(sut: sut)
+        try await assertThatReadHasNoSideEffectsOnFailure(on: sut)
     }
     
     func test_write_deliversNoErrorOnEmptyCache() async {
