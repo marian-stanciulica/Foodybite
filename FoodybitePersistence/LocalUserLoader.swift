@@ -1,11 +1,10 @@
 //
-//  LocalResourceLoader.swift
+//  LocalUserLoader.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 03.11.2022.
 //
 
-#warning("Create a local User model and delete the import")
 import DomainModels
 
 public class LocalUserLoader {
@@ -16,11 +15,11 @@ public class LocalUserLoader {
     }
     
     public func load() async throws -> User {
-        return try await store.read()
+        return try await store.read().model
     }
     
     public func save(user: User) async throws {
         try await store.delete()
-        try await store.write(user)
+        try await store.write(LocalUser(user: user))
     }
 }

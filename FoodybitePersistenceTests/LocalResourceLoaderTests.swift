@@ -37,20 +37,20 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_load_returnsObjectSuccessfullyOnClientSuccess() async {
         let (sut, client) = makeSUT()
         
-        let expectedObject = anyUser()
-        client.setRead(returnedObject: expectedObject)
+        let user = anyUser()
+        client.setRead(returnedObject: user.local)
         
-        await expectLoad(sut, toCompleteWith: .success(expectedObject))
+        await expectLoad(sut, toCompleteWith: .success(user.model))
     }
     
     func test_load_hasNoSideEffectsWhenCalledTwice() async {
         let (sut, client) = makeSUT()
         
-        let expectedObject = anyUser()
-        client.setRead(returnedObject: expectedObject)
+        let user = anyUser()
+        client.setRead(returnedObject: user.local)
         
-        await expectLoad(sut, toCompleteWith: .success(expectedObject))
-        await expectLoad(sut, toCompleteWith: .success(expectedObject))
+        await expectLoad(sut, toCompleteWith: .success(user.model))
+        await expectLoad(sut, toCompleteWith: .success(user.model))
     }
     
     func test_save_doesntWriteOnDeletionError() async {
@@ -58,7 +58,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let expectedError = anyNSError()
         client.setDeletion(error: expectedError)
         
-        try? await sut.save(user: anyUser())
+        try? await sut.save(user: anyUser().model)
         
         XCTAssertEqual(client.messages, [.delete])
     }
@@ -75,7 +75,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         client.setDeletion(error: nil)
         
-        try? await sut.save(user: anyUser())
+        try? await sut.save(user: anyUser().model)
         
         XCTAssertEqual(client.messages, [.delete, .write])
     }
@@ -85,9 +85,9 @@ final class LocalResourceLoaderTests: XCTestCase {
         let user = anyUser()
         client.setDeletion(error: nil)
         
-        try? await sut.save(user: user)
+        try? await sut.save(user: user.model)
         
-        XCTAssertEqual(client.writeParameter, user)
+        XCTAssertEqual(client.writeParameter, user.local)
     }
     
     func test_save_returnsErrorOnWriteError() async {
@@ -119,7 +119,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     
     private func expectSave(_ sut: LocalUserLoader, toCompleteWith expectedError: Error?) async {
         do {
-            try await sut.save(user: anyUser())
+            try await sut.save(user: anyUser().model)
         } catch {
             XCTAssertEqual(error as NSError, expectedError as NSError?)
         }
@@ -129,8 +129,12 @@ final class LocalResourceLoaderTests: XCTestCase {
         return NSError(domain: "any error", code: 1)
     }
     
-    private func anyUser() -> User {
-        return User(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
+    private func anyUser() -> (model: User, local: LocalUser) {
+        let local = LocalUser(id: UUID(),
+                              name: "any name",
+                              email: "any@email.com",
+                              profileImage: URL(string: "http://any.com")!)
+        return (local.model, local)
     }
     
 }

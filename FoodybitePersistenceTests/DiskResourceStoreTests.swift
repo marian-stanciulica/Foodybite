@@ -7,7 +7,6 @@
 
 import XCTest
 import FoodybitePersistence
-import DomainModels
 
 final class DiskResourceStoreTests: XCTestCase {
 
@@ -209,7 +208,7 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
-    private func expectReadToSucceedTwice(sut: UserDiskStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceedTwice(sut: UserDiskStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
         do {
             _ = try await sut.read()
             let receivedResource = try await sut.read()
@@ -219,7 +218,7 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
-    private func expectReadToSucceed(sut: UserDiskStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceed(sut: UserDiskStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
         do {
             let receivedResource = try await sut.read()
             XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
@@ -245,12 +244,12 @@ final class DiskResourceStoreTests: XCTestCase {
             .appending(path: "User.resource")
     }
     
-    private func anyUser() -> User {
-        return User(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
+    private func anyUser() -> LocalUser {
+        return LocalUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
     }
     
-    private func anotherUser() -> User {
-        return User(id: UUID(), name: "another name", email: "another@email.com", profileImage: URL(string: "http://another.com")!)
+    private func anotherUser() -> LocalUser {
+        return LocalUser(id: UUID(), name: "another name", email: "another@email.com", profileImage: URL(string: "http://another.com")!)
     }
     
     private func setupEmptyStoreState() {
