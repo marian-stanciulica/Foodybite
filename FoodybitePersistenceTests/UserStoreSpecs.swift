@@ -8,7 +8,7 @@
 protocol UserStoreSpecs {
     func test_read_deliversErrorOnCacheMiss() async
     func test_read_hasNoSideEffectsOnCacheMiss() async
-    func test_read_deliverResourceOnCacheHit() async throws
+    func test_read_deliversResourceOnCacheHit() async throws
     func test_read_hasNoSideEffectsOnCacheHit() async throws
     
     func test_write_deliversNoErrorOnEmptyCache() async

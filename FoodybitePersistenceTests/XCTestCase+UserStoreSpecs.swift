@@ -25,6 +25,13 @@ extension UserStoreSpecs where Self: XCTestCase {
         await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
     }
     
+    func assertThatReadHasNoSideEffectsOnCacheHit(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async throws {
+        let expectedUser = anyUser()
+        try await sut.write(expectedUser)
+        
+        await expectReadToSucceedTwice(sut: sut, withExpected: expectedUser, file: file, line: line)
+    }
+    
     
     // MARK: - Helpers
     
@@ -49,6 +56,11 @@ extension UserStoreSpecs where Self: XCTestCase {
         } catch {
             XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
         }
+    }
+    
+    private func expectReadToSucceedTwice(sut: UserStore, withExpected expectedUser: LocalUser, file: StaticString = #file, line: UInt = #line) async {
+        await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
+        await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
     }
     
     private func anyUser() -> LocalUser {
