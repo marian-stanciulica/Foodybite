@@ -7,8 +7,9 @@
 
 import Foundation
 import FoodybitePersistence
+import DomainModels
 
-class ResourceStoreSpy<T>: ResourceStore {
+class UserStoreSpy: UserStore {
     enum Message {
         case read
         case write
@@ -19,14 +20,14 @@ class ResourceStoreSpy<T>: ResourceStore {
     
     private(set) var messages = [Message]()
     
-    private(set) var readResult: Result<T, Error>?
+    private(set) var readResult: Result<User, Error>?
     
     private(set) var writeError: Error? = nil
-    private(set) var writeParameter: T?
+    private(set) var writeParameter: User?
 
     private(set) var deleteError: Error? = nil
     
-    func read() async throws -> T {
+    func read() async throws -> User {
         messages.append(.read)
         
         if let readCompletion = readResult {
@@ -40,13 +41,13 @@ class ResourceStoreSpy<T>: ResourceStore {
         readResult = .failure(error)
     }
     
-    func setRead(returnedObject object: T) {
+    func setRead(returnedObject object: User) {
         readResult = .success(object)
     }
     
-    func write(_ object: T) async throws {
+    func write(_ user: User) async throws {
         messages.append(.write)
-        writeParameter = object
+        writeParameter = user
         
         if let writeError = writeError {
             throw writeError
@@ -57,7 +58,7 @@ class ResourceStoreSpy<T>: ResourceStore {
         writeError = error
     }
     
-    func delete(_ type: T.Type) async throws {
+    func delete() async throws {
         messages.append(.delete)
         
         if let deleteError = deleteError {

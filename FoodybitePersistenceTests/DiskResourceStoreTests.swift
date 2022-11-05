@@ -7,6 +7,7 @@
 
 import XCTest
 import FoodybitePersistence
+import DomainModels
 
 final class DiskResourceStoreTests: XCTestCase {
 
@@ -36,7 +37,7 @@ final class DiskResourceStoreTests: XCTestCase {
     
     func test_read_deliverResourceOnCacheHit() async throws {
         let sut = makeSUT()
-        let expectedResource = anyResource()
+        let expectedResource = anyUser()
         try await sut.write(expectedResource)
         
         await expectReadToSucceed(sut: sut, withExpected: expectedResource)
@@ -44,7 +45,7 @@ final class DiskResourceStoreTests: XCTestCase {
     
     func test_read_hasNoSideEffectsOnCacheHit() async throws {
         let sut = makeSUT()
-        let expectedResource = anyResource()
+        let expectedResource = anyUser()
         try await sut.write(expectedResource)
         
         await expectReadToSucceedTwice(sut: sut, withExpected: expectedResource)
@@ -70,7 +71,7 @@ final class DiskResourceStoreTests: XCTestCase {
         let sut = makeSUT()
         
         do {
-            try await sut.write(anyResource())
+            try await sut.write(anyUser())
         } catch {
             XCTFail("Write should succeed on empty cache, got \(error) instead")
         }
@@ -78,10 +79,10 @@ final class DiskResourceStoreTests: XCTestCase {
     
     func test_write_deliversNoErrorOnNonEmptyCache() async throws {
         let sut = makeSUT()
-        try await sut.write(anyResource())
+        try await sut.write(anyUser())
         
         do {
-            try await sut.write(anyResource())
+            try await sut.write(anyUser())
         } catch {
             XCTFail("Write should succeed on non empty cache, got \(error) instead")
         }
@@ -89,19 +90,22 @@ final class DiskResourceStoreTests: XCTestCase {
     
     func test_write_overridesPreviouslyInsertedResource() async throws {
         let sut = makeSUT()
-        try await sut.write(TestingResource(resource: "another resource"))
+        let anyUser = anyUser()
+        let anotherUser = anotherUser()
         
-        try await sut.write(anyResource())
+        try await sut.write(anotherUser)
+        
+        try await sut.write(anyUser)
         let receivedResource = try await sut.read()
         
-        XCTAssertEqual(receivedResource, anyResource())
+        XCTAssertEqual(receivedResource, anyUser)
     }
     
     func test_write_deliversErrorOnWriteError() async {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
         do {
-            try await sut.write(anyResource())
+            try await sut.write(anyUser())
             XCTFail("Expected write method to fail")
         } catch {
             XCTAssertNotNil(error)
@@ -111,7 +115,7 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_write_hasNoSideEffectsOnWriteError() async {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        try? await sut.write(anyResource())
+        try? await sut.write(anyUser())
         
         do {
             let result = try await sut.read()
@@ -125,7 +129,7 @@ final class DiskResourceStoreTests: XCTestCase {
         let sut = makeSUT()
         
         do {
-            try await sut.delete(TestingResource.self)
+            try await sut.delete()
         } catch {
             XCTFail("Delete should succeed on empty cache, got \(error) instead")
         }
@@ -134,7 +138,7 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_delete_hasNoSideEffectsOnEmptyCache() async throws {
         let sut = makeSUT()
         
-        try await sut.delete(TestingResource.self)
+        try await sut.delete()
         
         do {
             let result = try await sut.read()
@@ -147,10 +151,10 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_delete_deliversNoErrorOnNonEmptyCache() async throws {
         let sut = makeSUT()
         
-        try await sut.write(anyResource())
+        try await sut.write(anyUser())
         
         do {
-            try await sut.delete(TestingResource.self)
+            try await sut.delete()
         } catch {
             XCTFail("Delete should succeed on non empty cache, got \(error) instead")
         }
@@ -159,8 +163,8 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_delete_deletesPreviouslyWrittenResource() async throws {
         let sut = makeSUT()
         
-        try await sut.write(anyResource())
-        try await sut.delete(TestingResource.self)
+        try await sut.write(anyUser())
+        try await sut.delete()
         
         do {
             let resource = try await sut.read()
@@ -173,7 +177,7 @@ final class DiskResourceStoreTests: XCTestCase {
     func test_delete_hasNoSideEffectsOnDeleteError() async {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        try? await sut.delete(TestingResource.self)
+        try? await sut.delete()
         
         do {
             let result = try await sut.read()
@@ -187,16 +191,16 @@ final class DiskResourceStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(storeURL: URL? = nil) -> DiskResourceStore<TestingResource> {
-        return DiskResourceStore<TestingResource>(storeURL: storeURL ?? testSpecificStoreURL())
+    private func makeSUT(storeURL: URL? = nil) -> UserDiskStore {
+        return UserDiskStore(storeURL: storeURL ?? testSpecificStoreURL())
     }
     
-    private func expectReadToFailTwice(sut: DiskResourceStore<TestingResource>, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFailTwice(sut: UserDiskStore, file: StaticString = #file, line: UInt = #line) async {
         await expectReadToFail(sut: sut)
         await expectReadToFail(sut: sut)
     }
     
-    private func expectReadToFail(sut: DiskResourceStore<TestingResource>, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFail(sut: UserDiskStore, file: StaticString = #file, line: UInt = #line) async {
         do {
             _ = try await sut.read()
             XCTFail("Read method expected to fail when cache miss", file: file, line: line)
@@ -205,20 +209,20 @@ final class DiskResourceStoreTests: XCTestCase {
         }
     }
     
-    private func expectReadToSucceedTwice(sut: DiskResourceStore<TestingResource>, withExpected expectedResource: TestingResource, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceedTwice(sut: UserDiskStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
         do {
             _ = try await sut.read()
             let receivedResource = try await sut.read()
-            XCTAssertEqual(receivedResource, expectedResource, file: file, line: line)
+            XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
         } catch {
             XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
         }
     }
     
-    private func expectReadToSucceed(sut: DiskResourceStore<TestingResource>, withExpected expectedResource: TestingResource, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceed(sut: UserDiskStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
         do {
             let receivedResource = try await sut.read()
-            XCTAssertEqual(receivedResource, expectedResource, file: file, line: line)
+            XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
         } catch {
             XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
         }
@@ -238,15 +242,15 @@ final class DiskResourceStoreTests: XCTestCase {
     
     private func resourceSpecificURL() -> URL {
         return testSpecificStoreURL()
-            .appending(path: "\(TestingResource.self).resource")
+            .appending(path: "User.resource")
     }
     
-    private func anyResource() -> TestingResource {
-        return TestingResource(resource: "any resource")
+    private func anyUser() -> User {
+        return User(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
     }
     
-    private struct TestingResource: Codable, Equatable {
-        let resource: String
+    private func anotherUser() -> User {
+        return User(id: UUID(), name: "another name", email: "another@email.com", profileImage: URL(string: "http://another.com")!)
     }
     
     private func setupEmptyStoreState() {
@@ -258,7 +262,7 @@ final class DiskResourceStoreTests: XCTestCase {
     }
     
     private func deleteStoreArtifacts() {
-        try? FileManager.default.removeItem(at: testSpecificStoreURL())
+        try? FileManager.default.removeItem(at: resourceSpecificURL())
     }
    
 }

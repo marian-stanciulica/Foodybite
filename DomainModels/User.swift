@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct User {
-    let id: UUID
-    let name: String
-    let email: String
-    let profileImage: URL
+public struct User: Equatable {
+    public let id: UUID
+    public let name: String
+    public let email: String
+    public let profileImage: URL
+    
+    public init(id: UUID, name: String, email: String, profileImage: URL) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.profileImage = profileImage
+    }
 }

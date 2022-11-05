@@ -7,6 +7,7 @@
 
 import XCTest
 import FoodybitePersistence
+import DomainModels
 
 final class LocalResourceLoaderTests: XCTestCase {
 
@@ -36,7 +37,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_load_returnsObjectSuccessfullyOnClientSuccess() async {
         let (sut, client) = makeSUT()
         
-        let expectedObject = anyObject()
+        let expectedObject = anyUser()
         client.setRead(returnedObject: expectedObject)
         
         await expectLoad(sut, toCompleteWith: .success(expectedObject))
@@ -45,7 +46,7 @@ final class LocalResourceLoaderTests: XCTestCase {
     func test_load_hasNoSideEffectsWhenCalledTwice() async {
         let (sut, client) = makeSUT()
         
-        let expectedObject = anyObject()
+        let expectedObject = anyUser()
         client.setRead(returnedObject: expectedObject)
         
         await expectLoad(sut, toCompleteWith: .success(expectedObject))
@@ -57,7 +58,7 @@ final class LocalResourceLoaderTests: XCTestCase {
         let expectedError = anyNSError()
         client.setDeletion(error: expectedError)
         
-        try? await sut.save(object: anyObject())
+        try? await sut.save(user: anyUser())
         
         XCTAssertEqual(client.messages, [.delete])
     }
@@ -74,18 +75,19 @@ final class LocalResourceLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         client.setDeletion(error: nil)
         
-        try? await sut.save(object: anyObject())
+        try? await sut.save(user: anyUser())
         
         XCTAssertEqual(client.messages, [.delete, .write])
     }
     
     func test_save_sendsParameterToWrite() async {
         let (sut, client) = makeSUT()
+        let user = anyUser()
         client.setDeletion(error: nil)
         
-        try? await sut.save(object: anyObject())
+        try? await sut.save(user: user)
         
-        XCTAssertEqual(client.writeParameter, anyObject())
+        XCTAssertEqual(client.writeParameter, user)
     }
     
     func test_save_returnsErrorOnWriteError() async {
@@ -100,13 +102,13 @@ final class LocalResourceLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalResourceLoader<ResourceStoreSpy<String>>, client: ResourceStoreSpy<String>) {
-        let client = ResourceStoreSpy<String>()
-        let sut = LocalResourceLoader<ResourceStoreSpy<String>>(client: client)
-        return (sut, client)
+    private func makeSUT() -> (sut: LocalUserLoader, store: UserStoreSpy) {
+        let store = UserStoreSpy()
+        let sut = LocalUserLoader(store: store)
+        return (sut, store)
     }
     
-    private func expectLoad(_ sut: LocalResourceLoader<ResourceStoreSpy<String>>, toCompleteWith expectedResult: Result<String, Error>) async {
+    private func expectLoad(_ sut: LocalUserLoader, toCompleteWith expectedResult: Result<User, Error>) async {
         do {
             let resultObject = try await sut.load()
             XCTAssertEqual(resultObject, try expectedResult.get())
@@ -115,9 +117,9 @@ final class LocalResourceLoaderTests: XCTestCase {
         }
     }
     
-    private func expectSave(_ sut: LocalResourceLoader<ResourceStoreSpy<String>>, toCompleteWith expectedError: Error?) async {
+    private func expectSave(_ sut: LocalUserLoader, toCompleteWith expectedError: Error?) async {
         do {
-            try await sut.save(object: anyObject())
+            try await sut.save(user: anyUser())
         } catch {
             XCTAssertEqual(error as NSError, expectedError as NSError?)
         }
@@ -127,8 +129,8 @@ final class LocalResourceLoaderTests: XCTestCase {
         return NSError(domain: "any error", code: 1)
     }
     
-    private func anyObject() -> String {
-        return "any object"
+    private func anyUser() -> User {
+        return User(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
     }
     
 }
