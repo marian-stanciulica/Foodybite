@@ -29,9 +29,9 @@ final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_read_hasNoSideEffectsOnCacheHit() async throws {
-//        let sut = makeSUT()
-//
-//        try await assertThatReadHasNoSideEffectsOnCacheHit(on: sut)
+        let sut = makeSUT()
+
+        try await assertThatReadHasNoSideEffectsOnCacheHit(on: sut)
     }
     
     func test_write_deliversNoErrorOnEmptyCache() async {
