@@ -91,6 +91,17 @@ extension UserStoreSpecs where Self: XCTestCase {
         }
     }
     
+    func assertThatDeleteDeletesPreviouslyWrittenUser(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async throws {
+        try await sut.write(anyUser())
+        try await sut.delete()
+        
+        do {
+            let resource = try await sut.read()
+            XCTFail("Expected read to fail, got \(resource) instead", file: file, line: line)
+        } catch {
+            XCTAssertNotNil(error, file: file, line: line)
+        }
+    }
     
     // MARK: - Helpers
     

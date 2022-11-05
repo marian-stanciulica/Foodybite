@@ -109,15 +109,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_delete_deletesPreviouslyWrittenResource() async throws {
         let sut = makeSUT()
         
-        try await sut.write(anyUser())
-        try await sut.delete()
-        
-        do {
-            let resource = try await sut.read()
-            XCTFail("Expected read to fail, got \(resource) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        try await assertThatDeleteDeletesPreviouslyWrittenUser(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnDeleteError() async throws {
