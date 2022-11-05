@@ -1,5 +1,5 @@
 //
-//  LocalResourceLoaderTests.swift
+//  LocalUserLoaderTests.swift
 //  FoodybitePersistenceTests
 //
 //  Created by Marian Stanciulica on 29.10.2022.
@@ -9,7 +9,7 @@ import XCTest
 import FoodybitePersistence
 import DomainModels
 
-final class LocalResourceLoaderTests: XCTestCase {
+final class LocalUserLoaderTests: XCTestCase {
 
     func test_init_doesNotReceiveMessagesUponCreation() {
         let (_, client) = makeSUT()
