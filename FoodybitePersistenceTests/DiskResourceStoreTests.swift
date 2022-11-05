@@ -8,7 +8,7 @@
 import XCTest
 import FoodybitePersistence
 
-final class DiskResourceStoreTests: XCTestCase, UserStoreSpecs {
+final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
 
     override func setUp() {
         super.setUp()
@@ -49,9 +49,7 @@ final class DiskResourceStoreTests: XCTestCase, UserStoreSpecs {
     func test_read_deliversErrorOnInvalidData() async throws {
         let sut = makeSUT()
         
-        try await writeInvalidData()
-        
-        await expectReadToFail(sut: sut)
+        try await assertThatReadDeliversErrorOnInvalidData(on: sut)
     }
     
     func test_read_hasNoSideEffectOnFailure() async throws {

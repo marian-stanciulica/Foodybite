@@ -21,16 +21,18 @@ protocol UserStoreSpecs {
     func test_delete_deletesPreviouslyWrittenResource() async throws
 }
 
-protocol FailableReadUserStore {
+protocol FailableReadUserStoreSpecs: UserStoreSpecs {
     func test_read_deliversErrorOnInvalidData() async throws
     func test_read_hasNoSideEffectOnFailure() async throws
 }
 
-protocol FailableWriteUserStore {
+protocol FailableWriteUserStoreSpecs: UserStoreSpecs {
     func test_write_deliversErrorOnWriteError() async
     func test_write_hasNoSideEffectsOnWriteError() async throws
 }
 
-protocol FailableDeleteUserStore {
+protocol FailableDeleteUserStoreSpecs: UserStoreSpecs {
     func test_delete_hasNoSideEffectsOnDeleteError() async throws
 }
+
+protocol FailableUserStoreSpecs: FailableReadUserStoreSpecs, FailableWriteUserStoreSpecs, FailableDeleteUserStoreSpecs {}

@@ -35,7 +35,7 @@ extension UserStoreSpecs where Self: XCTestCase {
     
     // MARK: - Helpers
     
-    private func expectReadToFail(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
+    func expectReadToFail(sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
         do {
             _ = try await sut.read()
             XCTFail("Read method expected to fail when cache miss", file: file, line: line)
