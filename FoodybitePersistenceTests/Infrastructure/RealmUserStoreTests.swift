@@ -71,9 +71,9 @@ final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_delete_deletesPreviouslyWrittenResource() async throws {
-//        let sut = makeSUT()
-//
-//        try await assertThatDeleteDeletesPreviouslyWrittenUser(on: sut)
+        let sut = makeSUT()
+
+        try await assertThatDeleteDeletesPreviouslyWrittenUser(on: sut)
     }
     
     

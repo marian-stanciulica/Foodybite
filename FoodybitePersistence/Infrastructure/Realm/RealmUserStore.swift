@@ -27,15 +27,21 @@ final public class RealmUserStore: UserStore {
     
     public func write(_ user: LocalUser) async throws {
         try realm.write {
-            let results = realm.objects(RealmUser.self)
-            results.forEach(realm.delete)
+            deleteAll()
             
             realm.add(RealmUser(user: user))
         }
     }
     
     public func delete() async throws {
-        
+        try realm.write {
+            deleteAll()
+        }
+    }
+    
+    private func deleteAll() {
+        let results = realm.objects(RealmUser.self)
+        results.forEach(realm.delete)
     }
     
 }
