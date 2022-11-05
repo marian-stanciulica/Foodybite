@@ -62,6 +62,14 @@ extension UserStoreSpecs where Self: XCTestCase {
         XCTAssertEqual(receivedUser, anyUser, file: file, line: line)
     }
     
+    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async {
+        do {
+            try await sut.delete()
+        } catch {
+            XCTFail("Delete should succeed on empty cache, got \(error) instead", file: file, line: line)
+        }
+    }
+    
     
     // MARK: - Helpers
     

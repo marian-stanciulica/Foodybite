@@ -91,11 +91,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_delete_deliversNoErrorOnEmptyCache() async {
         let sut = makeSUT()
         
-        do {
-            try await sut.delete()
-        } catch {
-            XCTFail("Delete should succeed on empty cache, got \(error) instead")
-        }
+        await assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnEmptyCache() async throws {
