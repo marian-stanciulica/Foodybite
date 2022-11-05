@@ -42,6 +42,18 @@ extension UserStoreSpecs where Self: XCTestCase {
         }
     }
     
+    func assertThatWriteOverridesPreviouslyInsertedUser(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async throws {
+        let anyUser = anyUser()
+        let anotherUser = anotherUser()
+        
+        try await sut.write(anotherUser)
+        
+        try await sut.write(anyUser)
+        let receivedUser = try await sut.read()
+        
+        XCTAssertEqual(receivedUser, anyUser, file: file, line: line)
+    }
+    
     
     // MARK: - Helpers
     
@@ -75,6 +87,10 @@ extension UserStoreSpecs where Self: XCTestCase {
     
     private func anyUser() -> LocalUser {
         return LocalUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
+    }
+    
+    private func anotherUser() -> LocalUser {
+        return LocalUser(id: UUID(), name: "another name", email: "another@email.com", profileImage: URL(string: "http://another.com")!)
     }
     
 }

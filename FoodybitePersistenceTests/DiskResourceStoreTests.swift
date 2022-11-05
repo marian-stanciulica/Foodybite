@@ -76,15 +76,8 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     
     func test_write_overridesPreviouslyInsertedResource() async throws {
         let sut = makeSUT()
-        let anyUser = anyUser()
-        let anotherUser = anotherUser()
         
-        try await sut.write(anotherUser)
-        
-        try await sut.write(anyUser)
-        let receivedUser = try await sut.read()
-        
-        XCTAssertEqual(receivedUser, anyUser)
+        try await assertThatWriteOverridesPreviouslyInsertedUser(on: sut)
     }
     
     func test_write_deliversErrorOnWriteError() async {
