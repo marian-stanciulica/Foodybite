@@ -27,6 +27,9 @@ final public class RealmUserStore: UserStore {
     
     public func write(_ user: LocalUser) async throws {
         try realm.write {
+            let results = realm.objects(RealmUser.self)
+            results.forEach(realm.delete)
+            
             realm.add(RealmUser(user: user))
         }
     }

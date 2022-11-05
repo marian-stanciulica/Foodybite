@@ -47,9 +47,9 @@ final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_write_overridesPreviouslyInsertedResource() async throws {
-//        let sut = makeSUT()
-//
-//        try await assertThatWriteOverridesPreviouslyInsertedUser(on: sut)
+        let sut = makeSUT()
+
+        try await assertThatWriteOverridesPreviouslyInsertedUser(on: sut)
     }
     
     func test_delete_deliversNoErrorOnEmptyCache() async {
