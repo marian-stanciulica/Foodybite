@@ -30,14 +30,14 @@ extension FailableReadUserStoreSpecs where Self: XCTestCase {
         try invalidData?.write(to: resourceSpecificURL())
     }
     
-    private func testSpecificStoreURL() -> URL {
+    private func specificStoreURLForTesting() -> URL {
         return FileManager.default
             .urls(for: .cachesDirectory, in: .userDomainMask)
             .first!
     }
     
     private func resourceSpecificURL() -> URL {
-        return testSpecificStoreURL()
+        return specificStoreURLForTesting()
             .appending(path: "User.resource")
     }
     
