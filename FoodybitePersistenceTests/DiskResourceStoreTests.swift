@@ -79,12 +79,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_write_deliversErrorOnWriteError() async {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        do {
-            try await sut.write(anyUser())
-            XCTFail("Expected write to fail")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        await assertThatWriteDeliversErrorOnWriteError(on: sut)
     }
     
     func test_write_hasNoSideEffectsOnWriteError() async {

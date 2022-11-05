@@ -93,7 +93,7 @@ extension UserStoreSpecs where Self: XCTestCase {
         await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
     }
     
-    private func anyUser() -> LocalUser {
+    func anyUser() -> LocalUser {
         return LocalUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
     }
     
