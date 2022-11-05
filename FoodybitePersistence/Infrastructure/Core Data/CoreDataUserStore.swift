@@ -55,7 +55,10 @@ public class CoreDataUserStore: UserStore {
     }
     
     public func delete() async throws {
-        
+        try await context.perform {
+            let results = try self.context.fetch(ManagedUser.fetchRequest())
+            results.forEach(self.context.delete)
+        }
     }
     
 }
