@@ -74,7 +74,6 @@
 		0F751643284363B000A05A92 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751642284363B000A05A92 /* ProfileView.swift */; };
 		0F751645284364B600A05A92 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751644284364B600A05A92 /* StatsView.swift */; };
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
-		0F95A884290D024500806AE9 /* FoodybitePersistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F95A878290D024400806AE9 /* FoodybitePersistence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F95A88C290D03CE00806AE9 /* LocalResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95A88B290D03CE00806AE9 /* LocalResourceLoaderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -230,7 +229,6 @@
 		0F751644284364B600A05A92 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
 		0F95A876290D024400806AE9 /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
-		0F95A878290D024400806AE9 /* FoodybitePersistence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodybitePersistence.h; sourceTree = "<group>"; };
 		0F95A87D290D024400806AE9 /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
 		0F95A88B290D03CE00806AE9 /* LocalResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalResourceLoaderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
@@ -366,6 +364,14 @@
 				0F19B477291647DB00A8FC8F /* DomainModels.h */,
 			);
 			path = DomainModels;
+			sourceTree = "<group>";
+		};
+		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B49129164A6800A8FC8F /* DiskResourceStore.swift */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
@@ -631,10 +637,9 @@
 		0F95A877290D024400806AE9 /* FoodybitePersistence */ = {
 			isa = PBXGroup;
 			children = (
-				0F95A878290D024400806AE9 /* FoodybitePersistence.h */,
+				0F19B49329164B1000A8FC8F /* Infrastructure */,
 				0F41D9AB2913E7A700F0E4C2 /* LocalResourceLoader.swift */,
 				0F41D9AD2913E7BE00F0E4C2 /* ResourceStore.swift */,
-				0F19B49129164A6800A8FC8F /* DiskResourceStore.swift */,
 			);
 			path = FoodybitePersistence;
 			sourceTree = "<group>";
@@ -887,7 +892,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F95A884290D024500806AE9 /* FoodybitePersistence.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
