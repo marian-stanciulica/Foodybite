@@ -171,13 +171,13 @@
 		0F19B477291647DB00A8FC8F /* DomainModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainModels.h; sourceTree = "<group>"; };
 		0F19B49129164A6800A8FC8F /* UserDiskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiskStore.swift; sourceTree = "<group>"; };
 		0F19B49629164C7700A8FC8F /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
-		0F19B4B529166C0A00A8FC8F /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodybite.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F19B4B629166C0A00A8FC8F /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybiteNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F19B4B729166C0A00A8FC8F /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F19B4B829166C0A00A8FC8F /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F19B4B929166C0A00A8FC8F /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F19B4BA29166C0A00A8FC8F /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F19B4BB29166C0A00A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainModelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F19B4B529166C0A00A8FC8F /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Foodybite.app; path = "/Users/marian.stanciulica/Desktop/Foodybite/build/Debug-iphoneos/Foodybite.app"; sourceTree = "<absolute>"; };
+		0F19B4B629166C0A00A8FC8F /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteNetworking.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworking.framework; sourceTree = "<absolute>"; };
+		0F19B4B729166C0A00A8FC8F /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteNetworkingTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworkingTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4B829166C0A00A8FC8F /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
+		0F19B4B929166C0A00A8FC8F /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DomainModels.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModels.framework; sourceTree = "<absolute>"; };
+		0F19B4BA29166C0A00A8FC8F /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
+		0F19B4BB29166C0A00A8FC8F /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DomainModelsTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/DomainModelsTests.xctest; sourceTree = "<absolute>"; };
 		0F19B4BD291675DC00A8FC8F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
@@ -611,13 +611,6 @@
 				0F0BDA2428F83FD500E91FD0 /* FoodybiteNetworkingTests */,
 				0F95A877290D024400806AE9 /* FoodybitePersistence */,
 				0F95A881290D024500806AE9 /* FoodybitePersistenceTests */,
-				0F19B4B529166C0A00A8FC8F /* Foodybite.app */,
-				0F19B4B629166C0A00A8FC8F /* FoodybiteNetworking.framework */,
-				0F19B4B729166C0A00A8FC8F /* FoodybiteNetworkingTests.xctest */,
-				0F19B4B829166C0A00A8FC8F /* FoodybitePersistence.framework */,
-				0F19B4B929166C0A00A8FC8F /* DomainModels.framework */,
-				0F19B4BA29166C0A00A8FC8F /* FoodybitePersistenceTests.xctest */,
-				0F19B4BB29166C0A00A8FC8F /* DomainModelsTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};

@@ -36,32 +36,32 @@ final class DiskResourceStoreTests: XCTestCase {
     
     func test_read_deliverResourceOnCacheHit() async throws {
         let sut = makeSUT()
-        let expectedResource = anyUser()
-        try await sut.write(expectedResource)
+        let expectedUser = anyUser()
+        try await sut.write(expectedUser)
         
-        await expectReadToSucceed(sut: sut, withExpected: expectedResource)
+        await expectReadToSucceed(sut: sut, withExpected: expectedUser)
     }
     
     func test_read_hasNoSideEffectsOnCacheHit() async throws {
         let sut = makeSUT()
-        let expectedResource = anyUser()
-        try await sut.write(expectedResource)
+        let expectedUser = anyUser()
+        try await sut.write(expectedUser)
         
-        await expectReadToSucceedTwice(sut: sut, withExpected: expectedResource)
+        await expectReadToSucceedTwice(sut: sut, withExpected: expectedUser)
     }
     
-    func test_read_deliversErrorOnInvalidData() async {
+    func test_read_deliversErrorOnInvalidData() async throws {
         let sut = makeSUT()
-        let invalidData = "invalid data".data(using: .utf8)
-        try! invalidData?.write(to: resourceSpecificURL())
+        
+        try await writeInvalidData()
         
         await expectReadToFail(sut: sut)
     }
     
-    func test_read_hasNoSideEffectOnFailure() async {
+    func test_read_hasNoSideEffectOnFailure() async throws {
         let sut = makeSUT()
-        let invalidData = "invalid data".data(using: .utf8)
-        try! invalidData?.write(to: resourceSpecificURL())
+        
+        try await writeInvalidData()
         
         await expectReadToFailTwice(sut: sut)
     }
@@ -95,9 +95,9 @@ final class DiskResourceStoreTests: XCTestCase {
         try await sut.write(anotherUser)
         
         try await sut.write(anyUser)
-        let receivedResource = try await sut.read()
+        let receivedUser = try await sut.read()
         
-        XCTAssertEqual(receivedResource, anyUser)
+        XCTAssertEqual(receivedUser, anyUser)
     }
     
     func test_write_deliversErrorOnWriteError() async {
@@ -105,20 +105,20 @@ final class DiskResourceStoreTests: XCTestCase {
         
         do {
             try await sut.write(anyUser())
-            XCTFail("Expected write method to fail")
+            XCTFail("Expected write to fail")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
-    func test_write_hasNoSideEffectsOnWriteError() async {
+    func test_write_hasNoSideEffectsOnWriteError() async throws {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        try? await sut.write(anyUser())
+        try await sut.write(anyUser())
         
         do {
             let result = try await sut.read()
-            XCTFail("Expected read to deliver no result, got \(result) instead")
+            XCTFail("Expected read to fail, got \(result) instead")
         } catch {
             XCTAssertNotNil(error)
         }
@@ -141,7 +141,7 @@ final class DiskResourceStoreTests: XCTestCase {
         
         do {
             let result = try await sut.read()
-            XCTFail("Expected read to deliver no result, got \(result) instead")
+            XCTFail("Expected read to fail, got \(result) instead")
         } catch {
             XCTAssertNotNil(error)
         }
@@ -167,25 +167,24 @@ final class DiskResourceStoreTests: XCTestCase {
         
         do {
             let resource = try await sut.read()
-            XCTFail("Read should fail on empty cache, got \(resource) instead")
+            XCTFail("Expected read to fail, got \(resource) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
-    func test_delete_hasNoSideEffectsOnDeleteError() async {
+    func test_delete_hasNoSideEffectsOnDeleteError() async throws {
         let sut = makeSUT(storeURL: invalidStoreURL())
         
-        try? await sut.delete()
+        try await sut.delete()
         
         do {
             let result = try await sut.read()
-            XCTFail("Expected read to deliver no result, got \(result) instead")
+            XCTFail("Expected read to fail, got \(result) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
-    
     
     
     // MARK: - Helpers
@@ -225,6 +224,11 @@ final class DiskResourceStoreTests: XCTestCase {
         } catch {
             XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
         }
+    }
+    
+    private func writeInvalidData() async throws {
+        let invalidData = "invalid data".data(using: .utf8)
+        try invalidData?.write(to: resourceSpecificURL())
     }
     
     private func testSpecificStoreURL() -> URL {
