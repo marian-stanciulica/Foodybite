@@ -35,9 +35,9 @@ final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     }
     
     func test_write_deliversNoErrorOnEmptyCache() async {
-//        let sut = makeSUT()
-//
-//        await assertThatWriteDeliversNoErrorOnEmptyCache(on: sut)
+        let sut = makeSUT()
+
+        await assertThatWriteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     func test_write_deliversNoErrorOnNonEmptyCache() async throws {
