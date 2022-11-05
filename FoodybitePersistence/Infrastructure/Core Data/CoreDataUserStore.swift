@@ -10,25 +10,10 @@ import CoreData
 public class CoreDataUserStore: UserStore {
     private let context: NSManagedObjectContext
     
-    enum LoadingError: Swift.Error {
-        case modelNotFound
-        case failedToLoadPersistentStores(Swift.Error)
-    }
-    
     private struct CacheMissError: Error {}
     
     public init(storeURL: URL, bundle: Bundle = .main) throws {
-        guard let model = NSManagedObjectModel.with(name: "Store", in: bundle) else {
-            throw LoadingError.modelNotFound
-        }
-        
-        let container = NSPersistentContainer(name: "Store", managedObjectModel: model)
-        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: storeURL)]
-        
-        var loadError: Swift.Error?
-        container.loadPersistentStores { loadError = $1 }
-        try loadError.map { throw LoadingError.failedToLoadPersistentStores($0) }
-        
+        let container = try NSPersistentContainer.load(modelName: "Store", bundle: bundle, storeURL: storeURL)
         context = container.newBackgroundContext()
     }
     
@@ -46,8 +31,7 @@ public class CoreDataUserStore: UserStore {
     
     public func write(_ user: LocalUser) async throws {
         try await context.perform {
-            let results = try self.context.fetch(ManagedUser.fetchRequest())
-            results.forEach(self.context.delete)
+            try self.deleteAll(context: self.context)
             
             self.context.insert(ManagedUser(user, for: self.context))
             try self.context.save()
@@ -56,17 +40,13 @@ public class CoreDataUserStore: UserStore {
     
     public func delete() async throws {
         try await context.perform {
-            let results = try self.context.fetch(ManagedUser.fetchRequest())
-            results.forEach(self.context.delete)
+            try self.deleteAll(context: self.context)
         }
     }
     
-}
-
-private extension NSManagedObjectModel {
-    static func with(name: String, in bundle: Bundle) -> NSManagedObjectModel? {
-        return bundle
-            .url(forResource: name, withExtension: "momd")
-            .flatMap { NSManagedObjectModel(contentsOf: $0) }
+    private func deleteAll(context: NSManagedObjectContext) throws {
+        let results = try self.context.fetch(ManagedUser.fetchRequest())
+        results.forEach(self.context.delete)
     }
+    
 }
