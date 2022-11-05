@@ -32,6 +32,16 @@ extension UserStoreSpecs where Self: XCTestCase {
         await expectReadToSucceedTwice(sut: sut, withExpected: expectedUser, file: file, line: line)
     }
     
+    func assertThatWriteDeliversNoErrorOnNonEmptyCache(on sut: UserStore, file: StaticString = #file, line: UInt = #line) async throws {
+        try await sut.write(anyUser())
+        
+        do {
+            try await sut.write(anyUser())
+        } catch {
+            XCTFail("Write should succeed on non empty cache, got \(error) instead", file: file, line: line)
+        }
+    }
+    
     
     // MARK: - Helpers
     
