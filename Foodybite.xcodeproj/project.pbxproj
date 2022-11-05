@@ -28,6 +28,8 @@
 		0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */; };
 		0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */; };
+		0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */; };
+		0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D929169D6700A8FC8F /* ManagedUser.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -193,6 +195,8 @@
 		0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteUserStoreSpecs.swift"; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStore.swift; sourceTree = "<group>"; };
+		0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store.xcdatamodel; sourceTree = "<group>"; };
+		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 			isa = PBXGroup;
 			children = (
 				0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */,
+				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
+				0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -1341,7 +1347,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */,
+				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
+				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
 				0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */,
 				0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */,
@@ -2039,6 +2047,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */,
+			);
+			currentVersion = 0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */;
+			path = Store.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0F7137AF2841F8340058757A /* Project object */;
 }
