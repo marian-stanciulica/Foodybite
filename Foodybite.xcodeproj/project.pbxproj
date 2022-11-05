@@ -17,6 +17,7 @@
 		0F0BDA3B28F86A6C00E91FD0 /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3A28F86A6C00E91FD0 /* EndpointTests.swift */; };
 		0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */; };
 		0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */; };
+		0F19B46F291645F200A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -140,6 +141,7 @@
 		0F0BDA3A28F86A6C00E91FD0 /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
+		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -312,6 +314,14 @@
 				0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F19B46D291645DA00A8FC8F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B46E291645F200A8FC8F /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
@@ -541,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
+				0F19B46D291645DA00A8FC8F /* Models */,
 				0F2B4CBC28454EC2004D0EF7 /* Enums */,
 				A2E64B9C2842145900FC41B7 /* Extension */,
 				A2C242482847A26700CB233B /* View Modifiers */,
@@ -1136,6 +1147,7 @@
 				A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 				0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */,
+				0F19B46F291645F200A8FC8F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
