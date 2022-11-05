@@ -16,7 +16,7 @@ final public class RealmUserStore: UserStore {
     }
     
     public func read() async throws -> LocalUser {
-        LocalUser(id: UUID(), name: "", email: "", profileImage: URL(string: "http://any.com")!)
+        throw NSError(domain: "any error", code: 0)
     }
     
     public func write(_ user: LocalUser) async throws {

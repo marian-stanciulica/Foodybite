@@ -11,9 +11,9 @@ import FoodybitePersistence
 final class RealmUserStoreTests: XCTestCase, UserStoreSpecs {
     
     func test_read_deliversErrorOnCacheMiss() async {
-//        let sut = makeSUT()
-//
-//        await assertThatReadDeliversErrorOnCacheMiss(on: sut)
+        let sut = makeSUT()
+
+        await assertThatReadDeliversErrorOnCacheMiss(on: sut)
     }
     
     func test_read_hasNoSideEffectsOnCacheMiss() async {
