@@ -34,12 +34,10 @@ final class DiskResourceStoreTests: XCTestCase, UserStoreSpecs {
         await assertThatReadHasNoSideEffectsOnCacheMiss(on: sut)
     }
     
-    func test_read_deliverResourceOnCacheHit() async throws {
+    func test_read_deliversResourceOnCacheHit() async throws {
         let sut = makeSUT()
-        let expectedUser = anyUser()
-        try await sut.write(expectedUser)
         
-        await expectReadToSucceed(sut: sut, withExpected: expectedUser)
+        try await assertThatReadDeliversResourceOnCacheHit(on: sut)
     }
     
     func test_read_hasNoSideEffectsOnCacheHit() async throws {
