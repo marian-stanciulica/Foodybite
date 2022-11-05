@@ -103,13 +103,7 @@ final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
     func test_delete_deliversNoErrorOnNonEmptyCache() async throws {
         let sut = makeSUT()
         
-        try await sut.write(anyUser())
-        
-        do {
-            try await sut.delete()
-        } catch {
-            XCTFail("Delete should succeed on non empty cache, got \(error) instead")
-        }
+        try await assertThatDeleteDeliversNoErrorOnNonEmptyCache(on: sut)
     }
     
     func test_delete_deletesPreviouslyWrittenResource() async throws {
