@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class DiskResourceStore<T: Codable> {
+public class DiskResourceStore<T: Codable>: ResourceStore {
     private let storeURL: URL
     
     private struct CacheMissError: Error {}
