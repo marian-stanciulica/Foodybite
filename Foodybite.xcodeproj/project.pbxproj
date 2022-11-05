@@ -52,7 +52,7 @@
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
 		0F41D9AE2913E7BE00F0E4C2 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AD2913E7BE00F0E4C2 /* UserStore.swift */; };
 		0F41D9B12913E82A00F0E4C2 /* UserStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9B02913E82A00F0E4C2 /* UserStoreSpy.swift */; };
-		0F41D9B32913E9A700F0E4C2 /* DiskResourceStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9B22913E9A700F0E4C2 /* DiskResourceStoreTests.swift */; };
+		0F41D9B32913E9A700F0E4C2 /* DiskUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
 		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
 		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
@@ -215,7 +215,7 @@
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
 		0F41D9AD2913E7BE00F0E4C2 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		0F41D9B02913E82A00F0E4C2 /* UserStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreSpy.swift; sourceTree = "<group>"; };
-		0F41D9B22913E9A700F0E4C2 /* DiskResourceStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskResourceStoreTests.swift; sourceTree = "<group>"; };
+		0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskUserStoreTests.swift; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
 		0F447CAD28FAC1810026C5DB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -702,7 +702,7 @@
 				0F19B4CC291694C800A8FC8F /* User Store Specs */,
 				0F41D9AF2913E81B00F0E4C2 /* Helpers */,
 				0F95A88B290D03CE00806AE9 /* LocalResourceLoaderTests.swift */,
-				0F41D9B22913E9A700F0E4C2 /* DiskResourceStoreTests.swift */,
+				0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */,
 			);
 			path = FoodybitePersistenceTests;
 			sourceTree = "<group>";
@@ -1342,7 +1342,7 @@
 				0F19B4C82916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift in Sources */,
 				0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */,
 				0F95A88C290D03CE00806AE9 /* LocalResourceLoaderTests.swift in Sources */,
-				0F41D9B32913E9A700F0E4C2 /* DiskResourceStoreTests.swift in Sources */,
+				0F41D9B32913E9A700F0E4C2 /* DiskUserStoreTests.swift in Sources */,
 				0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */,
 				0F19B4C629168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift in Sources */,
 				0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */,

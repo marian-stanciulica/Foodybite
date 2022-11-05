@@ -1,5 +1,5 @@
 //
-//  DiskResourceStoreTests.swift
+//  DiskUserStoreTests.swift
 //  FoodybitePersistenceTests
 //
 //  Created by Marian Stanciulica on 03.11.2022.
@@ -8,7 +8,7 @@
 import XCTest
 import FoodybitePersistence
 
-final class DiskResourceStoreTests: XCTestCase, FailableUserStoreSpecs {
+final class DiskUserStoreTests: XCTestCase, FailableUserStoreSpecs {
 
     override func setUp() {
         super.setUp()
