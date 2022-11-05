@@ -81,7 +81,7 @@ final class CoreDataUserStoreTests: XCTestCase, UserStoreSpecs {
     
     private func makeSUT(storeURL: URL? = nil) -> UserStore {
         let storeBundle = Bundle(for: CoreDataUserStore.self)
-        let storeURL = URL(filePath: "dev/null/")
+        let storeURL = URL(filePath: "/dev/null")
         return try! CoreDataUserStore(storeURL: storeURL, bundle: storeBundle)
     }
 
