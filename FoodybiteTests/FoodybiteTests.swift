@@ -19,6 +19,7 @@ class RegisterViewModel {
         case invalidEmail
         case emptyPassword
         case passwordDoesntContainUpperLetter
+        case passwordDoesntContainLowerLetter
     }
     
     func register() throws {
@@ -36,6 +37,8 @@ class RegisterViewModel {
             throw RegistrationError.emptyPassword
         } else if !containsUpperLetter(password: password) {
             throw RegistrationError.passwordDoesntContainUpperLetter
+        } else if !containsLowerLetter(password: password) {
+            throw RegistrationError.passwordDoesntContainLowerLetter
         }
     }
     
@@ -46,9 +49,15 @@ class RegisterViewModel {
     }
     
     private func containsUpperLetter(password: String) -> Bool {
-        let regex = "[A-Z]"
+        let regex = "[A-Z]+"
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: email)
+        return predicate.evaluate(with: password)
+    }
+    
+    private func containsLowerLetter(password: String) -> Bool {
+        let regex = "[a-z]+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: password)
     }
     
 }
@@ -93,6 +102,15 @@ final class RegisterViewModelTests: XCTestCase {
         assertRegister(on: sut, withExpectedError: .passwordDoesntContainUpperLetter)
     }
     
+    func test_register_triggerPasswordDoesntContainLowerLetter() {
+        let sut = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = passwordWithoutLowerLetter()
+        
+        assertRegister(on: sut, withExpectedError: .passwordDoesntContainLowerLetter)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> RegisterViewModel {
@@ -113,6 +131,10 @@ final class RegisterViewModelTests: XCTestCase {
     
     private func passwordWithoutUpperLetter() -> String {
         "abc"
+    }
+    
+    private func passwordWithoutLowerLetter() -> String {
+        "ABC"
     }
     
     private func assertRegister(on sut: RegisterViewModel,
