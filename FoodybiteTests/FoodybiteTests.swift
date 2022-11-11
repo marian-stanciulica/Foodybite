@@ -20,6 +20,7 @@ class RegisterViewModel {
         case emptyPassword
         case passwordDoesntContainUpperLetter
         case passwordDoesntContainLowerLetter
+        case passwordDoesntContainDigits
     }
     
     func register() throws {
@@ -39,8 +40,10 @@ class RegisterViewModel {
             throw RegistrationError.passwordDoesntContainUpperLetter
         } else if !containsLowerLetter(password: password) {
             throw RegistrationError.passwordDoesntContainLowerLetter
+        } else if !containsDigits(password: password) {
+            throw RegistrationError.passwordDoesntContainDigits
         }
-    }
+     }
     
     private func isValid(email: String) -> Bool {
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}"
@@ -49,13 +52,19 @@ class RegisterViewModel {
     }
     
     private func containsUpperLetter(password: String) -> Bool {
-        let regex = "[A-Z]+"
+        let regex = ".*[A-Z]+.*"
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
     
     private func containsLowerLetter(password: String) -> Bool {
-        let regex = "[a-z]+"
+        let regex = ".*[a-z]+.*"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: password)
+    }
+    
+    private func containsDigits(password: String) -> Bool {
+        let regex = ".*[0-9]+.*"
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
@@ -111,6 +120,15 @@ final class RegisterViewModelTests: XCTestCase {
         assertRegister(on: sut, withExpectedError: .passwordDoesntContainLowerLetter)
     }
     
+    func test_register_triggerPasswordDoesntContainDigits() {
+        let sut = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = passwordWithoutDigits()
+        
+        assertRegister(on: sut, withExpectedError: .passwordDoesntContainDigits)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> RegisterViewModel {
@@ -130,11 +148,15 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     private func passwordWithoutUpperLetter() -> String {
-        "abc"
+        "abc123%"
     }
     
     private func passwordWithoutLowerLetter() -> String {
-        "ABC"
+        "ABC123%"
+    }
+    
+    private func passwordWithoutDigits() -> String {
+        "ABCabc%"
     }
     
     private func assertRegister(on sut: RegisterViewModel,
