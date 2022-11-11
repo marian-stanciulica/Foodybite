@@ -41,39 +41,60 @@ class RegisterViewModel {
 final class RegisterViewModelTests: XCTestCase {
 
     func test_register_triggerEmptyNameErrorOnEmptyNameTextField() {
-        let sut = RegisterViewModel()
+        let sut = makeSUT()
         
         do {
             try sut.register()
             XCTFail("Register should fail with empty name")
         } catch {
-            XCTAssertEqual(error as? RegisterViewModel.RegistrationError, .emptyName)
+            assert(error: error, toEqual: .emptyName)
         }
     }
     
     func test_register_triggerEmptyEmailErrorOnEmptyEmailTextField() {
-        let sut = RegisterViewModel()
-        sut.name = "any name"
+        let sut = makeSUT()
+        sut.name = validName()
         
         do {
             try sut.register()
             XCTFail("Register should fail with empty email")
         } catch {
-            XCTAssertEqual(error as? RegisterViewModel.RegistrationError, .emptyEmail)
+            assert(error: error, toEqual: .emptyEmail)
         }
     }
     
     func test_register_triggerInvalidFormatErrorOnInvalidEmail() {
-        let sut = RegisterViewModel()
-        sut.name = "any name"
-        sut.email = "invalid email"
+        let sut = makeSUT()
+        sut.name = validName()
+        sut.email = invalidEmail()
         
         do {
             try sut.register()
             XCTFail("Register should fail with invalid email")
         } catch {
-            XCTAssertEqual(error as? RegisterViewModel.RegistrationError, .invalidEmail)
+            assert(error: error, toEqual: .invalidEmail)
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> RegisterViewModel {
+        RegisterViewModel()
+    }
+    
+    private func validName() -> String {
+        "any name"
+    }
+    
+    private func invalidEmail() -> String {
+        "invalid email"
+    }
+    
+    private func assert(error: Error,
+                        toEqual expectedError: RegisterViewModel.RegistrationError,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        XCTAssertEqual(error as? RegisterViewModel.RegistrationError, expectedError, file: file, line: line)
     }
 
 }
