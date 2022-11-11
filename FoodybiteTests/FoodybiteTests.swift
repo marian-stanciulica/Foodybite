@@ -46,24 +46,14 @@ final class RegisterViewModelTests: XCTestCase {
     func test_register_triggerEmptyNameErrorOnEmptyNameTextField() {
         let sut = makeSUT()
         
-        do {
-            try sut.register()
-            XCTFail("Register should fail with empty name")
-        } catch {
-            assert(error: error, toEqual: .emptyName)
-        }
+        assertRegister(on: sut, withExpectedError: .emptyName)
     }
     
     func test_register_triggerEmptyEmailErrorOnEmptyEmailTextField() {
         let sut = makeSUT()
         sut.name = validName()
         
-        do {
-            try sut.register()
-            XCTFail("Register should fail with empty email")
-        } catch {
-            assert(error: error, toEqual: .emptyEmail)
-        }
+        assertRegister(on: sut, withExpectedError: .emptyEmail)
     }
     
     func test_register_triggerInvalidFormatErrorOnInvalidEmail() {
@@ -71,12 +61,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.name = validName()
         sut.email = invalidEmail()
         
-        do {
-            try sut.register()
-            XCTFail("Register should fail with invalid email")
-        } catch {
-            assert(error: error, toEqual: .invalidEmail)
-        }
+        assertRegister(on: sut, withExpectedError: .invalidEmail)
     }
     
     func test_register_triggerEmptyPasswordErrorOnEmptyPassword() {
@@ -84,12 +69,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.name = validName()
         sut.email = validEmail()
         
-        do {
-            try sut.register()
-            XCTFail("Register should fail with empty password")
-        } catch {
-            assert(error: error, toEqual: .emptyPassword)
-        }
+        assertRegister(on: sut, withExpectedError: .emptyPassword)
     }
     
     // MARK: - Helpers
@@ -110,11 +90,16 @@ final class RegisterViewModelTests: XCTestCase {
         "test@test.com"
     }
     
-    private func assert(error: Error,
-                        toEqual expectedError: RegisterViewModel.RegistrationError,
-                        file: StaticString = #file,
-                        line: UInt = #line) {
-        XCTAssertEqual(error as? RegisterViewModel.RegistrationError, expectedError, file: file, line: line)
+    private func assertRegister(on sut: RegisterViewModel,
+                                withExpectedError expectedError: RegisterViewModel.RegistrationError,
+                                file: StaticString = #file,
+                                line: UInt = #line) {
+        do {
+            try sut.register()
+            XCTFail("Register should fail with \(expectedError)", file: file, line: line)
+        } catch {
+            XCTAssertEqual(error as? RegisterViewModel.RegistrationError, expectedError, file: file, line: line)
+        }
     }
 
 }
