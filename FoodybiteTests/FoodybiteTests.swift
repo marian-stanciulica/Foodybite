@@ -9,12 +9,13 @@ import XCTest
 import Combine
 
 class RegisterViewModel {
-    
     var name = ""
+    var email = ""
     
     enum RegistrationError: Error {
         case emptyName
         case emptyEmail
+        case invalidEmail
     }
     
     func register() throws {
@@ -22,7 +23,17 @@ class RegisterViewModel {
             throw RegistrationError.emptyName
         }
         
-        throw RegistrationError.emptyEmail
+        if email.isEmpty {
+            throw RegistrationError.emptyEmail
+        } else if !isValid(email: email) {
+            throw RegistrationError.invalidEmail
+        }
+    }
+    
+    private func isValid(email: String) -> Bool {
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: email)
     }
     
 }
@@ -49,6 +60,19 @@ final class RegisterViewModelTests: XCTestCase {
             XCTFail("Register should fail with empty email")
         } catch {
             XCTAssertEqual(error as? RegisterViewModel.RegistrationError, .emptyEmail)
+        }
+    }
+    
+    func test_register_triggerInvalidFormatErrorOnInvalidEmail() {
+        let sut = RegisterViewModel()
+        sut.name = "any name"
+        sut.email = "invalid email"
+        
+        do {
+            try sut.register()
+            XCTFail("Register should fail with invalid email")
+        } catch {
+            XCTAssertEqual(error as? RegisterViewModel.RegistrationError, .invalidEmail)
         }
     }
 
