@@ -16,6 +16,7 @@ class RegisterViewModel {
         case emptyName
         case emptyEmail
         case invalidEmail
+        case emptyPassword
     }
     
     func register() throws {
@@ -28,6 +29,8 @@ class RegisterViewModel {
         } else if !isValid(email: email) {
             throw RegistrationError.invalidEmail
         }
+        
+        throw RegistrationError.emptyPassword
     }
     
     private func isValid(email: String) -> Bool {
@@ -76,6 +79,19 @@ final class RegisterViewModelTests: XCTestCase {
         }
     }
     
+    func test_register_triggerEmptyPasswordErrorOnEmptyPassword() {
+        let sut = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        
+        do {
+            try sut.register()
+            XCTFail("Register should fail with empty password")
+        } catch {
+            assert(error: error, toEqual: .emptyPassword)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> RegisterViewModel {
@@ -88,6 +104,10 @@ final class RegisterViewModelTests: XCTestCase {
     
     private func invalidEmail() -> String {
         "invalid email"
+    }
+    
+    private func validEmail() -> String {
+        "test@test.com"
     }
     
     private func assert(error: Error,
