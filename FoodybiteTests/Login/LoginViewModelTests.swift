@@ -11,6 +11,10 @@ import FoodybiteNetworking
 
 final class LoginViewModelTests: XCTestCase {
     
+    func test_loginError_rawValueOfServerError() {
+        XCTAssertEqual(LoginViewModel.LoginError.serverError.rawValue, "Invalid Credentials")
+    }
+    
     func test_login_sendsInputsToLoginService() async {
         let (sut, loginServiceSpy) = makeSUT()
         sut.email = anyEmail()

@@ -9,8 +9,8 @@ import Combine
 import FoodybiteNetworking
 
 final public class LoginViewModel: ObservableObject {
-    public enum LoginError: Error {
-        case serverError
+    public enum LoginError: String, Error {
+        case serverError = "Invalid Credentials"
     }
     
     private let loginService: LoginService
