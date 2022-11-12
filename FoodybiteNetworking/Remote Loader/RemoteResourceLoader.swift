@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RemoteResourceLoader: ResourceLoader {
+class RemoteResourceLoader: ResourceLoader, ResourceSender {
     private let client: HTTPClient
     private let codableDataParser = CodableDataParser()
     

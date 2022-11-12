@@ -99,6 +99,7 @@
 		0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E118291FA61C0058ABCB /* RegisterValidatorTests.swift */; };
 		0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E127291FBED90058ABCB /* LoginViewModelTests.swift */; };
 		0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E129291FC7630058ABCB /* LoginViewModel.swift */; };
+		0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
@@ -292,6 +293,7 @@
 		0FB0E123291FBDBD0058ABCB /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainModelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E127291FBED90058ABCB /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		0FB0E129291FC7630058ABCB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceSender.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 			children = (
 				0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */,
 				0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */,
+				0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */,
 			);
 			path = "Remote Loader";
 			sourceTree = "<group>";
@@ -1599,6 +1602,7 @@
 				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
+				0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
