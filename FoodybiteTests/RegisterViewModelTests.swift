@@ -170,14 +170,14 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     private func assertRegister(on sut: RegisterViewModel,
-                                withExpectedError expectedError: RegisterViewModel.RegistrationError,
+                                withExpectedError expectedError: RegisterValidator.RegistrationError,
                                 file: StaticString = #file,
                                 line: UInt = #line) async {
         do {
             try await sut.register()
             XCTFail("Register should fail with \(expectedError)", file: file, line: line)
         } catch {
-            XCTAssertEqual(error as? RegisterViewModel.RegistrationError, expectedError, file: file, line: line)
+            XCTAssertEqual(error as? RegisterValidator.RegistrationError, expectedError, file: file, line: line)
         }
     }
     

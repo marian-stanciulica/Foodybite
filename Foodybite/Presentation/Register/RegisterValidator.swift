@@ -1,21 +1,13 @@
 //
-//  RegisterViewModel.swift
+//  RegisterValidator.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 12.11.2022.
 //
 
 import Foundation
-import FoodybiteNetworking
 
-public class RegisterViewModel {
-    private let signUpService: SignUpService
-    
-    public var name = ""
-    public var email = ""
-    public var password = ""
-    public var confirmPassword = ""
-    
+public class RegisterValidator {
     public enum RegistrationError: Error {
         case emptyName
         case emptyEmail
@@ -28,11 +20,7 @@ public class RegisterViewModel {
         case passwordsDontMatch
     }
     
-    public init(apiService: SignUpService) {
-        self.signUpService = apiService
-    }
-    
-    public func register() async throws {
+    func validate(name: String, email: String, password: String, confirmPassword: String) throws {
         if name.isEmpty {
             throw RegistrationError.emptyName
         }
@@ -58,12 +46,7 @@ public class RegisterViewModel {
         if password != confirmPassword {
             throw RegistrationError.passwordsDontMatch
         }
-        
-        try await signUpService.signUp(name: name,
-                                       email: email,
-                                       password: password,
-                                       confirmPassword: confirmPassword)
-     }
+    }
     
     private func isValid(email: String) -> Bool {
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}"
@@ -94,5 +77,4 @@ public class RegisterViewModel {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
-    
 }
