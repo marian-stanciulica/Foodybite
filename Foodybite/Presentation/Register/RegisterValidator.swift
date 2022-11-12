@@ -9,6 +9,7 @@ import Foundation
 
 public class RegisterValidator {
     public enum RegistrationError: Error {
+        case serverError
         case emptyName
         case emptyEmail
         case invalidEmail

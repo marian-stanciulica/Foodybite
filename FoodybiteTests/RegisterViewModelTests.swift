@@ -15,14 +15,14 @@ final class RegisterViewModelTests: XCTestCase {
     func test_register_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
         
-        await assertRegister(on: sut, withExpectedError: .emptyName)
+        await assertRegister(on: sut, withExpectedResult: .failure(.emptyName))
     }
     
     func test_register_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         
-        await assertRegister(on: sut, withExpectedError: .emptyEmail)
+        await assertRegister(on: sut, withExpectedResult: .failure(.emptyEmail))
     }
     
     func test_register_triggerInvalidFormatErrorOnInvalidEmail() async {
@@ -30,7 +30,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.name = validName()
         sut.email = invalidEmail()
         
-        await assertRegister(on: sut, withExpectedError: .invalidEmail)
+        await assertRegister(on: sut, withExpectedResult: .failure(.invalidEmail))
     }
     
     func test_register_triggerEmptyPasswordErrorOnEmptyPassword() async {
@@ -38,7 +38,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.name = validName()
         sut.email = validEmail()
         
-        await assertRegister(on: sut, withExpectedError: .emptyPassword)
+        await assertRegister(on: sut, withExpectedResult: .failure(.emptyPassword))
     }
     
     func test_register_triggerPasswordDoesntContainUpperLetter() async {
@@ -47,7 +47,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutUpperLetter()
         
-        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainUpperLetter)
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainUpperLetter))
     }
     
     func test_register_triggerPasswordDoesntContainLowerLetter() async {
@@ -56,7 +56,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutLowerLetter()
         
-        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainLowerLetter)
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainLowerLetter))
     }
     
     func test_register_triggerPasswordDoesntContainDigits() async {
@@ -65,7 +65,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutDigits()
         
-        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainDigits)
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainDigits))
     }
     
     func test_register_triggerPasswordDoesntContainSpecialCharacter() async {
@@ -74,7 +74,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutSpecialCharacters()
         
-        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainSpecialCharacter)
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainSpecialCharacter))
     }
     
     func test_register_triggerPasswordsDontMatch() async {
@@ -83,24 +83,24 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = validPassword()
         
-        await assertRegister(on: sut, withExpectedError: .passwordsDontMatch)
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordsDontMatch))
     }
     
-    func test_register_sendsValidInputsToSignUpService() async throws {
+    func test_register_sendsValidInputsToSignUpService() async {
         let (sut, signUpServiceSpy) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         sut.password = validPassword()
         sut.confirmPassword = validPassword()
         
-        try await sut.register()
+        await sut.register()
         
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword()])
         
-        try await sut.register()
+        await sut.register()
         
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName(), validName()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
@@ -118,12 +118,7 @@ final class RegisterViewModelTests: XCTestCase {
         let expectedError = anyNSError()
         signUpServiceSpy.errorToThrow = expectedError
         
-        do {
-            try await sut.register()
-            XCTFail("Expected error, got success instead")
-        } catch {
-            XCTAssertEqual(error as NSError, expectedError)
-        }
+        await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
     }
     
     func test_register_setsSuccessfulResultWhenSignUpServiceReturnsSuccess() async {
@@ -133,23 +128,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.password = validPassword()
         sut.confirmPassword = validPassword()
         
-        var receivedResult: RegisterViewModel.RegisterResult?
-        let cancellable = sut.$registerResult.sink { completion in
-            XCTFail("Expected to receive value, got completion \(completion) instead")
-        } receiveValue: { result in
-            receivedResult = result
-        }
-
-        XCTAssertEqual(receivedResult, .notTriggered)
-        
-        do {
-            try await sut.register()
-        } catch {
-            XCTFail("Expected register to finish successfully, got \(error) instead")
-        }
-        
-        XCTAssertEqual(receivedResult, .success)
-        cancellable.cancel()
+        await assertRegister(on: sut, withExpectedResult: .success)
     }
     
     // MARK: - Helpers
@@ -197,15 +176,17 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     private func assertRegister(on sut: RegisterViewModel,
-                                withExpectedError expectedError: RegisterValidator.RegistrationError,
+                                withExpectedResult expectedResult: RegisterViewModel.RegisterResult,
                                 file: StaticString = #file,
                                 line: UInt = #line) async {
-        do {
-            try await sut.register()
-            XCTFail("Register should fail with \(expectedError)", file: file, line: line)
-        } catch {
-            XCTAssertEqual(error as? RegisterValidator.RegistrationError, expectedError, file: file, line: line)
-        }
+        let registerResultSpy = PublisherSpy(sut.$registerResult.eraseToAnyPublisher())
+
+        XCTAssertEqual(registerResultSpy.results, [.notTriggered], file: file, line: line)
+        
+        await sut.register()
+        
+        XCTAssertEqual(registerResultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
+        registerResultSpy.cancel()
     }
     
     private class SignUpServiceSpy: SignUpService {
@@ -218,6 +199,21 @@ final class RegisterViewModelTests: XCTestCase {
             if let errorToThrow = errorToThrow {
                 throw errorToThrow
             }
+        }
+    }
+    
+    private class PublisherSpy<Success> where Success: Equatable {
+        private var cancellable: Cancellable?
+        private(set) var results = [Success]()
+        
+        init(_ publisher: AnyPublisher<Success, Never>) {
+            cancellable = publisher.sink(receiveValue: { value in
+                self.results.append(value)
+            })
+        }
+        
+        func cancel() {
+            cancellable?.cancel()
         }
     }
 

@@ -15,7 +15,7 @@ public class RegisterViewModel: ObservableObject {
     public enum RegisterResult: Equatable {
         case notTriggered
         case success
-        case failure(String)
+        case failure(RegisterValidator.RegistrationError)
     }
     
     @Published public var name = ""
@@ -28,16 +28,26 @@ public class RegisterViewModel: ObservableObject {
         self.signUpService = signUpService
     }
     
-    public func register() async throws {
-        try validator.validate(name: name,
-                               email: email,
-                               password: password,
-                               confirmPassword: confirmPassword)
-
-        try await signUpService.signUp(name: name,
-                                       email: email,
-                                       password: password,
-                                       confirmPassword: confirmPassword)
-        registerResult = .success
+    public func register() async {
+        do {
+            try validator.validate(name: name,
+                                   email: email,
+                                   password: password,
+                                   confirmPassword: confirmPassword)
+            
+            do {
+                try await signUpService.signUp(name: name,
+                                               email: email,
+                                               password: password,
+                                               confirmPassword: confirmPassword)
+                registerResult = .success
+            } catch {
+                registerResult = .failure(.serverError)
+            }
+        } catch {
+            if let error = error as? RegisterValidator.RegistrationError {
+                registerResult = .failure(error)
+            }
+        }
     }
 }
