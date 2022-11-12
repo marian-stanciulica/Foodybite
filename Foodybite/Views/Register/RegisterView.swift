@@ -44,6 +44,19 @@ struct RegisterView: View {
                     await viewModel.register()
                 }
             }
+        
+            switch viewModel.registerResult {
+            case .success:
+                Text("Registration succedeed")
+                    .foregroundColor(.white)
+                    .font(.headline)
+            case let .failure(error):
+                Text(error.rawValue)
+                    .foregroundColor(.red)
+                    .font(.headline)
+            case .notTriggered:
+                Text("")
+            }
 
             Spacer()
 
@@ -59,5 +72,24 @@ struct RegisterView: View {
             BackgroundImage(imageName: "register_background")
         )
         .arrowBackButtonStyle()
+    }
+}
+
+struct RegisterView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            VStack {
+                RegisterView(viewModel:
+                                RegisterViewModel(
+                                    signUpService: PreviewSignUpService()
+                                )
+                )
+            }
+        }
+    }
+    
+    private class PreviewSignUpService: SignUpService, ObservableObject {
+        func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
+        }
     }
 }
