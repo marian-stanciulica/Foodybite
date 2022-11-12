@@ -8,17 +8,17 @@
 import Foundation
 
 public class RegisterValidator {
-    public enum RegistrationError: Error {
-        case serverError
-        case emptyName
-        case emptyEmail
-        case invalidEmail
-        case emptyPassword
-        case passwordDoesntContainUpperLetter
-        case passwordDoesntContainLowerLetter
-        case passwordDoesntContainDigits
-        case passwordDoesntContainSpecialCharacter
-        case passwordsDontMatch
+    public enum RegistrationError: String, Error {
+        case serverError = "Server error"
+        case emptyName = "Empty name"
+        case emptyEmail = "Empty email"
+        case invalidEmail = "Invalid email"
+        case emptyPassword = "Empty password"
+        case passwordDoesntContainUpperLetter = "Password should contain at least one uppercase letter"
+        case passwordDoesntContainLowerLetter = "Password should contain at least one lowercase letter"
+        case passwordDoesntContainDigits = "Password should contain at least one digit"
+        case passwordDoesntContainSpecialCharacter = "Password should contain at least one special character"
+        case passwordsDontMatch = "Passwords do not match"
     }
     
     func validate(name: String, email: String, password: String, confirmPassword: String) throws {
