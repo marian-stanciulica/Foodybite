@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 15.10.2022.
 //
 
-class APIService: LoginService {
+class APIService {
     private let loader: ResourceLoader
     private let sender: ResourceSender
     
@@ -13,7 +13,9 @@ class APIService: LoginService {
         self.loader = loader
         self.sender = sender
     }
-    
+}
+
+extension APIService: LoginService {
     func login(email: String, password: String) async throws -> LoginResponse {
         let endpoint = ServerEndpoint.login(email: email, password: password)
         let urlRequest = try endpoint.createURLRequest()
