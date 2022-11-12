@@ -8,18 +8,27 @@
 import XCTest
 import FoodybiteNetworking
 
-class LoginViewModel {
+final class LoginViewModel {
+    enum LoginError: Error {
+        case serverError
+    }
+    
     private let loginService: LoginService
     
     var email = ""
     var password = ""
+    var loginError: LoginError?
     
     init(loginService: LoginService) {
         self.loginService = loginService
     }
     
     func login() async {
-        _ = try! await loginService.login(email: email, password: password)
+        do {
+            _ = try await loginService.login(email: email, password: password)
+        } catch {
+            loginError = .serverError
+        }
     }
 }
 
@@ -39,6 +48,18 @@ final class LoginViewModelTests: XCTestCase {
         
         XCTAssertEqual(loginServiceSpy.capturedValues.map(\.email), [anyEmail(), anyEmail()])
         XCTAssertEqual(loginServiceSpy.capturedValues.map(\.password), [anyPassword(), anyPassword()])
+    }
+    
+    func test_login_throwsErrorWhenLoginServiceThrowsError() async {
+        let (sut, loginServiceSpy) = makeSUT()
+        sut.email = anyEmail()
+        sut.password = anyPassword()
+        
+        let expectedError = anyNSError()
+        loginServiceSpy.errorToThrow = expectedError
+        
+        await sut.login()
+        XCTAssertEqual(sut.loginError, .serverError)
     }
     
     // MARK: - Helpers
