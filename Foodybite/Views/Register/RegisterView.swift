@@ -21,18 +21,22 @@ struct RegisterView: View {
             Group {
                 ImageWhiteTextField(placeholder: "Name",
                                     imageName: "person",
+                                    secure: false,
                                     text: $viewModel.name)
                 
                 ImageWhiteTextField(placeholder: "Email",
                                     imageName: "envelope",
+                                    secure: false,
                                     text: $viewModel.email)
                 
                 ImageWhiteTextField(placeholder: "Password",
                                     imageName: "lock.circle",
+                                    secure: true,
                                     text: $viewModel.password)
                 
                 ImageWhiteTextField(placeholder: "Confirm Password",
                                     imageName: "lock.circle",
+                                    secure: true,
                                     text: $viewModel.confirmPassword)
             }
             .padding(.bottom)

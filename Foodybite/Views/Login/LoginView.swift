@@ -24,13 +24,15 @@ struct LoginView: View {
                 Spacer()
 
                 ImageWhiteTextField(placeholder: "Email",
-                               imageName: "envelope",
-                               text: $email)
+                                    imageName: "envelope",
+                                    secure: false,
+                                    text: $email)
                     .padding(.bottom)
 
                 ImageWhiteTextField(placeholder: "Password",
-                               imageName: "lock.circle",
-                               text: $password)
+                                    imageName: "lock.circle",
+                                    secure: true,
+                                    text: $password)
                     .padding(.bottom)
 
                 HStack {

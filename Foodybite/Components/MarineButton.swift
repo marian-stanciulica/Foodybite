@@ -12,12 +12,14 @@ struct MarineButton: View {
     let action: () -> Void
 
     var body: some View {
-       Button(title, action: action)
-           .frame(maxWidth: .infinity, minHeight: 48)
-           .foregroundColor(.white)
-           .background(Color.marineBlue)
-           .cornerRadius(16)
-           .font(.headline)
+        Button(action: action) {
+            Text(title)
+                .frame(maxWidth: .infinity, minHeight: 48)
+                .foregroundColor(.white)
+                .background(Color.marineBlue)
+                .cornerRadius(16)
+                .font(.headline)
+        }
     }
 }
 
