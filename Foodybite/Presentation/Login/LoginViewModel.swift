@@ -26,6 +26,7 @@ final public class LoginViewModel: ObservableObject {
     public func login() async {
         do {
             _ = try await loginService.login(email: email, password: password)
+            loginError = nil
         } catch {
             loginError = .serverError
         }

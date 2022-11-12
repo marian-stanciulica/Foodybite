@@ -22,17 +22,18 @@ struct LoginView: View {
 
                 Spacer()
 
-                ImageWhiteTextField(placeholder: "Email",
-                                    imageName: "envelope",
-                                    secure: false,
-                                    text: $viewModel.email)
-                    .padding(.bottom)
-
-                ImageWhiteTextField(placeholder: "Password",
-                                    imageName: "lock.circle",
-                                    secure: true,
-                                    text: $viewModel.password)
-                    .padding(.bottom)
+                Group {
+                    ImageWhiteTextField(placeholder: "Email",
+                                        imageName: "envelope",
+                                        secure: false,
+                                        text: $viewModel.email)
+                    
+                    ImageWhiteTextField(placeholder: "Password",
+                                        imageName: "lock.circle",
+                                        secure: true,
+                                        text: $viewModel.password)
+                }
+                .padding(.bottom)
 
                 HStack {
                     Spacer()
@@ -48,6 +49,8 @@ struct LoginView: View {
                         await viewModel.login()
                     }
                 }
+                
+                createFeedbackText()
 
                 Spacer()
 
@@ -65,6 +68,16 @@ struct LoginView: View {
             )
         }
     }
+    
+    private func createFeedbackText() -> Text {
+        if let loginError = viewModel.loginError {
+            return Text(loginError.rawValue)
+                .foregroundColor(.red)
+                .font(.headline)
+        }
+        
+        return Text("")
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -80,7 +93,7 @@ struct LoginView_Previews: PreviewProvider {
     
     private class PreviewLoginService: LoginService {
         func login(email: String, password: String) async throws -> LoginResponse {
-            return LoginResponse(name: "name", email: "email")
+            throw LoginViewModel.LoginError.serverError
         }
     }
 }
