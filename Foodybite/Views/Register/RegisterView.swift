@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct RegisterView: View {
-    @State var name = ""
-    @State var email = ""
-    @State var password = ""
-    @State var confirmPassword = ""
+    @ObservedObject var viewModel: RegisterViewModel
 
     var body: some View {
         VStack {
@@ -21,31 +19,30 @@ struct RegisterView: View {
             Spacer()
 
             Group {
-            ImageWhiteTextField(placeholder: "Name",
-                           imageName: "person",
-                           text: $email)
-            .padding(.bottom)
-
-            ImageWhiteTextField(placeholder: "Email",
-                           imageName: "envelope",
-                           text: $email)
-                .padding(.bottom)
-
-            ImageWhiteTextField(placeholder: "Password",
-                           imageName: "lock.circle",
-                           text: $password)
-                .padding(.bottom)
-
-            ImageWhiteTextField(placeholder: "Confirm Password",
-                           imageName: "lock.circle",
-                           text: $password)
-                .padding(.bottom)
+                ImageWhiteTextField(placeholder: "Name",
+                                    imageName: "person",
+                                    text: $viewModel.name)
+                
+                ImageWhiteTextField(placeholder: "Email",
+                                    imageName: "envelope",
+                                    text: $viewModel.email)
+                
+                ImageWhiteTextField(placeholder: "Password",
+                                    imageName: "lock.circle",
+                                    text: $viewModel.password)
+                
+                ImageWhiteTextField(placeholder: "Confirm Password",
+                                    imageName: "lock.circle",
+                                    text: $viewModel.confirmPassword)
             }
+            .padding(.bottom)
 
             Spacer()
 
             MarineButton(title: "Register") {
-
+                Task {
+                    try await viewModel.register()
+                }
             }
 
             Spacer()
@@ -62,13 +59,5 @@ struct RegisterView: View {
             BackgroundImage(imageName: "register_background")
         )
         .arrowBackButtonStyle()
-    }
-}
-
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            RegisterView()
-        }
     }
 }

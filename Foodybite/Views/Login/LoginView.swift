@@ -49,8 +49,7 @@ struct LoginView: View {
                 Spacer()
 
                 NavigationLink {
-                    RegisterView()
-                        
+                    
                 } label: {
                     Text("Create New Account")
                         .foregroundColor(.white)

@@ -127,9 +127,9 @@ final class RegisterViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RegisterViewModel, apiService: SignUpServiceSpy) {
+    private func makeSUT() -> (sut: RegisterViewModel, signUpService: SignUpServiceSpy) {
         let signUpServiceSpy = SignUpServiceSpy()
-        let sut = RegisterViewModel(apiService: signUpServiceSpy)
+        let sut = RegisterViewModel(signUpService: signUpServiceSpy)
         return (sut, signUpServiceSpy)
     }
     

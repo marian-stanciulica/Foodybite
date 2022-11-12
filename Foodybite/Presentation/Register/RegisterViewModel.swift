@@ -8,17 +8,17 @@
 import Foundation
 import FoodybiteNetworking
 
-public class RegisterViewModel {
+public class RegisterViewModel: ObservableObject {
     private let signUpService: SignUpService
     private let validator = RegisterValidator()
     
-    public var name = ""
-    public var email = ""
-    public var password = ""
-    public var confirmPassword = ""
+    @Published public var name = ""
+    @Published public var email = ""
+    @Published public var password = ""
+    @Published public var confirmPassword = ""
     
-    public init(apiService: SignUpService) {
-        self.signUpService = apiService
+    public init(signUpService: SignUpService) {
+        self.signUpService = signUpService
     }
     
     public func register() async throws {
