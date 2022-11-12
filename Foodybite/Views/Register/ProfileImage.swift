@@ -6,27 +6,49 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileImage: View {
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data? = nil
+
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            ZStack {
-                Circle()
-                    .fill(.white.opacity(0.25))
-
-                Image(systemName: "person")
-                    .font(.system(size: 50))
+        PhotosPicker(selection: $selectedItem,
+                     matching: .images,
+                     photoLibrary: .shared()) {
+            ZStack(alignment: .bottomTrailing) {
+                ZStack {
+                    if let selectedImageData,
+                       let uiImage = UIImage(data: selectedImageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .clipShape(Circle())
+                    } else {
+                        Circle()
+                            .fill(.white.opacity(0.25))
+                    }
+                    
+                    Image(systemName: "person")
+                        .font(.system(size: 50))
+                        .foregroundColor(.white)
+                }
+                
+                Image(systemName: "arrow.up")
+                    .padding()
+                    .overlay(Circle().stroke(.white, lineWidth: 3))
                     .foregroundColor(.white)
+                    .background(Circle().fill(Color.marineBlue))
+                    .font(.system(size: 30, weight: .bold))
             }
-
-            Image(systemName: "arrow.up")
-                .padding()
-                .overlay(Circle().stroke(.white, lineWidth: 3))
-                .foregroundColor(.white)
-                .background(Circle().fill(Color.marineBlue))
-                .font(.system(size: 30, weight: .bold))
+            .frame(width: 180, height: 180)
+        }
+        .onChange(of: selectedItem) { newItem in
+            Task {
+                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                    selectedImageData = data
+                }
             }
-        .frame(width: 180, height: 180)
+        }
     }
 }
 
