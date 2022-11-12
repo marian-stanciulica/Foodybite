@@ -17,7 +17,7 @@ struct FoodybiteApp: App {
                 TabNavigationView()
                     .environmentObject(ViewRouter())
             } else {
-                LoginView()
+                
             }
         }
     }

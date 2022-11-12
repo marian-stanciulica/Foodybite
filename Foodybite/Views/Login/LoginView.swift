@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct LoginView: View {
-    @State var email = ""
-    @State var password = ""
+    @ObservedObject var viewModel: LoginViewModel
 
     var body: some View {
         NavigationView {
@@ -25,13 +25,13 @@ struct LoginView: View {
                 ImageWhiteTextField(placeholder: "Email",
                                     imageName: "envelope",
                                     secure: false,
-                                    text: $email)
+                                    text: $viewModel.email)
                     .padding(.bottom)
 
                 ImageWhiteTextField(placeholder: "Password",
                                     imageName: "lock.circle",
                                     secure: true,
-                                    text: $password)
+                                    text: $viewModel.password)
                     .padding(.bottom)
 
                 HStack {
@@ -44,7 +44,9 @@ struct LoginView: View {
                 Spacer()
 
                 MarineButton(title: "Login") {
-                    
+                    Task {
+                        await viewModel.login()
+                    }
                 }
 
                 Spacer()
@@ -67,6 +69,18 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        NavigationView {
+            LoginView(viewModel:
+                LoginViewModel(
+                    loginService: PreviewLoginService()
+                )
+            )
+        }
+    }
+    
+    private class PreviewLoginService: LoginService {
+        func login(email: String, password: String) async throws -> LoginResponse {
+            return LoginResponse(name: "name", email: "email")
+        }
     }
 }

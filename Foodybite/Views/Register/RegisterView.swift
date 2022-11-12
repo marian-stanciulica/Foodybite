@@ -90,13 +90,11 @@ struct RegisterView: View {
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            VStack {
-                RegisterView(viewModel:
-                    RegisterViewModel(
-                        signUpService: PreviewSignUpService()
-                    )
+            RegisterView(viewModel:
+                RegisterViewModel(
+                    signUpService: PreviewSignUpService()
                 )
-            }
+            )
         }
     }
     
