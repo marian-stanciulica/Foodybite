@@ -13,6 +13,8 @@ struct RegisterView: View {
 
     var body: some View {
         VStack {
+            Spacer()
+            
             ProfileImage()
                 .padding(.bottom)
 
@@ -73,10 +75,12 @@ struct RegisterView: View {
             return Text("Registration succedeed")
                 .foregroundColor(.white)
                 .font(.headline)
+            
         case let .failure(error):
             return Text(error.rawValue)
                 .foregroundColor(.red)
                 .font(.headline)
+            
         case .notTriggered:
             return Text("")
         }
@@ -88,9 +92,9 @@ struct RegisterView_Previews: PreviewProvider {
         NavigationView {
             VStack {
                 RegisterView(viewModel:
-                                RegisterViewModel(
-                                    signUpService: PreviewSignUpService()
-                                )
+                    RegisterViewModel(
+                        signUpService: PreviewSignUpService()
+                    )
                 )
             }
         }
