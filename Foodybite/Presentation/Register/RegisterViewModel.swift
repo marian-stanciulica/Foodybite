@@ -35,19 +35,23 @@ public class RegisterViewModel: ObservableObject {
                                    password: password,
                                    confirmPassword: confirmPassword)
             
-            do {
-                try await signUpService.signUp(name: name,
-                                               email: email,
-                                               password: password,
-                                               confirmPassword: confirmPassword)
-                registerResult = .success
-            } catch {
-                registerResult = .failure(.serverError)
-            }
+            try await signUp()
         } catch {
             if let error = error as? RegisterValidator.RegistrationError {
                 registerResult = .failure(error)
             }
+        }
+    }
+    
+    private func signUp() async throws {
+        do {
+            try await signUpService.signUp(name: name,
+                                           email: email,
+                                           password: password,
+                                           confirmPassword: confirmPassword)
+            registerResult = .success
+        } catch {
+            throw RegisterValidator.RegistrationError.serverError
         }
     }
 }

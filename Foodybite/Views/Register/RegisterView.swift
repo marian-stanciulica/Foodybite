@@ -41,7 +41,7 @@ struct RegisterView: View {
 
             MarineButton(title: "Register") {
                 Task {
-                    try await viewModel.register()
+                    await viewModel.register()
                 }
             }
 
