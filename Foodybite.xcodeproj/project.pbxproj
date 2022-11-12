@@ -164,6 +164,13 @@
 			remoteGlobalIDString = 0F95A875290D024400806AE9;
 			remoteInfo = FoodybitePersistence;
 		};
+		0FB0E10F291F7FB80058ABCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F0BDA1828F83FD500E91FD0;
+			remoteInfo = FoodybiteNetworking;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1170,6 +1177,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0FB0E110291F7FB80058ABCB /* PBXTargetDependency */,
 			);
 			name = Foodybite;
 			productName = Foodybite;
@@ -1718,6 +1726,11 @@
 			isa = PBXTargetDependency;
 			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
 			targetProxy = 0F95A87F290D024500806AE9 /* PBXContainerItemProxy */;
+		};
+		0FB0E110291F7FB80058ABCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
+			targetProxy = 0FB0E10F291F7FB80058ABCB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

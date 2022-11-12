@@ -7,8 +7,11 @@
 
 import XCTest
 import Combine
+import FoodybiteNetworking
 
 class RegisterViewModel {
+    private let signUpService: SignUpService
+    
     var name = ""
     var email = ""
     var password = ""
@@ -26,7 +29,11 @@ class RegisterViewModel {
         case passwordsDontMatch
     }
     
-    func register() throws {
+    init(apiService: SignUpService) {
+        self.signUpService = apiService
+    }
+    
+    func register() async throws {
         if name.isEmpty {
             throw RegistrationError.emptyName
         }
@@ -52,6 +59,8 @@ class RegisterViewModel {
         if password != confirmPassword {
             throw RegistrationError.passwordsDontMatch
         }
+        
+        try await signUpService.signUp(name: "", email: "", password: "", confirmPassword: "")
      }
     
     private func isValid(email: String) -> Bool {
@@ -88,84 +97,98 @@ class RegisterViewModel {
 
 final class RegisterViewModelTests: XCTestCase {
 
-    func test_register_triggerEmptyNameErrorOnEmptyNameTextField() {
-        let sut = makeSUT()
+    func test_register_triggerEmptyNameErrorOnEmptyNameTextField() async {
+        let (sut, _) = makeSUT()
         
-        assertRegister(on: sut, withExpectedError: .emptyName)
+        await assertRegister(on: sut, withExpectedError: .emptyName)
     }
     
-    func test_register_triggerEmptyEmailErrorOnEmptyEmailTextField() {
-        let sut = makeSUT()
+    func test_register_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         
-        assertRegister(on: sut, withExpectedError: .emptyEmail)
+        await assertRegister(on: sut, withExpectedError: .emptyEmail)
     }
     
-    func test_register_triggerInvalidFormatErrorOnInvalidEmail() {
-        let sut = makeSUT()
+    func test_register_triggerInvalidFormatErrorOnInvalidEmail() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = invalidEmail()
         
-        assertRegister(on: sut, withExpectedError: .invalidEmail)
+        await assertRegister(on: sut, withExpectedError: .invalidEmail)
     }
     
-    func test_register_triggerEmptyPasswordErrorOnEmptyPassword() {
-        let sut = makeSUT()
+    func test_register_triggerEmptyPasswordErrorOnEmptyPassword() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         
-        assertRegister(on: sut, withExpectedError: .emptyPassword)
+        await assertRegister(on: sut, withExpectedError: .emptyPassword)
     }
     
-    func test_register_triggerPasswordDoesntContainUpperLetter() {
-        let sut = makeSUT()
+    func test_register_triggerPasswordDoesntContainUpperLetter() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         sut.password = passwordWithoutUpperLetter()
         
-        assertRegister(on: sut, withExpectedError: .passwordDoesntContainUpperLetter)
+        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainUpperLetter)
     }
     
-    func test_register_triggerPasswordDoesntContainLowerLetter() {
-        let sut = makeSUT()
+    func test_register_triggerPasswordDoesntContainLowerLetter() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         sut.password = passwordWithoutLowerLetter()
         
-        assertRegister(on: sut, withExpectedError: .passwordDoesntContainLowerLetter)
+        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainLowerLetter)
     }
     
-    func test_register_triggerPasswordDoesntContainDigits() {
-        let sut = makeSUT()
+    func test_register_triggerPasswordDoesntContainDigits() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         sut.password = passwordWithoutDigits()
         
-        assertRegister(on: sut, withExpectedError: .passwordDoesntContainDigits)
+        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainDigits)
     }
     
-    func test_register_triggerPasswordDoesntContainSpecialCharacter() {
-        let sut = makeSUT()
+    func test_register_triggerPasswordDoesntContainSpecialCharacter() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         sut.password = passwordWithoutSpecialCharacters()
         
-        assertRegister(on: sut, withExpectedError: .passwordDoesntContainSpecialCharacter)
+        await assertRegister(on: sut, withExpectedError: .passwordDoesntContainSpecialCharacter)
     }
     
-    func test_register_triggerPasswordsDontMatch() {
-        let sut = makeSUT()
+    func test_register_triggerPasswordsDontMatch() async {
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
         sut.password = validPassword()
         
-        assertRegister(on: sut, withExpectedError: .passwordsDontMatch)
+        await assertRegister(on: sut, withExpectedError: .passwordsDontMatch)
+    }
+    
+    func test_register_withValidInputsMakesNetworkRequest() async throws {
+        let (sut, signUpServiceSpy) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = validPassword()
+        sut.confirmPassword = validPassword()
+        
+        try await sut.register()
+        
+        XCTAssertEqual(signUpServiceSpy.signUpCalled, 1)
     }
     
     // MARK: - Helpers
     
-    private func makeSUT() -> RegisterViewModel {
-        RegisterViewModel()
+    private func makeSUT() -> (sut: RegisterViewModel, apiService: SignUpServiceSpy) {
+        let signUpServiceSpy = SignUpServiceSpy()
+        let sut = RegisterViewModel(apiService: signUpServiceSpy)
+        return (sut, signUpServiceSpy)
     }
     
     private func validName() -> String {
@@ -203,12 +226,20 @@ final class RegisterViewModelTests: XCTestCase {
     private func assertRegister(on sut: RegisterViewModel,
                                 withExpectedError expectedError: RegisterViewModel.RegistrationError,
                                 file: StaticString = #file,
-                                line: UInt = #line) {
+                                line: UInt = #line) async {
         do {
-            try sut.register()
+            try await sut.register()
             XCTFail("Register should fail with \(expectedError)", file: file, line: line)
         } catch {
             XCTAssertEqual(error as? RegisterViewModel.RegistrationError, expectedError, file: file, line: line)
+        }
+    }
+    
+    private class SignUpServiceSpy: SignUpService {
+        private(set) var signUpCalled = 0
+        
+        func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
+            signUpCalled += 1
         }
     }
 
