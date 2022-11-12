@@ -12,6 +12,7 @@ class RegisterViewModel {
     var name = ""
     var email = ""
     var password = ""
+    var confirmPassword = ""
     
     enum RegistrationError: Error {
         case emptyName
@@ -22,6 +23,7 @@ class RegisterViewModel {
         case passwordDoesntContainLowerLetter
         case passwordDoesntContainDigits
         case passwordDoesntContainSpecialCharacter
+        case passwordsDontMatch
     }
     
     func register() throws {
@@ -45,6 +47,10 @@ class RegisterViewModel {
             throw RegistrationError.passwordDoesntContainDigits
         } else if !containsSpecialCharacters(password: password) {
             throw RegistrationError.passwordDoesntContainSpecialCharacter
+        }
+        
+        if password != confirmPassword {
+            throw RegistrationError.passwordsDontMatch
         }
      }
     
@@ -147,6 +153,15 @@ final class RegisterViewModelTests: XCTestCase {
         assertRegister(on: sut, withExpectedError: .passwordDoesntContainSpecialCharacter)
     }
     
+    func test_register_triggerPasswordsDontMatch() {
+        let sut = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = validPassword()
+        
+        assertRegister(on: sut, withExpectedError: .passwordsDontMatch)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> RegisterViewModel {
@@ -179,6 +194,10 @@ final class RegisterViewModelTests: XCTestCase {
     
     private func passwordWithoutSpecialCharacters() -> String {
         "ABCabc123"
+    }
+    
+    private func validPassword() -> String {
+        "ABCabc123%"
     }
     
     private func assertRegister(on sut: RegisterViewModel,
