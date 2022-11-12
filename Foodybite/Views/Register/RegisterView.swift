@@ -48,19 +48,8 @@ struct RegisterView: View {
                     await viewModel.register()
                 }
             }
-        
-            switch viewModel.registerResult {
-            case .success:
-                Text("Registration succedeed")
-                    .foregroundColor(.white)
-                    .font(.headline)
-            case let .failure(error):
-                Text(error.rawValue)
-                    .foregroundColor(.red)
-                    .font(.headline)
-            case .notTriggered:
-                Text("")
-            }
+            
+            createFeedbackText()
 
             Spacer()
 
@@ -76,6 +65,21 @@ struct RegisterView: View {
             BackgroundImage(imageName: "register_background")
         )
         .arrowBackButtonStyle()
+    }
+    
+    private func createFeedbackText() -> Text {
+        switch viewModel.registerResult {
+        case .success:
+            return Text("Registration succedeed")
+                .foregroundColor(.white)
+                .font(.headline)
+        case let .failure(error):
+            return Text(error.rawValue)
+                .foregroundColor(.red)
+                .font(.headline)
+        case .notTriggered:
+            return Text("")
+        }
     }
 }
 
