@@ -196,6 +196,24 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword(), validPassword()])
     }
     
+    func test_register_throwsErrorWhenSignUpServiceThrowsError() async {
+        let (sut, signUpServiceSpy) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = validPassword()
+        sut.confirmPassword = validPassword()
+        
+        let expectedError = anyNSError()
+        signUpServiceSpy.errorToThrow = expectedError
+        
+        do {
+            try await sut.register()
+            XCTFail("Expected error, got success instead")
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RegisterViewModel, apiService: SignUpServiceSpy) {
@@ -236,6 +254,10 @@ final class RegisterViewModelTests: XCTestCase {
         "ABCabc123%"
     }
     
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 1)
+    }
+    
     private func assertRegister(on sut: RegisterViewModel,
                                 withExpectedError expectedError: RegisterViewModel.RegistrationError,
                                 file: StaticString = #file,
@@ -249,10 +271,15 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     private class SignUpServiceSpy: SignUpService {
+        var errorToThrow: Error?
         private(set) var capturedValues = [(name: String, email: String, password: String, confirmPassword: String)]()
         
         func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
             capturedValues.append((name, email, password, confirmPassword))
+            
+            if let errorToThrow = errorToThrow {
+                throw errorToThrow
+            }
         }
     }
 
