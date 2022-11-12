@@ -21,3 +21,12 @@ class ResourceLoaderSpy: ResourceLoader {
         return response as! T
     }
 }
+
+class ResourceSenderSpy: ResourceSender {
+    var requests = [URLRequest]()
+    
+    func post(to urlRequest: URLRequest) async throws {
+        requests.append(urlRequest)
+
+    }
+}

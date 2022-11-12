@@ -13,7 +13,7 @@ final class APIServiceTests: XCTestCase {
     // MARK: - LoginService Tests
     
     func test_conformsToLoginService() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         XCTAssertNotNil(sut as LoginService)
     }
     
@@ -21,7 +21,7 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
         let loginEndpoint = ServerEndpoint.login(email: email, password: password)
         let urlRequest = try loginEndpoint.createURLRequest()
         
@@ -31,11 +31,11 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
-    func test_login_useLoginEndpointToCreateURLRequest() async throws {
+    func test_login_usesLoginEndpointToCreateURLRequest() async throws {
         let email = anyEmail()
         let password = anyPassword()
         
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
         let loginEndpoint = ServerEndpoint.login(email: email, password: password)
         let urlRequest = try loginEndpoint.createURLRequest()
         
@@ -54,17 +54,61 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(expectedResponse.email, receivedResponse.email)
     }
     
+    // MARK: - SignUpService Tests
+    
+    func test_conformsToSignUpService() {
+        let (sut, _, _) = makeSUT()
+        XCTAssertNotNil(sut as SignUpService)
+    }
+    
+    func test_signUp_paramsUsedToCreateEndpoint() async throws {
+        let name = anyName()
+        let email = anyEmail()
+        let password = anyPassword()
+        let confirmPassword = anyPassword()
+        
+        let (sut, _, sender) = makeSUT()
+        let signUpEndpoint = ServerEndpoint.signup(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        let urlRequest = try signUpEndpoint.createURLRequest()
+        
+        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        
+        let firstRequest = sender.requests.first
+        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+    }
+    
+    func test_signUp_usesSignUpEndpointToCreateURLRequest() async throws {
+        let name = anyName()
+        let email = anyEmail()
+        let password = anyPassword()
+        let confirmPassword = anyPassword()
+        
+        let (sut, _, sender) = makeSUT()
+        let signUpEndpoint = ServerEndpoint.signup(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        let urlRequest = try signUpEndpoint.createURLRequest()
+        
+        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword)
+
+        XCTAssertEqual(sender.requests, [urlRequest])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: APIService, loader: ResourceLoaderSpy) {
+    private func makeSUT() -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy) {
         let loader = ResourceLoaderSpy(response: LoginResponse(name: "", email: ""))
-        let sut = APIService(loader: loader)
-        return (sut, loader)
+        let sender = ResourceSenderSpy()
+        let sut = APIService(loader: loader, sender: sender)
+        return (sut, loader, sender)
     }
     
     private func makeSUT(response: LoginResponse = LoginResponse(name: "any name", email: "any@email.com")) -> APIService {
         let loader = ResourceLoaderSpy(response: response)
-        return APIService(loader: loader)
+        let sender = ResourceSenderSpy()
+        return APIService(loader: loader, sender: sender)
+    }
+    
+    private func anyName() -> String {
+        "any name"
     }
     
     private func anyEmail() -> String {
