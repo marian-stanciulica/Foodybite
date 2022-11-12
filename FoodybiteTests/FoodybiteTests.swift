@@ -60,7 +60,10 @@ class RegisterViewModel {
             throw RegistrationError.passwordsDontMatch
         }
         
-        try await signUpService.signUp(name: "", email: "", password: "", confirmPassword: "")
+        try await signUpService.signUp(name: name,
+                                       email: email,
+                                       password: password,
+                                       confirmPassword: confirmPassword)
      }
     
     private func isValid(email: String) -> Bool {
@@ -171,7 +174,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedError: .passwordsDontMatch)
     }
     
-    func test_register_withValidInputsMakesNetworkRequest() async throws {
+    func test_register_sendsValidInputsToSignUpService() async throws {
         let (sut, signUpServiceSpy) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -180,7 +183,17 @@ final class RegisterViewModelTests: XCTestCase {
         
         try await sut.register()
         
-        XCTAssertEqual(signUpServiceSpy.signUpCalled, 1)
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword()])
+        
+        try await sut.register()
+        
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName(), validName()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword(), validPassword()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword(), validPassword()])
     }
     
     // MARK: - Helpers
@@ -236,10 +249,10 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     private class SignUpServiceSpy: SignUpService {
-        private(set) var signUpCalled = 0
+        private(set) var capturedValues = [(name: String, email: String, password: String, confirmPassword: String)]()
         
         func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
-            signUpCalled += 1
+            capturedValues.append((name, email, password, confirmPassword))
         }
     }
 
