@@ -6,11 +6,12 @@
 //
 
 import XCTest
+import Combine
 import Foodybite
 import FoodybiteNetworking
 
 final class RegisterViewModelTests: XCTestCase {
-
+    
     func test_register_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
         
@@ -123,6 +124,32 @@ final class RegisterViewModelTests: XCTestCase {
         } catch {
             XCTAssertEqual(error as NSError, expectedError)
         }
+    }
+    
+    func test_register_setsSuccessfulResultWhenSignUpServiceReturnsSuccess() async {
+        let (sut, _) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = validPassword()
+        sut.confirmPassword = validPassword()
+        
+        var receivedResult: RegisterViewModel.RegisterResult?
+        let cancellable = sut.$registerResult.sink { completion in
+            XCTFail("Expected to receive value, got completion \(completion) instead")
+        } receiveValue: { result in
+            receivedResult = result
+        }
+
+        XCTAssertEqual(receivedResult, .notTriggered)
+        
+        do {
+            try await sut.register()
+        } catch {
+            XCTFail("Expected register to finish successfully, got \(error) instead")
+        }
+        
+        XCTAssertEqual(receivedResult, .success)
+        cancellable.cancel()
     }
     
     // MARK: - Helpers
