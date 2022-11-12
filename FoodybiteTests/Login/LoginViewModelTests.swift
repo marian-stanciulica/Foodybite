@@ -6,31 +6,8 @@
 //
 
 import XCTest
+import Foodybite
 import FoodybiteNetworking
-
-final class LoginViewModel {
-    enum LoginError: Error {
-        case serverError
-    }
-    
-    private let loginService: LoginService
-    
-    var email = ""
-    var password = ""
-    var loginError: LoginError?
-    
-    init(loginService: LoginService) {
-        self.loginService = loginService
-    }
-    
-    func login() async {
-        do {
-            _ = try await loginService.login(email: email, password: password)
-        } catch {
-            loginError = .serverError
-        }
-    }
-}
 
 final class LoginViewModelTests: XCTestCase {
     
