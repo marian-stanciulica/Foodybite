@@ -35,4 +35,14 @@ class RemoteResourceLoader: ResourceLoader {
         
         return decodable
     }
+    
+    func post(to urlRequest: URLRequest) async throws {
+        guard let result = try? await client.send(urlRequest) else {
+            throw Error.connectivity
+        }
+        
+        guard (200..<300).contains(result.response.statusCode) else {
+            throw Error.invalidData
+        }
+    }
 }
