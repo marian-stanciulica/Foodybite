@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoginView: View {
-    @AppStorage("userLoggedIn") var userLoggedIn = false
     @State var email = ""
     @State var password = ""
 
@@ -45,7 +44,7 @@ struct LoginView: View {
                 Spacer()
 
                 MarineButton(title: "Login") {
-                    userLoggedIn = true
+                    
                 }
 
                 Spacer()
