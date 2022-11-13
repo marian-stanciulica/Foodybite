@@ -13,7 +13,7 @@ public class RegisterValidator {
         case emptyName = "Empty name"
         case emptyEmail = "Empty email"
         case invalidEmail = "Invalid email"
-        case emptyPassword = "Empty password"
+        case tooShortPassword = "Too short password"
         case passwordDoesntContainUpperLetter = "Password should contain at least one uppercase letter"
         case passwordDoesntContainLowerLetter = "Password should contain at least one lowercase letter"
         case passwordDoesntContainDigits = "Password should contain at least one digit"
@@ -32,9 +32,7 @@ public class RegisterValidator {
             throw RegistrationError.invalidEmail
         }
         
-        if password.isEmpty {
-            throw RegistrationError.emptyPassword
-        } else if !containsUpperLetter(password: password) {
+        if !containsUpperLetter(password: password) {
             throw RegistrationError.passwordDoesntContainUpperLetter
         } else if !containsLowerLetter(password: password) {
             throw RegistrationError.passwordDoesntContainLowerLetter
@@ -42,6 +40,8 @@ public class RegisterValidator {
             throw RegistrationError.passwordDoesntContainDigits
         } else if !containsSpecialCharacters(password: password) {
             throw RegistrationError.passwordDoesntContainSpecialCharacter
+        } else if password.count < 8 {
+            throw RegistrationError.tooShortPassword
         }
         
         if password != confirmPassword {

@@ -26,8 +26,8 @@ final class RegisterValidatorTests: XCTestCase {
         XCTAssertEqual(RegisterValidator.RegistrationError.invalidEmail.rawValue, "Invalid email")
     }
     
-    func test_registrationError_rawValueOfEmptyPasswordError() {
-        XCTAssertEqual(RegisterValidator.RegistrationError.emptyPassword.rawValue, "Empty password")
+    func test_registrationError_rawValueOfTooShortPasswordError() {
+        XCTAssertEqual(RegisterValidator.RegistrationError.tooShortPassword.rawValue, "Too short password")
     }
     
     func test_registrationError_rawValueOfPasswordDoesntContainUpperLetterError() {

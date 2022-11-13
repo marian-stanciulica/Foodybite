@@ -37,8 +37,9 @@ final class RegisterViewModelTests: XCTestCase {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
+        sut.password = shortPassword()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.emptyPassword))
+        await assertRegister(on: sut, withExpectedResult: .failure(.tooShortPassword))
     }
     
     func test_register_triggerPasswordDoesntContainUpperLetter() async {
@@ -149,6 +150,10 @@ final class RegisterViewModelTests: XCTestCase {
     
     private func validEmail() -> String {
         "test@test.com"
+    }
+    
+    private func shortPassword() -> String {
+        "Aa1%"
     }
     
     private func passwordWithoutUpperLetter() -> String {

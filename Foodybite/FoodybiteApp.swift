@@ -21,7 +21,7 @@ struct FoodybiteApp: App {
                 TabNavigationView()
                     .environmentObject(ViewRouter())
             } else {
-                AuthFlowView(flow: AuthFlow(apiService: apiService))
+                AuthFlowView(apiService: apiService, flow: AuthFlow())
             }
         }
     }

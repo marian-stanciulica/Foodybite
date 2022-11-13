@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FoodybiteNetworking
 
 final public class AuthFlow: ObservableObject {
     public enum Route: Hashable, CaseIterable {
@@ -14,12 +13,9 @@ final public class AuthFlow: ObservableObject {
         case turnOnLocation
     }
     
-    let apiService: APIService
     @Published public var path = NavigationPath()
     
-    public init(apiService: APIService) {
-        self.apiService = apiService
-    }
+    public init() { }
     
     public func append(_ value: Route) {
         path.append(value)
