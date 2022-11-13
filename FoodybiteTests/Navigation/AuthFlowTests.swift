@@ -19,6 +19,10 @@ final class AuthFlow {
     func append(_ value: Route) {
         path.append(value)
     }
+    
+    func navigateBack() {
+        path.removeLast()
+    }
 }
 
 extension AuthFlow.Route: CaseIterable {}
@@ -36,5 +40,15 @@ final class AuthFlowTests: XCTestCase {
         
         sut.append(.signUp)
         XCTAssertEqual(sut.path.count, 1)
+    }
+    
+    func test_navigateBack_removesLastValueFromNavigationPath() {
+        let sut = AuthFlow()
+        
+        sut.append(.signUp)
+        XCTAssertEqual(sut.path.count, 1)
+        
+        sut.navigateBack()
+        XCTAssertEqual(sut.path.count, 0)
     }
 }
