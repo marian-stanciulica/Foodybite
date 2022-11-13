@@ -10,63 +10,62 @@ import FoodybiteNetworking
 
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel
+    let goToSignUp: () -> Void
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                Text("Foodybite")
-                    .foregroundColor(.white)
-                    .font(.system(size: 60))
-                    .bold()
+        VStack {
+            Spacer()
+            Text("Foodybite")
+                .foregroundColor(.white)
+                .font(.system(size: 60))
+                .bold()
 
-                Spacer()
+            Spacer()
 
-                Group {
-                    ImageWhiteTextField(placeholder: "Email",
-                                        imageName: "envelope",
-                                        secure: false,
-                                        text: $viewModel.email)
-                    
-                    ImageWhiteTextField(placeholder: "Password",
-                                        imageName: "lock.circle",
-                                        secure: true,
-                                        text: $viewModel.password)
-                }
-                .padding(.bottom)
-
-                HStack {
-                    Spacer()
-                    Text("Forgot Password?")
-                        .foregroundColor(.white)
-                        .bold()
-                }
-
-                Spacer()
-
-                MarineButton(title: "Login") {
-                    Task {
-                        await viewModel.login()
-                    }
-                }
+            Group {
+                ImageWhiteTextField(placeholder: "Email",
+                                    imageName: "envelope",
+                                    secure: false,
+                                    text: $viewModel.email)
                 
-                createFeedbackText()
+                ImageWhiteTextField(placeholder: "Password",
+                                    imageName: "lock.circle",
+                                    secure: true,
+                                    text: $viewModel.password)
+            }
+            .padding(.bottom)
 
+            HStack {
                 Spacer()
+                Text("Forgot Password?")
+                    .foregroundColor(.white)
+                    .bold()
+            }
 
-                NavigationLink {
-                    
-                } label: {
-                    Text("Create New Account")
-                        .foregroundColor(.white)
-                        .underline()
+            Spacer()
+
+            MarineButton(title: "Login") {
+                Task {
+                    await viewModel.login()
                 }
             }
-            .padding(.horizontal)
-            .background(
-                BackgroundImage(imageName: "login_background")
-            )
+            
+            createFeedbackText()
+
+            Spacer()
+
+            Button {
+                goToSignUp()
+            } label: {
+                Text("Create New Account")
+                    .foregroundColor(.white)
+                    .underline()
+            }
         }
+        .padding(.horizontal)
+        .background(
+            BackgroundImage(imageName: "login_background")
+        )
     }
     
     private func createFeedbackText() -> Text {
@@ -83,11 +82,9 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LoginView(viewModel:
-                LoginViewModel(
-                    loginService: PreviewLoginService()
-                )
-            )
+            LoginView(viewModel: LoginViewModel(loginService: PreviewLoginService())) {
+                
+            }
         }
     }
     

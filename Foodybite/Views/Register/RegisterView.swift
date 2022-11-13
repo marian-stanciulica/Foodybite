@@ -10,6 +10,7 @@ import FoodybiteNetworking
 
 struct RegisterView: View {
     @ObservedObject var viewModel: RegisterViewModel
+    let goToLogin: () -> Void
 
     var body: some View {
         VStack {
@@ -58,8 +59,13 @@ struct RegisterView: View {
             HStack {
                 Text("Already have an account?")
                     .foregroundColor(.white)
-                Text("Login")
-                    .foregroundColor(.marineBlue)
+                
+                Button {
+                    goToLogin()
+                } label: {
+                    Text("Login")
+                        .foregroundColor(.marineBlue)
+                }
             }
         }
         .padding(.horizontal)
@@ -94,7 +100,7 @@ struct RegisterView_Previews: PreviewProvider {
                 RegisterViewModel(
                     signUpService: PreviewSignUpService()
                 )
-            )
+            ) { }
         }
     }
     

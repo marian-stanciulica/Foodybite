@@ -12,16 +12,18 @@ import FoodybiteNetworking
 struct FoodybiteApp: App {
     @AppStorage("userLoggedIn") var userLoggedIn = false
     
+    private let apiService = APIService(loader: RemoteResourceLoader(client: URLSessionHTTPClient()),
+                                        sender: RemoteResourceLoader(client: URLSessionHTTPClient()))
+    
     var body: some Scene {
-        let remoteResourceLoader = RemoteResourceLoader(client: URLSessionHTTPClient())
-        let apiService = APIService(loader: remoteResourceLoader, sender: remoteResourceLoader)
-        
         WindowGroup {
             if userLoggedIn {
                 TabNavigationView()
                     .environmentObject(ViewRouter())
             } else {
-                LoginView(viewModel: LoginViewModel(loginService: apiService))
+                LoginView(viewModel: LoginViewModel(loginService: apiService)) {
+                    
+                }
             }
         }
     }
