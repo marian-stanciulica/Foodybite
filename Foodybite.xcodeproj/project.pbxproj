@@ -92,6 +92,7 @@
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
 		0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23CF2920E374005196EA /* AuthFlowTests.swift */; };
 		0F7E23D32920E861005196EA /* AuthFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D22920E861005196EA /* AuthFlow.swift */; };
+		0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D42920E965005196EA /* AuthFlowView.swift */; };
 		0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -280,6 +281,7 @@
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
 		0F7E23CF2920E374005196EA /* AuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTests.swift; sourceTree = "<group>"; };
 		0F7E23D22920E861005196EA /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
+		0F7E23D42920E965005196EA /* AuthFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowView.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 			isa = PBXGroup;
 			children = (
 				0F7E23D22920E861005196EA /* AuthFlow.swift */,
+				0F7E23D42920E965005196EA /* AuthFlowView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1712,6 +1715,7 @@
 				A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */,
 				A2C2423C28477B1300CB233B /* AccountType.swift in Sources */,
 				0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */,
+				0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */,
 				0F2B4CBB28454DF4004D0EF7 /* SelectCategoryView.swift in Sources */,
 				0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */,
 				A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */,
