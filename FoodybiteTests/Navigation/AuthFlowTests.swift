@@ -6,26 +6,7 @@
 //
 
 import XCTest
-import SwiftUI
-
-final class AuthFlow {
-    enum Route: Hashable {
-        case signUp
-        case turnOnLocation
-    }
-    
-    var path = NavigationPath()
-    
-    func append(_ value: Route) {
-        path.append(value)
-    }
-    
-    func navigateBack() {
-        path.removeLast()
-    }
-}
-
-extension AuthFlow.Route: CaseIterable {}
+import Foodybite
 
 final class AuthFlowTests: XCTestCase {
 
