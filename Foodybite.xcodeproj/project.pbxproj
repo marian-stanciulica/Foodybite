@@ -90,6 +90,7 @@
 		0F751643284363B000A05A92 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751642284363B000A05A92 /* ProfileView.swift */; };
 		0F751645284364B600A05A92 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751644284364B600A05A92 /* StatsView.swift */; };
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
+		0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23CF2920E374005196EA /* AuthFlowTests.swift */; };
 		0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -276,6 +277,7 @@
 		0F751642284363B000A05A92 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0F751644284364B600A05A92 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
+		0F7E23CF2920E374005196EA /* AuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTests.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 		0F108808291E2397007A28FA /* FoodybiteTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F7E23CE2920E329005196EA /* Navigation */,
 				0FB0E124291FBE3B0058ABCB /* Register */,
 				0FB0E125291FBE790058ABCB /* Login */,
 			);
@@ -805,6 +808,14 @@
 				A2C24241284780BF00CB233B /* Settings */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		0F7E23CE2920E329005196EA /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				0F7E23CF2920E374005196EA /* AuthFlowTests.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		0F95A877290D024400806AE9 /* FoodybitePersistence */ = {
@@ -1652,6 +1663,7 @@
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
+				0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
