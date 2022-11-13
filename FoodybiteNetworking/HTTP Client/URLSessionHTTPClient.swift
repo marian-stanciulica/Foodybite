@@ -7,16 +7,16 @@
 
 import Foundation
 
-class URLSessionHTTPClient: HTTPClient {
+public class URLSessionHTTPClient: HTTPClient {
     private let urlSession: URLSessionProtocol
     
-    init(urlSession: URLSessionProtocol = URLSession.shared) {
+    public init(urlSession: URLSessionProtocol = URLSession.shared) {
         self.urlSession = urlSession
     }
     
     struct UnexpectedRepresentation: Error {}
     
-    func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
+    public func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
         let (data, response) = try await urlSession.data(for: urlRequest, delegate: nil)
         
         guard let response = response as? HTTPURLResponse else {

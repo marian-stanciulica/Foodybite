@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ResourceLoader {
+public protocol ResourceLoader {
     func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RemoteResourceLoader: ResourceLoader, ResourceSender {
+public class RemoteResourceLoader: ResourceLoader, ResourceSender {
     private let client: HTTPClient
     private let codableDataParser = CodableDataParser()
     
@@ -16,11 +16,11 @@ class RemoteResourceLoader: ResourceLoader, ResourceSender {
         case invalidData
     }
     
-    init(client: HTTPClient) {
+    public init(client: HTTPClient) {
         self.client = client
     }
     
-    func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T {
+    public func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T {
         guard let result = try? await client.send(urlRequest) else {
             throw Error.connectivity
         }
@@ -36,7 +36,7 @@ class RemoteResourceLoader: ResourceLoader, ResourceSender {
         return decodable
     }
     
-    func post(to urlRequest: URLRequest) async throws {
+    public func post(to urlRequest: URLRequest) async throws {
         guard let result = try? await client.send(urlRequest) else {
             throw Error.connectivity
         }
