@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 13.10.2022.
 //
 
+import Foundation
 @testable import FoodybiteNetworking
 
 enum EndpointStub: Endpoint {
@@ -13,7 +14,7 @@ enum EndpointStub: Endpoint {
     case validPath
     case postMethod(method: RequestMethod)
     case headers(headers: [String : String])
-    case body(body: [String : String])
+    case body(body: Codable)
     
     var host: String {
         "host"
@@ -46,12 +47,12 @@ enum EndpointStub: Endpoint {
         }
     }
     
-    var body: [String : String] {
+    var body: Codable? {
         switch self {
         case let .body(body):
             return body
         default:
-            return [:]
+            return nil
         }
     }
 }

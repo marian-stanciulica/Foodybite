@@ -47,7 +47,8 @@ final class EndpointTests: XCTestCase {
         let urlRequest = try endpoint.createURLRequest()
         
         let receivedBodyData = try XCTUnwrap(urlRequest.httpBody)
-        let receivedBody = try JSONSerialization.jsonObject(with: receivedBodyData) as? [String : String]
+        let decoder = JSONDecoder()
+        let receivedBody = try decoder.decode(String.self, from: receivedBodyData)
         
         XCTAssertEqual(receivedBody, anyBody())
     }
@@ -62,11 +63,8 @@ final class EndpointTests: XCTestCase {
         ]
     }
 
-    private func anyBody() -> [String : String] {
-        return [
-            "body 1 key" : "body 1 value",
-            "body 2 key" : "body 2 value"
-        ]
+    private func anyBody() -> String {
+        "any body"
     }
     
 }

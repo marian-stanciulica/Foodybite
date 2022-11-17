@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0280FD29262FE7006B219F /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FC29262FE7006B219F /* SignUpRequest.swift */; };
+		0F028100292630D5006B219F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequest.swift */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
 		0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */; };
@@ -196,6 +198,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F0280FC29262FE7006B219F /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		0F0280FF292630D5006B219F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
@@ -409,6 +413,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0280F829262B11006B219F /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		0F0280FB29262FD9006B219F /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				0F0280FC29262FE7006B219F /* SignUpRequest.swift */,
+				0F0280FF292630D5006B219F /* LoginRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,7 +741,8 @@
 		0F447CCB28FB19C20026C5DB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */,
+				0F0280FB29262FD9006B219F /* Requests */,
+				0F0280F829262B11006B219F /* Responses */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1631,6 +1653,7 @@
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
+				0F028100292630D5006B219F /* LoginRequest.swift in Sources */,
 				0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */,
 				0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */,
 				0F1FDE4929016AF500E12B09 /* RefreshTokenService.swift in Sources */,
@@ -1641,6 +1664,7 @@
 				0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */,
 				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
 				0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */,
+				0F0280FD29262FE7006B219F /* SignUpRequest.swift in Sources */,
 				0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */,
 				0F447CBF28FB06A00026C5DB /* URLSessionHTTPClient.swift in Sources */,
 			);

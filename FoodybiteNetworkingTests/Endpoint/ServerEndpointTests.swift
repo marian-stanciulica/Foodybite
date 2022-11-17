@@ -24,20 +24,16 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeSignUpSUT().method, .post)
     }
     
-    func test_signup_bodyContainsName() {
-        XCTAssertEqual(makeSignUpSUT().body["name"], anyName())
-    }
-    
-    func test_signup_bodyContainsEmail() {
-        XCTAssertEqual(makeSignUpSUT().body["email"], anyEmail())
-    }
-    
-    func test_signup_bodyContainsPassword() {
-        XCTAssertEqual(makeSignUpSUT().body["password"], anyPassword())
-    }
-    
-    func test_signup_bodyContainsConfirmPassword() {
-        XCTAssertEqual(makeSignUpSUT().body["confirm_password"], anyPassword())
+    func test_signup_body() throws {
+        let body = SignUpRequest(name: anyName(),
+                                 email: anyEmail(),
+                                 password: anyPassword(),
+                                 confirmPassword: anyPassword(),
+                                 profileImage: anyData())
+        let sut = makeSignUpSUT(body: body)
+        let receivedBody = try XCTUnwrap(sut.body as? SignUpRequest)
+        
+        XCTAssertEqual(receivedBody, body)
     }
     
     func test_signup_headersContainContentTypeJson() {
@@ -58,12 +54,13 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeLoginSUT().method, .post)
     }
     
-    func test_login_bodyContainsEmail() {
-        XCTAssertEqual(makeLoginSUT().body["email"], anyEmail())
-    }
-    
-    func test_login_bodyContainsPassword() {
-        XCTAssertEqual(makeLoginSUT().body["password"], anyPassword())
+    func test_login_body() throws {
+        let body = LoginRequest(email: anyEmail(), password: anyPassword())
+
+        let sut = makeLoginSUT(body: body)
+        let receivedBody = try XCTUnwrap(sut.body as? LoginRequest)
+        
+        XCTAssertEqual(receivedBody, body)
     }
     
     func test_login_headersContainContentTypeJson() {
@@ -87,7 +84,7 @@ final class ServerEndpointTests: XCTestCase {
     func test_refreshToken_bodyContainsEmail() {
         let randomRefreshToken = randomString(size: 20)
         let sut = makeRefreshTokenSUT(refreshToken: randomRefreshToken)
-        XCTAssertEqual(sut.body["refreshToken"], randomRefreshToken)
+        XCTAssertEqual(sut.body as? String, randomRefreshToken)
     }
     
     func test_refreshToken_headersContainContentTypeJson() {
@@ -108,17 +105,29 @@ final class ServerEndpointTests: XCTestCase {
         "123$Password@321"
     }
     
+    private func anyData() -> Data {
+        "any name".data(using: .utf8)!
+    }
+    
     private func randomString(size: Int) -> String {
         let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         return String(Array(0..<size).map { _ in chars.randomElement()! })
     }
     
-    private func makeSignUpSUT() -> ServerEndpoint {
-        return .signup(name: anyName(), email: anyEmail(), password: anyPassword(), confirmPassword: anyPassword())
+    private func makeSignUpSUT(body: SignUpRequest? = nil) -> ServerEndpoint {
+        let defaultBody = SignUpRequest(name: anyName(),
+                                        email: anyEmail(),
+                                        password: anyPassword(),
+                                        confirmPassword: anyPassword(),
+                                        profileImage: anyData())
+        
+        return .signup(body ?? defaultBody)
     }
     
-    private func makeLoginSUT() -> ServerEndpoint {
-        return .login(email: anyEmail(), password: anyPassword())
+    private func makeLoginSUT(body: LoginRequest? = nil) -> ServerEndpoint {
+        let defaultBody = LoginRequest(email: anyEmail(), password: anyPassword())
+        
+        return .login(body ?? defaultBody)
     }
     
     private func makeRefreshTokenSUT(refreshToken: String = "") -> ServerEndpoint {

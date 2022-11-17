@@ -5,6 +5,8 @@
 //  Created by Marian Stanciulica on 15.10.2022.
 //
 
+import Foundation
+
 public class APIService {
     private let loader: ResourceLoader
     private let sender: ResourceSender
@@ -17,15 +19,15 @@ public class APIService {
 
 extension APIService: LoginService {
     public func login(email: String, password: String) async throws -> LoginResponse {
-        let endpoint = ServerEndpoint.login(email: email, password: password)
+        let endpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try endpoint.createURLRequest()
         return try await loader.get(for: urlRequest)
     }
 }
 
 extension APIService: SignUpService {
-    public func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
-        let endpoint = ServerEndpoint.signup(name: name, email: email, password: password, confirmPassword: confirmPassword)
+    public func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
+        let endpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }

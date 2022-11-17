@@ -12,7 +12,7 @@ protocol Endpoint {
     var path: String { get }
     var method: RequestMethod { get }
     var headers: [String: String] { get }
-    var body: [String: String] { get }
+    var body: Codable? { get }
 }
 
 extension Endpoint {
@@ -32,8 +32,9 @@ extension Endpoint {
             urlRequest.allHTTPHeaderFields = headers
         }
         
-        if !body.isEmpty {
-            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: body)
+        if let encodable = body {
+            let encoder = JSONEncoder()
+            urlRequest.httpBody = try? encoder.encode(encodable)
         }
         
         return urlRequest

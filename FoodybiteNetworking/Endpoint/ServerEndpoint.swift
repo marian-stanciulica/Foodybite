@@ -5,10 +5,12 @@
 //  Created by Marian Stanciulica on 13.10.2022.
 //
 
+import Foundation
+
 enum ServerEndpoint: Endpoint {
-    case signup(name: String, email: String, password: String, confirmPassword: String)
-    case login(email: String, password: String)
-    case refreshToken(String)
+    case signup(Codable)
+    case login(Codable)
+    case refreshToken(Codable)
     
     var host: String {
         "localhost"
@@ -33,22 +35,14 @@ enum ServerEndpoint: Endpoint {
         ["Content-Type" : "application/json"]
     }
     
-    var body: [String : String] {
-        var body = [String : String]()
-        
+    var body: Codable? {
         switch self {
-        case let .signup(name, email, password, confirmPassword):
-            body["name"] = name
-            body["email"] = email
-            body["password"] = password
-            body["confirm_password"] = confirmPassword
-        case let .login(email, password):
-            body["email"] = email
-            body["password"] = password
+        case let .signup(signUpRequest):
+            return signUpRequest
+        case let .login(loginRequest):
+            return loginRequest
         case let .refreshToken(refreshToken):
-            body["refreshToken"] = refreshToken
+            return refreshToken
         }
-        
-        return body
     }
 }

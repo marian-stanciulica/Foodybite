@@ -22,7 +22,7 @@ final class APIServiceTests: XCTestCase {
         let password = anyPassword()
         
         let (sut, loader, _) = makeSUT()
-        let loginEndpoint = ServerEndpoint.login(email: email, password: password)
+        let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
         _ = try await sut.login(email: email, password: password)
@@ -36,7 +36,7 @@ final class APIServiceTests: XCTestCase {
         let password = anyPassword()
         
         let (sut, loader, _) = makeSUT()
-        let loginEndpoint = ServerEndpoint.login(email: email, password: password)
+        let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
         _ = try await sut.login(email: email, password: password)
@@ -66,12 +66,13 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         let confirmPassword = anyPassword()
+        let profileImage = anyData()
         
         let (sut, _, sender) = makeSUT()
-        let signUpEndpoint = ServerEndpoint.signup(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        let signUpEndpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: anyData()))
         let urlRequest = try signUpEndpoint.createURLRequest()
         
-        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage)
         
         let firstRequest = sender.requests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
@@ -82,12 +83,13 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         let confirmPassword = anyPassword()
+        let profileImage = anyData()
         
         let (sut, _, sender) = makeSUT()
-        let signUpEndpoint = ServerEndpoint.signup(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        let signUpEndpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
         let urlRequest = try signUpEndpoint.createURLRequest()
         
-        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword)
+        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage)
 
         XCTAssertEqual(sender.requests, [urlRequest])
     }
@@ -117,6 +119,10 @@ final class APIServiceTests: XCTestCase {
     
     private func anyPassword() -> String {
         "123@password$321"
+    }
+    
+    private func anyData() -> Data? {
+        "any data".data(using: .utf8)
     }
 
 }
