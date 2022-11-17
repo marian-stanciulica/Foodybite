@@ -16,7 +16,7 @@ struct RegisterView: View {
         VStack {
             Spacer()
             
-            ProfileImage()
+            ProfileImage(selectedImageData: $viewModel.profileImage)
                 .padding(.bottom)
 
             Spacer()
@@ -105,7 +105,7 @@ struct RegisterView_Previews: PreviewProvider {
     }
     
     private class PreviewSignUpService: SignUpService, ObservableObject {
-        func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
+        func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
         }
     }
 }

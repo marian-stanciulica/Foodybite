@@ -22,6 +22,7 @@ public class RegisterViewModel: ObservableObject {
     @Published public var email = ""
     @Published public var password = ""
     @Published public var confirmPassword = ""
+    @Published public var profileImage: Data?
     @Published public var registerResult: RegisterResult = .notTriggered
     
     public init(signUpService: SignUpService) {
@@ -48,7 +49,8 @@ public class RegisterViewModel: ObservableObject {
             try await signUpService.signUp(name: name,
                                            email: email,
                                            password: password,
-                                           confirmPassword: confirmPassword)
+                                           confirmPassword: confirmPassword,
+                                           profileImage: profileImage)
             registerResult = .success
         } catch {
             throw RegisterValidator.RegistrationError.serverError

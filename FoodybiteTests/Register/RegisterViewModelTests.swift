@@ -93,6 +93,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = validPassword()
         sut.confirmPassword = validPassword()
+        sut.profileImage = anyData()
         
         await sut.register()
         
@@ -100,6 +101,7 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.profileImage), [anyData()])
         
         await sut.register()
         
@@ -107,6 +109,7 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword(), validPassword()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword(), validPassword()])
+        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.profileImage), [anyData(), anyData()])
     }
     
     func test_register_throwsErrorWhenSignUpServiceThrowsError() async {
@@ -176,6 +179,10 @@ final class RegisterViewModelTests: XCTestCase {
         "ABCabc123%"
     }
     
+    private func anyData() -> Data? {
+        "any data".data(using: .utf8)
+    }
+    
     private func anyNSError() -> NSError {
         return NSError(domain: "any error", code: 1)
     }
@@ -196,10 +203,10 @@ final class RegisterViewModelTests: XCTestCase {
     
     private class SignUpServiceSpy: SignUpService {
         var errorToThrow: Error?
-        private(set) var capturedValues = [(name: String, email: String, password: String, confirmPassword: String)]()
+        private(set) var capturedValues = [(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?)]()
         
-        func signUp(name: String, email: String, password: String, confirmPassword: String) async throws {
-            capturedValues.append((name, email, password, confirmPassword))
+        func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
+            capturedValues.append((name, email, password, confirmPassword, profileImage))
             
             if let errorToThrow = errorToThrow {
                 throw errorToThrow

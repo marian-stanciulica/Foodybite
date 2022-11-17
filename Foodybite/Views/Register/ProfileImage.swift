@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ProfileImage: View {
     @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var selectedImageData: Data? = nil
+    @Binding var selectedImageData: Data?
 
     var body: some View {
         PhotosPicker(selection: $selectedItem,
@@ -54,7 +54,7 @@ struct ProfileImage: View {
 
 struct ProfileImage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileImage()
+        ProfileImage(selectedImageData: .constant(nil))
             .background(.black)
     }
 }
