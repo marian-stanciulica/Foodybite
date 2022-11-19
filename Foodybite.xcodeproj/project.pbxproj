@@ -108,6 +108,8 @@
 		0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
+		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
+		681AA60D65F4E953D483A351 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D04236D90850F77A10CA8195 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
 		A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421D28474D9700CB233B /* RestaurantImageView.swift */; };
 		A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */; };
@@ -155,13 +157,6 @@
 			remoteGlobalIDString = 0F7137B62841F8340058757A;
 			remoteInfo = Foodybite;
 		};
-		0F19B47E291647DB00A8FC8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
-			remoteInfo = DomainModels;
-		};
 		0F19B48E2916486A00A8FC8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -187,6 +182,16 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0F19B4902916486A00A8FC8F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F8961AE2928CE0800FFDC48 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -302,15 +307,12 @@
 		0FB0E120291FBDBD0058ABCB /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E121291FBDBD0058ABCB /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E122291FBDBD0058ABCB /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FB0E123291FBDBD0058ABCB /* DomainModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainModelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E127291FBED90058ABCB /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		0FB0E129291FC7630058ABCB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceSender.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
-		43A19324D58F3592BD14C2CF /* Pods-DomainModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels.release.xcconfig"; path = "Target Support Files/Pods-DomainModels/Pods-DomainModels.release.xcconfig"; sourceTree = "<group>"; };
-		4919BDF13845039DE7903DE3 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking-FoodybiteNetworkingTests/Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		A2C2421D28474D9700CB233B /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
 		A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAndDirectionsView.swift; sourceTree = "<group>"; };
@@ -344,15 +346,11 @@
 		A2E64BD62842618100FC41B7 /* HomeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryView.swift; sourceTree = "<group>"; };
 		A9110A9173C019BA54EE8788 /* Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC64C41D712BE0F69E81464A /* Pods-DomainModels-DomainModelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels-DomainModelsTests.release.xcconfig"; path = "Target Support Files/Pods-DomainModels-DomainModelsTests/Pods-DomainModels-DomainModelsTests.release.xcconfig"; sourceTree = "<group>"; };
-		BFF44651F1CDEA58B47A1FC9 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking-FoodybiteNetworkingTests/Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C91594030EB9C07692C98872 /* Pods-FoodybiteNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking.release.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking/Pods-FoodybiteNetworking.release.xcconfig"; sourceTree = "<group>"; };
-		D03F9A13320F497A20278D58 /* Pods-Foodybite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foodybite.debug.xcconfig"; path = "Target Support Files/Pods-Foodybite/Pods-Foodybite.debug.xcconfig"; sourceTree = "<group>"; };
+		D04236D90850F77A10CA8195 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodybitePersistence_FoodybitePersistenceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8063D56B5970E3FD2A639DE /* Pods-FoodybitePersistence.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence.release.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence/Pods-FoodybitePersistence.release.xcconfig"; sourceTree = "<group>"; };
-		E023193BFC05CBA4A2B0F52A /* Pods-Foodybite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foodybite.release.xcconfig"; path = "Target Support Files/Pods-Foodybite/Pods-Foodybite.release.xcconfig"; sourceTree = "<group>"; };
-		E74BE2C6AA9EE53FA2450463 /* Pods-DomainModels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels.debug.xcconfig"; path = "Target Support Files/Pods-DomainModels/Pods-DomainModels.debug.xcconfig"; sourceTree = "<group>"; };
 		F100C5A0F23B2327EE2C3CD5 /* Pods-FoodybitePersistence.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence/Pods-FoodybitePersistence.debug.xcconfig"; sourceTree = "<group>"; };
 		F3B32F2EF1A6F558B57CE67F /* Pods-DomainModels-DomainModelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainModels-DomainModelsTests.debug.xcconfig"; path = "Target Support Files/Pods-DomainModels-DomainModelsTests/Pods-DomainModels-DomainModelsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4D91F6E64E84D376AFD3996 /* Pods-FoodybiteNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybiteNetworking.debug.xcconfig"; path = "Target Support Files/Pods-FoodybiteNetworking/Pods-FoodybiteNetworking.debug.xcconfig"; sourceTree = "<group>"; };
+		FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodybitePersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,13 +382,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0F19B479291647DB00A8FC8F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0F7137B42841F8340058757A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -402,6 +393,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +401,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				681AA60D65F4E953D483A351 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,9 +763,9 @@
 		0F7137AE2841F8340058757A = {
 			isa = PBXGroup;
 			children = (
+				0F19B476291647DB00A8FC8F /* DomainModels */,
 				0F7137B92841F8340058757A /* Foodybite */,
 				0F108808291E2397007A28FA /* FoodybiteTests */,
-				0F19B476291647DB00A8FC8F /* DomainModels */,
 				0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */,
 				0F0BDA2428F83FD500E91FD0 /* FoodybiteNetworkingTests */,
 				0F95A877290D024400806AE9 /* FoodybitePersistence */,
@@ -785,7 +778,7 @@
 				0FB0E120291FBDBD0058ABCB /* FoodybitePersistence.framework */,
 				0FB0E121291FBDBD0058ABCB /* DomainModels.framework */,
 				0FB0E122291FBDBD0058ABCB /* FoodybitePersistenceTests.xctest */,
-				0FB0E123291FBDBD0058ABCB /* DomainModelsTests.xctest */,
+				9624028F422A352E429C5134 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -969,6 +962,15 @@
 			path = "Token Store";
 			sourceTree = "<group>";
 		};
+		9624028F422A352E429C5134 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */,
+				D04236D90850F77A10CA8195 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A2032B9F2842049300F8D8C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1141,16 +1143,8 @@
 		A4588B4147D3A291AB412E2E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E74BE2C6AA9EE53FA2450463 /* Pods-DomainModels.debug.xcconfig */,
-				43A19324D58F3592BD14C2CF /* Pods-DomainModels.release.xcconfig */,
 				F3B32F2EF1A6F558B57CE67F /* Pods-DomainModels-DomainModelsTests.debug.xcconfig */,
 				BC64C41D712BE0F69E81464A /* Pods-DomainModels-DomainModelsTests.release.xcconfig */,
-				D03F9A13320F497A20278D58 /* Pods-Foodybite.debug.xcconfig */,
-				E023193BFC05CBA4A2B0F52A /* Pods-Foodybite.release.xcconfig */,
-				F4D91F6E64E84D376AFD3996 /* Pods-FoodybiteNetworking.debug.xcconfig */,
-				C91594030EB9C07692C98872 /* Pods-FoodybiteNetworking.release.xcconfig */,
-				BFF44651F1CDEA58B47A1FC9 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig */,
-				4919BDF13845039DE7903DE3 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig */,
 				F100C5A0F23B2327EE2C3CD5 /* Pods-FoodybitePersistence.debug.xcconfig */,
 				D8063D56B5970E3FD2A639DE /* Pods-FoodybitePersistence.release.xcconfig */,
 				3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */,
@@ -1191,7 +1185,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F0BDA2C28F83FD500E91FD0 /* Build configuration list for PBXNativeTarget "FoodybiteNetworking" */;
 			buildPhases = (
-				951E5AE1D8BAF9A090BFB59E /* [CP] Check Pods Manifest.lock */,
 				0F0BDA1428F83FD500E91FD0 /* Headers */,
 				0F0BDA1528F83FD500E91FD0 /* Sources */,
 				0F0BDA1628F83FD500E91FD0 /* Frameworks */,
@@ -1210,7 +1203,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F0BDA2D28F83FD500E91FD0 /* Build configuration list for PBXNativeTarget "FoodybiteNetworkingTests" */;
 			buildPhases = (
-				3724DF62D384F1E5B563BE87 /* [CP] Check Pods Manifest.lock */,
 				0F0BDA1C28F83FD500E91FD0 /* Sources */,
 				0F0BDA1D28F83FD500E91FD0 /* Frameworks */,
 				0F0BDA1E28F83FD500E91FD0 /* Resources */,
@@ -1247,7 +1239,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModels" */;
 			buildPhases = (
-				5362562B693C640B6AF91F39 /* [CP] Check Pods Manifest.lock */,
 				0F19B470291647DB00A8FC8F /* Headers */,
 				0F19B471291647DB00A8FC8F /* Sources */,
 				0F19B472291647DB00A8FC8F /* Frameworks */,
@@ -1262,33 +1253,14 @@
 			productReference = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0F19B47B291647DB00A8FC8F /* DomainModelsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0F19B487291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModelsTests" */;
-			buildPhases = (
-				A99ABB094E58340A2E3BB8A3 /* [CP] Check Pods Manifest.lock */,
-				0F19B478291647DB00A8FC8F /* Sources */,
-				0F19B479291647DB00A8FC8F /* Frameworks */,
-				0F19B47A291647DB00A8FC8F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0F19B47F291647DB00A8FC8F /* PBXTargetDependency */,
-			);
-			name = DomainModelsTests;
-			productName = DomainModelsTests;
-			productReference = 0FB0E123291FBDBD0058ABCB /* DomainModelsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		0F7137B62841F8340058757A /* Foodybite */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F7137C52841F8370058757A /* Build configuration list for PBXNativeTarget "Foodybite" */;
 			buildPhases = (
-				D854C6F1AAC83453C750442F /* [CP] Check Pods Manifest.lock */,
 				0F7137B32841F8340058757A /* Sources */,
 				0F7137B42841F8340058757A /* Frameworks */,
 				0F7137B52841F8340058757A /* Resources */,
+				0F8961AE2928CE0800FFDC48 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1366,9 +1338,6 @@
 					0F19B474291647DB00A8FC8F = {
 						CreatedOnToolsVersion = 14.1;
 					};
-					0F19B47B291647DB00A8FC8F = {
-						CreatedOnToolsVersion = 14.1;
-					};
 					0F7137B62841F8340058757A = {
 						CreatedOnToolsVersion = 13.4;
 					};
@@ -1402,7 +1371,6 @@
 				0F95A875290D024400806AE9 /* FoodybitePersistence */,
 				0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */,
 				0F19B474291647DB00A8FC8F /* DomainModels */,
-				0F19B47B291647DB00A8FC8F /* DomainModelsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1430,13 +1398,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0F19B473291647DB00A8FC8F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0F19B47A291647DB00A8FC8F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1491,28 +1452,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3724DF62D384F1E5B563BE87 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FoodybiteNetworking-FoodybiteNetworkingTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		424E0D86424C0261E6843290 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1528,28 +1467,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5362562B693C640B6AF91F39 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DomainModels-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91824B238DDB279060DB5558 /* [CP] Check Pods Manifest.lock */ = {
@@ -1568,72 +1485,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-FoodybitePersistence-FoodybitePersistenceTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		951E5AE1D8BAF9A090BFB59E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FoodybiteNetworking-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A99ABB094E58340A2E3BB8A3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DomainModels-DomainModelsTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D854C6F1AAC83453C750442F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Foodybite-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1714,13 +1565,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F19B48A291647F300A8FC8F /* User.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0F19B478291647DB00A8FC8F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1840,11 +1684,6 @@
 			target = 0F7137B62841F8340058757A /* Foodybite */;
 			targetProxy = 0F10880B291E2397007A28FA /* PBXContainerItemProxy */;
 		};
-		0F19B47F291647DB00A8FC8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
-			targetProxy = 0F19B47E291647DB00A8FC8F /* PBXContainerItemProxy */;
-		};
 		0F19B48F2916486A00A8FC8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
@@ -1865,7 +1704,6 @@
 /* Begin XCBuildConfiguration section */
 		0F0BDA2828F83FD500E91FD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4D91F6E64E84D376AFD3996 /* Pods-FoodybiteNetworking.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1907,7 +1745,6 @@
 		};
 		0F0BDA2928F83FD500E91FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C91594030EB9C07692C98872 /* Pods-FoodybiteNetworking.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1948,7 +1785,6 @@
 		};
 		0F0BDA2A28F83FD500E91FD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFF44651F1CDEA58B47A1FC9 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1981,7 +1817,6 @@
 		};
 		0F0BDA2B28F83FD500E91FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4919BDF13845039DE7903DE3 /* Pods-FoodybiteNetworking-FoodybiteNetworkingTests.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -2053,7 +1888,6 @@
 		};
 		0F19B485291647DC00A8FC8F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E74BE2C6AA9EE53FA2450463 /* Pods-DomainModels.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -2092,7 +1926,6 @@
 		};
 		0F19B486291647DC00A8FC8F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43A19324D58F3592BD14C2CF /* Pods-DomainModels.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -2126,48 +1959,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		0F19B488291647DC00A8FC8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3B32F2EF1A6F558B57CE67F /* Pods-DomainModels-DomainModelsTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ULSKSPKFH7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.marian.DomainModelsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		0F19B489291647DC00A8FC8F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC64C41D712BE0F69E81464A /* Pods-DomainModels-DomainModelsTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ULSKSPKFH7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.marian.DomainModelsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2287,7 +2078,6 @@
 		};
 		0F7137C62841F8370058757A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D03F9A13320F497A20278D58 /* Pods-Foodybite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2322,7 +2112,6 @@
 		};
 		0F7137C72841F8370058757A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E023193BFC05CBA4A2B0F52A /* Pods-Foodybite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2538,15 +2327,6 @@
 			buildConfigurations = (
 				0F19B485291647DC00A8FC8F /* Debug */,
 				0F19B486291647DC00A8FC8F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0F19B487291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModelsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0F19B488291647DC00A8FC8F /* Debug */,
-				0F19B489291647DC00A8FC8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
