@@ -9,10 +9,10 @@ import Foundation
 @testable import FoodybiteNetworking
 
 class ResourceLoaderSpy: ResourceLoader {
-    private let response: LoginResponse
+    private let response: Decodable
     var requests = [URLRequest]()
     
-    init(response: LoginResponse) {
+    init(response: Decodable) {
         self.response = response
     }
     

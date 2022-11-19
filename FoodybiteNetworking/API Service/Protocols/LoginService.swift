@@ -6,5 +6,5 @@
 //
 
 public protocol LoginService {
-    func login(email: String, password: String) async throws -> LoginResponse
+    func login(email: String, password: String) async throws -> RemoteUser
 }

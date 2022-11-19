@@ -10,18 +10,24 @@ import Foundation
 public class APIService {
     private let loader: ResourceLoader
     private let sender: ResourceSender
+    private let tokenStore: TokenStore
     
-    public init(loader: ResourceLoader, sender: ResourceSender) {
+    public init(loader: ResourceLoader, sender: ResourceSender, tokenStore: TokenStore) {
         self.loader = loader
         self.sender = sender
+        self.tokenStore = tokenStore
     }
 }
 
 extension APIService: LoginService {
-    public func login(email: String, password: String) async throws -> LoginResponse {
+    public func login(email: String, password: String) async throws -> RemoteUser {
         let endpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try endpoint.createURLRequest()
-        return try await loader.get(for: urlRequest)
+        let loginResponse: LoginResponse = try await loader.get(for: urlRequest)
+        
+        try tokenStore.write(loginResponse.token)
+        
+        return loginResponse.user
     }
 }
 

@@ -9,13 +9,19 @@
 import Foundation
 
 class TokenStoreStub: TokenStore {
-    private var stub: AuthToken
+    private var stub: AuthToken?
+    
+    init() {}
     
     init(_ initialValue: AuthToken) {
         stub = initialValue
     }
     
     func read() throws -> AuthToken {
+        guard let stub = stub else {
+            throw NSError(domain: "any error", code: 1)
+        }
+        
         return stub
     }
     

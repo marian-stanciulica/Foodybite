@@ -13,7 +13,7 @@ final class APIServiceTests: XCTestCase {
     // MARK: - LoginService Tests
     
     func test_conformsToLoginService() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         XCTAssertNotNil(sut as LoginService)
     }
     
@@ -21,7 +21,7 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         
-        let (sut, loader, _) = makeSUT()
+        let (sut, loader, _, _) = makeSUT()
         let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
@@ -35,7 +35,7 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         
-        let (sut, loader, _) = makeSUT()
+        let (sut, loader, _, _) = makeSUT()
         let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
@@ -46,18 +46,27 @@ final class APIServiceTests: XCTestCase {
     
     func test_login_receiveExpectedLoginResponse() async throws {
         let expectedResponse = anyLoginResponse()
-        let sut = makeSUT(loginResponse: expectedResponse)
+        let (sut, _, _, _) = makeSUT(loginResponse: expectedResponse)
         
         let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
         
-        XCTAssertEqual(expectedResponse.user, receivedResponse.user)
-        XCTAssertEqual(expectedResponse.token, receivedResponse.token)
+        XCTAssertEqual(expectedResponse.user, receivedResponse)
+    }
+    
+    func test_login_storesAuthTokenInKeychain() async throws {
+        let expectedResponse = anyLoginResponse()
+        let (sut, _, _, tokenStoreStub) = makeSUT(loginResponse: expectedResponse)
+        
+        _ = try await sut.login(email: anyEmail(), password: anyPassword())
+        let receivedToken = try tokenStoreStub.read()
+        
+        XCTAssertEqual(receivedToken, expectedResponse.token)
     }
     
     // MARK: - SignUpService Tests
     
     func test_conformsToSignUpService() {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, _, _) = makeSUT()
         XCTAssertNotNil(sut as SignUpService)
     }
     
@@ -68,7 +77,7 @@ final class APIServiceTests: XCTestCase {
         let confirmPassword = anyPassword()
         let profileImage = anyData()
         
-        let (sut, _, sender) = makeSUT()
+        let (sut, _, sender, _) = makeSUT()
         let signUpEndpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: anyData()))
         let urlRequest = try signUpEndpoint.createURLRequest()
         
@@ -85,7 +94,7 @@ final class APIServiceTests: XCTestCase {
         let confirmPassword = anyPassword()
         let profileImage = anyData()
         
-        let (sut, _, sender) = makeSUT()
+        let (sut, _, sender, _) = makeSUT()
         let signUpEndpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
         let urlRequest = try signUpEndpoint.createURLRequest()
         
@@ -96,17 +105,12 @@ final class APIServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy) {
-        let loader = ResourceLoaderSpy(response: anyLoginResponse())
-        let sender = ResourceSenderSpy()
-        let sut = APIService(loader: loader, sender: sender)
-        return (sut, loader, sender)
-    }
-    
-    private func makeSUT(loginResponse: LoginResponse? = nil) -> APIService {
+    private func makeSUT(loginResponse: LoginResponse? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
+        let tokenStoreStub = TokenStoreStub()
         let loader = ResourceLoaderSpy(response: loginResponse ?? anyLoginResponse())
         let sender = ResourceSenderSpy()
-        return APIService(loader: loader, sender: sender)
+        let sut = APIService(loader: loader, sender: sender, tokenStore: tokenStoreStub)
+        return (sut, loader, sender, tokenStoreStub)
     }
     
     private func anyName() -> String {
