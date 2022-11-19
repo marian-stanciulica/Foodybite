@@ -39,7 +39,7 @@ public class RegisterViewModel: ObservableObject {
             try await signUp()
         } catch {
             if let error = error as? RegisterValidator.RegistrationError {
-                registerResult = .failure(error)
+                await updateRegisterResult(.failure(error))
             }
         }
     }
@@ -51,9 +51,13 @@ public class RegisterViewModel: ObservableObject {
                                            password: password,
                                            confirmPassword: confirmPassword,
                                            profileImage: profileImage)
-            registerResult = .success
+            await updateRegisterResult(.success)
         } catch {
             throw RegisterValidator.RegistrationError.serverError
         }
+    }
+    
+    @MainActor private func updateRegisterResult(_ newValue: RegisterResult) {
+        registerResult = newValue
     }
 }

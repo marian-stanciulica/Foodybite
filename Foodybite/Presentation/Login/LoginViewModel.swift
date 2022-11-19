@@ -25,10 +25,15 @@ final public class LoginViewModel: ObservableObject {
     
     public func login() async {
         do {
-            _ = try await loginService.login(email: email, password: password)
-            loginError = nil
+            let user = try await loginService.login(email: email, password: password)
+            
+            await updateLoginError(nil)
         } catch {
-            loginError = .serverError
+            await updateLoginError(.serverError)
         }
+    }
+    
+    @MainActor private func updateLoginError(_ newValue: LoginError?) {
+        loginError = newValue
     }
 }
