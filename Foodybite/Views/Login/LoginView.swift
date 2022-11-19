@@ -89,7 +89,7 @@ struct LoginView_Previews: PreviewProvider {
     }
     
     private class PreviewLoginService: LoginService {
-        func login(email: String, password: String) async throws -> LoginResponse {
+        func login(email: String, password: String) async throws -> RemoteUser {
             throw LoginViewModel.LoginError.serverError
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class KeychainTokenStore: TokenStore {
+public class KeychainTokenStore: TokenStore {
     private let service: String
     private let account: String
     private let codableDataParser = CodableDataParser()
@@ -18,12 +18,12 @@ class KeychainTokenStore: TokenStore {
         case writeFailed
     }
     
-    init(service: String = "store", account: String = "token") {
+    public init(service: String = "store", account: String = "token") {
         self.service = service
         self.account = account
     }
     
-    func read() throws -> AuthToken {
+    public func read() throws -> AuthToken {
         let query = [
             kSecAttrService: service,
             kSecAttrAccount: account,
@@ -45,7 +45,7 @@ class KeychainTokenStore: TokenStore {
         return token
     }
     
-    func write(_ token: AuthToken) throws {
+    public func write(_ token: AuthToken) throws {
         let data = try codableDataParser.encode(item: token)
         
         let query = [

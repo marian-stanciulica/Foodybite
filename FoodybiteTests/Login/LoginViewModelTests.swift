@@ -67,14 +67,14 @@ final class LoginViewModelTests: XCTestCase {
         var errorToThrow: Error?
         private(set) var capturedValues = [(email: String, password: String)]()
 
-        func login(email: String, password: String) async throws -> LoginResponse {
+        func login(email: String, password: String) async throws -> RemoteUser {
             capturedValues.append((email, password))
 
             if let errorToThrow = errorToThrow {
                 throw errorToThrow
             }
             
-            return LoginResponse(user: RemoteUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: nil, followingCount: 0, followersCount: 0), token: AuthToken(accessToken: "any access token", refreshToken: "any refresh token"))
+            return anyUser()
         }
         
         private func anyName() -> String {
@@ -83,6 +83,15 @@ final class LoginViewModelTests: XCTestCase {
         
         private func anyEmail() -> String {
             "invalid email"
+        }
+        
+        private func anyUser() -> RemoteUser {
+            RemoteUser(id: UUID(),
+                       name: "any name",
+                       email: "any@email.com",
+                       profileImage: nil,
+                       followingCount: 0,
+                       followersCount: 0)
         }
     }
 }
