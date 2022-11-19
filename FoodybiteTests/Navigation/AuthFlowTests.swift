@@ -11,7 +11,7 @@ import Foodybite
 final class AuthFlowTests: XCTestCase {
 
     func test_route_containsSignUpAndTurnOnLocation() {
-        XCTAssertEqual(AuthFlow.Route.allCases, [.signUp, .turnOnLocation])
+        XCTAssertEqual(AuthFlow.Route.allCases, [.signUp])
     }
     
     func test_append_appendsValueToNavigationPath() {

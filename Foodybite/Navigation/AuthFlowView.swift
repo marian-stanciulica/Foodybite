@@ -9,22 +9,29 @@ import SwiftUI
 import FoodybiteNetworking
 
 struct AuthFlowView: View {
+    @Binding var userLoggedIn: Bool
+
     let apiService: APIService
     @ObservedObject var flow: AuthFlow
     
     var body: some View {
         NavigationStack(path: $flow.path) {
-            LoginView(viewModel: LoginViewModel(loginService: apiService)) {
-                flow.append(AuthFlow.Route.signUp)
-            }
+            LoginView(
+                viewModel: LoginViewModel(
+                    loginService: apiService,
+                    goToMainTab: {
+                        userLoggedIn = true
+                    }),
+                goToSignUp: {
+                    flow.append(AuthFlow.Route.signUp)
+                }
+            )
             .navigationDestination(for: AuthFlow.Route.self) { route in
                 switch route {
                 case .signUp:
                     RegisterView(viewModel: RegisterViewModel(signUpService: apiService)) {
                         flow.navigateBack()
                     }
-                case .turnOnLocation:
-                    TurnOnLocationView()
                 }
             }
         }

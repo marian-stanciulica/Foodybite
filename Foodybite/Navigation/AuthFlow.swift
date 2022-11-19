@@ -10,10 +10,9 @@ import SwiftUI
 final public class AuthFlow: ObservableObject {
     public enum Route: Hashable, CaseIterable {
         case signUp
-        case turnOnLocation
     }
     
-    @Published public var path = NavigationPath()
+    @Published public var path = [Route]()
     
     public init() { }
     

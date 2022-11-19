@@ -43,11 +43,24 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertEqual(sut.loginError, .serverError)
     }
     
+    func test_login_callsGoToMainTabWhenLoginServiceFinishedSuccessfully() async {
+        var goToMainTabCalled = false
+        let (sut, _) = makeSUT() {
+            goToMainTabCalled = true
+        }
+        sut.email = anyEmail()
+        sut.password = anyPassword()
+        
+        await sut.login()
+        
+        XCTAssertTrue(goToMainTabCalled)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LoginViewModel, loginService: LoginServiceSpy) {
+    private func makeSUT(goToMainTab: @escaping () -> Void = {}) -> (sut: LoginViewModel, loginService: LoginServiceSpy) {
         let loginServiceSpy = LoginServiceSpy()
-        let sut = LoginViewModel(loginService: loginServiceSpy)
+        let sut = LoginViewModel(loginService: loginServiceSpy, goToMainTab: goToMainTab)
         return (sut, loginServiceSpy)
     }
     

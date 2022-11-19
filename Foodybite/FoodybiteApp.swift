@@ -10,7 +10,8 @@ import FoodybiteNetworking
 
 @main
 struct FoodybiteApp: App {
-    @AppStorage("userLoggedIn") var userLoggedIn = false
+    @State var userLoggedIn = false
+//    @AppStorage("userLoggedIn") var userLoggedIn = false
     
     private let apiService = APIService(loader: RemoteResourceLoader(client: URLSessionHTTPClient()),
                                         sender: RemoteResourceLoader(client: URLSessionHTTPClient()),
@@ -22,7 +23,7 @@ struct FoodybiteApp: App {
                 TabNavigationView()
                     .environmentObject(ViewRouter())
             } else {
-                AuthFlowView(apiService: apiService, flow: AuthFlow())
+                AuthFlowView(userLoggedIn: $userLoggedIn, apiService: apiService, flow: AuthFlow())
             }
         }
     }
