@@ -95,6 +95,7 @@
 		0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23CF2920E374005196EA /* AuthFlowTests.swift */; };
 		0F7E23D32920E861005196EA /* AuthFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D22920E861005196EA /* AuthFlow.swift */; };
 		0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D42920E965005196EA /* AuthFlowView.swift */; };
+		0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F89618F2928C01E00FFDC48 /* RemoteUser.swift */; };
 		0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -286,6 +287,7 @@
 		0F7E23CF2920E374005196EA /* AuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTests.swift; sourceTree = "<group>"; };
 		0F7E23D22920E861005196EA /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
 		0F7E23D42920E965005196EA /* AuthFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowView.swift; sourceTree = "<group>"; };
+		0F89618F2928C01E00FFDC48 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */,
+				0F89618F2928C01E00FFDC48 /* RemoteUser.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -1650,6 +1653,7 @@
 				0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */,
+				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,

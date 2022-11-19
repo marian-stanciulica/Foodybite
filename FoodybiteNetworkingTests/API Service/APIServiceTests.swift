@@ -45,13 +45,13 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
-        let expectedResponse = LoginResponse(name: "some name", email: "some@email.com")
-        let sut = makeSUT(response: expectedResponse)
+        let expectedResponse = anyLoginResponse()
+        let sut = makeSUT(loginResponse: expectedResponse)
         
         let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
         
-        XCTAssertEqual(expectedResponse.name, receivedResponse.name)
-        XCTAssertEqual(expectedResponse.email, receivedResponse.email)
+        XCTAssertEqual(expectedResponse.user, receivedResponse.user)
+        XCTAssertEqual(expectedResponse.token, receivedResponse.token)
     }
     
     // MARK: - SignUpService Tests
@@ -97,14 +97,14 @@ final class APIServiceTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy) {
-        let loader = ResourceLoaderSpy(response: LoginResponse(name: "", email: ""))
+        let loader = ResourceLoaderSpy(response: anyLoginResponse())
         let sender = ResourceSenderSpy()
         let sut = APIService(loader: loader, sender: sender)
         return (sut, loader, sender)
     }
     
-    private func makeSUT(response: LoginResponse = LoginResponse(name: "any name", email: "any@email.com")) -> APIService {
-        let loader = ResourceLoaderSpy(response: response)
+    private func makeSUT(loginResponse: LoginResponse? = nil) -> APIService {
+        let loader = ResourceLoaderSpy(response: loginResponse ?? anyLoginResponse())
         let sender = ResourceSenderSpy()
         return APIService(loader: loader, sender: sender)
     }
@@ -123,6 +123,19 @@ final class APIServiceTests: XCTestCase {
     
     private func anyData() -> Data? {
         "any data".data(using: .utf8)
+    }
+    
+    private func anyLoginResponse() -> LoginResponse {
+        LoginResponse(
+            user: RemoteUser(id: UUID(),
+                             name: "any name",
+                             email: "any@email.com",
+                             profileImage: nil,
+                             followingCount: 0,
+                             followersCount: 0),
+            token: AuthToken(accessToken: "any access token",
+                             refreshToken: "any refresh token")
+        )
     }
 
 }

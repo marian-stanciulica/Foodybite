@@ -74,7 +74,7 @@ final class LoginViewModelTests: XCTestCase {
                 throw errorToThrow
             }
             
-            return LoginResponse(name: anyName(), email: anyEmail())
+            return LoginResponse(user: RemoteUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: nil, followingCount: 0, followersCount: 0), token: AuthToken(accessToken: "any access token", refreshToken: "any refresh token"))
         }
         
         private func anyName() -> String {

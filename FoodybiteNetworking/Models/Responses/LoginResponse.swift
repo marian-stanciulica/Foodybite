@@ -6,11 +6,11 @@
 //
 
 public struct LoginResponse: Decodable {
-    public let name: String
-    public let email: String
+    public let user: RemoteUser
+    public let token: AuthToken
     
-    public init(name: String, email: String) {
-        self.name = name
-        self.email = email
+    public init(user: RemoteUser, token: AuthToken) {
+        self.user = user
+        self.token = token
     }
 }
