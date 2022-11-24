@@ -7,16 +7,16 @@
 
 import Foundation
 
-class AuthenticatedURLSessionHTTPClient: HTTPClient {
+public class AuthenticatedURLSessionHTTPClient: HTTPClient {
     private let decoratee: HTTPClient
     private let tokenRefresher: TokenRefresher
     
-    init(decoratee: HTTPClient, tokenRefresher: TokenRefresher) {
+    public init(decoratee: HTTPClient, tokenRefresher: TokenRefresher) {
         self.decoratee = decoratee
         self.tokenRefresher = tokenRefresher
     }
     
-    func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
+    public func send(_ urlRequest: URLRequest) async throws -> (data: Data, response: HTTPURLResponse) {
         let signedURLRequest = try sign(request: urlRequest)
         let (data, response) = try await decoratee.send(signedURLRequest)
         
@@ -33,7 +33,7 @@ class AuthenticatedURLSessionHTTPClient: HTTPClient {
         let localAuthToken = try tokenRefresher.getLocalToken()
 
         var signedURLRequest = request
-        signedURLRequest.setValue(localAuthToken.accessToken, forHTTPHeaderField: "Authorization")
+        signedURLRequest.setValue("Bearer \(localAuthToken.accessToken)", forHTTPHeaderField: "Authorization")
         return signedURLRequest
     }
 }

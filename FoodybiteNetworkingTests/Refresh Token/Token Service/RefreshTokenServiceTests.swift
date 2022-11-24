@@ -28,7 +28,7 @@ final class RefreshTokenServiceTests: XCTestCase {
     func test_fetchLocallyRemoteToken_refreshTokenFromStoreUsedToCreateEndpoint() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
-        let refreshTokenEndpoint = ServerEndpoint.refreshToken(authToken.refreshToken)
+        let refreshTokenEndpoint = ServerEndpoint.refreshToken(RefreshTokenRequest(refreshToken: authToken.refreshToken))
         let urlRequest = try refreshTokenEndpoint.createURLRequest()
 
         try await sut.fetchLocallyRemoteToken()
@@ -40,7 +40,7 @@ final class RefreshTokenServiceTests: XCTestCase {
     func test_fetchLocallyRemoteToken_useRefreshTokenEndpointToCreateURLRequest() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
-        let refreshTokenEndpoint = ServerEndpoint.refreshToken(authToken.refreshToken)
+        let refreshTokenEndpoint = ServerEndpoint.refreshToken(RefreshTokenRequest(refreshToken: authToken.refreshToken))
         let urlRequest = try refreshTokenEndpoint.createURLRequest()
 
         try await sut.fetchLocallyRemoteToken()

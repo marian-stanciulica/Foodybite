@@ -10,7 +10,7 @@ import Foundation
 enum ServerEndpoint: Endpoint {
     case signup(SignUpRequest)
     case login(LoginRequest)
-    case refreshToken(String)
+    case refreshToken(RefreshTokenRequest)
     case changePassword(ChangePasswordRequest)
     
     var host: String {

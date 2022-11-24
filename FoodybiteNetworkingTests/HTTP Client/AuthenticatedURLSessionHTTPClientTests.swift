@@ -99,7 +99,7 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         let authToken = try tokenRefresher.getLocalToken()
         
         var request = request
-        request.setValue(authToken.accessToken, forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(authToken.accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }
     

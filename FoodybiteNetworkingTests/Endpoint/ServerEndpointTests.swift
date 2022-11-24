@@ -81,10 +81,12 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeRefreshTokenSUT().method, .post)
     }
     
-    func test_refreshToken_bodyContainsEmail() {
+    func test_refreshToken_body() throws {
         let randomRefreshToken = randomString(size: 20)
-        let sut = makeRefreshTokenSUT(refreshToken: randomRefreshToken)
-        XCTAssertEqual(sut.body as? String, randomRefreshToken)
+        let body = RefreshTokenRequest(refreshToken: randomRefreshToken)
+        let sut = makeRefreshTokenSUT(body: body)
+        let receivedBody = try XCTUnwrap(sut.body as? RefreshTokenRequest)
+        XCTAssertEqual(receivedBody, body)
     }
     
     func test_refreshToken_headersContainContentTypeJson() {
@@ -161,8 +163,10 @@ final class ServerEndpointTests: XCTestCase {
         return .login(body ?? defaultBody)
     }
     
-    private func makeRefreshTokenSUT(refreshToken: String = "") -> ServerEndpoint {
-        return .refreshToken(refreshToken)
+    private func makeRefreshTokenSUT(body: RefreshTokenRequest? = nil) -> ServerEndpoint {
+        let defaultBody = RefreshTokenRequest(refreshToken: "")
+        
+        return .refreshToken(body ?? defaultBody)
     }
     
     private func makeChangePasswordSUT(body: ChangePasswordRequest? = nil) -> ServerEndpoint {
