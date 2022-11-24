@@ -24,6 +24,14 @@ final class ChangePasswordViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.tooShortPassword))
     }
     
+    func test_changePassword_triggerNewPasswordDoesntContainUpperLetter() async {
+        let sut = makeSUT()
+        sut.currentPassword = nonEmptyPassword()
+        sut.newPassword = passwordWithoutUpperLetter()
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainUpperLetter))
+    }
+    
     
     // MARK: - Helpers
     
@@ -38,6 +46,10 @@ final class ChangePasswordViewModelTests: XCTestCase {
     
     private func shortPassword() -> String {
         "Aa1%"
+    }
+    
+    private func passwordWithoutUpperLetter() -> String {
+        "abc123%"
     }
     
     private func assertRegister(on sut: ChangePasswordViewModel,
