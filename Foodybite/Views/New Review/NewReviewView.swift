@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewReviewView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @Binding var currentPage: Page
     @Binding var plusButtonActive: Bool
     
     @State var review = ""
@@ -19,7 +19,7 @@ struct NewReviewView: View {
             HStack {
                 Button("Cancel") {
                     withAnimation {
-                        viewRouter.currentPage = .home
+                        currentPage = .home
                         plusButtonActive = false
                     }
                 }
@@ -83,7 +83,9 @@ struct NewReviewView: View {
 
 struct NewReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        NewReviewView(plusButtonActive: .constant(true))
-            .environmentObject(ViewRouter())
+        NewReviewView(
+            currentPage: .constant(.home),
+            plusButtonActive: .constant(true)
+        )
     }
 }

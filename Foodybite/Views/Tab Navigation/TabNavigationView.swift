@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct TabNavigationView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
-        
+    @StateObject var tabRouter: TabRouter
     @State var plusButtonActive = false
     
     var body: some View {
@@ -18,13 +17,13 @@ struct TabNavigationView: View {
                 Spacer()
                 
                 Group {
-                    switch viewRouter.currentPage {
+                    switch tabRouter.currentPage {
                     case .home:
                         HomeView()
                     case .favorites:
                         FavoritesView()
                     case .newReview:
-                        NewReviewView(plusButtonActive: $plusButtonActive)
+                        NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
                     case .notifications:
                         NotificationsView()
                     case .account:
@@ -35,6 +34,7 @@ struct TabNavigationView: View {
                 Spacer()
                 
                 TabBarView(plusButtonActive: $plusButtonActive,
+                           currentPage: $tabRouter.currentPage,
                            tabBarWidth: geometry.size.width,
                            tabBarHeight: geometry.size.height / 6,
                            iconWidth: geometry.size.width / 5,
@@ -48,7 +48,6 @@ struct TabNavigationView: View {
 
 struct TabNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        TabNavigationView()
-            .environmentObject(ViewRouter())
+        TabNavigationView(tabRouter: TabRouter())
     }
 }

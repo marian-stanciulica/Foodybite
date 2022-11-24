@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarIcon: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @Binding var currentPage: Page
     let assignedPage: Page
     
     let width: CGFloat
@@ -23,21 +23,21 @@ struct TabBarIcon: View {
         }
         .padding(.horizontal, -8)
         .onTapGesture {
-            viewRouter.currentPage = assignedPage
+            currentPage = assignedPage
         }
-        .foregroundColor(viewRouter.currentPage == assignedPage ? .marineBlue : .gray)
+        .foregroundColor(currentPage == assignedPage ? .marineBlue : .gray)
     }
     
     private func getImage() -> String {
         switch assignedPage {
         case .home:
-            return viewRouter.currentPage == assignedPage ? "home_active" : "home_inactive"
+            return currentPage == assignedPage ? "home_active" : "home_inactive"
         case .favorites:
-            return viewRouter.currentPage == assignedPage ? "favorites_active" : "favorites_inactive"
+            return currentPage == assignedPage ? "favorites_active" : "favorites_inactive"
         case .notifications:
-            return viewRouter.currentPage == assignedPage ? "notifications_active" : "notifications_inactive"
+            return currentPage == assignedPage ? "notifications_active" : "notifications_inactive"
         case .account:
-            return viewRouter.currentPage == assignedPage ? "account_active" : "account_inactive"
+            return currentPage == assignedPage ? "account_active" : "account_inactive"
         case .newReview:
             return ""
         }

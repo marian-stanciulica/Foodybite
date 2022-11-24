@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ViewRouter: ObservableObject {
+class TabRouter: ObservableObject {
     @Published var currentPage: Page = .home
 }
 

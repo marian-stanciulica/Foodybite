@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @Binding var plusButtonActive: Bool
-    
-    @EnvironmentObject var viewRouter: ViewRouter
+    @Binding var currentPage: Page
     
     let tabBarWidth: CGFloat
     let tabBarHeight: CGFloat
@@ -21,11 +20,13 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             HStack {
-                TabBarIcon(assignedPage: .home,
+                TabBarIcon(currentPage: $currentPage,
+                           assignedPage: .home,
                            width: iconWidth,
                            height: iconHeight)
                 
-                TabBarIcon(assignedPage: .favorites,
+                TabBarIcon(currentPage: $currentPage,
+                           assignedPage: .favorites,
                            width: iconWidth,
                            height: iconHeight)
                 
@@ -58,19 +59,21 @@ struct TabBarView: View {
                     withAnimation {
                         plusButtonActive.toggle()
                         
-                        if viewRouter.currentPage != .newReview {
-                            viewRouter.currentPage = .newReview
+                        if currentPage != .newReview {
+                            currentPage = .newReview
                         } else {
-                            viewRouter.currentPage = .home
+                            currentPage = .home
                         }
                     }
                 }
                 
-                TabBarIcon(assignedPage: .notifications,
+                TabBarIcon(currentPage: $currentPage,
+                           assignedPage: .notifications,
                            width: iconWidth,
                            height: iconHeight)
                 
-                TabBarIcon(assignedPage: .account,
+                TabBarIcon(currentPage: $currentPage,
+                           assignedPage: .account,
                            width: iconWidth,
                            height: iconHeight)
             }
@@ -85,10 +88,9 @@ struct TabBarView: View {
 }
 
 struct TabBarView_Previews: PreviewProvider {
-    
-    
     static var previews: some View {
         TabBarView(plusButtonActive: .constant(false),
+                   currentPage: .constant(.home),
                    tabBarWidth: UIScreen.screenWidth,
                    tabBarHeight: UIScreen.screenHeight / 6,
                    iconWidth: UIScreen.screenWidth / 5,
