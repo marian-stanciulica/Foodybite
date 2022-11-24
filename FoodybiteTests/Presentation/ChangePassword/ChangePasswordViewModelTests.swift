@@ -16,11 +16,28 @@ final class ChangePasswordViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.empty))
     }
     
+    func test_changePassword_triggerTooShortPasswordErrorOnTooShortNewPassword() async {
+        let sut = makeSUT()
+        sut.currentPassword = nonEmptyPassword()
+        sut.newPassword = shortPassword()
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.tooShortPassword))
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeSUT() -> ChangePasswordViewModel {
         let sut = ChangePasswordViewModel()
         return sut
+    }
+    
+    private func nonEmptyPassword() -> String {
+        "non empty"
+    }
+    
+    private func shortPassword() -> String {
+        "Aa1%"
     }
     
     private func assertRegister(on sut: ChangePasswordViewModel,

@@ -15,6 +15,8 @@ public final class ChangePasswordViewModel {
     }
     
     public var currentPassword = ""
+    public var newPassword = ""
+    public var confirmPassword = ""
     @Published public var result: Result = .notTriggered
     
     public init() {
@@ -23,7 +25,11 @@ public final class ChangePasswordViewModel {
 
     public func changePassword() async {
         do {
-            throw PasswordValidator.Error.empty
+            if currentPassword.isEmpty {
+                throw PasswordValidator.Error.empty
+            }
+            
+            try PasswordValidator.validate(password: newPassword, confirmPassword: confirmPassword)
         } catch {
             if let error = error as? PasswordValidator.Error {
                 await updateResult(.failure(error))

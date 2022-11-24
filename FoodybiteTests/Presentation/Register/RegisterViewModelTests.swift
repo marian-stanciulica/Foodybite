@@ -32,7 +32,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.invalidEmail))
     }
     
-    func test_register_triggerEmptyPasswordErrorOnEmptyPassword() async {
+    func test_register_triggerTooShortPasswordErrorOnTooShortPassword() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
