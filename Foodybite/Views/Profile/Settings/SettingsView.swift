@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct SettingsView: View {
-    @State var logoutAlertDisplayed = false
+    let viewModel: SettingsViewModel
     let goToChangePassword: () -> Void
+    @State var logoutAlertDisplayed = false
 
     var body: some View {
         List {
@@ -28,7 +30,7 @@ struct SettingsView: View {
                     }
                 }
             }
-
+            
             Section("Others") {
                 Button("Logout") {
                     logoutAlertDisplayed = true
@@ -40,7 +42,11 @@ struct SettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .alert("Are you sure you want to logout?", isPresented: $logoutAlertDisplayed) {
             Button("No", role: .cancel) { }
-            Button("Yes") { }
+            Button("Yes") {
+                Task {
+                    await viewModel.logout()
+                }
+            }
         }
         .arrowBackButtonStyle()
     }
@@ -48,6 +54,14 @@ struct SettingsView: View {
 
 struct SeetingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView() {}
+        SettingsView(
+            viewModel: SettingsViewModel(logoutService: PreviewLogoutService(),
+                                         goToLogin: {}),
+            goToChangePassword: {}
+        )
+    }
+    
+    private class PreviewLogoutService: LogoutService {
+        func logout() async throws {}
     }
 }
