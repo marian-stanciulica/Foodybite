@@ -8,7 +8,7 @@
 import Foundation
 import FoodybiteNetworking
 
-public final class ChangePasswordViewModel {
+public final class ChangePasswordViewModel: ObservableObject {
     private let changePasswordService: ChangePasswordService
 
     public enum Result: Equatable {
@@ -17,9 +17,9 @@ public final class ChangePasswordViewModel {
         case failure(ChangePasswordValidator.Error)
     }
     
-    public var currentPassword = ""
-    public var newPassword = ""
-    public var confirmPassword = ""
+    @Published public var currentPassword = ""
+    @Published public var newPassword = ""
+    @Published public var confirmPassword = ""
     @Published public var result: Result = .notTriggered
     
     public init(changePasswordService: ChangePasswordService) {

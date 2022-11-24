@@ -10,6 +10,7 @@ import SwiftUI
 struct ImageGrayTextField: View {
     let placeholder: String
     let imageName: String
+    let secure: Bool
     @Binding var text: String
 
     var body: some View {
@@ -21,7 +22,12 @@ struct ImageGrayTextField: View {
                 if text.isEmpty {
                     Text(placeholder)
                 }
-                TextField("", text: $text)
+                
+                if secure {
+                    SecureField("", text: $text)
+                } else {
+                    TextField("", text: $text)
+                }
             }
             .foregroundColor(.gray)
         }
@@ -36,7 +42,7 @@ struct ImageGrayTextField: View {
 struct ImageGrayTextField_Previews: PreviewProvider {
     static var previews: some View {
         ImageGrayTextField(placeholder: "Placeholder",
-                       imageName: "envelope",
-                       text: .constant("Email"))
+                           imageName: "envelope", secure: true,
+                           text: .constant("Email"))
     }
 }

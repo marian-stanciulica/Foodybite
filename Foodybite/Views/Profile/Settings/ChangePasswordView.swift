@@ -6,33 +6,39 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct ChangePasswordView: View {
-    @State var currentPassword = ""
-    @State var newPassword = ""
-    @State var confirmPassword = ""
+    @ObservedObject var viewModel: ChangePasswordViewModel
 
     var body: some View {
         VStack {
             ImageGrayTextField(placeholder: "Current Password",
                                imageName: "lock.circle",
-                               text: $currentPassword)
+                               secure: true,
+                               text: $viewModel.currentPassword)
             .padding(.bottom)
 
             ImageGrayTextField(placeholder: "New Password",
                                imageName: "lock.circle",
-                               text: $newPassword)
+                               secure: true,
+                               text: $viewModel.newPassword)
             .padding(.bottom)
 
             ImageGrayTextField(placeholder: "Confirm Password",
                                imageName: "lock.circle",
-                               text: $confirmPassword)
+                               secure: true,
+                               text: $viewModel.confirmPassword)
             .padding(.bottom)
 
+            createFeedbackText()
+            
             Spacer()
 
             MarineButton(title: "Update") {
-
+                Task {
+                    await viewModel.changePassword()
+                }
             }
         }
         .padding()
@@ -40,12 +46,39 @@ struct ChangePasswordView: View {
         .navigationBarTitleDisplayMode(.inline)
         .arrowBackButtonStyle()
     }
+    
+    private func createFeedbackText() -> Text {
+        switch viewModel.result {
+        case .success:
+            return Text("Password changed successfully!")
+                .foregroundColor(.green)
+                .font(.headline)
+            
+        case let .failure(error):
+            return Text(error.toString())
+                .foregroundColor(.red)
+                .font(.headline)
+            
+        case .notTriggered:
+            return Text("")
+        }
+    }
 }
 
 struct ChangePassword_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChangePasswordView()
+            ChangePasswordView(
+                viewModel: ChangePasswordViewModel(
+                    changePasswordService: PreviewChangePasswordService()
+                )
+            )
+        }
+    }
+    
+    private class PreviewChangePasswordService: ChangePasswordService {
+        func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws {
+            
         }
     }
 }

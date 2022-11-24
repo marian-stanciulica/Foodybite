@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct TabNavigationView: View {
     @StateObject var tabRouter: TabRouter
     @State var plusButtonActive = false
+    let apiService: APIService
     
     var body: some View {
         GeometryReader { geometry in
@@ -27,7 +29,7 @@ struct TabNavigationView: View {
                     case .notifications:
                         NotificationsView()
                     case .account:
-                        ProfileFlowView(flow: ProfileFlow())
+                        ProfileFlowView(flow: ProfileFlow(), apiService: apiService)
                     }
                 }
                 
@@ -46,8 +48,8 @@ struct TabNavigationView: View {
     }
 }
 
-struct TabNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabNavigationView(tabRouter: TabRouter())
-    }
-}
+//struct TabNavigationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TabNavigationView(tabRouter: TabRouter())
+//    }
+//}

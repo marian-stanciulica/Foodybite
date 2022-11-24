@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct ProfileFlowView: View {
     @ObservedObject var flow: ProfileFlow
+    let apiService: APIService
     
     var body: some View {
         NavigationStack(path: $flow.path) {
@@ -22,7 +24,7 @@ struct ProfileFlowView: View {
                         flow.append(.changePassword)
                     }
                 case .changePassword:
-                    ChangePasswordView()
+                    ChangePasswordView(viewModel: ChangePasswordViewModel(changePasswordService: apiService))
                 }
             }
         }
