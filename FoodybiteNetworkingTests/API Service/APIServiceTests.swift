@@ -103,6 +103,42 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(sender.requests, [urlRequest])
     }
     
+    // MARK: - ChangePasswordService Tests
+    
+    func test_conformsToChangePasswordService() {
+        let (sut, _, _, _) = makeSUT()
+        XCTAssertNotNil(sut as ChangePasswordService)
+    }
+    
+    func test_changePassword_paramsUsedToCreateEndpoint() async throws {
+        let currentPassword = anyPassword()
+        let newPassword = anyPassword()
+        let confirmPassword = newPassword
+        
+        let (sut, _, sender, _) = makeSUT()
+        let changePasswordEndpoint = ServerEndpoint.changePassword(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
+        let urlRequest = try changePasswordEndpoint.createURLRequest()
+        
+        try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
+        
+        let firstRequest = sender.requests.first
+        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+    }
+    
+    func test_schangePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
+        let currentPassword = anyPassword()
+        let newPassword = anyPassword()
+        let confirmPassword = newPassword
+        
+        let (sut, _, sender, _) = makeSUT()
+        let changePasswordEndpoint = ServerEndpoint.changePassword(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
+        let urlRequest = try changePasswordEndpoint.createURLRequest()
+        
+        try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
+
+        XCTAssertEqual(sender.requests, [urlRequest])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(loginResponse: LoginResponse? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {

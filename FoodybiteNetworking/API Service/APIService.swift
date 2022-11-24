@@ -38,3 +38,14 @@ extension APIService: SignUpService {
         try await sender.post(to: urlRequest)
     }
 }
+
+extension APIService: ChangePasswordService {
+    public func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws {
+        let changePasswordRequest = ChangePasswordRequest(currentPassword: currentPassword,
+                                                          newPassword: newPassword,
+                                                          confirmPassword: confirmPassword)
+        let endpoint = ServerEndpoint.changePassword(changePasswordRequest)
+        let urlRequest = try endpoint.createURLRequest()
+        try await sender.post(to: urlRequest)
+    }
+}
