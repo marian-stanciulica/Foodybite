@@ -49,3 +49,11 @@ extension APIService: ChangePasswordService {
         try await sender.post(to: urlRequest)
     }
 }
+
+extension APIService: LogoutService {
+    public func logout() async throws {
+        let endpoint = ServerEndpoint.logout
+        let urlRequest = try endpoint.createURLRequest()
+        try await sender.post(to: urlRequest)
+    }
+}

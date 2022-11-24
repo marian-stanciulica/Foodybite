@@ -125,7 +125,7 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
-    func test_schangePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
+    func test_changePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
         let currentPassword = anyPassword()
         let newPassword = anyPassword()
         let confirmPassword = newPassword
@@ -135,6 +135,23 @@ final class APIServiceTests: XCTestCase {
         let urlRequest = try changePasswordEndpoint.createURLRequest()
         
         try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
+
+        XCTAssertEqual(sender.requests, [urlRequest])
+    }
+    
+    // MARK: - LogoutService Tests
+    
+    func test_conformsToLogoutService() {
+        let (sut, _, _, _) = makeSUT()
+        XCTAssertNotNil(sut as LogoutService)
+    }
+    
+    func test_logout_usesLogoutEndpointToCreateURLRequest() async throws {
+        let (sut, _, sender, _) = makeSUT()
+        let logoutEndpoint = ServerEndpoint.logout
+        let urlRequest = try logoutEndpoint.createURLRequest()
+        
+        try await sut.logout()
 
         XCTAssertEqual(sender.requests, [urlRequest])
     }
