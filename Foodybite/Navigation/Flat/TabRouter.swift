@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 28.05.2022.
 //
 
-import SwiftUI
+import Foundation
 
 class TabRouter: ObservableObject {
     @Published var currentPage: Page = .home

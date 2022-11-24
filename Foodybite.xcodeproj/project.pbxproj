@@ -806,6 +806,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		0F73EC81292F5F1D0025B237 /* Hierarchical */ = {
+			isa = PBXGroup;
+			children = (
+				0F73EC82292F5F3B0025B237 /* Auth */,
+			);
+			path = Hierarchical;
+			sourceTree = "<group>";
+		};
+		0F73EC82292F5F3B0025B237 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0F7E23D22920E861005196EA /* AuthFlow.swift */,
+				0F7E23D42920E965005196EA /* AuthFlowView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		0F73EC83292F5F460025B237 /* Flat */ = {
+			isa = PBXGroup;
+			children = (
+				0FAFCA29284298C700778E45 /* TabRouter.swift */,
+			);
+			path = Flat;
+			sourceTree = "<group>";
+		};
 		0F75163928435B7B00A05A92 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,8 +869,8 @@
 		0F7E23D12920E837005196EA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0F7E23D22920E861005196EA /* AuthFlow.swift */,
-				0F7E23D42920E965005196EA /* AuthFlowView.swift */,
+				0F73EC83292F5F460025B237 /* Flat */,
+				0F73EC81292F5F1D0025B237 /* Hierarchical */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -878,7 +903,6 @@
 				0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */,
 				0F75163528434D3300A05A92 /* TabBarView.swift */,
 				0FAFCA272842984E00778E45 /* TabBarIcon.swift */,
-				0FAFCA29284298C700778E45 /* TabRouter.swift */,
 			);
 			path = "Tab Navigation";
 			sourceTree = "<group>";
