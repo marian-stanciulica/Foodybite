@@ -50,28 +50,4 @@ public class RegisterValidator {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: email)
     }
-    
-    private static func containsUpperLetter(password: String) -> Bool {
-        let regex = ".*[A-Z]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: password)
-    }
-    
-    private static func containsLowerLetter(password: String) -> Bool {
-        let regex = ".*[a-z]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: password)
-    }
-    
-    private static func containsDigits(password: String) -> Bool {
-        let regex = ".*[0-9]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: password)
-    }
-    
-    private static func containsSpecialCharacters(password: String) -> Bool {
-        let regex = ".*[.*&^%$#@()/]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: password)
-    }
 }

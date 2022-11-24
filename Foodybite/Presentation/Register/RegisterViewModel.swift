@@ -29,8 +29,6 @@ public class RegisterViewModel: ObservableObject {
     }
     
     public func register() async {
-        
-        
         do {
             try RegisterValidator.validate(name: name,
                                            email: email,

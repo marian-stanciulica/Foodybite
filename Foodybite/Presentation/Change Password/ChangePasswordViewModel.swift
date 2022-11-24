@@ -14,7 +14,7 @@ public final class ChangePasswordViewModel {
     public enum Result: Equatable {
         case notTriggered
         case success
-        case failure(PasswordValidator.Error)
+        case failure(ChangePasswordValidator.Error)
     }
     
     public var currentPassword = ""
@@ -28,19 +28,28 @@ public final class ChangePasswordViewModel {
 
     public func changePassword() async {
         do {
-            if currentPassword.isEmpty {
-                throw PasswordValidator.Error.empty
+            try ChangePasswordValidator.validate(currentPassword: currentPassword,
+                                                 newPassword: newPassword,
+                                                 confirmPassword: confirmPassword)
+            
+            try await makeRequest()
+        } catch {
+            if let error = error as? ChangePasswordValidator.Error {
+                await updateResult(.failure(error))
+            } else if let error = error as? PasswordValidator.Error {
+                await updateResult(.failure(.passwordError(error)))
             }
-            
-            try PasswordValidator.validate(password: newPassword, confirmPassword: confirmPassword)
-            
+        }
+    }
+    
+    private func makeRequest() async throws {
+        do {
             try await changePasswordService.changePassword(currentPassword: currentPassword,
                                                            newPassword: newPassword,
                                                            confirmPassword: confirmPassword)
+            await updateResult(.success)
         } catch {
-            if let error = error as? PasswordValidator.Error {
-                await updateResult(.failure(error))
-            }
+            throw ChangePasswordValidator.Error.serverError
         }
     }
     

@@ -14,7 +14,7 @@ final class ChangePasswordViewModelTests: XCTestCase {
     func test_changePassword_triggerEmptyPasswordErrorOnEmptyCurrentPassword() async {
         let (sut, _) = makeSUT()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.empty))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.empty)))
     }
     
     func test_changePassword_triggerTooShortPasswordErrorOnTooShortNewPassword() async {
@@ -22,7 +22,7 @@ final class ChangePasswordViewModelTests: XCTestCase {
         sut.currentPassword = nonEmptyPassword()
         sut.newPassword = shortPassword()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.tooShortPassword))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.tooShortPassword)))
     }
     
     func test_changePassword_triggerNewPasswordDoesntContainUpperLetter() async {
@@ -30,7 +30,7 @@ final class ChangePasswordViewModelTests: XCTestCase {
         sut.currentPassword = nonEmptyPassword()
         sut.newPassword = passwordWithoutUpperLetter()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainUpperLetter))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainUpperLetter)))
     }
     
     func test_changePassword_triggerNewPasswordDoesntContainLowerLetter() async {
@@ -38,7 +38,7 @@ final class ChangePasswordViewModelTests: XCTestCase {
         sut.currentPassword = nonEmptyPassword()
         sut.newPassword = passwordWithoutLowerLetter()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainLowerLetter))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainLowerLetter)))
     }
     
     func test_changePassword_triggerNewPasswordDoesntContainDigits() async {
@@ -46,7 +46,7 @@ final class ChangePasswordViewModelTests: XCTestCase {
         sut.currentPassword = nonEmptyPassword()
         sut.newPassword = passwordWithoutDigits()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainDigits))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainDigits)))
     }
     
     func test_changePassword_triggerNewPasswordDoesntContainSpecialCharacter() async {
@@ -54,7 +54,7 @@ final class ChangePasswordViewModelTests: XCTestCase {
         sut.currentPassword = nonEmptyPassword()
         sut.newPassword = passwordWithoutSpecialCharacters()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainSpecialCharacter))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
     }
     
     func test_changePassword_triggerNewAndConfirmPasswordsDontMatch() async {
@@ -62,11 +62,11 @@ final class ChangePasswordViewModelTests: XCTestCase {
         sut.currentPassword = nonEmptyPassword()
         sut.newPassword = validPassword()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordsDontMatch))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordsDontMatch)))
     }
     
     func test_changePassword_sendsValidInputsToChangePasswordService() async {
-        let (sut, signUpServiceSpy) = makeSUT()
+        let (sut, serviceSpy) = makeSUT()
         let firstCurrentPassword = validPassword()
         let firstNewPassword = validPassword()
         
@@ -76,9 +76,9 @@ final class ChangePasswordViewModelTests: XCTestCase {
         
         await sut.changePassword()
         
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.currentPassword), [firstCurrentPassword])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.newPassword), [firstNewPassword])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [firstNewPassword])
+        XCTAssertEqual(serviceSpy.capturedValues.map(\.currentPassword), [firstCurrentPassword])
+        XCTAssertEqual(serviceSpy.capturedValues.map(\.newPassword), [firstNewPassword])
+        XCTAssertEqual(serviceSpy.capturedValues.map(\.confirmPassword), [firstNewPassword])
         
         let secondCurrentPassword = validPassword()
         let secondNewPassword = validPassword()
@@ -89,18 +89,30 @@ final class ChangePasswordViewModelTests: XCTestCase {
         
         await sut.changePassword()
         
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.currentPassword), [firstCurrentPassword, secondCurrentPassword])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.newPassword), [firstNewPassword, secondNewPassword])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [firstNewPassword, secondNewPassword])
+        XCTAssertEqual(serviceSpy.capturedValues.map(\.currentPassword), [firstCurrentPassword, secondCurrentPassword])
+        XCTAssertEqual(serviceSpy.capturedValues.map(\.newPassword), [firstNewPassword, secondNewPassword])
+        XCTAssertEqual(serviceSpy.capturedValues.map(\.confirmPassword), [firstNewPassword, secondNewPassword])
+    }
+    
+    func test_changePassword_throwsErrorWhenChangePasswordServiceThrowsError() async {
+        let (sut, serviceSpy) = makeSUT()
+        sut.currentPassword = validPassword()
+        sut.newPassword = validPassword()
+        sut.confirmPassword = sut.newPassword
+        
+        let expectedError = anyNSError()
+        serviceSpy.errorToThrow = expectedError
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
     }
     
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: ChangePasswordViewModel, changePasswordService: ChangePasswordServiceSpy) {
-        let changePasswordService = ChangePasswordServiceSpy()
-        let sut = ChangePasswordViewModel(changePasswordService: changePasswordService)
-        return (sut, changePasswordService)
+    private func makeSUT() -> (sut: ChangePasswordViewModel, serviceSpy: ChangePasswordServiceSpy) {
+        let serviceSpy = ChangePasswordServiceSpy()
+        let sut = ChangePasswordViewModel(changePasswordService: serviceSpy)
+        return (sut, serviceSpy)
     }
     
     private func nonEmptyPassword() -> String {
@@ -129,6 +141,10 @@ final class ChangePasswordViewModelTests: XCTestCase {
     
     private func validPassword() -> String {
         "ABCabc123%" + randomString(size: 20)
+    }
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 1)
     }
     
     private func assertRegister(on sut: ChangePasswordViewModel,
