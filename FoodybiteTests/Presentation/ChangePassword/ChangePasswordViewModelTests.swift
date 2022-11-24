@@ -106,6 +106,15 @@ final class ChangePasswordViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
     }
     
+    func test_changePassword_setsSuccessfulResultWhenChangePasswordServiceReturnsSuccess() async {
+        let (sut, _) = makeSUT()
+        sut.currentPassword = validPassword()
+        sut.newPassword = validPassword()
+        sut.confirmPassword = sut.newPassword
+        
+        await assertRegister(on: sut, withExpectedResult: .success)
+    }
+    
     
     // MARK: - Helpers
     
