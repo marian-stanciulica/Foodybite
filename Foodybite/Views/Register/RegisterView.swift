@@ -83,7 +83,7 @@ struct RegisterView: View {
                 .font(.headline)
             
         case let .failure(error):
-            return Text(error.rawValue)
+            return Text(error.toString())
                 .foregroundColor(.red)
                 .font(.headline)
             

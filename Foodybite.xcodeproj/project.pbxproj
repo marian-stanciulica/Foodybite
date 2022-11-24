@@ -88,6 +88,8 @@
 		0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC87292F609B0025B237 /* ProfileFlowView.swift */; };
 		0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */; };
 		0F73EC8C292F757A0025B237 /* ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */; };
+		0F73ECA1292F98C20025B237 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA0292F98C20025B237 /* PasswordValidator.swift */; };
+		0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */; };
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
 		0F7516382843502400A05A92 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516372843502400A05A92 /* UIScreen+.swift */; };
 		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
@@ -289,6 +291,8 @@
 		0F73EC87292F609B0025B237 /* ProfileFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowView.swift; sourceTree = "<group>"; };
 		0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordService.swift; sourceTree = "<group>"; };
+		0F73ECA0292F98C20025B237 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
 		0F75163528434D3300A05A92 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0F7516372843502400A05A92 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -474,6 +478,7 @@
 		0F108808291E2397007A28FA /* FoodybiteTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F73ECA2292F9D700025B237 /* Validators */,
 				0F7E23CE2920E329005196EA /* Navigation */,
 				0FB0E124291FBE3B0058ABCB /* Register */,
 				0FB0E125291FBE790058ABCB /* Login */,
@@ -851,6 +856,22 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		0F73EC9F292F98B00025B237 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				0F73ECA0292F98C20025B237 /* PasswordValidator.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		0F73ECA2292F9D700025B237 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 		0F75163928435B7B00A05A92 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +951,7 @@
 		0FB0E111291F861E0058ABCB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0F73EC9F292F98B00025B237 /* Validators */,
 				0FB0E114291F87260058ABCB /* Register */,
 				0FB0E126291FBEC10058ABCB /* Login */,
 			);
@@ -1599,6 +1621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
@@ -1661,6 +1684,7 @@
 				A2E64BC42842281B00FC41B7 /* MarineButton.swift in Sources */,
 				0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */,
 				0F2B4CB928454DD6004D0EF7 /* SearchCriteriaView.swift in Sources */,
+				0F73ECA1292F98C20025B237 /* PasswordValidator.swift in Sources */,
 				A2C2424A2847A29100CB233B /* ArrowBackButton.swift in Sources */,
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,

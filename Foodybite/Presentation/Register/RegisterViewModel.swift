@@ -10,12 +10,11 @@ import FoodybiteNetworking
 
 public class RegisterViewModel: ObservableObject {
     private let signUpService: SignUpService
-    private let validator = RegisterValidator()
     
     public enum RegisterResult: Equatable {
         case notTriggered
         case success
-        case failure(RegisterValidator.RegistrationError)
+        case failure(RegisterValidator.Error)
     }
     
     @Published public var name = ""
@@ -30,16 +29,20 @@ public class RegisterViewModel: ObservableObject {
     }
     
     public func register() async {
+        
+        
         do {
-            try validator.validate(name: name,
-                                   email: email,
-                                   password: password,
-                                   confirmPassword: confirmPassword)
+            try RegisterValidator.validate(name: name,
+                                           email: email,
+                                           password: password,
+                                           confirmPassword: confirmPassword)
             
             try await signUp()
         } catch {
-            if let error = error as? RegisterValidator.RegistrationError {
+            if let error = error as? RegisterValidator.Error {
                 await updateRegisterResult(.failure(error))
+            } else if let error = error as? PasswordValidator.Error {
+                await updateRegisterResult(.failure(.passwordError(error)))
             }
         }
     }
@@ -53,7 +56,7 @@ public class RegisterViewModel: ObservableObject {
                                            profileImage: profileImage)
             await updateRegisterResult(.success)
         } catch {
-            throw RegisterValidator.RegistrationError.serverError
+            throw RegisterValidator.Error.serverError
         }
     }
     

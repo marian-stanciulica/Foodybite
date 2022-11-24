@@ -39,7 +39,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = shortPassword()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.tooShortPassword))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.tooShortPassword)))
     }
     
     func test_register_triggerPasswordDoesntContainUpperLetter() async {
@@ -48,7 +48,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutUpperLetter()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainUpperLetter))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainUpperLetter)))
     }
     
     func test_register_triggerPasswordDoesntContainLowerLetter() async {
@@ -57,7 +57,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutLowerLetter()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainLowerLetter))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainLowerLetter)))
     }
     
     func test_register_triggerPasswordDoesntContainDigits() async {
@@ -66,7 +66,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutDigits()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainDigits))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainDigits)))
     }
     
     func test_register_triggerPasswordDoesntContainSpecialCharacter() async {
@@ -75,7 +75,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = passwordWithoutSpecialCharacters()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainSpecialCharacter))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
     }
     
     func test_register_triggerPasswordsDontMatch() async {
