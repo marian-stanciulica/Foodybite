@@ -48,6 +48,14 @@ final class ChangePasswordViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainDigits))
     }
     
+    func test_changePassword_triggerNewPasswordDoesntContainSpecialCharacter() async {
+        let sut = makeSUT()
+        sut.currentPassword = nonEmptyPassword()
+        sut.newPassword = passwordWithoutSpecialCharacters()
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainSpecialCharacter))
+    }
+    
     
     // MARK: - Helpers
     
@@ -74,6 +82,10 @@ final class ChangePasswordViewModelTests: XCTestCase {
     
     private func passwordWithoutDigits() -> String {
         "ABCabc%"
+    }
+    
+    private func passwordWithoutSpecialCharacters() -> String {
+        "ABCabc123"
     }
     
     private func assertRegister(on sut: ChangePasswordViewModel,
