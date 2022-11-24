@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Combine
 import Foodybite
 import FoodybiteNetworking
 
@@ -211,21 +210,6 @@ final class RegisterViewModelTests: XCTestCase {
             if let errorToThrow = errorToThrow {
                 throw errorToThrow
             }
-        }
-    }
-    
-    private class PublisherSpy<Success> where Success: Equatable {
-        private var cancellable: Cancellable?
-        private(set) var results = [Success]()
-        
-        init(_ publisher: AnyPublisher<Success, Never>) {
-            cancellable = publisher.sink(receiveValue: { value in
-                self.results.append(value)
-            })
-        }
-        
-        func cancel() {
-            cancellable?.cancel()
         }
     }
 

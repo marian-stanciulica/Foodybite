@@ -9,6 +9,7 @@ import Foundation
 
 public class PasswordValidator {
     public enum Error: String, Swift.Error, Equatable {
+        case empty = "Empty Password"
         case tooShortPassword = "Too short password"
         case passwordDoesntContainUpperLetter = "Password should contain at least one uppercase letter"
         case passwordDoesntContainLowerLetter = "Password should contain at least one lowercase letter"

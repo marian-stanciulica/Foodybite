@@ -10,6 +10,10 @@ import Foodybite
 
 final class PasswordValidatorTests: XCTestCase {
 
+    func test_registrationError_rawValueOfEmptyPasswordError() {
+        XCTAssertEqual(PasswordValidator.Error.empty.rawValue, "Empty Password")
+    }
+    
     func test_registrationError_rawValueOfTooShortPasswordError() {
         XCTAssertEqual(PasswordValidator.Error.tooShortPassword.rawValue, "Too short password")
     }

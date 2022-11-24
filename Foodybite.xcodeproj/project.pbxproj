@@ -90,6 +90,9 @@
 		0F73EC8C292F757A0025B237 /* ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */; };
 		0F73ECA1292F98C20025B237 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA0292F98C20025B237 /* PasswordValidator.swift */; };
 		0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */; };
+		0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA8292FA0F20025B237 /* ChangePasswordViewModelTests.swift */; };
+		0F73ECAC292FA1EE0025B237 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECAB292FA1EE0025B237 /* ChangePasswordViewModel.swift */; };
+		0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECAE292FA2810025B237 /* PublisherSpy.swift */; };
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
 		0F7516382843502400A05A92 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516372843502400A05A92 /* UIScreen+.swift */; };
 		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
@@ -293,6 +296,9 @@
 		0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordService.swift; sourceTree = "<group>"; };
 		0F73ECA0292F98C20025B237 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
+		0F73ECA8292FA0F20025B237 /* ChangePasswordViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModelTests.swift; sourceTree = "<group>"; };
+		0F73ECAB292FA1EE0025B237 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		0F73ECAE292FA2810025B237 /* PublisherSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherSpy.swift; sourceTree = "<group>"; };
 		0F75163528434D3300A05A92 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0F7516372843502400A05A92 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -478,10 +484,9 @@
 		0F108808291E2397007A28FA /* FoodybiteTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F73ECA2292F9D700025B237 /* Validators */,
 				0F7E23CE2920E329005196EA /* Navigation */,
-				0FB0E124291FBE3B0058ABCB /* Register */,
-				0FB0E125291FBE790058ABCB /* Login */,
+				0F73ECA2292F9D700025B237 /* Input Validators */,
+				0F73ECA6292FA0820025B237 /* Presentation */,
 			);
 			path = FoodybiteTests;
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 				A2C242482847A26700CB233B /* View Modifiers */,
 				A2032BA2284205B600F8D8C8 /* Components */,
 				0F7E23D12920E837005196EA /* Navigation */,
+				0F73EC9F292F98B00025B237 /* Input Validators */,
 				0FB0E111291F861E0058ABCB /* Presentation */,
 				A2032BA0284204A700F8D8C8 /* Views */,
 				A2032B9F2842049300F8D8C8 /* Resources */,
@@ -856,20 +862,55 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		0F73EC9F292F98B00025B237 /* Validators */ = {
+		0F73EC9F292F98B00025B237 /* Input Validators */ = {
 			isa = PBXGroup;
 			children = (
 				0F73ECA0292F98C20025B237 /* PasswordValidator.swift */,
 			);
-			path = Validators;
+			path = "Input Validators";
 			sourceTree = "<group>";
 		};
-		0F73ECA2292F9D700025B237 /* Validators */ = {
+		0F73ECA2292F9D700025B237 /* Input Validators */ = {
 			isa = PBXGroup;
 			children = (
 				0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */,
 			);
-			path = Validators;
+			path = "Input Validators";
+			sourceTree = "<group>";
+		};
+		0F73ECA6292FA0820025B237 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				0F73ECAD292FA26F0025B237 /* Helpers */,
+				0F73ECA7292FA0A20025B237 /* ChangePassword */,
+				0FB0E124291FBE3B0058ABCB /* Register */,
+				0FB0E125291FBE790058ABCB /* Login */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		0F73ECA7292FA0A20025B237 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				0F73ECA8292FA0F20025B237 /* ChangePasswordViewModelTests.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		0F73ECAA292FA1DA0025B237 /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				0F73ECAB292FA1EE0025B237 /* ChangePasswordViewModel.swift */,
+			);
+			path = "Change Password";
+			sourceTree = "<group>";
+		};
+		0F73ECAD292FA26F0025B237 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F73ECAE292FA2810025B237 /* PublisherSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0F75163928435B7B00A05A92 /* Favorites */ = {
@@ -951,7 +992,7 @@
 		0FB0E111291F861E0058ABCB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				0F73EC9F292F98B00025B237 /* Validators */,
+				0F73ECAA292FA1DA0025B237 /* Change Password */,
 				0FB0E114291F87260058ABCB /* Register */,
 				0FB0E126291FBEC10058ABCB /* Login */,
 			);
@@ -1621,7 +1662,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
+				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
@@ -1696,6 +1739,7 @@
 				0FB0E113291F86370058ABCB /* RegisterViewModel.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
 				A2C2423728476EE700CB233B /* RatingStar.swift in Sources */,
+				0F73ECAC292FA1EE0025B237 /* ChangePasswordViewModel.swift in Sources */,
 				A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */,
 				0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */,
 				A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */,
