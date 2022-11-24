@@ -1,5 +1,5 @@
 //
-//  SeetingsView.swift
+//  SettingsView.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 01.06.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SeetingsView: View {
+struct SettingsView: View {
     @State var logoutAlertDisplayed = false
 
     var body: some View {
@@ -38,6 +38,6 @@ struct SeetingsView: View {
 
 struct SeetingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SeetingsView()
+        SettingsView()
     }
 }

@@ -50,7 +50,7 @@ struct ProfileView: View {
                         .padding(.horizontal)
 
                         NavigationLink(isActive: $isShowingSettings) {
-                            SeetingsView()
+                            SettingsView()
                                 .navigationTitle("Settings")
                         } label: {
                             WhiteButton(title: "Settings") {

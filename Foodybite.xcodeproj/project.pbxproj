@@ -124,7 +124,7 @@
 		A2C2423A28477A7500CB233B /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423928477A7500CB233B /* PeopleListView.swift */; };
 		A2C2423C28477B1300CB233B /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423B28477B1300CB233B /* AccountType.swift */; };
 		A2C2423E28477BA600CB233B /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423D28477BA600CB233B /* PeopleListCell.swift */; };
-		A2C24243284780D100CB233B /* SeetingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24242284780D100CB233B /* SeetingsView.swift */; };
+		A2C24243284780D100CB233B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24242284780D100CB233B /* SettingsView.swift */; };
 		A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2424428478A4500CB233B /* ChangePasswordView.swift */; };
 		A2C2424728478BCB00CB233B /* ImageGrayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */; };
 		A2C2424A2847A29100CB233B /* ArrowBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C242492847A29100CB233B /* ArrowBackButton.swift */; };
@@ -327,7 +327,7 @@
 		A2C2423928477A7500CB233B /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
 		A2C2423B28477B1300CB233B /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		A2C2423D28477BA600CB233B /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
-		A2C24242284780D100CB233B /* SeetingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeetingsView.swift; sourceTree = "<group>"; };
+		A2C24242284780D100CB233B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A2C2424428478A4500CB233B /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		A2C2424628478BCB00CB233B /* ImageGrayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrayTextField.swift; sourceTree = "<group>"; };
 		A2C242492847A29100CB233B /* ArrowBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowBackButton.swift; sourceTree = "<group>"; };
@@ -1084,7 +1084,7 @@
 		A2C24241284780BF00CB233B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A2C24242284780D100CB233B /* SeetingsView.swift */,
+				A2C24242284780D100CB233B /* SettingsView.swift */,
 				A2C2424428478A4500CB233B /* ChangePasswordView.swift */,
 			);
 			path = Settings;
@@ -1607,7 +1607,7 @@
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
 				0FB0E116291F874D0058ABCB /* RegisterValidator.swift in Sources */,
-				A2C24243284780D100CB233B /* SeetingsView.swift in Sources */,
+				A2C24243284780D100CB233B /* SettingsView.swift in Sources */,
 				A2E64BC2284227A700FC41B7 /* RegisterView.swift in Sources */,
 				A2C2423A28477A7500CB233B /* PeopleListView.swift in Sources */,
 				A2E64BD12842461200FC41B7 /* HeaderView.swift in Sources */,
