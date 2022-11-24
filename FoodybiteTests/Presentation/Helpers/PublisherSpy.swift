@@ -21,3 +21,8 @@ class PublisherSpy<Success> where Success: Equatable {
         cancellable?.cancel()
     }
 }
+
+func randomString(size: Int) -> String {
+    let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    return String(Array(0..<size).map { _ in chars.randomElement()! })
+}

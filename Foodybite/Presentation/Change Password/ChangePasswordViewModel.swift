@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import FoodybiteNetworking
 
 public final class ChangePasswordViewModel {
+    private let changePasswordService: ChangePasswordService
+
     public enum Result: Equatable {
         case notTriggered
         case success
@@ -19,8 +22,8 @@ public final class ChangePasswordViewModel {
     public var confirmPassword = ""
     @Published public var result: Result = .notTriggered
     
-    public init() {
-        
+    public init(changePasswordService: ChangePasswordService) {
+        self.changePasswordService = changePasswordService
     }
 
     public func changePassword() async {
@@ -30,6 +33,10 @@ public final class ChangePasswordViewModel {
             }
             
             try PasswordValidator.validate(password: newPassword, confirmPassword: confirmPassword)
+            
+            try await changePasswordService.changePassword(currentPassword: currentPassword,
+                                                           newPassword: newPassword,
+                                                           confirmPassword: confirmPassword)
         } catch {
             if let error = error as? PasswordValidator.Error {
                 await updateResult(.failure(error))
