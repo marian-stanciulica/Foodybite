@@ -36,7 +36,7 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_signup_headersContainContentTypeJson() {
+    func test_signup_headersContainContentTypeJSON() {
         XCTAssertEqual(makeSignUpSUT().headers["Content-Type"], "application/json")
     }
     
@@ -63,11 +63,11 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_login_headersContainContentTypeJson() {
+    func test_login_headersContainContentTypeJSON() {
         XCTAssertEqual(makeLoginSUT().headers["Content-Type"], "application/json")
     }
     
-    // MARK: Refresh Token
+    // MARK: - Refresh Token
     
     func test_refreshToken_baseURL() {
         XCTAssertEqual(makeRefreshTokenSUT().host, "localhost")
@@ -89,11 +89,11 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_refreshToken_headersContainContentTypeJson() {
+    func test_refreshToken_headersContainContentTypeJSON() {
         XCTAssertEqual(makeRefreshTokenSUT().headers["Content-Type"], "application/json")
     }
     
-    // MARK: Change Password
+    // MARK: - Change Password
     
     func test_changePassword_baseURL() {
         XCTAssertEqual(makeChangePasswordSUT().host, "localhost")
@@ -120,8 +120,31 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_changePassword_headersContainContentTypeJson() {
+    func test_changePassword_headersContainContentTypeJSON() {
         XCTAssertEqual(makeChangePasswordSUT().headers["Content-Type"], "application/json")
+    }
+    
+    // MARK: - Logout
+    
+    func test_logout_baseURL() {
+        XCTAssertEqual(makeLogoutSUT().host, "localhost")
+    }
+    
+    func test_logout_path() {
+        XCTAssertEqual(makeLogoutSUT().path, "/auth/logout")
+    }
+    
+    func test_logout_methodIsPost() {
+        XCTAssertEqual(makeLogoutSUT().method, .post)
+    }
+    
+    func test_logout_bodyContainsChangePasswordRequest() throws {
+        let sut = makeLogoutSUT()
+        XCTAssertNil(sut.body)
+    }
+    
+    func test_logout_headersContainContentTypeJSON() {
+        XCTAssertEqual(makeLogoutSUT().headers["Content-Type"], "application/json")
     }
     
     // MARK: - Helpers
@@ -175,6 +198,10 @@ final class ServerEndpointTests: XCTestCase {
                                                 confirmPassword: "")
         
         return .changePassword(body ?? defaultBody)
+    }
+    
+    private func makeLogoutSUT() -> ServerEndpoint {
+        return .logout
     }
 
 }

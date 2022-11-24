@@ -12,6 +12,7 @@ enum ServerEndpoint: Endpoint {
     case login(LoginRequest)
     case refreshToken(RefreshTokenRequest)
     case changePassword(ChangePasswordRequest)
+    case logout
     
     var host: String {
         "localhost"
@@ -27,6 +28,8 @@ enum ServerEndpoint: Endpoint {
             return "/auth/accessToken"
         case .changePassword:
             return "/auth/changePassword"
+        case .logout:
+            return "/auth/logout"
         }
     }
     
@@ -48,6 +51,8 @@ enum ServerEndpoint: Endpoint {
             return refreshToken
         case let .changePassword(changePasswordRequest):
             return changePasswordRequest
+        default:
+            return nil
         }
     }
 }
