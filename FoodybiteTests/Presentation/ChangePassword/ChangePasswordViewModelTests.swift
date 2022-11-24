@@ -56,6 +56,14 @@ final class ChangePasswordViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordDoesntContainSpecialCharacter))
     }
     
+    func test_changePassword_triggerNewAndConfirmPasswordsDontMatch() async {
+        let sut = makeSUT()
+        sut.currentPassword = nonEmptyPassword()
+        sut.newPassword = validPassword()
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordsDontMatch))
+    }
+    
     
     // MARK: - Helpers
     
@@ -86,6 +94,10 @@ final class ChangePasswordViewModelTests: XCTestCase {
     
     private func passwordWithoutSpecialCharacters() -> String {
         "ABCabc123"
+    }
+    
+    private func validPassword() -> String {
+        "ABCabc123%"
     }
     
     private func assertRegister(on sut: ChangePasswordViewModel,
