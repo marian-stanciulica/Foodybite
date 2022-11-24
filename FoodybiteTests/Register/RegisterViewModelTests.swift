@@ -84,7 +84,7 @@ final class RegisterViewModelTests: XCTestCase {
         sut.email = validEmail()
         sut.password = validPassword()
         
-        await assertRegister(on: sut, withExpectedResult: .failure(.passwordsDontMatch))
+        await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordsDontMatch)))
     }
     
     func test_register_sendsValidInputsToSignUpService() async {

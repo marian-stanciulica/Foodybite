@@ -26,8 +26,4 @@ final class RegisterValidatorTests: XCTestCase {
         XCTAssertEqual(RegisterValidator.Error.invalidEmail.toString(), "Invalid email")
     }
     
-    func test_registrationError_rawValueOfPasswordsDontMatchError() {
-        XCTAssertEqual(RegisterValidator.Error.passwordsDontMatch.toString(), "Passwords do not match")
-    }
-    
 }

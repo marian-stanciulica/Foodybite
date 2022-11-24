@@ -14,7 +14,6 @@ public class RegisterValidator {
         case emptyName
         case emptyEmail
         case invalidEmail
-        case passwordsDontMatch
         
         public func toString() -> String {
             switch self {
@@ -28,8 +27,6 @@ public class RegisterValidator {
                 return "Empty email"
             case .invalidEmail:
                 return "Invalid email"
-            case .passwordsDontMatch:
-                return "Passwords do not match"
             }
         }
     }
@@ -45,11 +42,7 @@ public class RegisterValidator {
             throw Error.invalidEmail
         }
         
-        try PasswordValidator.validate(password: password)
-        
-        if password != confirmPassword {
-            throw Error.passwordsDontMatch
-        }
+        try PasswordValidator.validate(password: password, confirmPassword: confirmPassword)
     }
     
     private static func isValid(email: String) -> Bool {

@@ -29,5 +29,9 @@ final class PasswordValidatorTests: XCTestCase {
     func test_registrationError_rawValueOfPasswordDoesntContainSpecialCharacterError() {
         XCTAssertEqual(PasswordValidator.Error.passwordDoesntContainSpecialCharacter.rawValue, "Password should contain at least one special character")
     }
+    
+    func test_registrationError_rawValueOfPasswordsDontMatchError() {
+        XCTAssertEqual(PasswordValidator.Error.passwordsDontMatch.rawValue, "Passwords do not match")
+    }
 
 }

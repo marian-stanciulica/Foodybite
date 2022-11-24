@@ -14,11 +14,12 @@ public class PasswordValidator {
         case passwordDoesntContainLowerLetter = "Password should contain at least one lowercase letter"
         case passwordDoesntContainDigits = "Password should contain at least one digit"
         case passwordDoesntContainSpecialCharacter = "Password should contain at least one special character"
+        case passwordsDontMatch = "Passwords do not match"
     }
     
     private init() {}
     
-    static func validate(password: String) throws {
+    static func validate(password: String, confirmPassword: String) throws {
         if !containsUpperLetter(password: password) {
             throw Error.passwordDoesntContainUpperLetter
         } else if !containsLowerLetter(password: password) {
@@ -29,6 +30,10 @@ public class PasswordValidator {
             throw Error.passwordDoesntContainSpecialCharacter
         } else if password.count < 8 {
             throw Error.tooShortPassword
+        }
+        
+        if password != confirmPassword {
+            throw Error.passwordsDontMatch
         }
     }
     
