@@ -33,6 +33,7 @@ struct SettingsView: View {
             Button("No", role: .cancel) { }
             Button("Yes") { }
         }
+        .arrowBackButtonStyle()
     }
 }
 

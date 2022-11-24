@@ -23,7 +23,7 @@ struct AuthFlowView: View {
                         userLoggedIn = true
                     }),
                 goToSignUp: {
-                    flow.append(AuthFlow.Route.signUp)
+                    flow.append(.signUp)
                 }
             )
             .navigationDestination(for: AuthFlow.Route.self) { route in

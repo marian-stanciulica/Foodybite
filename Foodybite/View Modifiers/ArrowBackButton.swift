@@ -18,7 +18,9 @@ struct ArrowBackButton: ViewModifier {
                     Button {
                         self.mode.wrappedValue.dismiss()
                     } label: {
-                        Image(systemName: "arrow.left")
+                        Image("back_arrow")
+                            .resizable()
+                            .frame(width: 12, height: 24)
                             .foregroundColor(.white)
                     }
                 }

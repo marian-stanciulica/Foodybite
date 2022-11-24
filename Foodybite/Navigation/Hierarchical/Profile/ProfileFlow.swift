@@ -1,15 +1,15 @@
 //
-//  AuthFlow.swift
+//  ProfileFlow.swift
 //  Foodybite
 //
-//  Created by Marian Stanciulica on 13.11.2022.
+//  Created by Marian Stanciulica on 24.11.2022.
 //
 
 import Foundation
 
-final public class AuthFlow: ObservableObject {
+final public class ProfileFlow: ObservableObject {
     public enum Route: Hashable, CaseIterable {
-        case signUp
+        case settings
     }
     
     @Published public var path = [Route]()

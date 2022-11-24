@@ -84,6 +84,8 @@
 		0F7137BD2841F8340058757A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* LoginView.swift */; };
 		0F7137BF2841F8370058757A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137BE2841F8370058757A /* Assets.xcassets */; };
 		0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137C12841F8370058757A /* Preview Assets.xcassets */; };
+		0F73EC86292F608E0025B237 /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC85292F608E0025B237 /* ProfileFlow.swift */; };
+		0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC87292F609B0025B237 /* ProfileFlowView.swift */; };
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
 		0F7516382843502400A05A92 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516372843502400A05A92 /* UIScreen+.swift */; };
 		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
@@ -281,6 +283,8 @@
 		0F7137BC2841F8340058757A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0F7137BE2841F8370058757A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F7137C12841F8370058757A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0F73EC85292F608E0025B237 /* ProfileFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
+		0F73EC87292F609B0025B237 /* ProfileFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowView.swift; sourceTree = "<group>"; };
 		0F75163528434D3300A05A92 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0F7516372843502400A05A92 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -810,6 +814,7 @@
 			isa = PBXGroup;
 			children = (
 				0F73EC82292F5F3B0025B237 /* Auth */,
+				0F73EC84292F60650025B237 /* Profile */,
 			);
 			path = Hierarchical;
 			sourceTree = "<group>";
@@ -829,6 +834,15 @@
 				0FAFCA29284298C700778E45 /* TabRouter.swift */,
 			);
 			path = Flat;
+			sourceTree = "<group>";
+		};
+		0F73EC84292F60650025B237 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F73EC85292F608E0025B237 /* ProfileFlow.swift */,
+				0F73EC87292F609B0025B237 /* ProfileFlowView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		0F75163928435B7B00A05A92 /* Favorites */ = {
@@ -1621,6 +1635,7 @@
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
 				A2C24222284755AE00CB233B /* Blur.swift in Sources */,
 				0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */,
+				0F73EC86292F608E0025B237 /* ProfileFlow.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */,
 				0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */,
@@ -1642,6 +1657,7 @@
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
 				A2C2423E28477BA600CB233B /* PeopleListCell.swift in Sources */,
+				0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */,
 				0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */,
 				0F7516382843502400A05A92 /* UIScreen+.swift in Sources */,
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,

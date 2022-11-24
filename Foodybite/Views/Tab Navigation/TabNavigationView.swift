@@ -27,7 +27,7 @@ struct TabNavigationView: View {
                     case .notifications:
                         NotificationsView()
                     case .account:
-                        ProfileView()
+                        ProfileFlowView(flow: ProfileFlow())
                     }
                 }
                 

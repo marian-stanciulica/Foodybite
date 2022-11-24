@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var isShowingSettings = false
+    let goToSettings: () -> Void
 
     var body: some View {
         NavigationView {
@@ -49,15 +49,10 @@ struct ProfileView: View {
                         }
                         .padding(.horizontal)
 
-                        NavigationLink(isActive: $isShowingSettings) {
-                            SettingsView()
-                                .navigationTitle("Settings")
-                        } label: {
-                            WhiteButton(title: "Settings") {
-                                self.isShowingSettings = true
-                            }
-                            .padding(.horizontal)
+                        WhiteButton(title: "Settings") {
+                            goToSettings()
                         }
+                        .padding(.horizontal)
                     }
                     .padding(.horizontal, 32)
 
@@ -90,6 +85,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView() {}
     }
 }
