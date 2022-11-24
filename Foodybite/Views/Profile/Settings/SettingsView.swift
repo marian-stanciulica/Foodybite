@@ -9,14 +9,23 @@ import SwiftUI
 
 struct SettingsView: View {
     @State var logoutAlertDisplayed = false
+    let goToChangePassword: () -> Void
 
     var body: some View {
         List {
             Section("Account") {
-                NavigationLink {
-                    ChangePasswordView()
-                } label: {
-                    Text("Change Password")
+                HStack {
+                    Text("Change password")
+                    
+                    Spacer()
+                    
+                    Button {
+                        goToChangePassword()
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .font(.body)
+                            .foregroundColor(.gray)
+                    }
                 }
             }
 
@@ -39,6 +48,6 @@ struct SettingsView: View {
 
 struct SeetingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView() {}
     }
 }

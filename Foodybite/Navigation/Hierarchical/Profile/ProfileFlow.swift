@@ -10,6 +10,7 @@ import Foundation
 final public class ProfileFlow: ObservableObject {
     public enum Route: Hashable, CaseIterable {
         case settings
+        case changePassword
     }
     
     @Published public var path = [Route]()

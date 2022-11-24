@@ -18,7 +18,11 @@ struct ProfileFlowView: View {
             .navigationDestination(for: ProfileFlow.Route.self) { route in
                 switch route {
                 case .settings:
-                    SettingsView()
+                    SettingsView() {
+                        flow.append(.changePassword)
+                    }
+                case .changePassword:
+                    ChangePasswordView()
                 }
             }
         }

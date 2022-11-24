@@ -14,20 +14,20 @@ struct ChangePasswordView: View {
 
     var body: some View {
         VStack {
-            ImageGrayTextField(placeholder: "Password",
-                           imageName: "lock.circle",
-                           text: $currentPassword)
-                .padding(.bottom)
+            ImageGrayTextField(placeholder: "Current Password",
+                               imageName: "lock.circle",
+                               text: $currentPassword)
+            .padding(.bottom)
 
-            ImageGrayTextField(placeholder: "Password",
-                           imageName: "lock.circle",
-                           text: $newPassword)
-                .padding(.bottom)
+            ImageGrayTextField(placeholder: "New Password",
+                               imageName: "lock.circle",
+                               text: $newPassword)
+            .padding(.bottom)
 
-            ImageGrayTextField(placeholder: "Password",
-                           imageName: "lock.circle",
-                           text: $confirmPassword)
-                .padding(.bottom)
+            ImageGrayTextField(placeholder: "Confirm Password",
+                               imageName: "lock.circle",
+                               text: $confirmPassword)
+            .padding(.bottom)
 
             Spacer()
 
@@ -38,6 +38,7 @@ struct ChangePasswordView: View {
         .padding()
         .navigationTitle("Change Password")
         .navigationBarTitleDisplayMode(.inline)
+        .arrowBackButtonStyle()
     }
 }
 
