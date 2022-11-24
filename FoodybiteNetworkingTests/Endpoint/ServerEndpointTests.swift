@@ -91,6 +91,37 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeRefreshTokenSUT().headers["Content-Type"], "application/json")
     }
     
+    // MARK: Change Password
+    
+    func test_changePassword_baseURL() {
+        XCTAssertEqual(makeChangePasswordSUT().host, "localhost")
+    }
+    
+    func test_changePassword_path() {
+        XCTAssertEqual(makeChangePasswordSUT().path, "/auth/changePassword")
+    }
+    
+    func test_changePassword_methodIsPost() {
+        XCTAssertEqual(makeChangePasswordSUT().method, .post)
+    }
+    
+    func test_changePassword_bodyContainsChangePasswordRequest() throws {
+        let currentPassword = randomString(size: 20)
+        let newPassword = randomString(size: 20)
+        let confirmPassword = newPassword
+        let body = ChangePasswordRequest(currentPassword: currentPassword,
+                                         newPassword: newPassword,
+                                         confirmPassword: confirmPassword)
+
+        let sut = makeChangePasswordSUT(body: body)
+        let receivedBody = try XCTUnwrap(sut.body as? ChangePasswordRequest)
+        XCTAssertEqual(receivedBody, body)
+    }
+    
+    func test_changePassword_headersContainContentTypeJson() {
+        XCTAssertEqual(makeChangePasswordSUT().headers["Content-Type"], "application/json")
+    }
+    
     // MARK: - Helpers
     
     private func anyName() -> String {
@@ -132,6 +163,14 @@ final class ServerEndpointTests: XCTestCase {
     
     private func makeRefreshTokenSUT(refreshToken: String = "") -> ServerEndpoint {
         return .refreshToken(refreshToken)
+    }
+    
+    private func makeChangePasswordSUT(body: ChangePasswordRequest? = nil) -> ServerEndpoint {
+        let defaultBody = ChangePasswordRequest(currentPassword: "",
+                                                newPassword: "",
+                                                confirmPassword: "")
+        
+        return .changePassword(body ?? defaultBody)
     }
 
 }

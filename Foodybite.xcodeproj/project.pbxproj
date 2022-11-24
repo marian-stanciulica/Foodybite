@@ -86,6 +86,7 @@
 		0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137C12841F8370058757A /* Preview Assets.xcassets */; };
 		0F73EC86292F608E0025B237 /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC85292F608E0025B237 /* ProfileFlow.swift */; };
 		0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC87292F609B0025B237 /* ProfileFlowView.swift */; };
+		0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */; };
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
 		0F7516382843502400A05A92 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516372843502400A05A92 /* UIScreen+.swift */; };
 		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
@@ -285,6 +286,7 @@
 		0F7137C12841F8370058757A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F73EC85292F608E0025B237 /* ProfileFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
 		0F73EC87292F609B0025B237 /* ProfileFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowView.swift; sourceTree = "<group>"; };
+		0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		0F75163528434D3300A05A92 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0F7516372843502400A05A92 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 			children = (
 				0F0280FC29262FE7006B219F /* SignUpRequest.swift */,
 				0F0280FF292630D5006B219F /* LoginRequest.swift */,
+				0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1544,6 +1547,7 @@
 				0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */,
 				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
+				0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
 				0F028100292630D5006B219F /* LoginRequest.swift in Sources */,
