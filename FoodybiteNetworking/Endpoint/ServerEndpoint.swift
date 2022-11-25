@@ -14,6 +14,7 @@ enum ServerEndpoint: Endpoint {
     case changePassword(ChangePasswordRequest)
     case logout
     case updateAccount(UpdateAccountRequest)
+    case deleteAccount
     
     var host: String {
         "localhost"
@@ -31,13 +32,18 @@ enum ServerEndpoint: Endpoint {
             return "/auth/changePassword"
         case .logout:
             return "/auth/logout"
-        case .updateAccount:
+        case .updateAccount, .deleteAccount:
             return "/auth/account"
         }
     }
     
     var method: RequestMethod {
-        .post
+        switch self {
+        case .deleteAccount:
+            return .delete
+        default:
+            return .post
+        }
     }
     
     var headers: [String : String] {

@@ -173,6 +173,24 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeUpdateAccountSUT().headers["Content-Type"], "application/json")
     }
     
+    // MARK: - Delete Account
+    
+    func test_deleteAccount_baseURL() {
+        XCTAssertEqual(makeDeleteAccountSUT().host, "localhost")
+    }
+    
+    func test_deleteAccount_path() {
+        XCTAssertEqual(makeDeleteAccountSUT().path, "/auth/account")
+    }
+    
+    func test_deleteAccount_methodIsPost() {
+        XCTAssertEqual(makeDeleteAccountSUT().method, .delete)
+    }
+    
+    func test_deleteAccount_headersContainContentTypeJSON() {
+        XCTAssertEqual(makeDeleteAccountSUT().headers["Content-Type"], "application/json")
+    }
+    
     
     // MARK: - Helpers
     
@@ -234,6 +252,10 @@ final class ServerEndpointTests: XCTestCase {
     private func makeUpdateAccountSUT(body: UpdateAccountRequest? = nil) -> ServerEndpoint {
         let defaultBody = UpdateAccountRequest(name: "", email: "", profileImage: nil)
         return .updateAccount(body ?? defaultBody)
+    }
+    
+    private func makeDeleteAccountSUT() -> ServerEndpoint {
+        return .deleteAccount
     }
 
 }
