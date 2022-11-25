@@ -8,7 +8,7 @@
 import Foundation
 import FoodybiteNetworking
 
-public final class ProfileViewModel {
+public final class ProfileViewModel: ObservableObject {
     public enum Error: String, Swift.Error {
         case serverError = "Invalid Credentials"
     }

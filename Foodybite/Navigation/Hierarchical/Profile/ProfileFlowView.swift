@@ -16,6 +16,10 @@ struct ProfileFlowView: View {
     var body: some View {
         NavigationStack(path: $flow.path) {
             ProfileView(
+                viewModel: ProfileViewModel(
+                    accountService: apiService,
+                    goToLogin: { userLoggedIn = false }
+                ),
                 goToSettings: { flow.append(.settings) },
                 goToEditProfile: { flow.append(.editProfile) }
             )

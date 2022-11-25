@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct ProfileView: View {
+    @ObservedObject var viewModel: ProfileViewModel
     let goToSettings: () -> Void
     let goToEditProfile: () -> Void
     @State var editProfileAlertDisplayed = false
@@ -83,7 +85,11 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
             .alert("Edit Profile", isPresented: $editProfileAlertDisplayed) {
                 Button("Edit") { goToEditProfile() }
-                Button("Delete", role: .destructive) {}
+                Button("Delete", role: .destructive) {
+                    Task {
+                        await viewModel.deleteAccount()
+                    }
+                }
                 Button("Cancel", role: .cancel) {}
             }
         }
@@ -92,6 +98,18 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(goToSettings: {}, goToEditProfile: {})
+        ProfileView(
+            viewModel: ProfileViewModel(
+                accountService: PreviewAccountService(),
+                goToLogin: {}
+            ),
+            goToSettings: {},
+            goToEditProfile: {}
+        )
+    }
+    
+    private class PreviewAccountService: AccountService {
+        func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
+        func deleteAccount() async throws {}
     }
 }

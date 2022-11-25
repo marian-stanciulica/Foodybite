@@ -953,9 +953,9 @@
 		0F73ECB7292FDA7E0025B237 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */,
 				0F2A26B22930D9EB00387A1C /* Edit Profile */,
 				0F73ECB8292FDA8E0025B237 /* Settings */,
-				0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
