@@ -127,6 +127,8 @@
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
+		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
+		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
 		681AA60D65F4E953D483A351 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D04236D90850F77A10CA8195 /* Pods_FoodybitePersistence_FoodybitePersistenceTests.framework */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
@@ -350,6 +352,8 @@
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		A2C2421D28474D9700CB233B /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
@@ -951,6 +955,7 @@
 			children = (
 				0F2A26B22930D9EB00387A1C /* Edit Profile */,
 				0F73ECB8292FDA8E0025B237 /* Settings */,
+				0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -967,6 +972,7 @@
 		0F73ECBB292FDADB0025B237 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */,
 				0F2A26AF2930D90000387A1C /* Edit Profile */,
 				0F73ECBC292FDB0C0025B237 /* Settings */,
 			);
@@ -1744,6 +1750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
@@ -1802,6 +1809,7 @@
 				A2C2422B28475D5800CB233B /* CategoryText.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
 				0F2B4CB628454173004D0EF7 /* FriendsListView.swift in Sources */,
+				0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */,
 				0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */,
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
