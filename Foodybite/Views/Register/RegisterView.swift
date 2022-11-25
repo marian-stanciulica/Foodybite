@@ -9,7 +9,7 @@ import SwiftUI
 import FoodybiteNetworking
 
 struct RegisterView: View {
-    @ObservedObject var viewModel: RegisterViewModel
+    @StateObject var viewModel: RegisterViewModel
     let goToLogin: () -> Void
 
     var body: some View {
