@@ -13,29 +13,29 @@ public final class ProfileViewModel {
         case serverError = "Invalid Credentials"
     }
     
-    public enum Result: Equatable {
-        case notTriggered
-        case success
-        case failure(Error)
-    }
-    
     private let accountService: AccountService
-    @Published public var result: Result = .notTriggered
+    private let goToLogin: () -> Void
+    @Published public var error: Error?
     
-    public init(accountService: AccountService) {
+    public init(accountService: AccountService, goToLogin: @escaping () -> Void) {
         self.accountService = accountService
+        self.goToLogin = goToLogin
     }
     
     public func deleteAccount() async {
         do {
             try await accountService.deleteAccount()
-            await updateResult(.success)
+            await goToLoginScreen()
         } catch {
-            await updateResult(.failure(.serverError))
+            await updateError(.serverError)
         }
     }
     
-    @MainActor private func updateResult(_ newValue: Result) {
-        result = newValue
+    @MainActor private func goToLoginScreen() {
+        goToLogin()
+    }
+    
+    @MainActor private func updateError(_ newValue: Error) {
+        error = newValue
     }
 }
