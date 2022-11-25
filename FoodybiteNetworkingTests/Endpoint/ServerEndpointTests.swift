@@ -147,6 +147,33 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(makeLogoutSUT().headers["Content-Type"], "application/json")
     }
     
+    // MARK: - Update Account
+    
+    func test_updateAccount_baseURL() {
+        XCTAssertEqual(makeUpdateAccountSUT().host, "localhost")
+    }
+    
+    func test_updateAccount_path() {
+        XCTAssertEqual(makeUpdateAccountSUT().path, "/auth/account")
+    }
+    
+    func test_updateAccount_methodIsPost() {
+        XCTAssertEqual(makeUpdateAccountSUT().method, .post)
+    }
+    
+    func test_updateAccount_bodyContainsUpdateAccountRequest() throws {
+        let body = UpdateAccountRequest(name: anyName(), email: anyEmail(), profileImage: anyData())
+        let sut = makeUpdateAccountSUT(body: body)
+        
+        let receivedBody = try XCTUnwrap(sut.body as? UpdateAccountRequest)
+        XCTAssertEqual(receivedBody, body)
+    }
+    
+    func test_updateAccount_headersContainContentTypeJSON() {
+        XCTAssertEqual(makeUpdateAccountSUT().headers["Content-Type"], "application/json")
+    }
+    
+    
     // MARK: - Helpers
     
     private func anyName() -> String {
@@ -202,6 +229,11 @@ final class ServerEndpointTests: XCTestCase {
     
     private func makeLogoutSUT() -> ServerEndpoint {
         return .logout
+    }
+    
+    private func makeUpdateAccountSUT(body: UpdateAccountRequest? = nil) -> ServerEndpoint {
+        let defaultBody = UpdateAccountRequest(name: "", email: "", profileImage: nil)
+        return .updateAccount(body ?? defaultBody)
     }
 
 }
