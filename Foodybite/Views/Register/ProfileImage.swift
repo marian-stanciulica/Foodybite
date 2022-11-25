@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct ProfileImage: View {
+    let backgroundColor: Color
     @State private var selectedItem: PhotosPickerItem? = nil
     @Binding var selectedImageData: Data?
 
@@ -25,7 +26,7 @@ struct ProfileImage: View {
                             .clipShape(Circle())
                     } else {
                         Circle()
-                            .fill(.white.opacity(0.25))
+                            .fill(backgroundColor.opacity(0.25))
                     }
                     
                     Image(systemName: "person")
@@ -54,7 +55,7 @@ struct ProfileImage: View {
 
 struct ProfileImage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileImage(selectedImageData: .constant(nil))
-            .background(.black)
+        ProfileImage(backgroundColor: .black,
+                     selectedImageData: .constant(nil))
     }
 }

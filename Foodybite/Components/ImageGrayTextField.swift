@@ -19,7 +19,7 @@ struct ImageGrayTextField: View {
                 secure.toggle()
             } label: {
                 Image(systemName: imageName)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.marineBlue)
             }
             
             ZStack(alignment: .leading) {

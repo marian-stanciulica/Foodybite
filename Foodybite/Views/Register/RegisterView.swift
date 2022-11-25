@@ -16,7 +16,8 @@ struct RegisterView: View {
         VStack {
             Spacer()
             
-            ProfileImage(selectedImageData: $viewModel.profileImage)
+            ProfileImage(backgroundColor: .white,
+                         selectedImageData: $viewModel.profileImage)
                 .padding(.bottom)
 
             Spacer()
