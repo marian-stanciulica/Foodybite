@@ -8,7 +8,7 @@
 import Foundation
 import FoodybiteNetworking
 
-public final class EditProfileViewModel {
+public final class EditProfileViewModel: ObservableObject {
     public enum Error: String, Swift.Error {
         case emptyName = "Empty name"
         case emptyEmail = "Empty email"
@@ -24,9 +24,9 @@ public final class EditProfileViewModel {
     
     private let accountService: AccountService
     
-    public var name = ""
-    public var email = ""
-    public var profileImage: Data? = nil
+    @Published public var name = ""
+    @Published public var email = ""
+    @Published public var profileImage: Data? = nil
     @Published public var result: Result = .notTriggered
 
     public init(accountService: AccountService) {
@@ -35,19 +35,23 @@ public final class EditProfileViewModel {
     
     public func updateAccount() async {
         if name.isEmpty {
-            result = .failure(.emptyName)
+            await updateResult(.failure(.emptyName))
         } else if email.isEmpty {
-            result = .failure(.emptyEmail)
+            await updateResult(.failure(.emptyEmail))
         } else if !isValid(email: email) {
-            result = .failure(.invalidEmail)
+            await updateResult(.failure(.invalidEmail))
         } else {
             do {
                 try await accountService.updateAccount(name: name, email: email, profileImage: profileImage)
-                result = .success
+                await updateResult(.success)
             } catch {
-                result = .failure(.serverError)
+                await updateResult(.failure(.serverError))
             }
         }
+    }
+    
+    @MainActor private func updateResult(_ newValue: Result) {
+        result = newValue
     }
     
     private func isValid(email: String) -> Bool {

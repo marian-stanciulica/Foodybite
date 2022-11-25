@@ -6,37 +6,41 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct EditProfileView: View {
-    @State var profileImage: Data? = nil
-    @State var name: String = ""
-    @State var email: String = ""
+    @ObservedObject var viewModel: EditProfileViewModel
     
     var body: some View {
         VStack {
             ProfileImage(backgroundColor: .black,
-                         selectedImageData: $profileImage)
+                         selectedImageData: $viewModel.profileImage)
                 .padding(.vertical, 40)
 
             Group {
                 ImageGrayTextField(placeholder: "Name",
-                                    imageName: "person",
-                                    secure: false,
-                                    text: $name)
+                                   imageName: "person",
+                                   secure: false,
+                                   text: $viewModel.name)
                 
                 ImageGrayTextField(placeholder: "Email",
-                                    imageName: "envelope",
-                                    secure: false,
-                                    text: $email)
+                                   imageName: "envelope",
+                                   secure: false,
+                                   text: $viewModel.email)
             }
             .padding(.horizontal)
             .padding(.vertical, 4)
 
             MarineButton(title: "Update") {
-                
+                Task {
+                    await viewModel.updateAccount()
+                }
             }
             .padding(.horizontal)
             .padding(.top)
+            
+            createFeedbackText()
+                .padding(.vertical)
             
             Spacer()
             Spacer()
@@ -45,12 +49,38 @@ struct EditProfileView: View {
         .navigationBarTitleDisplayMode(.inline)
         .arrowBackButtonStyle()
     }
+    
+    private func createFeedbackText() -> Text {
+        switch viewModel.result {
+        case .success:
+            return Text("Account updated!")
+                .foregroundColor(.green)
+                .font(.headline)
+            
+        case let .failure(error):
+            return Text(error.rawValue)
+                .foregroundColor(.red)
+                .font(.headline)
+
+        case .notTriggered:
+            return Text("")
+        }
+    }
 }
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            EditProfileView()
+            EditProfileView(
+                viewModel: EditProfileViewModel(
+                    accountService: PreviewAccountService()
+                )
+            )
         }
+    }
+    
+    private class PreviewAccountService: AccountService {
+        func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
+        func deleteAccount() async throws {}
     }
 }

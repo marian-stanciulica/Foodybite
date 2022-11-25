@@ -33,7 +33,7 @@ struct ProfileFlowView: View {
                 case .changePassword:
                     ChangePasswordView(viewModel: ChangePasswordViewModel(changePasswordService: apiService))
                 case .editProfile:
-                    EditProfileView()
+                    EditProfileView(viewModel: EditProfileViewModel(accountService: apiService))
                 }
             }
         }
