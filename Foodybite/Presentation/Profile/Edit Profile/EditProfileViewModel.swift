@@ -20,12 +20,17 @@ public final class EditProfileViewModel {
         case failure(RegisterValidator.Error)
     }
     
+    public var name = ""
     @Published public var result: Result = .notTriggered
 
     public init() {}
     
     public func updateAccount() async {
-        result = .failure(.emptyName)
+        if name.isEmpty {
+            result = .failure(.emptyName)
+        } else {
+            result = .failure(.emptyEmail)
+        }
     }
     
 }

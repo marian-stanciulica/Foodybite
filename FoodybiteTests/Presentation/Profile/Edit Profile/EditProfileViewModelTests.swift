@@ -16,6 +16,13 @@ final class EditProfileViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyName))
     }
     
+    func test_updateAccount_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
+        let sut = makeSUT()
+        sut.name = validName()
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.emptyEmail))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> EditProfileViewModel {
@@ -34,6 +41,10 @@ final class EditProfileViewModelTests: XCTestCase {
         
         XCTAssertEqual(resultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
         resultSpy.cancel()
+    }
+    
+    private func validName() -> String {
+        "any name"
     }
 
 }
