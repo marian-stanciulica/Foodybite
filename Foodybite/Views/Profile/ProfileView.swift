@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     let goToSettings: () -> Void
+    @State var editProfileAlertDisplayed = false
 
     var body: some View {
         NavigationView {
@@ -45,7 +46,7 @@ struct ProfileView: View {
 
                     HStack {
                         MarineButton(title: "Edit Profile") {
-
+                            editProfileAlertDisplayed = true
                         }
                         .padding(.horizontal)
 
@@ -79,6 +80,11 @@ struct ProfileView: View {
             }
             .navigationTitle("My Profile")
             .navigationBarTitleDisplayMode(.inline)
+            .alert("Edit Profile", isPresented: $editProfileAlertDisplayed) {
+                Button("Edit") { }
+                Button("Delete", role: .destructive) {}
+                Button("Cancel", role: .cancel) {}
+            }
         }
     }
 }
