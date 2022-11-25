@@ -10,14 +10,18 @@ import SwiftUI
 struct ImageGrayTextField: View {
     let placeholder: String
     let imageName: String
-    let secure: Bool
+    @State var secure: Bool
     @Binding var text: String
 
     var body: some View {
         HStack {
-            Image(systemName: imageName)
-                .foregroundColor(.gray)
-
+            Button {
+                secure.toggle()
+            } label: {
+                Image(systemName: imageName)
+                    .foregroundColor(.gray)
+            }
+            
             ZStack(alignment: .leading) {
                 if text.isEmpty {
                     Text(placeholder)
@@ -41,8 +45,8 @@ struct ImageGrayTextField: View {
 
 struct ImageGrayTextField_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGrayTextField(placeholder: "Placeholder",
+        ImageGrayTextField(placeholder: "Email",
                            imageName: "envelope", secure: true,
-                           text: .constant("Email"))
+                           text: .constant(""))
     }
 }

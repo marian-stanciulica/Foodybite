@@ -10,13 +10,17 @@ import SwiftUI
 struct ImageWhiteTextField: View {
     let placeholder: String
     let imageName: String
-    let secure: Bool
+    @State var secure: Bool
     @Binding var text: String
 
     var body: some View {
         HStack {
-            Image(systemName: imageName)
-                .foregroundColor(.white)
+            Button {
+                secure.toggle()
+            } label: {
+                Image(systemName: imageName)
+                    .foregroundColor(.white)
+            }
 
             ZStack(alignment: .leading) {
                 if text.isEmpty {
