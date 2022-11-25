@@ -48,7 +48,7 @@
 		0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE4E29017E4200E12B09 /* TokenRefresherFake.swift */; };
 		0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
-		0F2A26AE2930D44A00387A1C /* UpdateAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AD2930D44A00387A1C /* UpdateAccountService.swift */; };
+		0F2A26AE2930D44A00387A1C /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AD2930D44A00387A1C /* AccountService.swift */; };
 		0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CAF28453E85004D0EF7 /* SearchView.swift */; };
 		0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */; };
 		0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */; };
@@ -262,7 +262,7 @@
 		0F1FDE4E29017E4200E12B09 /* TokenRefresherFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefresherFake.swift; sourceTree = "<group>"; };
 		0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedURLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
-		0F2A26AD2930D44A00387A1C /* UpdateAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountService.swift; sourceTree = "<group>"; };
+		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2B4CAF28453E85004D0EF7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRestaurantsView.swift; sourceTree = "<group>"; };
 		0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
@@ -787,7 +787,7 @@
 				0FB0E10D291F7D380058ABCB /* SignUpService.swift */,
 				0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */,
 				0F73ECB4292FD9150025B237 /* LogoutService.swift */,
-				0F2A26AD2930D44A00387A1C /* UpdateAccountService.swift */,
+				0F2A26AD2930D44A00387A1C /* AccountService.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1662,7 +1662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F447CC128FB06C90026C5DB /* URLSessionProtocol.swift in Sources */,
-				0F2A26AE2930D44A00387A1C /* UpdateAccountService.swift in Sources */,
+				0F2A26AE2930D44A00387A1C /* AccountService.swift in Sources */,
 				0FB0E10E291F7D380058ABCB /* SignUpService.swift in Sources */,
 				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */,

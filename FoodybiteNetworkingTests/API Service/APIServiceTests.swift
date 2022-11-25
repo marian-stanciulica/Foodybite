@@ -156,11 +156,11 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(sender.requests, [urlRequest])
     }
     
-    // MARK: - UpdateAccountService Tests
+    // MARK: - AccountService Tests
     
     func test_conformsToUpdateAccountService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as UpdateAccountService)
+        XCTAssertNotNil(sut as AccountService)
     }
     
     func test_updateAccount_paramsUsedToCreateEndpoint() async throws {

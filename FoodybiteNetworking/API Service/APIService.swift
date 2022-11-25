@@ -58,7 +58,7 @@ extension APIService: LogoutService {
     }
 }
 
-extension APIService: UpdateAccountService {
+extension APIService: AccountService {
     public func updateAccount(name: String, email: String, profileImage: Data?) async throws {
         let updateAccountRequest = UpdateAccountRequest(name: name, email: email, profileImage: profileImage)
         let endpoint = ServerEndpoint.updateAccount(updateAccountRequest)
