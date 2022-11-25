@@ -21,6 +21,7 @@ public final class EditProfileViewModel {
     }
     
     public var name = ""
+    public var email = ""
     @Published public var result: Result = .notTriggered
 
     public init() {}
@@ -28,8 +29,10 @@ public final class EditProfileViewModel {
     public func updateAccount() async {
         if name.isEmpty {
             result = .failure(.emptyName)
-        } else {
+        } else if email.isEmpty {
             result = .failure(.emptyEmail)
+        } else {
+            result = .failure(.invalidEmail)
         }
     }
     

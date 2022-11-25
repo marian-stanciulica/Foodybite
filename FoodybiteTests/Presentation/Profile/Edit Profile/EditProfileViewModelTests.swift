@@ -23,6 +23,15 @@ final class EditProfileViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyEmail))
     }
     
+    func test_updateAccount_triggerInvalidFormatErrorOnInvalidEmail() async {
+        let sut = makeSUT()
+        sut.name = validName()
+        sut.email = invalidEmail()
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.invalidEmail))
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeSUT() -> EditProfileViewModel {
@@ -45,6 +54,10 @@ final class EditProfileViewModelTests: XCTestCase {
     
     private func validName() -> String {
         "any name"
+    }
+    
+    private func invalidEmail() -> String {
+        "invalid email"
     }
 
 }
