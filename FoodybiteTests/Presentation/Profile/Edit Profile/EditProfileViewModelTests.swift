@@ -48,6 +48,17 @@ final class EditProfileViewModelTests: XCTestCase {
         XCTAssertEqual(accountServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
     }
     
+    func test_updateAccount_throwsErrorWhenAccountServiceThrowsError() async {
+        let (sut, signUpServiceSpy) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        
+        let expectedError = anyNSError()
+        signUpServiceSpy.errorToThrow = expectedError
+        
+        await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
+    }
+    
     
     // MARK: - Helpers
     
@@ -81,6 +92,10 @@ final class EditProfileViewModelTests: XCTestCase {
     
     private func validEmail() -> String {
         "test@test.com"
+    }
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 1)
     }
     
     private class AccountServiceSpy: AccountService {

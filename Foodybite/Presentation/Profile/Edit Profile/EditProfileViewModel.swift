@@ -13,6 +13,7 @@ public final class EditProfileViewModel {
         case emptyName = "Empty name"
         case emptyEmail = "Empty email"
         case invalidEmail = "Invalid email"
+        case serverError = "Server error"
     }
     
     public enum Result: Equatable {
@@ -43,7 +44,7 @@ public final class EditProfileViewModel {
             do {
                 try await accountService.updateAccount(name: name, email: email, profileImage: profileImage)
             } catch {
-                
+                result = .failure(.serverError)
             }
         }
     }
