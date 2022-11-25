@@ -20,6 +20,12 @@ final class ProfileViewModelTests: XCTestCase {
         await assertDeleteAccount(on: sut, withExpectedResult: .failure(.serverError))
     }
     
+    func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
+        let (sut, _) = makeSUT()
+        
+        await assertDeleteAccount(on: sut, withExpectedResult: .success)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: ProfileViewModel, accountServiceSpy: AccountServiceSpy) {

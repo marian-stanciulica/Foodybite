@@ -27,7 +27,12 @@ public final class ProfileViewModel {
     }
     
     public func deleteAccount() async {
-        await updateResult(.failure(.serverError))
+        do {
+            try await accountService.deleteAccount()
+            await updateResult(.success)
+        } catch {
+            await updateResult(.failure(.serverError))
+        }
     }
     
     @MainActor private func updateResult(_ newValue: Result) {
