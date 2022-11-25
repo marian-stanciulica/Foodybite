@@ -7,35 +7,54 @@
 
 import XCTest
 import Foodybite
+import FoodybiteNetworking
 
 final class EditProfileViewModelTests: XCTestCase {
 
     func test_updateAccount_triggerEmptyNameErrorOnEmptyNameTextField() async {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyName))
     }
     
     func test_updateAccount_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         sut.name = validName()
         
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyEmail))
     }
     
     func test_updateAccount_triggerInvalidFormatErrorOnInvalidEmail() async {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = invalidEmail()
         
         await assertRegister(on: sut, withExpectedResult: .failure(.invalidEmail))
     }
     
+    func test_updateAccount_sendsValidInputsToAccountService() async {
+        let (sut, accountServiceSpy) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        
+        await sut.updateAccount()
+        
+        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.name), [validName()])
+        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.email), [validEmail()])
+        
+        await sut.updateAccount()
+        
+        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.name), [validName(), validName()])
+        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
+    }
+    
     
     // MARK: - Helpers
     
-    private func makeSUT() -> EditProfileViewModel {
-        return EditProfileViewModel()
+    private func makeSUT() -> (sut: EditProfileViewModel, accountServiceSpy: AccountServiceSpy) {
+        let accountServiceSpy = AccountServiceSpy()
+        let sut = EditProfileViewModel(accountService: accountServiceSpy)
+        return (sut, accountServiceSpy)
     }
     
     private func assertRegister(on sut: EditProfileViewModel,
@@ -58,6 +77,27 @@ final class EditProfileViewModelTests: XCTestCase {
     
     private func invalidEmail() -> String {
         "invalid email"
+    }
+    
+    private func validEmail() -> String {
+        "test@test.com"
+    }
+    
+    private class AccountServiceSpy: AccountService {
+        var errorToThrow: Error?
+        private(set) var capturedValues = [(name: String, email: String, profileImage: Data?)]()
+        
+        func updateAccount(name: String, email: String, profileImage: Data?) async throws {
+            capturedValues.append((name, email, profileImage))
+            
+            if let errorToThrow = errorToThrow {
+                throw errorToThrow
+            }
+        }
+        
+        func deleteAccount() async throws {
+            
+        }
     }
 
 }
