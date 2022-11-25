@@ -59,6 +59,14 @@ final class EditProfileViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
     }
     
+    func test_updateAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
+        let (sut, _) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        
+        await assertRegister(on: sut, withExpectedResult: .success)
+    }
+    
     
     // MARK: - Helpers
     

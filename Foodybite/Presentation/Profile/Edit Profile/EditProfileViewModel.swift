@@ -43,6 +43,7 @@ public final class EditProfileViewModel {
         } else {
             do {
                 try await accountService.updateAccount(name: name, email: email, profileImage: profileImage)
+                result = .success
             } catch {
                 result = .failure(.serverError)
             }
