@@ -27,11 +27,11 @@ struct ProfileImage: View {
                     } else {
                         Circle()
                             .fill(backgroundColor.opacity(0.25))
+                        
+                        Image(systemName: "person")
+                            .font(.system(size: 50))
+                            .foregroundColor(.white)
                     }
-                    
-                    Image(systemName: "person")
-                        .font(.system(size: 50))
-                        .foregroundColor(.white)
                 }
                 
                 Image(systemName: "arrow.up")

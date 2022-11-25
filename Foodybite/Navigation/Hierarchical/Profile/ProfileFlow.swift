@@ -11,6 +11,7 @@ final public class ProfileFlow: ObservableObject {
     public enum Route: Hashable, CaseIterable {
         case settings
         case changePassword
+        case editProfile
     }
     
     @Published public var path = [Route]()

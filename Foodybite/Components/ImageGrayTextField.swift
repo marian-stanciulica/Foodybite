@@ -25,15 +25,17 @@ struct ImageGrayTextField: View {
             ZStack(alignment: .leading) {
                 if text.isEmpty {
                     Text(placeholder)
+                        .foregroundColor(.gray)
                 }
                 
                 if secure {
                     SecureField("", text: $text)
+                        .foregroundColor(.black)
                 } else {
                     TextField("", text: $text)
+                        .foregroundColor(.black)
                 }
             }
-            .foregroundColor(.gray)
         }
         .padding()
         .overlay(

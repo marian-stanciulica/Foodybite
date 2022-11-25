@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     let goToSettings: () -> Void
+    let goToEditProfile: () -> Void
     @State var editProfileAlertDisplayed = false
 
     var body: some View {
@@ -81,7 +82,7 @@ struct ProfileView: View {
             .navigationTitle("My Profile")
             .navigationBarTitleDisplayMode(.inline)
             .alert("Edit Profile", isPresented: $editProfileAlertDisplayed) {
-                Button("Edit") { }
+                Button("Edit") { goToEditProfile() }
                 Button("Delete", role: .destructive) {}
                 Button("Cancel", role: .cancel) {}
             }
@@ -91,6 +92,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView() {}
+        ProfileView(goToSettings: {}, goToEditProfile: {})
     }
 }

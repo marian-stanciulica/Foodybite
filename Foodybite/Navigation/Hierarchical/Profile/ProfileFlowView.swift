@@ -15,9 +15,10 @@ struct ProfileFlowView: View {
     
     var body: some View {
         NavigationStack(path: $flow.path) {
-            ProfileView {
-                flow.append(.settings)
-            }
+            ProfileView(
+                goToSettings: { flow.append(.settings) },
+                goToEditProfile: { flow.append(.editProfile) }
+            )
             .navigationDestination(for: ProfileFlow.Route.self) { route in
                 switch route {
                 case .settings:
@@ -31,6 +32,8 @@ struct ProfileFlowView: View {
                     }
                 case .changePassword:
                     ChangePasswordView(viewModel: ChangePasswordViewModel(changePasswordService: apiService))
+                case .editProfile:
+                    EditProfileView()
                 }
             }
         }
