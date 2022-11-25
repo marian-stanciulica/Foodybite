@@ -57,3 +57,12 @@ extension APIService: LogoutService {
         try await sender.post(to: urlRequest)
     }
 }
+
+extension APIService: UpdateAccountService {
+    public func updateAccount(name: String, email: String, profileImage: Data?) async throws {
+        let updateAccountRequest = UpdateAccountRequest(name: name, email: email, profileImage: profileImage)
+        let endpoint = ServerEndpoint.updateAccount(updateAccountRequest)
+        let urlRequest = try endpoint.createURLRequest()
+        try await sender.post(to: urlRequest)
+    }
+}

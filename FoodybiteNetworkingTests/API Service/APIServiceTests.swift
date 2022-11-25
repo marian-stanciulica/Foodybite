@@ -156,6 +156,42 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(sender.requests, [urlRequest])
     }
     
+    // MARK: - UpdateAccountService Tests
+    
+    func test_conformsToUpdateAccountService() {
+        let (sut, _, _, _) = makeSUT()
+        XCTAssertNotNil(sut as UpdateAccountService)
+    }
+    
+    func test_updateAccount_paramsUsedToCreateEndpoint() async throws {
+        let name = anyName()
+        let email = anyEmail()
+        let profileImage = anyData()
+        
+        let (sut, _, sender, _) = makeSUT()
+        let changePasswordEndpoint = ServerEndpoint.updateAccount(UpdateAccountRequest(name: name, email: email, profileImage: profileImage))
+        let urlRequest = try changePasswordEndpoint.createURLRequest()
+        
+        try await sut.updateAccount(name: name, email: email, profileImage: profileImage)
+        
+        let firstRequest = sender.requests.first
+        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+    }
+    
+    func test_updateAccount_usesUpdateAccountEndpointToCreateURLRequest() async throws {
+        let name = anyName()
+        let email = anyEmail()
+        let profileImage = anyData()
+        
+        let (sut, _, sender, _) = makeSUT()
+        let changePasswordEndpoint = ServerEndpoint.updateAccount(UpdateAccountRequest(name: name, email: email, profileImage: profileImage))
+        let urlRequest = try changePasswordEndpoint.createURLRequest()
+        
+        try await sut.updateAccount(name: name, email: email, profileImage: profileImage)
+
+        XCTAssertEqual(sender.requests, [urlRequest])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(loginResponse: LoginResponse? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
