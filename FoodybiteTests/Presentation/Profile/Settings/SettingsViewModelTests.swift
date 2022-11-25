@@ -11,15 +11,18 @@ import FoodybiteNetworking
 
 final class SettingsViewModelTests: XCTestCase {
 
-    func test_logout_throwsErrorWhenLogoutServiceThrowsError() async {
-        let (sut, logoutServiceSpy) = makeSUT()
+    func test_logout_callsGoToLoginWhenLogoutServiceThrowsError() async {
+        var goToLoginCalled = false
+        let (sut, logoutServiceSpy) = makeSUT() {
+            goToLoginCalled = true
+        }
         
         let expectedError = anyNSError()
         logoutServiceSpy.errorToThrow = expectedError
         
         await sut.logout()
         
-        XCTAssertEqual(sut.error, .serverError)
+        XCTAssertTrue(goToLoginCalled)
     }
     
     func test_logout_callsGoToLoginWhenLogoutServiceFinishedSuccessfully() async {

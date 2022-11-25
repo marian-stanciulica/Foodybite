@@ -49,6 +49,8 @@
 		0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
 		0F2A26AE2930D44A00387A1C /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AD2930D44A00387A1C /* AccountService.swift */; };
+		0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */; };
+		0F2A26B42930D9FE00387A1C /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */; };
 		0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CAF28453E85004D0EF7 /* SearchView.swift */; };
 		0F2B4CB228453FA1004D0EF7 /* TrendingRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */; };
 		0F2B4CB428454107004D0EF7 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */; };
@@ -263,6 +265,8 @@
 		0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedURLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
+		0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		0F2B4CAF28453E85004D0EF7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F2B4CB128453FA1004D0EF7 /* TrendingRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRestaurantsView.swift; sourceTree = "<group>"; };
 		0F2B4CB328454107004D0EF7 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
@@ -622,6 +626,22 @@
 			path = "Token Service";
 			sourceTree = "<group>";
 		};
+		0F2A26AF2930D90000387A1C /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */,
+			);
+			path = "Edit Profile";
+			sourceTree = "<group>";
+		};
+		0F2A26B22930D9EB00387A1C /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */,
+			);
+			path = "Edit Profile";
+			sourceTree = "<group>";
+		};
 		0F2B4CB728454D87004D0EF7 /* Search Filtering */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +949,7 @@
 		0F73ECB7292FDA7E0025B237 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0F2A26B22930D9EB00387A1C /* Edit Profile */,
 				0F73ECB8292FDA8E0025B237 /* Settings */,
 			);
 			path = Profile;
@@ -946,6 +967,7 @@
 		0F73ECBB292FDADB0025B237 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0F2A26AF2930D90000387A1C /* Edit Profile */,
 				0F73ECBC292FDB0C0025B237 /* Settings */,
 			);
 			path = Profile;
@@ -1726,6 +1748,7 @@
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
+				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
 				0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */,
@@ -1802,6 +1825,7 @@
 				0FB0E113291F86370058ABCB /* RegisterViewModel.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
 				A2C2423728476EE700CB233B /* RatingStar.swift in Sources */,
+				0F2A26B42930D9FE00387A1C /* EditProfileViewModel.swift in Sources */,
 				0F73ECAC292FA1EE0025B237 /* ChangePasswordViewModel.swift in Sources */,
 				A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */,
 				0F73ECB1292FAEA00025B237 /* ChangePasswordValidator.swift in Sources */,
