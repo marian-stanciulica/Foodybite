@@ -65,4 +65,10 @@ extension APIService: UpdateAccountService {
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
+    
+    public func deleteAccount() async throws {
+        let endpoint = ServerEndpoint.deleteAccount
+        let urlRequest = try endpoint.createURLRequest()
+        try await sender.post(to: urlRequest)
+    }
 }

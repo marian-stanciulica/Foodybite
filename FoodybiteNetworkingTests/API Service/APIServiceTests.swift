@@ -192,6 +192,16 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(sender.requests, [urlRequest])
     }
     
+    func test_deleteAccount_usesDeleteAccountEndpointToCreateURLRequest() async throws {
+        let (sut, _, sender, _) = makeSUT()
+        let logoutEndpoint = ServerEndpoint.deleteAccount
+        let urlRequest = try logoutEndpoint.createURLRequest()
+        
+        try await sut.deleteAccount()
+
+        XCTAssertEqual(sender.requests, [urlRequest])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(loginResponse: LoginResponse? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
