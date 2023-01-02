@@ -92,6 +92,8 @@
 		0F412ED22963168000FDDF41 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED12963168000FDDF41 /* PlaceDetails.swift */; };
 		0F412ED42963173400FDDF41 /* GetPlaceDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */; };
 		0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */; };
+		0F412EDB29631D0100FDDF41 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */; };
+		0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EDC29631FA700FDDF41 /* Helpers.swift */; };
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
@@ -355,6 +357,8 @@
 		0F412ED12963168000FDDF41 /* PlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsService.swift; sourceTree = "<group>"; };
 		0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsResponse.swift; sourceTree = "<group>"; };
+		0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
+		0F412EDC29631FA700FDDF41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
@@ -951,6 +955,14 @@
 			path = "Place Details";
 			sourceTree = "<group>";
 		};
+		0F412ED829631CDA00FDDF41 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		0F415CCC2843CDDA005B54DC /* Review & Ratings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1210,6 +1222,7 @@
 				0F73ECBB292FDADB0025B237 /* Profile */,
 				0FB0E124291FBE3B0058ABCB /* Register */,
 				0FB0E125291FBE790058ABCB /* Login */,
+				0F412ED829631CDA00FDDF41 /* Home */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1227,6 +1240,7 @@
 			isa = PBXGroup;
 			children = (
 				0F73ECAE292FA2810025B237 /* PublisherSpy.swift */,
+				0F412EDC29631FA700FDDF41 /* Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2100,12 +2114,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F412EDB29631D0100FDDF41 /* SearchViewModelTests.swift in Sources */,
 				0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
+				0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
 				0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */,
