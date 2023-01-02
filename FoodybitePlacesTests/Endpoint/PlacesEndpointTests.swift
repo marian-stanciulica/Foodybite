@@ -17,7 +17,9 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     func test_autocomplete_path() {
-        XCTAssertEqual(makeAutocompleteSUT().path, "/autocomplete/json")
+        let input = "input"
+        
+        XCTAssertEqual(makeAutocompleteSUT(input: input).path, "/autocomplete/json?input=\(input)")
     }
     
     func test_autocomplete_methodIsGet() {
@@ -27,8 +29,8 @@ final class PlacesEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeAutocompleteSUT() -> PlacesEndpoint {
-        return PlacesEndpoint.autocomplete
+    private func makeAutocompleteSUT(input: String = "") -> PlacesEndpoint {
+        return PlacesEndpoint.autocomplete(input)
     }
     
 }

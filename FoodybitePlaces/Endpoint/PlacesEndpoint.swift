@@ -8,14 +8,17 @@
 import Foundation
 
 enum PlacesEndpoint: Endpoint {
-    case autocomplete
+    case autocomplete(String)
     
     var host: String {
         "https://maps.googleapis.com/maps/api/place"
     }
     
     var path: String {
-        "/autocomplete/json"
+        switch self {
+        case .autocomplete(let input):
+            return "/autocomplete/json?input=\(input)"
+        }
     }
 
     var method: RequestMethod {

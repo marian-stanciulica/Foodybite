@@ -82,6 +82,11 @@
 		0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */; };
 		0F412EB52962CD9800FDDF41 /* PlacesEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */; };
 		0F412EB72962CE8000FDDF41 /* PlacesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB62962CE8000FDDF41 /* PlacesEndpoint.swift */; };
+		0F412EBC2962D15100FDDF41 /* PlaceAutocompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EBB2962D15100FDDF41 /* PlaceAutocompleteService.swift */; };
+		0F412EBF2962D1F800FDDF41 /* AutocompletePrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EBE2962D1F800FDDF41 /* AutocompletePrediction.swift */; };
+		0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC02962D24400FDDF41 /* APIServiceTests.swift */; };
+		0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* APIService.swift */; };
+		0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */; };
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
@@ -328,6 +333,11 @@
 		0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesEndpointTests.swift; sourceTree = "<group>"; };
 		0F412EB62962CE8000FDDF41 /* PlacesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesEndpoint.swift; sourceTree = "<group>"; };
+		0F412EBB2962D15100FDDF41 /* PlaceAutocompleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAutocompleteService.swift; sourceTree = "<group>"; };
+		0F412EBE2962D1F800FDDF41 /* AutocompletePrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePrediction.swift; sourceTree = "<group>"; };
+		0F412EC02962D24400FDDF41 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		0F412EC22962D3D100FDDF41 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
@@ -741,10 +751,12 @@
 			isa = PBXGroup;
 			children = (
 				0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */,
+				0F412EBD2962D1C300FDDF41 /* Models */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
 				0F412EAA2962CBD500FDDF41 /* Data Parser */,
 				0F412E942962C9CA00FDDF41 /* HTTP Client */,
 				0F412EA52962CB7B00FDDF41 /* Remote Loader */,
+				0F412EB92962D0CA00FDDF41 /* API Service */,
 			);
 			path = FoodybitePlaces;
 			sourceTree = "<group>";
@@ -756,6 +768,7 @@
 				0F412EB32962CD7A00FDDF41 /* Endpoint */,
 				0F412E8B2962C84700FDDF41 /* HTTP Client */,
 				0F412EA22962CB3500FDDF41 /* Remote Loader */,
+				0F412EB82962D0A300FDDF41 /* API Service */,
 			);
 			path = FoodybitePlacesTests;
 			sourceTree = "<group>";
@@ -848,6 +861,48 @@
 				0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */,
 			);
 			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		0F412EB82962D0A300FDDF41 /* API Service */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EC42962D40800FDDF41 /* Helpers */,
+				0F412EC02962D24400FDDF41 /* APIServiceTests.swift */,
+			);
+			path = "API Service";
+			sourceTree = "<group>";
+		};
+		0F412EB92962D0CA00FDDF41 /* API Service */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EBA2962D13700FDDF41 /* Protocols */,
+				0F412EC22962D3D100FDDF41 /* APIService.swift */,
+			);
+			path = "API Service";
+			sourceTree = "<group>";
+		};
+		0F412EBA2962D13700FDDF41 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EBB2962D15100FDDF41 /* PlaceAutocompleteService.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0F412EBD2962D1C300FDDF41 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EBE2962D1F800FDDF41 /* AutocompletePrediction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0F412EC42962D40800FDDF41 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0F415CCC2843CDDA005B54DC /* Review & Ratings */ = {
@@ -2024,14 +2079,17 @@
 			files = (
 				0F412E9A2962CA0D00FDDF41 /* URLSessionProtocol.swift in Sources */,
 				0F412E962962C9DD00FDDF41 /* HTTPClient.swift in Sources */,
+				0F412EBF2962D1F800FDDF41 /* AutocompletePrediction.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* PlacesEndpoint.swift in Sources */,
 				0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
 				0F412EAC2962CBEB00FDDF41 /* CodableDataParser.swift in Sources */,
 				0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */,
 				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
+				0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */,
 				0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */,
 				0F412E982962C9F900FDDF41 /* URLSessionHTTPClient.swift in Sources */,
+				0F412EBC2962D15100FDDF41 /* PlaceAutocompleteService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2042,9 +2100,11 @@
 				0F412EB52962CD9800FDDF41 /* PlacesEndpointTests.swift in Sources */,
 				0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */,
 				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
+				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
 				0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */,
 				0F412E8E2962C89A00FDDF41 /* URLSessionSpy.swift in Sources */,
 				0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */,
+				0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */,
 				0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */,
 				0F412E932962C97300FDDF41 /* Helpers.swift in Sources */,
 			);
