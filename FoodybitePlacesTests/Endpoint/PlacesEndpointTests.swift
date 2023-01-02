@@ -17,9 +17,19 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     func test_autocomplete_path() {
+        XCTAssertEqual(makeAutocompleteSUT().path, "/autocomplete/json")
+    }
+    
+    func test_autocomplete_queryItems() throws {
         let input = "input"
+        let sut = makeAutocompleteSUT(input: input)
+        let urlRequest = try sut.createURLRequest()
         
-        XCTAssertEqual(makeAutocompleteSUT(input: input).path, "/autocomplete/json?input=\(input)")
+        guard let url = urlRequest.url,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "input" })?.value, input)
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
     
     func test_autocomplete_methodIsGet() {

@@ -16,16 +16,22 @@ enum PlacesEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .autocomplete(let input):
-            return "/autocomplete/json?input=\(input)"
+        case .autocomplete:
+            return "/autocomplete/json"
         }
     }
-
+    
     var method: RequestMethod {
         .get
     }
     
-    var body: Codable? {
-        nil
+    var queryItems: [URLQueryItem]? {
+        switch self {
+        case .autocomplete(let input):
+            return [
+                URLQueryItem(name: "key", value: apiKey),
+                URLQueryItem(name: "input", value: input)
+            ]
+        }
     }
 }

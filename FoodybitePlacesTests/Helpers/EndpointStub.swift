@@ -23,11 +23,7 @@ enum EndpointStub: Endpoint {
         .get
     }
     
-    var headers: [String : String] {
-        [:]
-    }
-    
-    var body: Codable? {
+    var queryItems: [URLQueryItem]? {
         nil
     }
 }

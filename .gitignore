@@ -88,3 +88,6 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Google Places configuration file
+FoodybitePlaces/GooglePlaces-Info.plist
