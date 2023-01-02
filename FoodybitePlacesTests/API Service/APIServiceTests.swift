@@ -13,14 +13,14 @@ final class APIServiceTests: XCTestCase {
     // MARK: - PlaceAutocompleteService Tests
     
     func test_conformsToPlaceAutocompleteService() {
-        let (sut, _) = makeSUT()
+        let (sut, _) = makeSUT(response: anyAutocompleteResponse())
         XCTAssertNotNil(sut as PlaceAutocompleteService)
     }
     
     func test_autocomplete_autocompleteParamsUsedToCreateEndpoint() async throws {
-        let input = anyString()
+        let input = randomString()
         
-        let (sut, loader) = makeSUT()
+        let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
         let autocompleteEndpoint = PlacesEndpoint.autocomplete(input)
         let urlRequest = try autocompleteEndpoint.createURLRequest()
         
@@ -31,9 +31,9 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {
-        let input = anyString()
+        let input = randomString()
         
-        let (sut, loader) = makeSUT()
+        let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
         let autocompleteEndpoint = PlacesEndpoint.autocomplete(input)
         let urlRequest = try autocompleteEndpoint.createURLRequest()
         
@@ -46,22 +46,58 @@ final class APIServiceTests: XCTestCase {
         let expectedResponse = anyAutocompleteResponse()
         let (sut, _) = makeSUT(response: expectedResponse)
         
-        let receivedResponse = try await sut.autocomplete(input: anyString())
+        let receivedResponse = try await sut.autocomplete(input: randomString())
         
         XCTAssertEqual(expectedResponse.predictions, receivedResponse)
     }
     
+    // MARK: - GetPlaceDetails Tests
+    
+    func test_conformsToGetPlaceDetailsService() {
+        let (sut, _) = makeSUT(response: anyPlaceDetails())
+        XCTAssertNotNil(sut as GetPlaceDetailsService)
+    }
+    
+    func test_getPlaceDetails_getPlaceDetailsParamsUsedToCreateEndpoint() async throws {
+        let placeID = randomString()
+        
+        let (sut, loader) = makeSUT(response: anyPlaceDetails())
+        let getPlaceDetailsEndpoint = PlacesEndpoint.getPlaceDetails(placeID)
+        let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
+        
+        _ = try await sut.getPlaceDetails(placeID: placeID)
+        
+        let firstRequest = loader.requests.first
+        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+    }
+    
+    func test_getPlaceDetails_usesGetPlaceDetailsEndpointToCreateURLRequest() async throws {
+        let placeID = randomString()
+
+        let (sut, loader) = makeSUT(response: anyPlaceDetails())
+        let getPlaceDetailsEndpoint = PlacesEndpoint.getPlaceDetails(placeID)
+        let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
+        
+        _ = try await sut.getPlaceDetails(placeID: placeID)
+        
+        XCTAssertEqual(loader.requests, [urlRequest])
+    }
+    
+    func test_getPlaceDetails_receiveExpectedPlaceDetailsResponse() async throws {
+        let expectedResponse = anyPlaceDetails()
+        let (sut, _) = makeSUT(response: expectedResponse)
+        
+        let receivedResponse = try await sut.getPlaceDetails(placeID: randomString())
+        
+        XCTAssertEqual(expectedResponse, receivedResponse)
+    }
     
     // MARK: - Helpers
     
-    private func makeSUT(response: Decodable? = nil) -> (sut: APIService, loader: ResourceLoaderSpy) {
-        let loader = ResourceLoaderSpy(response: response ?? anyAutocompleteResponse())
+    private func makeSUT(response: Decodable) -> (sut: APIService, loader: ResourceLoaderSpy) {
+        let loader = ResourceLoaderSpy(response: response)
         let sut = APIService(loader: loader)
         return (sut, loader)
-    }
-    
-    private func anyString() -> String {
-        "any string"
     }
     
     private func anyAutocompleteResponse() -> AutocompleteResponse {
@@ -69,5 +105,9 @@ final class APIServiceTests: XCTestCase {
             AutocompletePrediction(placeID: "place 1", placeName: "place 1 name"),
             AutocompletePrediction(placeID: "place 2", placeName: "place 2 name")
         ])
+    }
+    
+    private func anyPlaceDetails() -> PlaceDetails {
+        PlaceDetails(name: "Test Restaurant")
     }
 }

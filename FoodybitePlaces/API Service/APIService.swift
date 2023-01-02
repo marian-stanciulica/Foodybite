@@ -23,3 +23,11 @@ extension APIService: PlaceAutocompleteService {
         return response.predictions
     }
 }
+
+extension APIService: GetPlaceDetailsService {
+    func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+        let endpoint = PlacesEndpoint.getPlaceDetails(placeID)
+        let request = try endpoint.createURLRequest()
+        return try await loader.get(for: request)
+    }
+}
