@@ -13,26 +13,26 @@ struct SearchView: View {
     
     var body: some View {
         HStack {
-            HStack {
-                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(Color.gray)
-                 TextField("Find Restaurants", text: $searchText)
-                    .foregroundColor(.gray)
-                Spacer()
-                
-                Button {
-                    isSearchCriteriaPresented = true
-                } label: {
-                    Image("filters_icon")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                }
-                .fullScreenCover(isPresented: $isSearchCriteriaPresented) {
-                    SearchCriteriaView()
-                }
-             }
-            .padding()
-        }
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(Color.gray)
+            
+            TextField("Find Restaurants", text: $searchText)
+                .foregroundColor(.gray)
+            
+            Spacer()
+            
+            Button {
+                isSearchCriteriaPresented = true
+            } label: {
+                Image("filters_icon")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+            }
+            .fullScreenCover(isPresented: $isSearchCriteriaPresented) {
+                SearchCriteriaView()
+            }
+         }
+        .padding()
         .foregroundColor(.white)
         .overlay(
              RoundedRectangle(cornerRadius: 16)
@@ -44,6 +44,9 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: .constant(""))
+        VStack {
+            SearchView(searchText: .constant(""))
+            Spacer()
+        }
     }
 }
