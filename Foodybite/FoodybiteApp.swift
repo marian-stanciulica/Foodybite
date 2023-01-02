@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FoodybiteNetworking
+import FoodybitePlaces
 
 @main
 struct FoodybiteApp: App {
