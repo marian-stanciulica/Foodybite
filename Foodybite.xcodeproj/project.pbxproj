@@ -63,8 +63,17 @@
 		0F2B4CC428455577004D0EF7 /* RadiusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CC328455577004D0EF7 /* RadiusIndicatorView.swift */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
 		0F412E7E2962C78E00FDDF41 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
-		0F412E832962C78E00FDDF41 /* FoodybitePlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E822962C78E00FDDF41 /* FoodybitePlacesTests.swift */; };
+		0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E822962C78E00FDDF41 /* URLSessionHTTPClientTests.swift */; };
 		0F412E842962C78E00FDDF41 /* FoodybitePlaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F412E8E2962C89A00FDDF41 /* URLSessionSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E8D2962C89A00FDDF41 /* URLSessionSpy.swift */; };
+		0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E902962C91500FDDF41 /* EndpointStub.swift */; };
+		0F412E932962C97300FDDF41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E922962C97300FDDF41 /* Helpers.swift */; };
+		0F412E962962C9DD00FDDF41 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E952962C9DD00FDDF41 /* HTTPClient.swift */; };
+		0F412E982962C9F900FDDF41 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E972962C9F900FDDF41 /* URLSessionHTTPClient.swift */; };
+		0F412E9A2962CA0D00FDDF41 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E992962CA0D00FDDF41 /* URLSessionProtocol.swift */; };
+		0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E9C2962CA4900FDDF41 /* Endpoint.swift */; };
+		0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E9E2962CA6F00FDDF41 /* RequestMethod.swift */; };
+		0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA02962CA9100FDDF41 /* NetworkError.swift */; };
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
@@ -293,7 +302,16 @@
 		0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePlaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodybitePlaces.h; sourceTree = "<group>"; };
 		0F412E7D2962C78E00FDDF41 /* FoodybitePlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePlacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F412E822962C78E00FDDF41 /* FoodybitePlacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybitePlacesTests.swift; sourceTree = "<group>"; };
+		0F412E822962C78E00FDDF41 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		0F412E8D2962C89A00FDDF41 /* URLSessionSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionSpy.swift; sourceTree = "<group>"; };
+		0F412E902962C91500FDDF41 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
+		0F412E922962C97300FDDF41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		0F412E952962C9DD00FDDF41 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		0F412E972962C9F900FDDF41 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		0F412E992962CA0D00FDDF41 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		0F412E9C2962CA4900FDDF41 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0F412E9E2962CA6F00FDDF41 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		0F412EA02962CA9100FDDF41 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
@@ -707,6 +725,8 @@
 			isa = PBXGroup;
 			children = (
 				0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */,
+				0F412E9B2962CA3700FDDF41 /* Endpoint */,
+				0F412E942962C9CA00FDDF41 /* HTTP Client */,
 			);
 			path = FoodybitePlaces;
 			sourceTree = "<group>";
@@ -714,9 +734,56 @@
 		0F412E812962C78E00FDDF41 /* FoodybitePlacesTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F412E822962C78E00FDDF41 /* FoodybitePlacesTests.swift */,
+				0F412E8F2962C8F000FDDF41 /* Helpers */,
+				0F412E8B2962C84700FDDF41 /* HTTP Client */,
 			);
 			path = FoodybitePlacesTests;
+			sourceTree = "<group>";
+		};
+		0F412E8B2962C84700FDDF41 /* HTTP Client */ = {
+			isa = PBXGroup;
+			children = (
+				0F412E8C2962C88A00FDDF41 /* Helpers */,
+				0F412E822962C78E00FDDF41 /* URLSessionHTTPClientTests.swift */,
+			);
+			path = "HTTP Client";
+			sourceTree = "<group>";
+		};
+		0F412E8C2962C88A00FDDF41 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F412E8D2962C89A00FDDF41 /* URLSessionSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F412E8F2962C8F000FDDF41 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F412E922962C97300FDDF41 /* Helpers.swift */,
+				0F412E902962C91500FDDF41 /* EndpointStub.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F412E942962C9CA00FDDF41 /* HTTP Client */ = {
+			isa = PBXGroup;
+			children = (
+				0F412E952962C9DD00FDDF41 /* HTTPClient.swift */,
+				0F412E972962C9F900FDDF41 /* URLSessionHTTPClient.swift */,
+				0F412E992962CA0D00FDDF41 /* URLSessionProtocol.swift */,
+			);
+			path = "HTTP Client";
+			sourceTree = "<group>";
+		};
+		0F412E9B2962CA3700FDDF41 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				0F412E9C2962CA4900FDDF41 /* Endpoint.swift */,
+				0F412E9E2962CA6F00FDDF41 /* RequestMethod.swift */,
+				0F412EA02962CA9100FDDF41 /* NetworkError.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 		0F415CCC2843CDDA005B54DC /* Review & Ratings */ = {
@@ -1624,6 +1691,7 @@
 					};
 					0F412E752962C78D00FDDF41 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					0F412E7C2962C78E00FDDF41 = {
 						CreatedOnToolsVersion = 14.2;
@@ -1890,6 +1958,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F412E9A2962CA0D00FDDF41 /* URLSessionProtocol.swift in Sources */,
+				0F412E962962C9DD00FDDF41 /* HTTPClient.swift in Sources */,
+				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
+				0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */,
+				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
+				0F412E982962C9F900FDDF41 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1897,7 +1971,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F412E832962C78E00FDDF41 /* FoodybitePlacesTests.swift in Sources */,
+				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
+				0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */,
+				0F412E8E2962C89A00FDDF41 /* URLSessionSpy.swift in Sources */,
+				0F412E932962C97300FDDF41 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2313,6 +2390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2336,6 +2414,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2346,6 +2425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2378,6 +2458,7 @@
 		0F412E872962C78E00FDDF41 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2396,6 +2477,7 @@
 		0F412E882962C78E00FDDF41 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
