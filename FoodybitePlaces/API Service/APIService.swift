@@ -19,6 +19,7 @@ extension APIService: PlaceAutocompleteService {
     public func autocomplete(input: String) async throws -> [AutocompletePrediction] {
         let endpoint = PlacesEndpoint.autocomplete(input)
         let request = try endpoint.createURLRequest()
-        return try await loader.get(for: request)
+        let response: AutocompleteResponse = try await loader.get(for: request)
+        return response.predictions
     }
 }

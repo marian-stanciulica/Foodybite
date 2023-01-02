@@ -88,6 +88,7 @@
 		0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* APIService.swift */; };
 		0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */; };
 		0F412ECA2962EEB200FDDF41 /* GooglePlaces-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */; };
+		0F412ECD2962F81C00FDDF41 /* AutocompleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ECC2962F81C00FDDF41 /* AutocompleteResponse.swift */; };
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
@@ -340,6 +341,7 @@
 		0F412EC22962D3D100FDDF41 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GooglePlaces-Info.plist"; sourceTree = "<group>"; };
+		0F412ECC2962F81C00FDDF41 /* AutocompleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteResponse.swift; sourceTree = "<group>"; };
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */,
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
 				0F412EBD2962D1C300FDDF41 /* Models */,
+				0F412ECE2962F85800FDDF41 /* Response Models */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
 				0F412EAA2962CBD500FDDF41 /* Data Parser */,
 				0F412E942962C9CA00FDDF41 /* HTTP Client */,
@@ -906,6 +909,22 @@
 				0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F412ECB2962F7A600FDDF41 /* Autocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				0F412ECC2962F81C00FDDF41 /* AutocompleteResponse.swift */,
+			);
+			path = Autocomplete;
+			sourceTree = "<group>";
+		};
+		0F412ECE2962F85800FDDF41 /* Response Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F412ECB2962F7A600FDDF41 /* Autocomplete */,
+			);
+			path = "Response Models";
 			sourceTree = "<group>";
 		};
 		0F415CCC2843CDDA005B54DC /* Review & Ratings */ = {
@@ -2091,6 +2110,7 @@
 				0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */,
 				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
 				0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */,
+				0F412ECD2962F81C00FDDF41 /* AutocompleteResponse.swift in Sources */,
 				0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */,
 				0F412E982962C9F900FDDF41 /* URLSessionHTTPClient.swift in Sources */,
 				0F412EBC2962D15100FDDF41 /* PlaceAutocompleteService.swift in Sources */,

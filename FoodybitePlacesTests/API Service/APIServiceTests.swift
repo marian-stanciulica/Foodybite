@@ -48,7 +48,7 @@ final class APIServiceTests: XCTestCase {
         
         let receivedResponse = try await sut.autocomplete(input: anyString())
         
-        XCTAssertEqual(expectedResponse, receivedResponse)
+        XCTAssertEqual(expectedResponse.predictions, receivedResponse)
     }
     
     
@@ -64,10 +64,10 @@ final class APIServiceTests: XCTestCase {
         "any string"
     }
     
-    private func anyAutocompleteResponse() -> [AutocompletePrediction] {
-        [
+    private func anyAutocompleteResponse() -> AutocompleteResponse {
+        AutocompleteResponse(predictions: [
             AutocompletePrediction(placeID: "place 1", placeName: "place 1 name"),
             AutocompletePrediction(placeID: "place 2", placeName: "place 2 name")
-        ]
+        ])
     }
 }
