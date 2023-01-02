@@ -11,30 +11,37 @@ import FoodybitePlaces
 
 class SearchViewModel {
     let service: PlaceAutocompleteService
+    var searchResults = [AutocompletePrediction]()
     
     init(service: PlaceAutocompleteService) {
         self.service = service
     }
     
-    func autocomplete(input: String) async -> [AutocompletePrediction] {
+    func autocomplete(input: String) async {
         do {
-            return try await service.autocomplete(input: input)
+            searchResults = try await service.autocomplete(input: input)
         } catch {
-            return []
+            searchResults = []
         }
     }
 }
 
 final class SearchViewModelTests: XCTestCase {
     
+    func test_searchResultsEmptyAfterInit() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertTrue(sut.searchResults.isEmpty)
+    }
+    
     func test_autocomplete_returnsEmptyResultWhenAutocompleteServiceThrowsError() async {
         let (sut, autocompleteSpy) = makeSUT()
         let anyNSError = anyNSError()
         
         autocompleteSpy.result = .failure(anyNSError)
-        let response = await sut.autocomplete(input: randomString())
+        await sut.autocomplete(input: randomString())
         
-        XCTAssertTrue(response.isEmpty)
+        XCTAssertTrue(sut.searchResults.isEmpty)
     }
     
     func test_autocomplete_returnsNonEmptyResultWhenAutocompleteServiceReturnsSuccessfully() async {
@@ -42,9 +49,9 @@ final class SearchViewModelTests: XCTestCase {
         let expectedResult = anyAutocompletePredictions()
         
         autocompleteSpy.result = .success(expectedResult)
-        let receivedResult = await sut.autocomplete(input: randomString())
+        await sut.autocomplete(input: randomString())
         
-        XCTAssertEqual(expectedResult, receivedResult)
+        XCTAssertEqual(expectedResult, sut.searchResults)
     }
     
     // MARK: Helpers
