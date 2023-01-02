@@ -7,10 +7,10 @@
 
 import FoodybitePlaces
 
-public class SearchViewModel {
+public class SearchViewModel: ObservableObject {
     private let service: PlaceAutocompleteService
     
-    public var searchResults = [AutocompletePrediction]()
+    @Published public var searchResults = [AutocompletePrediction]()
     
     public init(service: PlaceAutocompleteService) {
         self.service = service

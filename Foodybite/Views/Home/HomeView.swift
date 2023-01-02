@@ -14,7 +14,7 @@ struct HomeView: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack {
-                    SearchView(searchText: $searchText)
+//                    SearchView(searchText: $searchText)
                     
                     TrendingRestaurantsView(widthCell: proxy.size.width - 64)
 

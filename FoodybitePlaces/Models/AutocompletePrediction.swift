@@ -5,9 +5,10 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct AutocompletePrediction: Decodable, Equatable {
+public struct AutocompletePrediction: Identifiable, Decodable, Equatable {
+    public let id = UUID()
     let placeID: String
-    let placeName: String
+    public let placeName: String
 
     enum CodingKeys: String, CodingKey {
         case placeID = "place_id"
