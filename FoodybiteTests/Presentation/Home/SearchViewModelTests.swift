@@ -9,23 +9,6 @@ import XCTest
 import Foodybite
 import FoodybitePlaces
 
-class SearchViewModel {
-    let service: PlaceAutocompleteService
-    var searchResults = [AutocompletePrediction]()
-    
-    init(service: PlaceAutocompleteService) {
-        self.service = service
-    }
-    
-    func autocomplete(input: String) async {
-        do {
-            searchResults = try await service.autocomplete(input: input)
-        } catch {
-            searchResults = []
-        }
-    }
-}
-
 final class SearchViewModelTests: XCTestCase {
     
     func test_searchResultsEmptyAfterInit() {
