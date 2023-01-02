@@ -32,9 +32,19 @@ final class SearchViewModelTests: XCTestCase {
         let anyNSError = anyNSError()
         
         autocompleteSpy.result = .failure(anyNSError)
-        
         let response = await sut.autocomplete(input: randomString())
+        
         XCTAssertTrue(response.isEmpty)
+    }
+    
+    func test_autocomplete_returnsNonEmptyResultWhenAutocompleteServiceReturnsSuccessfully() async {
+        let (sut, autocompleteSpy) = makeSUT()
+        let expectedResult = anyAutocompletePredictions()
+        
+        autocompleteSpy.result = .success(expectedResult)
+        let receivedResult = await sut.autocomplete(input: randomString())
+        
+        XCTAssertEqual(expectedResult, receivedResult)
     }
     
     // MARK: Helpers
@@ -44,7 +54,14 @@ final class SearchViewModelTests: XCTestCase {
         let sut = SearchViewModel(service: autocompleteService)
         return (sut, autocompleteService)
     }
-                               
+    
+    private func anyAutocompletePredictions() -> [AutocompletePrediction] {
+        [
+            AutocompletePrediction(placeID: randomString(), placeName: randomString()),
+            AutocompletePrediction(placeID: randomString(), placeName: randomString())
+        ]
+    }
+    
     private class PlaceAutocompleteSpy: PlaceAutocompleteService {
         var result: Result<[AutocompletePrediction], Error>?
         
