@@ -36,11 +36,41 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(makeAutocompleteSUT().method, .get)
     }
     
+    // MARK: - Get Place Details
+    
+    func test_getPlaceDetails_baseURL() {
+        XCTAssertEqual(makePlaceDetailsSUT().host, "maps.googleapis.com")
+    }
+    
+    func test_getPlaceDetails_path() {
+        XCTAssertEqual(makePlaceDetailsSUT().path, "/maps/api/place/details/json")
+    }
+    
+    func test_getPlaceDetails_queryItems() throws {
+        let placeID = randomString()
+        let sut = makePlaceDetailsSUT(placeID: placeID)
+        let urlRequest = try sut.createURLRequest()
+        
+        guard let url = urlRequest.url,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "place_id" })?.value, placeID)
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
+    }
+    
+    func test_getPlaceDetails_methodIsGet() {
+        XCTAssertEqual(makePlaceDetailsSUT().method, .get)
+    }
+    
     
     // MARK: - Helpers
     
     private func makeAutocompleteSUT(input: String = "") -> PlacesEndpoint {
         return PlacesEndpoint.autocomplete(input)
+    }
+    
+    private func makePlaceDetailsSUT(placeID: String = "") -> PlacesEndpoint {
+        return PlacesEndpoint.getPlaceDetails(placeID)
     }
     
 }

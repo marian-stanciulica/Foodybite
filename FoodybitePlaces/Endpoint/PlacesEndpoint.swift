@@ -9,6 +9,7 @@ import Foundation
 
 enum PlacesEndpoint: Endpoint {
     case autocomplete(String)
+    case getPlaceDetails(String)
     
     var host: String {
         "maps.googleapis.com"
@@ -18,6 +19,8 @@ enum PlacesEndpoint: Endpoint {
         switch self {
         case .autocomplete:
             return "/maps/api/place/autocomplete/json"
+        case .getPlaceDetails:
+            return "/maps/api/place/details/json"
         }
     }
     
@@ -27,10 +30,15 @@ enum PlacesEndpoint: Endpoint {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case .autocomplete(let input):
+        case let .autocomplete(input):
             return [
                 URLQueryItem(name: "key", value: apiKey),
                 URLQueryItem(name: "input", value: input)
+            ]
+        case let .getPlaceDetails(placeID):
+            return [
+                URLQueryItem(name: "key", value: apiKey),
+                URLQueryItem(name: "place_id", value: placeID)
             ]
         }
     }
