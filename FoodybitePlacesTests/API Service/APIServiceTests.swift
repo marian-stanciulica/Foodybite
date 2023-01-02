@@ -66,8 +66,8 @@ final class APIServiceTests: XCTestCase {
     
     private func anyAutocompleteResponse() -> AutocompleteResponse {
         AutocompleteResponse(predictions: [
-            AutocompletePrediction(placeID: "place 1"),
-            AutocompletePrediction(placeID: "place 2")
+            AutocompletePrediction(placeID: "place 1", placeName: "place 1 name"),
+            AutocompletePrediction(placeID: "place 2", placeName: "place 2 name")
         ])
     }
 }
