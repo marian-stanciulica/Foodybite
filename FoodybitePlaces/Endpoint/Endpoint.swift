@@ -32,9 +32,8 @@ extension Endpoint {
     
     func createURLRequest() throws -> URLRequest {
         var components = URLComponents()
-        components.scheme = "http"
+        components.scheme = "https"
         components.host = host
-        components.port = 8080
         components.path = path
         components.queryItems = queryItems
 

@@ -11,13 +11,13 @@ enum PlacesEndpoint: Endpoint {
     case autocomplete(String)
     
     var host: String {
-        "https://maps.googleapis.com/maps/api/place"
+        "maps.googleapis.com"
     }
     
     var path: String {
         switch self {
         case .autocomplete:
-            return "/autocomplete/json"
+            return "/maps/api/place/autocomplete/json"
         }
     }
     

@@ -7,5 +7,8 @@
 
 public struct AutocompletePrediction: Decodable, Equatable {
     let placeID: String
-    let placeName: String
+
+    enum CodingKeys: String, CodingKey {
+        case placeID = "place_id"
+    }
 }

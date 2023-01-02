@@ -13,11 +13,11 @@ final class PlacesEndpointTests: XCTestCase {
     // MARK: - Autocomplete
     
     func test_autocomplete_baseURL() {
-        XCTAssertEqual(makeAutocompleteSUT().host, "https://maps.googleapis.com/maps/api/place")
+        XCTAssertEqual(makeAutocompleteSUT().host, "maps.googleapis.com")
     }
     
     func test_autocomplete_path() {
-        XCTAssertEqual(makeAutocompleteSUT().path, "/autocomplete/json")
+        XCTAssertEqual(makeAutocompleteSUT().path, "/maps/api/place/autocomplete/json")
     }
     
     func test_autocomplete_queryItems() throws {
