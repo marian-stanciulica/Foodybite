@@ -58,6 +58,18 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         }
     }
     
+    func test_endToEndUpdateAccount_returnsSuccessfully() async {
+        let apiService = makeAuthenticatedSUT()
+        
+        do {
+            try await apiService.updateAccount(name: testingNewName,
+                                               email: testingNewEmail,
+                                               profileImage: testingNewProfileImage)
+        } catch {
+            XCTFail("Expected successful sign up request, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> APIService {
@@ -88,8 +100,16 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         "Testing"
     }
     
+    private var testingNewName: String {
+        "New testing name"
+    }
+    
     private var testingEmail: String {
         "testing@testing.com"
+    }
+    
+    private var testingNewEmail: String {
+        "testing@new.com"
     }
     
     private var testingPassword: String {
@@ -101,7 +121,11 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     private var testingProfileImage: Data? {
-        "any data".data(using: .utf8)
+        "profile image".data(using: .utf8)
+    }
+    
+    private var testingNewProfileImage: Data? {
+        "new profile image".data(using: .utf8)
     }
     
     private var expectedUser: User {
