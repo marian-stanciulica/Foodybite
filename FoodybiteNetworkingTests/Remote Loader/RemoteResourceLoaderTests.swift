@@ -50,17 +50,17 @@ final class RemoteResourceLoaderTests: XCTestCase {
     
     func test_get_throwErrorOnNon2xxStatusCodeResponse() async {
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 150))),
-                     expected: .failure(.invalidData))
+                     expected: .failure(.invalidRequest))
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 199))),
-                     expected: .failure(.invalidData))
+                     expected: .failure(.invalidRequest))
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 300))),
-                     expected: .failure(.invalidData))
+                     expected: .failure(.invalidRequest))
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 301))),
-                     expected: .failure(.invalidData))
+                     expected: .failure(.invalidRequest))
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 400))),
-                     expected: .failure(.invalidData))
+                     expected: .failure(.invalidRequest))
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 500))),
-                     expected: .failure(.invalidData))
+                     expected: .failure(.invalidRequest))
     }
     
     func test_get_throwErrorOn2xxStatusCodeWithInvalidJSON() async {
@@ -116,17 +116,17 @@ final class RemoteResourceLoaderTests: XCTestCase {
     
     func test_post_throwErrorOnNon2xxStatusCodeResponse() async {
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 150))),
-                         expectedError: .invalidData)
+                         expectedError: .invalidRequest)
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 199))),
-                         expectedError: .invalidData)
+                         expectedError: .invalidRequest)
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 300))),
-                         expectedError: .invalidData)
+                         expectedError: .invalidRequest)
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 301))),
-                         expectedError: .invalidData)
+                         expectedError: .invalidRequest)
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 400))),
-                         expectedError: .invalidData)
+                         expectedError: .invalidRequest)
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 500))),
-                         expectedError: .invalidData)
+                         expectedError: .invalidRequest)
     }
     
     

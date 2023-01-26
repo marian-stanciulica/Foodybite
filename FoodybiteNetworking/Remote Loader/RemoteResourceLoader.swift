@@ -13,6 +13,7 @@ public class RemoteResourceLoader: ResourceLoader, ResourceSender {
     
     enum Error: Swift.Error {
         case connectivity
+        case invalidRequest
         case invalidData
     }
     
@@ -26,7 +27,7 @@ public class RemoteResourceLoader: ResourceLoader, ResourceSender {
         }
         
         guard (200..<300).contains(result.response.statusCode) else {
-            throw Error.invalidData
+            throw Error.invalidRequest
         }
         
         guard let decodable: T = try? codableDataParser.decode(data: result.data) else {
@@ -42,7 +43,7 @@ public class RemoteResourceLoader: ResourceLoader, ResourceSender {
         }
         
         guard (200..<300).contains(result.response.statusCode) else {
-            throw Error.invalidData
+            throw Error.invalidRequest
         }
     }
 }
