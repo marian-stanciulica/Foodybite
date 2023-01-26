@@ -48,6 +48,16 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         }
     }
     
+    func test_endToEndLogout_returnsSuccessfully() async {
+        let apiService = makeAuthenticatedSUT()
+        
+        do {
+            try await apiService.logout()
+        } catch {
+            XCTFail("Expected successful sign up request, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> APIService {
