@@ -32,7 +32,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
             let receivedUser = try await apiService.login(email: testingEmail, password: testingPassword)
             XCTAssertTrue(receivedUser.isEqual(to: expectedUser))
         } catch {
-            XCTFail("Expected successful sign up request, got \(error) instead")
+            XCTFail("Expected successful login request, got \(error) instead")
         }
     }
     
@@ -44,7 +44,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
                                                 newPassword: testingNewPassword,
                                                 confirmPassword: testingNewPassword)
         } catch {
-            XCTFail("Expected successful sign up request, got \(error) instead")
+            XCTFail("Expected successful change password request, got \(error) instead")
         }
     }
     
@@ -54,7 +54,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         do {
             try await apiService.logout()
         } catch {
-            XCTFail("Expected successful sign up request, got \(error) instead")
+            XCTFail("Expected successful logout request, got \(error) instead")
         }
     }
     
@@ -63,10 +63,20 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         
         do {
             try await apiService.updateAccount(name: testingNewName,
-                                               email: testingNewEmail,
+                                               email: testingEmail,
                                                profileImage: testingNewProfileImage)
         } catch {
-            XCTFail("Expected successful sign up request, got \(error) instead")
+            XCTFail("Expected successful update account request, got \(error) instead")
+        }
+    }
+    
+    func test_endToEndDeleteAccount_returnsSuccessfully() async {
+        let apiService = makeAuthenticatedSUT()
+        
+        do {
+            try await apiService.deleteAccount()
+        } catch {
+            XCTFail("Expected successful delete account request, got \(error) instead")
         }
     }
     
@@ -106,10 +116,6 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     
     private var testingEmail: String {
         "testing@testing.com"
-    }
-    
-    private var testingNewEmail: String {
-        "testing@new.com"
     }
     
     private var testingPassword: String {
