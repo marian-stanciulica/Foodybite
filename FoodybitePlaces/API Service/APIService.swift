@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DomainModels
 
 public class APIService {
     private let loader: ResourceLoader

@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import FoodybitePlaces
+import DomainModels
 
 final class APIServiceTests: XCTestCase {
     

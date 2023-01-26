@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlacesEndpoint: Endpoint {
+public enum PlacesEndpoint: Endpoint {
     case autocomplete(String)
     case getPlaceDetails(String)
     

@@ -19,7 +19,6 @@
 		0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */; };
 		0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */; };
 		0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F108809291E2397007A28FA /* RegisterViewModelTests.swift */; };
-		0F19B483291647DB00A8FC8F /* DomainModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F19B477291647DB00A8FC8F /* DomainModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
 		0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B49129164A6800A8FC8F /* DiskUserStore.swift */; };
 		0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B49629164C7700A8FC8F /* CodableUser.swift */; };
@@ -47,8 +46,10 @@
 		0F1FDE4D2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE4C2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift */; };
 		0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE4E29017E4200E12B09 /* TokenRefresherFake.swift */; };
 		0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */; };
-		0F215CB6298265A0000F88F4 /* AutocompletePrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */; };
-		0F215CB7298265A0000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
+		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
+		0F215CB929826CF8000F88F4 /* AutocompletePrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */; };
+		0F215CBA29826D24000F88F4 /* DomainModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; };
+		0F215CBB29826D24000F88F4 /* DomainModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
 		0F2A26AE2930D44A00387A1C /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AD2930D44A00387A1C /* AccountService.swift */; };
 		0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */; };
@@ -218,6 +219,13 @@
 			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
 			remoteInfo = DomainModels;
 		};
+		0F215CBC29826D24000F88F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
+			remoteInfo = DomainModels;
+		};
 		0F412E7F2962C78E00FDDF41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -259,6 +267,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0F215CBE29826D24000F88F4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0F215CBB29826D24000F88F4 /* DomainModels.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0F8961AE2928CE0800FFDC48 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,7 +304,6 @@
 		0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F108809291E2397007A28FA /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0F19B477291647DB00A8FC8F /* DomainModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainModels.h; sourceTree = "<group>"; };
 		0F19B49129164A6800A8FC8F /* DiskUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskUserStore.swift; sourceTree = "<group>"; };
 		0F19B49629164C7700A8FC8F /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		0F19B4BD291675DC00A8FC8F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
@@ -509,6 +527,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F215CBA29826D24000F88F4 /* DomainModels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,7 +636,8 @@
 			isa = PBXGroup;
 			children = (
 				0F19B46E291645F200A8FC8F /* User.swift */,
-				0F19B477291647DB00A8FC8F /* DomainModels.h */,
+				0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */,
+				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -726,15 +746,6 @@
 			path = "Token Service";
 			sourceTree = "<group>";
 		};
-		0F215CB3298265A0000F88F4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */,
-				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		0F2A26AF2930D90000387A1C /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,7 +795,6 @@
 			children = (
 				0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */,
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
-				0F215CB3298265A0000F88F4 /* Models */,
 				0F412ECE2962F85800FDDF41 /* Response Models */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
 				0F412EAA2962CBD500FDDF41 /* Data Parser */,
@@ -1664,7 +1674,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F19B483291647DB00A8FC8F /* DomainModels.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1766,10 +1775,12 @@
 				0F412E722962C78D00FDDF41 /* Sources */,
 				0F412E732962C78D00FDDF41 /* Frameworks */,
 				0F412E742962C78D00FDDF41 /* Resources */,
+				0F215CBE29826D24000F88F4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0F215CBD29826D24000F88F4 /* PBXTargetDependency */,
 			);
 			name = FoodybitePlaces;
 			productName = FoodybitePlaces;
@@ -2144,7 +2155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */,
 				0F19B48A291647F300A8FC8F /* User.swift in Sources */,
+				0F215CB929826CF8000F88F4 /* AutocompletePrediction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2157,13 +2170,11 @@
 				0F412E962962C9DD00FDDF41 /* HTTPClient.swift in Sources */,
 				0F412ED42963173400FDDF41 /* GetPlaceDetailsService.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* PlacesEndpoint.swift in Sources */,
-				0F215CB7298265A0000F88F4 /* PlaceDetails.swift in Sources */,
 				0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
 				0F412EAC2962CBEB00FDDF41 /* CodableDataParser.swift in Sources */,
 				0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */,
 				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
-				0F215CB6298265A0000F88F4 /* AutocompletePrediction.swift in Sources */,
 				0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */,
 				0F412ECD2962F81C00FDDF41 /* AutocompleteResponse.swift in Sources */,
 				0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */,
@@ -2319,6 +2330,11 @@
 			isa = PBXTargetDependency;
 			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
 			targetProxy = 0F19B48E2916486A00A8FC8F /* PBXContainerItemProxy */;
+		};
+		0F215CBD29826D24000F88F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
+			targetProxy = 0F215CBC29826D24000F88F4 /* PBXContainerItemProxy */;
 		};
 		0F412E802962C78E00FDDF41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
