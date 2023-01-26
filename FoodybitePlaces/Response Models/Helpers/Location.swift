@@ -10,4 +10,9 @@ import Foundation
 public struct Location: Decodable {
     let lat: Double
     let lng: Double
+    
+    public init(lat: Double, lng: Double) {
+        self.lat = lat
+        self.lng = lng
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  AutocompleteResponse.swift
+//  SearchNearbyResponse.swift
 //  FoodybitePlaces
 //
 //  Created by Marian Stanciulica on 02.01.2023.
@@ -21,15 +21,18 @@ struct SearchNearbyResult: Decodable {
     let photos: [Photo]
     let placeID: String
     let plusCode: PlusCode
-    let priceLevel, rating: Int
-    let reference, scope: String
+    let priceLevel: Int?
+    let rating: Double
+    let reference: String
+    let scope: String
     let types: [String]
     let userRatingsTotal: Int
     let vicinity: String
 
     enum CodingKeys: String, CodingKey {
         case businessStatus = "business_status"
-        case geometry, icon
+        case geometry
+        case icon
         case iconBackgroundColor = "icon_background_color"
         case iconMaskBaseURI = "icon_mask_base_uri"
         case name
@@ -38,7 +41,10 @@ struct SearchNearbyResult: Decodable {
         case placeID = "place_id"
         case plusCode = "plus_code"
         case priceLevel = "price_level"
-        case rating, reference, scope, types
+        case rating
+        case reference
+        case scope
+        case types
         case userRatingsTotal = "user_ratings_total"
         case vicinity
     }

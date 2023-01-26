@@ -33,7 +33,7 @@ public enum PlacesEndpoint: Endpoint {
         case let .searchNearby(location, radius):
             return [
                 URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "location", value: "\(location.lat)%2C\(location.lng)"),
+                URLQueryItem(name: "location", value: "\(location.lat),\(location.lng)"),
                 URLQueryItem(name: "radius", value: "\(radius)"),
                 URLQueryItem(name: "type", value: "restaurant")
             ]

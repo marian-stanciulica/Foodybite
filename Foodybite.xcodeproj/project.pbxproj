@@ -69,6 +69,8 @@
 		0F2BACB029829243006D4A7F /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAF29829243006D4A7F /* Viewport.swift */; };
 		0F2BACB2298292C0006D4A7F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB1298292C0006D4A7F /* Photo.swift */; };
 		0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB3298292FA006D4A7F /* PlusCode.swift */; };
+		0F2BACBC29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACBB29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift */; };
+		0F2BACBD29829D3B006D4A7F /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
 		0F412E7E2962C78E00FDDF41 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E822962C78E00FDDF41 /* URLSessionHTTPClientTests.swift */; };
@@ -231,6 +233,13 @@
 			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
 			remoteInfo = DomainModels;
 		};
+		0F2BACBE29829D3B006D4A7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
+			remoteInfo = FoodybitePlaces;
+		};
 		0F412E7F2962C78E00FDDF41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -356,6 +365,8 @@
 		0F2BACAF29829243006D4A7F /* Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewport.swift; sourceTree = "<group>"; };
 		0F2BACB1298292C0006D4A7F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0F2BACB3298292FA006D4A7F /* PlusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusCode.swift; sourceTree = "<group>"; };
+		0F2BACB929829D3B006D4A7F /* FoodybiteAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F2BACBB29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePlaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodybitePlaces.h; sourceTree = "<group>"; };
@@ -530,6 +541,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F2BACB629829D3B006D4A7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F2BACBD29829D3B006D4A7F /* FoodybitePlaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +821,14 @@
 				0F2BACB3298292FA006D4A7F /* PlusCode.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F2BACBA29829D3B006D4A7F /* FoodybiteAPIEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F2BACBB29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift */,
+			);
+			path = FoodybiteAPIEndToEndTests;
 			sourceTree = "<group>";
 		};
 		0F3F73F528467BE100A5D2BF /* New Review */ = {
@@ -1166,6 +1193,7 @@
 				0F0BDA2428F83FD500E91FD0 /* FoodybiteNetworkingTests */,
 				0F412E772962C78D00FDDF41 /* FoodybitePlaces */,
 				0F412E812962C78E00FDDF41 /* FoodybitePlacesTests */,
+				0F2BACBA29829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
 				0F95A877290D024400806AE9 /* FoodybitePersistence */,
 				0F95A881290D024500806AE9 /* FoodybitePersistenceTests */,
 				A4588B4147D3A291AB412E2E /* Pods */,
@@ -1179,6 +1207,7 @@
 				0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */,
 				0F412E7D2962C78E00FDDF41 /* FoodybitePlacesTests.xctest */,
 				9624028F422A352E429C5134 /* Frameworks */,
+				0F2BACB929829D3B006D4A7F /* FoodybiteAPIEndToEndTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1790,6 +1819,24 @@
 			productReference = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F2BACC029829D3B006D4A7F /* Build configuration list for PBXNativeTarget "FoodybiteAPIEndToEndTests" */;
+			buildPhases = (
+				0F2BACB529829D3B006D4A7F /* Sources */,
+				0F2BACB629829D3B006D4A7F /* Frameworks */,
+				0F2BACB729829D3B006D4A7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F2BACBF29829D3B006D4A7F /* PBXTargetDependency */,
+			);
+			name = FoodybiteAPIEndToEndTests;
+			productName = FoodybiteAPIEndToEndTests;
+			productReference = 0F2BACB929829D3B006D4A7F /* FoodybiteAPIEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0F412E752962C78D00FDDF41 /* FoodybitePlaces */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F412E892962C78E00FDDF41 /* Build configuration list for PBXNativeTarget "FoodybitePlaces" */;
@@ -1914,6 +1961,9 @@
 					0F19B474291647DB00A8FC8F = {
 						CreatedOnToolsVersion = 14.1;
 					};
+					0F2BACB829829D3B006D4A7F = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					0F412E752962C78D00FDDF41 = {
 						CreatedOnToolsVersion = 14.2;
 						LastSwiftMigration = 1420;
@@ -1956,6 +2006,7 @@
 				0F19B474291647DB00A8FC8F /* DomainModels */,
 				0F412E752962C78D00FDDF41 /* FoodybitePlaces */,
 				0F412E7C2962C78E00FDDF41 /* FoodybitePlacesTests */,
+				0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1983,6 +2034,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0F19B473291647DB00A8FC8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F2BACB729829D3B006D4A7F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2184,6 +2242,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0F2BACB529829D3B006D4A7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F2BACBC29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0F412E722962C78D00FDDF41 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2363,6 +2429,11 @@
 			isa = PBXTargetDependency;
 			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
 			targetProxy = 0F215CBC29826D24000F88F4 /* PBXContainerItemProxy */;
+		};
+		0F2BACBF29829D3B006D4A7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
+			targetProxy = 0F2BACBE29829D3B006D4A7F /* PBXContainerItemProxy */;
 		};
 		0F412E802962C78E00FDDF41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2656,6 +2727,42 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0F2BACC129829D3B006D4A7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ULSKSPKFH7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteAPIEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0F2BACC229829D3B006D4A7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ULSKSPKFH7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteAPIEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -3151,6 +3258,15 @@
 			buildConfigurations = (
 				0F19B485291647DC00A8FC8F /* Debug */,
 				0F19B486291647DC00A8FC8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F2BACC029829D3B006D4A7F /* Build configuration list for PBXNativeTarget "FoodybiteAPIEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F2BACC129829D3B006D4A7F /* Debug */,
+				0F2BACC229829D3B006D4A7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
