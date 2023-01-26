@@ -29,7 +29,7 @@ final class PlacesEndpointTests: XCTestCase {
         guard let url = urlRequest.url,
             let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
         
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "location" })?.value, "\(location.lat)%2C\(location.lng)")
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "location" })?.value, "\(location.lat),\(location.lng)")
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "radius" })?.value, "\(radius)")
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "type" })?.value, "restaurant")
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
