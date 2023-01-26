@@ -36,6 +36,18 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         }
     }
     
+    func test_endToEndChangePassword_returnsSuccessfully() async {
+        let apiService = makeAuthenticatedSUT()
+        
+        do {
+            try await apiService.changePassword(currentPassword: testingPassword,
+                                                newPassword: testingNewPassword,
+                                                confirmPassword: testingNewPassword)
+        } catch {
+            XCTFail("Expected successful sign up request, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> APIService {
@@ -45,6 +57,20 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
         return APIService(loader: remoteResourceLoader,
                           sender: remoteResourceLoader,
+                          tokenStore: tokenStore)
+    }
+    
+    private func makeAuthenticatedSUT() -> APIService {
+        let httpClient = URLSessionHTTPClient()
+        let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
+        let tokenStore = KeychainTokenStore()
+        
+        let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
+        let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
+        let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
+        
+        return APIService(loader: authenticatedRemoteResourceLoader,
+                          sender: authenticatedRemoteResourceLoader,
                           tokenStore: tokenStore)
     }
     
@@ -58,6 +84,10 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     
     private var testingPassword: String {
         "123Password321$"
+    }
+    
+    private var testingNewPassword: String {
+        "new123Password321$"
     }
     
     private var testingProfileImage: Data? {
