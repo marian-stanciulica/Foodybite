@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainModels
 import FoodybiteNetworking
 
 struct LoginView: View {
@@ -89,7 +90,7 @@ struct LoginView_Previews: PreviewProvider {
     }
     
     private class PreviewLoginService: LoginService {
-        func login(email: String, password: String) async throws -> RemoteUser {
+        func login(email: String, password: String) async throws -> User {
             throw LoginViewModel.LoginError.serverError
         }
     }

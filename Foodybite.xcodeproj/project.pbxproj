@@ -103,9 +103,7 @@
 		0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */; };
 		0F412ED42963173400FDDF41 /* GetPlaceDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */; };
 		0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */; };
-		0F412EDB29631D0100FDDF41 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */; };
 		0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EDC29631FA700FDDF41 /* Helpers.swift */; };
-		0F412EE0296326F100FDDF41 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EDF296326F100FDDF41 /* SearchViewModel.swift */; };
 		0F415CCE2843CDF5005B54DC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCD2843CDF5005B54DC /* ReviewView.swift */; };
 		0F415CD02843D481005B54DC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F415CCF2843D481005B54DC /* RatingView.swift */; };
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
@@ -426,9 +424,7 @@
 		0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyResponse.swift; sourceTree = "<group>"; };
 		0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsService.swift; sourceTree = "<group>"; };
 		0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsResponse.swift; sourceTree = "<group>"; };
-		0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		0F412EDC29631FA700FDDF41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		0F412EDF296326F100FDDF41 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		0F415CCD2843CDF5005B54DC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		0F415CCF2843D481005B54DC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
@@ -1048,22 +1044,6 @@
 			path = "Place Details";
 			sourceTree = "<group>";
 		};
-		0F412ED829631CDA00FDDF41 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		0F412EDE296326DB00FDDF41 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EDF296326F100FDDF41 /* SearchViewModel.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		0F415CCC2843CDDA005B54DC /* Review & Ratings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1325,7 +1305,6 @@
 				0F73ECBB292FDADB0025B237 /* Profile */,
 				0FB0E124291FBE3B0058ABCB /* Register */,
 				0FB0E125291FBE790058ABCB /* Login */,
-				0F412ED829631CDA00FDDF41 /* Home */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1466,7 +1445,6 @@
 		0FB0E111291F861E0058ABCB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				0F412EDE296326DB00FDDF41 /* Home */,
 				0F73ECB7292FDA7E0025B237 /* Profile */,
 				0FB0E114291F87260058ABCB /* Register */,
 				0FB0E126291FBEC10058ABCB /* Login */,
@@ -2251,7 +2229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F412EDB29631D0100FDDF41 /* SearchViewModelTests.swift in Sources */,
 				0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
@@ -2333,7 +2310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F412EE0296326F100FDDF41 /* SearchViewModel.swift in Sources */,
 				0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */,
 				A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */,
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
@@ -2783,7 +2759,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2805,7 +2782,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ULSKSPKFH7;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
