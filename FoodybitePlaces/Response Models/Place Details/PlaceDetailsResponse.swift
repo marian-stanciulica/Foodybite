@@ -26,7 +26,7 @@ struct Details: Decodable {
     let iconMaskBaseURI: String
     let internationalPhoneNumber: String
     let name: String
-    let openingHours: OpeningHours
+    let openingHours: OpeningHoursDetails
     let photos: [Photo]
     let placeID: String
     let plusCode: PlusCode
@@ -72,22 +72,7 @@ struct AddressComponent: Decodable {
     }
 }
 
-struct Geometry: Decodable {
-    let location: Location
-    let viewport: Viewport
-}
-
-public struct Location: Decodable {
-    let lat: Double
-    let lng: Double
-}
-
-struct Viewport: Decodable {
-    let northeast: Location
-    let southwest: Location
-}
-
-struct OpeningHours: Decodable {
+struct OpeningHoursDetails: Decodable {
     let openNow: Bool
     let periods: [Period]
     let weekdayText: [String]
@@ -112,28 +97,6 @@ struct Period: Decodable {
 struct Close: Decodable {
     let day: Int
     let time: String
-}
-
-struct Photo: Decodable {
-    let height: Int
-    let photoReference: String
-    let width: Int
-
-    enum CodingKeys: String, CodingKey {
-        case height
-        case photoReference = "photo_reference"
-        case width
-    }
-}
-
-struct PlusCode: Decodable {
-    let compoundCode: String
-    let globalCode: String
-
-    enum CodingKeys: String, CodingKey {
-        case compoundCode = "compound_code"
-        case globalCode = "global_code"
-    }
 }
 
 struct Review: Decodable {

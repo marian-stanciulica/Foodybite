@@ -46,17 +46,17 @@ final class SearchViewModelTests: XCTestCase {
         return (sut, autocompleteService)
     }
     
-    private func anyAutocompletePredictions() -> [AutocompletePrediction] {
+    private func anyAutocompletePredictions() -> [NearbyPlace] {
         [
-            AutocompletePrediction(placeID: randomString(), placeName: randomString()),
-            AutocompletePrediction(placeID: randomString(), placeName: randomString())
+            NearbyPlace(placeID: randomString(), placeName: randomString()),
+            NearbyPlace(placeID: randomString(), placeName: randomString())
         ]
     }
     
-    private class PlaceAutocompleteSpy: PlaceAutocompleteService {
-        var result: Result<[AutocompletePrediction], Error>?
+    private class PlaceAutocompleteSpy: SearchNearbyService {
+        var result: Result<[NearbyPlace], Error>?
         
-        func autocomplete(input: String) async throws -> [AutocompletePrediction] {
+        func autocomplete(input: String) async throws -> [NearbyPlace] {
             if let result = result {
                 return try result.get()
             }

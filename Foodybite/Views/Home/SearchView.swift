@@ -95,12 +95,12 @@ struct SearchView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewPlaceAutocompleteService: PlaceAutocompleteService {
-        func autocomplete(input: String) async throws -> [AutocompletePrediction] {
+    private class PreviewPlaceAutocompleteService: SearchNearbyService {
+        func autocomplete(input: String) async throws -> [NearbyPlace] {
             return [
-                AutocompletePrediction(placeID: "place id 1", placeName: "place name 1"),
-                AutocompletePrediction(placeID: "place id 2", placeName: "place name 2"),
-                AutocompletePrediction(placeID: "place id 3", placeName: "place name 3"),
+                NearbyPlace(placeID: "place id 1", placeName: "place name 1"),
+                NearbyPlace(placeID: "place id 2", placeName: "place name 2"),
+                NearbyPlace(placeID: "place id 3", placeName: "place name 3"),
             ]
         }
     }

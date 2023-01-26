@@ -1,11 +1,11 @@
 //
-//  AutocompletePrediction.swift
+//  NearbyPlace.swift
 //  FoodybitePlaces
 //
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct AutocompletePrediction: Equatable {
+public struct NearbyPlace: Equatable {
     public let placeID: String
     public let placeName: String
     

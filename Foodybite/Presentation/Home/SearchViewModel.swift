@@ -9,11 +9,11 @@ import DomainModels
 import FoodybitePlaces
 
 public class SearchViewModel: ObservableObject {
-    private let service: PlaceAutocompleteService
+    private let service: SearchNearbyService
     
-    @Published public var searchResults = [AutocompletePrediction]()
+    @Published public var searchResults = [NearbyPlace]()
     
-    public init(service: PlaceAutocompleteService) {
+    public init(service: SearchNearbyService) {
         self.service = service
     }
     
