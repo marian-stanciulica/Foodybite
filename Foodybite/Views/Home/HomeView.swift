@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var searchText = ""
-    
     var body: some View {
         GeometryReader { proxy in
             ScrollView(.vertical, showsIndicators: false) {

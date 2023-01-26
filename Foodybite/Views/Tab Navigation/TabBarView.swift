@@ -20,10 +20,14 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             HStack {
+                Spacer()
+                
                 TabBarIcon(currentPage: $currentPage,
                            assignedPage: .home,
                            width: iconWidth,
                            height: iconHeight)
+                
+                Spacer()
                 
                 ZStack {
                     Circle()
@@ -62,10 +66,14 @@ struct TabBarView: View {
                     }
                 }
                 
+                Spacer()
+                
                 TabBarIcon(currentPage: $currentPage,
                            assignedPage: .account,
                            width: iconWidth,
                            height: iconHeight)
+                
+                Spacer()
             }
             .frame(width: tabBarWidth,height: tabBarHeight / 2)
             .background(
