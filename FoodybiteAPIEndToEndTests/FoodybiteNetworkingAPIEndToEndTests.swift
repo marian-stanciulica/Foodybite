@@ -12,13 +12,7 @@ import FoodybiteNetworking
 final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
 
     func test_endToEndSignUp_returnsSuccesfully() async {
-        let httpClient = URLSessionHTTPClient()
-        let tokenStore = KeychainTokenStore()
-        
-        let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
-        let apiService = APIService(loader: remoteResourceLoader,
-                                    sender: remoteResourceLoader,
-                                    tokenStore: tokenStore)
+        let apiService = makeSUT()
         
         do {
             try await apiService.signUp(name: testingName,
@@ -32,6 +26,16 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> APIService {
+        let httpClient = URLSessionHTTPClient()
+        let tokenStore = KeychainTokenStore()
+        
+        let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
+        return APIService(loader: remoteResourceLoader,
+                          sender: remoteResourceLoader,
+                          tokenStore: tokenStore)
+    }
     
     private var testingName: String {
         "Testing"
