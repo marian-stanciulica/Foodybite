@@ -22,14 +22,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     func test_endToEndLogin_returnsExpectedUser() async {
-        let apiService = makeSUT()
-        
-        do {
-            let receivedUser = try await apiService.login(email: testingEmail, password: testingPassword)
-            XCTAssertTrue(receivedUser.isEqual(to: expectedUser))
-        } catch {
-            XCTFail("Expected successful login request, got \(error) instead")
-        }
+        await executeLogin()
     }
     
     func test_endToEndChangePassword_returnsSuccessfully() async {
@@ -91,6 +84,15 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
             try await action()
         } catch {
             XCTFail("Expected successful request, got \(error) instead", file: file, line: line)
+        }
+    }
+    
+    private func executeLogin(file: StaticString = #filePath, line: UInt = #line) async {
+        do {
+            let receivedUser = try await makeSUT().login(email: testingEmail, password: testingPassword)
+            XCTAssertTrue(receivedUser.isEqual(to: expectedUser), file: file, line: line)
+        } catch {
+            XCTFail("Expected successful login request, got \(error) instead", file: file, line: line)
         }
     }
     
