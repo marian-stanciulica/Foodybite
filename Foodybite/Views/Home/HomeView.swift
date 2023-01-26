@@ -12,24 +12,19 @@ struct HomeView: View {
     
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
-                VStack {
-//                    SearchView(searchText: $searchText)
-                    
-                    TrendingRestaurantsView(widthCell: proxy.size.width - 64)
-
-                    CategoriesListView(
-                        width: proxy.size.width / 4,
-                        height: proxy.size.width / 4
-                    )
-
-                    FriendsListView(
-                        width: proxy.size.width / 8,
-                        height: proxy.size.width / 8
-                    )
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack {
+                    ForEach(0...50, id: \.self) { _ in
+                        RestaurantCell()
+                            .background(.white)
+                            .cornerRadius(16)
+                            .frame(width: proxy.size.width)
+                            .aspectRatio(0.75, contentMode: .fit)
+                            .padding(4)
+                    }
                 }
             }
-            .background(.gray.opacity(0.1))
+            .padding(.horizontal)
         }
     }
 }

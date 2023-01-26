@@ -10,13 +10,6 @@ import SwiftUI
 struct SearchCriteriaView: View {
     var body: some View {
         VStack {
-            Text("Select Category")
-                .font(.title)
-                .padding(.top)
-            
-            SelectCategoryView()
-                .padding(.bottom)
-            
             Text("Distance")
                 .font(.title)
                 .padding(.top)
