@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainModels
 import FoodybitePlaces
 
 struct SearchView: View {
@@ -69,7 +70,7 @@ struct SearchView: View {
             
             if isTextFieldFocused {
                 List {
-                    ForEach(viewModel.searchResults) { result in
+                    ForEach(viewModel.searchResults, id: \.placeID) { result in
                         Button(result.placeName) {
                             isTextFieldFocused = false
                         }

@@ -6,8 +6,8 @@
 //
 
 public struct AutocompletePrediction: Equatable {
-    let placeID: String
-    let placeName: String
+    public let placeID: String
+    public let placeName: String
     
     public init(placeID: String, placeName: String) {
         self.placeID = placeID

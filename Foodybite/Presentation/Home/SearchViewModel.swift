@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
+import DomainModels
 import FoodybitePlaces
 
 public class SearchViewModel: ObservableObject {

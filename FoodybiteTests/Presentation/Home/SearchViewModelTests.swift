@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import DomainModels
 import Foodybite
 import FoodybitePlaces
 
