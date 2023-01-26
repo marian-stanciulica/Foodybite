@@ -12,17 +12,13 @@ import FoodybiteNetworking
 final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
 
     func test_endToEndSignUp_returnsSuccesfully() async {
-        let apiService = makeSUT()
-        
-        do {
-            try await apiService.signUp(name: testingName,
-                                        email: testingEmail,
-                                        password: testingPassword,
-                                        confirmPassword: testingPassword,
-                                        profileImage: testingProfileImage)
-        } catch {
-            XCTFail("Expected successful sign up request, got \(error) instead")
-        }
+        await execute(action: {
+            try await makeSUT().signUp(name: testingName,
+                                       email: testingEmail,
+                                       password: testingPassword,
+                                       confirmPassword: testingPassword,
+                                       profileImage: testingProfileImage)
+        })
     }
     
     func test_endToEndLogin_returnsExpectedUser() async {
@@ -37,47 +33,31 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     func test_endToEndChangePassword_returnsSuccessfully() async {
-        let apiService = makeAuthenticatedSUT()
-        
-        do {
-            try await apiService.changePassword(currentPassword: testingPassword,
-                                                newPassword: testingNewPassword,
-                                                confirmPassword: testingNewPassword)
-        } catch {
-            XCTFail("Expected successful change password request, got \(error) instead")
-        }
+        await execute(action: {
+            try await makeAuthenticatedSUT().changePassword(currentPassword: testingPassword,
+                                                            newPassword: testingNewPassword,
+                                                            confirmPassword: testingNewPassword)
+        })
     }
     
     func test_endToEndLogout_returnsSuccessfully() async {
-        let apiService = makeAuthenticatedSUT()
-        
-        do {
-            try await apiService.logout()
-        } catch {
-            XCTFail("Expected successful logout request, got \(error) instead")
-        }
+        await execute(action: {
+            try await makeAuthenticatedSUT().logout()
+        })
     }
     
     func test_endToEndUpdateAccount_returnsSuccessfully() async {
-        let apiService = makeAuthenticatedSUT()
-        
-        do {
-            try await apiService.updateAccount(name: testingNewName,
-                                               email: testingEmail,
-                                               profileImage: testingNewProfileImage)
-        } catch {
-            XCTFail("Expected successful update account request, got \(error) instead")
-        }
+        await execute(action: {
+            try await makeAuthenticatedSUT().updateAccount(name: testingNewName,
+                                                           email: testingEmail,
+                                                           profileImage: testingNewProfileImage)
+        })
     }
     
     func test_endToEndDeleteAccount_returnsSuccessfully() async {
-        let apiService = makeAuthenticatedSUT()
-        
-        do {
-            try await apiService.deleteAccount()
-        } catch {
-            XCTFail("Expected successful delete account request, got \(error) instead")
-        }
+        await execute(action: {
+            try await makeAuthenticatedSUT().deleteAccount()
+        })
     }
     
     // MARK: - Helpers
@@ -104,6 +84,14 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         return APIService(loader: authenticatedRemoteResourceLoader,
                           sender: authenticatedRemoteResourceLoader,
                           tokenStore: tokenStore)
+    }
+    
+    private func execute(action: () async throws -> Void, file: StaticString = #filePath, line: UInt = #line) async {
+        do {
+            try await action()
+        } catch {
+            XCTFail("Expected successful request, got \(error) instead", file: file, line: line)
+        }
     }
     
     private var testingName: String {
