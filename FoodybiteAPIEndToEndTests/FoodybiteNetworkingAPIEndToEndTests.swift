@@ -11,7 +11,7 @@ import FoodybiteNetworking
 
 final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
 
-    func test_endToEndSignUp_returnsSuccesfully() async {
+    func test_1endToEndSignUp_returnsSuccesfully() async {
         await execute(action: {
             try await makeSUT().signUp(name: testingName,
                                        email: testingEmail,
@@ -21,11 +21,11 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
     
-    func test_endToEndLogin_returnsExpectedUser() async {
+    func test_2endToEndLogin_returnsExpectedUser() async {
         await executeLogin()
     }
     
-    func test_endToEndChangePassword_returnsSuccessfully() async {
+    func test_3endToEndChangePassword_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().changePassword(currentPassword: testingPassword,
                                                             newPassword: testingNewPassword,
@@ -33,13 +33,13 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
     
-    func test_endToEndLogout_returnsSuccessfully() async {
+    func test_4endToEndLogout_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().logout()
         })
     }
     
-    func test_endToEndUpdateAccount_returnsSuccessfully() async {
+    func test_5endToEndUpdateAccount_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().updateAccount(name: testingNewName,
                                                            email: testingEmail,
@@ -47,7 +47,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
     
-    func test_endToEndDeleteAccount_returnsSuccessfully() async {
+    func test_6endToEndDeleteAccount_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().deleteAccount()
         })
