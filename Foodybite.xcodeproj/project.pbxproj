@@ -69,7 +69,7 @@
 		0F2BACB029829243006D4A7F /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAF29829243006D4A7F /* Viewport.swift */; };
 		0F2BACB2298292C0006D4A7F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB1298292C0006D4A7F /* Photo.swift */; };
 		0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB3298292FA006D4A7F /* PlusCode.swift */; };
-		0F2BACBC29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACBB29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift */; };
+		0F2BACBC29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */; };
 		0F2BACBD29829D3B006D4A7F /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
 		0F412E7E2962C78E00FDDF41 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
@@ -366,7 +366,7 @@
 		0F2BACB1298292C0006D4A7F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0F2BACB3298292FA006D4A7F /* PlusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusCode.swift; sourceTree = "<group>"; };
 		0F2BACB929829D3B006D4A7F /* FoodybiteAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F2BACBB29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteAPIEndToEndTests.swift; sourceTree = "<group>"; };
+		0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybitePlacesAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePlaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodybitePlaces.h; sourceTree = "<group>"; };
@@ -826,7 +826,7 @@
 		0F2BACBA29829D3B006D4A7F /* FoodybiteAPIEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F2BACBB29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift */,
+				0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */,
 			);
 			path = FoodybiteAPIEndToEndTests;
 			sourceTree = "<group>";
@@ -2246,7 +2246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F2BACBC29829D3B006D4A7F /* FoodybiteAPIEndToEndTests.swift in Sources */,
+				0F2BACBC29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

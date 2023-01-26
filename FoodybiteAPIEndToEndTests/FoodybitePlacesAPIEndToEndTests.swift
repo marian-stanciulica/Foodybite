@@ -1,5 +1,5 @@
 //
-//  FoodybiteAPIEndToEndTests.swift
+//  FoodybitePlacesAPIEndToEndTests.swift
 //  FoodybiteAPIEndToEndTests
 //
 //  Created by Marian Stanciulica on 26.01.2023.
@@ -9,7 +9,7 @@ import XCTest
 import DomainModels
 import FoodybitePlaces
 
-final class FoodybiteAPIEndToEndTests: XCTestCase {
+final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
 
     func test_endToEndSearchNearby_matchesFixedTestNearbyPlaces() async {
         do {
