@@ -77,7 +77,7 @@ struct Geometry: Decodable {
     let viewport: Viewport
 }
 
-struct Location: Decodable {
+public struct Location: Decodable {
     let lat: Double
     let lng: Double
 }
