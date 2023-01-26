@@ -11,7 +11,7 @@ import FoodybitePlaces
 
 final class FoodybiteAPIEndToEndTests: XCTestCase {
 
-    func test_endToEndSearchNearby_matchesFixedNearbyPlaces() async {
+    func test_endToEndSearchNearby_matchesFixedTestNearbyPlaces() async {
         do {
             let receivedNearbyPlaces = try await getNearbyPlaces()
             XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
@@ -20,13 +20,30 @@ final class FoodybiteAPIEndToEndTests: XCTestCase {
         }
     }
     
+    func test_endToEndGetPlaceDetails_matchesFixedTestPlaceDetails() async {
+        do {
+            let receivedPlaceDetails = try await getPlaceDetails()
+            XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
+        } catch {
+            XCTFail("Expected successful nearby places request, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
-    private func getNearbyPlaces(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyPlace] {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIService {
         let httpClient = URLSessionHTTPClient()
         let loader = RemoteResourceLoader(client: httpClient)
-        let apiService = APIService(loader: loader)
-        
+        return APIService(loader: loader)
+    }
+    
+    private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> PlaceDetails {
+        let apiService = makeSUT(file: file, line: line)
+        return try await apiService.getPlaceDetails(placeID: "ChIJLyIrrb2vEmsRbYMRvZkU1yo")
+    }
+    
+    private func getNearbyPlaces(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyPlace] {
+        let apiService = makeSUT(file: file, line: line)
         let location = Location(lat: -33.8670522, lng: 151.1957362)
         let radius = 100
         return try await apiService.searchNearby(location: location, radius: radius)
@@ -40,6 +57,10 @@ final class FoodybiteAPIEndToEndTests: XCTestCase {
             NearbyPlace(placeID: "ChIJLyIrrb2vEmsRbYMRvZkU1yo", placeName: "Rumble"),
             NearbyPlace(placeID: "ChIJE8QpKg6vEmsRS6kStkd1sB8", placeName: "Mashi No Mashi")
         ]
+    }
+    
+    private var expectedPlaceDetails: PlaceDetails {
+        PlaceDetails(name: "Rumble")
     }
 
 }

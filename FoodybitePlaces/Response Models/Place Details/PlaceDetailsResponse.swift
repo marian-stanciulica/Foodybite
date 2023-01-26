@@ -30,7 +30,7 @@ struct Details: Decodable {
     let photos: [Photo]
     let placeID: String
     let plusCode: PlusCode
-    let rating: Int
+    let rating: Double
     let reference: String
     let reviews: [Review]
     let types: [String]
