@@ -8,7 +8,7 @@
 import Foundation
 
 public enum PlacesEndpoint: Endpoint {
-    case autocomplete(String)
+    case searchNearby(location: Location, radius: Int)
     case getPlaceDetails(String)
     
     var host: String {
@@ -17,8 +17,8 @@ public enum PlacesEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .autocomplete:
-            return "/maps/api/place/autocomplete/json"
+        case .searchNearby:
+            return "/maps/api/place/nearbysearch/json"
         case .getPlaceDetails:
             return "/maps/api/place/details/json"
         }
@@ -30,10 +30,12 @@ public enum PlacesEndpoint: Endpoint {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case let .autocomplete(input):
+        case let .searchNearby(location, radius):
             return [
                 URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "input", value: input)
+                URLQueryItem(name: "location", value: "\(location.lat),\(location.lng)"),
+                URLQueryItem(name: "radius", value: "\(radius)"),
+                URLQueryItem(name: "type", value: "restaurant")
             ]
         case let .getPlaceDetails(placeID):
             return [

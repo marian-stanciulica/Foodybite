@@ -11,46 +11,51 @@ import DomainModels
 
 final class APIServiceTests: XCTestCase {
     
-    // MARK: - PlaceAutocompleteService Tests
+    // MARK: - SearchNearbyService Tests
     
-    func test_conformsToPlaceAutocompleteService() {
-        let (sut, _) = makeSUT(response: anyAutocompleteResponse())
-        XCTAssertNotNil(sut as PlaceAutocompleteService)
+    func test_conformsToSearchNearbyService() {
+        let (sut, _) = makeSUT(response: anySearchNearbyResponse())
+        XCTAssertNotNil(sut as SearchNearbyService)
     }
     
-    func test_autocomplete_autocompleteParamsUsedToCreateEndpoint() async throws {
-        let input = randomString()
+    func test_searchNearby_searchNearbyParamsUsedToCreateEndpoint() async throws {
+        let location = Location(lat: -33.8670522, lng: 151.1957362)
+        let radius = 1500
         
-        let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
-        let autocompleteEndpoint = PlacesEndpoint.autocomplete(input)
-        let urlRequest = try autocompleteEndpoint.createURLRequest()
-        
-        _ = try await sut.autocomplete(input: input)
-        
+        let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
+        let searchNearbyEndpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
+        let urlRequest = try searchNearbyEndpoint.createURLRequest()
+
+        _ = try await sut.searchNearby(location: location, radius: radius)
+
         let firstRequest = loader.requests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
-    func test_autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {
-        let input = randomString()
+    func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
+        let location = Location(lat: -33.8670522, lng: 151.1957362)
+        let radius = 1500
         
-        let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
-        let autocompleteEndpoint = PlacesEndpoint.autocomplete(input)
-        let urlRequest = try autocompleteEndpoint.createURLRequest()
-        
-        _ = try await sut.autocomplete(input: input)
-        
+        let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
+        let searchNearbyEndpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
+        let urlRequest = try searchNearbyEndpoint.createURLRequest()
+
+        _ = try await sut.searchNearby(location: location, radius: radius)
+
         XCTAssertEqual(loader.requests, [urlRequest])
     }
     
-    func test_autocomplete_receiveExpectedAutocompleteResponse() async throws {
-        let expectedResponse = anyAutocompleteResponse()
-        let expected = expectedResponse.predictions.map {
-            AutocompletePrediction(placeID: $0.placeID, placeName: $0.structuredFormatting.placeName)
+    func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
+        let location = Location(lat: -33.8670522, lng: 151.1957362)
+        let radius = 1500
+        
+        let expectedResponse = anySearchNearbyResponse()
+        let expected = expectedResponse.results.map {
+            NearbyPlace(placeID: $0.placeID, placeName: $0.name)
         }
         let (sut, _) = makeSUT(response: expectedResponse)
         
-        let receivedResponse = try await sut.autocomplete(input: randomString())
+        let receivedResponse = try await sut.searchNearby(location: location, radius: radius)
         XCTAssertEqual(expected, receivedResponse)
     }
     
@@ -104,19 +109,31 @@ final class APIServiceTests: XCTestCase {
         return (sut, loader)
     }
     
-    private func anyAutocompleteResponse() -> AutocompleteResponse {
-        AutocompleteResponse(predictions: [
-            Prediction(
-                description: "a description",
-                matchedSubstrings: [],
-                placeID: "place id #1",
+    private func anySearchNearbyResponse() -> SearchNearbyResponse {
+        SearchNearbyResponse(results: [
+            SearchNearbyResult(
+                businessStatus: "",
+                geometry: Geometry(
+                    location: Location(lat: 0, lng: 0),
+                    viewport: Viewport(
+                        northeast: Location(lat: 0, lng: 0),
+                        southwest: Location(lat: 0, lng: 0))),
+                icon: "",
+                iconBackgroundColor: "",
+                iconMaskBaseURI: "",
+                name: "a place",
+                openingHours: OpeningHours(openNow: true),
+                photos: [],
+                placeID: "#1",
+                plusCode: PlusCode(compoundCode: "", globalCode: ""),
+                priceLevel: 0,
+                rating: 0,
                 reference: "",
-                structuredFormatting:
-                    StructuredFormatting(placeName: "a place name",
-                                         mainTextMatchedSubstrings: [],
-                                         secondaryText: ""),
-                terms: [],
-                types: [])
+                scope: "",
+                types: [],
+                userRatingsTotal: 0,
+                vicinity: ""
+            )
         ], status: "OK")
     }
     
@@ -136,7 +153,7 @@ final class APIServiceTests: XCTestCase {
                 iconMaskBaseURI: "",
                 internationalPhoneNumber: "",
                 name: "place 1",
-                openingHours: OpeningHours(openNow: false, periods: [], weekdayText: []),
+                openingHours: OpeningHoursDetails(openNow: false, periods: [], weekdayText: []),
                 photos: [],
                 placeID: "",
                 plusCode: PlusCode(compoundCode: "", globalCode: ""),

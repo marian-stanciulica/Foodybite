@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DomainModels
 
 public class APIService {
     private let loader: ResourceLoader
@@ -20,14 +21,15 @@ public class APIService {
 }
 
 extension APIService: LoginService {
-    public func login(email: String, password: String) async throws -> RemoteUser {
+    public func login(email: String, password: String) async throws -> User {
         let endpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try endpoint.createURLRequest()
         let loginResponse: LoginResponse = try await loader.get(for: urlRequest)
         
         try tokenStore.write(loginResponse.token)
         
-        return loginResponse.user
+        let remoteUser = loginResponse.user
+        return User(id: remoteUser.id, name: remoteUser.name, email: remoteUser.email, profileImage: remoteUser.profileImage)
     }
 }
 

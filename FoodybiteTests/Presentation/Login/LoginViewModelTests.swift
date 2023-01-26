@@ -7,6 +7,7 @@
 
 import XCTest
 import Foodybite
+import DomainModels
 import FoodybiteNetworking
 
 final class LoginViewModelTests: XCTestCase {
@@ -80,7 +81,7 @@ final class LoginViewModelTests: XCTestCase {
         var errorToThrow: Error?
         private(set) var capturedValues = [(email: String, password: String)]()
 
-        func login(email: String, password: String) async throws -> RemoteUser {
+        func login(email: String, password: String) async throws -> User {
             capturedValues.append((email, password))
 
             if let errorToThrow = errorToThrow {
@@ -98,13 +99,11 @@ final class LoginViewModelTests: XCTestCase {
             "invalid email"
         }
         
-        private func anyUser() -> RemoteUser {
-            RemoteUser(id: UUID(),
+        private func anyUser() -> User {
+            User(id: UUID(),
                        name: "any name",
                        email: "any@email.com",
-                       profileImage: nil,
-                       followingCount: 0,
-                       followersCount: 0)
+                       profileImage: nil)
         }
     }
 }

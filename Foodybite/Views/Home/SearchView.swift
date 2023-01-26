@@ -16,8 +16,6 @@ struct SearchView: View {
     @State private var isSearchCriteriaPresented = false
     @FocusState private var isTextFieldFocused: Bool
 
-    @StateObject var viewModel: SearchViewModel
-    
     var body: some View {
         VStack {
             HStack {
@@ -27,11 +25,7 @@ struct SearchView: View {
                 TextField(
                     "Find Restaurants",
                     text: $searchText,
-                    onEditingChanged: { _ in
-                        Task {
-                            await viewModel.autocomplete(input: searchText)
-                        }
-                    }
+                    onEditingChanged: { _ in }
                 )
                 .foregroundColor(.gray)
                 .focused($isTextFieldFocused)
@@ -67,41 +61,6 @@ struct SearchView: View {
                     .stroke(Color.gray.opacity(0.2), lineWidth: 2)
             )
             .padding(.horizontal)
-            
-            if isTextFieldFocused {
-                List {
-                    ForEach(viewModel.searchResults, id: \.placeID) { result in
-                        Button(result.placeName) {
-                            isTextFieldFocused = false
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            SearchView(
-                searchText: .constant(""),
-                isActive: .constant(false),
-                viewModel: SearchViewModel(
-                    service: PreviewPlaceAutocompleteService())
-            )
-            
-            Spacer()
-        }
-    }
-    
-    private class PreviewPlaceAutocompleteService: PlaceAutocompleteService {
-        func autocomplete(input: String) async throws -> [AutocompletePrediction] {
-            return [
-                AutocompletePrediction(placeID: "place id 1", placeName: "place name 1"),
-                AutocompletePrediction(placeID: "place id 2", placeName: "place name 2"),
-                AutocompletePrediction(placeID: "place id 3", placeName: "place name 3"),
-            ]
         }
     }
 }

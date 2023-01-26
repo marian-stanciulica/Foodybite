@@ -16,13 +16,13 @@ public class APIService {
     }
 }
 
-extension APIService: PlaceAutocompleteService {
-    public func autocomplete(input: String) async throws -> [AutocompletePrediction] {
-        let endpoint = PlacesEndpoint.autocomplete(input)
+extension APIService: SearchNearbyService {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+        let endpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
-        let response: AutocompleteResponse = try await loader.get(for: request)
-        return response.predictions.map {
-            AutocompletePrediction(placeID: $0.placeID, placeName: $0.structuredFormatting.placeName)
+        let response: SearchNearbyResponse = try await loader.get(for: request)
+        return response.results.map {
+            NearbyPlace(placeID: $0.placeID, placeName: $0.name)
         }
     }
 }

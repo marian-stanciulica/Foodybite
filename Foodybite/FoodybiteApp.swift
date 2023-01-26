@@ -17,13 +17,13 @@ struct FoodybiteApp: App {
         let httpClient = URLSessionHTTPClient()
         let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
         let tokenStore = KeychainTokenStore()
-        let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
         
         let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
         let apiService = APIService(loader: remoteResourceLoader,
                                     sender: remoteResourceLoader,
                                     tokenStore: tokenStore)
         
+        let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
         let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
         let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
         

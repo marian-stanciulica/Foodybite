@@ -13,27 +13,30 @@ final class PlacesEndpointTests: XCTestCase {
     // MARK: - Autocomplete
     
     func test_autocomplete_baseURL() {
-        XCTAssertEqual(makeAutocompleteSUT().host, "maps.googleapis.com")
+        XCTAssertEqual(makeSearchNearbySUT().host, "maps.googleapis.com")
     }
     
     func test_autocomplete_path() {
-        XCTAssertEqual(makeAutocompleteSUT().path, "/maps/api/place/autocomplete/json")
+        XCTAssertEqual(makeSearchNearbySUT().path, "/maps/api/place/nearbysearch/json")
     }
     
     func test_autocomplete_queryItems() throws {
-        let input = "input"
-        let sut = makeAutocompleteSUT(input: input)
+        let location = Location(lat: -33.8670522, lng: 151.1957362)
+        let radius = 1500
+        let sut = makeSearchNearbySUT(location: location, radius: radius)
         let urlRequest = try sut.createURLRequest()
         
         guard let url = urlRequest.url,
             let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
         
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "input" })?.value, input)
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "location" })?.value, "\(location.lat),\(location.lng)")
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "radius" })?.value, "\(radius)")
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "type" })?.value, "restaurant")
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
     
     func test_autocomplete_methodIsGet() {
-        XCTAssertEqual(makeAutocompleteSUT().method, .get)
+        XCTAssertEqual(makeSearchNearbySUT().method, .get)
     }
     
     // MARK: - Get Place Details
@@ -65,8 +68,8 @@ final class PlacesEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeAutocompleteSUT(input: String = "") -> PlacesEndpoint {
-        return PlacesEndpoint.autocomplete(input)
+    private func makeSearchNearbySUT(location: Location = Location(lat: 0, lng: 0), radius: Int = 0) -> PlacesEndpoint {
+        return PlacesEndpoint.searchNearby(location: location, radius: radius)
     }
     
     private func makePlaceDetailsSUT(placeID: String = "") -> PlacesEndpoint {
