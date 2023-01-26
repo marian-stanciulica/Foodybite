@@ -5,12 +5,12 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-struct AutocompleteResponse: Codable {
+struct AutocompleteResponse: Decodable {
     let predictions: [Prediction]
     let status: String
 }
 
-struct Prediction: Codable {
+struct Prediction: Decodable {
     let description: String
     let matchedSubstrings: [MatchedSubstring]
     let placeID: String
@@ -29,23 +29,23 @@ struct Prediction: Codable {
     }
 }
 
-struct MatchedSubstring: Codable {
+struct MatchedSubstring: Decodable {
     let length, offset: Int
 }
 
-struct StructuredFormatting: Codable {
-    let mainText: String
+struct StructuredFormatting: Decodable {
+    let placeName: String
     let mainTextMatchedSubstrings: [MatchedSubstring]
     let secondaryText: String
 
     enum CodingKeys: String, CodingKey {
-        case mainText = "main_text"
+        case placeName = "main_text"
         case mainTextMatchedSubstrings = "main_text_matched_substrings"
         case secondaryText = "secondary_text"
     }
 }
 
-struct Term: Codable {
+struct Term: Decodable {
     let offset: Int
     let value: String
 }

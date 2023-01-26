@@ -44,11 +44,13 @@ final class APIServiceTests: XCTestCase {
     
     func test_autocomplete_receiveExpectedAutocompleteResponse() async throws {
         let expectedResponse = anyAutocompleteResponse()
+        let expected = expectedResponse.predictions.map {
+            AutocompletePrediction(placeID: $0.placeID, placeName: $0.structuredFormatting.placeName)
+        }
         let (sut, _) = makeSUT(response: expectedResponse)
         
         let receivedResponse = try await sut.autocomplete(input: randomString())
-        
-        XCTAssertEqual(expectedResponse.predictions, receivedResponse)
+        XCTAssertEqual(expected, receivedResponse)
     }
     
     // MARK: - GetPlaceDetails Tests
@@ -85,11 +87,12 @@ final class APIServiceTests: XCTestCase {
     
     func test_getPlaceDetails_receiveExpectedPlaceDetailsResponse() async throws {
         let expectedResponse = anyPlaceDetails()
+        let expected = PlaceDetails(name: expectedResponse.result.name)
         let (sut, _) = makeSUT(response: expectedResponse)
         
         let receivedResponse = try await sut.getPlaceDetails(placeID: randomString())
         
-        XCTAssertEqual(expectedResponse, receivedResponse)
+        XCTAssertEqual(expected, receivedResponse)
     }
     
     // MARK: - Helpers
@@ -102,12 +105,50 @@ final class APIServiceTests: XCTestCase {
     
     private func anyAutocompleteResponse() -> AutocompleteResponse {
         AutocompleteResponse(predictions: [
-            AutocompletePrediction(placeID: "place 1", placeName: "place 1 name"),
-            AutocompletePrediction(placeID: "place 2", placeName: "place 2 name")
-        ])
+            Prediction(
+                description: "a description",
+                matchedSubstrings: [],
+                placeID: "place id #1",
+                reference: "",
+                structuredFormatting:
+                    StructuredFormatting(placeName: "a place name",
+                                         mainTextMatchedSubstrings: [],
+                                         secondaryText: ""),
+                terms: [],
+                types: [])
+        ], status: "OK")
     }
     
-    private func anyPlaceDetails() -> PlaceDetails {
-        PlaceDetails(name: "Test Restaurant")
+    private func anyPlaceDetails() -> PlaceDetailsResponse {
+        PlaceDetailsResponse(
+            result: Details(
+                addressComponents: [],
+                businessStatus: "",
+                formattedAddress: "",
+                formattedPhoneNumber: "",
+                geometry: Geometry(
+                    location: Location(lat: 0, lng: 0),
+                    viewport: Viewport(northeast: Location(lat: 0, lng: 0),
+                                       southwest: Location(lat: 0, lng: 0))),
+                icon: "",
+                iconBackgroundColor: "",
+                iconMaskBaseURI: "",
+                internationalPhoneNumber: "",
+                name: "place 1",
+                openingHours: OpeningHours(openNow: false, periods: [], weekdayText: []),
+                photos: [],
+                placeID: "",
+                plusCode: PlusCode(compoundCode: "", globalCode: ""),
+                rating: 0,
+                reference: "",
+                reviews: [],
+                types: [],
+                url: "",
+                userRatingsTotal: 0,
+                utcOffset: 0,
+                vicinity: "",
+                website: ""),
+            status: ""
+        )
     }
 }

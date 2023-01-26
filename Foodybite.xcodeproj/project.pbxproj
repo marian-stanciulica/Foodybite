@@ -47,6 +47,8 @@
 		0F1FDE4D2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE4C2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift */; };
 		0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE4E29017E4200E12B09 /* TokenRefresherFake.swift */; };
 		0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */; };
+		0F215CB6298265A0000F88F4 /* AutocompletePrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */; };
+		0F215CB7298265A0000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
 		0F2A26AE2930D44A00387A1C /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AD2930D44A00387A1C /* AccountService.swift */; };
 		0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */; };
@@ -83,13 +85,11 @@
 		0F412EB52962CD9800FDDF41 /* PlacesEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */; };
 		0F412EB72962CE8000FDDF41 /* PlacesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB62962CE8000FDDF41 /* PlacesEndpoint.swift */; };
 		0F412EBC2962D15100FDDF41 /* PlaceAutocompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EBB2962D15100FDDF41 /* PlaceAutocompleteService.swift */; };
-		0F412EBF2962D1F800FDDF41 /* AutocompletePrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EBE2962D1F800FDDF41 /* AutocompletePrediction.swift */; };
 		0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC02962D24400FDDF41 /* APIServiceTests.swift */; };
 		0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* APIService.swift */; };
 		0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */; };
 		0F412ECA2962EEB200FDDF41 /* GooglePlaces-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */; };
 		0F412ECD2962F81C00FDDF41 /* AutocompleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ECC2962F81C00FDDF41 /* AutocompleteResponse.swift */; };
-		0F412ED22963168000FDDF41 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED12963168000FDDF41 /* PlaceDetails.swift */; };
 		0F412ED42963173400FDDF41 /* GetPlaceDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */; };
 		0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */; };
 		0F412EDB29631D0100FDDF41 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */; };
@@ -312,6 +312,8 @@
 		0F1FDE4C2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedURLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		0F1FDE4E29017E4200E12B09 /* TokenRefresherFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefresherFake.swift; sourceTree = "<group>"; };
 		0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedURLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompletePrediction.swift; sourceTree = "<group>"; };
+		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
@@ -349,13 +351,11 @@
 		0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesEndpointTests.swift; sourceTree = "<group>"; };
 		0F412EB62962CE8000FDDF41 /* PlacesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesEndpoint.swift; sourceTree = "<group>"; };
 		0F412EBB2962D15100FDDF41 /* PlaceAutocompleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAutocompleteService.swift; sourceTree = "<group>"; };
-		0F412EBE2962D1F800FDDF41 /* AutocompletePrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePrediction.swift; sourceTree = "<group>"; };
 		0F412EC02962D24400FDDF41 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		0F412EC22962D3D100FDDF41 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GooglePlaces-Info.plist"; sourceTree = "<group>"; };
 		0F412ECC2962F81C00FDDF41 /* AutocompleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteResponse.swift; sourceTree = "<group>"; };
-		0F412ED12963168000FDDF41 /* PlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsService.swift; sourceTree = "<group>"; };
 		0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsResponse.swift; sourceTree = "<group>"; };
 		0F412EDA29631D0100FDDF41 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
@@ -726,6 +726,15 @@
 			path = "Token Service";
 			sourceTree = "<group>";
 		};
+		0F215CB3298265A0000F88F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F215CB4298265A0000F88F4 /* AutocompletePrediction.swift */,
+				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		0F2A26AF2930D90000387A1C /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,7 +784,7 @@
 			children = (
 				0F412E782962C78D00FDDF41 /* FoodybitePlaces.h */,
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
-				0F412EBD2962D1C300FDDF41 /* Models */,
+				0F215CB3298265A0000F88F4 /* Models */,
 				0F412ECE2962F85800FDDF41 /* Response Models */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
 				0F412EAA2962CBD500FDDF41 /* Data Parser */,
@@ -913,15 +922,6 @@
 				0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		0F412EBD2962D1C300FDDF41 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EBE2962D1F800FDDF41 /* AutocompletePrediction.swift */,
-				0F412ED12963168000FDDF41 /* PlaceDetails.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		0F412EC42962D40800FDDF41 /* Helpers */ = {
@@ -2152,18 +2152,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F412ED22963168000FDDF41 /* PlaceDetails.swift in Sources */,
 				0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */,
 				0F412E9A2962CA0D00FDDF41 /* URLSessionProtocol.swift in Sources */,
 				0F412E962962C9DD00FDDF41 /* HTTPClient.swift in Sources */,
 				0F412ED42963173400FDDF41 /* GetPlaceDetailsService.swift in Sources */,
-				0F412EBF2962D1F800FDDF41 /* AutocompletePrediction.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* PlacesEndpoint.swift in Sources */,
+				0F215CB7298265A0000F88F4 /* PlaceDetails.swift in Sources */,
 				0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
 				0F412EAC2962CBEB00FDDF41 /* CodableDataParser.swift in Sources */,
 				0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */,
 				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
+				0F215CB6298265A0000F88F4 /* AutocompletePrediction.swift in Sources */,
 				0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */,
 				0F412ECD2962F81C00FDDF41 /* AutocompleteResponse.swift in Sources */,
 				0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */,

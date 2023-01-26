@@ -20,7 +20,9 @@ extension APIService: PlaceAutocompleteService {
         let endpoint = PlacesEndpoint.autocomplete(input)
         let request = try endpoint.createURLRequest()
         let response: AutocompleteResponse = try await loader.get(for: request)
-        return response.predictions
+        return response.predictions.map {
+            AutocompletePrediction(placeID: $0.placeID, placeName: $0.structuredFormatting.placeName)
+        }
     }
 }
 
@@ -29,6 +31,6 @@ extension APIService: GetPlaceDetailsService {
         let endpoint = PlacesEndpoint.getPlaceDetails(placeID)
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
-        return response.result
+        return PlaceDetails(name: response.result.name)
     }
 }

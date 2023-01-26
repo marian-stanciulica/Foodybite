@@ -5,8 +5,7 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct AutocompletePrediction: Identifiable, Decodable, Equatable {
-    public let id = UUID()
+public struct AutocompletePrediction: Decodable, Equatable {
     let placeID: String
     public let placeName: String
 
