@@ -22,12 +22,8 @@ struct TabNavigationView: View {
                     switch tabRouter.currentPage {
                     case .home:
                         HomeView()
-                    case .favorites:
-                        FavoritesView()
                     case .newReview:
                         NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
-                    case .notifications:
-                        NotificationsView()
                     case .account:
                         ProfileFlowView(flow: ProfileFlow(), apiService: apiService)
                     }

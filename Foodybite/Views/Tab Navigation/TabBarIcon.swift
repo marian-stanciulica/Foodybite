@@ -32,10 +32,6 @@ struct TabBarIcon: View {
         switch assignedPage {
         case .home:
             return currentPage == assignedPage ? "home_active" : "home_inactive"
-        case .favorites:
-            return currentPage == assignedPage ? "favorites_active" : "favorites_inactive"
-        case .notifications:
-            return currentPage == assignedPage ? "notifications_active" : "notifications_inactive"
         case .account:
             return currentPage == assignedPage ? "account_active" : "account_inactive"
         case .newReview:

@@ -138,9 +138,6 @@
 		0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECBD292FEE6E0025B237 /* SettingsViewModelTests.swift */; };
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
 		0F7516382843502400A05A92 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516372843502400A05A92 /* UIScreen+.swift */; };
-		0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163A28435B9000A05A92 /* FavoritesView.swift */; };
-		0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163D28435FBE00A05A92 /* NotificationsView.swift */; };
-		0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163F28435FD100A05A92 /* NotificationCell.swift */; };
 		0F751643284363B000A05A92 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751642284363B000A05A92 /* ProfileView.swift */; };
 		0F751645284364B600A05A92 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751644284364B600A05A92 /* StatsView.swift */; };
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
@@ -421,9 +418,6 @@
 		0F73ECBD292FEE6E0025B237 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		0F75163528434D3300A05A92 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0F7516372843502400A05A92 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
-		0F75163A28435B9000A05A92 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		0F75163D28435FBE00A05A92 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
-		0F75163F28435FD100A05A92 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		0F751642284363B000A05A92 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0F751644284364B600A05A92 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
@@ -1303,23 +1297,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		0F75163928435B7B00A05A92 /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				0F75163A28435B9000A05A92 /* FavoritesView.swift */,
-			);
-			path = Favorites;
-			sourceTree = "<group>";
-		};
-		0F75163C28435F9200A05A92 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				0F75163D28435FBE00A05A92 /* NotificationsView.swift */,
-				0F75163F28435FD100A05A92 /* NotificationCell.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
 		0F751641284363A100A05A92 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1495,9 +1472,7 @@
 				A2E64BCD2842455800FC41B7 /* Home */,
 				A2C2421828474C2500CB233B /* Restaurant Details */,
 				0F2B4CB728454D87004D0EF7 /* Search Filtering */,
-				0F75163928435B7B00A05A92 /* Favorites */,
 				0F3F73F528467BE100A5D2BF /* New Review */,
-				0F75163C28435F9200A05A92 /* Notifications */,
 				0F751641284363A100A05A92 /* Profile */,
 				A2C2423828477A5700CB233B /* Friends */,
 				0F415CCC2843CDDA005B54DC /* Review & Ratings */,
@@ -2205,7 +2180,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F412EE0296326F100FDDF41 /* SearchViewModel.swift in Sources */,
-				0F75163B28435B9000A05A92 /* FavoritesView.swift in Sources */,
 				A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */,
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
 				0F415CD02843D481005B54DC /* RatingView.swift in Sources */,
@@ -2240,7 +2214,6 @@
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
 				0F2B4CB628454173004D0EF7 /* FriendsListView.swift in Sources */,
 				0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */,
-				0F75164028435FD100A05A92 /* NotificationCell.swift in Sources */,
 				A2E64BD72842618100FC41B7 /* HomeCategoryView.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
 				0FB0E116291F874D0058ABCB /* RegisterValidator.swift in Sources */,
@@ -2273,7 +2246,6 @@
 				A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */,
 				A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
-				0F75163E28435FBE00A05A92 /* NotificationsView.swift in Sources */,
 				0F7E23D32920E861005196EA /* AuthFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

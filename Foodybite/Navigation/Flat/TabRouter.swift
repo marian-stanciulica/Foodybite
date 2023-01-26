@@ -13,8 +13,6 @@ class TabRouter: ObservableObject {
 
 enum Page {
     case home
-    case favorites
     case newReview
-    case notifications
     case account
 }

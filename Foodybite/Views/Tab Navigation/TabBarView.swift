@@ -25,11 +25,6 @@ struct TabBarView: View {
                            width: iconWidth,
                            height: iconHeight)
                 
-                TabBarIcon(currentPage: $currentPage,
-                           assignedPage: .favorites,
-                           width: iconWidth,
-                           height: iconHeight)
-                
                 ZStack {
                     Circle()
                         .shadow(
@@ -66,11 +61,6 @@ struct TabBarView: View {
                         }
                     }
                 }
-                
-                TabBarIcon(currentPage: $currentPage,
-                           assignedPage: .notifications,
-                           width: iconWidth,
-                           height: iconHeight)
                 
                 TabBarIcon(currentPage: $currentPage,
                            assignedPage: .account,
