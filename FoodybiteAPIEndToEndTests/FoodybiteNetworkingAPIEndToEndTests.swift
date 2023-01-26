@@ -25,6 +25,17 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         }
     }
     
+    func test_endToEndLogin_returnsExpectedUser() async {
+        let apiService = makeSUT()
+        
+        do {
+            let receivedUser = try await apiService.login(email: testingEmail, password: testingPassword)
+            XCTAssertTrue(receivedUser.isEqual(to: expectedUser))
+        } catch {
+            XCTFail("Expected successful sign up request, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> APIService {
@@ -53,4 +64,18 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         "any data".data(using: .utf8)
     }
     
+    private var expectedUser: User {
+        User(id: UUID(),
+             name: testingName,
+             email: testingEmail,
+             profileImage: testingProfileImage)
+    }
+}
+
+private extension User {
+    func isEqual(to user: User) -> Bool {
+        name == user.name &&
+        email == user.email &&
+        profileImage == user.profileImage
+    }
 }
