@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import DomainModels
 @testable import FoodybiteNetworking
 
 final class APIServiceTests: XCTestCase {
@@ -45,22 +46,21 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
-        let expectedResponse = anyLoginResponse()
-        let (sut, _, _, _) = makeSUT(loginResponse: expectedResponse)
+        let (response, expectedModel) = anyLoginResponse()
+        let (sut, _, _, _) = makeSUT(loginResponse: response)
         
         let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
         
-        XCTAssertEqual(expectedResponse.user, receivedResponse)
+        XCTAssertEqual(expectedModel, receivedResponse)
     }
     
     func test_login_storesAuthTokenInKeychain() async throws {
-        let expectedResponse = anyLoginResponse()
-        let (sut, _, _, tokenStoreStub) = makeSUT(loginResponse: expectedResponse)
+        let (sut, _, _, tokenStoreStub) = makeSUT(loginResponse: anyLoginResponse().response)
         
         _ = try await sut.login(email: anyEmail(), password: anyPassword())
         let receivedToken = try tokenStoreStub.read()
         
-        XCTAssertEqual(receivedToken, expectedResponse.token)
+        XCTAssertEqual(receivedToken, anyAuthToken())
     }
     
     // MARK: - SignUpService Tests
@@ -206,7 +206,7 @@ final class APIServiceTests: XCTestCase {
     
     private func makeSUT(loginResponse: LoginResponse? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
         let tokenStoreStub = TokenStoreStub()
-        let loader = ResourceLoaderSpy(response: loginResponse ?? anyLoginResponse())
+        let loader = ResourceLoaderSpy(response: loginResponse ?? anyLoginResponse().response)
         let sender = ResourceSenderSpy()
         let sut = APIService(loader: loader, sender: sender, tokenStore: tokenStoreStub)
         return (sut, loader, sender, tokenStoreStub)
@@ -228,17 +228,25 @@ final class APIServiceTests: XCTestCase {
         "any data".data(using: .utf8)
     }
     
-    private func anyLoginResponse() -> LoginResponse {
-        LoginResponse(
-            user: RemoteUser(id: UUID(),
+    private func anyLoginResponse() -> (response: LoginResponse, model: User) {
+        let id = UUID()
+        let response = LoginResponse(
+            user: RemoteUser(id: id,
                              name: "any name",
                              email: "any@email.com",
                              profileImage: nil,
                              followingCount: 0,
                              followersCount: 0),
-            token: AuthToken(accessToken: "any access token",
-                             refreshToken: "any refresh token")
+            token: anyAuthToken()
         )
+        
+        let model = User(id: id, name: "any name", email: "any@email.com", profileImage: nil)
+        return (response, model)
+    }
+    
+    private func anyAuthToken() -> AuthToken {
+        AuthToken(accessToken: "any access token",
+                         refreshToken: "any refresh token")
     }
 
 }

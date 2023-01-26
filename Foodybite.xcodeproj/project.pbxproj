@@ -72,6 +72,8 @@
 		0F2BACBC29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */; };
 		0F2BACBD29829D3B006D4A7F /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F2BACC42982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */; };
+		0F2BACCA2982BBAB006D4A7F /* DomainModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; };
+		0F2BACCB2982BBAB006D4A7F /* DomainModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
 		0F412E7E2962C78E00FDDF41 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E822962C78E00FDDF41 /* URLSessionHTTPClientTests.swift */; };
@@ -248,6 +250,13 @@
 			remoteGlobalIDString = 0F0BDA1828F83FD500E91FD0;
 			remoteInfo = FoodybiteNetworking;
 		};
+		0F2BACCC2982BBAB006D4A7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
+			remoteInfo = DomainModels;
+		};
 		0F412E7F2962C78E00FDDF41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -296,6 +305,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0F215CBB29826D24000F88F4 /* DomainModels.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F2BACCE2982BBAB006D4A7F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0F2BACCB2982BBAB006D4A7F /* DomainModels.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2BACCA2982BBAB006D4A7F /* DomainModels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1765,10 +1786,12 @@
 				0F0BDA1528F83FD500E91FD0 /* Sources */,
 				0F0BDA1628F83FD500E91FD0 /* Frameworks */,
 				0F0BDA1728F83FD500E91FD0 /* Resources */,
+				0F2BACCE2982BBAB006D4A7F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0F2BACCD2982BBAB006D4A7F /* PBXTargetDependency */,
 			);
 			name = FoodybiteNetworking;
 			productName = FoodybiteNetworking;
@@ -2451,6 +2474,11 @@
 			isa = PBXTargetDependency;
 			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
 			targetProxy = 0F2BACC52982B2E0006D4A7F /* PBXContainerItemProxy */;
+		};
+		0F2BACCD2982BBAB006D4A7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
+			targetProxy = 0F2BACCC2982BBAB006D4A7F /* PBXContainerItemProxy */;
 		};
 		0F412E802962C78E00FDDF41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

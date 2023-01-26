@@ -11,9 +11,9 @@ public struct User: Equatable {
     public let id: UUID
     public let name: String
     public let email: String
-    public let profileImage: URL
+    public let profileImage: Data?
     
-    public init(id: UUID, name: String, email: String, profileImage: URL) {
+    public init(id: UUID, name: String, email: String, profileImage: Data?) {
         self.id = id
         self.name = name
         self.email = email
