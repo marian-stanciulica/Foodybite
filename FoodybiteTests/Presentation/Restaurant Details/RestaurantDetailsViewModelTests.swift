@@ -10,14 +10,26 @@ import Foundation
 import DomainModels
 
 final class RestaurantDetailsViewModel {
-    private let getPlaceDetailsService: GetPlaceDetailsService
+    public enum Error: String, Swift.Error {
+        case connectionFailure = "Server connection failed. Please try again!"
+    }
     
-    init(getPlaceDetailsService: GetPlaceDetailsService) {
+    private let placeID: String
+    private let getPlaceDetailsService: GetPlaceDetailsService
+    var error: Error?
+    
+    init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService) {
+        self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService
     }
     
-    func getPlaceDetails(placeID: String) async -> PlaceDetails {
-        _ = try? await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+    func getPlaceDetails() async -> PlaceDetails {
+        do {
+            error = nil
+            _ = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+        } catch {
+            self.error = .connectionFailure
+        }
         return PlaceDetails(name: "any place")
     }
 }
@@ -26,32 +38,56 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
         let (sut, serviceSpy) = makeSUT()
-        let expectedPlaceID = anyPlaceID
         
-        _ = await sut.getPlaceDetails(placeID: expectedPlaceID)
+        _ = await sut.getPlaceDetails()
         
-        XCTAssertEqual(serviceSpy.placeID, expectedPlaceID)
+        XCTAssertEqual(serviceSpy.placeID, anyPlaceID())
+    }
+    
+    func test_getPlaceDetails_setsErrorWhenGetPlaceDetailsServiceThrowsError() async {
+        let (sut, serviceSpy) = makeSUT()
+        
+        serviceSpy.result = .failure(anyError)
+        _ = await sut.getPlaceDetails()
+        XCTAssertEqual(sut.error, .connectionFailure)
+        
+        serviceSpy.result = nil
+        _ = await sut.getPlaceDetails()
+        XCTAssertNil(sut.error)
     }
     
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RestaurantDetailsViewModel, serviceSpy: GetPlaceDetailsServiceSpy) {
         let serviceSpy = GetPlaceDetailsServiceSpy()
-        let sut = RestaurantDetailsViewModel(getPlaceDetailsService: serviceSpy)
+        let sut = RestaurantDetailsViewModel(placeID: anyPlaceID(), getPlaceDetailsService: serviceSpy)
         return (sut, serviceSpy)
     }
     
-    private var anyPlaceID: String {
-        UUID().uuidString
+    private func anyPlaceID() -> String {
+        "any place id"
+    }
+    
+    private var anyError: NSError {
+        NSError(domain: "any error", code: 1)
     }
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
         private(set) var placeID: String?
+        var result: Result<PlaceDetails, Error>?
         
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
             self.placeID = placeID
             
-            return PlaceDetails(name: "any place")
+            if let result = result {
+                return try result.get()
+            }
+            
+            return anyPlaceDetails
+        }
+        
+        private var anyPlaceDetails: PlaceDetails {
+            PlaceDetails(name: "any place details")
         }
     }
     
