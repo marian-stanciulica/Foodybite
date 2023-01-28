@@ -684,11 +684,8 @@
 		0F19B476291647DB00A8FC8F /* DomainModels */ = {
 			isa = PBXGroup;
 			children = (
+				0F423AA229855F64009EB345 /* Models */,
 				0F412EBA2962D13700FDDF41 /* Places Protocols */,
-				0F19B46E291645F200A8FC8F /* User.swift */,
-				0F215CB4298265A0000F88F4 /* NearbyPlace.swift */,
-				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
-				0F423A8E29850D0D009EB345 /* Location.swift */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -1094,6 +1091,41 @@
 				0F423AA029854369009EB345 /* HomeFlowView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		0F423AA229855F64009EB345 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F423AA529855F98009EB345 /* User */,
+				0F423AA429855F81009EB345 /* Nearby Places */,
+				0F423AA329855F72009EB345 /* Place Details */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0F423AA329855F72009EB345 /* Place Details */ = {
+			isa = PBXGroup;
+			children = (
+				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
+			);
+			path = "Place Details";
+			sourceTree = "<group>";
+		};
+		0F423AA429855F81009EB345 /* Nearby Places */ = {
+			isa = PBXGroup;
+			children = (
+				0F215CB4298265A0000F88F4 /* NearbyPlace.swift */,
+				0F423A8E29850D0D009EB345 /* Location.swift */,
+			);
+			path = "Nearby Places";
+			sourceTree = "<group>";
+		};
+		0F423AA529855F98009EB345 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B46E291645F200A8FC8F /* User.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		0F447CB328FAC2940026C5DB /* Endpoint */ = {
