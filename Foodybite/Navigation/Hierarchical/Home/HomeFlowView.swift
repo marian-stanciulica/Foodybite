@@ -14,7 +14,9 @@ struct HomeFlowView: View {
     
     var body: some View {
         NavigationStack(path: $flow.path) {
-            HomeView(viewModel: HomeViewModel(searchNearbyService: placesService))
+            HomeView(viewModel: HomeViewModel(searchNearbyService: placesService), showPlaceDetails: { placeID in
+                flow.append(.placeDetails(placeID))
+            })
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
                 case .placeDetails:

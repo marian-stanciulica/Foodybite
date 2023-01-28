@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
+    let showPlaceDetails: (String) -> Void
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -22,6 +23,9 @@ struct HomeView: View {
                         .aspectRatio(0.75, contentMode: .fit)
                         .padding(4)
                         .shadow(color:.gray.opacity(0.2), radius: 2)
+                        .onTapGesture {
+                            showPlaceDetails(place.placeID)
+                        }
                 }
             }
         }
@@ -34,7 +38,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()))
+        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()), showPlaceDetails: { _ in })
     }
     
     private class PreviewSearchNearbyService: SearchNearbyService {
