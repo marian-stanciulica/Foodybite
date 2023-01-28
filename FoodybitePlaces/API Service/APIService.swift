@@ -22,7 +22,7 @@ extension APIService: SearchNearbyService {
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
         return response.results.map {
-            NearbyPlace(placeID: $0.placeID, placeName: $0.name, isOpen: $0.openingHours.openNow)
+            NearbyPlace(placeID: $0.placeID, placeName: $0.name, isOpen: $0.openingHours.openNow, rating: $0.rating)
         }
     }
 }
