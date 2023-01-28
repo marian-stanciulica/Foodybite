@@ -18,6 +18,12 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     @Published public var error: Error?
     @Published public var placeDetails: PlaceDetails?
     
+    public var rating: String {
+        guard let placeDetails = placeDetails else { return "" }
+        
+        return String(format: "%.1f", placeDetails.rating)
+    }
+    
     public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService

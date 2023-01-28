@@ -41,6 +41,13 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
     }
     
+    func test_rating_returnsFormmatedRating() {
+        let (sut, _) = makeSUT()
+        sut.placeDetails = anyPlaceDetails
+        
+        XCTAssertEqual(sut.rating, rating().formatted)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RestaurantDetailsViewModel, serviceSpy: GetPlaceDetailsServiceSpy) {
@@ -62,8 +69,12 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
-            rating: 4.5
+            rating: rating().raw
         )
+    }
+    
+    private func rating() -> (raw: Double, formatted: String) {
+        (4.52, "4.5")
     }
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
