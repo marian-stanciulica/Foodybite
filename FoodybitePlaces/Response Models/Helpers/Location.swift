@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Location: Decodable {
+public struct Location: Decodable, Equatable {
     let lat: Double
     let lng: Double
     
