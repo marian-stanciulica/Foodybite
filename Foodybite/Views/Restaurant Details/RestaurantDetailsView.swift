@@ -16,7 +16,7 @@ struct RestaurantDetailsView: View {
             ScrollView {
                 if let placeDetails = viewModel.placeDetails {
                     VStack(alignment: .leading) {
-                        RestaurantImageView(phoneNumber: placeDetails.phoneNumber)
+                        RestaurantImageView(phoneNumber: placeDetails.phoneNumber, showMaps: viewModel.showMaps)
                         
                         HStack {
                             RestaurantInformationView(
@@ -99,7 +99,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         relativeTime: "5 months ago"
                     )
                 ],
-                location: Location(latitude: -33.8670522, longitude: 151.1957362)
+                location: Location(latitude: 44.439663, longitude: 26.096306)
             )
         }
     }

@@ -50,7 +50,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     private var location: Location {
-        Location(latitude: -31.3223245, longitude: 132.45432)
+        Location(latitude: 44.439663, longitude: 26.096306)
     }
     
     private var radius: Int {

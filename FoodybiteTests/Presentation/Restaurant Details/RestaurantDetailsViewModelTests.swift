@@ -52,7 +52,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let (sut, _) = makeSUT()
         sut.placeDetails = anyPlaceDetails
         
-        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "1892.7")
+        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "1185.3")
     }
     
     // MARK: - Helpers
@@ -98,7 +98,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                     relativeTime: "5 months ago"
                 )
             ],
-            location: Location(latitude: -33.85, longitude: 151.195)
+            location: Location(latitude: 44.43, longitude: 26.09)
         )
     }
     

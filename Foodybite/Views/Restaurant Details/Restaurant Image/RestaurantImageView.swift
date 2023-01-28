@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RestaurantImageView: View {
     let phoneNumber: String
+    let showMaps: () -> Void
 
     var body: some View {
         ZStack {
@@ -18,7 +19,7 @@ struct RestaurantImageView: View {
 
             VStack {
                 Spacer()
-                PhoneAndDirectionsView(phoneNumber: phoneNumber)
+                PhoneAndDirectionsView(phoneNumber: phoneNumber, showMaps: showMaps)
             }
             .padding(.vertical, 16)
             .padding(.horizontal, 32)
@@ -28,7 +29,7 @@ struct RestaurantImageView: View {
 
 struct RestaurantImageView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantImageView(phoneNumber: "+61 2 9374 4000")
+        RestaurantImageView(phoneNumber: "+61 2 9374 4000", showMaps: {})
             .background(.black)
     }
 }
