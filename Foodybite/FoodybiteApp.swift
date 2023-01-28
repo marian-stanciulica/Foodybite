@@ -43,7 +43,7 @@ final class AppViewModel {
 
 @main
 struct FoodybiteApp: App {
-    @AppStorage("userLoggedIn") var userLoggedIn = false
+    @AppStorage("userLoggedIn") var userLoggedIn = true
     private let appViewModel = AppViewModel()
     
     var body: some Scene {
