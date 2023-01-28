@@ -9,7 +9,7 @@ import SwiftUI
 import FoodybiteNetworking
 
 struct ProfileFlowView: View {
-    @ObservedObject var flow: ProfileFlow
+    @ObservedObject var flow: Flow<ProfileRoute>
     @AppStorage("userLoggedIn") var userLoggedIn = false
     let apiService: APIService
     
@@ -23,7 +23,7 @@ struct ProfileFlowView: View {
                 goToSettings: { flow.append(.settings) },
                 goToEditProfile: { flow.append(.editProfile) }
             )
-            .navigationDestination(for: ProfileFlow.Route.self) { route in
+            .navigationDestination(for: ProfileRoute.self) { route in
                 switch route {
                 case .settings:
                     SettingsView(
