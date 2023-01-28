@@ -19,14 +19,18 @@ struct RestaurantCell: View {
                     .scaledToFit()
 
                 HStack {
-                    Text("Open")
+                    Text(place.isOpen ? "Open" : "Closed")
+                        .fontWeight(.bold)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 4)
-                        .background(
+                        
+                        .foregroundColor(place.isOpen ? .green : .red)
+                        .background(Color.white)
+                        .cornerRadius(16)
+                        .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(.white)
+                                .stroke(place.isOpen ? .green : .red, lineWidth: 1)
                         )
-                        .foregroundColor(.green)
 
                     Spacer()
 
