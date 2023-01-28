@@ -35,12 +35,11 @@ struct RestaurantDetailsView: View {
                         RestaurantPhotosView(imageWidth: proxy.size.width / 2.5)
                             .padding(.bottom)
                         
-                        HeaderView(name: "Review & Ratings", allItemsCount: 32)
+                        HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
                         
                         LazyVStack {
-                            ForEach(0...50, id: \.self) { _ in
-                                ReviewCell()
-                                    .padding(.horizontal)
+                            ForEach(placeDetails.reviews) { review in
+                                ReviewCell(review: review)
                             }
                         }
                     }
