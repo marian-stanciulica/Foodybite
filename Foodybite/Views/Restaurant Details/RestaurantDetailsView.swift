@@ -14,23 +14,32 @@ struct RestaurantDetailsView: View {
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                VStack {
-                    RestaurantImageView()
-
-                    OpenHoursView()
-                        .padding(.horizontal)
-
-                    RestaurantPhotosView(imageWidth: proxy.size.width / 2.5)
-                        .padding(.bottom)
-
-                    HeaderView(name: "Review & Ratings", allItemsCount: 32)
-
-                    LazyVStack {
-                        ForEach(0...50, id: \.self) { _ in
-                            ReviewCell()
-                                .padding(.horizontal)
+                if let placeDetails = viewModel.placeDetails {
+                    VStack(alignment: .leading) {
+                        RestaurantImageView(phoneNumber: placeDetails.phoneNumber)
+                        
+                        RestaurantInformationView(
+                            placeName: placeDetails.name,
+                            address: placeDetails.address
+                        )
+                        
+                        OpenHoursView()
+                            .padding(.horizontal)
+                        
+                        RestaurantPhotosView(imageWidth: proxy.size.width / 2.5)
+                            .padding(.bottom)
+                        
+                        HeaderView(name: "Review & Ratings", allItemsCount: 32)
+                        
+                        LazyVStack {
+                            ForEach(0...50, id: \.self) { _ in
+                                ReviewCell()
+                                    .padding(.horizontal)
+                            }
                         }
                     }
+                } else {
+                    ProgressView()
                 }
             }
         }

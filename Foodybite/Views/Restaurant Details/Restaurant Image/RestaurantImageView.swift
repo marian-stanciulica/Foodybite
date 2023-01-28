@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RestaurantImageView: View {
+    let phoneNumber: String
+
     var body: some View {
         ZStack {
             Image("restaurant_logo_test")
@@ -16,7 +18,7 @@ struct RestaurantImageView: View {
 
             VStack {
                 Spacer()
-                PhoneAndDirectionsView()
+                PhoneAndDirectionsView(phoneNumber: phoneNumber)
             }
             .padding(.vertical, 16)
             .padding(.horizontal, 32)
@@ -26,7 +28,7 @@ struct RestaurantImageView: View {
 
 struct RestaurantImageView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantImageView()
+        RestaurantImageView(phoneNumber: "+61 2 9374 4000")
             .background(.black)
     }
 }

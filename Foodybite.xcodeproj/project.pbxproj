@@ -180,7 +180,6 @@
 		A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */; };
 		A2C24222284755AE00CB233B /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24221284755AE00CB233B /* Blur.swift */; };
 		A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422628475CE600CB233B /* OpenHoursView.swift */; };
-		A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */; };
 		A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422C28475D9200CB233B /* DistanceText.swift */; };
 		A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */; };
 		A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423428476E1300CB233B /* ReviewCell.swift */; };
@@ -505,7 +504,6 @@
 		A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAndDirectionsView.swift; sourceTree = "<group>"; };
 		A2C24221284755AE00CB233B /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		A2C2422628475CE600CB233B /* OpenHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenHoursView.swift; sourceTree = "<group>"; };
-		A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenHoursRatingView.swift; sourceTree = "<group>"; };
 		A2C2422C28475D9200CB233B /* DistanceText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceText.swift; sourceTree = "<group>"; };
 		A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosView.swift; sourceTree = "<group>"; };
 		A2C2423428476E1300CB233B /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -1642,7 +1640,6 @@
 			isa = PBXGroup;
 			children = (
 				A2C2422628475CE600CB233B /* OpenHoursView.swift */,
-				A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */,
 			);
 			path = "Restaurant Order Hours";
 			sourceTree = "<group>";
@@ -2345,7 +2342,6 @@
 				0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */,
 				0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */,
 				0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */,
-				A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
 				A2C2424728478BCB00CB233B /* ImageGrayTextField.swift in Sources */,
 				A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */,

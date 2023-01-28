@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PhoneAndDirectionsView: View {
+    let phoneNumber: String
+    
     var body: some View {
         HStack {
             Spacer()
@@ -18,7 +20,7 @@ struct PhoneAndDirectionsView: View {
                 .foregroundColor(.white)
                 .frame(height: 32)
 
-            Text("+1 212-673-3754")
+            Text(phoneNumber)
                 .foregroundColor(.white)
 
             Spacer()
@@ -45,7 +47,7 @@ struct PhoneAndDirectionsView: View {
 
 struct PhoneAndDirectionsView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneAndDirectionsView()
+        PhoneAndDirectionsView(phoneNumber: "+61 2 9374 4000")
             .padding()
             .background(
                 Image("restaurant_logo_test")

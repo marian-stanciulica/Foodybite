@@ -10,12 +10,6 @@ import SwiftUI
 struct OpenHoursView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            OpenHoursRatingView()
-
-            Text("394 Broome St, New York, NY 10013, USA")
-                .foregroundColor(.gray)
-                .font(.callout)
-
             HStack {
                 Text("Open Now ")
                     .foregroundColor(.green)

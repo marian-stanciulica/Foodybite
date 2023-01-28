@@ -39,7 +39,7 @@ struct RestaurantCell: View {
                 .padding()
             }
 
-            RestaurantInformationView(place: place)
+            RestaurantInformationView(placeName: place.placeName, address: nil)
         }
         .cornerRadius(16)
     }
