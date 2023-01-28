@@ -23,6 +23,7 @@ final class HomeViewModel {
     
     func searchNearby(location: Location, radius: Int) async {
         do {
+            error = nil
             _ = try await searchNearbyService.searchNearby(location: location, radius: radius)
         } catch {
             self.error = .connectionFailure
@@ -44,12 +45,15 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
         let serviceSpy = SearchNearbyServiceSpy()
-        serviceSpy.errorToThrow = anyError
         let sut = HomeViewModel(searchNearbyService: serviceSpy)
         
+        serviceSpy.errorToThrow = anyError
         await sut.searchNearby(location: location, radius: radius)
-        
         XCTAssertEqual(sut.error, .connectionFailure)
+        
+        serviceSpy.errorToThrow = nil
+        await sut.searchNearby(location: location, radius: radius)
+        XCTAssertNil(sut.error)
     }
     
     // MARK: - Helpers
