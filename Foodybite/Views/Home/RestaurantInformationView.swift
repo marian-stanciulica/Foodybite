@@ -5,13 +5,16 @@
 //  Created by Marian Stanciulica on 28.05.2022.
 //
 
+import DomainModels
 import SwiftUI
 
 struct RestaurantInformationView: View {
+    let place: NearbyPlace
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text("Happy Bones")
+                Text(place.placeName)
                     .font(.headline.weight(.bold))
 
                 CategoryText()
@@ -35,6 +38,6 @@ struct RestaurantInformationView: View {
 
 struct RestaurantInformationView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantInformationView()
+        RestaurantInformationView(place: NearbyPlace(placeID: "place id", placeName: "Place name"))
     }
 }

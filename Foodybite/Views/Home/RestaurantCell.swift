@@ -5,9 +5,12 @@
 //  Created by Marian Stanciulica on 28.05.2022.
 //
 
+import DomainModels
 import SwiftUI
 
 struct RestaurantCell: View {
+    let place: NearbyPlace
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .top) {
@@ -32,7 +35,7 @@ struct RestaurantCell: View {
                 .padding()
             }
 
-            RestaurantInformationView()
+            RestaurantInformationView(place: place)
         }
         .cornerRadius(16)
     }
@@ -40,7 +43,7 @@ struct RestaurantCell: View {
 
 struct RestaurantCell_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantCell()
+        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "Place name"))
             .background(.blue.opacity(0.2))
             .cornerRadius(16)
             .padding()

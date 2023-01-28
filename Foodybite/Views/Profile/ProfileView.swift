@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainModels
 import FoodybiteNetworking
 
 struct ProfileView: View {
@@ -66,7 +67,7 @@ struct ProfileView: View {
 
                 LazyVStack {
                     ForEach(0...50, id: \.self) { _ in
-                        RestaurantCell()
+                        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "place name"))
                             .background(.white)
                             .cornerRadius(16)
                             .aspectRatio(1, contentMode: .fit)

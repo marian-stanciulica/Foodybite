@@ -109,6 +109,7 @@
 		0F423A8C29850CE8009EB345 /* GetPlaceDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */; };
 		0F423A8F29850D0D009EB345 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A8E29850D0D009EB345 /* Location.swift */; };
 		0F423A9229850F68009EB345 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A9129850F68009EB345 /* HomeViewModel.swift */; };
+		0F423A94298519CD009EB345 /* CategoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A93298519CD009EB345 /* CategoryText.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
 		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
 		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
@@ -175,7 +176,6 @@
 		A2C24222284755AE00CB233B /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C24221284755AE00CB233B /* Blur.swift */; };
 		A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422628475CE600CB233B /* OpenHoursView.swift */; };
 		A2C2422928475D1800CB233B /* OpenHoursRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */; };
-		A2C2422B28475D5800CB233B /* CategoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422A28475D5800CB233B /* CategoryText.swift */; };
 		A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422C28475D9200CB233B /* DistanceText.swift */; };
 		A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */; };
 		A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2423428476E1300CB233B /* ReviewCell.swift */; };
@@ -423,6 +423,7 @@
 		0F423A862984FFF2009EB345 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		0F423A8E29850D0D009EB345 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0F423A9129850F68009EB345 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0F423A93298519CD009EB345 /* CategoryText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryText.swift; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
 		0F447CAD28FAC1810026C5DB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -495,7 +496,6 @@
 		A2C24221284755AE00CB233B /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		A2C2422628475CE600CB233B /* OpenHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenHoursView.swift; sourceTree = "<group>"; };
 		A2C2422828475D1800CB233B /* OpenHoursRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenHoursRatingView.swift; sourceTree = "<group>"; };
-		A2C2422A28475D5800CB233B /* CategoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryText.swift; sourceTree = "<group>"; };
 		A2C2422C28475D9200CB233B /* DistanceText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceText.swift; sourceTree = "<group>"; };
 		A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosView.swift; sourceTree = "<group>"; };
 		A2C2423428476E1300CB233B /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -1571,7 +1571,7 @@
 				0F7516462843666900A05A92 /* WhiteButton.swift */,
 				0F2B4CBF28455007004D0EF7 /* OrangeButton.swift */,
 				A2C24221284755AE00CB233B /* Blur.swift */,
-				A2C2422A28475D5800CB233B /* CategoryText.swift */,
+				0F423A93298519CD009EB345 /* CategoryText.swift */,
 				A2C2422C28475D9200CB233B /* DistanceText.swift */,
 				A2C2423628476EE700CB233B /* RatingStar.swift */,
 			);
@@ -2284,6 +2284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2E64BD32842470A00FC41B7 /* RestaurantCell.swift in Sources */,
+				0F423A94298519CD009EB345 /* CategoryText.swift in Sources */,
 				0F7137BD2841F8340058757A /* LoginView.swift in Sources */,
 				0F415CD02843D481005B54DC /* RatingView.swift in Sources */,
 				0F2B4CC428455577004D0EF7 /* RadiusIndicatorView.swift in Sources */,
@@ -2310,7 +2311,6 @@
 				0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */,
 				0F73EC86292F608E0025B237 /* ProfileFlow.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
-				A2C2422B28475D5800CB233B /* CategoryText.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
 				0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,

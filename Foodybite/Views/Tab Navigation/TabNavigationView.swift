@@ -7,11 +7,13 @@
 
 import SwiftUI
 import FoodybiteNetworking
+import FoodybitePlaces
 
 struct TabNavigationView: View {
     @StateObject var tabRouter: TabRouter
     @State var plusButtonActive = false
-    let apiService: APIService
+    let apiService: FoodybiteNetworking.APIService
+    let placesService: FoodybitePlaces.APIService
     
     var body: some View {
         GeometryReader { geometry in
@@ -21,7 +23,7 @@ struct TabNavigationView: View {
                 Group {
                     switch tabRouter.currentPage {
                     case .home:
-                        HomeView()
+                        HomeView(viewModel: HomeViewModel(searchNearbyService: placesService))
                     case .newReview:
                         NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
                     case .account:

@@ -9,34 +9,50 @@ import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
 
-@main
-struct FoodybiteApp: App {
-    @AppStorage("userLoggedIn") var userLoggedIn = false
-    
-    var body: some Scene {
-        let httpClient = URLSessionHTTPClient()
-        let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
+final class AppViewModel {
+    func makeApiService() -> FoodybiteNetworking.APIService {
+        let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
         let tokenStore = KeychainTokenStore()
         
         let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
-        let apiService = APIService(loader: remoteResourceLoader,
-                                    sender: remoteResourceLoader,
-                                    tokenStore: tokenStore)
-        
+        return APIService(loader: remoteResourceLoader,
+                          sender: remoteResourceLoader,
+                          tokenStore: tokenStore)
+    }
+    
+    func makeAuthenticatedApiService() -> FoodybiteNetworking.APIService {
+        let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
+        let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
+        let tokenStore = KeychainTokenStore()
+                
         let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
         let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
         let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
         
-        let authenticatedAPIService = APIService(loader: authenticatedRemoteResourceLoader,
-                                                 sender: authenticatedRemoteResourceLoader,
-                                                 tokenStore: tokenStore)
-        
+        return APIService(loader: authenticatedRemoteResourceLoader,
+                          sender: authenticatedRemoteResourceLoader,
+                          tokenStore: tokenStore)
+    }
+    
+    func makePlacesService() -> FoodybitePlaces.APIService {
+        let httpClient = FoodybitePlaces.URLSessionHTTPClient()
+        let loader = FoodybitePlaces.RemoteResourceLoader(client: httpClient)
+        return FoodybitePlaces.APIService(loader: loader)
+    }
+}
+
+@main
+struct FoodybiteApp: App {
+    @AppStorage("userLoggedIn") var userLoggedIn = false
+    private let appViewModel = AppViewModel()
+    
+    var body: some Scene {
         WindowGroup {
             if userLoggedIn {
-                TabNavigationView(tabRouter: TabRouter(), apiService: authenticatedAPIService)
+                TabNavigationView(tabRouter: TabRouter(), apiService: appViewModel.makeAuthenticatedApiService(), placesService: appViewModel.makePlacesService())
             } else {
                 AuthFlowView(userLoggedIn: $userLoggedIn,
-                             apiService: apiService,
+                             apiService: appViewModel.makeApiService(),
                              flow: AuthFlow())
             }
         }

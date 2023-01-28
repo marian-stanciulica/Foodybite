@@ -5,30 +5,41 @@
 //  Created by Marian Stanciulica on 28.05.2022.
 //
 
+import DomainModels
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var viewModel: HomeViewModel
+
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack {
-                    ForEach(0...50, id: \.self) { _ in
-                        RestaurantCell()
-                            .background(.white)
-                            .cornerRadius(16)
-                            .frame(width: proxy.size.width)
-                            .aspectRatio(0.75, contentMode: .fit)
-                            .padding(4)
-                    }
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack {
+                ForEach(viewModel.nearbyPlaces, id: \.placeID) { place in
+                    RestaurantCell(place: place)
+                        .background(.white)
+                        .cornerRadius(16)
+                        .frame(maxWidth: .infinity)
+                        .aspectRatio(0.75, contentMode: .fit)
+                        .padding(4)
+                        .shadow(color:.gray.opacity(0.2), radius: 2)
                 }
             }
-            .padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .task {
+            await viewModel.searchNearby(location: Location(latitude: -33.8670522, longitude: 151.1957362), radius: 100)
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()))
+    }
+    
+    private class PreviewSearchNearbyService: SearchNearbyService {
+        func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+            []
+        }
     }
 }
