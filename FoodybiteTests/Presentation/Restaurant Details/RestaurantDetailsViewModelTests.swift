@@ -69,7 +69,19 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
-            rating: rating().raw
+            rating: rating().raw,
+            openingHoursDetails: OpeningHoursDetails(
+                openNow: true,
+                weekdayText: [
+                    "Monday: 9:00 AM – 5:00 PM",
+                    "Tuesday: 9:00 AM – 5:00 PM",
+                    "Wednesday: 9:00 AM – 5:00 PM",
+                    "Thursday: 9:00 AM – 5:00 PM",
+                    "Friday: 9:00 AM – 5:00 PM",
+                    "Saturday: Closed",
+                    "Sunday: Closed",
+                ]
+            )
         )
     }
     

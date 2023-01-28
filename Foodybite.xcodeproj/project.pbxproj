@@ -115,6 +115,7 @@
 		0F423A9C29853EF2009EB345 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A9B29853EF2009EB345 /* Flow.swift */; };
 		0F423A9F29854318009EB345 /* HomeRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A9E29854318009EB345 /* HomeRoute.swift */; };
 		0F423AA129854369009EB345 /* HomeFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AA029854369009EB345 /* HomeFlowView.swift */; };
+		0F423AA729855FDD009EB345 /* OpeningHoursDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
 		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
 		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
@@ -433,6 +434,7 @@
 		0F423A9B29853EF2009EB345 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		0F423A9E29854318009EB345 /* HomeRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoute.swift; sourceTree = "<group>"; };
 		0F423AA029854369009EB345 /* HomeFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowView.swift; sourceTree = "<group>"; };
+		0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningHoursDetails.swift; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
 		0F447CAD28FAC1810026C5DB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -1107,6 +1109,7 @@
 			isa = PBXGroup;
 			children = (
 				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
+				0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */,
 			);
 			path = "Place Details";
 			sourceTree = "<group>";
@@ -2288,6 +2291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F423AA729855FDD009EB345 /* OpeningHoursDetails.swift in Sources */,
 				0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */,
 				0F423A8C29850CE8009EB345 /* GetPlaceDetailsService.swift in Sources */,
 				0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */,

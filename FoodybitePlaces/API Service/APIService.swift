@@ -36,7 +36,12 @@ extension APIService: GetPlaceDetailsService {
             phoneNumber: response.result.internationalPhoneNumber,
             name: response.result.name,
             address: response.result.formattedAddress,
-            rating: response.result.rating
-        )
+            rating: response.result.rating,
+            openingHoursDetails:
+                DomainModels.OpeningHoursDetails(
+                    openNow: response.result.openingHours.openNow,
+                    weekdayText: response.result.openingHours.weekdayText
+                )
+            )
     }
 }
