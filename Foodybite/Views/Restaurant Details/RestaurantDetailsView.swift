@@ -32,8 +32,10 @@ struct RestaurantDetailsView: View {
                             )
                                 .padding(4)
                         }
+                        .padding(.horizontal)
                         
                         OpenHoursView(openingHoursDetails: placeDetails.openingHoursDetails)
+                            .padding(.horizontal)
                         
                         RestaurantPhotosView(imageWidth: proxy.size.width / 2.5)
                             .padding(.bottom)

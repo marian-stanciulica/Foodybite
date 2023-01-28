@@ -30,7 +30,6 @@ struct OpenHoursView: View {
                     .font(.callout)
             }
             .foregroundColor(openingHoursDetails.openNow ? .green : .red)
-            .padding()
         }
     }
 }

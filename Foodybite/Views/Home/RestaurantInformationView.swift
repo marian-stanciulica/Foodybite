@@ -18,8 +18,6 @@ struct RestaurantInformationView: View {
                 Text(placeName)
                     .font(.headline.weight(.bold))
 
-                CategoryText()
-
                 DistanceText(distance: 1.2)
             }
 
@@ -28,7 +26,6 @@ struct RestaurantInformationView: View {
                     .foregroundColor(.gray)
             }
         }
-        .padding()
     }
 }
 
