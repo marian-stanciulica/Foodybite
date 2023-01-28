@@ -18,10 +18,17 @@ struct RestaurantDetailsView: View {
                     VStack(alignment: .leading) {
                         RestaurantImageView(phoneNumber: placeDetails.phoneNumber)
                         
-                        RestaurantInformationView(
-                            placeName: placeDetails.name,
-                            address: placeDetails.address
-                        )
+                        HStack {
+                            RestaurantInformationView(
+                                placeName: placeDetails.name,
+                                address: placeDetails.address
+                            )
+                            
+                            Spacer()
+                            
+                            RatingStar(rating: viewModel.rating)
+                                .padding(4)
+                        }
                         
                         OpenHoursView()
                             .padding(.horizontal)
