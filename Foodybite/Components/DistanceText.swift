@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct DistanceText: View {
-    let distance: Float
+    let distance: String
 
     var body: some View {
-        Text("\(String(format: "%.1f", distance)) km")
+        Text(distance + " km")
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .foregroundColor(.white)
@@ -25,6 +25,6 @@ struct DistanceText: View {
 
 struct DistanceText_Previews: PreviewProvider {
     static var previews: some View {
-        DistanceText(distance: 1.2)
+        DistanceText(distance: "1.2")
     }
 }

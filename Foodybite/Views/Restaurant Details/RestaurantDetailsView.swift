@@ -21,6 +21,7 @@ struct RestaurantDetailsView: View {
                         HStack {
                             RestaurantInformationView(
                                 placeName: placeDetails.name,
+                                distance: viewModel.distanceInKmFromCurrentLocation,
                                 address: placeDetails.address
                             )
                             

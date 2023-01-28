@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RestaurantInformationView: View {
     let placeName: String
+    let distance: String
     let address: String?
     
     var body: some View {
@@ -18,7 +19,7 @@ struct RestaurantInformationView: View {
                 Text(placeName)
                     .font(.headline.weight(.bold))
 
-                DistanceText(distance: 1.2)
+                DistanceText(distance: distance)
             }
 
             if let address = address {
@@ -31,6 +32,10 @@ struct RestaurantInformationView: View {
 
 struct RestaurantInformationView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantInformationView(placeName: "Place name", address: "394 Broome St, New York, NY 10013, USA")
+        RestaurantInformationView(
+            placeName: "Place name",
+            distance: "1.2 km",
+            address: "394 Broome St, New York, NY 10013, USA"
+        )
     }
 }
