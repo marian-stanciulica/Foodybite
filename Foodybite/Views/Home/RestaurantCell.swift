@@ -34,7 +34,7 @@ struct RestaurantCell: View {
 
                     Spacer()
 
-                    RatingStar()
+                    RatingStar(rating: String(format: "%.1f", place.rating))
                 }
                 .padding()
             }

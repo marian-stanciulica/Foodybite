@@ -23,7 +23,7 @@ struct ReviewCell: View {
 
                     Spacer()
 
-                    RatingStar()
+                    RatingStar(rating: "N/A")
                 }
 
                 Text("Loren ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmo temp cididunt ut labore et dolor magna aliqua. Ut enim ad mini veniam quis")

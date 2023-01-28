@@ -19,7 +19,7 @@ struct OpenHoursRatingView: View {
 
             Spacer()
 
-            RatingStar()
+            RatingStar(rating: "N/A")
         }
     }
 }
