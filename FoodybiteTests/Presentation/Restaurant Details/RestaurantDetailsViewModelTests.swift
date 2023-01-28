@@ -25,7 +25,9 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         
         serviceSpy.result = .failure(anyError)
         await sut.getPlaceDetails()
+        
         XCTAssertEqual(sut.error, .connectionFailure)
+        XCTAssertNil(sut.placeDetails)
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {

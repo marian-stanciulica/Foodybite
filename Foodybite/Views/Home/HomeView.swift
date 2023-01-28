@@ -9,7 +9,7 @@ import DomainModels
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
 
     var body: some View {

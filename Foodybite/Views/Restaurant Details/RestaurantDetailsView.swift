@@ -9,7 +9,7 @@ import SwiftUI
 import DomainModels
 
 struct RestaurantDetailsView: View {
-    @ObservedObject var viewModel: RestaurantDetailsViewModel
+    @StateObject var viewModel: RestaurantDetailsViewModel
     
     var body: some View {
         GeometryReader { proxy in
@@ -38,8 +38,6 @@ struct RestaurantDetailsView: View {
                             }
                         }
                     }
-                } else {
-                    ProgressView()
                 }
             }
         }

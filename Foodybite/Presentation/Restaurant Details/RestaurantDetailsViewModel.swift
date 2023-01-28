@@ -28,6 +28,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             error = nil
             placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
         } catch {
+            placeDetails = nil
             self.error = .connectionFailure
         }
     }
