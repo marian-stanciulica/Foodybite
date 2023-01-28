@@ -26,7 +26,10 @@ struct ReviewCell: View {
                         
                         Spacer()
                         
-                        RatingStar(rating: "\(review.rating)")
+                        RatingStar(
+                            rating: "\(review.rating)",
+                            backgroundColor: .gray.opacity(0.1)
+                        )
                     }
                     
                     Text(review.relativeTime)

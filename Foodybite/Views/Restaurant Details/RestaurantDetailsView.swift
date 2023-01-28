@@ -26,7 +26,10 @@ struct RestaurantDetailsView: View {
                             
                             Spacer()
                             
-                            RatingStar(rating: viewModel.rating)
+                            RatingStar(
+                                rating: viewModel.rating,
+                                backgroundColor: .gray.opacity(0.1)
+                            )
                                 .padding(4)
                         }
                         
