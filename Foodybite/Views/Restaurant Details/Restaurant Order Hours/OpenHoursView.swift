@@ -19,8 +19,11 @@ struct OpenHoursView: View {
 
                 Spacer()
 
-                Text(openingHoursDetails.weekdayText.first ?? "")
-                    .font(.callout)
+                Menu(openingHoursDetails.weekdayText.first ?? "") {
+                    ForEach(openingHoursDetails.weekdayText, id: \.self) {
+                        Text($0)
+                    }
+                }
 
                 Image(systemName: "arrow.down")
                     .foregroundColor(.gray)
@@ -50,20 +53,7 @@ struct OpenHoursView_Previews: PreviewProvider {
                 )
             )
             
-            OpenHoursView(
-                openingHoursDetails: OpeningHoursDetails(
-                    openNow: false,
-                    weekdayText: [
-                        "Monday: 9:00 AM – 5:00 PM",
-                        "Tuesday: 9:00 AM – 5:00 PM",
-                        "Wednesday: 9:00 AM – 5:00 PM",
-                        "Thursday: 9:00 AM – 5:00 PM",
-                        "Friday: 9:00 AM – 5:00 PM",
-                        "Saturday: Closed",
-                        "Sunday: Closed",
-                    ]
-                )
-            )
+            Spacer()
         }
     }
 }
