@@ -84,7 +84,16 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         "Saturday: Closed",
                         "Sunday: Closed",
                     ]
-                )
+                ),
+                reviews: [
+                    Review(
+                        profileImageURL: URL(string: "www.google.com")!,
+                        authorName: "Marian",
+                        reviewText: "Loren ipsum...",
+                        rating: 2,
+                        relativeTime: "5 months ago"
+                    )
+                ]
             )
         }
     }

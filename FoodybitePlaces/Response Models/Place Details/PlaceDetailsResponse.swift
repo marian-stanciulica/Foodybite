@@ -101,9 +101,9 @@ struct Close: Decodable {
 
 struct Review: Decodable {
     let authorName: String
-    let authorURL: String
+    let authorURL: URL
     let language: String
-    let profilePhotoURL: String
+    let profilePhotoURL: URL
     let rating: Int
     let relativeTimeDescription, text: String
     let time: Int

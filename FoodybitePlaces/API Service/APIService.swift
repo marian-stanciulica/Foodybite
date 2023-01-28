@@ -41,7 +41,15 @@ extension APIService: GetPlaceDetailsService {
                 DomainModels.OpeningHoursDetails(
                     openNow: response.result.openingHours.openNow,
                     weekdayText: response.result.openingHours.weekdayText
+                ),
+            reviews: response.result.reviews.map {
+                DomainModels.Review(
+                    profileImageURL: $0.profilePhotoURL,
+                    authorName: $0.authorName,
+                    reviewText: $0.text,
+                    rating: $0.rating,
+                    relativeTime: $0.relativeTimeDescription
                 )
-            )
+            })
     }
 }
