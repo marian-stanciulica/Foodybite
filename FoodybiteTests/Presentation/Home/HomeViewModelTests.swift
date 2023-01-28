@@ -34,8 +34,7 @@ final class HomeViewModel {
 final class HomeViewModelTests: XCTestCase {
     
     func test_searchNearby_sendsInputsToSearchNearbyService() async {
-        let serviceSpy = SearchNearbyServiceSpy()
-        let sut = HomeViewModel(searchNearbyService: serviceSpy)
+        let (sut, serviceSpy) = makeSUT()
         
         await sut.searchNearby(location: location, radius: radius)
         
@@ -44,8 +43,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
-        let serviceSpy = SearchNearbyServiceSpy()
-        let sut = HomeViewModel(searchNearbyService: serviceSpy)
+        let (sut, serviceSpy) = makeSUT()
         
         serviceSpy.errorToThrow = anyError
         await sut.searchNearby(location: location, radius: radius)
@@ -57,6 +55,12 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: HomeViewModel, serviceSpy: SearchNearbyServiceSpy) {
+        let serviceSpy = SearchNearbyServiceSpy()
+        let sut = HomeViewModel(searchNearbyService: serviceSpy)
+        return (sut, serviceSpy)
+    }
     
     private var location: Location {
         Location(lat: -31.3223245, lng: 132.45432)
