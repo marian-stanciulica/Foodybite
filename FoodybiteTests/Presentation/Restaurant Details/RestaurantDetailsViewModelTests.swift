@@ -17,20 +17,20 @@ final class RestaurantDetailsViewModel {
     private let placeID: String
     private let getPlaceDetailsService: GetPlaceDetailsService
     var error: Error?
+    var placeDetails: PlaceDetails?
     
     init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService
     }
     
-    func getPlaceDetails() async -> PlaceDetails {
+    func getPlaceDetails() async {
         do {
             error = nil
-            _ = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
         } catch {
             self.error = .connectionFailure
         }
-        return PlaceDetails(name: "any place")
     }
 }
 
@@ -39,7 +39,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
         let (sut, serviceSpy) = makeSUT()
         
-        _ = await sut.getPlaceDetails()
+        await sut.getPlaceDetails()
         
         XCTAssertEqual(serviceSpy.placeID, anyPlaceID())
     }
@@ -48,12 +48,21 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let (sut, serviceSpy) = makeSUT()
         
         serviceSpy.result = .failure(anyError)
-        _ = await sut.getPlaceDetails()
+        await sut.getPlaceDetails()
         XCTAssertEqual(sut.error, .connectionFailure)
         
         serviceSpy.result = nil
-        _ = await sut.getPlaceDetails()
+        await sut.getPlaceDetails()
         XCTAssertNil(sut.error)
+    }
+    
+    func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
+        let (sut, serviceSpy) = makeSUT()
+        let expectedPlaceDetails = anyPlaceDetails
+        
+        serviceSpy.result = .success(expectedPlaceDetails)
+        await sut.getPlaceDetails()
+        XCTAssertEqual(sut.placeDetails, expectedPlaceDetails)
     }
     
     // MARK: - Helpers
@@ -70,6 +79,10 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private var anyError: NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private var anyPlaceDetails: PlaceDetails {
+        PlaceDetails(name: "any place")
     }
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
