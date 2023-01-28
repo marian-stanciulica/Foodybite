@@ -50,6 +50,11 @@ extension APIService: GetPlaceDetailsService {
                     rating: $0.rating,
                     relativeTime: $0.relativeTimeDescription
                 )
-            })
+            },
+            location: DomainModels.Location(
+                latitude: response.result.geometry.location.lat,
+                longitude: response.result.geometry.location.lng
+            )
+        )
     }
 }
