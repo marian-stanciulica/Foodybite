@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import DomainModels
 
 struct RestaurantDetailsView: View {
+    @ObservedObject var viewModel: RestaurantDetailsViewModel
+    
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
@@ -31,11 +34,25 @@ struct RestaurantDetailsView: View {
                 }
             }
         }
+        .task {
+            await viewModel.getPlaceDetails()
+        }
     }
 }
 
 struct RestaurantDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailsView()
+        RestaurantDetailsView(
+            viewModel: RestaurantDetailsViewModel(
+                placeID: "#1",
+                getPlaceDetailsService: PreviewSearchNearbyService()
+            )
+        )
+    }
+    
+    private class PreviewSearchNearbyService: GetPlaceDetailsService {
+        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+            PlaceDetails(name: "Place name")
+        }
     }
 }

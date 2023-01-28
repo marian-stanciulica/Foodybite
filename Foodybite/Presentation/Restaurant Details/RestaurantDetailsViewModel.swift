@@ -8,22 +8,22 @@
 import Foundation
 import DomainModels
 
-public final class RestaurantDetailsViewModel {
+public final class RestaurantDetailsViewModel: ObservableObject {
     public enum Error: String, Swift.Error {
         case connectionFailure = "Server connection failed. Please try again!"
     }
     
     private let placeID: String
     private let getPlaceDetailsService: GetPlaceDetailsService
-    public var error: Error?
-    public var placeDetails: PlaceDetails?
+    @Published public var error: Error?
+    @Published public var placeDetails: PlaceDetails?
     
     public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService
     }
     
-    public func getPlaceDetails() async {
+    @MainActor public func getPlaceDetails() async {
         do {
             error = nil
             placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)

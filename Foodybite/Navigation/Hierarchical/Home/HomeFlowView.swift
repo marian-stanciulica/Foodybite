@@ -19,8 +19,13 @@ struct HomeFlowView: View {
             })
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
-                case .placeDetails:
-                    RestaurantDetailsView()
+                case let .placeDetails(placeID):
+                    RestaurantDetailsView(
+                        viewModel: RestaurantDetailsViewModel(
+                            placeID: placeID,
+                            getPlaceDetailsService: placesService
+                        )
+                    )
                 }
             }
         }
