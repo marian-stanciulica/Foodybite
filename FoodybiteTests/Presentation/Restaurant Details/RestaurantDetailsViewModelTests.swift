@@ -56,7 +56,12 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     private var anyPlaceDetails: PlaceDetails {
-        PlaceDetails(name: "any place")
+        PlaceDetails(
+            phoneNumber: "+61 2 9374 4000",
+            name: "Place name",
+            address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
+            rating: 4.5
+        )
     }
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {

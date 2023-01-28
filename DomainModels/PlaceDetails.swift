@@ -6,9 +6,15 @@
 //
 
 public struct PlaceDetails: Equatable {
-    let name: String
+    public let phoneNumber: String
+    public let name: String
+    public let address: String
+    public let rating: Double
     
-    public init(name: String) {
+    public init(phoneNumber: String, name: String, address: String, rating: Double) {
+        self.phoneNumber = phoneNumber
         self.name = name
+        self.address = address
+        self.rating = rating
     }
 }

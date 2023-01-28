@@ -32,6 +32,11 @@ extension APIService: GetPlaceDetailsService {
         let endpoint = PlacesEndpoint.getPlaceDetails(placeID)
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
-        return PlaceDetails(name: response.result.name)
+        return PlaceDetails(
+            phoneNumber: response.result.internationalPhoneNumber,
+            name: response.result.name,
+            address: response.result.formattedAddress,
+            rating: response.result.rating
+        )
     }
 }

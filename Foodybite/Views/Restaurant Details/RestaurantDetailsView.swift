@@ -37,22 +37,25 @@ struct RestaurantDetailsView: View {
         .task {
             await viewModel.getPlaceDetails()
         }
+        .arrowBackButtonStyle()
     }
 }
 
 struct RestaurantDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailsView(
-            viewModel: RestaurantDetailsViewModel(
-                placeID: "#1",
-                getPlaceDetailsService: PreviewSearchNearbyService()
+        NavigationView {
+            RestaurantDetailsView(
+                viewModel: RestaurantDetailsViewModel(
+                    placeID: "#1",
+                    getPlaceDetailsService: PreviewSearchNearbyService()
+                )
             )
-        )
+        }
     }
     
     private class PreviewSearchNearbyService: GetPlaceDetailsService {
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-            PlaceDetails(name: "Place name")
+            PlaceDetails(phoneNumber: "+61 2 9374 4000", name: "Place name", address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia", rating: 4.5)
         }
     }
 }
