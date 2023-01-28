@@ -24,6 +24,14 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         return String(format: "%.1f", placeDetails.rating)
     }
     
+    public var distanceInKmFromCurrentLocation: String {
+        guard let placeDetails = placeDetails else { return "" }
+
+        let source = Location(latitude: -33.8670522, longitude: 151.1957362)
+        let distance = DistanceSolver.getDistanceInKm(from: source, to: placeDetails.location)
+        return "\(distance)"
+    }
+    
     public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService

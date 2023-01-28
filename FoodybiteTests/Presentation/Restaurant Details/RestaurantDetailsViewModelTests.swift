@@ -48,6 +48,13 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.rating, rating().formatted)
     }
     
+    func test_distanceInKmFromCurrentLocation_computedCorrectly() {
+        let (sut, _) = makeSUT()
+        sut.placeDetails = anyPlaceDetails
+        
+        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "1892.7")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RestaurantDetailsViewModel, serviceSpy: GetPlaceDetailsServiceSpy) {
@@ -91,7 +98,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                     relativeTime: "5 months ago"
                 )
             ],
-            location: Location(latitude: -33.8670522, longitude: 151.1957362)
+            location: Location(latitude: -33.85, longitude: 151.195)
         )
     }
     
