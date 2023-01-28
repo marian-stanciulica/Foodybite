@@ -38,6 +38,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
         let (sut, serviceSpy) = makeSUT()
+        serviceSpy.result = .failure(anyError)
         
         await sut.getPlaceDetails()
         
@@ -50,10 +51,6 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         serviceSpy.result = .failure(anyError)
         await sut.getPlaceDetails()
         XCTAssertEqual(sut.error, .connectionFailure)
-        
-        serviceSpy.result = nil
-        await sut.getPlaceDetails()
-        XCTAssertNil(sut.error)
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
@@ -62,7 +59,9 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         
         serviceSpy.result = .success(expectedPlaceDetails)
         await sut.getPlaceDetails()
+        
         XCTAssertEqual(sut.placeDetails, expectedPlaceDetails)
+        XCTAssertNil(sut.error)
     }
     
     // MARK: - Helpers
@@ -87,20 +86,11 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
         private(set) var placeID: String?
-        var result: Result<PlaceDetails, Error>?
+        var result: Result<PlaceDetails, Error>!
         
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
             self.placeID = placeID
-            
-            if let result = result {
-                return try result.get()
-            }
-            
-            return anyPlaceDetails
-        }
-        
-        private var anyPlaceDetails: PlaceDetails {
-            PlaceDetails(name: "any place details")
+            return try result.get()
         }
     }
     
