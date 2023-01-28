@@ -112,6 +112,7 @@
 		0F423A94298519CD009EB345 /* CategoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A93298519CD009EB345 /* CategoryText.swift */; };
 		0F423A9729853342009EB345 /* RestaurantDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A9629853342009EB345 /* RestaurantDetailsViewModelTests.swift */; };
 		0F423A9A29853C95009EB345 /* RestaurantDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A9929853C95009EB345 /* RestaurantDetailsViewModel.swift */; };
+		0F423A9C29853EF2009EB345 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A9B29853EF2009EB345 /* Flow.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
 		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
 		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
@@ -151,8 +152,8 @@
 		0F751643284363B000A05A92 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751642284363B000A05A92 /* ProfileView.swift */; };
 		0F751645284364B600A05A92 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F751644284364B600A05A92 /* StatsView.swift */; };
 		0F7516472843666900A05A92 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7516462843666900A05A92 /* WhiteButton.swift */; };
-		0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23CF2920E374005196EA /* AuthFlowTests.swift */; };
-		0F7E23D32920E861005196EA /* AuthFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D22920E861005196EA /* AuthFlow.swift */; };
+		0F7E23D02920E374005196EA /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23CF2920E374005196EA /* FlowTests.swift */; };
+		0F7E23D32920E861005196EA /* AuthRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D22920E861005196EA /* AuthRoute.swift */; };
 		0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D42920E965005196EA /* AuthFlowView.swift */; };
 		0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F89618F2928C01E00FFDC48 /* RemoteUser.swift */; };
 		0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */; };
@@ -428,6 +429,7 @@
 		0F423A93298519CD009EB345 /* CategoryText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryText.swift; sourceTree = "<group>"; };
 		0F423A9629853342009EB345 /* RestaurantDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		0F423A9929853C95009EB345 /* RestaurantDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsViewModel.swift; sourceTree = "<group>"; };
+		0F423A9B29853EF2009EB345 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
 		0F447CAD28FAC1810026C5DB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -467,8 +469,8 @@
 		0F751642284363B000A05A92 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0F751644284364B600A05A92 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		0F7516462843666900A05A92 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
-		0F7E23CF2920E374005196EA /* AuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTests.swift; sourceTree = "<group>"; };
-		0F7E23D22920E861005196EA /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
+		0F7E23CF2920E374005196EA /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
+		0F7E23D22920E861005196EA /* AuthRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRoute.swift; sourceTree = "<group>"; };
 		0F7E23D42920E965005196EA /* AuthFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowView.swift; sourceTree = "<group>"; };
 		0F89618F2928C01E00FFDC48 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
@@ -1272,6 +1274,7 @@
 		0F73EC81292F5F1D0025B237 /* Hierarchical */ = {
 			isa = PBXGroup;
 			children = (
+				0F423A9B29853EF2009EB345 /* Flow.swift */,
 				0F73EC82292F5F3B0025B237 /* Auth */,
 				0F73EC84292F60650025B237 /* Profile */,
 			);
@@ -1281,7 +1284,7 @@
 		0F73EC82292F5F3B0025B237 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				0F7E23D22920E861005196EA /* AuthFlow.swift */,
+				0F7E23D22920E861005196EA /* AuthRoute.swift */,
 				0F7E23D42920E965005196EA /* AuthFlowView.swift */,
 			);
 			path = Auth;
@@ -1403,7 +1406,7 @@
 		0F7E23CE2920E329005196EA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0F7E23CF2920E374005196EA /* AuthFlowTests.swift */,
+				0F7E23CF2920E374005196EA /* FlowTests.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -2232,7 +2235,7 @@
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0F423A9729853342009EB345 /* RestaurantDetailsViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
-				0F7E23D02920E374005196EA /* AuthFlowTests.swift in Sources */,
+				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
 				0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */,
 				0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */,
 			);
@@ -2348,6 +2351,7 @@
 				0F73ECA1292F98C20025B237 /* PasswordValidator.swift in Sources */,
 				A2C2424A2847A29100CB233B /* ArrowBackButton.swift in Sources */,
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
+				0F423A9C29853EF2009EB345 /* Flow.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
 				0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */,
 				0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */,
@@ -2367,7 +2371,7 @@
 				A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */,
 				A2C2422D28475D9200CB233B /* DistanceText.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
-				0F7E23D32920E861005196EA /* AuthFlow.swift in Sources */,
+				0F7E23D32920E861005196EA /* AuthRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

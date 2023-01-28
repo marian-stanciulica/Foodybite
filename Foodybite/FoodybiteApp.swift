@@ -53,7 +53,7 @@ struct FoodybiteApp: App {
             } else {
                 AuthFlowView(userLoggedIn: $userLoggedIn,
                              apiService: appViewModel.makeApiService(),
-                             flow: AuthFlow())
+                             flow: Flow<AuthRoute>())
             }
         }
     }
