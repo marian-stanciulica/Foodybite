@@ -23,7 +23,7 @@ struct TabNavigationView: View {
                 Group {
                     switch tabRouter.currentPage {
                     case .home:
-                        HomeView(viewModel: HomeViewModel(searchNearbyService: placesService))
+                        HomeFlowView(flow: Flow<HomeRoute>(), placesService: placesService)
                     case .newReview:
                         NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
                     case .account:
