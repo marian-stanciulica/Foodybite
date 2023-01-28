@@ -67,7 +67,7 @@ struct ProfileView: View {
 
                 LazyVStack {
                     ForEach(0...50, id: \.self) { _ in
-                        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "place name"))
+                        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "place name", isOpen: false))
                             .background(.white)
                             .cornerRadius(16)
                             .aspectRatio(1, contentMode: .fit)

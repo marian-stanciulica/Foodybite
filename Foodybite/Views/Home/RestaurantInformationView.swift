@@ -38,6 +38,6 @@ struct RestaurantInformationView: View {
 
 struct RestaurantInformationView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantInformationView(place: NearbyPlace(placeID: "place id", placeName: "Place name"))
+        RestaurantInformationView(place: NearbyPlace(placeID: "place id", placeName: "Place name", isOpen: true))
     }
 }

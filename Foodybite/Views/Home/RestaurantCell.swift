@@ -43,7 +43,7 @@ struct RestaurantCell: View {
 
 struct RestaurantCell_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "Place name"))
+        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "Place name", isOpen: true))
             .background(.blue.opacity(0.2))
             .cornerRadius(16)
             .padding()

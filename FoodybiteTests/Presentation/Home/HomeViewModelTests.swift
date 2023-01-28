@@ -63,9 +63,9 @@ final class HomeViewModelTests: XCTestCase {
     
     private var anyNearbyPlaces: [NearbyPlace] {
         [
-            NearbyPlace(placeID: "#1", placeName: "place 1"),
-            NearbyPlace(placeID: "#2", placeName: "place 2"),
-            NearbyPlace(placeID: "#3", placeName: "place 3"),
+            NearbyPlace(placeID: "#1", placeName: "place 1", isOpen: false),
+            NearbyPlace(placeID: "#2", placeName: "place 2", isOpen: true),
+            NearbyPlace(placeID: "#3", placeName: "place 3", isOpen: false)
         ]
     }
     
