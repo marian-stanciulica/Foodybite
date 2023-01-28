@@ -8,7 +8,7 @@
 import Foundation
 
 public enum PlacesEndpoint: Endpoint {
-    case searchNearby(location: Location, radius: Int)
+    case searchNearby(latitude: Double, longitude: Double, radius: Int)
     case getPlaceDetails(String)
     
     var host: String {
@@ -30,10 +30,10 @@ public enum PlacesEndpoint: Endpoint {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case let .searchNearby(location, radius):
+        case let .searchNearby(latitude, longitude, radius):
             return [
                 URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "location", value: "\(location.lat),\(location.lng)"),
+                URLQueryItem(name: "location", value: "\(latitude),\(longitude)"),
                 URLQueryItem(name: "radius", value: "\(radius)"),
                 URLQueryItem(name: "type", value: "restaurant")
             ]

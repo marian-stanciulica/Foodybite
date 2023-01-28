@@ -7,7 +7,6 @@
 
 import XCTest
 import DomainModels
-import FoodybitePlaces
 
 final class HomeViewModel {
     enum Error: String, Swift.Error {
@@ -73,7 +72,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     private var location: Location {
-        Location(lat: -31.3223245, lng: 132.45432)
+        Location(latitude: -31.3223245, longitude: 132.45432)
     }
     
     private var radius: Int {

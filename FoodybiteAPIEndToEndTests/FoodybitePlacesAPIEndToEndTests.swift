@@ -44,7 +44,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     private func getNearbyPlaces(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyPlace] {
         let apiService = makeSUT(file: file, line: line)
-        let location = Location(lat: -33.8670522, lng: 151.1957362)
+        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 100
         return try await apiService.searchNearby(location: location, radius: radius)
     }
