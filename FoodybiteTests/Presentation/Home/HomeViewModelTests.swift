@@ -10,14 +10,23 @@ import DomainModels
 import FoodybitePlaces
 
 final class HomeViewModel {
+    enum Error: String, Swift.Error {
+        case connectionFailure = "Server connection failed. Please try again!"
+    }
+    
     private let searchNearbyService: SearchNearbyService
+    var error: Error?
     
     init(searchNearbyService: SearchNearbyService) {
         self.searchNearbyService = searchNearbyService
     }
     
     func searchNearby(location: Location, radius: Int) async {
-        _ = try? await searchNearbyService.searchNearby(location: location, radius: radius)
+        do {
+            _ = try await searchNearbyService.searchNearby(location: location, radius: radius)
+        } catch {
+            self.error = .connectionFailure
+        }
     }
 }
 
@@ -33,6 +42,16 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(serviceSpy.capturedValues[0].location, location)
     }
     
+    func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
+        let serviceSpy = SearchNearbyServiceSpy()
+        serviceSpy.errorToThrow = anyError
+        let sut = HomeViewModel(searchNearbyService: serviceSpy)
+        
+        await sut.searchNearby(location: location, radius: radius)
+        
+        XCTAssertEqual(sut.error, .connectionFailure)
+    }
+    
     // MARK: - Helpers
     
     private var location: Location {
@@ -43,12 +62,21 @@ final class HomeViewModelTests: XCTestCase {
         50
     }
     
+    private var anyError: NSError {
+        NSError(domain: "any error", code: 1)
+    }
+    
     private class SearchNearbyServiceSpy: SearchNearbyService {
+        var errorToThrow: Error?
         private(set) var capturedValues = [(location: Location, radius: Int)]()
         
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
             capturedValues.append((location, radius))
 
+            if let errorToThrow = errorToThrow {
+                throw errorToThrow
+            }
+            
             return []
         }
     }
