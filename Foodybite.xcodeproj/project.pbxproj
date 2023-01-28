@@ -133,7 +133,7 @@
 		0F7137BD2841F8340058757A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BC2841F8340058757A /* LoginView.swift */; };
 		0F7137BF2841F8370058757A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137BE2841F8370058757A /* Assets.xcassets */; };
 		0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137C12841F8370058757A /* Preview Assets.xcassets */; };
-		0F73EC86292F608E0025B237 /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC85292F608E0025B237 /* ProfileFlow.swift */; };
+		0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC85292F608E0025B237 /* ProfileRoute.swift */; };
 		0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC87292F609B0025B237 /* ProfileFlowView.swift */; };
 		0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */; };
 		0F73EC8C292F757A0025B237 /* ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */; };
@@ -450,7 +450,7 @@
 		0F7137BC2841F8340058757A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0F7137BE2841F8370058757A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F7137C12841F8370058757A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0F73EC85292F608E0025B237 /* ProfileFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
+		0F73EC85292F608E0025B237 /* ProfileRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRoute.swift; sourceTree = "<group>"; };
 		0F73EC87292F609B0025B237 /* ProfileFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowView.swift; sourceTree = "<group>"; };
 		0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordService.swift; sourceTree = "<group>"; };
@@ -1301,7 +1301,7 @@
 		0F73EC84292F60650025B237 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				0F73EC85292F608E0025B237 /* ProfileFlow.swift */,
+				0F73EC85292F608E0025B237 /* ProfileRoute.swift */,
 				0F73EC87292F609B0025B237 /* ProfileFlowView.swift */,
 			);
 			path = Profile;
@@ -2336,7 +2336,7 @@
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
 				A2C24222284755AE00CB233B /* Blur.swift in Sources */,
 				0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */,
-				0F73EC86292F608E0025B237 /* ProfileFlow.swift in Sources */,
+				0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
 				0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */,
