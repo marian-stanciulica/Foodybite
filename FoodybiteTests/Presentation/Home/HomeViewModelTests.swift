@@ -7,29 +7,7 @@
 
 import XCTest
 import DomainModels
-
-final class HomeViewModel {
-    enum Error: String, Swift.Error {
-        case connectionFailure = "Server connection failed. Please try again!"
-    }
-    
-    private let searchNearbyService: SearchNearbyService
-    var error: Error?
-    var nearbyPlaces = [NearbyPlace]()
-    
-    init(searchNearbyService: SearchNearbyService) {
-        self.searchNearbyService = searchNearbyService
-    }
-    
-    func searchNearby(location: Location, radius: Int) async {
-        do {
-            error = nil
-            nearbyPlaces = try await searchNearbyService.searchNearby(location: location, radius: radius)
-        } catch {
-            self.error = .connectionFailure
-        }
-    }
-}
+import Foodybite
 
 final class HomeViewModelTests: XCTestCase {
     
