@@ -65,6 +65,32 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(makePlaceDetailsSUT().method, .get)
     }
     
+    // MARK: - Get Place Photo
+    
+    func test_getPlacePhoto_baseURL() {
+        XCTAssertEqual(makePlacePhotoSUT().host, "maps.googleapis.com")
+    }
+    
+    func test_getPlacePhoto_path() {
+        XCTAssertEqual(makePlacePhotoSUT().path, "/maps/api/place/photo/json")
+    }
+    
+    func test_getPlacePhoto_queryItems() throws {
+        let photoReference = randomString()
+        let sut = makePlacePhotoSUT(photoReference: photoReference)
+        let urlRequest = try sut.createURLRequest()
+        
+        guard let url = urlRequest.url,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "photo_reference" })?.value, photoReference)
+        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
+    }
+    
+    func test_getPlacePhoto_methodIsGet() {
+        XCTAssertEqual(makePlacePhotoSUT().method, .get)
+    }
+    
     
     // MARK: - Helpers
     
@@ -73,7 +99,11 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     private func makePlaceDetailsSUT(placeID: String = "") -> PlacesEndpoint {
-        return PlacesEndpoint.getPlaceDetails(placeID)
+        return PlacesEndpoint.getPlaceDetails(placeID: placeID)
+    }
+    
+    private func makePlacePhotoSUT(photoReference: String = "") -> PlacesEndpoint {
+        return PlacesEndpoint.getPlacePhoto(photoReference: photoReference)
     }
     
 }
