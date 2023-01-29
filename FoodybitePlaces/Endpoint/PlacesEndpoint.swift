@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import DomainModels
 
 public enum PlacesEndpoint: Endpoint {
-    case searchNearby(latitude: Double, longitude: Double, radius: Int)
+    case searchNearby(location: DomainModels.Location, radius: Int)
     case getPlaceDetails(String)
     
     var host: String {
@@ -30,10 +31,10 @@ public enum PlacesEndpoint: Endpoint {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case let .searchNearby(latitude, longitude, radius):
+        case let .searchNearby(location, radius):
             return [
                 URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "location", value: "\(latitude),\(longitude)"),
+                URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),
                 URLQueryItem(name: "radius", value: "\(radius)"),
                 URLQueryItem(name: "type", value: "restaurant")
             ]
