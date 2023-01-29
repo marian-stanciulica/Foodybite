@@ -9,24 +9,6 @@ import XCTest
 import Foodybite
 import DomainModels
 
-final class RestaurantCellViewModel {
-    private let nearbyPlace: NearbyPlace
-    
-    init(nearbyPlace: NearbyPlace) {
-        self.nearbyPlace = nearbyPlace
-    }
-    
-    var rating: String {
-        String(format: "%.1f", nearbyPlace.rating)
-    }
-    
-    var distanceInKmFromCurrentLocation: String {
-        let source = Location(latitude: 44.437367393150396, longitude: 26.02757207676153)
-        let distance = DistanceSolver.getDistanceInKm(from: source, to: nearbyPlace.location)
-        return "\(distance)"
-    }
-}
-
 final class RestaurantCellViewModelTests: XCTestCase {
     
     func test_rating_returnsFormmatedRating() {
