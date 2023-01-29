@@ -9,9 +9,11 @@ import DomainModels
 
 public final class RestaurantCellViewModel {
     private let nearbyPlace: NearbyPlace
+    private let fetchPhotoService: FetchPlacePhotoService
     
-    public init(nearbyPlace: NearbyPlace) {
+    public init(nearbyPlace: NearbyPlace, fetchPhotoService: FetchPlacePhotoService) {
         self.nearbyPlace = nearbyPlace
+        self.fetchPhotoService = fetchPhotoService
     }
     
     public var isOpen: Bool {
@@ -30,5 +32,9 @@ public final class RestaurantCellViewModel {
         let source = Location(latitude: 44.437367393150396, longitude: 26.02757207676153)
         let distance = DistanceSolver.getDistanceInKm(from: source, to: nearbyPlace.location)
         return "\(distance)"
+    }
+    
+    public func fetchPhoto() async {
+        _ = try? await fetchPhotoService.fetchPlacePhoto(photoReference: nearbyPlace.photo!.photoReference)
     }
 }

@@ -8,15 +8,17 @@
 import DomainModels
 import SwiftUI
 
-struct HomeView: View {
+struct HomeView<Cell: View>: View {
     @StateObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
+    let cell: (NearbyPlace) -> Cell
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
                 ForEach(viewModel.nearbyPlaces, id: \.placeID) { place in
-                    RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: place))          .background(.white)
+                    cell(place)
+                        .background(.white)
                         .cornerRadius(16)
                         .frame(maxWidth: .infinity)
                         .aspectRatio(0.75, contentMode: .fit)
@@ -37,7 +39,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()), showPlaceDetails: { _ in })
+        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()), showPlaceDetails: { _ in }, cell: { _ in EmptyView() })
     }
     
     private class PreviewSearchNearbyService: SearchNearbyService {

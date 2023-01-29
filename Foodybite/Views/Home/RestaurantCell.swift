@@ -60,11 +60,18 @@ struct RestaurantCell_Previews: PreviewProvider {
                     rating: 3.4,
                     location: Location(latitude: 0, longitude: 0),
                     photo: nil
-                )
+                ),
+                fetchPhotoService: PreviewFetchPlacePhotoService()
             )
         )
         .background(.blue.opacity(0.2))
         .cornerRadius(16)
         .padding()
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            return Data()
+        }
     }
 }

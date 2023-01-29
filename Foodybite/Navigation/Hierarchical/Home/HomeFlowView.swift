@@ -16,6 +16,8 @@ struct HomeFlowView: View {
         NavigationStack(path: $flow.path) {
             HomeView(viewModel: HomeViewModel(searchNearbyService: placesService), showPlaceDetails: { placeID in
                 flow.append(.placeDetails(placeID))
+            }, cell: { nearbyPlace in
+                RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: nearbyPlace, fetchPhotoService: placesService))
             })
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
