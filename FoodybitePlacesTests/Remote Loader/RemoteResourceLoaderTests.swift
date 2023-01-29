@@ -91,6 +91,16 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [urlRequest])
     }
     
+    func test_getData_requestsDataForEndpointTwice() async throws {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let (sut, client) = makeSUT()
+        
+        _ = try await sut.getData(for: urlRequest)
+        _ = try await sut.getData(for: urlRequest)
+        
+        XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
+    }
+    
     
     // MARK: - Helpers
     
