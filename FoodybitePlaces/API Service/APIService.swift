@@ -21,8 +21,15 @@ extension APIService: SearchNearbyService {
         let endpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
+        
         return response.results.map {
-            NearbyPlace(
+            var photo: DomainModels.Photo?
+            
+            if let firstPhoto = $0.photos?.first {
+                photo = DomainModels.Photo(width: firstPhoto.width, height: firstPhoto.height, photoReference: firstPhoto.photoReference)
+            }
+            
+            return NearbyPlace(
                 placeID: $0.placeID,
                 placeName: $0.name,
                 isOpen: $0.openingHours?.openNow ?? false,
@@ -30,7 +37,8 @@ extension APIService: SearchNearbyService {
                 location: DomainModels.Location(
                     latitude: $0.geometry.location.lat,
                     longitude: $0.geometry.location.lng
-                )
+                ),
+                photo: photo
             )
         }
     }

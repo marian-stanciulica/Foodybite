@@ -43,9 +43,9 @@ struct HomeView_Previews: PreviewProvider {
     private class PreviewSearchNearbyService: SearchNearbyService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
             [
-                NearbyPlace(placeID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0)),
-                NearbyPlace(placeID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1)),
-                NearbyPlace(placeID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5))
+                NearbyPlace(placeID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
+                NearbyPlace(placeID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
+                NearbyPlace(placeID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
             ]
         }
     }

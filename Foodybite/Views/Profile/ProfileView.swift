@@ -74,7 +74,8 @@ struct ProfileView: View {
                                     placeName: "place name",
                                     isOpen: false,
                                     rating: 4.4,
-                                    location: Location(latitude: 0, longitude: 0)
+                                    location: Location(latitude: 0, longitude: 0),
+                                    photo: nil
                                 )
                             )
                         )

@@ -58,7 +58,8 @@ struct RestaurantCell_Previews: PreviewProvider {
                     placeName: "Place name",
                     isOpen: true,
                     rating: 3.4,
-                    location: Location(latitude: 0, longitude: 0)
+                    location: Location(latitude: 0, longitude: 0),
+                    photo: nil
                 )
             )
         )
