@@ -38,7 +38,7 @@ extension APIService: SearchNearbyService {
 
 extension APIService: GetPlaceDetailsService {
     public func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-        let endpoint = PlacesEndpoint.getPlaceDetails(placeID)
+        let endpoint = PlacesEndpoint.getPlaceDetails(placeID: placeID)
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
         

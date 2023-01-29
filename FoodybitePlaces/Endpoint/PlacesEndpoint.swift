@@ -10,7 +10,8 @@ import DomainModels
 
 public enum PlacesEndpoint: Endpoint {
     case searchNearby(location: DomainModels.Location, radius: Int)
-    case getPlaceDetails(String)
+    case getPlaceDetails(placeID: String)
+    case getPlacePhoto(photoReference: String)
     
     var host: String {
         "maps.googleapis.com"
@@ -22,6 +23,8 @@ public enum PlacesEndpoint: Endpoint {
             return "/maps/api/place/nearbysearch/json"
         case .getPlaceDetails:
             return "/maps/api/place/details/json"
+        case .getPlacePhoto:
+            return "/maps/api/place/photo/json"
         }
     }
     
@@ -42,6 +45,11 @@ public enum PlacesEndpoint: Endpoint {
             return [
                 URLQueryItem(name: "key", value: apiKey),
                 URLQueryItem(name: "place_id", value: placeID)
+            ]
+        case let .getPlacePhoto(photoReference):
+            return [
+                URLQueryItem(name: "key", value: apiKey),
+                URLQueryItem(name: "photo_reference", value: photoReference)
             ]
         }
     }

@@ -79,7 +79,7 @@ final class APIServiceTests: XCTestCase {
         let placeID = randomString()
         
         let (sut, loader) = makeSUT(response: anyPlaceDetails())
-        let getPlaceDetailsEndpoint = PlacesEndpoint.getPlaceDetails(placeID)
+        let getPlaceDetailsEndpoint = PlacesEndpoint.getPlaceDetails(placeID: placeID)
         let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
         
         _ = try await sut.getPlaceDetails(placeID: placeID)
@@ -92,7 +92,7 @@ final class APIServiceTests: XCTestCase {
         let placeID = randomString()
 
         let (sut, loader) = makeSUT(response: anyPlaceDetails())
-        let getPlaceDetailsEndpoint = PlacesEndpoint.getPlaceDetails(placeID)
+        let getPlaceDetailsEndpoint = PlacesEndpoint.getPlaceDetails(placeID: placeID)
         let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
         
         _ = try await sut.getPlaceDetails(placeID: placeID)
