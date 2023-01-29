@@ -137,12 +137,23 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(expected, receivedResponse)
     }
     
+    // MARK: - FetchPlacePhotoService Tests
+    
+    func test_conformsToFetchPlacePhotoService() {
+        let (sut, _) = makeSUT(response: anyData())
+        XCTAssertNotNil(sut as FetchPlacePhotoService)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(response: Decodable) -> (sut: APIService, loader: ResourceLoaderSpy) {
         let loader = ResourceLoaderSpy(response: response)
         let sut = APIService(loader: loader)
         return (sut, loader)
+    }
+    
+    private func anyData() -> Data {
+        "any data".data(using: .utf8)!
     }
     
     private func anySearchNearbyResponse() -> SearchNearbyResponse {

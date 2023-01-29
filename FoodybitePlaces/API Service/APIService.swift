@@ -70,3 +70,9 @@ extension APIService: GetPlaceDetailsService {
         )
     }
 }
+
+extension APIService: FetchPlacePhotoService {
+    public func fetchPlacePhoto(photoReference: String) async throws -> Data {
+        Data()
+    }
+}
