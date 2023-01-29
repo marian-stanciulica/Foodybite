@@ -38,6 +38,6 @@ public final class RestaurantCellViewModel {
     }
     
     public func fetchPhoto() async {
-        _ = try? await fetchPhotoService.fetchPlacePhoto(photoReference: nearbyPlace.photo!.photoReference)
+        imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: nearbyPlace.photo!.photoReference)
     }
 }

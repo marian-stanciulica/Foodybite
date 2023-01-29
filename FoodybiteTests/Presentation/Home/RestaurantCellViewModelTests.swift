@@ -51,6 +51,15 @@ final class RestaurantCellViewModelTests: XCTestCase {
         XCTAssertNil(sut.imageData)
     }
     
+    func test_fetchPhoto_updatesImageDataWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
+        let (sut, serviceSpy) = makeSUT()
+        let expectedData = anyData()
+        
+        serviceSpy.result = .success(expectedData)
+        await sut.fetchPhoto()
+        XCTAssertEqual(sut.imageData, expectedData)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RestaurantCellViewModel, serviceSpy: FetchPlacePhotoServiceSpy) {
@@ -87,6 +96,10 @@ final class RestaurantCellViewModelTests: XCTestCase {
     
     private var anyError: NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func anyData() -> Data {
+        "any data".data(using: .utf8)!
     }
     
     private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {
