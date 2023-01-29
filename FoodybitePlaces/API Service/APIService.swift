@@ -37,16 +37,19 @@ extension APIService: GetPlaceDetailsService {
         let endpoint = PlacesEndpoint.getPlaceDetails(placeID)
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
+        
+        var openingHours: DomainModels.OpeningHoursDetails?
+        
+        if let hours = response.result.openingHours {
+            openingHours = DomainModels.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
+        }
+        
         return PlaceDetails(
             phoneNumber: response.result.internationalPhoneNumber,
             name: response.result.name,
             address: response.result.formattedAddress,
             rating: response.result.rating,
-            openingHoursDetails:
-                DomainModels.OpeningHoursDetails(
-                    openNow: response.result.openingHours.openNow,
-                    weekdayText: response.result.openingHours.weekdayText
-                ),
+            openingHoursDetails: openingHours,
             reviews: response.result.reviews.map {
                 DomainModels.Review(
                     profileImageURL: $0.profilePhotoURL,

@@ -26,7 +26,7 @@ struct Details: Decodable {
     let iconMaskBaseURI: String
     let internationalPhoneNumber: String
     let name: String
-    let openingHours: OpeningHoursDetails
+    let openingHours: OpeningHoursDetails?
     let photos: [Photo]
     let placeID: String
     let plusCode: PlusCode
@@ -85,7 +85,7 @@ struct OpeningHoursDetails: Decodable {
 }
 
 struct Period: Decodable {
-    let close: Close
+    let close: Close?
     let periodOpen: Close
 
     enum CodingKeys: String, CodingKey {

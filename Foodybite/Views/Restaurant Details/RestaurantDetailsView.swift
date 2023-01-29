@@ -35,8 +35,10 @@ struct RestaurantDetailsView: View {
                         }
                         .padding(.horizontal)
                         
-                        OpenHoursView(openingHoursDetails: placeDetails.openingHoursDetails)
-                            .padding(.horizontal)
+                        if let openingHoursDetails = placeDetails.openingHoursDetails {
+                            OpenHoursView(openingHoursDetails: openingHoursDetails)
+                                .padding(.horizontal)
+                        }
                         
                         RestaurantPhotosView(imageWidth: proxy.size.width / 2.5)
                             .padding(.bottom)
