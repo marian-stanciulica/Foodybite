@@ -26,7 +26,11 @@ extension APIService: SearchNearbyService {
                 placeID: $0.placeID,
                 placeName: $0.name,
                 isOpen: $0.openingHours?.openNow ?? false,
-                rating: $0.rating ?? 0
+                rating: $0.rating ?? 0,
+                location: DomainModels.Location(
+                    latitude: $0.geometry.location.lat,
+                    longitude: $0.geometry.location.lng
+                )
             )
         }
     }

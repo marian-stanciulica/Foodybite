@@ -10,11 +10,13 @@ public struct NearbyPlace: Equatable {
     public let placeName: String
     public let isOpen: Bool
     public let rating: Double
+    public let location: Location
     
-    public init(placeID: String, placeName: String, isOpen: Bool, rating: Double) {
+    public init(placeID: String, placeName: String, isOpen: Bool, rating: Double, location: Location) {
         self.placeID = placeID
         self.placeName = placeName
         self.isOpen = isOpen
         self.rating = rating
+        self.location = location
     }
 }
