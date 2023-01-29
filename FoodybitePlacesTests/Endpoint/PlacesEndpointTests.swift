@@ -73,7 +73,7 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     func test_getPlacePhoto_path() {
-        XCTAssertEqual(makePlacePhotoSUT().path, "/maps/api/place/photo/json")
+        XCTAssertEqual(makePlacePhotoSUT().path, "/maps/api/place/photo")
     }
     
     func test_getPlacePhoto_queryItems() throws {

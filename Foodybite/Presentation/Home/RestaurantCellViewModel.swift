@@ -8,11 +8,11 @@
 import Foundation
 import DomainModels
 
-public final class RestaurantCellViewModel {
+public final class RestaurantCellViewModel: ObservableObject {
     private let nearbyPlace: NearbyPlace
     private let fetchPhotoService: FetchPlacePhotoService
     
-    public var imageData: Data?
+    @Published public var imageData: Data?
     
     public init(nearbyPlace: NearbyPlace, fetchPhotoService: FetchPlacePhotoService) {
         self.nearbyPlace = nearbyPlace
@@ -37,7 +37,7 @@ public final class RestaurantCellViewModel {
         return "\(distance)"
     }
     
-    public func fetchPhoto() async {
+    @MainActor public func fetchPhoto() async {
         imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: nearbyPlace.photo!.photoReference)
     }
 }

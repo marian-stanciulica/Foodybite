@@ -9,14 +9,20 @@ import DomainModels
 import SwiftUI
 
 struct RestaurantCell: View {
-    let viewModel: RestaurantCellViewModel
+    @StateObject var viewModel: RestaurantCellViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .top) {
-                Image("restaurant_logo_test")
-                    .resizable()
-                    .scaledToFit()
+                if let imageData = viewModel.imageData, let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    Image("restaurant_logo_test")
+                        .resizable()
+                        .scaledToFit()
+                }
 
                 HStack {
                     Text(viewModel.isOpen ? "Open" : "Closed")
@@ -46,6 +52,9 @@ struct RestaurantCell: View {
             )
         }
         .cornerRadius(16)
+        .task {
+            await viewModel.fetchPhoto()
+        }
     }
 }
 
