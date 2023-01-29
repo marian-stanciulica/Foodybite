@@ -59,7 +59,8 @@ final class APIServiceTests: XCTestCase {
                 location: DomainModels.Location(
                     latitude: $0.geometry.location.lat,
                     longitude: $0.geometry.location.lng
-                )
+                ),
+                photo: nil
             )
         }
         let (sut, _) = makeSUT(response: expectedResponse)

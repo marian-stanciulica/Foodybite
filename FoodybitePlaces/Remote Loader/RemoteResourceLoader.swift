@@ -21,6 +21,16 @@ public class RemoteResourceLoader: ResourceLoader {
     }
     
     public func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T {
+        let data = try await getData(for: urlRequest)
+        
+        guard let decodable: T = try? codableDataParser.decode(data: data) else {
+            throw Error.invalidData
+        }
+        
+        return decodable
+    }
+    
+    private func getData(for urlRequest: URLRequest) async throws -> Data {
         guard let result = try? await client.send(urlRequest) else {
             throw Error.connectivity
         }
@@ -29,11 +39,7 @@ public class RemoteResourceLoader: ResourceLoader {
             throw Error.invalidData
         }
         
-        guard let decodable: T = try? codableDataParser.decode(data: result.data) else {
-            throw Error.invalidData
-        }
-        
-        return decodable
+        return result.data
     }
     
 }
