@@ -10,14 +10,21 @@ import Foundation
 
 class ResourceLoaderSpy: ResourceLoader {
     private let response: Decodable
-    var requests = [URLRequest]()
+    var data: Data?
+    var getRequests = [URLRequest]()
+    var getDataRequests = [URLRequest]()
     
     init(response: Decodable) {
         self.response = response
     }
     
     func get<T>(for urlRequest: URLRequest) async throws -> T where T : Decodable {
-        requests.append(urlRequest)
+        getRequests.append(urlRequest)
         return response as! T
+    }
+    
+    func getData(for urlRequest: URLRequest) async throws -> Data {
+        getDataRequests.append(urlRequest)
+        return data ?? Data()
     }
 }

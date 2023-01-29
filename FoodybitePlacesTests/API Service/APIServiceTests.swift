@@ -28,7 +28,7 @@ final class APIServiceTests: XCTestCase {
 
         _ = try await sut.searchNearby(location: location, radius: radius)
 
-        let firstRequest = loader.requests.first
+        let firstRequest = loader.getRequests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
@@ -42,7 +42,7 @@ final class APIServiceTests: XCTestCase {
 
         _ = try await sut.searchNearby(location: location, radius: radius)
 
-        XCTAssertEqual(loader.requests, [urlRequest])
+        XCTAssertEqual(loader.getRequests, [urlRequest])
     }
     
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
@@ -85,7 +85,7 @@ final class APIServiceTests: XCTestCase {
         
         _ = try await sut.getPlaceDetails(placeID: placeID)
         
-        let firstRequest = loader.requests.first
+        let firstRequest = loader.getRequests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
@@ -98,7 +98,7 @@ final class APIServiceTests: XCTestCase {
         
         _ = try await sut.getPlaceDetails(placeID: placeID)
         
-        XCTAssertEqual(loader.requests, [urlRequest])
+        XCTAssertEqual(loader.getRequests, [urlRequest])
     }
     
     func test_getPlaceDetails_receiveExpectedPlaceDetailsResponse() async throws {
@@ -154,7 +154,7 @@ final class APIServiceTests: XCTestCase {
         
         _ = try await sut.fetchPlacePhoto(photoReference: photoReference)
         
-        let firstRequest = loader.requests.first
+        let firstRequest = loader.getDataRequests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
     }
     
@@ -167,16 +167,18 @@ final class APIServiceTests: XCTestCase {
         
         _ = try await sut.fetchPlacePhoto(photoReference: photoReference)
         
-        XCTAssertEqual(loader.requests, [urlRequest])
+        XCTAssertEqual(loader.getDataRequests, [urlRequest])
     }
     
     func test_fetchPlacePhoto_receivesExpectedPlacePhotoResponse() async throws {
-        let expectedResponse = anyData()
-        let (sut, _) = makeSUT(response: expectedResponse)
+        let response = anyData()
+        let expectedData = anyData()
+        let (sut, loader) = makeSUT(response: response)
+        loader.data = expectedData
         
         let receivedResponse = try await sut.fetchPlacePhoto(photoReference: randomString())
         
-        XCTAssertEqual(expectedResponse, receivedResponse)
+        XCTAssertEqual(expectedData, receivedResponse)
     }
     
     // MARK: - Helpers
