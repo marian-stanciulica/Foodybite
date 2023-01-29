@@ -14,6 +14,10 @@ public final class RestaurantCellViewModel {
         self.nearbyPlace = nearbyPlace
     }
     
+    public var isOpen: Bool {
+        nearbyPlace.isOpen
+    }
+    
     public var rating: String {
         String(format: "%.1f", nearbyPlace.rating)
     }
