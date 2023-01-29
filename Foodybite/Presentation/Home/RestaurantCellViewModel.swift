@@ -5,11 +5,14 @@
 //  Created by Marian Stanciulica on 29.01.2023.
 //
 
+import Foundation
 import DomainModels
 
 public final class RestaurantCellViewModel {
     private let nearbyPlace: NearbyPlace
     private let fetchPhotoService: FetchPlacePhotoService
+    
+    public var imageData: Data?
     
     public init(nearbyPlace: NearbyPlace, fetchPhotoService: FetchPlacePhotoService) {
         self.nearbyPlace = nearbyPlace

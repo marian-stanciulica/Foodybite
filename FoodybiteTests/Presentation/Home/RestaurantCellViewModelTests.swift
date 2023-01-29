@@ -43,6 +43,14 @@ final class RestaurantCellViewModelTests: XCTestCase {
         XCTAssertEqual(serviceSpy.capturedValues[0], anyPhoto().photoReference)
     }
     
+    func test_fetchPhoto_setsImageDataToNilWhenFetchPlacePhotoServiceThrowsError() async {
+        let (sut, serviceSpy) = makeSUT()
+        
+        serviceSpy.result = .failure(anyError)
+        await sut.fetchPhoto()
+        XCTAssertNil(sut.imageData)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RestaurantCellViewModel, serviceSpy: FetchPlacePhotoServiceSpy) {
@@ -77,11 +85,21 @@ final class RestaurantCellViewModelTests: XCTestCase {
         Photo(width: 100, height: 200, photoReference: "photo reference")
     }
     
+    private var anyError: NSError {
+        NSError(domain: "any error", code: 1)
+    }
+    
     private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {
+        var result: Result<Data, Error>?
         private(set) var capturedValues = [String]()
 
         func fetchPlacePhoto(photoReference: String) async throws -> Data {
             capturedValues.append(photoReference)
+            
+            if let result = result {
+                return try result.get()
+            }
+            
             return Data()
         }
     }
