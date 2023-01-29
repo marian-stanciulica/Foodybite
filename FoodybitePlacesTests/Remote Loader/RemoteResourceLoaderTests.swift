@@ -121,6 +121,13 @@ final class RemoteResourceLoaderTests: XCTestCase {
                             expected: .failure(.invalidData))
     }
     
+    func test_getData_returnsDataOn2xxStatusCodeResponseFromClient() async {
+        let anyData = anyData()
+        
+        await expectGetData(forClientResult: .success((data: anyData, response: anyHttpUrlResponse())),
+                            expected: .success(anyData))
+    }
+    
     
     // MARK: - Helpers
     
