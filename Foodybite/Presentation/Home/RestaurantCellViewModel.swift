@@ -18,6 +18,10 @@ public final class RestaurantCellViewModel {
         nearbyPlace.isOpen
     }
     
+    public var placeName: String {
+        nearbyPlace.placeName
+    }
+    
     public var rating: String {
         String(format: "%.1f", nearbyPlace.rating)
     }
