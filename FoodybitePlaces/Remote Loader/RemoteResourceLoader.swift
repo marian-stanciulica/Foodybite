@@ -30,7 +30,7 @@ public class RemoteResourceLoader: ResourceLoader {
         return decodable
     }
     
-    private func getData(for urlRequest: URLRequest) async throws -> Data {
+    public func getData(for urlRequest: URLRequest) async throws -> Data {
         guard let result = try? await client.send(urlRequest) else {
             throw Error.connectivity
         }

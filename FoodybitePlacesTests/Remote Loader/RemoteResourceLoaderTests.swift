@@ -16,7 +16,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [])
     }
     
-    func test_get_requestDataForEndpoint() async {
+    func test_get_requestDecodableForEndpoint() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
@@ -29,7 +29,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [urlRequest])
     }
     
-    func test_get_requestsDataForEndpointTwice() async {
+    func test_get_requestsDecodableForEndpointTwice() async {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
@@ -80,6 +80,15 @@ final class RemoteResourceLoaderTests: XCTestCase {
         
         await expectGet(forClientResult: .success((data: anyMocks.data, response: anyHttpUrlResponse())),
                expected: .success(anyMocks.container.mocks))
+    }
+    
+    func test_getData_requestsDataForEndpoint() async {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let (sut, client) = makeSUT()
+        
+        _ = try? await sut.getData(for: urlRequest)
+            
+        XCTAssertEqual(client.urlRequests, [urlRequest])
     }
     
     
