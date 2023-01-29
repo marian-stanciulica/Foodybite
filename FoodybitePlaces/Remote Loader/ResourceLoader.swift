@@ -9,4 +9,5 @@ import Foundation
 
 public protocol ResourceLoader {
     func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T
+    func getData(for urlRequest: URLRequest) async throws -> Data
 }
