@@ -9,7 +9,7 @@ import DomainModels
 import SwiftUI
 
 struct RestaurantCell: View {
-    let place: NearbyPlace
+    let viewModel: RestaurantCellViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,29 +19,29 @@ struct RestaurantCell: View {
                     .scaledToFit()
 
                 HStack {
-                    Text(place.isOpen ? "Open" : "Closed")
+                    Text(viewModel.isOpen ? "Open" : "Closed")
                         .fontWeight(.bold)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 4)
                         
-                        .foregroundColor(place.isOpen ? .green : .red)
+                        .foregroundColor(viewModel.isOpen ? .green : .red)
                         .background(Color.white)
                         .cornerRadius(16)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(place.isOpen ? .green : .red, lineWidth: 1)
+                                .stroke(viewModel.isOpen ? .green : .red, lineWidth: 1)
                         )
 
                     Spacer()
 
-                    RatingStar(rating: String(format: "%.1f", place.rating), backgroundColor: .white)
+                    RatingStar(rating: viewModel.rating, backgroundColor: .white)
                 }
                 .padding()
             }
 
             RestaurantInformationView(
-                placeName: place.placeName,
-                distance: "N/A",
+                placeName: viewModel.placeName,
+                distance: viewModel.distanceInKmFromCurrentLocation,
                 address: nil
             )
         }
@@ -51,9 +51,19 @@ struct RestaurantCell: View {
 
 struct RestaurantCell_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "Place name", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0)))
-            .background(.blue.opacity(0.2))
-            .cornerRadius(16)
-            .padding()
+        RestaurantCell(
+            viewModel: RestaurantCellViewModel(
+                nearbyPlace: NearbyPlace(
+                    placeID: "place id",
+                    placeName: "Place name",
+                    isOpen: true,
+                    rating: 3.4,
+                    location: Location(latitude: 0, longitude: 0)
+                )
+            )
+        )
+        .background(.blue.opacity(0.2))
+        .cornerRadius(16)
+        .padding()
     }
 }

@@ -16,8 +16,7 @@ struct HomeView: View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
                 ForEach(viewModel.nearbyPlaces, id: \.placeID) { place in
-                    RestaurantCell(place: place)
-                        .background(.white)
+                    RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: place))          .background(.white)
                         .cornerRadius(16)
                         .frame(maxWidth: .infinity)
                         .aspectRatio(0.75, contentMode: .fit)

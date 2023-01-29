@@ -67,16 +67,26 @@ struct ProfileView: View {
 
                 LazyVStack {
                     ForEach(0...50, id: \.self) { _ in
-                        RestaurantCell(place: NearbyPlace(placeID: "place id", placeName: "place name", isOpen: false, rating: 4.4, location: Location(latitude: 0, longitude: 0)))
-                            .background(.white)
-                            .cornerRadius(16)
-                            .aspectRatio(1, contentMode: .fit)
-                            .overlay(
-                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+                        RestaurantCell(
+                            viewModel: RestaurantCellViewModel(
+                                nearbyPlace: NearbyPlace(
+                                    placeID: "place id",
+                                    placeName: "place name",
+                                    isOpen: false,
+                                    rating: 4.4,
+                                    location: Location(latitude: 0, longitude: 0)
+                                )
                             )
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 4)
+                        )
+                        .background(.white)
+                        .cornerRadius(16)
+                        .aspectRatio(1, contentMode: .fit)
+                        .overlay(
+                             RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+                        )
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
                     }
                 }
             }
