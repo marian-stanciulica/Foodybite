@@ -101,6 +101,11 @@ final class RemoteResourceLoaderTests: XCTestCase {
         XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
     }
     
+    func test_getData_throwsErrorOnClientError() async {
+        await expectGet(forClientResult: .failure(anyError()),
+               expected: .failure(.connectivity))
+    }
+    
     
     // MARK: - Helpers
     
@@ -131,6 +136,31 @@ final class RemoteResourceLoaderTests: XCTestCase {
         switch expected {
         case let .success(expectedMocks):
             XCTAssertEqual(receivedMocks?.mocks, expectedMocks, file: file, line: line)
+        case let .failure(error):
+            XCTAssertEqual(receivedError, error as NSError, file: file, line: line)
+        }
+    }
+    
+    private func expectGetData(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
+                               expected: Result<Data, RemoteResourceLoader.Error>,
+                               file: StaticString = #filePath,
+                               line: UInt = #line) async {
+        let (sut, client) = makeSUT()
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        client.result = result
+        
+        var receivedError: NSError?
+        var receivedData: Data?
+        
+        do {
+            receivedData = try await sut.getData(for: urlRequest)
+        } catch {
+            receivedError = error as NSError
+        }
+        
+        switch expected {
+        case let .success(expectedData):
+            XCTAssertEqual(receivedData, expectedData, file: file, line: line)
         case let .failure(error):
             XCTAssertEqual(receivedError, error as NSError, file: file, line: line)
         }
