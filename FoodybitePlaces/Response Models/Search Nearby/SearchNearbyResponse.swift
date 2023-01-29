@@ -17,16 +17,16 @@ struct SearchNearbyResult: Decodable {
     let iconBackgroundColor: String
     let iconMaskBaseURI: String
     let name: String
-    let openingHours: OpeningHours
-    let photos: [Photo]
+    let openingHours: OpeningHours?
+    let photos: [Photo]?
     let placeID: String
     let plusCode: PlusCode
     let priceLevel: Int?
-    let rating: Double
+    let rating: Double?
     let reference: String
     let scope: String
     let types: [String]
-    let userRatingsTotal: Int
+    let userRatingsTotal: Int?
     let vicinity: String
 
     enum CodingKeys: String, CodingKey {
