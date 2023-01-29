@@ -16,7 +16,7 @@ final class DistanceSolverTests: XCTestCase {
         let destination = Location(latitude: 4.4, longitude: 2.3)
         
         let result = DistanceSolver.getDistanceInKm(from: source, to: destination)
-       XCTAssertEqual(result, 11058.1)
+       XCTAssertEqual(result, 11.1)
     }
     
 }
