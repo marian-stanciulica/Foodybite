@@ -24,7 +24,7 @@ public enum PlacesEndpoint: Endpoint {
         case .getPlaceDetails:
             return "/maps/api/place/details/json"
         case .getPlacePhoto:
-            return "/maps/api/place/photo/json"
+            return "/maps/api/place/photo"
         }
     }
     
@@ -49,7 +49,8 @@ public enum PlacesEndpoint: Endpoint {
         case let .getPlacePhoto(photoReference):
             return [
                 URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "photo_reference", value: photoReference)
+                URLQueryItem(name: "photo_reference", value: photoReference),
+                URLQueryItem(name: "maxwidth", value: "400"),
             ]
         }
     }
