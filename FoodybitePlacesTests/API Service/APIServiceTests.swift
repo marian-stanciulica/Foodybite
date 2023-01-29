@@ -169,6 +169,15 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(loader.requests, [urlRequest])
     }
     
+    func test_fetchPlacePhoto_receivesExpectedPlacePhotoResponse() async throws {
+        let expectedResponse = anyData()
+        let (sut, _) = makeSUT(response: expectedResponse)
+        
+        let receivedResponse = try await sut.fetchPlacePhoto(photoReference: randomString())
+        
+        XCTAssertEqual(expectedResponse, receivedResponse)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(response: Decodable) -> (sut: APIService, loader: ResourceLoaderSpy) {
