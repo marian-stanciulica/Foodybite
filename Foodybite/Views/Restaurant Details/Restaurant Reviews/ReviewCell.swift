@@ -12,7 +12,7 @@ struct ReviewCell: View {
     let review: Review
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 AsyncImage(url: review.profileImageURL)
                     .frame(width: 56, height: 56)
