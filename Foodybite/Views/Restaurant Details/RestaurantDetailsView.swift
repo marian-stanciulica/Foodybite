@@ -16,7 +16,9 @@ struct RestaurantDetailsView: View {
             ScrollView {
                 if let placeDetails = viewModel.placeDetails {
                     VStack(alignment: .leading) {
-                        RestaurantImageView(phoneNumber: placeDetails.phoneNumber, showMaps: viewModel.showMaps)
+                        RestaurantImageView(phoneNumber: placeDetails.phoneNumber,
+                                            showMaps: viewModel.showMaps,
+                                            imageData: $viewModel.imageData)
                         
                         HStack {
                             RestaurantInformationView(
