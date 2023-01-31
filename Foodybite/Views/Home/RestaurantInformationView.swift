@@ -17,7 +17,7 @@ struct RestaurantInformationView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(placeName)
-                    .font(.title.weight(.bold))
+                    .font(.title2.weight(.bold))
 
                 DistanceText(distance: distance)
             }

@@ -38,6 +38,8 @@ public final class RestaurantCellViewModel: ObservableObject {
     }
     
     @MainActor public func fetchPhoto() async {
-        imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: nearbyPlace.photo!.photoReference)
+        if let photo = nearbyPlace.photo {
+            imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
+        }
     }
 }

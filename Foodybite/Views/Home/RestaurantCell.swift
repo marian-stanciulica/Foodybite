@@ -50,6 +50,7 @@ struct RestaurantCell: View {
                 distance: viewModel.distanceInKmFromCurrentLocation,
                 address: nil
             )
+            .padding()
         }
         .cornerRadius(16)
         .task {

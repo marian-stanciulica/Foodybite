@@ -39,7 +39,9 @@ struct HomeView<Cell: View>: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()), showPlaceDetails: { _ in }, cell: { _ in EmptyView() })
+        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()), showPlaceDetails: { _ in }, cell: { nearbyPlace in
+            RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: nearbyPlace, fetchPhotoService: PreviewFetchPlacePhotoService()))
+        })
     }
     
     private class PreviewSearchNearbyService: SearchNearbyService {
@@ -49,6 +51,12 @@ struct HomeView_Previews: PreviewProvider {
                 NearbyPlace(placeID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
                 NearbyPlace(placeID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
             ]
+        }
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            Data()
         }
     }
 }
