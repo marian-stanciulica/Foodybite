@@ -19,9 +19,10 @@ struct PhoneAndDirectionsView: View {
                 .resizable()
                 .aspectRatio(1, contentMode: .fit)
                 .foregroundColor(.white)
-                .frame(height: 32)
+                .frame(height: 24)
 
             Text(phoneNumber)
+                .font(.callout)
                 .foregroundColor(.white)
 
             Spacer()
@@ -35,9 +36,10 @@ struct PhoneAndDirectionsView: View {
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .foregroundColor(.white)
-                    .frame(height: 32)
+                    .frame(height: 24)
                 
                 Text("Direction")
+                    .font(.callout)
                     .foregroundColor(.white)
             }
             .onTapGesture(perform: showMaps)

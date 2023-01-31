@@ -17,7 +17,7 @@ struct DistanceText: View {
             .foregroundColor(.white)
             .background(
                 Capsule()
-                    .foregroundColor(.blue.opacity(0.5))
+                    .foregroundColor(.marineBlue.opacity(0.75))
             )
             .font(.caption)
     }

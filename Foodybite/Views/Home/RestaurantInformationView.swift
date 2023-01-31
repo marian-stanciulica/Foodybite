@@ -17,13 +17,14 @@ struct RestaurantInformationView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(placeName)
-                    .font(.headline.weight(.bold))
+                    .font(.title.weight(.bold))
 
                 DistanceText(distance: distance)
             }
 
             if let address = address {
                 Text(address)
+                    .font(.footnote)
                     .foregroundColor(.gray)
             }
         }
@@ -33,8 +34,8 @@ struct RestaurantInformationView: View {
 struct RestaurantInformationView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantInformationView(
-            placeName: "Place name",
-            distance: "1.2 km",
+            placeName: "Happy Bones",
+            distance: "1.2",
             address: "394 Broome St, New York, NY 10013, USA"
         )
     }

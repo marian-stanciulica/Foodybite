@@ -77,7 +77,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
             PlaceDetails(
                 phoneNumber: "+61 2 9374 4000",
-                name: "Place name",
+                name: "Happy Bones",
                 address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
                 rating: 4.5,
                 openingHoursDetails: OpeningHoursDetails(
