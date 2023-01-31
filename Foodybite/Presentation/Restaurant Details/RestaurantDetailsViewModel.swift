@@ -16,8 +16,10 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     private let placeID: String
     private let getPlaceDetailsService: GetPlaceDetailsService
+    private let fetchPhotoService: FetchPlacePhotoService
     @Published public var error: Error?
     @Published public var placeDetails: PlaceDetails?
+    @Published public var imageData: Data?
     
     public var rating: String {
         guard let placeDetails = placeDetails else { return "" }
@@ -33,9 +35,10 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         return "\(distance)"
     }
     
-    public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService) {
+    public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService
+        self.fetchPhotoService = fetchPhotoService
     }
     
     public func showMaps() {
@@ -51,9 +54,16 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         do {
             error = nil
             placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            await fetchPhoto()
         } catch {
             placeDetails = nil
             self.error = .connectionFailure
+        }
+    }
+    
+    @MainActor public func fetchPhoto() async {
+        if let photo = placeDetails?.photos.first {
+            imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
         }
     }
 }

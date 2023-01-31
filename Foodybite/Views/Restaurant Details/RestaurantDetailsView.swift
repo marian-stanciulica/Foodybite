@@ -67,7 +67,8 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
             RestaurantDetailsView(
                 viewModel: RestaurantDetailsViewModel(
                     placeID: "#1",
-                    getPlaceDetailsService: PreviewSearchNearbyService()
+                    getPlaceDetailsService: PreviewSearchNearbyService(),
+                    fetchPhotoService: PreviewFetchPlacePhotoService()
                 )
             )
         }
@@ -104,6 +105,12 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                 location: Location(latitude: 44.439663, longitude: 26.096306),
                 photos: []
             )
+        }
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            throw NSError(domain: "any error", code: 1)
         }
     }
 }

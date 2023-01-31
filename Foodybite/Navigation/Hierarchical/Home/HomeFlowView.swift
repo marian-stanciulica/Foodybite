@@ -25,7 +25,8 @@ struct HomeFlowView: View {
                     RestaurantDetailsView(
                         viewModel: RestaurantDetailsViewModel(
                             placeID: placeID,
-                            getPlaceDetailsService: placesService
+                            getPlaceDetailsService: placesService,
+                            fetchPhotoService: placesService
                         )
                     )
                 }
