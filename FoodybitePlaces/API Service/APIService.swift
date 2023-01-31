@@ -74,7 +74,10 @@ extension APIService: GetPlaceDetailsService {
             location: DomainModels.Location(
                 latitude: response.result.geometry.location.lat,
                 longitude: response.result.geometry.location.lng
-            )
+            ),
+            photos: response.result.photos.map {
+                DomainModels.Photo(width: $0.width, height: $0.height, photoReference: $0.photoReference)
+            }
         )
     }
 }

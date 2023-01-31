@@ -98,7 +98,8 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                     relativeTime: "5 months ago"
                 )
             ],
-            location: Location(latitude: 44.4, longitude: 26.09)
+            location: Location(latitude: 44.4, longitude: 26.09),
+            photos: []
         )
     }
     

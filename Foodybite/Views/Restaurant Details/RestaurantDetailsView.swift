@@ -101,7 +101,8 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         relativeTime: "5 months ago"
                     )
                 ],
-                location: Location(latitude: 44.439663, longitude: 26.096306)
+                location: Location(latitude: 44.439663, longitude: 26.096306),
+                photos: []
             )
         }
     }
