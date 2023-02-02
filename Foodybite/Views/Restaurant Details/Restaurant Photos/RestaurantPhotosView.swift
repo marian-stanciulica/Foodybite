@@ -14,7 +14,7 @@ struct RestaurantPhotosView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HeaderView(name: "Photos", allItemsCount: 25)
+            HeaderView(name: "Photos", allItemsCount: photosData.count)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top) {
