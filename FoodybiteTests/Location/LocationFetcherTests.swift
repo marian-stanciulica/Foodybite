@@ -48,24 +48,28 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
 final class LocationFetcherTests: XCTestCase {
     
     func test_init_locationManagerDelegateSetToSelf() {
-        let locationManagerStub = LocationManagerStub()
-        let sut = LocationFetcher(locationManager: locationManagerStub)
+        let (sut, locationManagerSpy) = makeSUT()
         
-        XCTAssertIdentical(locationManagerStub.delegate, sut)
+        XCTAssertIdentical(locationManagerSpy.delegate, sut)
     }
     
     func test_locationManagerDidChangeAuthorization_callsRequestWhenInUseAuthorizationWhenAuthorizationStatusIsNotDetermined() {
-        let locationManagerStub = LocationManagerStub()
-        let sut = LocationFetcher(locationManager: locationManagerStub)
+        let (sut, locationManagerSpy) = makeSUT()
         
-        sut.locationManagerDidChangeAuthorization(manager: locationManagerStub)
+        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
         
-        XCTAssertEqual(locationManagerStub.requestWhenInUseAuthorizationCallCount, 1)
+        XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
     }
     
     // MARK: - Helpers
     
-    private class LocationManagerStub: LocationManager {
+    private func makeSUT() -> (sut: LocationFetcher, locationManagerSpy: LocationManagerSpy) {
+        let locationManagerSpy = LocationManagerSpy()
+        let sut = LocationFetcher(locationManager: locationManagerSpy)
+        return (sut, locationManagerSpy)
+    }
+    
+    private class LocationManagerSpy: LocationManager {
         var delegate: CLLocationManagerDelegate?
         var authorizationStatus: CLAuthorizationStatus = .notDetermined
         var requestWhenInUseAuthorizationCallCount = 0
