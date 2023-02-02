@@ -20,6 +20,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     @Published public var error: Error?
     @Published public var placeDetails: PlaceDetails?
     @Published public var imageData: Data?
+    @Published public var photosData = [Data?]()
     
     public var rating: String {
         guard let placeDetails = placeDetails else { return "" }
@@ -55,8 +56,12 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             error = nil
             placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
             
+            if let placeDetails = placeDetails {
+                photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
+            }
+            
             if let firstPhoto = placeDetails?.photos.first {
-                await fetchPhoto(firstPhoto)
+                imageData = await fetchPhoto(firstPhoto)
             }
         } catch {
             placeDetails = nil
@@ -64,7 +69,13 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         }
     }
     
-    @MainActor public func fetchPhoto(_ photo: Photo) async {
-        imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
+    @MainActor public func fetchPhoto(_ photo: Photo) async -> Data? {
+        return try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
+    }
+    
+    @MainActor public func fetchPhoto(at index: Int) async {
+        if let placeDetails = placeDetails {
+            photosData[index] = await fetchPhoto(placeDetails.photos[index + 1])
+        }
     }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RestaurantPhotosView: View {
     let imageWidth: CGFloat
+    let fetchPhoto: (Int) async -> Void
+    @Binding var photosData: [Data?]
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,11 +18,21 @@ struct RestaurantPhotosView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top) {
-                    ForEach(0...50, id: \.self) { _ in
-                        Image("restaurant_logo_test")
-                            .resizable()
-                            .cornerRadius(16)
-                            .frame(width: imageWidth, height: imageWidth * 0.8)
+                    ForEach(photosData.indices, id: \.self) { index in
+                        if let photoData = photosData[index], let uiImage = UIImage(data: photoData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .cornerRadius(16)
+                                .frame(width: imageWidth, height: imageWidth * 0.8)
+                        } else {
+                            Image("restaurant_logo_test")
+                                .resizable()
+                                .cornerRadius(16)
+                                .frame(width: imageWidth, height: imageWidth * 0.8)
+                                .task {
+                                    await fetchPhoto(index)
+                                }
+                        }
                     }
                 }
             }
@@ -31,6 +43,6 @@ struct RestaurantPhotosView: View {
 
 struct RestaurantPhotosView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantPhotosView(imageWidth: 150)
+        RestaurantPhotosView(imageWidth: 150, fetchPhoto: { _ in }, photosData: .constant([]))
     }
 }

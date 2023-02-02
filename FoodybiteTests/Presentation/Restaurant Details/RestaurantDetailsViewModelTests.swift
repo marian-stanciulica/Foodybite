@@ -51,6 +51,19 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(photoServiceSpy.capturedValues[0], expectedPlaceDetails.photos.first?.photoReference)
     }
     
+    func test_getPlaceDetails_initializePhotosImageWithNils() async {
+        let (sut, serviceSpy, _) = makeSUT()
+        let expectedPlaceDetails = anyPlaceDetails
+        
+        serviceSpy.result = .success(expectedPlaceDetails)
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(sut.photosData.count, expectedPlaceDetails.photos.count - 1)
+        sut.photosData.forEach {
+            XCTAssertNil($0)
+        }
+    }
+    
     func test_rating_returnsFormmatedRating() {
         let (sut, _, _) = makeSUT()
         sut.placeDetails = anyPlaceDetails
@@ -68,7 +81,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     func test_fetchPhoto_sendsInputsToFetchPlacePhotoService() async {
         let (sut, _, photoServiceSpy) = makeSUT()
 
-        await sut.fetchPhoto(anyPhoto())
+        _ = await sut.fetchPhoto(anyPhoto())
 
         XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPhoto().photoReference)
     }
@@ -77,7 +90,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let (sut, _, photoServiceSpy) = makeSUT()
         
         photoServiceSpy.result = .failure(anyError)
-        await sut.fetchPhoto(anyPhoto())
+        _ = await sut.fetchPhoto(anyPhoto())
         XCTAssertNil(sut.imageData)
     }
     
@@ -86,8 +99,31 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let expectedData = anyData()
         
         photoServiceSpy.result = .success(expectedData)
-        await sut.fetchPhoto(anyPhoto())
-        XCTAssertEqual(sut.imageData, expectedData)
+        let imageData = await sut.fetchPhoto(anyPhoto())
+        XCTAssertEqual(imageData, expectedData)
+    }
+    
+    func test_fetchPhotoAtIndex_requestsPhotoDataForTheGivenIndex() async {
+        let (sut, _, photoServiceSpy) = makeSUT()
+        sut.placeDetails = anyPlaceDetails
+        sut.photosData = Array(repeating: nil, count: anyPlaceDetails.photos.count - 1)
+        
+        await sut.fetchPhoto(at: 1)
+        
+        XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPlaceDetails.photos[2].photoReference)
+    }
+    
+    func test_fetchPhotoAtIndex_updatesPhotosDataAtGivenIndex() async {
+        let (sut, _, photoServiceSpy) = makeSUT()
+        let expectedData = anyData()
+        
+        sut.placeDetails = anyPlaceDetails
+        sut.photosData = Array(repeating: nil, count: anyPlaceDetails.photos.count - 1)
+        
+        photoServiceSpy.result = .success(expectedData)
+        await sut.fetchPhoto(at: 1)
+        
+        XCTAssertEqual(sut.photosData[1], expectedData)
     }
     
     // MARK: - Helpers
@@ -165,6 +201,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         [
             Photo(width: 100, height: 200, photoReference: "first photo reference"),
             Photo(width: 200, height: 300, photoReference: "second photo reference"),
+            Photo(width: 300, height: 400, photoReference: "third photo reference")
         ]
     }
     

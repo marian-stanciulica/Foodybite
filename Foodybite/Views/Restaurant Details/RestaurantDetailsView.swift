@@ -42,8 +42,12 @@ struct RestaurantDetailsView: View {
                                 .padding(.horizontal)
                         }
                         
-                        RestaurantPhotosView(imageWidth: proxy.size.width / 2.5)
-                            .padding(.bottom)
+                        RestaurantPhotosView(
+                            imageWidth: proxy.size.width / 2.5,
+                            fetchPhoto: viewModel.fetchPhoto(at:),
+                            photosData: $viewModel.photosData
+                        )
+                        .padding(.bottom)
                         
                         HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
                         
