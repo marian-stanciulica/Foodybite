@@ -11,7 +11,7 @@ import DomainModels
 
 final class RestaurantCellViewModelTests: XCTestCase {
     
-    func test_rating_returnsFormmatedRating() {
+    func test_rating_returnsFormattedRating() {
         let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.rating, rating().formatted)

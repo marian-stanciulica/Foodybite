@@ -64,7 +64,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         }
     }
     
-    func test_rating_returnsFormmatedRating() {
+    func test_rating_returnsFormattedRating() {
         let (sut, _, _) = makeSUT()
         sut.placeDetails = anyPlaceDetails
         
