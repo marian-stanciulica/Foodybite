@@ -13,6 +13,7 @@ protocol LocationManager {
     var authorizationStatus: CLAuthorizationStatus { get }
 
     func requestWhenInUseAuthorization()
+    func requestLocation()
 }
 
 extension CLLocationManager: LocationManager {}
@@ -43,6 +44,10 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
             break
         }
     }
+    
+    func requestLocation() {
+        locationManager.requestLocation()
+    }
 }
 
 final class LocationFetcherTests: XCTestCase {
@@ -61,6 +66,14 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
     }
     
+    func test_requestLocation_callsRequestLocationOnLocationManager() async {
+        let (sut, locationManagerSpy) = makeSUT()
+
+        sut.requestLocation()
+        
+        XCTAssertEqual(locationManagerSpy.requestLocationCallCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocationFetcher, locationManagerSpy: LocationManagerSpy) {
@@ -72,10 +85,16 @@ final class LocationFetcherTests: XCTestCase {
     private class LocationManagerSpy: LocationManager {
         var delegate: CLLocationManagerDelegate?
         var authorizationStatus: CLAuthorizationStatus = .notDetermined
+        
         var requestWhenInUseAuthorizationCallCount = 0
+        var requestLocationCallCount = 0
         
         func requestWhenInUseAuthorization() {
             requestWhenInUseAuthorizationCallCount += 1
+        }
+        
+        func requestLocation() {
+            requestLocationCallCount += 1
         }
     }
     
