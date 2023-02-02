@@ -172,6 +172,7 @@
 		0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D42920E965005196EA /* AuthFlowView.swift */; };
 		0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F89618F2928C01E00FFDC48 /* RemoteUser.swift */; };
 		0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */; };
+		0FABA447298BF80A00EACFE5 /* LocationFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABA446298BF80A00EACFE5 /* LocationFetcherTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
 		0FB0E10E291F7D380058ABCB /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E10D291F7D380058ABCB /* SignUpService.swift */; };
@@ -522,6 +523,7 @@
 		0F7E23D42920E965005196EA /* AuthFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowView.swift; sourceTree = "<group>"; };
 		0F89618F2928C01E00FFDC48 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
+		0FABA446298BF80A00EACFE5 /* LocationFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcherTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		0FB0E10D291F7D380058ABCB /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
@@ -724,6 +726,7 @@
 			children = (
 				0F7E23CE2920E329005196EA /* Navigation */,
 				0F73ECA2292F9D700025B237 /* Input Validators */,
+				0FABA445298BF7EC00EACFE5 /* Location */,
 				0F73ECA6292FA0820025B237 /* Presentation */,
 			);
 			path = FoodybiteTests;
@@ -1543,6 +1546,14 @@
 			path = FoodybitePersistenceTests;
 			sourceTree = "<group>";
 		};
+		0FABA445298BF7EC00EACFE5 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				0FABA446298BF80A00EACFE5 /* LocationFetcherTests.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		0FAFCA24284297CB00778E45 /* Tab Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -2329,6 +2340,7 @@
 			files = (
 				0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
+				0FABA447298BF80A00EACFE5 /* LocationFetcherTests.swift in Sources */,
 				0F70C49D29866D3600C004DD /* RestaurantCellViewModelTests.swift in Sources */,
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
@@ -3167,6 +3179,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foodybite/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to recommend you nearby restaurants";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -3201,6 +3214,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Foodybite/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to recommend you nearby restaurants";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
