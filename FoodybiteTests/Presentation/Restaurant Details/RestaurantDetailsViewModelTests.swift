@@ -41,6 +41,16 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
     }
     
+    func test_getPlaceDetails_triggersFetchPhotoForFirstPhoto() async {
+        let (sut, serviceSpy, photoServiceSpy) = makeSUT()
+        let expectedPlaceDetails = anyPlaceDetails
+        
+        serviceSpy.result = .success(expectedPlaceDetails)
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(photoServiceSpy.capturedValues[0], expectedPlaceDetails.photos.first?.photoReference)
+    }
+    
     func test_rating_returnsFormmatedRating() {
         let (sut, _, _) = makeSUT()
         sut.placeDetails = anyPlaceDetails
@@ -56,34 +66,27 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     func test_fetchPhoto_sendsInputsToFetchPlacePhotoService() async {
-        let (sut, serviceSpy, photoServiceSpy) = makeSUT()
-        serviceSpy.result = .success(anyPlaceDetails)
-        await sut.getPlaceDetails()
+        let (sut, _, photoServiceSpy) = makeSUT()
 
-        await sut.fetchPhoto()
+        await sut.fetchPhoto(anyPhoto())
 
         XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPhoto().photoReference)
     }
     
     func test_fetchPhoto_setsImageDataToNilWhenFetchPlacePhotoServiceThrowsError() async {
-        let (sut, serviceSpy, photoServiceSpy) = makeSUT()
-        serviceSpy.result = .success(anyPlaceDetails)
-        await sut.getPlaceDetails()
+        let (sut, _, photoServiceSpy) = makeSUT()
         
         photoServiceSpy.result = .failure(anyError)
-        await sut.fetchPhoto()
+        await sut.fetchPhoto(anyPhoto())
         XCTAssertNil(sut.imageData)
     }
     
     func test_fetchPhoto_updatesImageDataWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
-        let (sut, serviceSpy, photoServiceSpy) = makeSUT()
+        let (sut, _, photoServiceSpy) = makeSUT()
         let expectedData = anyData()
-
-        serviceSpy.result = .success(anyPlaceDetails)
-        await sut.getPlaceDetails()
         
         photoServiceSpy.result = .success(expectedData)
-        await sut.fetchPhoto()
+        await sut.fetchPhoto(anyPhoto())
         XCTAssertEqual(sut.imageData, expectedData)
     }
     
@@ -132,7 +135,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                 )
             ],
             location: Location(latitude: 44.4, longitude: 26.09),
-            photos: [anyPhoto()]
+            photos: anyPhotos()
         )
     }
     
@@ -155,7 +158,14 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     private func anyPhoto() -> Photo {
-        Photo(width: 100, height: 200, photoReference: "photo reference")
+        Photo(width: 10, height: 20, photoReference: "photo reference")
+    }
+    
+    private func anyPhotos() -> [Photo] {
+        [
+            Photo(width: 100, height: 200, photoReference: "first photo reference"),
+            Photo(width: 200, height: 300, photoReference: "second photo reference"),
+        ]
     }
     
     private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {

@@ -54,16 +54,17 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         do {
             error = nil
             placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-            await fetchPhoto()
+            
+            if let firstPhoto = placeDetails?.photos.first {
+                await fetchPhoto(firstPhoto)
+            }
         } catch {
             placeDetails = nil
             self.error = .connectionFailure
         }
     }
     
-    @MainActor public func fetchPhoto() async {
-        if let photo = placeDetails?.photos.first {
-            imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
-        }
+    @MainActor public func fetchPhoto(_ photo: Photo) async {
+        imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
     }
 }
