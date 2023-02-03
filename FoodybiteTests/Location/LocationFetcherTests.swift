@@ -27,7 +27,8 @@ protocol LocationManagerDelegate {
 
 final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManagerDelegate {
     private var locationManager: LocationManager
-    var continuation: CheckedContinuation<Location, Error>?
+    private var continuation: CheckedContinuation<Location, Error>?
+    var locationServicesEnabled = false
     
     init(locationManager: LocationManager) {
         self.locationManager = locationManager
@@ -44,6 +45,8 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
         switch manager.authorizationStatus {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse:
+            locationServicesEnabled = true
         default:
             break
         }
@@ -89,10 +92,20 @@ final class LocationFetcherTests: XCTestCase {
     
     func test_locationManagerDidChangeAuthorization_callsRequestWhenInUseAuthorizationWhenAuthorizationStatusIsNotDetermined() {
         let (sut, locationManagerSpy) = makeSUT()
+        locationManagerSpy.authorizationStatus = .notDetermined
         
         sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
         
         XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
+    }
+    
+    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsAuthorizedWhenInUse() {
+        let (sut, locationManagerSpy) = makeSUT()
+        locationManagerSpy.authorizationStatus = .authorizedWhenInUse
+        
+        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
+        
+        XCTAssertTrue(sut.locationServicesEnabled)
     }
     
     func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
