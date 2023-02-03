@@ -29,7 +29,8 @@ final class TabNavigationViewModel {
         state = .isLoading
         
         do {
-            _ = try await locationProvider.requestLocation()
+            let location = try await locationProvider.requestLocation()
+            state = .loaded(location: location)
         } catch {
             state = .loadingError(message: "Location couldn't be fetched. Try again!")
         }
@@ -71,6 +72,15 @@ final class TabNavigationViewModelTests: XCTestCase {
         XCTAssertEqual(sut.state, .loadingError(message: "Location couldn't be fetched. Try again!"))
     }
     
+    func test_getCurrentLocation_setsStateToLoadedWhenLocationProviderReturnsLocation() async {
+        let (sut, locationProviderSpy) = makeSUT()
+        locationProviderSpy.result = .success(anyLocation())
+        
+        await sut.getCurrentLocation()
+        
+        XCTAssertEqual(sut.state, .loaded(location: anyLocation()))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: TabNavigationViewModel, locationProviderSpy: LocationProvidingSpy) {
@@ -81,6 +91,10 @@ final class TabNavigationViewModelTests: XCTestCase {
     
     private func anyError() -> NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func anyLocation() -> Location {
+        Location(latitude: 2.3, longitude: 4.5)
     }
     
     private class LocationProvidingSpy: LocationProviding {
