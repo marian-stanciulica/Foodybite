@@ -8,10 +8,10 @@
 import CoreLocation
 import DomainModels
 
-public final class LocationProvider: NSObject, LocationProviding {
+public final class LocationProvider: NSObject, LocationProviding, ObservableObject {
     private var locationManager: LocationManager
     private var continuation: CheckedContinuation<Location, Error>?
-    public var locationServicesEnabled = false
+    @Published public var locationServicesEnabled = false
     
     private enum LocationError: Swift.Error {
         case locationServicesDisabled

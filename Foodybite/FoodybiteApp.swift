@@ -43,13 +43,15 @@ final class AppViewModel {
 
 @main
 struct FoodybiteApp: App {
-    @AppStorage("userLoggedIn") var userLoggedIn = true
+    @AppStorage("userLoggedIn") var userLoggedIn = false
     private let appViewModel = AppViewModel()
     
     var body: some Scene {
         WindowGroup {
             if userLoggedIn {
-                TabNavigationView(tabRouter: TabRouter(), apiService: appViewModel.makeAuthenticatedApiService(), placesService: appViewModel.makePlacesService(), viewModel: TabNavigationViewModel(locationProvider: LocationProvider()))
+                LocationCheckView { locationProvider in
+                    TabNavigationView(tabRouter: TabRouter(), apiService: appViewModel.makeAuthenticatedApiService(), placesService: appViewModel.makePlacesService(), viewModel: TabNavigationViewModel(locationProvider: locationProvider))
+                }
             } else {
                 AuthFlowView(userLoggedIn: $userLoggedIn,
                              apiService: appViewModel.makeApiService(),

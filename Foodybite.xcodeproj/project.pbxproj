@@ -188,6 +188,7 @@
 		0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41769298D609C00F2BF92 /* LocationProviding.swift */; };
 		0FD41771298D66F600F2BF92 /* TabNavigationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41770298D66F600F2BF92 /* TabNavigationViewModelTests.swift */; };
 		0FD41774298D778500F2BF92 /* TabNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41773298D778500F2BF92 /* TabNavigationViewModel.swift */; };
+		0FD41776298D942200F2BF92 /* LocationCheckerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41775298D942200F2BF92 /* LocationCheckerView.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
@@ -552,6 +553,7 @@
 		0FD41769298D609C00F2BF92 /* LocationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviding.swift; sourceTree = "<group>"; };
 		0FD41770298D66F600F2BF92 /* TabNavigationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationViewModelTests.swift; sourceTree = "<group>"; };
 		0FD41773298D778500F2BF92 /* TabNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationViewModel.swift; sourceTree = "<group>"; };
+		0FD41775298D942200F2BF92 /* LocationCheckerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCheckerView.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -1572,6 +1574,7 @@
 		0FAFCA24284297CB00778E45 /* Tab Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				0FD41775298D942200F2BF92 /* LocationCheckerView.swift */,
 				0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */,
 				0F75163528434D3300A05A92 /* TabBarView.swift */,
 				0FAFCA272842984E00778E45 /* TabBarIcon.swift */,
@@ -2514,6 +2517,7 @@
 				0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */,
 				A2E64B9B2842103300FC41B7 /* BackgroundImage.swift in Sources */,
 				0F75163628434D3300A05A92 /* TabBarView.swift in Sources */,
+				0FD41776298D942200F2BF92 /* LocationCheckerView.swift in Sources */,
 				0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */,
 				A2C24230284763F000CB233B /* RestaurantPhotosView.swift in Sources */,
 				0FB0E116291F874D0058ABCB /* RegisterValidator.swift in Sources */,
