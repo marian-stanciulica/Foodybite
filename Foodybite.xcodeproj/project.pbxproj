@@ -186,6 +186,7 @@
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
 		0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41769298D609C00F2BF92 /* LocationProviding.swift */; };
+		0FD41771298D66F600F2BF92 /* TabNavigationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41770298D66F600F2BF92 /* TabNavigationViewModelTests.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
@@ -548,6 +549,7 @@
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		0FD41769298D609C00F2BF92 /* LocationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviding.swift; sourceTree = "<group>"; };
+		0FD41770298D66F600F2BF92 /* TabNavigationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationViewModelTests.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -1440,6 +1442,7 @@
 		0F73ECA6292FA0820025B237 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0FD4176F298D66E700F2BF92 /* TabNavigationView */,
 				0F423A852984FFCB009EB345 /* Home */,
 				0F423A952985332B009EB345 /* Restaurant Details */,
 				0F73ECAD292FA26F0025B237 /* Helpers */,
@@ -1636,6 +1639,14 @@
 				0FD41769298D609C00F2BF92 /* LocationProviding.swift */,
 			);
 			path = "Location Protocols";
+			sourceTree = "<group>";
+		};
+		0FD4176F298D66E700F2BF92 /* TabNavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				0FD41770298D66F600F2BF92 /* TabNavigationViewModelTests.swift */,
+			);
+			path = TabNavigationView;
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
@@ -2380,6 +2391,7 @@
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
 				0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */,
+				0FD41771298D66F600F2BF92 /* TabNavigationViewModelTests.swift in Sources */,
 				0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */,
 				0F423AAB29858BA9009EB345 /* DistanceSolverTests.swift in Sources */,
 			);
