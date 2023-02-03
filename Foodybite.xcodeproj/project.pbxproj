@@ -185,6 +185,7 @@
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
+		0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41769298D609C00F2BF92 /* LocationProviding.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
@@ -546,6 +547,7 @@
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
+		0FD41769298D609C00F2BF92 /* LocationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviding.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 			children = (
 				0F423AA229855F64009EB345 /* Models */,
 				0F412EBA2962D13700FDDF41 /* Places Protocols */,
+				0FD4176B298D60E400F2BF92 /* Location Protocols */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -1627,6 +1630,14 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		0FD4176B298D60E400F2BF92 /* Location Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0FD41769298D609C00F2BF92 /* LocationProviding.swift */,
+			);
+			path = "Location Protocols";
+			sourceTree = "<group>";
+		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
 			isa = PBXGroup;
 			children = (
@@ -2380,6 +2391,7 @@
 			files = (
 				0F423AA729855FDD009EB345 /* OpeningHoursDetails.swift in Sources */,
 				0F423AA929856C82009EB345 /* Review.swift in Sources */,
+				0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */,
 				0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */,
 				0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */,
 				0F70C4A329869C8C00C004DD /* Photo.swift in Sources */,
