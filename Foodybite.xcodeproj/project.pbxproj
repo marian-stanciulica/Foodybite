@@ -182,6 +182,9 @@
 		0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E127291FBED90058ABCB /* LoginViewModelTests.swift */; };
 		0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E129291FC7630058ABCB /* LoginViewModel.swift */; };
 		0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */; };
+		0FD41764298D5AFE00F2BF92 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationFetcher.swift */; };
+		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
+		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
@@ -540,6 +543,9 @@
 		0FB0E127291FBED90058ABCB /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		0FB0E129291FC7630058ABCB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceSender.swift; sourceTree = "<group>"; };
+		0FD41763298D5AFD00F2BF92 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -1359,6 +1365,7 @@
 				A2032BA2284205B600F8D8C8 /* Components */,
 				0F7E23D12920E837005196EA /* Navigation */,
 				0F73EC9F292F98B00025B237 /* Input Validators */,
+				0FD41762298D5AE100F2BF92 /* Location */,
 				0FB0E111291F861E0058ABCB /* Presentation */,
 				A2032BA0284204A700F8D8C8 /* Views */,
 				A2032B9F2842049300F8D8C8 /* Resources */,
@@ -1608,6 +1615,16 @@
 				0FB0E129291FC7630058ABCB /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		0FD41762298D5AE100F2BF92 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				0FD41763298D5AFD00F2BF92 /* LocationFetcher.swift */,
+				0FD41765298D5B1E00F2BF92 /* LocationManager.swift */,
+				0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
@@ -2452,9 +2469,11 @@
 				0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */,
 				0F423AAD29858F1F009EB345 /* DistanceSolver.swift in Sources */,
 				A2E64B9E2842146C00FC41B7 /* Color+.swift in Sources */,
+				0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */,
 				A2C2424728478BCB00CB233B /* ImageGrayTextField.swift in Sources */,
 				A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */,
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
+				0FD41764298D5AFE00F2BF92 /* LocationFetcher.swift in Sources */,
 				A2C24222284755AE00CB233B /* Blur.swift in Sources */,
 				0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */,
 				0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */,
@@ -2473,6 +2492,7 @@
 				A2C2424A2847A29100CB233B /* ArrowBackButton.swift in Sources */,
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F423A9C29853EF2009EB345 /* Flow.swift in Sources */,
+				0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
 				0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */,
 				0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */,
