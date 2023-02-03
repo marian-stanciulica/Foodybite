@@ -126,6 +126,15 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertFalse(sut.locationServicesEnabled)
     }
     
+    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsRestricted() {
+        let (sut, locationManagerSpy) = makeSUT()
+        locationManagerSpy.authorizationStatus = .restricted
+        
+        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
+        
+        XCTAssertFalse(sut.locationServicesEnabled)
+    }
+    
     func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
         let (sut, locationManagerSpy) = makeSUT()
         let exp = expectation(description: "Wait for task")
