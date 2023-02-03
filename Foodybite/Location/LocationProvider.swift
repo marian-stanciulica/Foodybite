@@ -1,5 +1,5 @@
 //
-//  LocationFetcher.swift
+//  LocationProvider.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 03.02.2023.
@@ -8,7 +8,7 @@
 import CoreLocation
 import DomainModels
 
-public final class LocationFetcher: NSObject {
+public final class LocationProvider: NSObject {
     private var locationManager: LocationManager
     private var continuation: CheckedContinuation<Location, Error>?
     public var locationServicesEnabled = false
@@ -36,7 +36,7 @@ public final class LocationFetcher: NSObject {
     }
 }
 
-extension LocationFetcher: LocationManagerDelegate  {
+extension LocationProvider: LocationManagerDelegate  {
     
     public func locationManagerDidChangeAuthorization(manager: LocationManager) {
         switch manager.authorizationStatus {
@@ -65,7 +65,7 @@ extension LocationFetcher: LocationManagerDelegate  {
     
 }
 
-extension LocationFetcher: CLLocationManagerDelegate {
+extension LocationProvider: CLLocationManagerDelegate {
     
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationManagerDidChangeAuthorization(manager: manager)

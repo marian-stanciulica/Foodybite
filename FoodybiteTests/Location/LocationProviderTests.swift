@@ -1,5 +1,5 @@
 //
-//  LocationFetcherTests.swift
+//  LocationProviderTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 02.02.2023.
@@ -10,7 +10,7 @@ import CoreLocation
 import DomainModels
 import Foodybite
 
-final class LocationFetcherTests: XCTestCase {
+final class LocationProviderTests: XCTestCase {
     
     func test_init_locationManagerDelegateSetToSelf() {
         let (sut, locationManagerSpy) = makeSUT()
@@ -81,9 +81,9 @@ final class LocationFetcherTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocationFetcher, locationManagerSpy: LocationManagerSpy) {
+    private func makeSUT() -> (sut: LocationProvider, locationManagerSpy: LocationManagerSpy) {
         let locationManagerSpy = LocationManagerSpy()
-        let sut = LocationFetcher(locationManager: locationManagerSpy)
+        let sut = LocationProvider(locationManager: locationManagerSpy)
         return (sut, locationManagerSpy)
     }
     
@@ -99,7 +99,7 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertEqual(sut.locationServicesEnabled, result, file: file, line: line)
     }
     
-    private func expectRequestLocationError(on sut: LocationFetcher,
+    private func expectRequestLocationError(on sut: LocationProvider,
                                             file: StaticString = #filePath,
                                             line: UInt = #line) async {
         do {
@@ -110,7 +110,7 @@ final class LocationFetcherTests: XCTestCase {
         }
     }
     
-    private func expectRequestLocationSuccess(on sut: LocationFetcher,
+    private func expectRequestLocationSuccess(on sut: LocationProvider,
                                               expectedLocation: Location,
                                               file: StaticString = #filePath,
                                               line: UInt = #line) async {
