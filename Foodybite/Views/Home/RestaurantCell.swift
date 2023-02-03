@@ -71,7 +71,8 @@ struct RestaurantCell_Previews: PreviewProvider {
                     location: Location(latitude: 0, longitude: 0),
                     photo: nil
                 ),
-                fetchPhotoService: PreviewFetchPlacePhotoService()
+                fetchPhotoService: PreviewFetchPlacePhotoService(),
+                currentLocation: Location(latitude: 1.2, longitude: 4.5)
             )
         )
         .background(.blue.opacity(0.2))

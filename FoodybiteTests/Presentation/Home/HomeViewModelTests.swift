@@ -36,12 +36,16 @@ final class HomeViewModelTests: XCTestCase {
     
     private func makeSUT() -> (sut: HomeViewModel, serviceSpy: SearchNearbyServiceSpy) {
         let serviceSpy = SearchNearbyServiceSpy()
-        let sut = HomeViewModel(searchNearbyService: serviceSpy)
+        let sut = HomeViewModel(searchNearbyService: serviceSpy, currentLocation: anyLocation)
         return (sut, serviceSpy)
     }
     
     private var anyError: NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private var anyLocation: Location {
+        Location(latitude: 2.3, longitude: 4.5)
     }
     
     private var anyNearbyPlaces: [NearbyPlace] {

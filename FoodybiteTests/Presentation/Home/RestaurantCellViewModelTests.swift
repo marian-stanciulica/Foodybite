@@ -20,7 +20,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
     func test_distanceInKmFromCurrentLocation_computedCorrectly() {
         let (sut, _) = makeSUT()
 
-        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "6.5")
+        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
     }
     
     func test_isOpen_equalsNearbyPlaceIsOpen() {
@@ -70,10 +70,11 @@ final class RestaurantCellViewModelTests: XCTestCase {
                 placeName: anyPlaceName(),
                 isOpen: isOpen(),
                 rating: rating().raw,
-                location: Location(latitude: 44.4, longitude: 26.09),
+                location: Location(latitude: 4.4, longitude: 6.9),
                 photo: anyPhoto()
             ),
-            fetchPhotoService: serviceSpy
+            fetchPhotoService: serviceSpy,
+            currentLocation: anyLocation
         )
         return (sut, serviceSpy)
     }
@@ -100,6 +101,10 @@ final class RestaurantCellViewModelTests: XCTestCase {
     
     private func anyData() -> Data {
         "any data".data(using: .utf8)!
+    }
+    
+    private var anyLocation: Location {
+        Location(latitude: 2.3, longitude: 4.5)
     }
     
     private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {

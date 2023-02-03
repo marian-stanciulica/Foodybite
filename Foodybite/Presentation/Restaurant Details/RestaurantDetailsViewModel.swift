@@ -15,6 +15,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     private let placeID: String
+    private let currentLocation: Location
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPhotoService: FetchPlacePhotoService
     @Published public var error: Error?
@@ -31,13 +32,13 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     public var distanceInKmFromCurrentLocation: String {
         guard let placeDetails = placeDetails else { return "" }
         
-        let source = Location(latitude: 44.437367393150396, longitude: 26.02757207676153)
-        let distance = DistanceSolver.getDistanceInKm(from: source, to: placeDetails.location)
+        let distance = DistanceSolver.getDistanceInKm(from: currentLocation, to: placeDetails.location)
         return "\(distance)"
     }
     
-    public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService) {
+    public init(placeID: String, currentLocation: Location, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService) {
         self.placeID = placeID
+        self.currentLocation = currentLocation
         self.getPlaceDetailsService = getPlaceDetailsService
         self.fetchPhotoService = fetchPhotoService
     }

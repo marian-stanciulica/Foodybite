@@ -75,7 +75,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let (sut, _, _) = makeSUT()
         sut.placeDetails = anyPlaceDetails
         
-        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "6.5")
+        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
     }
     
     func test_fetchPhoto_sendsInputsToFetchPlacePhotoService() async {
@@ -131,7 +131,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     private func makeSUT() -> (sut: RestaurantDetailsViewModel, serviceSpy: GetPlaceDetailsServiceSpy, photoServiceSpy: FetchPlacePhotoServiceSpy) {
         let serviceSpy = GetPlaceDetailsServiceSpy()
         let photoServiceSpy = FetchPlacePhotoServiceSpy()
-        let sut = RestaurantDetailsViewModel(placeID: anyPlaceID(), getPlaceDetailsService: serviceSpy, fetchPhotoService: photoServiceSpy)
+        let sut = RestaurantDetailsViewModel(placeID: anyPlaceID(), currentLocation: anyLocation, getPlaceDetailsService: serviceSpy, fetchPhotoService: photoServiceSpy)
         return (sut, serviceSpy, photoServiceSpy)
     }
     
@@ -141,6 +141,10 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private var anyError: NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private var anyLocation: Location {
+        Location(latitude: 2.3, longitude: 4.5)
     }
     
     private var anyPlaceDetails: PlaceDetails {
@@ -170,7 +174,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                     relativeTime: "5 months ago"
                 )
             ],
-            location: Location(latitude: 44.4, longitude: 26.09),
+            location: Location(latitude: 4.4, longitude: 6.9),
             photos: anyPhotos()
         )
     }

@@ -14,17 +14,20 @@ public final class HomeViewModel: ObservableObject {
     }
     
     private let searchNearbyService: SearchNearbyService
+    private let currentLocation: Location
+    
     @Published public var error: Error?
     @Published public var nearbyPlaces = [NearbyPlace]()
     
-    public init(searchNearbyService: SearchNearbyService) {
+    public init(searchNearbyService: SearchNearbyService, currentLocation: Location) {
         self.searchNearbyService = searchNearbyService
+        self.currentLocation = currentLocation
     }
     
     @MainActor public func searchNearby() async {
         do {
             error = nil
-            nearbyPlaces = try await searchNearbyService.searchNearby(location: Location(latitude: 44.439663, longitude: 26.096306), radius: 1000)
+            nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 1000)
         } catch {
             self.error = .connectionFailure
         }

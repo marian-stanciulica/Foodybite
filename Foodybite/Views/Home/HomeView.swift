@@ -39,8 +39,8 @@ struct HomeView<Cell: View>: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService()), showPlaceDetails: { _ in }, cell: { nearbyPlace in
-            RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: nearbyPlace, fetchPhotoService: PreviewFetchPlacePhotoService()))
+        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService(), currentLocation: Location(latitude: 2.3, longitude: 4.5)), showPlaceDetails: { _ in }, cell: { nearbyPlace in
+            RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: nearbyPlace, fetchPhotoService: PreviewFetchPlacePhotoService(), currentLocation: Location(latitude: 2.1, longitude: 3.4)))
         })
     }
     
