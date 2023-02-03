@@ -99,7 +99,7 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
     }
     
-    func test_locationManagerDidChangeAuthorization_setsLocationEnabledAccordingly() {
+    func test_locationManagerDidChangeAuthorization_setsLocationServicesEnabledAccordingly() {
         assertLocationsServicesEnabled(for: .authorizedWhenInUse, withExpectedResult: true)
         assertLocationsServicesEnabled(for: .authorizedAlways, withExpectedResult: true)
         assertLocationsServicesEnabled(for: .denied, withExpectedResult: false)
