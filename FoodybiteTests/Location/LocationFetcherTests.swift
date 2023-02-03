@@ -45,7 +45,7 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
         switch manager.authorizationStatus {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
-        case .authorizedWhenInUse:
+        case .authorizedWhenInUse, .authorizedAlways:
             locationServicesEnabled = true
         default:
             break
@@ -102,6 +102,15 @@ final class LocationFetcherTests: XCTestCase {
     func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsAuthorizedWhenInUse() {
         let (sut, locationManagerSpy) = makeSUT()
         locationManagerSpy.authorizationStatus = .authorizedWhenInUse
+        
+        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
+        
+        XCTAssertTrue(sut.locationServicesEnabled)
+    }
+    
+    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsAuthorizedAlways() {
+        let (sut, locationManagerSpy) = makeSUT()
+        locationManagerSpy.authorizationStatus = .authorizedAlways
         
         sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
         
