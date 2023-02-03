@@ -156,12 +156,7 @@ final class LocationFetcherTests: XCTestCase {
             sut.locationManager(manager: locationManagerSpy, didUpdateLocations: anyLocations().locations)
         }
         
-        do {
-            let receivedLocation = try await sut.requestLocation()
-            XCTAssertEqual(receivedLocation, anyLocations().firstLocation)
-        } catch {
-            XCTFail("Expected to receive \(anyLocations().firstLocation), got \(error) instead")
-        }
+        await expectRequestLocationSuccess(on: sut, expectedLocation: anyLocations().firstLocation)
     }
     
     // MARK: - Helpers
@@ -192,6 +187,18 @@ final class LocationFetcherTests: XCTestCase {
             XCTFail("Expected to receive an error, got \(location) instead", file: file, line: line)
         } catch {
             XCTAssertNotNil(error, file: file, line: line)
+        }
+    }
+    
+    private func expectRequestLocationSuccess(on sut: LocationFetcher,
+                                              expectedLocation: Location,
+                                              file: StaticString = #filePath,
+                                              line: UInt = #line) async {
+        do {
+            let receivedLocation = try await sut.requestLocation()
+            XCTAssertEqual(receivedLocation, expectedLocation, file: file, line: line)
+        } catch {
+            XCTFail("Expected to receive \(anyLocations().firstLocation), got \(error) instead", file: file, line: line)
         }
     }
     
