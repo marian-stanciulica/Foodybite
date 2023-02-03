@@ -8,7 +8,7 @@
 import CoreLocation
 import DomainModels
 
-public final class LocationProvider: NSObject {
+public final class LocationProvider: NSObject, LocationProviding {
     private var locationManager: LocationManager
     private var continuation: CheckedContinuation<Location, Error>?
     public var locationServicesEnabled = false
