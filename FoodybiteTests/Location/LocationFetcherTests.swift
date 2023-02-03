@@ -48,7 +48,7 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
         case .authorizedWhenInUse, .authorizedAlways:
             locationServicesEnabled = true
         default:
-            break
+            locationServicesEnabled = false
         }
     }
     
@@ -115,6 +115,15 @@ final class LocationFetcherTests: XCTestCase {
         sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
         
         XCTAssertTrue(sut.locationServicesEnabled)
+    }
+    
+    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsDenied() {
+        let (sut, locationManagerSpy) = makeSUT()
+        locationManagerSpy.authorizationStatus = .denied
+        
+        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
+        
+        XCTAssertFalse(sut.locationServicesEnabled)
     }
     
     func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
