@@ -30,6 +30,10 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
     private var continuation: CheckedContinuation<Location, Error>?
     var locationServicesEnabled = false
     
+    enum LocationError: Swift.Error {
+        case locationServicesDisabled
+    }
+    
     init(locationManager: LocationManager) {
         self.locationManager = locationManager
         super.init()
@@ -53,6 +57,10 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
     }
     
     func requestLocation() async throws -> Location {
+        guard locationServicesEnabled else {
+            throw LocationError.locationServicesDisabled
+        }
+        
         return try await withCheckedThrowingContinuation { continuation in
             self.continuation = continuation
             locationManager.requestLocation()
@@ -108,6 +116,7 @@ final class LocationFetcherTests: XCTestCase {
     
     func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
         let (sut, locationManagerSpy) = makeSUT()
+        sut.locationServicesEnabled = true
         let exp = expectation(description: "Wait for task")
         
         let task = Task {
@@ -121,8 +130,21 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertEqual(locationManagerSpy.requestLocationCallCount, 1)
     }
     
+    func test_requestLocation_throwsErrorWhenLocationServicesAreDisabled() async throws {
+        let (sut, _) = makeSUT()
+        sut.locationServicesEnabled = false
+        
+        do {
+            let location = try await sut.requestLocation()
+            XCTFail("Expected to receive an error, got \(location) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     func test_requestLocation_throwsErrorWhenLocationManagerDidFailWithErrorCalled() async throws {
         let (sut, locationManagerSpy) = makeSUT()
+        sut.locationServicesEnabled = true
 
         Task {
             sut.locationManager(manager: locationManagerSpy, didFailWithError: anyError())
@@ -138,6 +160,7 @@ final class LocationFetcherTests: XCTestCase {
     
     func test_requestLocation_returnsLocationWhenLocationManagerDidUpdateLocationsCalled() async throws {
         let (sut, locationManagerSpy) = makeSUT()
+        sut.locationServicesEnabled = true
 
         Task {
             sut.locationManager(manager: locationManagerSpy, didUpdateLocations: anyLocations().locations)
