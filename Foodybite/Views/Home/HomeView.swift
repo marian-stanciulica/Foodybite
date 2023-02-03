@@ -32,7 +32,7 @@ struct HomeView<Cell: View>: View {
         }
         .padding(.horizontal)
         .task {
-            await viewModel.searchNearby(location: Location(latitude: 44.439663, longitude: 26.096306), radius: 1000)
+            await viewModel.searchNearby()
         }
     }
 }

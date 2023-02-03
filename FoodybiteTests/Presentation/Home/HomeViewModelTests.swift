@@ -11,24 +11,15 @@ import Foodybite
 
 final class HomeViewModelTests: XCTestCase {
     
-    func test_searchNearby_sendsInputsToSearchNearbyService() async {
-        let (sut, serviceSpy) = makeSUT()
-        
-        await sut.searchNearby(location: location, radius: radius)
-        
-        XCTAssertEqual(serviceSpy.capturedValues[0].radius, radius)
-        XCTAssertEqual(serviceSpy.capturedValues[0].location, location)
-    }
-    
     func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
         let (sut, serviceSpy) = makeSUT()
         
         serviceSpy.result = .failure(anyError)
-        await sut.searchNearby(location: location, radius: radius)
+        await sut.searchNearby()
         XCTAssertEqual(sut.error, .connectionFailure)
         
         serviceSpy.result = nil
-        await sut.searchNearby(location: location, radius: radius)
+        await sut.searchNearby()
         XCTAssertNil(sut.error)
     }
     
@@ -37,7 +28,7 @@ final class HomeViewModelTests: XCTestCase {
         let expectedNearbyPlaces = anyNearbyPlaces
         
         serviceSpy.result = .success(expectedNearbyPlaces)
-        await sut.searchNearby(location: location, radius: radius)
+        await sut.searchNearby()
         XCTAssertEqual(sut.nearbyPlaces, expectedNearbyPlaces)
     }
     
@@ -47,14 +38,6 @@ final class HomeViewModelTests: XCTestCase {
         let serviceSpy = SearchNearbyServiceSpy()
         let sut = HomeViewModel(searchNearbyService: serviceSpy)
         return (sut, serviceSpy)
-    }
-    
-    private var location: Location {
-        Location(latitude: 44.439663, longitude: 26.096306)
-    }
-    
-    private var radius: Int {
-        50
     }
     
     private var anyError: NSError {
