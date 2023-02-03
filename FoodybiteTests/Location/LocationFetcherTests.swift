@@ -22,6 +22,7 @@ extension CLLocationManager: LocationManager {}
 protocol LocationManagerDelegate {
     func locationManagerDidChangeAuthorization(manager: LocationManager)
     func locationManager(manager: LocationManager, didFailWithError error: Error)
+    func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation])
 }
 
 final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManagerDelegate {
@@ -62,6 +63,19 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager(manager: manager, didFailWithError: error)
+    }
+    
+    func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let firstLocation = locations.first {
+            let location = Location(latitude: firstLocation.coordinate.latitude,
+                                    longitude: firstLocation.coordinate.longitude)
+            continuation?.resume(returning: location)
+            continuation = nil
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager(manager: manager, didUpdateLocations: locations)
     }
 }
 
@@ -111,6 +125,21 @@ final class LocationFetcherTests: XCTestCase {
         }
     }
     
+    func test_requestLocation_returnsLocationWhenLocationManagerDidUpdateLocationsCalled() async throws {
+        let (sut, locationManagerSpy) = makeSUT()
+
+        Task {
+            sut.locationManager(manager: locationManagerSpy, didUpdateLocations: anyLocations().locations)
+        }
+        
+        do {
+            let receivedLocation = try await sut.requestLocation()
+            XCTAssertEqual(receivedLocation, anyLocations().firstLocation)
+        } catch {
+            XCTFail("Expected to receive \(anyLocations().firstLocation), got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocationFetcher, locationManagerSpy: LocationManagerSpy) {
@@ -121,6 +150,19 @@ final class LocationFetcherTests: XCTestCase {
     
     private func anyError() -> NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func anyLocations() -> (firstLocation: Location, locations: [CLLocation]) {
+        let firstLocation = Location(latitude: 1.1, longitude: 3.2)
+        
+        let locations = [
+            CLLocation(latitude: 1.1, longitude: 3.2),
+            CLLocation(latitude: -6.5, longitude: 7.4),
+            CLLocation(latitude: 12.4, longitude: -9.2),
+            CLLocation(latitude: -112.4, longitude: -54.5)
+        ]
+        
+        return (firstLocation, locations)
     }
     
     private class LocationManagerSpy: LocationManager {
