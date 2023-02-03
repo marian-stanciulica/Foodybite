@@ -8,7 +8,7 @@
 import CoreLocation
 import DomainModels
 
-public final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManagerDelegate {
+public final class LocationFetcher: NSObject {
     private var locationManager: LocationManager
     private var continuation: CheckedContinuation<Location, Error>?
     public var locationServicesEnabled = false
@@ -24,9 +24,19 @@ public final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocatio
         self.locationManager.delegate = self
     }
     
-    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        locationManagerDidChangeAuthorization(manager: manager)
+    public func requestLocation() async throws -> Location {
+        guard locationServicesEnabled else {
+            throw LocationError.locationServicesDisabled
+        }
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            self.continuation = continuation
+            locationManager.requestLocation()
+        }
     }
+}
+
+extension LocationFetcher: LocationManagerDelegate  {
     
     public func locationManagerDidChangeAuthorization(manager: LocationManager) {
         switch manager.authorizationStatus {
@@ -39,24 +49,9 @@ public final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocatio
         }
     }
     
-    public func requestLocation() async throws -> Location {
-        guard locationServicesEnabled else {
-            throw LocationError.locationServicesDisabled
-        }
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            self.continuation = continuation
-            locationManager.requestLocation()
-        }
-    }
-    
     public func locationManager(manager: LocationManager, didFailWithError error: Error) {
         continuation?.resume(throwing: error)
         continuation = nil
-    }
-    
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        locationManager(manager: manager, didFailWithError: error)
     }
     
     public func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -68,7 +63,20 @@ public final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocatio
         }
     }
     
+}
+
+extension LocationFetcher: CLLocationManagerDelegate {
+    
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        locationManagerDidChangeAuthorization(manager: manager)
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager(manager: manager, didFailWithError: error)
+    }
+    
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager(manager: manager, didUpdateLocations: locations)
     }
+    
 }
