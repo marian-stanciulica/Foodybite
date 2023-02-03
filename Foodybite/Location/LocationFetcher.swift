@@ -17,7 +17,7 @@ public final class LocationFetcher: NSObject {
         case locationServicesDisabled
     }
     
-    public init(locationManager: LocationManager) {
+    public init(locationManager: LocationManager = CLLocationManager()) {
         self.locationManager = locationManager
         super.init()
         
