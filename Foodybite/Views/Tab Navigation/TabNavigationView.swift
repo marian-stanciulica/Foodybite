@@ -14,6 +14,7 @@ struct TabNavigationView: View {
     @State var plusButtonActive = false
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
+    @StateObject var viewModel: TabNavigationViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,7 +24,14 @@ struct TabNavigationView: View {
                 Group {
                     switch tabRouter.currentPage {
                     case .home:
-                        HomeFlowView(flow: Flow<HomeRoute>(), placesService: placesService)
+                        switch viewModel.state {
+                        case .isLoading:
+                            ProgressView()
+                        case .loaded:
+                            HomeFlowView(flow: Flow<HomeRoute>(), placesService: placesService)
+                        case let .loadingError(message):
+                            Text(message)
+                        }
                     case .newReview:
                         NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
                     case .account:
@@ -42,6 +50,9 @@ struct TabNavigationView: View {
                 .background(.gray.opacity(0.1))
             }
             .edgesIgnoringSafeArea(.bottom)
+        }
+        .task {
+            await viewModel.getCurrentLocation()
         }
     }
 }

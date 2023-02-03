@@ -49,7 +49,7 @@ struct FoodybiteApp: App {
     var body: some Scene {
         WindowGroup {
             if userLoggedIn {
-                TabNavigationView(tabRouter: TabRouter(), apiService: appViewModel.makeAuthenticatedApiService(), placesService: appViewModel.makePlacesService())
+                TabNavigationView(tabRouter: TabRouter(), apiService: appViewModel.makeAuthenticatedApiService(), placesService: appViewModel.makePlacesService(), viewModel: TabNavigationViewModel(locationProvider: LocationProvider()))
             } else {
                 AuthFlowView(userLoggedIn: $userLoggedIn,
                              apiService: appViewModel.makeApiService(),

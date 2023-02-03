@@ -5,9 +5,10 @@
 //  Created by Marian Stanciulica on 03.02.2023.
 //
 
+import Foundation
 import DomainModels
 
-public final class TabNavigationViewModel {
+public final class TabNavigationViewModel: ObservableObject {
     public enum State: Equatable {
         case isLoading
         case loadingError(message: String)
@@ -15,7 +16,7 @@ public final class TabNavigationViewModel {
     }
     
     private let locationProvider: LocationProviding
-    public var state: State = .isLoading
+    @Published public var state: State = .isLoading
     public var locationServicesEnabled: Bool {
         locationProvider.locationServicesEnabled
     }
@@ -24,7 +25,7 @@ public final class TabNavigationViewModel {
         self.locationProvider = locationProvider
     }
     
-    public func getCurrentLocation() async {
+    @MainActor public func getCurrentLocation() async {
         state = .isLoading
         
         do {
