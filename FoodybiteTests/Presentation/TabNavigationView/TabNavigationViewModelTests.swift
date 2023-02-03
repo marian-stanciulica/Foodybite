@@ -15,6 +15,9 @@ final class TabNavigationViewModel {
     
     private let locationProvider: LocationProviding
     var state: State = .isLoading
+    var locationServicesEnabled: Bool {
+        locationProvider.locationServicesEnabled
+    }
     
     init(locationProvider: LocationProviding) {
         self.locationProvider = locationProvider
@@ -27,6 +30,16 @@ final class TabNavigationViewModel {
 }
 
 final class TabNavigationViewModelTests: XCTestCase {
+    
+    func test_locationServicesEnabled_equalsToLocationProviderLocationServicesEnabled() {
+        let (sut, locationProviderSpy) = makeSUT()
+        
+        locationProviderSpy.locationServicesEnabled = false
+        XCTAssertFalse(sut.locationServicesEnabled)
+        
+        locationProviderSpy.locationServicesEnabled = true
+        XCTAssertTrue(sut.locationServicesEnabled)
+    }
     
     func test_getCurrentLocation_setsStateToLoading() async {
         let (sut, _) = makeSUT()
