@@ -9,8 +9,10 @@ import XCTest
 import DomainModels
 
 final class TabNavigationViewModel {
-    enum State {
+    enum State: Equatable {
         case isLoading
+        case loadingError(message: String)
+        case loaded(location: Location)
     }
     
     private let locationProvider: LocationProviding
@@ -25,7 +27,12 @@ final class TabNavigationViewModel {
     
     func getCurrentLocation() async {
         state = .isLoading
-        _ = try? await locationProvider.requestLocation()
+        
+        do {
+            _ = try await locationProvider.requestLocation()
+        } catch {
+            state = .loadingError(message: "Location couldn't be fetched. Try again!")
+        }
     }
 }
 
@@ -41,10 +48,8 @@ final class TabNavigationViewModelTests: XCTestCase {
         XCTAssertTrue(sut.locationServicesEnabled)
     }
     
-    func test_getCurrentLocation_setsStateToLoading() async {
+    func test_state_initialStateIsLoading() async {
         let (sut, _) = makeSUT()
-        
-        await sut.getCurrentLocation()
         
         XCTAssertEqual(sut.state, .isLoading)
     }
@@ -57,6 +62,15 @@ final class TabNavigationViewModelTests: XCTestCase {
         XCTAssertEqual(locationProviderSpy.requestLocationCallCount, 1)
     }
     
+    func test_getCurrentLocation_setsStateToErrorWhenLocationProviderThrowsError() async {
+        let (sut, locationProviderSpy) = makeSUT()
+        locationProviderSpy.result = .failure(anyError())
+        
+        await sut.getCurrentLocation()
+        
+        XCTAssertEqual(sut.state, .loadingError(message: "Location couldn't be fetched. Try again!"))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: TabNavigationViewModel, locationProviderSpy: LocationProvidingSpy) {
@@ -65,12 +79,22 @@ final class TabNavigationViewModelTests: XCTestCase {
         return (sut, locationProviderSpy)
     }
     
+    private func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
+    }
+    
     private class LocationProvidingSpy: LocationProviding {
         var locationServicesEnabled: Bool = false
+        var result: Result<Location, Error>?
         private(set) var requestLocationCallCount = 0
         
         func requestLocation() async throws -> Location {
             requestLocationCallCount += 1
+            
+            if let result = result {
+                return try result.get()
+            }
+            
             throw NSError(domain: "any error", code: 1)
         }
     }
