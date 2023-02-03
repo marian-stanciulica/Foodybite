@@ -134,12 +134,7 @@ final class LocationFetcherTests: XCTestCase {
         let (sut, _) = makeSUT()
         sut.locationServicesEnabled = false
         
-        do {
-            let location = try await sut.requestLocation()
-            XCTFail("Expected to receive an error, got \(location) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        await expectRequestLocationError(on: sut)
     }
     
     func test_requestLocation_throwsErrorWhenLocationManagerDidFailWithErrorCalled() async throws {
@@ -150,12 +145,7 @@ final class LocationFetcherTests: XCTestCase {
             sut.locationManager(manager: locationManagerSpy, didFailWithError: anyError())
         }
         
-        do {
-            let location = try await sut.requestLocation()
-            XCTFail("Expected to receive an error, got \(location) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
+        await expectRequestLocationError(on: sut)
     }
     
     func test_requestLocation_returnsLocationWhenLocationManagerDidUpdateLocationsCalled() async throws {
@@ -191,7 +181,18 @@ final class LocationFetcherTests: XCTestCase {
         
         sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
         
-        XCTAssertEqual(sut.locationServicesEnabled, result)
+        XCTAssertEqual(sut.locationServicesEnabled, result, file: file, line: line)
+    }
+    
+    private func expectRequestLocationError(on sut: LocationFetcher,
+                                            file: StaticString = #filePath,
+                                            line: UInt = #line) async {
+        do {
+            let location = try await sut.requestLocation()
+            XCTFail("Expected to receive an error, got \(location) instead", file: file, line: line)
+        } catch {
+            XCTAssertNotNil(error, file: file, line: line)
+        }
     }
     
     private func anyError() -> NSError {
