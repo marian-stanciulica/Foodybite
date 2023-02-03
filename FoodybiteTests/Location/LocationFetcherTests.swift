@@ -99,40 +99,11 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
     }
     
-    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsAuthorizedWhenInUse() {
-        let (sut, locationManagerSpy) = makeSUT()
-        locationManagerSpy.authorizationStatus = .authorizedWhenInUse
-        
-        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
-        
-        XCTAssertTrue(sut.locationServicesEnabled)
-    }
-    
-    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsAuthorizedAlways() {
-        let (sut, locationManagerSpy) = makeSUT()
-        locationManagerSpy.authorizationStatus = .authorizedAlways
-        
-        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
-        
-        XCTAssertTrue(sut.locationServicesEnabled)
-    }
-    
-    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsDenied() {
-        let (sut, locationManagerSpy) = makeSUT()
-        locationManagerSpy.authorizationStatus = .denied
-        
-        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
-        
-        XCTAssertFalse(sut.locationServicesEnabled)
-    }
-    
-    func test_locationManagerDidChangeAuthorization_setsLocationEnabledToTrueWhenAuthorizationStatusEqualsRestricted() {
-        let (sut, locationManagerSpy) = makeSUT()
-        locationManagerSpy.authorizationStatus = .restricted
-        
-        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
-        
-        XCTAssertFalse(sut.locationServicesEnabled)
+    func test_locationManagerDidChangeAuthorization_setsLocationEnabledAccordingly() {
+        assertLocationsServicesEnabled(for: .authorizedWhenInUse, withExpectedResult: true)
+        assertLocationsServicesEnabled(for: .authorizedAlways, withExpectedResult: true)
+        assertLocationsServicesEnabled(for: .denied, withExpectedResult: false)
+        assertLocationsServicesEnabled(for: .restricted, withExpectedResult: false)
     }
     
     func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
@@ -186,6 +157,18 @@ final class LocationFetcherTests: XCTestCase {
         let locationManagerSpy = LocationManagerSpy()
         let sut = LocationFetcher(locationManager: locationManagerSpy)
         return (sut, locationManagerSpy)
+    }
+    
+    private func assertLocationsServicesEnabled(for authorizationStatus: CLAuthorizationStatus,
+                                                withExpectedResult result: Bool,
+                                                file: StaticString = #filePath,
+                                                line: UInt = #line) {
+        let (sut, locationManagerSpy) = makeSUT()
+        locationManagerSpy.authorizationStatus = authorizationStatus
+        
+        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
+        
+        XCTAssertEqual(sut.locationServicesEnabled, result)
     }
     
     private func anyError() -> NSError {
