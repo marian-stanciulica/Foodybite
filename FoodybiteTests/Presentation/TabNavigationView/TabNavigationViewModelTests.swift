@@ -7,35 +7,7 @@
 
 import XCTest
 import DomainModels
-
-final class TabNavigationViewModel {
-    enum State: Equatable {
-        case isLoading
-        case loadingError(message: String)
-        case loaded(location: Location)
-    }
-    
-    private let locationProvider: LocationProviding
-    var state: State = .isLoading
-    var locationServicesEnabled: Bool {
-        locationProvider.locationServicesEnabled
-    }
-    
-    init(locationProvider: LocationProviding) {
-        self.locationProvider = locationProvider
-    }
-    
-    func getCurrentLocation() async {
-        state = .isLoading
-        
-        do {
-            let location = try await locationProvider.requestLocation()
-            state = .loaded(location: location)
-        } catch {
-            state = .loadingError(message: "Location couldn't be fetched. Try again!")
-        }
-    }
-}
+import Foodybite
 
 final class TabNavigationViewModelTests: XCTestCase {
     
