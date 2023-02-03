@@ -7,6 +7,7 @@
 
 import XCTest
 import CoreLocation
+import DomainModels
 
 protocol LocationManager {
     var delegate: CLLocationManagerDelegate? { get set }
@@ -20,10 +21,12 @@ extension CLLocationManager: LocationManager {}
 
 protocol LocationManagerDelegate {
     func locationManagerDidChangeAuthorization(manager: LocationManager)
+    func locationManager(manager: LocationManager, didFailWithError error: Error)
 }
 
 final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManagerDelegate {
     private var locationManager: LocationManager
+    var continuation: CheckedContinuation<Location, Error>?
     
     init(locationManager: LocationManager) {
         self.locationManager = locationManager
@@ -45,8 +48,20 @@ final class LocationFetcher: NSObject, LocationManagerDelegate, CLLocationManage
         }
     }
     
-    func requestLocation() {
-        locationManager.requestLocation()
+    func requestLocation() async throws -> Location {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.continuation = continuation
+            locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(manager: LocationManager, didFailWithError error: Error) {
+        continuation?.resume(throwing: error)
+        continuation = nil
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager(manager: manager, didFailWithError: error)
     }
 }
 
@@ -66,12 +81,34 @@ final class LocationFetcherTests: XCTestCase {
         XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
     }
     
-    func test_requestLocation_callsRequestLocationOnLocationManager() async {
+    func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
         let (sut, locationManagerSpy) = makeSUT()
+        let exp = expectation(description: "Wait for task")
+        
+        let task = Task {
+            exp.fulfill()
+            return try await sut.requestLocation()
+        }
 
-        sut.requestLocation()
+        task.cancel()
+        await waitForExpectations(timeout: 1.0)
         
         XCTAssertEqual(locationManagerSpy.requestLocationCallCount, 1)
+    }
+    
+    func test_requestLocation_throwsErrorWhenLocationManagerDidFailWithErrorCalled() async throws {
+        let (sut, locationManagerSpy) = makeSUT()
+
+        Task {
+            sut.locationManager(manager: locationManagerSpy, didFailWithError: anyError())
+        }
+        
+        do {
+            let location = try await sut.requestLocation()
+            XCTFail("Expected to receive an error, got \(location) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
     }
     
     // MARK: - Helpers
@@ -80,6 +117,10 @@ final class LocationFetcherTests: XCTestCase {
         let locationManagerSpy = LocationManagerSpy()
         let sut = LocationFetcher(locationManager: locationManagerSpy)
         return (sut, locationManagerSpy)
+    }
+    
+    private func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
     }
     
     private class LocationManagerSpy: LocationManager {
