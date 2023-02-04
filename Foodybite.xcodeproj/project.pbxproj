@@ -186,6 +186,7 @@
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
 		0FC863FE298E72F20024016B /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FD298E72F20024016B /* ReviewService.swift */; };
+		0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86400298E799D0024016B /* ReviewViewModelTests.swift */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -555,6 +556,7 @@
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
 		0FC863FD298E72F20024016B /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		0FC86400298E799D0024016B /* ReviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModelTests.swift; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -1458,10 +1460,11 @@
 		0F73ECA6292FA0820025B237 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0F73ECAD292FA26F0025B237 /* Helpers */,
 				0FD4176F298D66E700F2BF92 /* TabNavigationView */,
 				0F423A852984FFCB009EB345 /* Home */,
 				0F423A952985332B009EB345 /* Restaurant Details */,
-				0F73ECAD292FA26F0025B237 /* Helpers */,
+				0FC863FF298E793A0024016B /* Review & Ratings */,
 				0F73ECBB292FDADB0025B237 /* Profile */,
 				0FB0E124291FBE3B0058ABCB /* Register */,
 				0FB0E125291FBE790058ABCB /* Login */,
@@ -1647,6 +1650,14 @@
 				0FC863FD298E72F20024016B /* ReviewService.swift */,
 			);
 			path = "Review Protocols";
+			sourceTree = "<group>";
+		};
+		0FC863FF298E793A0024016B /* Review & Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				0FC86400298E799D0024016B /* ReviewViewModelTests.swift */,
+			);
+			path = "Review & Ratings";
 			sourceTree = "<group>";
 		};
 		0FD41762298D5AE100F2BF92 /* Location */ = {
@@ -2425,6 +2436,7 @@
 				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
 				0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
+				0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */,
 				0F423A9729853342009EB345 /* RestaurantDetailsViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
