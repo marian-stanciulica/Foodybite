@@ -47,7 +47,7 @@ final class APIServiceTests: XCTestCase {
     
     func test_login_receiveExpectedLoginResponse() async throws {
         let (response, expectedModel) = anyLoginResponse()
-        let (sut, _, _, _) = makeSUT(loginResponse: response)
+        let (sut, _, _, _) = makeSUT(response: response)
         
         let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
         
@@ -55,7 +55,7 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_login_storesAuthTokenInKeychain() async throws {
-        let (sut, _, _, tokenStoreStub) = makeSUT(loginResponse: anyLoginResponse().response)
+        let (sut, _, _, tokenStoreStub) = makeSUT(response: anyLoginResponse().response)
         
         _ = try await sut.login(email: anyEmail(), password: anyPassword())
         let receivedToken = try tokenStoreStub.read()
@@ -204,9 +204,9 @@ final class APIServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(loginResponse: LoginResponse? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
+    private func makeSUT(response: Decodable? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
         let tokenStoreStub = TokenStoreStub()
-        let loader = ResourceLoaderSpy(response: loginResponse ?? anyLoginResponse().response)
+        let loader = ResourceLoaderSpy(response: response ?? anyLoginResponse().response)
         let sender = ResourceSenderSpy()
         let sut = APIService(loader: loader, sender: sender, tokenStore: tokenStoreStub)
         return (sut, loader, sender, tokenStoreStub)
