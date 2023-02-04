@@ -49,14 +49,18 @@ final class ReviewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.starsNumber, 0)
     }
     
-    func test_postReview_sendsPlaceIdToReviewService() async {
+    func test_postReview_sendsParametersCorrectlyToReviewService() async {
         let expectedPlaceId = anyPlaceID()
         let (sut, reviewServiceSpy) = makeSUT(placeID: expectedPlaceId)
+        sut.reviewText = anyReviewText()
+        sut.starsNumber = anyStarsNumber()
         
         await sut.addReview()
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues[0], expectedPlaceId)
+        XCTAssertEqual(reviewServiceSpy.capturedValues[0].placeID, expectedPlaceId)
+        XCTAssertEqual(reviewServiceSpy.capturedValues[0].reviewText, anyReviewText())
+        XCTAssertEqual(reviewServiceSpy.capturedValues[0].startNumber, anyStarsNumber())
     }
     
     func test_postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {
@@ -90,16 +94,24 @@ final class ReviewViewModelTests: XCTestCase {
         "any place id"
     }
     
+    private func anyReviewText() -> String {
+        "any review text"
+    }
+    
+    private func anyStarsNumber() -> Int {
+        3
+    }
+    
     private func anyError() -> NSError {
         NSError(domain: "any error", code: 1)
     }
     
     private class ReviewServiceSpy: ReviewService {
-        private(set) var capturedValues = [String]()
+        private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int)]()
         var error: Error?
         
         func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {
-            capturedValues.append(placeID)
+            capturedValues.append((placeID, reviewText, starsNumber))
             
             if let error = error {
                 throw error
