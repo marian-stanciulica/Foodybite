@@ -8,16 +8,17 @@
 import XCTest
 import FoodybiteNetworking
 
-final class ReviewViewModel {
+final class ReviewViewModel: ObservableObject {
     enum State: Equatable {
         case idle
         case isLoading
         case loadingError(String)
+        case requestSucceeeded
     }
     
     private let reviewService: ReviewService
     private let placeID: String
-    var state: State = .idle
+    @Published var state: State = .idle
     var reviewText = ""
     var starsNumber = 0
     
@@ -31,6 +32,7 @@ final class ReviewViewModel {
         
         do {
             try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+            state = .requestSucceeeded
         } catch {
             state = .loadingError("Review couldn't be posted. Try again!")
         }
@@ -57,21 +59,23 @@ final class ReviewViewModelTests: XCTestCase {
         XCTAssertEqual(reviewServiceSpy.capturedValues[0], expectedPlaceId)
     }
     
-    func test_postReview_setsStateToLoading() async {
-        let (sut, _) = makeSUT()
-        
-        await sut.addReview()
-        
-        XCTAssertEqual(sut.state, .isLoading)
-    }
-    
     func test_postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {
         let (sut, reviewServiceSpy) = makeSUT()
         reviewServiceSpy.error = anyError()
+        let stateSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
         
         await sut.addReview()
         
-        XCTAssertEqual(sut.state, .loadingError("Review couldn't be posted. Try again!"))
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("Review couldn't be posted. Try again!")])
+    }
+    
+    func test_postReview_setsStateToRequestSucceededWhenReviewServiceReturnsSuccess() async {
+        let (sut, _) = makeSUT()
+        let stateSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
+
+        await sut.addReview()
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded])
     }
     
     // MARK: - Helpers
