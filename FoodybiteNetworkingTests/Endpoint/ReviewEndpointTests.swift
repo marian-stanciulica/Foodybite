@@ -54,6 +54,10 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertNil(makeGetReviewsSUT().body)
     }
     
+    func test_getReviews_headersContainContentTypeJSON() {
+        XCTAssertEqual(makeGetReviewsSUT().headers["Content-Type"], "application/json")
+    }
+    
     // MARK: - Helpers
     
     private func makeAddReviewSUT(body: AddReviewRequest? = nil) -> ReviewEndpoint {
