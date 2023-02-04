@@ -36,7 +36,9 @@ struct HomeFlowView: View {
                             flow.append(.addReview(placeID))
                         }
                 case let .addReview(placeID):
-                    ReviewView(viewModel: ReviewViewModel(placeID: placeID, reviewService: apiService))
+                    ReviewView(viewModel: ReviewViewModel(placeID: placeID, reviewService: apiService)) {
+                        flow.navigateBack()
+                    }
                 }
             }
         }

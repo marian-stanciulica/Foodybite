@@ -10,6 +10,7 @@ import FoodybiteNetworking
 
 struct ReviewView: View {
     @StateObject var viewModel: ReviewViewModel
+    let dismissScreen: () -> Void
     
     var body: some View {
         VStack {
@@ -45,13 +46,18 @@ struct ReviewView: View {
         }
         .padding()
         .arrowBackButtonStyle()
+        .onChange(of: viewModel.state) { state in
+            guard state == .requestSucceeeded else { return }
+            
+            dismissScreen()
+        }
     }
 }
 
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ReviewView(viewModel: ReviewViewModel(placeID: "any place id", reviewService: PreviewReviewService()))
+            ReviewView(viewModel: ReviewViewModel(placeID: "any place id", reviewService: PreviewReviewService()), dismissScreen: {})
         }
     }
     
