@@ -11,6 +11,7 @@ import FoodybiteNetworking
 final class ReviewViewModel {
     enum State {
         case idle
+        case isLoading
     }
     
     private let reviewService: ReviewService
@@ -25,6 +26,7 @@ final class ReviewViewModel {
     }
     
     func addReview() async {
+        state = .isLoading
         try? await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
     }
 }
@@ -47,6 +49,14 @@ final class ReviewViewModelTests: XCTestCase {
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
         XCTAssertEqual(reviewServiceSpy.capturedValues[0], expectedPlaceId)
+    }
+    
+    func test_postReview_setsStateToLoading() async {
+        let (sut, _) = makeSUT()
+        
+        await sut.addReview()
+        
+        XCTAssertEqual(sut.state, .isLoading)
     }
     
     // MARK: - Helpers
