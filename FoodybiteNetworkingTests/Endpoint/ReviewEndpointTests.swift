@@ -14,6 +14,10 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertEqual(makeSUT().host, "localhost")
     }
     
+    func test_addReview_path() {
+        XCTAssertEqual(makeSUT().path, "/review")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> ReviewEndpoint {

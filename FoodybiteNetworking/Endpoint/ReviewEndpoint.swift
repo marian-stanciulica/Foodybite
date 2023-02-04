@@ -12,8 +12,8 @@ public enum ReviewEndpoint: Endpoint {
         "localhost"
     }
     
-    var path: String {
-        ""
+    public var path: String {
+        "/review"
     }
     
     var method: RequestMethod {
