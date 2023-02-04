@@ -14,13 +14,15 @@ final class ReviewViewModel {
     }
     
     private let reviewService: ReviewService
+    private let placeID: String
     var state: State = .idle
     
-    init(reviewService: ReviewService) {
+    init(placeID: String, reviewService: ReviewService) {
+        self.placeID = placeID
         self.reviewService = reviewService
     }
     
-    func addReview(placeID: String, reviewText: String, starsNumber: Int) async {
+    func addReview(reviewText: String, starsNumber: Int) async {
         try? await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
     }
 }
@@ -33,19 +35,21 @@ final class ReviewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.state, .idle)
     }
     
-    func test_postReview_callsReviewService() async {
-        let (sut, reviewServiceSpy) = makeSUT()
+    func test_postReview_sendsPlaceIdToReviewService() async {
+        let expectedPlaceId = anyPlaceID()
+        let (sut, reviewServiceSpy) = makeSUT(placeID: expectedPlaceId)
         
-        await sut.addReview(placeID: anyPlaceID(), reviewText: anyReviewText(), starsNumber: anyStarsNumber())
+        await sut.addReview(reviewText: anyReviewText(), starsNumber: anyStarsNumber())
         
-        XCTAssertEqual(reviewServiceSpy.addReviewCallCount, 1)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
+        XCTAssertEqual(reviewServiceSpy.capturedValues[0], expectedPlaceId)
     }
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: ReviewViewModel, reviewServiceSpy: ReviewServiceSpy) {
+    private func makeSUT(placeID: String = "") -> (sut: ReviewViewModel, reviewServiceSpy: ReviewServiceSpy) {
         let reviewServiceSpy = ReviewServiceSpy()
-        let sut = ReviewViewModel(reviewService: reviewServiceSpy)
+        let sut = ReviewViewModel(placeID: placeID, reviewService: reviewServiceSpy)
         return (sut, reviewServiceSpy)
     }
     
@@ -62,10 +66,10 @@ final class ReviewViewModelTests: XCTestCase {
     }
     
     private class ReviewServiceSpy: ReviewService {
-        private(set) var addReviewCallCount = 0
+        private(set) var capturedValues = [String]()
         
         func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {
-            addReviewCallCount += 1
+            capturedValues.append(placeID)
         }
     }
     
