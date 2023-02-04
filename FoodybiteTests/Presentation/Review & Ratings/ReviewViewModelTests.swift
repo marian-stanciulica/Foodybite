@@ -6,38 +6,8 @@
 //
 
 import XCTest
+import Foodybite
 import FoodybiteNetworking
-
-final class ReviewViewModel: ObservableObject {
-    enum State: Equatable {
-        case idle
-        case isLoading
-        case loadingError(String)
-        case requestSucceeeded
-    }
-    
-    private let reviewService: ReviewService
-    private let placeID: String
-    @Published var state: State = .idle
-    var reviewText = ""
-    var starsNumber = 0
-    
-    init(placeID: String, reviewService: ReviewService) {
-        self.placeID = placeID
-        self.reviewService = reviewService
-    }
-    
-    func addReview() async {
-        state = .isLoading
-        
-        do {
-            try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
-            state = .requestSucceeeded
-        } catch {
-            state = .loadingError("Review couldn't be posted. Try again!")
-        }
-    }
-}
 
 final class ReviewViewModelTests: XCTestCase {
     
