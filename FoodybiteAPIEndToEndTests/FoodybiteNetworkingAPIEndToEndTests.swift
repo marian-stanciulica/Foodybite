@@ -47,7 +47,17 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
     
-    func test_6endToEndDeleteAccount_returnsSuccessfully() async {
+    func test_6endToEndAddReview_returnsSuccessfully() async {
+        await execute(action: {
+            try await makeAuthenticatedSUT().addReview(
+                placeID: anyPlaceID(),
+                reviewText: anyReviewText(),
+                starsNumber: anyStarsNumber()
+            )
+        })
+    }
+    
+    func test_7endToEndDeleteAccount_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().deleteAccount()
         })
@@ -129,6 +139,18 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
              name: testingName,
              email: testingEmail,
              profileImage: testingProfileImage)
+    }
+    
+    private func anyPlaceID() -> String {
+        "any place id"
+    }
+    
+    private func anyReviewText() -> String {
+        "any review text"
+    }
+    
+    private func anyStarsNumber() -> Int {
+        3
     }
 }
 
