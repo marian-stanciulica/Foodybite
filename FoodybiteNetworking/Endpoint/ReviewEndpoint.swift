@@ -16,7 +16,7 @@ public enum ReviewEndpoint: Endpoint {
         "/review"
     }
     
-    var method: RequestMethod {
+    public var method: RequestMethod {
         .get
     }
     

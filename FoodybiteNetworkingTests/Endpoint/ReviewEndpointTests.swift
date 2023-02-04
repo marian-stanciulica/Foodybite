@@ -18,6 +18,10 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertEqual(makeSUT().path, "/review")
     }
     
+    func test_addReview_methodIsGet() {
+        XCTAssertEqual(makeSUT().method, .get)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> ReviewEndpoint {
