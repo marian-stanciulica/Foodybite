@@ -18,7 +18,12 @@ public enum ReviewEndpoint: Endpoint {
     }
     
     public var method: RequestMethod {
-        .post
+        switch self {
+        case .addReview:
+            return .post
+        case .getReviews:
+            return .get
+        }
     }
     
     public var headers: [String : String] {
