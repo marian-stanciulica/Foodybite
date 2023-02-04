@@ -7,4 +7,5 @@
 
 public enum HomeRoute: Hashable {
     case placeDetails(String)
+    case addReview
 }

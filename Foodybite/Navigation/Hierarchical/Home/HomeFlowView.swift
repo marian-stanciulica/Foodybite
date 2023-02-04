@@ -30,8 +30,11 @@ struct HomeFlowView: View {
                             currentLocation: currentLocation,
                             getPlaceDetailsService: placesService,
                             fetchPhotoService: placesService
-                        )
-                    )
+                        )) {
+                            flow.append(.addReview)
+                        }
+                case .addReview:
+                    ReviewView()
                 }
             }
         }

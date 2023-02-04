@@ -10,54 +10,60 @@ import DomainModels
 
 struct RestaurantDetailsView: View {
     @StateObject var viewModel: RestaurantDetailsViewModel
+    let showReviewView: () -> Void
     
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
-                if let placeDetails = viewModel.placeDetails {
-                    VStack(alignment: .leading) {
-                        RestaurantImageView(phoneNumber: placeDetails.phoneNumber,
-                                            showMaps: viewModel.showMaps,
-                                            imageData: $viewModel.imageData)
-                        
-                        HStack {
-                            RestaurantInformationView(
-                                placeName: placeDetails.name,
-                                distance: viewModel.distanceInKmFromCurrentLocation,
-                                address: placeDetails.address
-                            )
+            ZStack(alignment: .bottom) {
+                ScrollView {
+                    if let placeDetails = viewModel.placeDetails {
+                        VStack(alignment: .leading) {
+                            RestaurantImageView(phoneNumber: placeDetails.phoneNumber,
+                                                showMaps: viewModel.showMaps,
+                                                imageData: $viewModel.imageData)
                             
-                            Spacer()
-                            
-                            RatingStar(
-                                rating: viewModel.rating,
-                                backgroundColor: .gray.opacity(0.1)
-                            )
+                            HStack {
+                                RestaurantInformationView(
+                                    placeName: placeDetails.name,
+                                    distance: viewModel.distanceInKmFromCurrentLocation,
+                                    address: placeDetails.address
+                                )
+                                
+                                Spacer()
+                                
+                                RatingStar(
+                                    rating: viewModel.rating,
+                                    backgroundColor: .gray.opacity(0.1)
+                                )
                                 .padding(4)
-                        }
-                        .padding(.horizontal)
-                        
-                        if let openingHoursDetails = placeDetails.openingHoursDetails {
-                            OpenHoursView(openingHoursDetails: openingHoursDetails)
-                                .padding(.horizontal)
-                        }
-                        
-                        RestaurantPhotosView(
-                            imageWidth: proxy.size.width / 2.5,
-                            fetchPhoto: viewModel.fetchPhoto(at:),
-                            photosData: $viewModel.photosData
-                        )
-                        .padding(.bottom)
-                        
-                        HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
-                        
-                        LazyVStack {
-                            ForEach(placeDetails.reviews) { review in
-                                ReviewCell(review: review)
+                            }
+                            .padding(.horizontal)
+                            
+                            if let openingHoursDetails = placeDetails.openingHoursDetails {
+                                OpenHoursView(openingHoursDetails: openingHoursDetails)
+                                    .padding(.horizontal)
+                            }
+                            
+                            RestaurantPhotosView(
+                                imageWidth: proxy.size.width / 2.5,
+                                fetchPhoto: viewModel.fetchPhoto(at:),
+                                photosData: $viewModel.photosData
+                            )
+                            .padding(.bottom)
+                            
+                            HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
+                            
+                            LazyVStack {
+                                ForEach(placeDetails.reviews) { review in
+                                    ReviewCell(review: review)
+                                }
                             }
                         }
                     }
                 }
+                
+                MarineButton(title: "Rate Your Experience", action: showReviewView)
+                    .padding(.horizontal)
             }
         }
         .task {
@@ -76,7 +82,8 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                     currentLocation: Location(latitude: 1.2, longitude: 3.4),
                     getPlaceDetailsService: PreviewSearchNearbyService(),
                     fetchPhotoService: PreviewFetchPlacePhotoService()
-                )
+                ),
+                showReviewView: {}
             )
         }
     }
@@ -107,10 +114,17 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         reviewText: "Loren ipsum...",
                         rating: 2,
                         relativeTime: "5 months ago"
+                    ),
+                    Review(
+                        profileImageURL: URL(string: "www.google.com")!,
+                        authorName: "Marian",
+                        reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur. ",
+                        rating: 4,
+                        relativeTime: "1 day ago"
                     )
                 ],
                 location: Location(latitude: 44.439663, longitude: 26.096306),
-                photos: []
+                photos: [Photo(width: 100, height: 100, photoReference: "ceva")]
             )
         }
     }

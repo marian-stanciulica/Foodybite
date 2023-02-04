@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReviewView: View {
-    @State var review: String
+    @State var review: String = ""
     
     var body: some View {
         VStack {
@@ -41,11 +41,14 @@ struct ReviewView: View {
             }
         }
         .padding()
+        .arrowBackButtonStyle()
     }
 }
 
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView(review: "")
+        NavigationView {
+            ReviewView(review: "")
+        }
     }
 }
