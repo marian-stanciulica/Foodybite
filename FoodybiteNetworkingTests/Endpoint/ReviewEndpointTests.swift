@@ -22,10 +22,31 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertEqual(makeSUT().method, .get)
     }
     
+    func test_addReview_body() throws {
+        let body = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber())
+        let sut = makeSUT(body: body)
+        let receivedBody = try XCTUnwrap(sut.body as? AddReviewRequest)
+        
+        XCTAssertEqual(receivedBody, body)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> ReviewEndpoint {
-        return .addReview
+    private func makeSUT(body: AddReviewRequest? = nil) -> ReviewEndpoint {
+        let defaultBody = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber())
+        return .addReview(body ?? defaultBody)
+    }
+    
+    private func anyPlaceID() -> String {
+        "any place id"
+    }
+    
+    private func anyReviewText() -> String {
+        "any review text"
+    }
+    
+    private func anyStarsNumber() -> Int {
+        3
     }
     
 }

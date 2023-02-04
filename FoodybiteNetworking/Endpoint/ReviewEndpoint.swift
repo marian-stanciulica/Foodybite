@@ -6,7 +6,7 @@
 //
 
 public enum ReviewEndpoint: Endpoint {
-    case addReview
+    case addReview(AddReviewRequest)
     
     public var host: String {
         "localhost"
@@ -24,7 +24,10 @@ public enum ReviewEndpoint: Endpoint {
         ["Content-Type" : "application/json"]
     }
     
-    var body: Codable? {
-        nil
+    public var body: Codable? {
+        switch self {
+        case let .addReview(body):
+            return body
+        }
     }
 }
