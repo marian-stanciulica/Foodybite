@@ -57,7 +57,11 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
     
-    func test_7endToEndDeleteAccount_returnsSuccessfully() async {
+    func test_7endToEndGetReviews_returnsSuccessfully() async {
+        await executeGetReviews()
+    }
+    
+    func test_8endToEndDeleteAccount_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().deleteAccount()
         })
@@ -103,6 +107,15 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
             XCTAssertTrue(receivedUser.isEqual(to: expectedUser), file: file, line: line)
         } catch {
             XCTFail("Expected successful login request, got \(error) instead", file: file, line: line)
+        }
+    }
+    
+    private func executeGetReviews(file: StaticString = #filePath, line: UInt = #line) async {
+        do {
+            let receivedReviews = try await makeAuthenticatedSUT().getReviews()
+            XCTAssertTrue(receivedReviews.isEqual(to: expectedReviews()), file: file, line: line)
+        } catch {
+            XCTFail("Expected successful get reviews, got \(error) instead", file: file, line: line)
         }
     }
     
@@ -152,6 +165,17 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     private func anyStarsNumber() -> Int {
         3
     }
+    
+    private func expectedReviews() -> [Review] {
+        [
+            Review(profileImageURL: nil,
+                profileImageData: nil,
+                authorName: testingNewName,
+                reviewText: anyReviewText(),
+                rating: anyStarsNumber(),
+                relativeTime: "")
+        ]
+    }
 }
 
 private extension User {
@@ -159,5 +183,29 @@ private extension User {
         name == user.name &&
         email == user.email &&
         profileImage == user.profileImage
+    }
+}
+
+private extension Array where Element == Review {
+    func isEqual(to reviews: [Review]) -> Bool {
+        guard count == reviews.count else { return false }
+        
+        let equals = (0..<count).filter {
+            if !self[$0].isEqual(to: reviews[$0]) {
+                return false
+            }
+            
+            return true
+        }
+        
+        return equals.count == count
+    }
+}
+
+private extension Review {
+    func isEqual(to review: Review) -> Bool {
+        authorName == review.authorName &&
+        reviewText == review.reviewText &&
+        rating == review.rating
     }
 }
