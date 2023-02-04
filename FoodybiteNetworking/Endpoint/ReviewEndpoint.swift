@@ -17,7 +17,7 @@ public enum ReviewEndpoint: Endpoint {
     }
     
     public var method: RequestMethod {
-        .get
+        .post
     }
     
     public var headers: [String : String] {
