@@ -16,13 +16,15 @@ final class ReviewViewModel {
     private let reviewService: ReviewService
     private let placeID: String
     var state: State = .idle
+    var reviewText = ""
+    var starsNumber = 0
     
     init(placeID: String, reviewService: ReviewService) {
         self.placeID = placeID
         self.reviewService = reviewService
     }
     
-    func addReview(reviewText: String, starsNumber: Int) async {
+    func addReview() async {
         try? await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
     }
 }
@@ -33,13 +35,15 @@ final class ReviewViewModelTests: XCTestCase {
         let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.state, .idle)
+        XCTAssertEqual(sut.reviewText, "")
+        XCTAssertEqual(sut.starsNumber, 0)
     }
     
     func test_postReview_sendsPlaceIdToReviewService() async {
         let expectedPlaceId = anyPlaceID()
         let (sut, reviewServiceSpy) = makeSUT(placeID: expectedPlaceId)
         
-        await sut.addReview(reviewText: anyReviewText(), starsNumber: anyStarsNumber())
+        await sut.addReview()
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
         XCTAssertEqual(reviewServiceSpy.capturedValues[0], expectedPlaceId)
@@ -55,14 +59,6 @@ final class ReviewViewModelTests: XCTestCase {
     
     private func anyPlaceID() -> String {
         "any place id"
-    }
-    
-    private func anyReviewText() -> String {
-        "any review text"
-    }
-    
-    private func anyStarsNumber() -> Int {
-        3
     }
     
     private class ReviewServiceSpy: ReviewService {
