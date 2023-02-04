@@ -42,6 +42,9 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertEqual(makeGetReviewsSUT().host, "localhost")
     }
     
+    func test_getReviews_path() {
+        XCTAssertEqual(makeGetReviewsSUT().path, "/review")
+    }
     
     // MARK: - Helpers
     
