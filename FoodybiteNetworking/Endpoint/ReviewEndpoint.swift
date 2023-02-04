@@ -20,7 +20,7 @@ public enum ReviewEndpoint: Endpoint {
         .get
     }
     
-    var headers: [String : String] {
+    public var headers: [String : String] {
         ["Content-Type" : "application/json"]
     }
     
