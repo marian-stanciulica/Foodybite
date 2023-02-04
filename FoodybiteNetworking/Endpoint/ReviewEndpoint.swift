@@ -7,6 +7,7 @@
 
 public enum ReviewEndpoint: Endpoint {
     case addReview(AddReviewRequest)
+    case getReviews
     
     public var host: String {
         "localhost"
@@ -28,6 +29,8 @@ public enum ReviewEndpoint: Endpoint {
         switch self {
         case let .addReview(body):
             return body
+        default:
+            return nil
         }
     }
 }

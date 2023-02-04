@@ -10,6 +10,8 @@ import FoodybiteNetworking
 
 final class ReviewEndpointTests: XCTestCase {
     
+    // MARK: - Add Review
+    
     func test_addReview_baseURL() {
         XCTAssertEqual(makeAddReviewSUT().host, "localhost")
     }
@@ -34,11 +36,22 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertEqual(makeAddReviewSUT().headers["Content-Type"], "application/json")
     }
     
+    // MARK: - Get Reviews
+    
+    func test_getReviews_baseURL() {
+        XCTAssertEqual(makeGetReviewsSUT().host, "localhost")
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeAddReviewSUT(body: AddReviewRequest? = nil) -> ReviewEndpoint {
         let defaultBody = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber())
         return .addReview(body ?? defaultBody)
+    }
+    
+    private func makeGetReviewsSUT() -> ReviewEndpoint {
+        return .getReviews
     }
     
     private func anyPlaceID() -> String {
