@@ -7,10 +7,12 @@
 
 import SwiftUI
 import DomainModels
+import FoodybiteNetworking
 import FoodybitePlaces
 
 struct HomeFlowView: View {
     @ObservedObject var flow: Flow<HomeRoute>
+    let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
     let currentLocation: Location
     
@@ -31,10 +33,10 @@ struct HomeFlowView: View {
                             getPlaceDetailsService: placesService,
                             fetchPhotoService: placesService
                         )) {
-                            flow.append(.addReview)
+                            flow.append(.addReview(placeID))
                         }
-                case .addReview:
-                    ReviewView()
+                case let .addReview(placeID):
+                    ReviewView(viewModel: ReviewViewModel(placeID: placeID, reviewService: apiService))
                 }
             }
         }

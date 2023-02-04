@@ -28,7 +28,7 @@ struct TabNavigationView: View {
                         case .isLoading:
                             ProgressView()
                         case let .loaded(location):
-                            HomeFlowView(flow: Flow<HomeRoute>(), placesService: placesService, currentLocation: location)
+                            HomeFlowView(flow: Flow<HomeRoute>(), apiService: apiService, placesService: placesService, currentLocation: location)
                         case let .loadingError(message):
                             Text(message)
                         }

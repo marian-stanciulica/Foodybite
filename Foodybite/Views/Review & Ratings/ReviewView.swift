@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import FoodybiteNetworking
 
 struct ReviewView: View {
-    @State var review: String = ""
+    @StateObject var viewModel: ReviewViewModel
     
     var body: some View {
         VStack {
@@ -23,7 +24,7 @@ struct ReviewView: View {
                 .padding()
             
             VStack {
-                TextField("Write your experience", text: $review)
+                TextField("Write your experience", text: $viewModel.reviewText)
                     .padding()
                 
                 Spacer()
@@ -48,7 +49,11 @@ struct ReviewView: View {
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ReviewView(review: "")
+            ReviewView(viewModel: ReviewViewModel(placeID: "any place id", reviewService: PreviewReviewService()))
         }
+    }
+    
+    private class PreviewReviewService: ReviewService {
+        func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {}
     }
 }
