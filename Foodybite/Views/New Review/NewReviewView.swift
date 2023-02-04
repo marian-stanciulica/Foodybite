@@ -51,7 +51,7 @@ struct NewReviewView: View {
             Text("Ratings")
                 .font(.title)
             
-            RatingView()
+            RatingView(stars: .constant(3))
                 .frame(maxWidth: 300)
             
             Text("Rate your experience")

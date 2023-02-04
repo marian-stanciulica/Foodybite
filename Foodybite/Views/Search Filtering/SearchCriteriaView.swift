@@ -21,7 +21,7 @@ struct SearchCriteriaView: View {
                 .font(.title)
                 .padding(.top)
             
-            RatingView()
+            RatingView(stars: .constant(3))
                 .padding(.bottom)
             
             Spacer()

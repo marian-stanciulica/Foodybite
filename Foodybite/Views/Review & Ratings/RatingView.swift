@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RatingView: View {
-    @State var stars: Int = 0
+    @Binding var stars: Int
     
     var body: some View {
         HStack {
@@ -33,6 +33,6 @@ struct RatingView: View {
 
 struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
-        RatingView()
+        RatingView(stars: .constant(2))
     }
 }

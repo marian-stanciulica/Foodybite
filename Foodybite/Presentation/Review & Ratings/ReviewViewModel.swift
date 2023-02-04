@@ -28,7 +28,7 @@ public final class ReviewViewModel: ObservableObject {
         self.reviewService = reviewService
     }
     
-    public func addReview() async {
+    @MainActor public func addReview() async {
         state = .isLoading
         
         do {

@@ -16,7 +16,7 @@ struct ReviewView: View {
             Text("Review & Ratings")
                 .font(.title)
             
-            RatingView()
+            RatingView(stars: $viewModel.starsNumber)
                 .padding()
             
             Text("Rate your experience")
@@ -38,7 +38,9 @@ struct ReviewView: View {
             Spacer()
             
             MarineButton(title: "Done") {
-                
+                Task {
+                    await viewModel.addReview()
+                }
             }
         }
         .padding()
