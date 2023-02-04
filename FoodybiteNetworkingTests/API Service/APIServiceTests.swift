@@ -22,7 +22,7 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         
-        let (sut, loader, _, _) = makeSUT()
+        let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
         let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
@@ -36,7 +36,7 @@ final class APIServiceTests: XCTestCase {
         let email = anyEmail()
         let password = anyPassword()
         
-        let (sut, loader, _, _) = makeSUT()
+        let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
         let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
@@ -238,11 +238,21 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(sender.requests, [urlRequest])
     }
     
+    func test_getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
+        let (sut, loader, _, _) = makeSUT()
+        let getReviewsEndpoint = ReviewEndpoint.getReviews
+        let urlRequest = try getReviewsEndpoint.createURLRequest()
+        
+        _ = try await sut.getReviews()
+
+        XCTAssertEqual(loader.requests, [urlRequest])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(response: Decodable? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
         let tokenStoreStub = TokenStoreStub()
-        let loader = ResourceLoaderSpy(response: response ?? anyLoginResponse().response)
+        let loader = ResourceLoaderSpy(response: response ?? "any decodable")
         let sender = ResourceSenderSpy()
         let sut = APIService(loader: loader, sender: sender, tokenStore: tokenStoreStub)
         return (sut, loader, sender, tokenStoreStub)
