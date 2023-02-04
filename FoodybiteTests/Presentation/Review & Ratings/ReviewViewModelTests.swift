@@ -9,9 +9,10 @@ import XCTest
 import FoodybiteNetworking
 
 final class ReviewViewModel {
-    enum State {
+    enum State: Equatable {
         case idle
         case isLoading
+        case loadingError(String)
     }
     
     private let reviewService: ReviewService
@@ -27,7 +28,12 @@ final class ReviewViewModel {
     
     func addReview() async {
         state = .isLoading
-        try? await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+        
+        do {
+            try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+        } catch {
+            state = .loadingError("Review couldn't be posted. Try again!")
+        }
     }
 }
 
@@ -59,6 +65,15 @@ final class ReviewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.state, .isLoading)
     }
     
+    func test_postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {
+        let (sut, reviewServiceSpy) = makeSUT()
+        reviewServiceSpy.error = anyError()
+        
+        await sut.addReview()
+        
+        XCTAssertEqual(sut.state, .loadingError("Review couldn't be posted. Try again!"))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(placeID: String = "") -> (sut: ReviewViewModel, reviewServiceSpy: ReviewServiceSpy) {
@@ -71,11 +86,20 @@ final class ReviewViewModelTests: XCTestCase {
         "any place id"
     }
     
+    private func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
+    }
+    
     private class ReviewServiceSpy: ReviewService {
         private(set) var capturedValues = [String]()
+        var error: Error?
         
         func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {
             capturedValues.append(placeID)
+            
+            if let error = error {
+                throw error
+            }
         }
     }
     
