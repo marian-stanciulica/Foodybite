@@ -86,7 +86,18 @@ extension APIService: ReviewService {
     public func getReviews() async throws -> [Review] {
         let endpoint = ReviewEndpoint.getReviews
         let urlRequest = try endpoint.createURLRequest()
-        let _: String = try await loader.get(for: urlRequest)
-        return []
+        let response: [RemoteReview] = try await loader.get(for: urlRequest)
+        
+        let formatter = RelativeDateTimeFormatter()
+        return response.map {
+            Review(id: $0.id,
+                   profileImageURL: nil,
+                   profileImageData: $0.profileImageData,
+                   authorName: $0.authorName,
+                   reviewText: $0.reviewText,
+                   rating: $0.rating,
+                   relativeTime: formatter.localizedString(for: $0.createdAt, relativeTo: Date())
+            )
+        }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Review: Equatable, Identifiable {
-    public var id = UUID()
+    public var id: UUID
     public let profileImageURL: URL?
     public let profileImageData: Data?
     public let authorName: String
@@ -16,7 +16,8 @@ public struct Review: Equatable, Identifiable {
     public let rating: Int
     public let relativeTime: String
     
-    public init(profileImageURL: URL?, profileImageData: Data?, authorName: String, reviewText: String, rating: Int, relativeTime: String) {
+    public init(id: UUID = UUID(), profileImageURL: URL?, profileImageData: Data?, authorName: String, reviewText: String, rating: Int, relativeTime: String) {
+        self.id = id
         self.profileImageURL = profileImageURL
         self.profileImageData = profileImageData
         self.authorName = authorName

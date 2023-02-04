@@ -197,6 +197,7 @@
 		0FD41776298D942200F2BF92 /* LocationCheckerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41775298D942200F2BF92 /* LocationCheckerView.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
+		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
@@ -568,6 +569,7 @@
 		0FD41775298D942200F2BF92 /* LocationCheckerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCheckerView.swift; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
+		0FEF269A298EA84500994657 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 			children = (
 				0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */,
 				0F89618F2928C01E00FFDC48 /* RemoteUser.swift */,
+				0FEF269A298EA84500994657 /* RemoteReview.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -2377,6 +2380,7 @@
 				0FB0E10E291F7D380058ABCB /* SignUpService.swift in Sources */,
 				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0F447CD228FB1A2A0026C5DB /* LoginService.swift in Sources */,
+				0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */,
 				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,

@@ -239,13 +239,22 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
-        let (sut, loader, _, _) = makeSUT()
+        let (sut, loader, _, _) = makeSUT(response: anyGetReviews().response)
         let getReviewsEndpoint = ReviewEndpoint.getReviews
         let urlRequest = try getReviewsEndpoint.createURLRequest()
         
         _ = try await sut.getReviews()
 
         XCTAssertEqual(loader.requests, [urlRequest])
+    }
+    
+    func test_getReviews_returnsExpectedReviews() async throws {
+        let (response, expectedModel) = anyGetReviews()
+        let (sut, _, _, _) = makeSUT(response: response)
+        
+        let receivedResponse = try await sut.getReviews()
+        
+        XCTAssertEqual(expectedModel, receivedResponse)
     }
     
     // MARK: - Helpers
@@ -299,6 +308,28 @@ final class APIServiceTests: XCTestCase {
         )
         
         let model = User(id: id, name: "any name", email: "any@email.com", profileImage: nil)
+        return (response, model)
+    }
+    
+    private func anyGetReviews() -> (response: [RemoteReview], model: [Review]) {
+        let response = [
+            RemoteReview(profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
+            RemoteReview(profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
+            RemoteReview(profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
+        ]
+        
+        let formatter = RelativeDateTimeFormatter()
+        let model = response.map {
+            Review(id: $0.id,
+                   profileImageURL: nil,
+                   profileImageData: $0.profileImageData,
+                   authorName: $0.authorName,
+                   reviewText: $0.reviewText,
+                   rating: $0.rating,
+                   relativeTime: formatter.localizedString(for: $0.createdAt, relativeTo: Date())
+            )
+        }
+        
         return (response, model)
     }
     
