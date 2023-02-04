@@ -202,6 +202,42 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(sender.requests, [urlRequest])
     }
     
+    // MARK: - ReviewService Tests
+    
+    func test_conformsToReviewService() {
+        let (sut, _, _, _) = makeSUT()
+        XCTAssertNotNil(sut as ReviewService)
+    }
+    
+    func test_addReview_paramsUsedToCreateEndpoint() async throws {
+        let placeID = anyPlaceID()
+        let reviewText = anyReviewText()
+        let starsNumber = anyStarsNumber()
+        
+        let (sut, _, sender, _) = makeSUT()
+        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber))
+        let urlRequest = try addReviewEndpoint.createURLRequest()
+        
+        try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+        
+        let firstRequest = sender.requests.first
+        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+    }
+    
+    func test_addReview_usesAddReviewEndpointToCreateURLRequest() async throws {
+        let placeID = anyPlaceID()
+        let reviewText = anyReviewText()
+        let starsNumber = anyStarsNumber()
+        
+        let (sut, _, sender, _) = makeSUT()
+        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber))
+        let urlRequest = try addReviewEndpoint.createURLRequest()
+        
+        try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+
+        XCTAssertEqual(sender.requests, [urlRequest])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(response: Decodable? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
@@ -226,6 +262,18 @@ final class APIServiceTests: XCTestCase {
     
     private func anyData() -> Data? {
         "any data".data(using: .utf8)
+    }
+    
+    private func anyPlaceID() -> String {
+        "any place id"
+    }
+    
+    private func anyReviewText() -> String {
+        "any review text"
+    }
+    
+    private func anyStarsNumber() -> Int {
+        3
     }
     
     private func anyLoginResponse() -> (response: LoginResponse, model: User) {
