@@ -54,7 +54,8 @@ struct ReviewCell_Previews: PreviewProvider {
     static var previews: some View {
         ReviewCell(
             review: Review(
-                profileImageURL: URL(string: "www.google.com")!,
+                profileImageURL: URL(string: "www.google.com"),
+                profileImageData: nil,
                 authorName: "Marian",
                 reviewText: "Loren ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmo temp cididunt ut labore et dolor magna aliqua. Ut enim ad mini veniam quis",
                 rating: 2,

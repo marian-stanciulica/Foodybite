@@ -65,6 +65,7 @@ extension APIService: GetPlaceDetailsService {
             reviews: response.result.reviews.map {
                 DomainModels.Review(
                     profileImageURL: $0.profilePhotoURL,
+                    profileImageData: nil,
                     authorName: $0.authorName,
                     reviewText: $0.text,
                     rating: $0.rating,

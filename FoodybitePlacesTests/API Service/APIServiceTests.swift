@@ -119,6 +119,7 @@ final class APIServiceTests: XCTestCase {
             reviews: expectedResponse.result.reviews.map {
                 DomainModels.Review(
                     profileImageURL: $0.profilePhotoURL,
+                    profileImageData: nil,
                     authorName: $0.authorName,
                     reviewText: $0.text,
                     rating: $0.rating,
@@ -128,7 +129,8 @@ final class APIServiceTests: XCTestCase {
             location: DomainModels.Location(
                 latitude: expectedResponse.result.geometry.location.lat,
                 longitude: expectedResponse.result.geometry.location.lng
-            )
+            ),
+            photos: []
         )
         
         let (sut, _) = makeSUT(response: expectedResponse)

@@ -167,7 +167,8 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    profileImageURL: URL(string: "www.google.com")!,
+                    profileImageURL: URL(string: "www.google.com"),
+                    profileImageData: nil,
                     authorName: "Marian",
                     reviewText: "Loren ipsum...",
                     rating: 2,

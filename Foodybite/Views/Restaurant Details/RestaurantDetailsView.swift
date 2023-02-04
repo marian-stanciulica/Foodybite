@@ -109,14 +109,16 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                 ),
                 reviews: [
                     Review(
-                        profileImageURL: URL(string: "www.google.com")!,
+                        profileImageURL: URL(string: "www.google.com"),
+                        profileImageData: nil,
                         authorName: "Marian",
                         reviewText: "Loren ipsum...",
                         rating: 2,
                         relativeTime: "5 months ago"
                     ),
                     Review(
-                        profileImageURL: URL(string: "www.google.com")!,
+                        profileImageURL: URL(string: "www.google.com"),
+                        profileImageData: nil,
                         authorName: "Marian",
                         reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur. ",
                         rating: 4,
