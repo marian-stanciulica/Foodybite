@@ -9,20 +9,23 @@ import SwiftUI
 import FoodybiteNetworking
 
 struct ProfileFlowView: View {
+    @Binding var page: Page
     @ObservedObject var flow: Flow<ProfileRoute>
     @AppStorage("userLoggedIn") var userLoggedIn = false
     let apiService: APIService
     
     var body: some View {
         NavigationStack(path: $flow.path) {
-            ProfileView(
-                viewModel: ProfileViewModel(
-                    accountService: apiService,
-                    goToLogin: { userLoggedIn = false }
-                ),
-                goToSettings: { flow.append(.settings) },
-                goToEditProfile: { flow.append(.editProfile) }
-            )
+            TabBarPageView(page: $page) {
+                ProfileView(
+                    viewModel: ProfileViewModel(
+                        accountService: apiService,
+                        goToLogin: { userLoggedIn = false }
+                    ),
+                    goToSettings: { flow.append(.settings) },
+                    goToEditProfile: { flow.append(.editProfile) }
+                )
+            }
             .navigationDestination(for: ProfileRoute.self) { route in
                 switch route {
                 case .settings:
