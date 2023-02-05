@@ -82,7 +82,9 @@ extension APIService: AddReviewService {
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
-    
+}
+
+extension APIService: GetReviewsService {
     public func getReviews(placeID: String? = nil) async throws -> [Review] {
         let endpoint = ReviewEndpoint.getReviews(placeID)
         let urlRequest = try endpoint.createURLRequest()
