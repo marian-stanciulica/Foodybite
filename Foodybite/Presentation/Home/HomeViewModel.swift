@@ -27,7 +27,7 @@ public final class HomeViewModel: ObservableObject {
     @MainActor public func searchNearby() async {
         do {
             error = nil
-            nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 1000)
+            nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 10000)
         } catch {
             self.error = .connectionFailure
         }

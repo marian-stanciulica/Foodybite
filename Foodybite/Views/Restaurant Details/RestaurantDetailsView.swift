@@ -68,7 +68,11 @@ struct RestaurantDetailsView: View {
             }
         }
         .task {
-            await viewModel.getPlaceDetails()
+            if viewModel.placeDetails == nil {
+                await viewModel.getPlaceDetails()
+            }
+            
+            await viewModel.getPlaceReviews()
         }
         .arrowBackButtonStyle()
     }
