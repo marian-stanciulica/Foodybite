@@ -76,7 +76,7 @@ final class ReviewViewModelTests: XCTestCase {
         NSError(domain: "any error", code: 1)
     }
     
-    private class ReviewServiceSpy: ReviewService {
+    private class ReviewServiceSpy: AddReviewService {
         private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int)]()
         var error: Error?
         

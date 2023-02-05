@@ -75,7 +75,7 @@ extension APIService: AccountService {
     }
 }
 
-extension APIService: ReviewService {
+extension APIService: AddReviewService {
     public func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {
         let requestBody = AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber)
         let endpoint = ReviewEndpoint.addReview(requestBody)

@@ -185,7 +185,7 @@
 		0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F6298E60500024016B /* ReviewEndpointTests.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
-		0FC863FE298E72F20024016B /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FD298E72F20024016B /* ReviewService.swift */; };
+		0FC863FE298E72F20024016B /* AddReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FD298E72F20024016B /* AddReviewService.swift */; };
 		0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86400298E799D0024016B /* ReviewViewModelTests.swift */; };
 		0FC86404298E87D30024016B /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86403298E87D30024016B /* ReviewViewModel.swift */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
@@ -557,7 +557,7 @@
 		0FC863F6298E60500024016B /* ReviewEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpointTests.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
-		0FC863FD298E72F20024016B /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		0FC863FD298E72F20024016B /* AddReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewService.swift; sourceTree = "<group>"; };
 		0FC86400298E799D0024016B /* ReviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModelTests.swift; sourceTree = "<group>"; };
 		0FC86403298E87D30024016B /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
@@ -1653,7 +1653,7 @@
 		0FC863FC298E72C70024016B /* Review Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0FC863FD298E72F20024016B /* ReviewService.swift */,
+				0FC863FD298E72F20024016B /* AddReviewService.swift */,
 			);
 			path = "Review Protocols";
 			sourceTree = "<group>";
@@ -2392,7 +2392,7 @@
 				0F028100292630D5006B219F /* LoginRequest.swift in Sources */,
 				0F73ECB5292FD9150025B237 /* LogoutService.swift in Sources */,
 				0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */,
-				0FC863FE298E72F20024016B /* ReviewService.swift in Sources */,
+				0FC863FE298E72F20024016B /* AddReviewService.swift in Sources */,
 				0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */,
 				0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */,
 				0F1FDE4929016AF500E12B09 /* RefreshTokenService.swift in Sources */,

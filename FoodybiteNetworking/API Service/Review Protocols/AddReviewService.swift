@@ -7,7 +7,7 @@
 
 import DomainModels
 
-public protocol ReviewService {
+public protocol AddReviewService {
     func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws
-    func getReviews(placeID: String?) async throws -> [Review]
+//    func getReviews(placeID: String?) async throws -> [Review]
 }

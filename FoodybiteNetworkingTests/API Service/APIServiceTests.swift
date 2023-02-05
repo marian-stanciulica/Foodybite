@@ -206,7 +206,7 @@ final class APIServiceTests: XCTestCase {
     
     func test_conformsToReviewService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as ReviewService)
+        XCTAssertNotNil(sut as AddReviewService)
     }
     
     func test_addReview_paramsUsedToCreateEndpoint() async throws {

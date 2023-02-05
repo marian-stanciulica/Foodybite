@@ -61,7 +61,7 @@ struct ReviewView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewReviewService: ReviewService {
+    private class PreviewReviewService: AddReviewService {
         func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {}
     }
 }

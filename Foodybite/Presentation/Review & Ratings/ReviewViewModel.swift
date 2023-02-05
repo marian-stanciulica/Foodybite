@@ -16,14 +16,14 @@ public final class ReviewViewModel: ObservableObject {
         case requestSucceeeded
     }
     
-    private let reviewService: ReviewService
+    private let reviewService: AddReviewService
     private let placeID: String
     
     @Published public var state: State = .idle
     @Published public var reviewText = ""
     @Published public var starsNumber = 0
     
-    public init(placeID: String, reviewService: ReviewService) {
+    public init(placeID: String, reviewService: AddReviewService) {
         self.placeID = placeID
         self.reviewService = reviewService
     }
