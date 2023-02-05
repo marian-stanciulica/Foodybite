@@ -20,7 +20,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPhotoService: FetchPlacePhotoService
     private let getReviewsService: GetReviewsService
-    
+    private var placeDetailsReviews = [Review]()
+
     @Published public var error: Error?
     @Published public var placeDetails: PlaceDetails?
     @Published public var imageData: Data?
@@ -62,6 +63,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
             
             photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
+            placeDetailsReviews = placeDetails.reviews
             
             if let firstPhoto = placeDetails.photos.first {
                 imageData = await fetchPhoto(firstPhoto)
@@ -76,7 +78,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     @MainActor public func getPlaceReviews() async {
         if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
-            placeDetails?.reviews += reviews
+            placeDetails?.reviews = placeDetailsReviews + reviews
         }
     }
     

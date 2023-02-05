@@ -33,7 +33,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
         let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT()
-        let expectedPlaceDetails = anyPlaceDetails
+        let expectedPlaceDetails = anyPlaceDetails()
         
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         await sut.getPlaceDetails()
@@ -44,7 +44,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_triggersFetchPhotoForFirstPhoto() async {
         let (sut, getPlaceDetailsServiceSpy, photoServiceSpy, _) = makeSUT()
-        let expectedPlaceDetails = anyPlaceDetails
+        let expectedPlaceDetails = anyPlaceDetails()
         
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         await sut.getPlaceDetails()
@@ -54,7 +54,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_initializePhotosImageWithNils() async {
         let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT()
-        let expectedPlaceDetails = anyPlaceDetails
+        let expectedPlaceDetails = anyPlaceDetails()
         
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         await sut.getPlaceDetails()
@@ -67,14 +67,14 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_rating_returnsFormattedRating() {
         let (sut, _, _, _) = makeSUT()
-        sut.placeDetails = anyPlaceDetails
+        sut.placeDetails = anyPlaceDetails()
         
         XCTAssertEqual(sut.rating, rating().formatted)
     }
     
     func test_distanceInKmFromCurrentLocation_computedCorrectly() {
         let (sut, _, _, _) = makeSUT()
-        sut.placeDetails = anyPlaceDetails
+        sut.placeDetails = anyPlaceDetails()
         
         XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
     }
@@ -106,20 +106,20 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_fetchPhotoAtIndex_requestsPhotoDataForTheGivenIndex() async {
         let (sut, _, photoServiceSpy, _) = makeSUT()
-        sut.placeDetails = anyPlaceDetails
-        sut.photosData = Array(repeating: nil, count: anyPlaceDetails.photos.count - 1)
+        sut.placeDetails = anyPlaceDetails()
+        sut.photosData = Array(repeating: nil, count: anyPlaceDetails().photos.count - 1)
         
         await sut.fetchPhoto(at: 1)
         
-        XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPlaceDetails.photos[2].photoReference)
+        XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPlaceDetails().photos[2].photoReference)
     }
     
     func test_fetchPhotoAtIndex_updatesPhotosDataAtGivenIndex() async {
         let (sut, _, photoServiceSpy, _) = makeSUT()
         let expectedData = anyData()
         
-        sut.placeDetails = anyPlaceDetails
-        sut.photosData = Array(repeating: nil, count: anyPlaceDetails.photos.count - 1)
+        sut.placeDetails = anyPlaceDetails()
+        sut.photosData = Array(repeating: nil, count: anyPlaceDetails().photos.count - 1)
         
         photoServiceSpy.result = .success(expectedData)
         await sut.fetchPhoto(at: 1)
@@ -129,7 +129,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceReviews_sendsInputToGetReviewsService() async {
         let (sut, _, _, getReviewsServiceSpy) = makeSUT()
-        sut.placeDetails = anyPlaceDetails
+        sut.placeDetails = anyPlaceDetails()
         
         await sut.getPlaceReviews()
         
@@ -137,17 +137,36 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     func test_getPlaceReviews_appendsReviewsToPlaceDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
-        let (sut, _, _, getReviewsServiceSpy) = makeSUT()
-        sut.placeDetails = anyPlaceDetails
-
+        let (sut, getPlaceDetailsServiceSpy, _, getReviewsServiceSpy) = makeSUT()
+        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
+        await sut.getPlaceDetails()
+        
         let anyPlaceReviews = sut.placeDetails!.reviews
-        let getReviewsResult = anyGetReviewsResult()
+        let getReviewsResult = firstGetReviewsResult()
         let expectedReviews = anyPlaceReviews + getReviewsResult
         
         getReviewsServiceSpy.result = getReviewsResult
         await sut.getPlaceReviews()
         
         XCTAssertEqual(sut.placeDetails?.reviews, expectedReviews)
+    }
+    
+    func test_getPlaceReviews_doesNotDuplicateReviewsWhenCalledTwice() async {
+        let (sut, getPlaceDetailsServiceSpy, _, getReviewsServiceSpy) = makeSUT()
+        
+        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
+        await sut.getPlaceDetails()
+        let anyPlaceReviews = sut.placeDetails!.reviews
+        
+        let firstGetReviewsResult = firstGetReviewsResult()
+        getReviewsServiceSpy.result = firstGetReviewsResult
+        await sut.getPlaceReviews()
+        XCTAssertEqual(sut.placeDetails?.reviews, anyPlaceReviews + firstGetReviewsResult)
+
+        let secondGetReviewsResult = secondGetReviewsResult()
+        getReviewsServiceSpy.result = secondGetReviewsResult
+        await sut.getPlaceReviews()
+        XCTAssertEqual(sut.placeDetails?.reviews, anyPlaceReviews + secondGetReviewsResult)
     }
     
     // MARK: - Helpers
@@ -176,7 +195,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         Location(latitude: 2.3, longitude: 4.5)
     }
     
-    private var anyPlaceDetails: PlaceDetails {
+    private func anyPlaceDetails() -> PlaceDetails {
         PlaceDetails(
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
@@ -254,7 +273,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         }
     }
     
-    private func anyGetReviewsResult() -> [Review] {
+    private func firstGetReviewsResult() -> [Review] {
         [
             Review(profileImageURL: nil,
                 profileImageData: nil,
@@ -262,6 +281,11 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                 reviewText: "It was quite nice!",
                 rating: 4,
                 relativeTime: ""),
+        ]
+    }
+    
+    private func secondGetReviewsResult() -> [Review] {
+        [
             Review(profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #2",
