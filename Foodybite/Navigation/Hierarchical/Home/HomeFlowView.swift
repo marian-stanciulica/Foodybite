@@ -31,7 +31,8 @@ struct HomeFlowView: View {
                             placeID: placeID,
                             currentLocation: currentLocation,
                             getPlaceDetailsService: placesService,
-                            fetchPhotoService: placesService
+                            fetchPhotoService: placesService,
+                            getReviewsService: apiService
                         )) {
                             flow.append(.addReview(placeID))
                         }

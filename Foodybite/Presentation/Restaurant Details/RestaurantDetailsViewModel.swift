@@ -8,6 +8,7 @@
 import Foundation
 import DomainModels
 import UIKit
+import FoodybiteNetworking
 
 public final class RestaurantDetailsViewModel: ObservableObject {
     public enum Error: String, Swift.Error {
@@ -18,6 +19,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     private let currentLocation: Location
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPhotoService: FetchPlacePhotoService
+    private let getReviewsService: GetReviewsService
+    
     @Published public var error: Error?
     @Published public var placeDetails: PlaceDetails?
     @Published public var imageData: Data?
@@ -36,11 +39,12 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         return "\(distance)"
     }
     
-    public init(placeID: String, currentLocation: Location, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService) {
+    public init(placeID: String, currentLocation: Location, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService, getReviewsService: GetReviewsService) {
         self.placeID = placeID
         self.currentLocation = currentLocation
         self.getPlaceDetailsService = getPlaceDetailsService
         self.fetchPhotoService = fetchPhotoService
+        self.getReviewsService = getReviewsService
     }
     
     public func showMaps() {
@@ -55,15 +59,16 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     @MainActor public func getPlaceDetails() async {
         do {
             error = nil
-            placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
             
-            if let placeDetails = placeDetails {
-                photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
-            }
+            photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
+            _ = try await getReviewsService.getReviews(placeID: placeID)
             
-            if let firstPhoto = placeDetails?.photos.first {
+            if let firstPhoto = placeDetails.photos.first {
                 imageData = await fetchPhoto(firstPhoto)
             }
+            
+            self.placeDetails = placeDetails
         } catch {
             placeDetails = nil
             self.error = .connectionFailure

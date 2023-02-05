@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DomainModels
+import FoodybiteNetworking
 
 struct RestaurantDetailsView: View {
     @StateObject var viewModel: RestaurantDetailsViewModel
@@ -81,7 +82,8 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                     placeID: "#1",
                     currentLocation: Location(latitude: 1.2, longitude: 3.4),
                     getPlaceDetailsService: PreviewSearchNearbyService(),
-                    fetchPhotoService: PreviewFetchPlacePhotoService()
+                    fetchPhotoService: PreviewFetchPlacePhotoService(),
+                    getReviewsService: PreviewGetReviewsService()
                 ),
                 showReviewView: {}
             )
@@ -134,6 +136,12 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
     private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
         func fetchPlacePhoto(photoReference: String) async throws -> Data {
             throw NSError(domain: "any error", code: 1)
+        }
+    }
+    
+    private class PreviewGetReviewsService: GetReviewsService {
+        func getReviews(placeID: String?) async throws -> [Review] {
+            []
         }
     }
 }
