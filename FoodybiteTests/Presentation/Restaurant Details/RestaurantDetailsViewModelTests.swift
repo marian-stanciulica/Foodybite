@@ -65,16 +65,6 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         }
     }
     
-    func test_getPlaceDetails_triggersGetReviewsRequest() async {
-        let (sut, getPlaceDetailsServiceSpy, _, getReviewsServiceSpy) = makeSUT()
-        let expectedPlaceDetails = anyPlaceDetails
-        
-        getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
-        await sut.getPlaceDetails()
-        
-        XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
-    }
-    
     func test_rating_returnsFormattedRating() {
         let (sut, _, _, _) = makeSUT()
         sut.placeDetails = anyPlaceDetails
@@ -135,6 +125,15 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         await sut.fetchPhoto(at: 1)
         
         XCTAssertEqual(sut.photosData[1], expectedData)
+    }
+    
+    func test_getPlaceReviews_sendsInputToGetReviewsService() async {
+        let (sut, _, _, getReviewsServiceSpy) = makeSUT()
+        sut.placeDetails = anyPlaceDetails
+        
+        await sut.getPlaceReviews()
+        
+        XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
     }
     
     // MARK: - Helpers

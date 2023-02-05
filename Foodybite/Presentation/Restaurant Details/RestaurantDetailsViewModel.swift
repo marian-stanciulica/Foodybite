@@ -62,7 +62,6 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
             
             photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
-            _ = try await getReviewsService.getReviews(placeID: placeID)
             
             if let firstPhoto = placeDetails.photos.first {
                 imageData = await fetchPhoto(firstPhoto)
@@ -73,6 +72,10 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             placeDetails = nil
             self.error = .connectionFailure
         }
+    }
+    
+    public func getPlaceReviews() async {
+        _ = try? await getReviewsService.getReviews(placeID: placeID)
     }
     
     @MainActor public func fetchPhoto(_ photo: Photo) async -> Data? {
