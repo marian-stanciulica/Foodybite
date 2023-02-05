@@ -11,7 +11,7 @@ public struct PlaceDetails: Equatable {
     public let address: String
     public let rating: Double
     public let openingHoursDetails: OpeningHoursDetails?
-    public let reviews: [Review]
+    public var reviews: [Review]
     public let location: Location
     public let photos: [Photo]
     

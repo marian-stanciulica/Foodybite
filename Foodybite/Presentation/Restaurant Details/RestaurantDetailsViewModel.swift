@@ -75,7 +75,9 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     public func getPlaceReviews() async {
-        _ = try? await getReviewsService.getReviews(placeID: placeID)
+        if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
+            placeDetails?.reviews += reviews
+        }
     }
     
     @MainActor public func fetchPhoto(_ photo: Photo) async -> Data? {

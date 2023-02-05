@@ -136,6 +136,20 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
     }
     
+    func test_getPlaceReviews_appendsReviewsToPlaceDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
+        let (sut, _, _, getReviewsServiceSpy) = makeSUT()
+        sut.placeDetails = anyPlaceDetails
+
+        let anyPlaceReviews = sut.placeDetails!.reviews
+        let getReviewsResult = anyGetReviewsResult()
+        let expectedReviews = anyPlaceReviews + getReviewsResult
+        
+        getReviewsServiceSpy.result = getReviewsResult
+        await sut.getPlaceReviews()
+        
+        XCTAssertEqual(sut.placeDetails?.reviews, expectedReviews)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: RestaurantDetailsViewModel,
@@ -240,11 +254,30 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         }
     }
     
+    private func anyGetReviewsResult() -> [Review] {
+        [
+            Review(profileImageURL: nil,
+                profileImageData: nil,
+                authorName: "Author name #1",
+                reviewText: "It was quite nice!",
+                rating: 4,
+                relativeTime: ""),
+            Review(profileImageURL: nil,
+                profileImageData: nil,
+                authorName: "Author name #2",
+                reviewText: "I didn't like it so much!",
+                rating: 2,
+                relativeTime: ""),
+        ]
+    }
+    
     private class GetReviewsServiceSpy: GetReviewsService {
         private(set) var capturedValues = [String?]()
+        var result = [Review]()
+        
         func getReviews(placeID: String?) async throws -> [Review] {
             capturedValues.append(placeID)
-            return []
+            return result
         }
     }
     
