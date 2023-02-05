@@ -240,7 +240,7 @@ final class APIServiceTests: XCTestCase {
     
     func test_getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
         let (sut, loader, _, _) = makeSUT(response: anyGetReviews().response)
-        let getReviewsEndpoint = ReviewEndpoint.getReviews
+        let getReviewsEndpoint = ReviewEndpoint.getReviews(nil)
         let urlRequest = try getReviewsEndpoint.createURLRequest()
         
         _ = try await sut.getReviews()

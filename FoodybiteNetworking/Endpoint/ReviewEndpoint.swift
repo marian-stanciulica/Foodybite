@@ -7,14 +7,23 @@
 
 public enum ReviewEndpoint: Endpoint {
     case addReview(AddReviewRequest)
-    case getReviews
+    case getReviews(String?)
     
     public var host: String {
         "localhost"
     }
     
     public var path: String {
-        "/review"
+        switch self {
+        case .addReview:
+            return "/review"
+        case let .getReviews(placeID):
+            if let placeID = placeID {
+                return "/review/\(placeID)"
+            }
+            
+            return "/review"
+        }
     }
     
     public var method: RequestMethod {

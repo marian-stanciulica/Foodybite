@@ -84,7 +84,7 @@ extension APIService: ReviewService {
     }
     
     public func getReviews() async throws -> [Review] {
-        let endpoint = ReviewEndpoint.getReviews
+        let endpoint = ReviewEndpoint.getReviews(nil)
         let urlRequest = try endpoint.createURLRequest()
         let response: [RemoteReview] = try await loader.get(for: urlRequest)
         

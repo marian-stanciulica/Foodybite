@@ -44,6 +44,7 @@ final class ReviewEndpointTests: XCTestCase {
     
     func test_getReviews_path() {
         XCTAssertEqual(makeGetReviewsSUT().path, "/review")
+        XCTAssertEqual(makeGetReviewsSUT(placeID: "place1").path, "/review/place1")
     }
     
     func test_getReviews_methodIsGet() {
@@ -65,8 +66,8 @@ final class ReviewEndpointTests: XCTestCase {
         return .addReview(body ?? defaultBody)
     }
     
-    private func makeGetReviewsSUT() -> ReviewEndpoint {
-        return .getReviews
+    private func makeGetReviewsSUT(placeID: String? = nil) -> ReviewEndpoint {
+        return .getReviews(placeID)
     }
     
     private func anyPlaceID() -> String {
