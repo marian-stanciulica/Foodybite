@@ -8,6 +8,7 @@
 import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
+import DomainModels
 
 struct TabNavigationView: View {
     @StateObject var tabRouter: TabRouter
@@ -15,6 +16,7 @@ struct TabNavigationView: View {
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
     @StateObject var viewModel: TabNavigationViewModel
+    let user: User
     
     var body: some View {
         Group {
@@ -37,7 +39,7 @@ struct TabNavigationView: View {
                     NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
                 }
             case .account:
-                ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), apiService: apiService)
+                ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), apiService: apiService, user: user)
             }
         }
         .task {

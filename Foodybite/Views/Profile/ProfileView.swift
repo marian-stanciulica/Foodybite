@@ -23,11 +23,12 @@ struct ProfileView: View {
                     .frame(width: 200, height: 200)
                     .cornerRadius(100)
 
-                Text("John Williams")
+                Text(viewModel.user.name)
                     .font(.title)
 
-                Text("john.williams@gmail.com")
-                    .font(.body)
+                Text(viewModel.user.email)
+                    .font(.footnote)
+                    .foregroundColor(.gray)
 
                 HStack {
                     StatsView(stats: "250", description: "Reviews")
@@ -111,6 +112,7 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView(
             viewModel: ProfileViewModel(
                 accountService: PreviewAccountService(),
+                user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: nil),
                 goToLogin: {}
             ),
             goToSettings: {},

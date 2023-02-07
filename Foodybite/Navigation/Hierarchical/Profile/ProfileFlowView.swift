@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 24.11.2022.
 //
 
+import DomainModels
 import SwiftUI
 import FoodybiteNetworking
 
@@ -13,6 +14,7 @@ struct ProfileFlowView: View {
     @ObservedObject var flow: Flow<ProfileRoute>
     @AppStorage("userLoggedIn") var userLoggedIn = false
     let apiService: APIService
+    let user: User
     
     var body: some View {
         NavigationStack(path: $flow.path) {
@@ -20,6 +22,7 @@ struct ProfileFlowView: View {
                 ProfileView(
                     viewModel: ProfileViewModel(
                         accountService: apiService,
+                        user: user,
                         goToLogin: { userLoggedIn = false }
                     ),
                     goToSettings: { flow.append(.settings) },

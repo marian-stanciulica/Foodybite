@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DomainModels
 import FoodybiteNetworking
 
 public final class ProfileViewModel: ObservableObject {
@@ -16,9 +17,11 @@ public final class ProfileViewModel: ObservableObject {
     private let accountService: AccountService
     private let goToLogin: () -> Void
     @Published public var error: Error?
+    let user: User
     
-    public init(accountService: AccountService, goToLogin: @escaping () -> Void) {
+    public init(accountService: AccountService, user: User, goToLogin: @escaping () -> Void) {
         self.accountService = accountService
+        self.user = user
         self.goToLogin = goToLogin
     }
     
