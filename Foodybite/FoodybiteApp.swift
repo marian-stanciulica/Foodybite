@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 28.05.2022.
 //
 
+import DomainModels
 import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
@@ -43,19 +44,23 @@ final class AppViewModel {
 
 @main
 struct FoodybiteApp: App {
-    @AppStorage("userLoggedIn") var userLoggedIn = false
     private let appViewModel = AppViewModel()
+    @State var user: User?
     
     var body: some Scene {
         WindowGroup {
-            if userLoggedIn {
+            if let user = user {
                 LocationCheckView { locationProvider in
-                    TabNavigationView(tabRouter: TabRouter(), apiService: appViewModel.makeAuthenticatedApiService(), placesService: appViewModel.makePlacesService(), viewModel: TabNavigationViewModel(locationProvider: locationProvider))
+                    TabNavigationView(
+                        tabRouter: TabRouter(),
+                        apiService: appViewModel.makeAuthenticatedApiService(),
+                        placesService: appViewModel.makePlacesService(),
+                        viewModel: TabNavigationViewModel(locationProvider: locationProvider))
                 }
             } else {
-                AuthFlowView(userLoggedIn: $userLoggedIn,
-                             apiService: appViewModel.makeApiService(),
-                             flow: Flow<AuthRoute>())
+                AuthFlowView(flow: Flow<AuthRoute>(), apiService: appViewModel.makeApiService()) { user in
+                    self.user = user
+                }
             }
         }
     }

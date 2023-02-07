@@ -46,7 +46,7 @@ final class LoginViewModelTests: XCTestCase {
     
     func test_login_callsGoToMainTabWhenLoginServiceFinishedSuccessfully() async {
         var goToMainTabCalled = false
-        let (sut, _) = makeSUT() {
+        let (sut, _) = makeSUT() { _ in
             goToMainTabCalled = true
         }
         sut.email = anyEmail()
@@ -59,7 +59,7 @@ final class LoginViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(goToMainTab: @escaping () -> Void = {}) -> (sut: LoginViewModel, loginService: LoginServiceSpy) {
+    private func makeSUT(goToMainTab: @escaping (User) -> Void = { _ in }) -> (sut: LoginViewModel, loginService: LoginServiceSpy) {
         let loginServiceSpy = LoginServiceSpy()
         let sut = LoginViewModel(loginService: loginServiceSpy, goToMainTab: goToMainTab)
         return (sut, loginServiceSpy)

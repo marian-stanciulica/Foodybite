@@ -83,7 +83,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LoginView(viewModel: LoginViewModel(loginService: PreviewLoginService(), goToMainTab: {})) {
+            LoginView(viewModel: LoginViewModel(loginService: PreviewLoginService(), goToMainTab: { _ in })) {
                 
             }
         }

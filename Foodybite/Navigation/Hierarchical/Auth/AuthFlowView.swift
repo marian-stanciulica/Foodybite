@@ -6,22 +6,20 @@
 //
 
 import SwiftUI
+import DomainModels
 import FoodybiteNetworking
 
 struct AuthFlowView: View {
-    @Binding var userLoggedIn: Bool
-
-    let apiService: APIService
     @ObservedObject var flow: Flow<AuthRoute>
+    let apiService: APIService
+    let goToMainTab: (User) -> Void
     
     var body: some View {
         NavigationStack(path: $flow.path) {
             LoginView(
                 viewModel: LoginViewModel(
                     loginService: apiService,
-                    goToMainTab: {
-                        userLoggedIn = true
-                    }),
+                    goToMainTab: goToMainTab),
                 goToSignUp: {
                     flow.append(.signUp)
                 }

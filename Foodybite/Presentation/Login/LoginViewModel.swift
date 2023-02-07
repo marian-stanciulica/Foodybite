@@ -5,7 +5,8 @@
 //  Created by Marian Stanciulica on 12.11.2022.
 //
 
-import Combine
+import Foundation
+import DomainModels
 import FoodybiteNetworking
 
 final public class LoginViewModel: ObservableObject {
@@ -14,31 +15,24 @@ final public class LoginViewModel: ObservableObject {
     }
     
     private let loginService: LoginService
-    private let goToMainTab: () -> Void
+    private let goToMainTab: (User) -> Void
     
     @Published public var email = ""
     @Published public var password = ""
     @Published public var loginError: LoginError?
     
-    public init(loginService: LoginService, goToMainTab: @escaping () -> Void) {
+    public init(loginService: LoginService, goToMainTab: @escaping (User) -> Void) {
         self.loginService = loginService
         self.goToMainTab = goToMainTab
     }
     
-    public func login() async {
+    @MainActor public func login() async {
         do {
-            _ = try await loginService.login(email: email, password: password)            
-            await goToMainTabScreen()
+            let user = try await loginService.login(email: email, password: password)
+            goToMainTab(user)
         } catch {
-            await updateLoginError(.serverError)
+            loginError = LoginError.serverError
         }
     }
     
-    @MainActor private func updateLoginError(_ newValue: LoginError) {
-        loginError = newValue
-    }
-    
-    @MainActor private func goToMainTabScreen() {
-        goToMainTab()
-    }
 }
