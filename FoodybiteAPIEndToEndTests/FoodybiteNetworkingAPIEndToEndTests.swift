@@ -52,7 +52,8 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
             try await makeAuthenticatedSUT().addReview(
                 placeID: firstPlaceID(),
                 reviewText: firstReviewText(),
-                starsNumber: firstStarsNumber()
+                starsNumber: firstStarsNumber(),
+                createdAt: Date()
             )
         })
     }
@@ -62,7 +63,8 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
             try await makeAuthenticatedSUT().addReview(
                 placeID: secondPlaceID(),
                 reviewText: secondReviewText(),
-                starsNumber: secondStarsNumber()
+                starsNumber: secondStarsNumber(),
+                createdAt: Date()
             )
         })
         

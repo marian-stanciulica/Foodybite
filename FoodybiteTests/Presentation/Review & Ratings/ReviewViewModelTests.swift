@@ -77,11 +77,11 @@ final class ReviewViewModelTests: XCTestCase {
     }
     
     private class ReviewServiceSpy: AddReviewService {
-        private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int)]()
+        private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int, createdAt: Date)]()
         var error: Error?
         
-        func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {
-            capturedValues.append((placeID, reviewText, starsNumber))
+        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+            capturedValues.append((placeID, reviewText, starsNumber, createdAt))
             
             if let error = error {
                 throw error

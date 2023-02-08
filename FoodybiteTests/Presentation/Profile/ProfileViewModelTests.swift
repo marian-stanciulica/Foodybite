@@ -7,6 +7,7 @@
 
 import XCTest
 import Foodybite
+import DomainModels
 import FoodybiteNetworking
 
 final class ProfileViewModelTests: XCTestCase {
@@ -35,12 +36,16 @@ final class ProfileViewModelTests: XCTestCase {
     
     private func makeSUT(goToLogin: @escaping () -> Void = {}) -> (sut: ProfileViewModel, accountServiceSpy: AccountServiceSpy) {
         let accountServiceSpy = AccountServiceSpy()
-        let sut = ProfileViewModel(accountService: accountServiceSpy, goToLogin: goToLogin)
+        let sut = ProfileViewModel(accountService: accountServiceSpy, user: anyUser(), goToLogin: goToLogin)
         return (sut, accountServiceSpy)
     }
     
     private func anyNSError() -> NSError {
         return NSError(domain: "any error", code: 1)
+    }
+    
+    private func anyUser() -> User {
+        User(id: UUID(), name: "User", email: "user@test.com", profileImage: nil)
     }
     
     private func assertDeleteAccount(on sut: ProfileViewModel,

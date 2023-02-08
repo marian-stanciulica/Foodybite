@@ -32,7 +32,7 @@ public final class ReviewViewModel: ObservableObject {
         state = .isLoading
         
         do {
-            try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+            try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: Date())
             state = .requestSucceeeded
         } catch {
             state = .loadingError("Review couldn't be posted. Try again!")

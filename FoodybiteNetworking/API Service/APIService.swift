@@ -76,8 +76,8 @@ extension APIService: AccountService {
 }
 
 extension APIService: AddReviewService {
-    public func addReview(placeID: String, reviewText: String, starsNumber: Int) async throws {
-        let requestBody = AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber)
+    public func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+        let requestBody = AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt)
         let endpoint = ReviewEndpoint.addReview(requestBody)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
