@@ -20,7 +20,7 @@ struct SearchNearbyResult: Decodable {
     let openingHours: OpeningHours?
     let photos: [Photo]?
     let placeID: String
-    let plusCode: PlusCode
+    let plusCode: PlusCode?
     let priceLevel: Int?
     let rating: Double?
     let reference: String

@@ -15,5 +15,9 @@ public struct Photo: Equatable {
         self.height = height
         self.photoReference = photoReference
     }
+    
+    public static func ==(lhs: Photo, rhs: Photo) -> Bool {
+        lhs.width == rhs.width && lhs.height == rhs.height
+    }
 }
 

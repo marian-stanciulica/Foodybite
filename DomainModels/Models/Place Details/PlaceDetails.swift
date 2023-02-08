@@ -6,7 +6,7 @@
 //
 
 public struct PlaceDetails: Equatable {
-    public let phoneNumber: String
+    public let phoneNumber: String?
     public let name: String
     public let address: String
     public let rating: Double
@@ -15,7 +15,7 @@ public struct PlaceDetails: Equatable {
     public let location: Location
     public let photos: [Photo]
     
-    public init(phoneNumber: String, name: String, address: String, rating: Double, openingHoursDetails: OpeningHoursDetails?, reviews: [Review], location: Location, photos: [Photo]) {
+    public init(phoneNumber: String?, name: String, address: String, rating: Double, openingHoursDetails: OpeningHoursDetails?, reviews: [Review], location: Location, photos: [Photo]) {
         self.phoneNumber = phoneNumber
         self.name = name
         self.address = address

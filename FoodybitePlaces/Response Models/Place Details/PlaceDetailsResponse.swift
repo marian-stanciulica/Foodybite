@@ -19,12 +19,12 @@ struct Details: Decodable {
     let addressComponents: [AddressComponent]
     let businessStatus: String
     let formattedAddress: String
-    let formattedPhoneNumber: String
+    let formattedPhoneNumber: String?
     let geometry: Geometry
     let icon: String
     let iconBackgroundColor: String
     let iconMaskBaseURI: String
-    let internationalPhoneNumber: String
+    let internationalPhoneNumber: String?
     let name: String
     let openingHours: OpeningHoursDetails?
     let photos: [Photo]

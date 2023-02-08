@@ -25,4 +25,13 @@ public struct Review: Equatable, Identifiable {
         self.rating = rating
         self.relativeTime = relativeTime
     }
+    
+    public static func ==(lhs: Review, rhs: Review) -> Bool {
+        lhs.profileImageURL == rhs.profileImageURL &&
+        lhs.profileImageData == rhs.profileImageData &&
+        lhs.authorName == rhs.authorName &&
+        lhs.reviewText == rhs.reviewText &&
+        lhs.rating == rhs.rating &&
+        lhs.relativeTime == rhs.relativeTime
+    }
 }
