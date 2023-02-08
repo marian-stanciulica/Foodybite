@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RestaurantImageView: View {
-    let phoneNumber: String
+    let phoneNumber: String?
     let showMaps: () -> Void
     @Binding var imageData: Data?
 
