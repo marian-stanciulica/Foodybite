@@ -12,6 +12,4 @@ struct RemoteUser: Decodable, Equatable {
     let name: String
     let email: String
     let profileImage: Data?
-    let followingCount: Int
-    let followersCount: Int
 }

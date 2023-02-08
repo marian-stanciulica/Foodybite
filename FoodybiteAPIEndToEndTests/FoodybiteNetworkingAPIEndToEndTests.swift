@@ -53,7 +53,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
                 placeID: firstPlaceID(),
                 reviewText: firstReviewText(),
                 starsNumber: firstStarsNumber(),
-                createdAt: Date()
+                createdAt: firstCreatedAt()
             )
         })
     }
@@ -64,7 +64,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
                 placeID: secondPlaceID(),
                 reviewText: secondReviewText(),
                 starsNumber: secondStarsNumber(),
-                createdAt: Date()
+                createdAt: secondCreatedAt()
             )
         })
         
@@ -190,6 +190,14 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         5
     }
     
+    private func firstCreatedAt() -> Date {
+        Date(timeIntervalSince1970: 1675865291)
+    }
+    
+    private func secondCreatedAt() -> Date {
+        Date(timeIntervalSince1970: 1562860291)
+    }
+    
     private func expectedAllReviews() -> [Review] {
         expectedReviewsForFirstPlaceID() + expectedReviewsForSecondPlaceID()
     }
@@ -201,7 +209,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
                 authorName: testingNewName,
                 reviewText: firstReviewText(),
                 rating: firstStarsNumber(),
-                relativeTime: "")
+                relativeTime: "14 hours ago")
         ]
     }
     
@@ -212,7 +220,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
                 authorName: testingNewName,
                 reviewText: secondReviewText(),
                 rating: secondStarsNumber(),
-                relativeTime: "")
+                relativeTime: "3 years ago")
         ]
     }
 }
