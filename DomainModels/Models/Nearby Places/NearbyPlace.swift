@@ -21,4 +21,11 @@ public struct NearbyPlace: Equatable {
         self.location = location
         self.photo = photo
     }
+    
+    public static func ==(lhs: NearbyPlace, rhs: NearbyPlace) -> Bool {
+        lhs.placeID == rhs.placeID &&
+        lhs.placeName == rhs.placeName &&
+        lhs.location == rhs.location &&
+        lhs.photo == rhs.photo
+    }
 }

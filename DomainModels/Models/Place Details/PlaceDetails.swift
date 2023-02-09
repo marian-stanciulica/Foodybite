@@ -25,4 +25,11 @@ public struct PlaceDetails: Equatable {
         self.location = location
         self.photos = photos
     }
+    
+    public static func ==(lhs: PlaceDetails, rhs: PlaceDetails) -> Bool {
+        lhs.phoneNumber == rhs.phoneNumber &&
+        lhs.name == rhs.name &&
+        lhs.address == rhs.address &&
+        lhs.location == rhs.location
+    }
 }
