@@ -57,6 +57,7 @@ extension APIService: GetPlaceDetailsService {
         }
         
         return PlaceDetails(
+            placeID: response.result.placeID,
             phoneNumber: response.result.internationalPhoneNumber,
             name: response.result.name,
             address: response.result.formattedAddress,

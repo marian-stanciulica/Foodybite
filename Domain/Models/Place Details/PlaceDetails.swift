@@ -6,6 +6,7 @@
 //
 
 public struct PlaceDetails: Equatable {
+    public let placeID: String
     public let phoneNumber: String?
     public let name: String
     public let address: String
@@ -15,7 +16,8 @@ public struct PlaceDetails: Equatable {
     public let location: Location
     public let photos: [Photo]
     
-    public init(phoneNumber: String?, name: String, address: String, rating: Double, openingHoursDetails: OpeningHoursDetails?, reviews: [Review], location: Location, photos: [Photo]) {
+    public init(placeID: String, phoneNumber: String?, name: String, address: String, rating: Double, openingHoursDetails: OpeningHoursDetails?, reviews: [Review], location: Location, photos: [Photo]) {
+        self.placeID = placeID
         self.phoneNumber = phoneNumber
         self.name = name
         self.address = address
@@ -27,6 +29,7 @@ public struct PlaceDetails: Equatable {
     }
     
     public static func ==(lhs: PlaceDetails, rhs: PlaceDetails) -> Bool {
+        lhs.placeID == rhs.placeID &&
         lhs.phoneNumber == rhs.phoneNumber &&
         lhs.name == rhs.name &&
         lhs.address == rhs.address &&

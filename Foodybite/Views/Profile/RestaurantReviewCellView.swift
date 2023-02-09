@@ -54,6 +54,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
             PlaceDetails(
+                placeID: "place #1",
                 phoneNumber: "",
                 name: "Place name",
                 address: "Place address",

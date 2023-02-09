@@ -248,6 +248,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private func anyPlaceDetails() -> PlaceDetails {
         PlaceDetails(
+            placeID: "place #1",
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
@@ -295,7 +296,8 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                 return try result.get()
             }
             
-            return PlaceDetails(phoneNumber: nil,
+            return PlaceDetails(placeID: "place #1",
+                                phoneNumber: nil,
                                 name: "",
                                 address: "",
                                 rating: 0,
