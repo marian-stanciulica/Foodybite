@@ -61,7 +61,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         }
     }
     
-    @MainActor public func getPlaceDetails() async {        
+    @MainActor public func getPlaceDetails() async {
         switch input {
         case let .placeIdToFetch(placeID):
             do {
@@ -80,7 +80,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         }
     }
     
-    private func initializeFirstPhotoFetch(placeDetails: PlaceDetails) async {
+    @MainActor private func initializeFirstPhotoFetch(placeDetails: PlaceDetails) async {
         if let firstPhoto = placeDetails.photos.first {
             imageData = await fetchPhoto(firstPhoto)
         }
