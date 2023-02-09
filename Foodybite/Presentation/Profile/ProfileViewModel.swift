@@ -24,20 +24,12 @@ public final class ProfileViewModel: ObservableObject {
         self.goToLogin = goToLogin
     }
     
-    public func deleteAccount() async {
+    @MainActor public func deleteAccount() async {
         do {
             try await accountService.deleteAccount()
-            await goToLoginScreen()
+            goToLogin()
         } catch {
-            await updateError(.serverError)
+            self.error = Error.serverError
         }
-    }
-    
-    @MainActor private func goToLoginScreen() {
-        goToLogin()
-    }
-    
-    @MainActor private func updateError(_ newValue: Error) {
-        error = newValue
     }
 }
