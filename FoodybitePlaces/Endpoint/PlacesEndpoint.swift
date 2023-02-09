@@ -27,7 +27,7 @@ public enum PlacesEndpoint: Endpoint {
         case .getPlacePhoto:
             return "/maps/api/place/photo"
         case .autocomplete:
-            return ""
+            return "maps/api/place/autocomplete/json"
         }
     }
     
