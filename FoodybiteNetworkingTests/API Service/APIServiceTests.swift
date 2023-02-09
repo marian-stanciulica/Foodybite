@@ -313,14 +313,15 @@ final class APIServiceTests: XCTestCase {
     
     private func anyGetReviews() -> (response: [RemoteReview], model: [Review]) {
         let response = [
-            RemoteReview(profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
-            RemoteReview(profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
-            RemoteReview(profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
+            RemoteReview(placeID: "place #1", profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
+            RemoteReview(placeID: "place #2", profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
+            RemoteReview(placeID: "place #3", profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
         ]
         
         let formatter = RelativeDateTimeFormatter()
         let model = response.map {
             Review(id: $0.id,
+                   placeID: $0.placeID,
                    profileImageURL: nil,
                    profileImageData: $0.profileImageData,
                    authorName: $0.authorName,

@@ -93,6 +93,7 @@ extension APIService: GetReviewsService {
         let formatter = RelativeDateTimeFormatter()
         return response.map {
             Review(id: $0.id,
+                   placeID: $0.placeID,
                    profileImageURL: nil,
                    profileImageData: $0.profileImageData,
                    authorName: $0.authorName,

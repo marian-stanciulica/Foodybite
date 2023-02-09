@@ -9,6 +9,7 @@ import Foundation
 
 struct RemoteReview: Codable {
     let id = UUID()
+    let placeID: String
     let profileImageData: Data?
     let authorName: String
     let reviewText: String
@@ -16,6 +17,7 @@ struct RemoteReview: Codable {
     let createdAt: Date
     
     enum CodingKeys: String, CodingKey {
+        case placeID
         case profileImageData
         case authorName
         case reviewText
