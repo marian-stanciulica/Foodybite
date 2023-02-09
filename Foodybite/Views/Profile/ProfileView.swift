@@ -127,7 +127,7 @@ struct ProfileView_Previews: PreviewProvider {
             viewModel: ProfileViewModel(
                 accountService: PreviewAccountService(),
                 getReviewsService: PreviewGetReviewsService(),
-                user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: nil),
+                user: User(id: UUID(), name: "Marian", email: "user@mail.com", profileImage: nil),
                 goToLogin: {}
             ),
             goToSettings: {},

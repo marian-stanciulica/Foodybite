@@ -179,6 +179,8 @@
 		0FA6BE33299500E1003E1912 /* InitialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE32299500E1003E1912 /* InitialsView.swift */; };
 		0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3429950892003E1912 /* RestaurantReviewCellViewModelTests.swift */; };
 		0FA6BE3729952027003E1912 /* RestaurantReviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3629952027003E1912 /* RestaurantReviewCellViewModel.swift */; };
+		0FA6BE3929952116003E1912 /* RestaurantReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3829952116003E1912 /* RestaurantReviewCellView.swift */; };
+		0FA6BE3B299522FA003E1912 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3A299522FA003E1912 /* AddressView.swift */; };
 		0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -547,6 +549,8 @@
 		0FA6BE32299500E1003E1912 /* InitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsView.swift; sourceTree = "<group>"; };
 		0FA6BE3429950892003E1912 /* RestaurantReviewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellViewModelTests.swift; sourceTree = "<group>"; };
 		0FA6BE3629952027003E1912 /* RestaurantReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellViewModel.swift; sourceTree = "<group>"; };
+		0FA6BE3829952116003E1912 /* RestaurantReviewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellView.swift; sourceTree = "<group>"; };
+		0FA6BE3A299522FA003E1912 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -1546,6 +1550,8 @@
 			isa = PBXGroup;
 			children = (
 				0F751642284363B000A05A92 /* ProfileView.swift */,
+				0FA6BE3829952116003E1912 /* RestaurantReviewCellView.swift */,
+				0FA6BE3A299522FA003E1912 /* AddressView.swift */,
 				0FA6BE32299500E1003E1912 /* InitialsView.swift */,
 				0F751644284364B600A05A92 /* StatsView.swift */,
 				0FF4675C2930C6830094528E /* Edit Profile */,
@@ -2617,6 +2623,7 @@
 				0F751643284363B000A05A92 /* ProfileView.swift in Sources */,
 				0F423A9C29853EF2009EB345 /* Flow.swift in Sources */,
 				0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */,
+				0FA6BE3929952116003E1912 /* RestaurantReviewCellView.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
 				0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */,
 				0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */,
@@ -2632,6 +2639,7 @@
 				0F73ECB1292FAEA00025B237 /* ChangePasswordValidator.swift in Sources */,
 				0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */,
 				A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */,
+				0FA6BE3B299522FA003E1912 /* AddressView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageWhiteTextField.swift in Sources */,
 				0F423A9229850F68009EB345 /* HomeViewModel.swift in Sources */,
 				0FA6BE33299500E1003E1912 /* InitialsView.swift in Sources */,
