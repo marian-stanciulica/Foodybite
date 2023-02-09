@@ -770,8 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				0F423AA229855F64009EB345 /* Models */,
-				0F412EBA2962D13700FDDF41 /* Places Protocols */,
-				0FD4176B298D60E400F2BF92 /* Location Protocols */,
+				0FA6BE292994E829003E1912 /* Protocols */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -1585,6 +1584,15 @@
 				0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */,
 			);
 			path = FoodybitePersistenceTests;
+			sourceTree = "<group>";
+		};
+		0FA6BE292994E829003E1912 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0F412EBA2962D13700FDDF41 /* Places Protocols */,
+				0FD4176B298D60E400F2BF92 /* Location Protocols */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		0FABA445298BF7EC00EACFE5 /* Location */ = {
