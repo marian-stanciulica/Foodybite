@@ -177,6 +177,7 @@
 		0FA6BE302994E8AA003E1912 /* AddReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FD298E72F20024016B /* AddReviewService.swift */; };
 		0FA6BE312994E8AA003E1912 /* GetReviewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */; };
 		0FA6BE33299500E1003E1912 /* InitialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE32299500E1003E1912 /* InitialsView.swift */; };
+		0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3429950892003E1912 /* RestaurantReviewCellViewModelTests.swift */; };
 		0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -543,6 +544,7 @@
 		0F89618F2928C01E00FFDC48 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
 		0FA6BE32299500E1003E1912 /* InitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsView.swift; sourceTree = "<group>"; };
+		0FA6BE3429950892003E1912 /* RestaurantReviewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellViewModelTests.swift; sourceTree = "<group>"; };
 		0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -1521,6 +1523,7 @@
 			isa = PBXGroup;
 			children = (
 				0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */,
+				0FA6BE3429950892003E1912 /* RestaurantReviewCellViewModelTests.swift */,
 				0F2A26AF2930D90000387A1C /* Edit Profile */,
 				0F73ECBC292FDB0C0025B237 /* Settings */,
 			);
@@ -2477,6 +2480,7 @@
 				0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */,
 				0FD41771298D66F600F2BF92 /* TabNavigationViewModelTests.swift in Sources */,
 				0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */,
+				0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */,
 				0F423AAB29858BA9009EB345 /* DistanceSolverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
