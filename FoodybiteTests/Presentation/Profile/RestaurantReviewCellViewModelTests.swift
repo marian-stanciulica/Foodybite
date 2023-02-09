@@ -33,15 +33,19 @@ class RestaurantReviewCellViewModel: ObservableObject {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
             getPlaceDetailsState = .requestSucceeeded(placeDetails)
             
-            await fetchPhoto(placeDetails: placeDetails)
+            if let firstPhoto = placeDetails.photos.first {
+                await fetchPhoto(firstPhoto)
+            }
         } catch {
             getPlaceDetailsState = .loadingError("An error occured while fetching review details. Please try again later!")
         }
     }
     
-    func fetchPhoto(placeDetails: PlaceDetails) async {
-        if let firstPhoto = placeDetails.photos.first {
-            _ = try? await fetchPlacePhotoService.fetchPlacePhoto(photoReference: firstPhoto.photoReference)
+    private func fetchPhoto(_ photo: Photo) async {
+        do {
+            _ = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
+        } catch {
+            getPlacePhotoState = .loadingError("An error occured while fetching place photo. Please try again later!")
         }
     }
 }
@@ -70,7 +74,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, anyPlaceID)
     }
     
-    func test_getPlaceDetails_setsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
         let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
         getPlaceDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
@@ -80,7 +84,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         XCTAssertEqual(stateSpy.results, [.isLoading, .loadingError("An error occured while fetching review details. Please try again later!")])
     }
     
-    func test_getPlaceDetails_setsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
         let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
@@ -94,11 +98,24 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     func test_getPlaceDetails_triggersFetchPhoto() async {
         let (sut, getPlaceDetailsServiceSpy, photoServiceSpy) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
-        
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        
         await sut.getPlaceDetails()
         
         XCTAssertEqual(photoServiceSpy.capturedValues.first, expectedPlaceDetails.photos.first?.photoReference)
+    }
+    
+    func test_fetchPhoto_setsGetPlacePhotoStateToLoadingErrorWhenFetchPlacePhotoServiceThrowsError() async {
+        let (sut, getPlaceDetailsServiceSpy, photoServiceSpy) = makeSUT()
+        let stateSpy = PublisherSpy(sut.$getPlacePhotoState.eraseToAnyPublisher())
+
+        let expectedPlaceDetails = anyPlaceDetails()
+        getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        photoServiceSpy.result = .failure(anyError())
+        
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(stateSpy.results, [.isLoading, .loadingError("An error occured while fetching place photo. Please try again later!")])
     }
     
     // MARK: - Helpers
@@ -153,6 +170,10 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     
     private func rating() -> (raw: Double, formatted: String) {
         (4.52, "4.5")
+    }
+    
+    private func anyPhoto() -> Photo {
+        Photo(width: 10, height: 20, photoReference: "photo reference")
     }
     
     private func anyPhotos() -> [Photo] {
