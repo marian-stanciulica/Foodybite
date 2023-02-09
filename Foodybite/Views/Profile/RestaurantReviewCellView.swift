@@ -6,28 +6,71 @@
 //
 
 import SwiftUI
+import Domain
 
 struct RestaurantReviewCellView: View {
+    @StateObject var viewModel: RestaurantReviewCellViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topTrailing) {
-                Image("restaurant_logo_test")
-                    .resizable()
-                    .scaledToFit()
+                switch viewModel.fetchPhotoState {
+                case .isLoading, .loadingError:
+                    ProgressView()
+                case let .requestSucceeeded(photoData):
+                    if let uiImage = UIImage(data: photoData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
                 
-                RatingStar(rating: "3", backgroundColor: .white)
+                RatingStar(rating: viewModel.rating, backgroundColor: .white)
                     .padding()
             }
             
-            AddressView(placeName: "Place name", address: "Place address")
+            AddressView(placeName: viewModel.placeName,
+                        address: viewModel.placeAddress)
                 .padding(.horizontal)
         }
         .cornerRadius(16)
+        .task {
+            await viewModel.getPlaceDetails()
+        }
     }
 }
 
 struct RestaurantReviewCellView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantReviewCellView()
+        RestaurantReviewCellView(
+            viewModel: RestaurantReviewCellViewModel(
+                placeID: "",
+                getPlaceDetailsService: PreviewGetPlaceDetailsService(),
+                fetchPlacePhotoService: PreviewFetchPlacePhotoService()
+            )
+        )
+    }
+    
+    private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
+        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+            PlaceDetails(
+                phoneNumber: "",
+                name: "Place name",
+                address: "Place address",
+                rating: 3,
+                openingHoursDetails: nil,
+                reviews: [],
+                location: Location(latitude: 0, longitude: 0),
+                photos: [
+                    Photo(width: 100, height: 100, photoReference: "")
+                ]
+            )
+        }
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
+        }
     }
 }
