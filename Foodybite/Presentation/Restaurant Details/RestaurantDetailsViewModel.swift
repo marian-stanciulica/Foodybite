@@ -83,6 +83,10 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             
         case let .fetchedPlaceDetails(placeDetails):
             self.placeDetails = placeDetails
+            
+            if let firstPhoto = placeDetails.photos.first {
+                imageData = await fetchPhoto(firstPhoto)
+            }
         }
     }
     
