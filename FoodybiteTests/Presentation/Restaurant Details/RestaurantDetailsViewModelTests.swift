@@ -214,6 +214,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
+                    placeID: "place #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -274,7 +275,9 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private func firstGetReviewsResult() -> [Review] {
         [
-            Review(profileImageURL: nil,
+            Review(
+                placeID: "place #1",
+                profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #1",
                 reviewText: "It was quite nice!",
@@ -285,7 +288,9 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private func secondGetReviewsResult() -> [Review] {
         [
-            Review(profileImageURL: nil,
+            Review(
+                placeID: "place #2",
+                profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #2",
                 reviewText: "I didn't like it so much!",

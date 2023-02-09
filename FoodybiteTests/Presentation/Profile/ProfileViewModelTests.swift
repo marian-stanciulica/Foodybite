@@ -89,8 +89,8 @@ final class ProfileViewModelTests: XCTestCase {
     
     private func anyReviews() -> [Review] {
         [
-            Review(profileImageURL: nil, profileImageData: nil, authorName: "Author #1", reviewText: "It was nice", rating: 4, relativeTime: "1 hour ago"),
-            Review(profileImageURL: nil, profileImageData: nil, authorName: "Author #2", reviewText: "Didn't like it", rating: 1, relativeTime: "2 years ago")
+            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #1", reviewText: "It was nice", rating: 4, relativeTime: "1 hour ago"),
+            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #2", reviewText: "Didn't like it", rating: 1, relativeTime: "2 years ago")
         ]
     }
     

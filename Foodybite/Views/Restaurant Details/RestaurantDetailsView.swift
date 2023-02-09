@@ -114,6 +114,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                 ),
                 reviews: [
                     Review(
+                        placeID: "place #1",
                         profileImageURL: URL(string: "www.google.com"),
                         profileImageData: nil,
                         authorName: "Marian",
@@ -122,6 +123,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         relativeTime: "5 months ago"
                     ),
                     Review(
+                        placeID: "place #1",
                         profileImageURL: URL(string: "www.google.com"),
                         profileImageData: nil,
                         authorName: "Marian",

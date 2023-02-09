@@ -169,6 +169,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
+                    placeID: "place #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
