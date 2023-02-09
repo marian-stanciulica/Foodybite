@@ -30,22 +30,32 @@ struct ProfileView: View {
                     .foregroundColor(.gray)
 
                 HStack {
-                    StatsView(stats: "250", description: "Reviews")
+                    switch viewModel.getReviewsState {
+                    case .isLoading:
+                        ProgressView()
+                    case .loadingError:
+                        StatsView(stats: "0", description: "Reviews")
+                    case let .requestSucceeeded(reviews):
+                        StatsView(stats: "\(reviews.count)", description: "Reviews")
+                    }
 
                     Spacer()
                     Divider()
                     Spacer()
 
-                    StatsView(stats: "100k", description: "Followers")
+                    StatsView(stats: "0", description: "Followers")
 
                     Spacer()
                     Divider()
                     Spacer()
 
-                    StatsView(stats: "30", description: "Following")
+                    StatsView(stats: "0", description: "Following")
                 }
                 .padding(.horizontal, 56)
                 .padding(.vertical)
+                .task {
+                    await viewModel.getAllReviews()
+                }
 
                 HStack {
                     MarineButton(title: "Edit Profile") {
@@ -127,7 +137,9 @@ struct ProfileView_Previews: PreviewProvider {
     
     private class PreviewGetReviewsService: GetReviewsService {
         func getReviews(placeID: String?) async throws -> [Review] {
-            []
+            [
+                Review(profileImageURL: nil, profileImageData: nil, authorName: "", reviewText: "", rating: 1, relativeTime: ""),
+            ]
         }
     }
 }
