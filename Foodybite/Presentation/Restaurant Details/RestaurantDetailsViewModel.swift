@@ -16,6 +16,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     public enum Input {
         case placeIdToFetch(String)
+        case fetchedPlaceDetails(PlaceDetails)
     }
     
     private let input: Input

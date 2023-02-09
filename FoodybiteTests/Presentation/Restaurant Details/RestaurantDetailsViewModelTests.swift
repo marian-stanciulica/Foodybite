@@ -11,13 +11,20 @@ import Domain
 
 final class RestaurantDetailsViewModelTests: XCTestCase {
     
-    func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
+    func test_getPlaceDetails_sendsParamsToGetPlaceDetailsService() async {
         let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
-        getPlaceDetailsServiceSpy.result = .failure(anyError)
         
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(getPlaceDetailsServiceSpy.placeID, anyPlaceID())
+        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues, [anyPlaceID()])
+    }
+    
+    func test_getPlaceDetails_doesNotSendParamsToGetPlaceDetailsServiceWhenInputIsFetchedPlaceDetails() async {
+        let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT(input: .fetchedPlaceDetails(anyPlaceDetails()))
+        
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues, [])
     }
     
     func test_getPlaceDetails_setsErrorWhenGetPlaceDetailsServiceThrowsError() async {
@@ -239,12 +246,25 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
-        private(set) var placeID: String?
-        var result: Result<PlaceDetails, Error>!
+        private(set) var capturedValues = [String]()
+        var result: Result<PlaceDetails, Error>?
         
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-            self.placeID = placeID
-            return try result.get()
+            capturedValues.append(placeID)
+            
+            if let result = result {
+                return try result.get()
+            }
+            
+            return PlaceDetails(phoneNumber: nil,
+                                name: "",
+                                address: "",
+                                rating: 0,
+                                openingHoursDetails: nil,
+                                reviews: [],
+                                location: Location(latitude: 0, longitude: 0),
+                                photos: [Photo(width: 100, height: 100, photoReference: "")]
+            )
         }
     }
     
