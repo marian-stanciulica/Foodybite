@@ -13,10 +13,16 @@ public final class ProfileViewModel: ObservableObject {
         case accountDeletionError = "An error occured during deletion. Please try again!"
     }
     
+    public enum State: Equatable {
+        case idle
+    }
+    
     private let accountService: AccountService
     private let goToLogin: () -> Void
-    @Published public var error: Error?
     let user: User
+
+    @Published public var getReviewsState: State = .idle
+    @Published public var error: Error?
     
     public init(accountService: AccountService, user: User, goToLogin: @escaping () -> Void) {
         self.accountService = accountService

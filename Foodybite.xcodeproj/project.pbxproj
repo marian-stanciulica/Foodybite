@@ -1626,10 +1626,10 @@
 		0FB0E111291F861E0058ABCB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				0FC86402298E87BE0024016B /* Review & Ratings */,
 				0FD41772298D777A00F2BF92 /* Tab Navigation */,
 				0F423A9029850F64009EB345 /* Home */,
 				0F423A9829853C8A009EB345 /* Restaurant Details */,
+				0FC86402298E87BE0024016B /* Review & Ratings */,
 				0F73ECB7292FDA7E0025B237 /* Profile */,
 				0FB0E114291F87260058ABCB /* Register */,
 				0FB0E126291FBEC10058ABCB /* Login */,

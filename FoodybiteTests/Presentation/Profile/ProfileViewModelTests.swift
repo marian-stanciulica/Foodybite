@@ -11,6 +11,12 @@ import Domain
 
 final class ProfileViewModelTests: XCTestCase {
 
+    func test_init_stateIsIdle() {
+        let (sut, _) = makeSUT()
+        
+        XCTAssertEqual(sut.getReviewsState, .idle)
+    }
+    
     func test_deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
         let (sut, accountServiceSpy) = makeSUT()
         
