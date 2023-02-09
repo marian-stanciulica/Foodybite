@@ -213,12 +213,13 @@ final class APIServiceTests: XCTestCase {
         let placeID = anyPlaceID()
         let reviewText = anyReviewText()
         let starsNumber = anyStarsNumber()
+        let createdAt = Date()
         
         let (sut, _, sender, _) = makeSUT()
-        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber))
+        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt))
         let urlRequest = try addReviewEndpoint.createURLRequest()
         
-        try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+        try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: createdAt)
         
         let firstRequest = sender.requests.first
         XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
@@ -228,12 +229,13 @@ final class APIServiceTests: XCTestCase {
         let placeID = anyPlaceID()
         let reviewText = anyReviewText()
         let starsNumber = anyStarsNumber()
+        let createdAt = Date()
         
         let (sut, _, sender, _) = makeSUT()
-        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber))
+        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt))
         let urlRequest = try addReviewEndpoint.createURLRequest()
         
-        try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber)
+        try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: createdAt)
 
         XCTAssertEqual(sender.requests, [urlRequest])
     }
@@ -301,9 +303,7 @@ final class APIServiceTests: XCTestCase {
             user: RemoteUser(id: id,
                              name: "any name",
                              email: "any@email.com",
-                             profileImage: nil,
-                             followingCount: 0,
-                             followersCount: 0),
+                             profileImage: nil),
             token: anyAuthToken()
         )
         

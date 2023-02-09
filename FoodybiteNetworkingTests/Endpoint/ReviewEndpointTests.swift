@@ -25,7 +25,7 @@ final class ReviewEndpointTests: XCTestCase {
     }
     
     func test_addReview_body() throws {
-        let body = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber())
+        let body = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber(), createdAt: Date())
         let sut = makeAddReviewSUT(body: body)
         let receivedBody = try XCTUnwrap(sut.body as? AddReviewRequest)
         
@@ -62,7 +62,7 @@ final class ReviewEndpointTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeAddReviewSUT(body: AddReviewRequest? = nil) -> ReviewEndpoint {
-        let defaultBody = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber())
+        let defaultBody = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber(), createdAt: Date())
         return .addReview(body ?? defaultBody)
     }
     
