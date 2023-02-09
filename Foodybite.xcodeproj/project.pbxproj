@@ -176,6 +176,7 @@
 		0FA6BE2F2994E8A0003E1912 /* ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */; };
 		0FA6BE302994E8AA003E1912 /* AddReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FD298E72F20024016B /* AddReviewService.swift */; };
 		0FA6BE312994E8AA003E1912 /* GetReviewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */; };
+		0FA6BE33299500E1003E1912 /* InitialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE32299500E1003E1912 /* InitialsView.swift */; };
 		0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -541,6 +542,7 @@
 		0F7E23D42920E965005196EA /* AuthFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowView.swift; sourceTree = "<group>"; };
 		0F89618F2928C01E00FFDC48 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoaderTests.swift; sourceTree = "<group>"; };
+		0FA6BE32299500E1003E1912 /* InitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsView.swift; sourceTree = "<group>"; };
 		0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -1538,6 +1540,7 @@
 			isa = PBXGroup;
 			children = (
 				0F751642284363B000A05A92 /* ProfileView.swift */,
+				0FA6BE32299500E1003E1912 /* InitialsView.swift */,
 				0F751644284364B600A05A92 /* StatsView.swift */,
 				0FF4675C2930C6830094528E /* Edit Profile */,
 				A2C24241284780BF00CB233B /* Settings */,
@@ -2623,6 +2626,7 @@
 				A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageWhiteTextField.swift in Sources */,
 				0F423A9229850F68009EB345 /* HomeViewModel.swift in Sources */,
+				0FA6BE33299500E1003E1912 /* InitialsView.swift in Sources */,
 				0FC86404298E87D30024016B /* ReviewViewModel.swift in Sources */,
 				0FD41774298D778500F2BF92 /* TabNavigationViewModel.swift in Sources */,
 				A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */,

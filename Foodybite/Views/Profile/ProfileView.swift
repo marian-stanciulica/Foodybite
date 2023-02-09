@@ -20,8 +20,11 @@ struct ProfileView: View {
                 if let imageData = viewModel.user.profileImage, let uiImage = UIImage(data: imageData) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .frame(width: 200, height: 200)
+                        .frame(width: 150, height: 150)
                         .cornerRadius(100)
+                } else {
+                    InitialsView(initials: String(viewModel.user.name.prefix(1)))
+                        .frame(width: 150, height: 150)
                 }
 
                 Text(viewModel.user.name)
@@ -124,7 +127,7 @@ struct ProfileView_Previews: PreviewProvider {
             viewModel: ProfileViewModel(
                 accountService: PreviewAccountService(),
                 getReviewsService: PreviewGetReviewsService(),
-                user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: UIImage(named: "profile_picture_test")?.pngData()),
+                user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: nil),
                 goToLogin: {}
             ),
             goToSettings: {},
