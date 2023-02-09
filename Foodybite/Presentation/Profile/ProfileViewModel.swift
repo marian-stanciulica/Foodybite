@@ -10,7 +10,7 @@ import Domain
 
 public final class ProfileViewModel: ObservableObject {
     public enum Error: String, Swift.Error {
-        case serverError = "Invalid Credentials"
+        case accountDeletionError = "An error occured during deletion. Please try again!"
     }
     
     private let accountService: AccountService
@@ -29,7 +29,7 @@ public final class ProfileViewModel: ObservableObject {
             try await accountService.deleteAccount()
             goToLogin()
         } catch {
-            self.error = Error.serverError
+            self.error = Error.accountDeletionError
         }
     }
 }

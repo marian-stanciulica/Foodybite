@@ -17,7 +17,7 @@ final class ProfileViewModelTests: XCTestCase {
         let expectedError = anyNSError()
         accountServiceSpy.errorToThrow = expectedError
         
-        await assertDeleteAccount(on: sut, withExpectedResult: .serverError)
+        await assertDeleteAccount(on: sut, withExpectedResult: .accountDeletionError)
     }
     
     func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
