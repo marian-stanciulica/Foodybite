@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Review: Equatable, Identifiable {
+public struct Review: Equatable, Identifiable, Hashable {
     public var id: UUID
     public let placeID: String
     public let profileImageURL: URL?

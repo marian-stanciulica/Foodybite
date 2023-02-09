@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 29.01.2023.
 //
 
-public struct Photo: Equatable {
+public struct Photo: Equatable, Hashable {
     public let width: Int
     public let height: Int
     public let photoReference: String

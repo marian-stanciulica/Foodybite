@@ -120,7 +120,8 @@ struct ProfileView_Previews: PreviewProvider {
                         review: review,
                         getPlaceDetailsService: PreviewGetPlaceDetailsService(),
                         fetchPlacePhotoService: PreviewFetchPlacePhotoService()
-                    )
+                    ),
+                    showPlaceDetails: { _ in }
                 )
             },
             goToSettings: {},

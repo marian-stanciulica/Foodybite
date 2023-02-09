@@ -14,10 +14,6 @@ final class FlowTests: XCTestCase {
         XCTAssertEqual(AuthRoute.allCases, [.signUp])
     }
     
-    func test_profileRoute_containsAllCases() {
-        XCTAssertEqual(ProfileRoute.allCases, [.settings, .changePassword, .editProfile])
-    }
-    
     func test_append_appendsValueToNavigationPath() {
         let sut = Flow<AuthRoute>()
         

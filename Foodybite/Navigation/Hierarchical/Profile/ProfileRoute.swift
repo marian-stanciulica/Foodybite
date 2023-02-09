@@ -5,8 +5,12 @@
 //  Created by Marian Stanciulica on 24.11.2022.
 //
 
-public enum ProfileRoute: Hashable, CaseIterable {
+import Domain
+
+public enum ProfileRoute: Hashable {
     case settings
     case changePassword
     case editProfile
+    case placeDetails(PlaceDetails)
+    case addReview(String)
 }

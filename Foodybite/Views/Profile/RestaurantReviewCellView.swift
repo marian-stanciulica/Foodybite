@@ -10,6 +10,7 @@ import Domain
 
 struct RestaurantReviewCellView: View {
     @StateObject var viewModel: RestaurantReviewCellViewModel
+    let showPlaceDetails: (PlaceDetails) -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -37,6 +38,11 @@ struct RestaurantReviewCellView: View {
         .task {
             await viewModel.getPlaceDetails()
         }
+        .onTapGesture {
+            if case let .requestSucceeeded(placeDetails) = viewModel.getPlaceDetailsState {
+                showPlaceDetails(placeDetails)
+            }
+        }
     }
 }
 
@@ -47,7 +53,8 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
                 review: Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Marian", reviewText: "nice", rating: 2, relativeTime: "10 hours ago"),
                 getPlaceDetailsService: PreviewGetPlaceDetailsService(),
                 fetchPlacePhotoService: PreviewFetchPlacePhotoService()
-            )
+            ),
+            showPlaceDetails: { _ in }
         )
     }
     

@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct PlaceDetails: Equatable {
+public struct PlaceDetails: Equatable, Hashable {
     public let placeID: String
     public let phoneNumber: String?
     public let name: String

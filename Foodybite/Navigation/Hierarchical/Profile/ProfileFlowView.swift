@@ -17,6 +17,7 @@ struct ProfileFlowView: View {
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
     let user: User
+    let currentLocation: Location
     
     var body: some View {
         NavigationStack(path: $flow.path) {
@@ -34,7 +35,10 @@ struct ProfileFlowView: View {
                                 review: review,
                                 getPlaceDetailsService: placesService,
                                 fetchPlacePhotoService: placesService
-                            )
+                            ),
+                            showPlaceDetails: { placeDetails in
+                                flow.append(.placeDetails(placeDetails))
+                            }
                         )
                     },
                     goToSettings: { flow.append(.settings) },
@@ -56,6 +60,21 @@ struct ProfileFlowView: View {
                     ChangePasswordView(viewModel: ChangePasswordViewModel(changePasswordService: apiService))
                 case .editProfile:
                     EditProfileView(viewModel: EditProfileViewModel(accountService: apiService))
+                case let .placeDetails(placeDetails):
+                    RestaurantDetailsView(
+                        viewModel: RestaurantDetailsViewModel(
+                            input: .fetchedPlaceDetails(placeDetails),
+                            currentLocation: currentLocation,
+                            getPlaceDetailsService: placesService,
+                            fetchPhotoService: placesService,
+                            getReviewsService: apiService
+                        )) {
+                            flow.append(.addReview(placeDetails.placeID))
+                        }
+                case let .addReview(placeID):
+                    ReviewView(viewModel: ReviewViewModel(placeID: placeID, reviewService: apiService)) {
+                        flow.navigateBack()
+                    }
                 }
             }
         }

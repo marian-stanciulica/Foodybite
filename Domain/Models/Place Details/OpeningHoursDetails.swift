@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 28.01.2023.
 //
 
-public struct OpeningHoursDetails: Equatable {
+public struct OpeningHoursDetails: Equatable, Hashable {
     public let openNow: Bool
     public let weekdayText: [String]
     
