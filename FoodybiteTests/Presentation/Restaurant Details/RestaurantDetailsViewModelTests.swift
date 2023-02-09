@@ -173,6 +173,14 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
     }
     
+    func test_getPlaceReviews_doesNotSendParamsToGetReviewsServiceWhenInputIsFetchedPlaceDetails() async {
+        let (sut, _, _, getReviewsServiceSpy) = makeSUT(input: .fetchedPlaceDetails(anyPlaceDetails()))
+        
+        await sut.getPlaceReviews()
+        
+        XCTAssertEqual(getReviewsServiceSpy.capturedValues, [])
+    }
+    
     func test_getPlaceReviews_appendsReviewsToPlaceDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
         let (sut, getPlaceDetailsServiceSpy, _, getReviewsServiceSpy) = makeSUT()
         getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
