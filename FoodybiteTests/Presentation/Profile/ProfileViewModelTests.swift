@@ -46,6 +46,16 @@ final class ProfileViewModelTests: XCTestCase {
         XCTAssertNil(getReviewsServiceSpy.capturedValues[0])
     }
     
+    func test_getAllReviews_setsStateToLoadingErrorWhenGetReviewsServiceThrowsError() async {
+        let (sut, _, getReviewsServiceSpy) = makeSUT()
+        getReviewsServiceSpy.error = anyNSError()
+        let stateSpy = PublisherSpy(sut.$getReviewsState.eraseToAnyPublisher())
+        
+        await sut.getAllReviews()
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching reviews. Please try again later!")])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(goToLogin: @escaping () -> Void = {}) -> (sut: ProfileViewModel, accountServiceSpy: AccountServiceSpy, getReviewsServiceSpy: GetReviewsServiceSpy) {
@@ -97,9 +107,15 @@ final class ProfileViewModelTests: XCTestCase {
     
     private class GetReviewsServiceSpy: GetReviewsService {
         private(set) var capturedValues = [String?]()
+        var error: Error?
         
         func getReviews(placeID: String?) async throws -> [Review] {
             capturedValues.append(placeID)
+            
+            if let error = error {
+                throw error
+            }
+            
             return []
         }
     }

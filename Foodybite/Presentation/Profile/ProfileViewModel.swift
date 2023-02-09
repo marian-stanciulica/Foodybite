@@ -15,6 +15,8 @@ public final class ProfileViewModel: ObservableObject {
     
     public enum State: Equatable {
         case idle
+        case isLoading
+        case loadingError(String)
     }
     
     private let accountService: AccountService
@@ -42,6 +44,12 @@ public final class ProfileViewModel: ObservableObject {
     }
     
     public func getAllReviews() async {
-        _ = try? await getReviewsService.getReviews(placeID: nil)
+        getReviewsState = .isLoading
+        
+        do {
+            _ = try await getReviewsService.getReviews(placeID: nil)
+        } catch {
+            getReviewsState = .loadingError("An error occured while fetching reviews. Please try again later!")
+        }
     }
 }
