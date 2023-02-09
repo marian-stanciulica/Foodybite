@@ -14,7 +14,6 @@ public final class ProfileViewModel: ObservableObject {
     }
     
     public enum State: Equatable {
-        case idle
         case isLoading
         case loadingError(String)
         case requestSucceeeded([Review])
@@ -25,7 +24,7 @@ public final class ProfileViewModel: ObservableObject {
     private let goToLogin: () -> Void
     let user: User
 
-    @Published public var getReviewsState: State = .idle
+    @Published public var getReviewsState: State = .isLoading
     @Published public var error: Error?
     
     public init(accountService: AccountService, getReviewsService: GetReviewsService, user: User, goToLogin: @escaping () -> Void) {
@@ -45,8 +44,6 @@ public final class ProfileViewModel: ObservableObject {
     }
     
     public func getAllReviews() async {
-        getReviewsState = .isLoading
-        
         do {
             let reviews = try await getReviewsService.getReviews(placeID: nil)
             getReviewsState = .requestSucceeeded(reviews)

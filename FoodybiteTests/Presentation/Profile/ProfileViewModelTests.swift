@@ -14,7 +14,7 @@ final class ProfileViewModelTests: XCTestCase {
     func test_init_getReviewsStateIsIdle() {
         let (sut, _, _) = makeSUT()
         
-        XCTAssertEqual(sut.getReviewsState, .idle)
+        XCTAssertEqual(sut.getReviewsState, .isLoading)
     }
     
     func test_deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
@@ -53,7 +53,7 @@ final class ProfileViewModelTests: XCTestCase {
         
         await sut.getAllReviews()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching reviews. Please try again later!")])
+        XCTAssertEqual(stateSpy.results, [.isLoading, .loadingError("An error occured while fetching reviews. Please try again later!")])
     }
     
     func test_getAllReviews_setsStateToRequestSucceededWhenGetReviewsServiceReturnsSuccess() async {
@@ -64,7 +64,7 @@ final class ProfileViewModelTests: XCTestCase {
 
         await sut.getAllReviews()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded(expectedReviews)])
+        XCTAssertEqual(stateSpy.results, [.isLoading, .requestSucceeeded(expectedReviews)])
     }
     
     // MARK: - Helpers
