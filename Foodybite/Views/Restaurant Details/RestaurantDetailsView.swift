@@ -82,7 +82,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
         NavigationView {
             RestaurantDetailsView(
                 viewModel: RestaurantDetailsViewModel(
-                    placeID: "#1",
+                    input: .placeIdToFetch("#1"),
                     currentLocation: Location(latitude: 1.2, longitude: 3.4),
                     getPlaceDetailsService: PreviewSearchNearbyService(),
                     fetchPhotoService: PreviewFetchPlacePhotoService(),

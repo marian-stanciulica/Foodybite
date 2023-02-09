@@ -12,7 +12,7 @@ import Domain
 final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
-        let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT()
+        let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
         getPlaceDetailsServiceSpy.result = .failure(anyError)
         
         await sut.getPlaceDetails()
@@ -127,7 +127,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     func test_getPlaceReviews_sendsInputToGetReviewsService() async {
-        let (sut, _, _, getReviewsServiceSpy) = makeSUT()
+        let (sut, _, _, getReviewsServiceSpy) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
         sut.placeDetails = anyPlaceDetails()
         
         await sut.getPlaceReviews()
@@ -170,7 +170,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RestaurantDetailsViewModel,
+    private func makeSUT(input: RestaurantDetailsViewModel.Input = .placeIdToFetch("")) -> (sut: RestaurantDetailsViewModel,
                                getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy,
                                photoServiceSpy: FetchPlacePhotoServiceSpy,
                                getReviewsServiceSpy: GetReviewsServiceSpy
@@ -178,7 +178,13 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
         let photoServiceSpy = FetchPlacePhotoServiceSpy()
         let getReviewsServiceSpy = GetReviewsServiceSpy()
-        let sut = RestaurantDetailsViewModel(placeID: anyPlaceID(), currentLocation: anyLocation, getPlaceDetailsService: getPlaceDetailsServiceSpy, fetchPhotoService: photoServiceSpy, getReviewsService: getReviewsServiceSpy)
+        let sut = RestaurantDetailsViewModel(
+            input: input,
+            currentLocation: anyLocation,
+            getPlaceDetailsService: getPlaceDetailsServiceSpy,
+            fetchPhotoService: photoServiceSpy,
+            getReviewsService: getReviewsServiceSpy
+        )
         return (sut, getPlaceDetailsServiceSpy, photoServiceSpy, getReviewsServiceSpy)
     }
     

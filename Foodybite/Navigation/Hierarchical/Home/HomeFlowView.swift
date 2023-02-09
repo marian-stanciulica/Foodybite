@@ -31,7 +31,7 @@ struct HomeFlowView: View {
                 case let .placeDetails(placeID):
                     RestaurantDetailsView(
                         viewModel: RestaurantDetailsViewModel(
-                            placeID: placeID,
+                            input: .placeIdToFetch(placeID),
                             currentLocation: currentLocation,
                             getPlaceDetailsService: placesService,
                             fetchPhotoService: placesService,

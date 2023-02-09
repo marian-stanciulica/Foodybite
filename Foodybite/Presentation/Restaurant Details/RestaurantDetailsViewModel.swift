@@ -14,7 +14,11 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         case connectionFailure = "Server connection failed. Please try again!"
     }
     
-    private let placeID: String
+    public enum Input {
+        case placeIdToFetch(String)
+    }
+    
+    private let input: Input
     private let currentLocation: Location
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPhotoService: FetchPlacePhotoService
@@ -39,8 +43,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         return "\(distance)"
     }
     
-    public init(placeID: String, currentLocation: Location, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService, getReviewsService: GetReviewsService) {
-        self.placeID = placeID
+    public init(input: Input, currentLocation: Location, getPlaceDetailsService: GetPlaceDetailsService, fetchPhotoService: FetchPlacePhotoService, getReviewsService: GetReviewsService) {
+        self.input = input
         self.currentLocation = currentLocation
         self.getPlaceDetailsService = getPlaceDetailsService
         self.fetchPhotoService = fetchPhotoService
@@ -57,27 +61,31 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     @MainActor public func getPlaceDetails() async {
-        do {
-            error = nil
-            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-            
-            photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
-            placeDetailsReviews = placeDetails.reviews
-            
-            if let firstPhoto = placeDetails.photos.first {
-                imageData = await fetchPhoto(firstPhoto)
+        if case let .placeIdToFetch(placeID) = input {
+            do {
+                error = nil
+                let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+                
+                photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
+                placeDetailsReviews = placeDetails.reviews
+                
+                if let firstPhoto = placeDetails.photos.first {
+                    imageData = await fetchPhoto(firstPhoto)
+                }
+                
+                self.placeDetails = placeDetails
+            } catch {
+                placeDetails = nil
+                self.error = .connectionFailure
             }
-            
-            self.placeDetails = placeDetails
-        } catch {
-            placeDetails = nil
-            self.error = .connectionFailure
         }
     }
     
     @MainActor public func getPlaceReviews() async {
-        if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
-            placeDetails?.reviews = placeDetailsReviews + reviews
+        if case let .placeIdToFetch(placeID) = input {
+            if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
+                placeDetails?.reviews = placeDetailsReviews + reviews
+            }
         }
     }
     
