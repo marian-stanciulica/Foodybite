@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FoodybiteNetworking
+import DomainModels
 
 struct EditProfileView: View {
     @ObservedObject var viewModel: EditProfileViewModel

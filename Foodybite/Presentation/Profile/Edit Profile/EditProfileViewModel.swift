@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FoodybiteNetworking
+import DomainModels
 
 public final class EditProfileViewModel: ObservableObject {
     public enum Error: String, Swift.Error {

@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import DomainModels
 import UIKit
-import FoodybiteNetworking
+import DomainModels
 
 public final class RestaurantDetailsViewModel: ObservableObject {
     public enum Error: String, Swift.Error {

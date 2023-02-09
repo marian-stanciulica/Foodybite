@@ -7,7 +7,6 @@
 
 import Foundation
 import DomainModels
-import FoodybiteNetworking
 
 final public class LoginViewModel: ObservableObject {
     public enum LoginError: String, Error {

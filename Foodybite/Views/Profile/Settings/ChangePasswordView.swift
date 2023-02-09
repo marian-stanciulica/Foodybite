@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FoodybiteNetworking
+import DomainModels
 
 struct ChangePasswordView: View {
     @ObservedObject var viewModel: ChangePasswordViewModel

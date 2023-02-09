@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FoodybiteNetworking
+import DomainModels
 
 struct SettingsView: View {
     let viewModel: SettingsViewModel

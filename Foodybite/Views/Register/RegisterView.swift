@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FoodybiteNetworking
+import DomainModels
 
 struct RegisterView: View {
     @StateObject var viewModel: RegisterViewModel

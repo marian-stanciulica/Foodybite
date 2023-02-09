@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FoodybiteNetworking
+import DomainModels
 
 public final class ReviewViewModel: ObservableObject {
     public enum State: Equatable {

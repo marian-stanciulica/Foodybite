@@ -7,7 +7,6 @@
 
 import SwiftUI
 import DomainModels
-import FoodybiteNetworking
 
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel

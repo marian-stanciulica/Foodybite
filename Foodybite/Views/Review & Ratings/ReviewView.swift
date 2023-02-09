@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FoodybiteNetworking
+import DomainModels
 
 struct ReviewView: View {
     @StateObject var viewModel: ReviewViewModel

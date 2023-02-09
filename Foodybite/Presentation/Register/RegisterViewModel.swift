@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FoodybiteNetworking
+import DomainModels
 
 public class RegisterViewModel: ObservableObject {
     private let signUpService: SignUpService

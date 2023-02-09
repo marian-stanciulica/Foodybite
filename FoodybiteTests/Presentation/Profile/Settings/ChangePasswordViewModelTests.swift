@@ -7,7 +7,7 @@
 
 import XCTest
 import Foodybite
-import FoodybiteNetworking
+import DomainModels
 
 final class ChangePasswordViewModelTests: XCTestCase {
 
