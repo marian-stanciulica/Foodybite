@@ -96,6 +96,22 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         XCTAssertEqual(sut.rating, rating().formatted)
     }
     
+    func test_placeName_initiallySetToEmpty() {
+        let (sut, _, _) = makeSUT()
+
+        XCTAssertTrue(sut.placeName.isEmpty)
+    }
+    
+    func test_placeName_equalsFetchedPlaceDetailsName() async {
+        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
+        let anyPlaceDetails = anyPlaceDetails()
+        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails)
+
+        await sut.getPlaceDetails()
+
+        XCTAssertEqual(sut.placeName, anyPlaceDetails.name)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(placeID: String = "") -> (sut: RestaurantReviewCellViewModel, getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy, fetchPlacePhotoServiceSpy: FetchPlacePhotoServiceSpy) {

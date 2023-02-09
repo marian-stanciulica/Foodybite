@@ -30,6 +30,14 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         return ""
     }
     
+    public var placeName: String {
+        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
+            return placeDetails.name
+        }
+        
+        return ""
+    }
+    
     public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService
