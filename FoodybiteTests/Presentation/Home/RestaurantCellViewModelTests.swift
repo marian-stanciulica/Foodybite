@@ -40,7 +40,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
 
         await sut.fetchPhoto()
 
-        XCTAssertEqual(serviceSpy.capturedValues[0], anyPhoto().photoReference)
+        XCTAssertEqual(serviceSpy.capturedValues.first, anyPhoto().photoReference)
     }
     
     func test_fetchPhoto_setsImageDataToNilWhenFetchPlacePhotoServiceThrowsError() async {

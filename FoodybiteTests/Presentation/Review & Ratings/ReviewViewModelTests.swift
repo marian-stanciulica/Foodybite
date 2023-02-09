@@ -28,9 +28,9 @@ final class ReviewViewModelTests: XCTestCase {
         await sut.addReview()
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues[0].placeID, expectedPlaceId)
-        XCTAssertEqual(reviewServiceSpy.capturedValues[0].reviewText, anyReviewText())
-        XCTAssertEqual(reviewServiceSpy.capturedValues[0].startNumber, anyStarsNumber())
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.placeID, expectedPlaceId)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.startNumber, anyStarsNumber())
     }
     
     func test_postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {

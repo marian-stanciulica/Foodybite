@@ -48,7 +48,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(photoServiceSpy.capturedValues[0], expectedPlaceDetails.photos.first?.photoReference)
+        XCTAssertEqual(photoServiceSpy.capturedValues.first, expectedPlaceDetails.photos.first?.photoReference)
     }
     
     func test_getPlaceDetails_initializePhotosImageWithNils() async {
@@ -83,7 +83,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
 
         _ = await sut.fetchPhoto(anyPhoto())
 
-        XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPhoto().photoReference)
+        XCTAssertEqual(photoServiceSpy.capturedValues.first, anyPhoto().photoReference)
     }
     
     func test_fetchPhoto_setsImageDataToNilWhenFetchPlacePhotoServiceThrowsError() async {
@@ -110,7 +110,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         
         await sut.fetchPhoto(at: 1)
         
-        XCTAssertEqual(photoServiceSpy.capturedValues[0], anyPlaceDetails().photos[2].photoReference)
+        XCTAssertEqual(photoServiceSpy.capturedValues.first, anyPlaceDetails().photos[2].photoReference)
     }
     
     func test_fetchPhotoAtIndex_updatesPhotosDataAtGivenIndex() async {
