@@ -35,6 +35,12 @@ class RestaurantReviewCellViewModel: ObservableObject {
 
 final class RestaurantReviewCellViewModelTests: XCTestCase {
     
+    func test_init_stateIsLoading() {
+        let (sut, _) = makeSUT()
+        
+        XCTAssertEqual(sut.getPlaceDetailsState, .isLoading)
+    }
+    
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
         let anyPlaceID = anyPlaceID()
         let (sut, getPlaceDetailsServiceSpy) = makeSUT(placeID: anyPlaceID)
