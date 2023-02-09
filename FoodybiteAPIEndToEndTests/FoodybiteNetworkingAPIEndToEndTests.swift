@@ -204,23 +204,29 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     
     private func expectedReviewsForFirstPlaceID() -> [Review] {
         [
-            Review(profileImageURL: nil,
+            Review(
+                placeID: "place #1",
+                profileImageURL: nil,
                 profileImageData: nil,
                 authorName: testingNewName,
                 reviewText: firstReviewText(),
                 rating: firstStarsNumber(),
-                relativeTime: "14 hours ago")
+                relativeTime: "14 hours ago"
+            )
         ]
     }
     
     private func expectedReviewsForSecondPlaceID() -> [Review] {
         [
-            Review(profileImageURL: nil,
+            Review(
+                placeID: "place #2",
+                profileImageURL: nil,
                 profileImageData: nil,
                 authorName: testingNewName,
                 reviewText: secondReviewText(),
                 rating: secondStarsNumber(),
-                relativeTime: "3 years ago")
+                relativeTime: "3 years ago"
+            )
         ]
     }
 }

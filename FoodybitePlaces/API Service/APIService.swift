@@ -64,6 +64,7 @@ extension APIService: GetPlaceDetailsService {
             openingHoursDetails: openingHours,
             reviews: response.result.reviews.map {
                 Domain.Review(
+                    placeID: placeID,
                     profileImageURL: $0.profilePhotoURL,
                     profileImageData: nil,
                     authorName: $0.authorName,

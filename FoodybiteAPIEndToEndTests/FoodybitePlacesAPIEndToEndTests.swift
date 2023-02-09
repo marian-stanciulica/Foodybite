@@ -85,6 +85,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
             reviews: [
                 Review(
                     id: UUID(uuidString: "19AA1457-40CB-4FFA-BA80-B2A3532EEC72")!,
+                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a-/AD5-WCmuoPq7Qv-tV7LfTiF1mZyxmrAEi_XstJvGwV12rA=s128-c0x00000000-cc-rp-mo-ba5"),
                     profileImageData: nil,
                     authorName: "Teo Gerald",
@@ -94,6 +95,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "A13A852C-2784-4F05-A3B8-11A166DC7ACE")!,
+                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a-/AD5-WClGanbJiMX3rUcO4HOX_jzYVPam9tOXe6VOJayFvvA=s128-c0x00000000-cc-rp-mo"),
                     profileImageData: nil,
                     authorName: "Roberta MP",
@@ -103,6 +105,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "3FC4E8FF-3957-4016-B7FB-E96D0702AB8C")!,
+                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a-/AD5-WClSZj-j3ArJJVODvrbO33dGXjPvi537Jn7aQRWdrw=s128-c0x00000000-cc-rp-mo-ba3"),
                     profileImageData: nil,
                     authorName: "Voitescu Alin",
@@ -112,6 +115,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "C687B640-49D7-49F2-9243-690C0C78B374")!,
+                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a/AEdFTp6JWaT3eZMQNjqrV9vMjKEtJt8iouW-huxN7N1Z=s128-c0x00000000-cc-rp-mo-ba3"),
                     profileImageData: nil,
                     authorName: "Victoria Kassis",
@@ -121,6 +125,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "13165133-BBE2-4F66-8D61-54511DEFA6F1")!,
+                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a/AEdFTp5ViUd_CX3-otX0oXhFwHBFNL5BUbwxSDu3MLw-=s128-c0x00000000-cc-rp-mo-ba6"),
                     profileImageData: nil,
                     authorName: "Gunilla S",
