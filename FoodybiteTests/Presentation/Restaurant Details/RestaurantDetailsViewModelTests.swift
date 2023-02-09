@@ -48,6 +48,16 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertNil(sut.error)
     }
     
+    func test_getPlaceDetails_updatesPlaceDetailsWhenInputIsFetchedPlaceDetails() async {
+        let expectedPlaceDetails = anyPlaceDetails()
+        let (sut, _, _, _) = makeSUT(input: .fetchedPlaceDetails(expectedPlaceDetails))
+
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(sut.placeDetails, expectedPlaceDetails)
+        XCTAssertNil(sut.error)
+    }
+    
     func test_getPlaceDetails_triggersFetchPhotoForFirstPhoto() async {
         let (sut, getPlaceDetailsServiceSpy, photoServiceSpy, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()

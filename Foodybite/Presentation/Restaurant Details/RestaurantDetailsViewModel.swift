@@ -62,7 +62,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     @MainActor public func getPlaceDetails() async {
-        if case let .placeIdToFetch(placeID) = input {
+        switch input {
+        case let .placeIdToFetch(placeID):
             do {
                 error = nil
                 let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
@@ -79,6 +80,9 @@ public final class RestaurantDetailsViewModel: ObservableObject {
                 placeDetails = nil
                 self.error = .connectionFailure
             }
+            
+        case let .fetchedPlaceDetails(placeDetails):
+            self.placeDetails = placeDetails
         }
     }
     
