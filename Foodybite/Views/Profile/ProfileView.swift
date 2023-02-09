@@ -111,6 +111,7 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView(
             viewModel: ProfileViewModel(
                 accountService: PreviewAccountService(),
+                getReviewsService: PreviewGetReviewsService(),
                 user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: nil),
                 goToLogin: {}
             ),
@@ -122,5 +123,11 @@ struct ProfileView_Previews: PreviewProvider {
     private class PreviewAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
+    }
+    
+    private class PreviewGetReviewsService: GetReviewsService {
+        func getReviews(placeID: String?) async throws -> [Review] {
+            []
+        }
     }
 }

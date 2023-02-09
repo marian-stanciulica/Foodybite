@@ -11,14 +11,14 @@ import Domain
 
 final class ProfileViewModelTests: XCTestCase {
 
-    func test_init_stateIsIdle() {
-        let (sut, _) = makeSUT()
+    func test_init_getReviewsStateIsIdle() {
+        let (sut, _, _) = makeSUT()
         
         XCTAssertEqual(sut.getReviewsState, .idle)
     }
     
     func test_deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
-        let (sut, accountServiceSpy) = makeSUT()
+        let (sut, accountServiceSpy, _) = makeSUT()
         
         let expectedError = anyNSError()
         accountServiceSpy.errorToThrow = expectedError
@@ -28,7 +28,7 @@ final class ProfileViewModelTests: XCTestCase {
     
     func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
         var goToLoginCalled = false
-        let (sut, _) = makeSUT() {
+        let (sut, _, _) = makeSUT() {
             goToLoginCalled = true
         }
         
@@ -37,12 +37,25 @@ final class ProfileViewModelTests: XCTestCase {
         XCTAssertTrue(goToLoginCalled)
     }
     
+    func test_getAllReviews_sendsNilPlaceIdToGetReviewsService() async {
+        let (sut, _, getReviewsServiceSpy) = makeSUT()
+        
+        await sut.getAllReviews()
+        
+        XCTAssertEqual(getReviewsServiceSpy.capturedValues.count, 1)
+        XCTAssertNil(getReviewsServiceSpy.capturedValues[0])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(goToLogin: @escaping () -> Void = {}) -> (sut: ProfileViewModel, accountServiceSpy: AccountServiceSpy) {
+    private func makeSUT(goToLogin: @escaping () -> Void = {}) -> (sut: ProfileViewModel, accountServiceSpy: AccountServiceSpy, getReviewsServiceSpy: GetReviewsServiceSpy) {
         let accountServiceSpy = AccountServiceSpy()
-        let sut = ProfileViewModel(accountService: accountServiceSpy, user: anyUser(), goToLogin: goToLogin)
-        return (sut, accountServiceSpy)
+        let getReviewsServiceSpy = GetReviewsServiceSpy()
+        let sut = ProfileViewModel(accountService: accountServiceSpy,
+                                   getReviewsService: getReviewsServiceSpy,
+                                   user: anyUser(),
+                                   goToLogin: goToLogin)
+        return (sut, accountServiceSpy, getReviewsServiceSpy)
     }
     
     private func anyNSError() -> NSError {
@@ -80,5 +93,14 @@ final class ProfileViewModelTests: XCTestCase {
         }
         
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
+    }
+    
+    private class GetReviewsServiceSpy: GetReviewsService {
+        private(set) var capturedValues = [String?]()
+        
+        func getReviews(placeID: String?) async throws -> [Review] {
+            capturedValues.append(placeID)
+            return []
+        }
     }
 }

@@ -22,6 +22,7 @@ struct ProfileFlowView: View {
                 ProfileView(
                     viewModel: ProfileViewModel(
                         accountService: apiService,
+                        getReviewsService: apiService,
                         user: user,
                         goToLogin: { userLoggedIn = false }
                     ),

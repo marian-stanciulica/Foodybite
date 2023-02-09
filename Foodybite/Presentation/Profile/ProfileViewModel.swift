@@ -18,14 +18,16 @@ public final class ProfileViewModel: ObservableObject {
     }
     
     private let accountService: AccountService
+    private let getReviewsService: GetReviewsService
     private let goToLogin: () -> Void
     let user: User
 
     @Published public var getReviewsState: State = .idle
     @Published public var error: Error?
     
-    public init(accountService: AccountService, user: User, goToLogin: @escaping () -> Void) {
+    public init(accountService: AccountService, getReviewsService: GetReviewsService, user: User, goToLogin: @escaping () -> Void) {
         self.accountService = accountService
+        self.getReviewsService = getReviewsService
         self.user = user
         self.goToLogin = goToLogin
     }
@@ -37,5 +39,9 @@ public final class ProfileViewModel: ObservableObject {
         } catch {
             self.error = Error.accountDeletionError
         }
+    }
+    
+    public func getAllReviews() async {
+        _ = try? await getReviewsService.getReviews(placeID: nil)
     }
 }
