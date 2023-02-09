@@ -15,7 +15,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         case requestSucceeeded(T)
     }
     
-    private let placeID: String
+    private let review: Review
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPlacePhotoService: FetchPlacePhotoService
     
@@ -23,10 +23,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
     @Published public var fetchPhotoState: State<Data> = .isLoading
     
     public var rating: String {
-        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
-            return String(format: "%.1f", placeDetails.rating)
-        }
-        return ""
+        "\(review.rating)"
     }
     
     public var placeName: String {
@@ -43,15 +40,15 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         return ""
     }
     
-    public init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService) {
-        self.placeID = placeID
+    public init(review: Review, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService) {
+        self.review = review
         self.getPlaceDetailsService = getPlaceDetailsService
         self.fetchPlacePhotoService = fetchPlacePhotoService
     }
     
     public func getPlaceDetails() async {
         do {
-            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: review.placeID)
             getPlaceDetailsState = .requestSucceeeded(placeDetails)
             
             if let firstPhoto = placeDetails.photos.first {

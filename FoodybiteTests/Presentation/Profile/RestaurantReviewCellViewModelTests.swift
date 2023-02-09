@@ -24,13 +24,13 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     }
     
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
-        let anyPlaceID = anyPlaceID()
-        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT(placeID: anyPlaceID)
+        let review = Self.anyReview()
+        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT(review: review)
         
         await sut.getPlaceDetails()
         
         XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, anyPlaceID)
+        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, review.placeID)
     }
     
     func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
@@ -90,10 +90,11 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     }
     
     func test_rating_returnsFormattedRating() {
-        let (sut, _, _) = makeSUT()
+        let review = Self.anyReview()
+        let (sut, _, _) = makeSUT(review: review)
         sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
         
-        XCTAssertEqual(sut.rating, rating().formatted)
+        XCTAssertEqual(sut.rating, "\(review.rating)")
     }
     
     func test_placeName_initiallySetToEmpty() {
@@ -130,10 +131,10 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(placeID: String = "") -> (sut: RestaurantReviewCellViewModel, getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy, fetchPlacePhotoServiceSpy: FetchPlacePhotoServiceSpy) {
+    private func makeSUT(review: Review = anyReview()) -> (sut: RestaurantReviewCellViewModel, getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy, fetchPlacePhotoServiceSpy: FetchPlacePhotoServiceSpy) {
         let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
         let fetchPlacePhotoServiceSpy = FetchPlacePhotoServiceSpy()
-        let sut = RestaurantReviewCellViewModel(placeID: placeID, getPlaceDetailsService: getPlaceDetailsServiceSpy, fetchPlacePhotoService: fetchPlacePhotoServiceSpy)
+        let sut = RestaurantReviewCellViewModel(review: review, getPlaceDetailsService: getPlaceDetailsServiceSpy, fetchPlacePhotoService: fetchPlacePhotoServiceSpy)
         return (sut, getPlaceDetailsServiceSpy, fetchPlacePhotoServiceSpy)
     }
     
@@ -149,12 +150,16 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         "any data".data(using: .utf8)!
     }
     
+    private static func anyReview() -> Review {
+        Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author", reviewText: "very nice", rating: 5, relativeTime: "1 hour ago")
+    }
+    
     private func anyPlaceDetails() -> PlaceDetails {
         PlaceDetails(
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
-            rating: rating().raw,
+            rating: 3.4,
             openingHoursDetails: OpeningHoursDetails(
                 openNow: true,
                 weekdayText: [
@@ -181,10 +186,6 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
             location: Location(latitude: 4.4, longitude: 6.9),
             photos: anyPhotos()
         )
-    }
-    
-    private func rating() -> (raw: Double, formatted: String) {
-        (4.52, "4.5")
     }
     
     private func anyPhoto() -> Photo {

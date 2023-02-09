@@ -44,7 +44,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantReviewCellView(
             viewModel: RestaurantReviewCellViewModel(
-                placeID: "",
+                review: Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Marian", reviewText: "nice", rating: 2, relativeTime: "10 hours ago"),
                 getPlaceDetailsService: PreviewGetPlaceDetailsService(),
                 fetchPlacePhotoService: PreviewFetchPlacePhotoService()
             )
