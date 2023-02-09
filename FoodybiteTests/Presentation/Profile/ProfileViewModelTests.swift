@@ -48,12 +48,23 @@ final class ProfileViewModelTests: XCTestCase {
     
     func test_getAllReviews_setsStateToLoadingErrorWhenGetReviewsServiceThrowsError() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
-        getReviewsServiceSpy.error = anyNSError()
+        getReviewsServiceSpy.result = .failure(anyNSError())
         let stateSpy = PublisherSpy(sut.$getReviewsState.eraseToAnyPublisher())
         
         await sut.getAllReviews()
         
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching reviews. Please try again later!")])
+    }
+    
+    func test_getAllReviews_setsStateToRequestSucceededWhenGetReviewsServiceReturnsSuccess() async {
+        let (sut, _, getReviewsServiceSpy) = makeSUT()
+        let expectedReviews = anyReviews()
+        getReviewsServiceSpy.result = .success(expectedReviews)
+        let stateSpy = PublisherSpy(sut.$getReviewsState.eraseToAnyPublisher())
+
+        await sut.getAllReviews()
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded(expectedReviews)])
     }
     
     // MARK: - Helpers
@@ -74,6 +85,13 @@ final class ProfileViewModelTests: XCTestCase {
     
     private func anyUser() -> User {
         User(id: UUID(), name: "User", email: "user@test.com", profileImage: nil)
+    }
+    
+    private func anyReviews() -> [Review] {
+        [
+            Review(profileImageURL: nil, profileImageData: nil, authorName: "Author #1", reviewText: "It was nice", rating: 4, relativeTime: "1 hour ago"),
+            Review(profileImageURL: nil, profileImageData: nil, authorName: "Author #2", reviewText: "Didn't like it", rating: 1, relativeTime: "2 years ago")
+        ]
     }
     
     private func assertDeleteAccount(on sut: ProfileViewModel,
@@ -107,13 +125,13 @@ final class ProfileViewModelTests: XCTestCase {
     
     private class GetReviewsServiceSpy: GetReviewsService {
         private(set) var capturedValues = [String?]()
-        var error: Error?
+        var result: Result<[Review], Error>?
         
         func getReviews(placeID: String?) async throws -> [Review] {
             capturedValues.append(placeID)
             
-            if let error = error {
-                throw error
+            if let result = result {
+                return try result.get()
             }
             
             return []

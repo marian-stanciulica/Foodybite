@@ -17,6 +17,7 @@ public final class ProfileViewModel: ObservableObject {
         case idle
         case isLoading
         case loadingError(String)
+        case requestSucceeeded([Review])
     }
     
     private let accountService: AccountService
@@ -47,7 +48,8 @@ public final class ProfileViewModel: ObservableObject {
         getReviewsState = .isLoading
         
         do {
-            _ = try await getReviewsService.getReviews(placeID: nil)
+            let reviews = try await getReviewsService.getReviews(placeID: nil)
+            getReviewsState = .requestSucceeeded(reviews)
         } catch {
             getReviewsState = .loadingError("An error occured while fetching reviews. Please try again later!")
         }
