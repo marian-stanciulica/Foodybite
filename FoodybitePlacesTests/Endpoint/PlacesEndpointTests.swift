@@ -119,6 +119,10 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
     
+    func test_autocomplete_methodIsGet() {
+        XCTAssertEqual(makeAutocompleteSUT().method, .get)
+    }
+    
     
     // MARK: - Helpers
     
