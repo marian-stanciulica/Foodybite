@@ -61,35 +61,31 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         }
     }
     
-    @MainActor public func getPlaceDetails() async {
+    @MainActor public func getPlaceDetails() async {        
         switch input {
         case let .placeIdToFetch(placeID):
             do {
-                error = nil
                 let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-                
-                photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
                 placeDetailsReviews = placeDetails.reviews
-                
-                if let firstPhoto = placeDetails.photos.first {
-                    imageData = await fetchPhoto(firstPhoto)
-                }
-                
                 self.placeDetails = placeDetails
+                
+                await initializeFirstPhotoFetch(placeDetails: placeDetails)
             } catch {
-                placeDetails = nil
                 self.error = .connectionFailure
             }
             
         case let .fetchedPlaceDetails(placeDetails):
             self.placeDetails = placeDetails
-            
-            if let firstPhoto = placeDetails.photos.first {
-                imageData = await fetchPhoto(firstPhoto)
-            }
-            
-            photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
+            await initializeFirstPhotoFetch(placeDetails: placeDetails)
         }
+    }
+    
+    private func initializeFirstPhotoFetch(placeDetails: PlaceDetails) async {
+        if let firstPhoto = placeDetails.photos.first {
+            imageData = await fetchPhoto(firstPhoto)
+        }
+        
+        photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
     }
     
     @MainActor public func getPlaceReviews() async {
