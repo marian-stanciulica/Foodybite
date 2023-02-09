@@ -87,6 +87,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
             if let firstPhoto = placeDetails.photos.first {
                 imageData = await fetchPhoto(firstPhoto)
             }
+            
+            photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
         }
     }
     

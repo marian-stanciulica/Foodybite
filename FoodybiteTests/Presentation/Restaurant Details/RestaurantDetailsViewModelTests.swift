@@ -77,11 +77,23 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(photoServiceSpy.capturedValues.first, expectedPlaceDetails.photos.first?.photoReference)
     }
     
-    func test_getPlaceDetails_initializePhotosImageWithNils() async {
+    func test_getPlaceDetails_initializesPhotosDataWithNilWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
         let (sut, getPlaceDetailsServiceSpy, _, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
         
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(sut.photosData.count, expectedPlaceDetails.photos.count - 1)
+        sut.photosData.forEach {
+            XCTAssertNil($0)
+        }
+    }
+    
+    func test_getPlaceDetails_initializesPhotosDataWithNilWhenInputIsFetchedPlaceDetails() async {
+        let expectedPlaceDetails = anyPlaceDetails()
+        let (sut, _, _, _) = makeSUT(input: .fetchedPlaceDetails(expectedPlaceDetails))
+        
         await sut.getPlaceDetails()
         
         XCTAssertEqual(sut.photosData.count, expectedPlaceDetails.photos.count - 1)
