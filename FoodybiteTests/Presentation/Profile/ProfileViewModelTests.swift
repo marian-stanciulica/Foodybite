@@ -7,7 +7,7 @@
 
 import XCTest
 import Foodybite
-import DomainModels
+import Domain
 
 final class ProfileViewModelTests: XCTestCase {
 

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import DomainModels
+import Domain
 import FoodybiteNetworking
 
 final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {

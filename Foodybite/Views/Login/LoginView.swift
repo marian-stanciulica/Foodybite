@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel

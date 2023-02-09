@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 
 struct RestaurantDetailsView: View {
     @StateObject var viewModel: RestaurantDetailsViewModel

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public final class ChangePasswordViewModel: ObservableObject {
     private let changePasswordService: ChangePasswordService

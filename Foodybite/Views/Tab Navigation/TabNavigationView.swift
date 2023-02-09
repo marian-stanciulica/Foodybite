@@ -8,7 +8,7 @@
 import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
-import DomainModels
+import Domain
 
 struct TabNavigationView: View {
     @StateObject var tabRouter: TabRouter

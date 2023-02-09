@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 28.05.2022.
 //
 
-import DomainModels
+import Domain
 import SwiftUI
 
 struct RestaurantCell: View {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public class RegisterViewModel: ObservableObject {
     private let signUpService: SignUpService

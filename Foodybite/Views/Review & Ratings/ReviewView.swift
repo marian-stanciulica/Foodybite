@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 
 struct ReviewView: View {
     @StateObject var viewModel: ReviewViewModel

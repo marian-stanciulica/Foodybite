@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 01.06.2022.
 //
 
-import DomainModels
+import Domain
 import SwiftUI
 
 struct ReviewCell: View {

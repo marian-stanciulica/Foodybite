@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 final public class LoginViewModel: ObservableObject {
     public enum LoginError: String, Error {

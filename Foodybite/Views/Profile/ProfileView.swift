@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 
 struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel

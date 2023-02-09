@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public final class TabNavigationViewModel: ObservableObject {
     public enum State: Equatable {

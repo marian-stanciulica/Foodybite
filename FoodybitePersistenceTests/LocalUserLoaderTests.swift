@@ -7,7 +7,7 @@
 
 import XCTest
 import FoodybitePersistence
-import DomainModels
+import Domain
 
 final class LocalUserLoaderTests: XCTestCase {
 

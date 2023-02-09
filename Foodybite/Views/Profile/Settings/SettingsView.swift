@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 
 struct SettingsView: View {
     let viewModel: SettingsViewModel

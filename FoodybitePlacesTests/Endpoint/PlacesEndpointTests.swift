@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import FoodybitePlaces
-import DomainModels
+import Domain
 
 final class PlacesEndpointTests: XCTestCase {
     
@@ -22,7 +22,7 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     func test_searchNearby_queryItems() throws {
-        let location = DomainModels.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
         let sut = makeSearchNearbySUT(location: location, radius: radius)
         let urlRequest = try sut.createURLRequest()
@@ -95,7 +95,7 @@ final class PlacesEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSearchNearbySUT(location: DomainModels.Location = DomainModels.Location(latitude: 0, longitude: 0), radius: Int = 0) -> PlacesEndpoint {
+    private func makeSearchNearbySUT(location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> PlacesEndpoint {
         return PlacesEndpoint.searchNearby(location: location, radius: radius)
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import DomainModels
+import Domain
 
 public final class RestaurantDetailsViewModel: ObservableObject {
     public enum Error: String, Swift.Error {

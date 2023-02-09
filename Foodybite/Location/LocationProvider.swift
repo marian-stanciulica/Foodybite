@@ -6,7 +6,7 @@
 //
 
 import CoreLocation
-import DomainModels
+import Domain
 
 public final class LocationProvider: NSObject, LocationProviding, ObservableObject {
     private var locationManager: LocationManager

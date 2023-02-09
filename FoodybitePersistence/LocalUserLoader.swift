@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 03.11.2022.
 //
 
-import DomainModels
+import Domain
 
 public class LocalUserLoader {
     private let store: UserStore

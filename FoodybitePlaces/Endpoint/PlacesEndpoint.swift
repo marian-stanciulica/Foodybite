@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public enum PlacesEndpoint: Endpoint {
-    case searchNearby(location: DomainModels.Location, radius: Int)
+    case searchNearby(location: Domain.Location, radius: Int)
     case getPlaceDetails(placeID: String)
     case getPlacePhoto(photoReference: String)
     

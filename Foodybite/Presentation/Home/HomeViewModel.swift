@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public final class HomeViewModel: ObservableObject {
     public enum Error: String, Swift.Error {

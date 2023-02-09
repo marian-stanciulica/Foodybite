@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 import FoodybitePlaces
 
 struct SearchView: View {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public class APIService {
     private let loader: ResourceLoader
@@ -17,16 +17,16 @@ public class APIService {
 }
 
 extension APIService: SearchNearbyService {
-    public func searchNearby(location: DomainModels.Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Domain.Location, radius: Int) async throws -> [NearbyPlace] {
         let endpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
         
         return response.results.map {
-            var photo: DomainModels.Photo?
+            var photo: Domain.Photo?
             
             if let firstPhoto = $0.photos?.first {
-                photo = DomainModels.Photo(width: firstPhoto.width, height: firstPhoto.height, photoReference: firstPhoto.photoReference)
+                photo = Domain.Photo(width: firstPhoto.width, height: firstPhoto.height, photoReference: firstPhoto.photoReference)
             }
             
             return NearbyPlace(
@@ -34,7 +34,7 @@ extension APIService: SearchNearbyService {
                 placeName: $0.name,
                 isOpen: $0.openingHours?.openNow ?? false,
                 rating: $0.rating ?? 0,
-                location: DomainModels.Location(
+                location: Domain.Location(
                     latitude: $0.geometry.location.lat,
                     longitude: $0.geometry.location.lng
                 ),
@@ -50,10 +50,10 @@ extension APIService: GetPlaceDetailsService {
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
         
-        var openingHours: DomainModels.OpeningHoursDetails?
+        var openingHours: Domain.OpeningHoursDetails?
         
         if let hours = response.result.openingHours {
-            openingHours = DomainModels.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
+            openingHours = Domain.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
         }
         
         return PlaceDetails(
@@ -63,7 +63,7 @@ extension APIService: GetPlaceDetailsService {
             rating: response.result.rating,
             openingHoursDetails: openingHours,
             reviews: response.result.reviews.map {
-                DomainModels.Review(
+                Domain.Review(
                     profileImageURL: $0.profilePhotoURL,
                     profileImageData: nil,
                     authorName: $0.authorName,
@@ -72,12 +72,12 @@ extension APIService: GetPlaceDetailsService {
                     relativeTime: $0.relativeTimeDescription
                 )
             },
-            location: DomainModels.Location(
+            location: Domain.Location(
                 latitude: response.result.geometry.location.lat,
                 longitude: response.result.geometry.location.lng
             ),
             photos: response.result.photos.map {
-                DomainModels.Photo(width: $0.width, height: $0.height, photoReference: $0.photoReference)
+                Domain.Photo(width: $0.width, height: $0.height, photoReference: $0.photoReference)
             }
         )
     }

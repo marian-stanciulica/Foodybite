@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 05.11.2022.
 //
 
-import DomainModels
+import Domain
 
 public struct LocalUser: Equatable {
     public let id: UUID

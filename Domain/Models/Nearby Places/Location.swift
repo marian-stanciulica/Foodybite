@@ -1,6 +1,6 @@
 //
 //  Location.swift
-//  DomainModels
+//  Domain
 //
 //  Created by Marian Stanciulica on 28.01.2023.
 //

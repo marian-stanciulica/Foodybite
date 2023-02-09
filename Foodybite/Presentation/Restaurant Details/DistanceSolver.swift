@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 28.01.2023.
 //
 
-import DomainModels
+import Domain
 import CoreLocation
 
 public final class DistanceSolver {

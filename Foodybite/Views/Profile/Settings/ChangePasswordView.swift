@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainModels
+import Domain
 
 struct ChangePasswordView: View {
     @ObservedObject var viewModel: ChangePasswordViewModel

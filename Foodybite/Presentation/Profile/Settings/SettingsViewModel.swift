@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DomainModels
+import Domain
 
 public final class SettingsViewModel {
     private let logoutService: LogoutService

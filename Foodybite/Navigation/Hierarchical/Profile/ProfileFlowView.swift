@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 24.11.2022.
 //
 
-import DomainModels
+import Domain
 import SwiftUI
 import FoodybiteNetworking
 

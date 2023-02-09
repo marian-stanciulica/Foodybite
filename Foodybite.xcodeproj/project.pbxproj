@@ -48,8 +48,8 @@
 		0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
-		0F215CBA29826D24000F88F4 /* DomainModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; };
-		0F215CBB29826D24000F88F4 /* DomainModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F215CBA29826D24000F88F4 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* Domain.framework */; };
+		0F215CBB29826D24000F88F4 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
 		0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */; };
 		0F2A26B42930D9FE00387A1C /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */; };
@@ -67,8 +67,8 @@
 		0F2BACBC29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */; };
 		0F2BACBD29829D3B006D4A7F /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F2BACC42982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */; };
-		0F2BACCA2982BBAB006D4A7F /* DomainModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; };
-		0F2BACCB2982BBAB006D4A7F /* DomainModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F2BACCA2982BBAB006D4A7F /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* Domain.framework */; };
+		0F2BACCB2982BBAB006D4A7F /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
 		0F412E7E2962C78E00FDDF41 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
 		0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E822962C78E00FDDF41 /* URLSessionHTTPClientTests.swift */; };
@@ -117,8 +117,8 @@
 		0F423AA929856C82009EB345 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AA829856C82009EB345 /* Review.swift */; };
 		0F423AAB29858BA9009EB345 /* DistanceSolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AAA29858BA9009EB345 /* DistanceSolverTests.swift */; };
 		0F423AAD29858F1F009EB345 /* DistanceSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AAC29858F1F009EB345 /* DistanceSolver.swift */; };
-		0F423AB02985A7B2009EB345 /* DomainModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; };
-		0F423AB12985A7B2009EB345 /* DomainModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F423AB02985A7B2009EB345 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* Domain.framework */; };
+		0F423AB12985A7B2009EB345 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E121291FBDBD0058ABCB /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F423AB42985A7C9009EB345 /* FoodybiteNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E11D291FBDBD0058ABCB /* FoodybiteNetworking.framework */; };
 		0F423AB52985A7C9009EB345 /* FoodybiteNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB0E11D291FBDBD0058ABCB /* FoodybiteNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F423AB82985A7CC009EB345 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */; };
@@ -350,7 +350,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0F215CBB29826D24000F88F4 /* DomainModels.framework in Embed Frameworks */,
+				0F215CBB29826D24000F88F4 /* Domain.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,7 +361,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0F2BACCB2982BBAB006D4A7F /* DomainModels.framework in Embed Frameworks */,
+				0F2BACCB2982BBAB006D4A7F /* Domain.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +374,7 @@
 			files = (
 				0F423AB52985A7C9009EB345 /* FoodybiteNetworking.framework in Embed Frameworks */,
 				0F423AB92985A7CC009EB345 /* FoodybitePlaces.framework in Embed Frameworks */,
-				0F423AB12985A7B2009EB345 /* DomainModels.framework in Embed Frameworks */,
+				0F423AB12985A7B2009EB345 /* Domain.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,7 +553,7 @@
 		0FB0E11E291FBDBD0058ABCB /* FoodybiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E11F291FBDBD0058ABCB /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E120291FBDBD0058ABCB /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FB0E121291FBDBD0058ABCB /* DomainModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FB0E121291FBDBD0058ABCB /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E122291FBDBD0058ABCB /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB0E127291FBED90058ABCB /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		0FB0E129291FC7630058ABCB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -618,7 +618,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F2BACCA2982BBAB006D4A7F /* DomainModels.framework in Frameworks */,
+				0F2BACCA2982BBAB006D4A7F /* Domain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +655,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F215CBA29826D24000F88F4 /* DomainModels.framework in Frameworks */,
+				0F215CBA29826D24000F88F4 /* Domain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,7 +673,7 @@
 			files = (
 				0F423AB42985A7C9009EB345 /* FoodybiteNetworking.framework in Frameworks */,
 				0F423AB82985A7CC009EB345 /* FoodybitePlaces.framework in Frameworks */,
-				0F423AB02985A7B2009EB345 /* DomainModels.framework in Frameworks */,
+				0F423AB02985A7B2009EB345 /* Domain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,13 +766,13 @@
 			path = FoodybiteTests;
 			sourceTree = "<group>";
 		};
-		0F19B476291647DB00A8FC8F /* DomainModels */ = {
+		0F19B476291647DB00A8FC8F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				0F423AA229855F64009EB345 /* Models */,
 				0FA6BE292994E829003E1912 /* Protocols */,
 			);
-			path = DomainModels;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
@@ -1358,7 +1358,7 @@
 		0F7137AE2841F8340058757A = {
 			isa = PBXGroup;
 			children = (
-				0F19B476291647DB00A8FC8F /* DomainModels */,
+				0F19B476291647DB00A8FC8F /* Domain */,
 				0F7137B92841F8340058757A /* Foodybite */,
 				0F108808291E2397007A28FA /* FoodybiteTests */,
 				0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */,
@@ -1374,7 +1374,7 @@
 				0FB0E11E291FBDBD0058ABCB /* FoodybiteTests.xctest */,
 				0FB0E11F291FBDBD0058ABCB /* FoodybiteNetworkingTests.xctest */,
 				0FB0E120291FBDBD0058ABCB /* FoodybitePersistence.framework */,
-				0FB0E121291FBDBD0058ABCB /* DomainModels.framework */,
+				0FB0E121291FBDBD0058ABCB /* Domain.framework */,
 				0FB0E122291FBDBD0058ABCB /* FoodybitePersistenceTests.xctest */,
 				0F412E762962C78D00FDDF41 /* FoodybitePlaces.framework */,
 				0F412E7D2962C78E00FDDF41 /* FoodybitePlacesTests.xctest */,
@@ -2038,9 +2038,9 @@
 			productReference = 0FB0E11E291FBDBD0058ABCB /* FoodybiteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0F19B474291647DB00A8FC8F /* DomainModels */ = {
+		0F19B474291647DB00A8FC8F /* Domain */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModels" */;
+			buildConfigurationList = 0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "Domain" */;
 			buildPhases = (
 				0F19B470291647DB00A8FC8F /* Headers */,
 				0F19B471291647DB00A8FC8F /* Sources */,
@@ -2051,9 +2051,9 @@
 			);
 			dependencies = (
 			);
-			name = DomainModels;
+			name = Domain;
 			productName = DomainModels;
-			productReference = 0FB0E121291FBDBD0058ABCB /* DomainModels.framework */;
+			productReference = 0FB0E121291FBDBD0058ABCB /* Domain.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */ = {
@@ -2244,7 +2244,7 @@
 				0F0BDA1F28F83FD500E91FD0 /* FoodybiteNetworkingTests */,
 				0F95A875290D024400806AE9 /* FoodybitePersistence */,
 				0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */,
-				0F19B474291647DB00A8FC8F /* DomainModels */,
+				0F19B474291647DB00A8FC8F /* Domain */,
 				0F412E752962C78D00FDDF41 /* FoodybitePlaces */,
 				0F412E7C2962C78E00FDDF41 /* FoodybitePlacesTests */,
 				0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
@@ -2683,12 +2683,12 @@
 		};
 		0F19B48F2916486A00A8FC8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
+			target = 0F19B474291647DB00A8FC8F /* Domain */;
 			targetProxy = 0F19B48E2916486A00A8FC8F /* PBXContainerItemProxy */;
 		};
 		0F215CBD29826D24000F88F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
+			target = 0F19B474291647DB00A8FC8F /* Domain */;
 			targetProxy = 0F215CBC29826D24000F88F4 /* PBXContainerItemProxy */;
 		};
 		0F2BACBF29829D3B006D4A7F /* PBXTargetDependency */ = {
@@ -2703,7 +2703,7 @@
 		};
 		0F2BACCD2982BBAB006D4A7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
+			target = 0F19B474291647DB00A8FC8F /* Domain */;
 			targetProxy = 0F2BACCC2982BBAB006D4A7F /* PBXContainerItemProxy */;
 		};
 		0F412E802962C78E00FDDF41 /* PBXTargetDependency */ = {
@@ -2718,7 +2718,7 @@
 		};
 		0F423AB32985A7B2009EB345 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0F19B474291647DB00A8FC8F /* DomainModels */;
+			target = 0F19B474291647DB00A8FC8F /* Domain */;
 			targetProxy = 0F423AB22985A7B2009EB345 /* PBXContainerItemProxy */;
 		};
 		0F423AB72985A7C9009EB345 /* PBXTargetDependency */ = {
@@ -2962,7 +2962,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.marian.DomainModels;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.Domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3001,7 +3001,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.marian.DomainModels;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.Domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3551,7 +3551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "DomainModels" */ = {
+		0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "Domain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F19B485291647DC00A8FC8F /* Debug */,

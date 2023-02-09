@@ -7,7 +7,7 @@
 
 import XCTest
 import CoreLocation
-import DomainModels
+import Domain
 import Foodybite
 
 final class LocationProviderTests: XCTestCase {

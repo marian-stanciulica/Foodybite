@@ -1,6 +1,6 @@
 //
 //  FetchPlacePhotoService.swift
-//  DomainModels
+//  Domain
 //
 //  Created by Marian Stanciulica on 29.01.2023.
 //

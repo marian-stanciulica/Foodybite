@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import FoodybitePlaces
-import DomainModels
+import Domain
 
 final class APIServiceTests: XCTestCase {
     
@@ -19,7 +19,7 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_searchNearby_searchNearbyParamsUsedToCreateEndpoint() async throws {
-        let location = DomainModels.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
         
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
@@ -33,7 +33,7 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
-        let location = DomainModels.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
         
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
@@ -46,7 +46,7 @@ final class APIServiceTests: XCTestCase {
     }
     
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
-        let location = DomainModels.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
         
         let expectedResponse = anySearchNearbyResponse()
@@ -56,7 +56,7 @@ final class APIServiceTests: XCTestCase {
                 placeName: $0.name,
                 isOpen: $0.openingHours?.openNow ?? false,
                 rating: $0.rating ?? 0,
-                location: DomainModels.Location(
+                location: Domain.Location(
                     latitude: $0.geometry.location.lat,
                     longitude: $0.geometry.location.lng
                 ),
@@ -104,10 +104,10 @@ final class APIServiceTests: XCTestCase {
     func test_getPlaceDetails_receiveExpectedPlaceDetailsResponse() async throws {
         let expectedResponse = anyPlaceDetails()
         
-        var openingHours: DomainModels.OpeningHoursDetails?
+        var openingHours: Domain.OpeningHoursDetails?
         
         if let hours = expectedResponse.result.openingHours {
-            openingHours = DomainModels.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
+            openingHours = Domain.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
         }
         
         let expected = PlaceDetails(
@@ -117,7 +117,7 @@ final class APIServiceTests: XCTestCase {
             rating: expectedResponse.result.rating,
             openingHoursDetails: openingHours,
             reviews: expectedResponse.result.reviews.map {
-                DomainModels.Review(
+                Domain.Review(
                     profileImageURL: $0.profilePhotoURL,
                     profileImageData: nil,
                     authorName: $0.authorName,
@@ -126,7 +126,7 @@ final class APIServiceTests: XCTestCase {
                     relativeTime: $0.relativeTimeDescription
                 )
             },
-            location: DomainModels.Location(
+            location: Domain.Location(
                 latitude: expectedResponse.result.geometry.location.lat,
                 longitude: expectedResponse.result.geometry.location.lng
             ),
