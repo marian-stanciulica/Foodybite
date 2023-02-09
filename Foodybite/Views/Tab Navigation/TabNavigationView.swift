@@ -39,7 +39,7 @@ struct TabNavigationView: View {
                     NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
                 }
             case .account:
-                ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), apiService: apiService, user: user)
+                ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), apiService: apiService, placesService: placesService, user: user)
             }
         }
         .task {

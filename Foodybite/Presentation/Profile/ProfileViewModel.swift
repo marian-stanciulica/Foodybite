@@ -43,7 +43,7 @@ public final class ProfileViewModel: ObservableObject {
         }
     }
     
-    public func getAllReviews() async {
+    @MainActor public func getAllReviews() async {
         do {
             let reviews = try await getReviewsService.getReviews(placeID: nil)
             getReviewsState = .requestSucceeeded(reviews)

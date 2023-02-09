@@ -8,12 +8,14 @@
 import Domain
 import SwiftUI
 import FoodybiteNetworking
+import FoodybitePlaces
 
 struct ProfileFlowView: View {
     @Binding var page: Page
     @ObservedObject var flow: Flow<ProfileRoute>
     @AppStorage("userLoggedIn") var userLoggedIn = false
-    let apiService: APIService
+    let apiService: FoodybiteNetworking.APIService
+    let placesService: FoodybitePlaces.APIService
     let user: User
     
     var body: some View {
@@ -26,6 +28,15 @@ struct ProfileFlowView: View {
                         user: user,
                         goToLogin: { userLoggedIn = false }
                     ),
+                    cell: { review in
+                        RestaurantReviewCellView(
+                            viewModel: RestaurantReviewCellViewModel(
+                                review: review,
+                                getPlaceDetailsService: placesService,
+                                fetchPlacePhotoService: placesService
+                            )
+                        )
+                    },
                     goToSettings: { flow.append(.settings) },
                     goToEditProfile: { flow.append(.editProfile) }
                 )

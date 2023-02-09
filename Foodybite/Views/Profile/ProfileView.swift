@@ -8,8 +8,9 @@
 import SwiftUI
 import Domain
 
-struct ProfileView: View {
-    @ObservedObject var viewModel: ProfileViewModel
+struct ProfileView<Cell: View>: View {
+    @StateObject var viewModel: ProfileViewModel
+    let cell: (Review) -> Cell
     let goToSettings: () -> Void
     let goToEditProfile: () -> Void
     @State var editProfileAlertDisplayed = false
@@ -80,31 +81,14 @@ struct ProfileView: View {
                     .foregroundColor(.gray.opacity(0.2))
                     .padding(.top)
 
-//                LazyVStack {
-//                    ForEach(0...50, id: \.self) { _ in
-//                        RestaurantCell(
-//                            viewModel: RestaurantCellViewModel(
-//                                nearbyPlace: NearbyPlace(
-//                                    placeID: "place id",
-//                                    placeName: "place name",
-//                                    isOpen: false,
-//                                    rating: 4.4,
-//                                    location: Location(latitude: 0, longitude: 0),
-//                                    photo: nil
-//                                )
-//                            )
-//                        )
-//                        .background(.white)
-//                        .cornerRadius(16)
-//                        .aspectRatio(1, contentMode: .fit)
-//                        .overlay(
-//                             RoundedRectangle(cornerRadius: 16)
-//                                .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-//                        )
-//                        .padding(.horizontal, 16)
-//                        .padding(.vertical, 4)
-//                    }
-//                }
+                if case let .requestSucceeeded(reviews) = viewModel.getReviewsState {
+                    LazyVStack {
+                        ForEach(reviews, id: \.id) { review in
+                            cell(review)
+                                .padding()
+                        }
+                    }
+                }
             }
             .navigationTitle("My Profile")
             .navigationBarTitleDisplayMode(.inline)
@@ -130,6 +114,15 @@ struct ProfileView_Previews: PreviewProvider {
                 user: User(id: UUID(), name: "Marian", email: "user@mail.com", profileImage: nil),
                 goToLogin: {}
             ),
+            cell: { review in
+                RestaurantReviewCellView(
+                    viewModel: RestaurantReviewCellViewModel(
+                        review: review,
+                        getPlaceDetailsService: PreviewGetPlaceDetailsService(),
+                        fetchPlacePhotoService: PreviewFetchPlacePhotoService()
+                    )
+                )
+            },
             goToSettings: {},
             goToEditProfile: {}
         )
@@ -143,8 +136,31 @@ struct ProfileView_Previews: PreviewProvider {
     private class PreviewGetReviewsService: GetReviewsService {
         func getReviews(placeID: String?) async throws -> [Review] {
             [
-                Review(profileImageURL: nil, profileImageData: nil, authorName: "", reviewText: "", rating: 1, relativeTime: ""),
+                Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "", reviewText: "", rating: 1, relativeTime: ""),
             ]
+        }
+    }
+    
+    private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
+        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+            PlaceDetails(
+                phoneNumber: "",
+                name: "Place name",
+                address: "Place address",
+                rating: 3,
+                openingHoursDetails: nil,
+                reviews: [],
+                location: Location(latitude: 0, longitude: 0),
+                photos: [
+                    Photo(width: 100, height: 100, photoReference: "")
+                ]
+            )
+        }
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
         }
     }
 }

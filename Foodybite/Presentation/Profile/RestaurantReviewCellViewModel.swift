@@ -46,7 +46,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         self.fetchPlacePhotoService = fetchPlacePhotoService
     }
     
-    public func getPlaceDetails() async {
+    @MainActor public func getPlaceDetails() async {
         do {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: review.placeID)
             getPlaceDetailsState = .requestSucceeeded(placeDetails)
@@ -59,7 +59,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         }
     }
     
-    private func fetchPhoto(_ photo: Photo) async {
+    @MainActor private func fetchPhoto(_ photo: Photo) async {
         do {
             let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
             fetchPhotoState = .requestSucceeeded(photoData)
