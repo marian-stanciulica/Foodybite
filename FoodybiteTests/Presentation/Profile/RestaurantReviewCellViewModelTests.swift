@@ -22,6 +22,14 @@ class RestaurantReviewCellViewModel: ObservableObject {
     @Published public var getPlaceDetailsState: State<PlaceDetails> = .isLoading
     @Published public var fetchPhotoState: State<Data> = .isLoading
     
+    public var rating: String {
+        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
+            return String(format: "%.1f", placeDetails.rating)
+        }
+        
+        return ""
+    }
+    
     init(placeID: String, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService) {
         self.placeID = placeID
         self.getPlaceDetailsService = getPlaceDetailsService
@@ -129,6 +137,13 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         await sut.getPlaceDetails()
         
         XCTAssertEqual(stateSpy.results, [.isLoading, .requestSucceeeded(expectedData)])
+    }
+    
+    func test_rating_returnsFormattedRating() {
+        let (sut, _, _) = makeSUT()
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
+        
+        XCTAssertEqual(sut.rating, rating().formatted)
     }
     
     // MARK: - Helpers
