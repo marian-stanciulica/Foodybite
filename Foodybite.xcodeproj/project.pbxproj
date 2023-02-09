@@ -181,6 +181,7 @@
 		0FA6BE3729952027003E1912 /* RestaurantReviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3629952027003E1912 /* RestaurantReviewCellViewModel.swift */; };
 		0FA6BE3929952116003E1912 /* RestaurantReviewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3829952116003E1912 /* RestaurantReviewCellView.swift */; };
 		0FA6BE3B299522FA003E1912 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3A299522FA003E1912 /* AddressView.swift */; };
+		0FA6BE3D29957463003E1912 /* AutocompletePlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */; };
 		0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
@@ -551,6 +552,7 @@
 		0FA6BE3629952027003E1912 /* RestaurantReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellViewModel.swift; sourceTree = "<group>"; };
 		0FA6BE3829952116003E1912 /* RestaurantReviewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellView.swift; sourceTree = "<group>"; };
 		0FA6BE3A299522FA003E1912 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
+		0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePlacesService.swift; sourceTree = "<group>"; };
 		0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderTests.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
@@ -1093,6 +1095,7 @@
 				0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */,
 				0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */,
 				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
+				0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */,
 			);
 			path = "Places Protocols";
 			sourceTree = "<group>";
@@ -2502,6 +2505,7 @@
 				0F423AA729855FDD009EB345 /* OpeningHoursDetails.swift in Sources */,
 				0F423AA929856C82009EB345 /* Review.swift in Sources */,
 				0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */,
+				0FA6BE3D29957463003E1912 /* AutocompletePlacesService.swift in Sources */,
 				0FA6BE2C2994E8A0003E1912 /* SignUpService.swift in Sources */,
 				0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */,
 				0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */,
