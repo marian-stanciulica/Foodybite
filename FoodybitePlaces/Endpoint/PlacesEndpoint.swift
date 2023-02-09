@@ -12,6 +12,7 @@ public enum PlacesEndpoint: Endpoint {
     case searchNearby(location: Domain.Location, radius: Int)
     case getPlaceDetails(placeID: String)
     case getPlacePhoto(photoReference: String)
+    case autocomplete(location: Domain.Location, radius: Int)
     
     var host: String {
         "maps.googleapis.com"
@@ -25,6 +26,8 @@ public enum PlacesEndpoint: Endpoint {
             return "/maps/api/place/details/json"
         case .getPlacePhoto:
             return "/maps/api/place/photo"
+        case .autocomplete:
+            return ""
         }
     }
     
@@ -52,6 +55,8 @@ public enum PlacesEndpoint: Endpoint {
                 URLQueryItem(name: "photo_reference", value: photoReference),
                 URLQueryItem(name: "maxwidth", value: "400"),
             ]
+        case .autocomplete:
+            return []
         }
     }
 }

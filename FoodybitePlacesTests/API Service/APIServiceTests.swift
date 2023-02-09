@@ -110,7 +110,10 @@ final class APIServiceTests: XCTestCase {
             openingHours = Domain.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
         }
         
+        let placeID = expectedResponse.result.placeID
+        
         let expected = PlaceDetails(
+            placeID: placeID,
             phoneNumber: expectedResponse.result.internationalPhoneNumber,
             name: expectedResponse.result.name,
             address: expectedResponse.result.formattedAddress,
@@ -118,6 +121,7 @@ final class APIServiceTests: XCTestCase {
             openingHoursDetails: openingHours,
             reviews: expectedResponse.result.reviews.map {
                 Domain.Review(
+                    placeID: placeID,
                     profileImageURL: $0.profilePhotoURL,
                     profileImageData: nil,
                     authorName: $0.authorName,

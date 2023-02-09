@@ -92,6 +92,12 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(makePlacePhotoSUT().method, .get)
     }
     
+    // MARK: - Autocomplete
+    
+    func test_autocomplete_baseURL() {
+        XCTAssertEqual(makePlacePhotoSUT().host, "maps.googleapis.com")
+    }
+    
     
     // MARK: - Helpers
     
@@ -105,6 +111,10 @@ final class PlacesEndpointTests: XCTestCase {
     
     private func makePlacePhotoSUT(photoReference: String = "") -> PlacesEndpoint {
         return PlacesEndpoint.getPlacePhoto(photoReference: photoReference)
+    }
+    
+    private func makeAutocompleteSUT(location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> PlacesEndpoint {
+        return PlacesEndpoint.autocomplete(location: location, radius: radius)
     }
     
 }
