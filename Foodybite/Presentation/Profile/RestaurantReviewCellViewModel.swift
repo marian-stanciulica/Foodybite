@@ -26,7 +26,6 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
             return String(format: "%.1f", placeDetails.rating)
         }
-        
         return ""
     }
     
@@ -34,7 +33,13 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
             return placeDetails.name
         }
-        
+        return ""
+    }
+    
+    public var placeAddress: String {
+        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
+            return placeDetails.address
+        }
         return ""
     }
     
