@@ -92,3 +92,9 @@ extension APIService: FetchPlacePhotoService {
         return try await loader.getData(for: request)
     }
 }
+
+extension APIService: AutocompletePlacesService {
+    public func autocomplete(input: String, location: Domain.Location, radius: Int) async throws -> [String] {
+        []
+    }
+}

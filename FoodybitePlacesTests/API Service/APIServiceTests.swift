@@ -187,6 +187,14 @@ final class APIServiceTests: XCTestCase {
         XCTAssertEqual(expectedData, receivedResponse)
     }
     
+    // MARK: - AutocompletePlacesService
+    
+    func test_conformsToAutocompletePlacesService() {
+        let (sut, _) = makeSUT(response: anyData())
+        XCTAssertNotNil(sut as AutocompletePlacesService)
+    }
+    
+    
     // MARK: - Helpers
     
     private func makeSUT(response: Decodable) -> (sut: APIService, loader: ResourceLoaderSpy) {
