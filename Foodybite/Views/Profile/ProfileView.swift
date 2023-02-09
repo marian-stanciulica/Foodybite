@@ -17,10 +17,12 @@ struct ProfileView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Image("profile_picture_test")
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .cornerRadius(100)
+                if let imageData = viewModel.user.profileImage, let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                        .cornerRadius(100)
+                }
 
                 Text(viewModel.user.name)
                     .font(.title)
@@ -122,7 +124,7 @@ struct ProfileView_Previews: PreviewProvider {
             viewModel: ProfileViewModel(
                 accountService: PreviewAccountService(),
                 getReviewsService: PreviewGetReviewsService(),
-                user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: nil),
+                user: User(id: UUID(), name: "User", email: "user@mail.com", profileImage: UIImage(named: "profile_picture_test")?.pngData()),
                 goToLogin: {}
             ),
             goToSettings: {},
