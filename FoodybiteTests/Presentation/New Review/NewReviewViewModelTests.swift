@@ -16,6 +16,13 @@ final class NewReviewViewModel: ObservableObject {
         case requestSucceeeded(T)
     }
     
+    public enum ReviewState: Equatable {
+        case idle
+        case isLoading
+        case loadingError(String)
+        case requestSucceeeded
+    }
+    
     private let autocompletePlacesService: AutocompletePlacesService
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPlacePhotoService: FetchPlacePhotoService
@@ -24,6 +31,7 @@ final class NewReviewViewModel: ObservableObject {
     
     @Published public var getPlaceDetailsState: State<PlaceDetails> = .idle
     @Published public var fetchPhotoState: State<Data> = .idle
+    @Published public var postReviewState: ReviewState = .idle
     
     public var searchText = ""
     public var reviewText = ""
@@ -84,13 +92,18 @@ final class NewReviewViewModel: ObservableObject {
     
     func postReview() async {
         guard postReviewEnabled else { return }
+        postReviewState = .isLoading
         
         if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
-            try? await addReviewService.addReview(
-                placeID: placeDetails.placeID,
-                reviewText: reviewText,
-                starsNumber: starsNumber,
-                createdAt: Date())
+            do {
+                try await addReviewService.addReview(
+                    placeID: placeDetails.placeID,
+                    reviewText: reviewText,
+                    starsNumber: starsNumber,
+                    createdAt: Date())
+            } catch {
+                postReviewState = .loadingError("Review couldn't be posted. Please try again later!")
+            }
         }
     }
 }
@@ -102,6 +115,7 @@ final class NewReviewViewModelTests: XCTestCase {
         
         XCTAssertEqual(sut.getPlaceDetailsState, .idle)
         XCTAssertEqual(sut.fetchPhotoState, .idle)
+        XCTAssertEqual(sut.postReviewState, .idle)
         XCTAssertEqual(sut.searchText, "")
         XCTAssertEqual(sut.reviewText, "")
         XCTAssertEqual(sut.starsNumber, 0)
@@ -278,6 +292,20 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.placeID, anyPlaceDetails.placeID)
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
+    }
+    
+    func test_postReview_setsStateToLoadingErrorWhenAddReviewServiceThrowsError() async {
+        let (sut, _, _, _, reviewServiceSpy) = makeSUT()
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
+        sut.reviewText = anyReviewText()
+        sut.starsNumber = anyStarsNumber()
+        
+        reviewServiceSpy.error = anyError()
+        let stateSpy = PublisherSpy(sut.$postReviewState.eraseToAnyPublisher())
+        
+        await sut.postReview()
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("Review couldn't be posted. Please try again later!")])
     }
     
     // MARK: - Helpers
