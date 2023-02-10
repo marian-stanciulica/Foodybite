@@ -101,6 +101,8 @@ final class NewReviewViewModel: ObservableObject {
                     reviewText: reviewText,
                     starsNumber: starsNumber,
                     createdAt: Date())
+                
+                postReviewState = .requestSucceeeded
             } catch {
                 postReviewState = .loadingError("Review couldn't be posted. Please try again later!")
             }
@@ -306,6 +308,19 @@ final class NewReviewViewModelTests: XCTestCase {
         await sut.postReview()
         
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("Review couldn't be posted. Please try again later!")])
+    }
+    
+    func test_postReview_setsStateToRequestSucceededWhenAddReviewServiceReturnsSuccess() async {
+        let (sut, _, _, _, _) = makeSUT()
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
+        sut.reviewText = anyReviewText()
+        sut.starsNumber = anyStarsNumber()
+        
+        let stateSpy = PublisherSpy(sut.$postReviewState.eraseToAnyPublisher())
+
+        await sut.postReview()
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded])
     }
     
     // MARK: - Helpers
