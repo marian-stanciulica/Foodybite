@@ -29,6 +29,15 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         }
     }
     
+    func test_endToEndAutocomplete_matchesFixedTestAutocompletePredictions() async {
+        do {
+            let receivedAutocompletePredictions = try await autocomplete()
+            XCTAssertEqual(receivedAutocompletePredictions, expectedAutocompletePredictions)
+        } catch {
+            XCTFail("Expected successful nearby places request, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIService {
@@ -47,6 +56,14 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         let location = Location(latitude: 44.441016, longitude: 26.0975475)
         let radius = 50
         return try await apiService.searchNearby(location: location, radius: radius)
+    }
+    
+    private func autocomplete(file: StaticString = #filePath, line: UInt = #line) async throws -> [AutocompletePrediction] {
+        let apiService = makeSUT(file: file, line: line)
+        let input = "Trattoria"
+        let location = Location(latitude: 44.441016, longitude: 26.0975475)
+        let radius = 10
+        return try await apiService.autocomplete(input: input, location: location, radius: radius)
     }
     
     private var expectedNearbyPlaces: [NearbyPlace] {
@@ -77,6 +94,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     private var expectedPlaceDetails: PlaceDetails {
         PlaceDetails(
+            placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
             phoneNumber: nil,
             name: "Trattoria Il Calcio Ateneu",
             address: "langa Ateneul Roman, Strada Benjamin Franklin nr 1-3, București 030167, Romania",
@@ -186,6 +204,31 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                     photoReference: "AfLeUgPS3bS-WadkHOwdyqbtbjfR4gm_pWVu3SBej6umbAR0J9U3fMBwkzyAX8Y0Fp9d5i0S8YmdXouOzI7XKi6HM9KWuXqguYEsr_wAf1Mb5_2rTMfcRXhwXtnwLn-PB1SZI0dt3uutyhRtSIbtUGKQwDp-9MhLZCx9S04v_02OP5yHJWok")
             ]
         )
+    }
+    
+    private var expectedAutocompletePredictions: [AutocompletePrediction] {
+        [
+            AutocompletePrediction(
+                placePrediction: "Trattoria Don Vito, Strada D. I. Mendeleev, Bucharest, Romania",
+                placeID: "ChIJgxvxNE7_sUARNMOzDLF21PU"
+            ),
+            AutocompletePrediction(
+                placePrediction: "Trattoria Il Calcio Ateneu, Strada Benjamin Franklin, Bucharest, Romania",
+                placeID: "ChIJW823ek__sUARZVGTsg0Yx70"
+            ),
+            AutocompletePrediction(
+                placePrediction: "Trattoria Il Calcio Magheru, Strada Anastasie Simu, Bucharest, Romania",
+                placeID: "ChIJ18kE60f_sUARUUt7OD7LOVk"
+            ),
+            AutocompletePrediction(
+                placePrediction: "Trattoria Mezzaluna, Strada Crăciun, Bucharest, Romania",
+                placeID: "ChIJW1WlL634sUAR2DY7DgRv5ig"
+            ),
+            AutocompletePrediction(
+                placePrediction: "Trattoria Adagio Cismigiu, Strada Știrbei Vodă, Bucharest, Romania",
+                placeID: "ChIJ23Up4Fr_sUARS127PwOniRU"
+            )
+        ]
     }
     
 }
