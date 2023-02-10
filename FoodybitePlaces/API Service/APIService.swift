@@ -97,7 +97,9 @@ extension APIService: AutocompletePlacesService {
     public func autocomplete(input: String, location: Domain.Location, radius: Int) async throws -> [AutocompletePrediction] {
         let endpoint = PlacesEndpoint.autocomplete(input: input, location: location, radius: radius)
         let request = try endpoint.createURLRequest()
-        let _: AutocompleteResponse = try await loader.get(for: request)
-        return []
+        let response: AutocompleteResponse = try await loader.get(for: request)
+        return response.predictions.map {
+            AutocompletePrediction(placePrediction: $0.description, placeID: $0.placeID)
+        }
     }
 }
