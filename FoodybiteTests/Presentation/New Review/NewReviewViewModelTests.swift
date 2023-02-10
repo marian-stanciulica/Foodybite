@@ -20,6 +20,7 @@ final class NewReviewViewModel {
     public var searchText = ""
     public var reviewText = ""
     public var starsNumber = 0
+    public var autocompleteResults = [AutocompletePrediction]()
     
     init(autocompletePlacesService: AutocompletePlacesService, location: Location) {
         self.autocompletePlacesService = autocompletePlacesService
@@ -56,6 +57,16 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(autocompleteSpy.capturedValues.first?.radius, radius)
     }
     
+    func test_autocomplete_setsResultsToEmptyWhenAutocompletePlacesServiceThrowsError() async {
+        let (sut, autocompleteSpy) = makeSUT()
+        autocompleteSpy.error = anyError()
+        
+        XCTAssertTrue(sut.autocompleteResults.isEmpty)
+        
+        await sut.autocomplete()
+        XCTAssertTrue(sut.autocompleteResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(location: Location? = nil) -> (sut: NewReviewViewModel, autocompleteSpy: AutocompletePlacesServiceSpy) {
@@ -81,11 +92,21 @@ final class NewReviewViewModelTests: XCTestCase {
         3
     }
     
+    private func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
+    }
+    
     private class AutocompletePlacesServiceSpy: AutocompletePlacesService {
         private(set) var capturedValues = [(input: String, location: Location, radius: Int)]()
+        var error: Error?
         
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             capturedValues.append((input, location, radius))
+            
+            if let error = error {
+                throw error
+            }
+            
             return []
         }
     }
