@@ -19,19 +19,29 @@ final class NewReviewViewModel: ObservableObject {
     private let autocompletePlacesService: AutocompletePlacesService
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPlacePhotoService: FetchPlacePhotoService
+    private let addReviewService: AddReviewService
     private let location: Location
     
     @Published public var getPlaceDetailsState: State<PlaceDetails> = .idle
     @Published public var fetchPhotoState: State<Data> = .idle
+    
     public var searchText = ""
     public var reviewText = ""
     public var starsNumber = 0
     public var autocompleteResults = [AutocompletePrediction]()
     
-    init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService, location: Location) {
+    public var postReviewEnabled: Bool {
+        if case .requestSucceeeded = getPlaceDetailsState {
+            return !reviewText.isEmpty && starsNumber > 0
+        }
+        return false
+    }
+    
+    init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService, addReviewService: AddReviewService, location: Location) {
         self.autocompletePlacesService = autocompletePlacesService
         self.getPlaceDetailsService = getPlaceDetailsService
         self.fetchPlacePhotoService = fetchPlacePhotoService
+        self.addReviewService = addReviewService
         self.location = location
     }
     
@@ -71,12 +81,14 @@ final class NewReviewViewModel: ObservableObject {
             fetchPhotoState = .loadingError("An error occured while fetching place photo. Please try again later!")
         }
     }
+    
+    
 }
 
 final class NewReviewViewModelTests: XCTestCase {
     
     func test_init_stateIsIdle() {
-        let (sut, _, _, _) = makeSUT()
+        let (sut, _, _, _, _) = makeSUT()
         
         XCTAssertEqual(sut.getPlaceDetailsState, .idle)
         XCTAssertEqual(sut.fetchPhotoState, .idle)
@@ -88,7 +100,7 @@ final class NewReviewViewModelTests: XCTestCase {
     func test_autocomplete_sendsParametersCorrectlyToAutocompletePlacesService() async {
         let anyLocation = anyLocation()
         let radius = 100
-        let (sut, autocompleteSpy, _, _) = makeSUT(location: anyLocation)
+        let (sut, autocompleteSpy, _, _, _) = makeSUT(location: anyLocation)
         sut.searchText = anySearchText()
         
         await sut.autocomplete()
@@ -100,7 +112,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_autocomplete_setsResultsToEmptyWhenAutocompletePlacesServiceThrowsError() async {
-        let (sut, autocompleteSpy, _, _) = makeSUT()
+        let (sut, autocompleteSpy, _, _, _) = makeSUT()
         autocompleteSpy.result = .failure(anyError())
         
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
@@ -110,7 +122,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_autocomplete_setsResultsToReceivedResultsWhenAutocompletePlacesServiceReturnsSuccessfully() async {
-        let (sut, autocompleteSpy, _, _) = makeSUT()
+        let (sut, autocompleteSpy, _, _, _) = makeSUT()
         let expectedResults = anyAutocompletePredictions()
         
         autocompleteSpy.result = .success(expectedResults)
@@ -123,7 +135,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_autocomplete_resetsStateForPlaceDetailsAndPlacePhoto() async {
-        let (sut, _, _, _) = makeSUT()
+        let (sut, _, _, _, _) = makeSUT()
         sut.getPlaceDetailsState = .isLoading
         sut.fetchPhotoState = .isLoading
 
@@ -134,7 +146,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
-        let (sut, _, getPlaceDetailsServiceSpy, _) = makeSUT()
+        let (sut, _, getPlaceDetailsServiceSpy, _, _) = makeSUT()
         let anyPlaceID = anyPlaceID()
         
         await sut.getPlaceDetails(placeID: anyPlaceID)
@@ -144,7 +156,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
-        let (sut, _, getPlaceDetailsServiceSpy, _) = makeSUT()
+        let (sut, _, getPlaceDetailsServiceSpy, _, _) = makeSUT()
         getPlaceDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
 
@@ -154,7 +166,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
-        let (sut, _, getPlaceDetailsServiceSpy, _) = makeSUT()
+        let (sut, _, getPlaceDetailsServiceSpy, _, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
@@ -165,7 +177,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_getPlaceDetails_triggersFetchPhoto() async {
-        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy) = makeSUT()
+        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         
@@ -175,7 +187,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_fetchPhoto_setsFetchPhotoStateToLoadingErrorWhenFetchPlacePhotoServiceThrowsError() async {
-        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy) = makeSUT()
+        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy, _) = makeSUT()
         let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
 
         getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
@@ -187,7 +199,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_fetchPhoto_setsFetchPhotoStateToRequestSucceeededWhenFetchPlacePhotoServiceThrowsError() async {
-        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy) = makeSUT()
+        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy, _) = makeSUT()
         let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
         let expectedData = anyData()
         
@@ -199,26 +211,54 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded(expectedData)])
     }
     
+    func test_postReviewEnabled_isTrueWhenPlaceDetailsExistsStarsAreNotZeroAndReviewIsNotEmpty() async {
+        let (sut, _, _, _, _) = makeSUT()
+        XCTAssertFalse(sut.postReviewEnabled)
+        
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
+        XCTAssertFalse(sut.postReviewEnabled)
+
+        sut.starsNumber = 3
+        XCTAssertFalse(sut.postReviewEnabled)
+
+        sut.reviewText = anyReviewText()
+        XCTAssertTrue(sut.postReviewEnabled)
+        
+        sut.getPlaceDetailsState = .idle
+        XCTAssertFalse(sut.postReviewEnabled)
+
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
+        sut.starsNumber = 0
+        XCTAssertFalse(sut.postReviewEnabled)
+        
+        sut.starsNumber = 3
+        sut.reviewText = ""
+        XCTAssertFalse(sut.postReviewEnabled)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(location: Location? = nil) -> (
         sut: NewReviewViewModel,
         autocompleteSpy: AutocompletePlacesServiceSpy,
         getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy,
-        fetchPlacePhotoServiceSpy: FetchPlacePhotoServiceSpy
+        fetchPlacePhotoServiceSpy: FetchPlacePhotoServiceSpy,
+        addReviewServiceSpy: AddReviewServiceSpy
     ) {
         let autocompleteSpy = AutocompletePlacesServiceSpy()
         let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
         let fetchPlacePhotoServiceSpy = FetchPlacePhotoServiceSpy()
+        let addReviewServiceSpy = AddReviewServiceSpy()
 
         let defaultLocation = Location(latitude: 0, longitude: 0)
         let sut = NewReviewViewModel(
             autocompletePlacesService: autocompleteSpy,
             getPlaceDetailsService: getPlaceDetailsServiceSpy,
             fetchPlacePhotoService: fetchPlacePhotoServiceSpy,
+            addReviewService: addReviewServiceSpy,
             location: location ?? defaultLocation
         )
-        return (sut, autocompleteSpy, getPlaceDetailsServiceSpy, fetchPlacePhotoServiceSpy)
+        return (sut, autocompleteSpy, getPlaceDetailsServiceSpy, fetchPlacePhotoServiceSpy, addReviewServiceSpy)
     }
     
     private func anyData() -> Data {
@@ -351,6 +391,19 @@ final class NewReviewViewModelTests: XCTestCase {
             }
             
             return Data()
+        }
+    }
+    
+    private class AddReviewServiceSpy: AddReviewService {
+        private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int, createdAt: Date)]()
+        var error: Error?
+        
+        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+            capturedValues.append((placeID, reviewText, starsNumber, createdAt))
+            
+            if let error = error {
+                throw error
+            }
         }
     }
     
