@@ -39,61 +39,11 @@ struct NewReviewView: View {
             }
             .padding()
             
-            VStack(spacing: 0) {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
-                        .padding(.leading)
-                    
-                    TextField("Search Restaurant", text: $viewModel.searchText)
-                        .padding(.vertical, 12)
-                        .foregroundColor(.black)
-                        .onChange(of: viewModel.searchText) { newValue in
-                            Task {
-                                await viewModel.autocomplete()
-                            }
-                        }
-                    
-                    if !viewModel.searchText.isEmpty {
-                        Button {
-                            viewModel.searchText = ""
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.gray)
-                                .padding(.horizontal)
-                        }
-                    }
-                }
-                
-                if !viewModel.autocompleteResults.isEmpty {
-                    VStack(alignment: .leading) {
-                        ForEach(viewModel.autocompleteResults, id: \.placeID) { result in
-                            VStack {
-                                RoundedRectangle(cornerRadius: 0.5)
-                                    .frame(height: 1)
-                                    .foregroundColor(.gray.opacity(0.2))
-                                    .padding(0)
-                                
-                                HStack {
-                                    Text(result.placePrediction)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                }
-                                .padding(.horizontal)
-                                .padding(.top, 8)
-                            }
-                        }
-                    }
-                    .padding(.bottom)
-                }
+            SearchView(
+                searchText: $viewModel.searchText,
+                autocompleteResults: $viewModel.autocompleteResults) {
+                await viewModel.autocomplete()
             }
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-            )
-            .padding()
             
             Text("Ratings")
                 .font(.title)
