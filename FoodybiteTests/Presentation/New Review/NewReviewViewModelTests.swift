@@ -83,6 +83,8 @@ final class NewReviewViewModel: ObservableObject {
     }
     
     func postReview() async {
+        guard postReviewEnabled else { return }
+        
         if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
             try? await addReviewService.addReview(
                 placeID: placeDetails.placeID,
@@ -242,6 +244,25 @@ final class NewReviewViewModelTests: XCTestCase {
         sut.starsNumber = 3
         sut.reviewText = ""
         XCTAssertFalse(sut.postReviewEnabled)
+    }
+    
+    func test_postReview_isGuardedByPostReviewEnabled() async {
+        let (sut, _, _, _, reviewServiceSpy) = makeSUT()
+
+        await sut.postReview()
+        XCTAssertTrue(reviewServiceSpy.capturedValues.isEmpty)
+        
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails())
+        await sut.postReview()
+        XCTAssertTrue(reviewServiceSpy.capturedValues.isEmpty)
+        
+        sut.starsNumber = 3
+        await sut.postReview()
+        XCTAssertTrue(reviewServiceSpy.capturedValues.isEmpty)
+        
+        sut.reviewText = anyReviewText()
+        await sut.postReview()
+        XCTAssertFalse(reviewServiceSpy.capturedValues.isEmpty)
     }
     
     func test_postReview_sendsParametersCorrectlyToAddReviewService() async {
