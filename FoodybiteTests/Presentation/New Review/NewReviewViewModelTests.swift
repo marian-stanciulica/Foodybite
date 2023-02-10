@@ -11,6 +11,7 @@ import Domain
 final class NewReviewViewModel {
     public enum State: Equatable {
         case idle
+        case isLoading
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
@@ -33,6 +34,10 @@ final class NewReviewViewModel {
         } catch {
             autocompleteResults = []
         }
+    }
+    
+    func getPlaceDetails() {
+        getPlaceDetailsState = .isLoading
     }
 }
 
@@ -82,6 +87,14 @@ final class NewReviewViewModelTests: XCTestCase {
         autocompleteSpy.result = .failure(anyError())
         await sut.autocomplete()
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
+    }
+    
+    func test_getPlaceDetails_setsGetPlaceDetailsStateOnIsLoading() async {
+        let (sut, _) = makeSUT()
+
+        sut.getPlaceDetails()
+        
+        XCTAssertEqual(sut.getPlaceDetailsState, .isLoading)
     }
     
     // MARK: - Helpers
