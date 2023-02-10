@@ -6,5 +6,5 @@
 //
 
 public protocol AutocompletePlacesService {
-    func autocomplete(input: String, location: Location, radius: Int) async throws -> [String]
+    func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction]
 }
