@@ -28,7 +28,11 @@ final class NewReviewViewModel {
     }
     
     func autocomplete() async {
-        _ = try? await autocompletePlacesService.autocomplete(input: searchText, location: location, radius: 100)
+        do {
+            autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText, location: location, radius: 100)
+        } catch {
+            autocompleteResults = []
+        }
     }
 }
 
@@ -59,10 +63,23 @@ final class NewReviewViewModelTests: XCTestCase {
     
     func test_autocomplete_setsResultsToEmptyWhenAutocompletePlacesServiceThrowsError() async {
         let (sut, autocompleteSpy) = makeSUT()
-        autocompleteSpy.error = anyError()
+        autocompleteSpy.result = .failure(anyError())
         
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
         
+        await sut.autocomplete()
+        XCTAssertTrue(sut.autocompleteResults.isEmpty)
+    }
+    
+    func test_autocomplete_setsResultsToReceivedResultsWhenAutocompletePlacesServiceReturnsSuccessfully() async {
+        let (sut, autocompleteSpy) = makeSUT()
+        let expectedResults = anyAutocompletePredictions()
+        
+        autocompleteSpy.result = .success(expectedResults)
+        await sut.autocomplete()
+        XCTAssertEqual(sut.autocompleteResults, expectedResults)
+        
+        autocompleteSpy.result = .failure(anyError())
         await sut.autocomplete()
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
     }
@@ -96,15 +113,23 @@ final class NewReviewViewModelTests: XCTestCase {
         NSError(domain: "any error", code: 1)
     }
     
+    private func anyAutocompletePredictions() -> [AutocompletePrediction] {
+        [
+            AutocompletePrediction(placePrediction: "place prediction #1", placeID: "place id #1"),
+            AutocompletePrediction(placePrediction: "place prediction #2", placeID: "place id #2"),
+            AutocompletePrediction(placePrediction: "place prediction #3", placeID: "place id #3")
+        ]
+    }
+    
     private class AutocompletePlacesServiceSpy: AutocompletePlacesService {
         private(set) var capturedValues = [(input: String, location: Location, radius: Int)]()
-        var error: Error?
+        var result: Result<[AutocompletePrediction], Error>?
         
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             capturedValues.append((input, location, radius))
             
-            if let error = error {
-                throw error
+            if let result = result {
+                return try result.get()
             }
             
             return []
