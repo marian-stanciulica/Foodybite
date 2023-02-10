@@ -13,6 +13,7 @@ final class NewReviewViewModel: ObservableObject {
         case idle
         case isLoading
         case loadingError(String)
+        case requestSucceeeded(PlaceDetails)
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
@@ -43,7 +44,8 @@ final class NewReviewViewModel: ObservableObject {
         getPlaceDetailsState = .isLoading
         
         do {
-            _ = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            getPlaceDetailsState = .requestSucceeeded(placeDetails)
         } catch {
             getPlaceDetailsState = .loadingError("An error occured while fetching place details. Please try again later!")
         }
@@ -98,14 +100,6 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
     }
     
-    func test_getPlaceDetails_setsGetPlaceDetailsStateOnIsLoading() async {
-        let (sut, _, _) = makeSUT()
-
-        await sut.getPlaceDetails(placeID: anyPlaceID())
-        
-        XCTAssertEqual(sut.getPlaceDetailsState, .isLoading)
-    }
-    
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
         let (sut, _, getPlaceDetailsServiceSpy) = makeSUT()
         let anyPlaceID = anyPlaceID()
@@ -124,6 +118,17 @@ final class NewReviewViewModelTests: XCTestCase {
         await sut.getPlaceDetails(placeID: anyPlaceID())
         
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching place details. Please try again later!")])
+    }
+    
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
+        let (sut, _, getPlaceDetailsServiceSpy) = makeSUT()
+        let expectedPlaceDetails = anyPlaceDetails()
+        getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
+
+        await sut.getPlaceDetails(placeID: anyPlaceID())
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded(expectedPlaceDetails)])
     }
     
     // MARK: - Helpers
@@ -170,6 +175,49 @@ final class NewReviewViewModelTests: XCTestCase {
             AutocompletePrediction(placePrediction: "place prediction #1", placeID: "place id #1"),
             AutocompletePrediction(placePrediction: "place prediction #2", placeID: "place id #2"),
             AutocompletePrediction(placePrediction: "place prediction #3", placeID: "place id #3")
+        ]
+    }
+    
+    private func anyPlaceDetails() -> PlaceDetails {
+        PlaceDetails(
+            placeID: "place #1",
+            phoneNumber: "+61 2 9374 4000",
+            name: "Place name",
+            address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
+            rating: 3.4,
+            openingHoursDetails: OpeningHoursDetails(
+                openNow: true,
+                weekdayText: [
+                    "Monday: 9:00 AM – 5:00 PM",
+                    "Tuesday: 9:00 AM – 5:00 PM",
+                    "Wednesday: 9:00 AM – 5:00 PM",
+                    "Thursday: 9:00 AM – 5:00 PM",
+                    "Friday: 9:00 AM – 5:00 PM",
+                    "Saturday: Closed",
+                    "Sunday: Closed",
+                ]
+            ),
+            reviews: [
+                Review(
+                    placeID: "place #1",
+                    profileImageURL: URL(string: "www.google.com"),
+                    profileImageData: nil,
+                    authorName: "Marian",
+                    reviewText: "Loren ipsum...",
+                    rating: 2,
+                    relativeTime: "5 months ago"
+                )
+            ],
+            location: Location(latitude: 4.4, longitude: 6.9),
+            photos: anyPhotos()
+        )
+    }
+    
+    private func anyPhotos() -> [Photo] {
+        [
+            Photo(width: 100, height: 200, photoReference: "first photo reference"),
+            Photo(width: 200, height: 300, photoReference: "second photo reference"),
+            Photo(width: 300, height: 400, photoReference: "third photo reference")
         ]
     }
     
