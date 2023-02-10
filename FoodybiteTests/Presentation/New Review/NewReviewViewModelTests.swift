@@ -82,7 +82,15 @@ final class NewReviewViewModel: ObservableObject {
         }
     }
     
-    
+    func postReview() async {
+        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
+            try? await addReviewService.addReview(
+                placeID: placeDetails.placeID,
+                reviewText: reviewText,
+                starsNumber: starsNumber,
+                createdAt: Date())
+        }
+    }
 }
 
 final class NewReviewViewModelTests: XCTestCase {
@@ -234,6 +242,21 @@ final class NewReviewViewModelTests: XCTestCase {
         sut.starsNumber = 3
         sut.reviewText = ""
         XCTAssertFalse(sut.postReviewEnabled)
+    }
+    
+    func test_postReview_sendsParametersCorrectlyToAddReviewService() async {
+        let (sut, _, _, _, reviewServiceSpy) = makeSUT()
+        let anyPlaceDetails = anyPlaceDetails()
+        sut.getPlaceDetailsState = .requestSucceeeded(anyPlaceDetails)
+        sut.reviewText = anyReviewText()
+        sut.starsNumber = anyStarsNumber()
+        
+        await sut.postReview()
+        
+        XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.placeID, anyPlaceDetails.placeID)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
     }
     
     // MARK: - Helpers
@@ -395,7 +418,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     private class AddReviewServiceSpy: AddReviewService {
-        private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int, createdAt: Date)]()
+        private(set) var capturedValues = [(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date)]()
         var error: Error?
         
         func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {

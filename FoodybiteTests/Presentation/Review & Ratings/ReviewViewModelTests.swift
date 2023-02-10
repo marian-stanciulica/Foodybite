@@ -30,7 +30,7 @@ final class ReviewViewModelTests: XCTestCase {
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.placeID, expectedPlaceId)
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.startNumber, anyStarsNumber())
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
     }
     
     func test_postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {
@@ -77,7 +77,7 @@ final class ReviewViewModelTests: XCTestCase {
     }
     
     private class ReviewServiceSpy: AddReviewService {
-        private(set) var capturedValues = [(placeID: String, reviewText: String, startNumber: Int, createdAt: Date)]()
+        private(set) var capturedValues = [(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date)]()
         var error: Error?
         
         func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
