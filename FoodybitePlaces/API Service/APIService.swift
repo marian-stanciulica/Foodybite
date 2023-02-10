@@ -95,6 +95,9 @@ extension APIService: FetchPlacePhotoService {
 
 extension APIService: AutocompletePlacesService {
     public func autocomplete(input: String, location: Domain.Location, radius: Int) async throws -> [String] {
-        []
+        let endpoint = PlacesEndpoint.autocomplete(input: input, location: location, radius: radius)
+        let request = try endpoint.createURLRequest()
+        let _: AutocompleteResponse = try await loader.get(for: request)
+        return []
     }
 }

@@ -194,6 +194,20 @@ final class APIServiceTests: XCTestCase {
         XCTAssertNotNil(sut as AutocompletePlacesService)
     }
     
+    func test_autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {
+        let input = "input"
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let radius = 1500
+        
+        let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
+        let autocompleteEndpoint = PlacesEndpoint.autocomplete(input: input, location: location, radius: radius)
+        let urlRequest = try autocompleteEndpoint.createURLRequest()
+        
+        _ = try await sut.autocomplete(input: input, location: location, radius: radius)
+        
+        XCTAssertEqual(loader.getRequests, [urlRequest])
+    }
+    
     
     // MARK: - Helpers
     
@@ -205,6 +219,16 @@ final class APIServiceTests: XCTestCase {
     
     private func anyData() -> Data {
         "any data".data(using: .utf8)!
+    }
+    
+    private func anyAutocompleteResponse() -> AutocompleteResponse {
+        AutocompleteResponse(
+            predictions: [
+                Prediction(description: "a description", matchedSubstrings: [], placeID: "place #1", reference: "", structuredFormatting: StructuredFormatting(mainText: "", mainTextMatchedSubstrings: [], secondaryText: ""), terms: [], types: []),
+                Prediction(description: "another description", matchedSubstrings: [], placeID: "place #2", reference: "", structuredFormatting: StructuredFormatting(mainText: "", mainTextMatchedSubstrings: [], secondaryText: ""), terms: [], types: [])
+            ],
+            status: "OK"
+        )
     }
     
     private func anySearchNearbyResponse() -> SearchNearbyResponse {
