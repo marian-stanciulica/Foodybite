@@ -37,7 +37,17 @@ struct TabNavigationView: View {
                              currentLocation: location)
                 case .newReview:
                     TabBarPageView(page: $tabRouter.currentPage) {
-                        NewReviewView(currentPage: $tabRouter.currentPage, plusButtonActive: $plusButtonActive)
+                        NewReviewView(
+                            currentPage: $tabRouter.currentPage,
+                            plusButtonActive: $plusButtonActive,
+                            viewModel: NewReviewViewModel(
+                                autocompletePlacesService: placesService,
+                                getPlaceDetailsService: placesService,
+                                fetchPlacePhotoService: placesService,
+                                addReviewService: apiService,
+                                location: location
+                            )
+                        )
                     }
                 case .account:
                     ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), apiService: apiService, placesService: placesService, user: user, currentLocation: location)

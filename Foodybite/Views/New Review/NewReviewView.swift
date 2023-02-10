@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import Domain
 
 struct NewReviewView: View {
     @Binding var currentPage: Page
     @Binding var plusButtonActive: Bool
     
-    @State var review = ""
-    @State var restaurantSearch = ""
+    @StateObject var viewModel: NewReviewViewModel
     
     var body: some View {
         VStack {
@@ -39,7 +39,7 @@ struct NewReviewView: View {
             }
             .padding()
             
-            TextField("Search Restaurant", text: $restaurantSearch)
+            TextField("Search Restaurant", text: $viewModel.searchText)
                 .padding()
                 .foregroundColor(.white)
                 .overlay(
@@ -64,7 +64,7 @@ struct NewReviewView: View {
                 .padding(.top)
             
             VStack {
-                TextField("Write your experience", text: $review)
+                TextField("Write your experience", text: $viewModel.reviewText)
                     .padding()
                 
                 Spacer()
@@ -85,7 +85,50 @@ struct NewReviewView_Previews: PreviewProvider {
     static var previews: some View {
         NewReviewView(
             currentPage: .constant(.home),
-            plusButtonActive: .constant(true)
+            plusButtonActive: .constant(true),
+            viewModel: NewReviewViewModel(
+                autocompletePlacesService: PreviewAutocompletePlacesService(),
+                getPlaceDetailsService: PreviewGetPlaceDetailsService(),
+                fetchPlacePhotoService: PreviewFetchPlacePhotoService(),
+                addReviewService: PreviewAddReviewService(),
+                location: Location(latitude: 0, longitude: 0)
+            )
         )
+    }
+    
+    private class PreviewAutocompletePlacesService: AutocompletePlacesService {
+        func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
+            []
+        }
+    }
+    
+    private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
+        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+            PlaceDetails(
+                placeID: "place #1",
+                phoneNumber: "",
+                name: "Place name",
+                address: "Place address",
+                rating: 3,
+                openingHoursDetails: nil,
+                reviews: [],
+                location: Location(latitude: 0, longitude: 0),
+                photos: [
+                    Photo(width: 100, height: 100, photoReference: "")
+                ]
+            )
+        }
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
+        }
+    }
+    
+    private class PreviewAddReviewService: AddReviewService {
+        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+            
+        }
     }
 }
