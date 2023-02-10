@@ -36,6 +36,9 @@ final class NewReviewViewModel: ObservableObject {
     }
     
     func autocomplete() async {
+        getPlaceDetailsState = .idle
+        fetchPhotoState = .idle
+        
         do {
             autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText, location: location, radius: 100)
         } catch {
@@ -117,6 +120,17 @@ final class NewReviewViewModelTests: XCTestCase {
         autocompleteSpy.result = .failure(anyError())
         await sut.autocomplete()
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
+    }
+    
+    func test_autocomplete_resetsStateForPlaceDetailsAndPlacePhoto() async {
+        let (sut, _, _, _) = makeSUT()
+        sut.getPlaceDetailsState = .isLoading
+        sut.fetchPhotoState = .isLoading
+
+        await sut.autocomplete()
+        
+        XCTAssertEqual(sut.getPlaceDetailsState, .idle)
+        XCTAssertEqual(sut.fetchPhotoState, .idle)
     }
     
     func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
