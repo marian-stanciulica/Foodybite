@@ -184,6 +184,7 @@
 		0FA6BE3D29957463003E1912 /* AutocompletePlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */; };
 		0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */; };
 		0FABD52129962DD000918251 /* AutocompleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABD52029962DD000918251 /* AutocompleteResponse.swift */; };
+		0FABD524299632D200918251 /* AutocompletePrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FABD523299632D200918251 /* AutocompletePrediction.swift */; };
 		0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA272842984E00778E45 /* TabBarIcon.swift */; };
 		0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFCA29284298C700778E45 /* TabRouter.swift */; };
 		0FB0E113291F86370058ABCB /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E112291F86370058ABCB /* RegisterViewModel.swift */; };
@@ -556,6 +557,7 @@
 		0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePlacesService.swift; sourceTree = "<group>"; };
 		0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderTests.swift; sourceTree = "<group>"; };
 		0FABD52029962DD000918251 /* AutocompleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteResponse.swift; sourceTree = "<group>"; };
+		0FABD523299632D200918251 /* AutocompletePrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePrediction.swift; sourceTree = "<group>"; };
 		0FAFCA272842984E00778E45 /* TabBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIcon.swift; sourceTree = "<group>"; };
 		0FAFCA29284298C700778E45 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		0FB0E10D291F7D380058ABCB /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 				0F423AA529855F98009EB345 /* User */,
 				0F423AA429855F81009EB345 /* Nearby Places */,
 				0F423AA329855F72009EB345 /* Place Details */,
+				0FABD522299632B800918251 /* Autocomplete Places */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1638,6 +1641,14 @@
 				0FABD52029962DD000918251 /* AutocompleteResponse.swift */,
 			);
 			path = Autocomplete;
+			sourceTree = "<group>";
+		};
+		0FABD522299632B800918251 /* Autocomplete Places */ = {
+			isa = PBXGroup;
+			children = (
+				0FABD523299632D200918251 /* AutocompletePrediction.swift */,
+			);
+			path = "Autocomplete Places";
 			sourceTree = "<group>";
 		};
 		0FAFCA24284297CB00778E45 /* Tab Navigation */ = {
@@ -2526,6 +2537,7 @@
 				0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */,
 				0F19B48A291647F300A8FC8F /* User.swift in Sources */,
 				0FA6BE302994E8AA003E1912 /* AddReviewService.swift in Sources */,
+				0FABD524299632D200918251 /* AutocompletePrediction.swift in Sources */,
 				0FA6BE2B2994E8A0003E1912 /* AccountService.swift in Sources */,
 				0F423A8F29850D0D009EB345 /* Location.swift in Sources */,
 				0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */,
