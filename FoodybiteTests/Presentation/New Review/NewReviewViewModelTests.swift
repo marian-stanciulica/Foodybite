@@ -59,7 +59,13 @@ final class NewReviewViewModel: ObservableObject {
     }
     
     private func fetchPhoto(_ photo: Photo) async {
-        _ = try? await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
+        fetchPhotoState = .isLoading
+        
+        do {
+            _ = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
+        } catch {
+            fetchPhotoState = .loadingError("An error occured while fetching place photo. Please try again later!")
+        }
     }
 }
 
@@ -151,6 +157,18 @@ final class NewReviewViewModelTests: XCTestCase {
         await sut.getPlaceDetails(placeID: anyPlaceID())
         
         XCTAssertEqual(photoServiceSpy.capturedValues.first, expectedPlaceDetails.photos.first?.photoReference)
+    }
+    
+    func test_fetchPhoto_setsFetchPhotoStateToLoadingErrorWhenFetchPlacePhotoServiceThrowsError() async {
+        let (sut, _, getPlaceDetailsServiceSpy, photoServiceSpy) = makeSUT()
+        let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
+
+        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
+        photoServiceSpy.result = .failure(anyError())
+        
+        await sut.getPlaceDetails(placeID: anyPlaceID())
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching place photo. Please try again later!")])
     }
     
     // MARK: - Helpers
