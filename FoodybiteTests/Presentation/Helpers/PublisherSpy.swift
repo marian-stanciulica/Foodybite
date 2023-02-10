@@ -26,3 +26,7 @@ func randomString(size: Int = 20) -> String {
     let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
     return String(Array(0..<size).map { _ in chars.randomElement()! })
 }
+
+func randomInt() -> Int {
+    Int.random(in: 1...100)
+}
