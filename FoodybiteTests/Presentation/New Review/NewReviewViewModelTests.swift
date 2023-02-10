@@ -8,17 +8,18 @@
 import XCTest
 import Domain
 
-final class NewReviewViewModel {
+final class NewReviewViewModel: ObservableObject {
     public enum State: Equatable {
         case idle
         case isLoading
+        case loadingError(String)
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let location: Location
     
-    public var getPlaceDetailsState: State = .idle
+    @Published public var getPlaceDetailsState: State = .idle
     public var searchText = ""
     public var reviewText = ""
     public var starsNumber = 0
@@ -41,7 +42,11 @@ final class NewReviewViewModel {
     func getPlaceDetails(placeID: String) async {
         getPlaceDetailsState = .isLoading
         
-        _ = try! await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+        do {
+            _ = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+        } catch {
+            getPlaceDetailsState = .loadingError("An error occured while fetching place details. Please try again later!")
+        }
     }
 }
 
@@ -109,6 +114,16 @@ final class NewReviewViewModelTests: XCTestCase {
         
         XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.count, 1)
         XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, anyPlaceID)
+    }
+    
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
+        let (sut, _, getPlaceDetailsServiceSpy) = makeSUT()
+        getPlaceDetailsServiceSpy.result = .failure(anyError())
+        let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
+
+        await sut.getPlaceDetails(placeID: anyPlaceID())
+        
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching place details. Please try again later!")])
     }
     
     // MARK: - Helpers
