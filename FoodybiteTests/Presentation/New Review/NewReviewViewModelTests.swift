@@ -16,7 +16,7 @@ final class NewReviewViewModel {
     private let autocompletePlacesService: AutocompletePlacesService
     private let location: Location
     
-    public var state: State = .idle
+    public var getPlaceDetailsState: State = .idle
     public var searchText = ""
     public var reviewText = ""
     public var starsNumber = 0
@@ -41,7 +41,7 @@ final class NewReviewViewModelTests: XCTestCase {
     func test_init_stateIsIdle() {
         let (sut, _) = makeSUT()
         
-        XCTAssertEqual(sut.state, .idle)
+        XCTAssertEqual(sut.getPlaceDetailsState, .idle)
         XCTAssertEqual(sut.searchText, "")
         XCTAssertEqual(sut.reviewText, "")
         XCTAssertEqual(sut.starsNumber, 0)
