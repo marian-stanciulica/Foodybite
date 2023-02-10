@@ -53,7 +53,6 @@
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
 		0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */; };
 		0F2A26B42930D9FE00387A1C /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */; };
-		0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CAF28453E85004D0EF7 /* SearchView.swift */; };
 		0F2B4CB928454DD6004D0EF7 /* SearchCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB828454DD6004D0EF7 /* SearchCriteriaView.swift */; };
 		0F2B4CBE28454ED9004D0EF7 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CBD28454ED9004D0EF7 /* Category.swift */; };
 		0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CBF28455007004D0EF7 /* OrangeButton.swift */; };
@@ -437,7 +436,6 @@
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
-		0F2B4CAF28453E85004D0EF7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F2B4CB828454DD6004D0EF7 /* SearchCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteriaView.swift; sourceTree = "<group>"; };
 		0F2B4CBD28454ED9004D0EF7 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0F2B4CBF28455007004D0EF7 /* OrangeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
@@ -1991,7 +1989,6 @@
 				A2E64BD22842470A00FC41B7 /* RestaurantCell.swift */,
 				A2E64BD02842461200FC41B7 /* HeaderView.swift */,
 				A2E64BD4284253D800FC41B7 /* RestaurantInformationView.swift */,
-				0F2B4CAF28453E85004D0EF7 /* SearchView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2689,7 +2686,6 @@
 				0F73ECAC292FA1EE0025B237 /* ChangePasswordViewModel.swift in Sources */,
 				A2C2424528478A4500CB233B /* ChangePasswordView.swift in Sources */,
 				0F73ECB1292FAEA00025B237 /* ChangePasswordValidator.swift in Sources */,
-				0F2B4CB028453E85004D0EF7 /* SearchView.swift in Sources */,
 				A2C2422728475CE600CB233B /* OpenHoursView.swift in Sources */,
 				0FA6BE3B299522FA003E1912 /* AddressView.swift in Sources */,
 				A2E64B9928420C2D00FC41B7 /* ImageWhiteTextField.swift in Sources */,
