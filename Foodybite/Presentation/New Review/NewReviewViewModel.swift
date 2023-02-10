@@ -33,10 +33,10 @@ public final class NewReviewViewModel: ObservableObject {
     @Published public var fetchPhotoState: State<Data> = .idle
     @Published public var postReviewState: ReviewState = .idle
     
-    public var searchText = ""
-    public var reviewText = ""
-    public var starsNumber = 0
-    public var autocompleteResults = [AutocompletePrediction]()
+    @Published public var searchText = ""
+    @Published public var reviewText = ""
+    @Published public var starsNumber = 0
+    @Published public var autocompleteResults = [AutocompletePrediction]()
     
     public var postReviewEnabled: Bool {
         if case .requestSucceeeded = getPlaceDetailsState {

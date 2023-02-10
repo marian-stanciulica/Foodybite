@@ -39,19 +39,66 @@ struct NewReviewView: View {
             }
             .padding()
             
-            TextField("Search Restaurant", text: $viewModel.searchText)
-                .padding()
-                .foregroundColor(.white)
-                .overlay(
-                     RoundedRectangle(cornerRadius: 16)
-                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-                )
-                .padding()
-        
+            VStack(spacing: 0) {
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                        .padding(.leading)
+                    
+                    TextField("Search Restaurant", text: $viewModel.searchText)
+                        .padding(.vertical, 12)
+                        .foregroundColor(.black)
+                        .onChange(of: viewModel.searchText) { newValue in
+                            Task {
+                                await viewModel.autocomplete()
+                            }
+                        }
+                    
+                    if !viewModel.searchText.isEmpty {
+                        Button {
+                            viewModel.searchText = ""
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.gray)
+                                .padding(.horizontal)
+                        }
+                    }
+                }
+                
+                if !viewModel.autocompleteResults.isEmpty {
+                    VStack(alignment: .leading) {
+                        ForEach(viewModel.autocompleteResults, id: \.placeID) { result in
+                            VStack {
+                                RoundedRectangle(cornerRadius: 0.5)
+                                    .frame(height: 1)
+                                    .foregroundColor(.gray.opacity(0.2))
+                                    .padding(0)
+                                
+                                HStack {
+                                    Text(result.placePrediction)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "arrow.up.right")
+                                }
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                            }
+                        }
+                    }
+                    .padding(.bottom)
+                }
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+            )
+            .padding()
+            
             Text("Ratings")
                 .font(.title)
             
-            RatingView(stars: .constant(3))
+            RatingView(stars: $viewModel.starsNumber)
                 .frame(maxWidth: 300)
             
             Text("Rate your experience")
@@ -98,7 +145,12 @@ struct NewReviewView_Previews: PreviewProvider {
     
     private class PreviewAutocompletePlacesService: AutocompletePlacesService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
-            []
+            let predictions = [
+                AutocompletePrediction(placePrediction: "Prediction 1", placeID: "place 1"),
+                AutocompletePrediction(placePrediction: "Another Pre 2", placeID: "place 2")
+            ]
+            
+            return predictions.filter { $0.placePrediction.contains(input) }
         }
     }
     
