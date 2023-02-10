@@ -15,6 +15,7 @@ final class NewReviewViewModel {
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
+    private let getPlaceDetailsService: GetPlaceDetailsService
     private let location: Location
     
     public var getPlaceDetailsState: State = .idle
@@ -23,8 +24,9 @@ final class NewReviewViewModel {
     public var starsNumber = 0
     public var autocompleteResults = [AutocompletePrediction]()
     
-    init(autocompletePlacesService: AutocompletePlacesService, location: Location) {
+    init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, location: Location) {
         self.autocompletePlacesService = autocompletePlacesService
+        self.getPlaceDetailsService = getPlaceDetailsService
         self.location = location
     }
     
@@ -36,15 +38,17 @@ final class NewReviewViewModel {
         }
     }
     
-    func getPlaceDetails() {
+    func getPlaceDetails(placeID: String) async {
         getPlaceDetailsState = .isLoading
+        
+        _ = try! await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
     }
 }
 
 final class NewReviewViewModelTests: XCTestCase {
     
     func test_init_stateIsIdle() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         XCTAssertEqual(sut.getPlaceDetailsState, .idle)
         XCTAssertEqual(sut.searchText, "")
@@ -55,7 +59,7 @@ final class NewReviewViewModelTests: XCTestCase {
     func test_autocomplete_sendsParametersCorrectlyToAutocompletePlacesService() async {
         let anyLocation = anyLocation()
         let radius = 100
-        let (sut, autocompleteSpy) = makeSUT(location: anyLocation)
+        let (sut, autocompleteSpy, _) = makeSUT(location: anyLocation)
         sut.searchText = anySearchText()
         
         await sut.autocomplete()
@@ -67,7 +71,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_autocomplete_setsResultsToEmptyWhenAutocompletePlacesServiceThrowsError() async {
-        let (sut, autocompleteSpy) = makeSUT()
+        let (sut, autocompleteSpy, _) = makeSUT()
         autocompleteSpy.result = .failure(anyError())
         
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
@@ -77,7 +81,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_autocomplete_setsResultsToReceivedResultsWhenAutocompletePlacesServiceReturnsSuccessfully() async {
-        let (sut, autocompleteSpy) = makeSUT()
+        let (sut, autocompleteSpy, _) = makeSUT()
         let expectedResults = anyAutocompletePredictions()
         
         autocompleteSpy.result = .success(expectedResults)
@@ -90,20 +94,40 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_getPlaceDetails_setsGetPlaceDetailsStateOnIsLoading() async {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
 
-        sut.getPlaceDetails()
+        await sut.getPlaceDetails(placeID: anyPlaceID())
         
         XCTAssertEqual(sut.getPlaceDetailsState, .isLoading)
     }
     
+    func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
+        let (sut, _, getPlaceDetailsServiceSpy) = makeSUT()
+        let anyPlaceID = anyPlaceID()
+        
+        await sut.getPlaceDetails(placeID: anyPlaceID)
+        
+        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.count, 1)
+        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, anyPlaceID)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(location: Location? = nil) -> (sut: NewReviewViewModel, autocompleteSpy: AutocompletePlacesServiceSpy) {
+    private func makeSUT(location: Location? = nil) -> (sut: NewReviewViewModel, autocompleteSpy: AutocompletePlacesServiceSpy, getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy) {
         let autocompleteSpy = AutocompletePlacesServiceSpy()
+        let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
+
         let defaultLocation = Location(latitude: 0, longitude: 0)
-        let sut = NewReviewViewModel(autocompletePlacesService: autocompleteSpy, location: location ?? defaultLocation)
-        return (sut, autocompleteSpy)
+        let sut = NewReviewViewModel(
+            autocompletePlacesService: autocompleteSpy,
+            getPlaceDetailsService: getPlaceDetailsServiceSpy,
+            location: location ?? defaultLocation
+        )
+        return (sut, autocompleteSpy, getPlaceDetailsServiceSpy)
+    }
+    
+    private func anyPlaceID() -> String {
+        "any place id"
     }
     
     private func anyLocation() -> Location {
@@ -146,6 +170,30 @@ final class NewReviewViewModelTests: XCTestCase {
             }
             
             return []
+        }
+    }
+    
+    private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
+        private(set) var capturedValues = [String]()
+        var result: Result<PlaceDetails, Error>?
+        
+        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+            capturedValues.append(placeID)
+            
+            if let result = result {
+                return try result.get()
+            }
+            
+            return PlaceDetails(placeID: "place #1",
+                                phoneNumber: nil,
+                                name: "",
+                                address: "",
+                                rating: 0,
+                                openingHoursDetails: nil,
+                                reviews: [],
+                                location: Location(latitude: 0, longitude: 0),
+                                photos: []
+            )
         }
     }
     
