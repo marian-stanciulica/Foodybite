@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F0280FD29262FE7006B219F /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FC29262FE7006B219F /* SignUpRequest.swift */; };
 		0F028100292630D5006B219F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequest.swift */; };
+		0F0620452997ECC700D47857 /* SelectedRestaurantViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620442997ECC700D47857 /* SelectedRestaurantViewModelTests.swift */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
 		0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */; };
@@ -394,6 +395,7 @@
 /* Begin PBXFileReference section */
 		0F0280FC29262FE7006B219F /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		0F0280FF292630D5006B219F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		0F0620442997ECC700D47857 /* SelectedRestaurantViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantViewModelTests.swift; sourceTree = "<group>"; };
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
@@ -1669,6 +1671,7 @@
 			isa = PBXGroup;
 			children = (
 				0FABD5262996392500918251 /* NewReviewViewModelTests.swift */,
+				0F0620442997ECC700D47857 /* SelectedRestaurantViewModelTests.swift */,
 			);
 			path = "New Review";
 			sourceTree = "<group>";
@@ -2539,6 +2542,7 @@
 				0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */,
 				0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */,
 				0F423AAB29858BA9009EB345 /* DistanceSolverTests.swift in Sources */,
+				0F0620452997ECC700D47857 /* SelectedRestaurantViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
