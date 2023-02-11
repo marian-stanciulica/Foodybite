@@ -33,6 +33,7 @@ struct SelectedRestaurantView: View {
             .padding(.horizontal)
         }
         .cornerRadius(16)
+        .padding()
         .task {
             await viewModel.fetchPhoto()
         }

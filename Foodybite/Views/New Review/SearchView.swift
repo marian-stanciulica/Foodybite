@@ -12,6 +12,7 @@ struct SearchView: View {
     @Binding var searchText: String
     @Binding var autocompleteResults: [AutocompletePrediction]
     let onChange: () async -> Void
+    let onPlaceSelected: (String) async -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -59,6 +60,14 @@ struct SearchView: View {
                             .padding(.horizontal)
                             .padding(.top, 8)
                         }
+                        .onTapGesture {
+                            autocompleteResults = []
+                            searchText = ""
+                            
+                            Task {
+                                await onPlaceSelected(result.placeID)
+                            }
+                        }
                     }
                 }
                 .padding(.bottom)
@@ -74,6 +83,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: .constant(""), autocompleteResults: .constant([])) {}
+        SearchView(searchText: .constant(""), autocompleteResults: .constant([]), onChange: {}, onPlaceSelected: { _ in })
     }
 }

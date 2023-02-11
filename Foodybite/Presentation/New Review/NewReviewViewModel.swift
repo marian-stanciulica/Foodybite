@@ -53,7 +53,7 @@ public final class NewReviewViewModel: ObservableObject {
         self.location = location
     }
     
-    public func autocomplete() async {
+    @MainActor public func autocomplete() async {
         getPlaceDetailsState = .idle
         fetchPhotoState = .idle
         
@@ -64,7 +64,7 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
     
-    public func getPlaceDetails(placeID: String) async {
+    @MainActor public func getPlaceDetails(placeID: String) async {
         getPlaceDetailsState = .isLoading
         
         do {
@@ -79,7 +79,7 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
     
-    private func fetchPhoto(_ photo: Photo) async {
+    @MainActor private func fetchPhoto(_ photo: Photo) async {
         fetchPhotoState = .isLoading
         
         do {
@@ -90,7 +90,7 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
     
-    public func postReview() async {
+    @MainActor public func postReview() async {
         guard postReviewEnabled else { return }
         postReviewState = .isLoading
         

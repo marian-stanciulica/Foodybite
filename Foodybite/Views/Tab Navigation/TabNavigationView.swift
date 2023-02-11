@@ -46,7 +46,15 @@ struct TabNavigationView: View {
                                 fetchPlacePhotoService: placesService,
                                 addReviewService: apiService,
                                 location: location
-                            )
+                            ),
+                            selectedView: { placeDetails in
+                                SelectedRestaurantView(
+                                    viewModel: SelectedRestaurantViewModel(
+                                        placeDetails: placeDetails,
+                                        fetchPlacePhotoService: placesService
+                                    )
+                                )
+                            }
                         )
                     }
                 case .account:
