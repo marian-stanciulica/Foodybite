@@ -11,6 +11,7 @@
 		0F028100292630D5006B219F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequest.swift */; };
 		0F0620452997ECC700D47857 /* SelectedRestaurantViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620442997ECC700D47857 /* SelectedRestaurantViewModelTests.swift */; };
 		0F0620472997F2B700D47857 /* SelectedRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620462997F2B700D47857 /* SelectedRestaurantViewModel.swift */; };
+		0F0620492997F33F00D47857 /* SelectedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
 		0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */; };
@@ -398,6 +399,7 @@
 		0F0280FF292630D5006B219F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		0F0620442997ECC700D47857 /* SelectedRestaurantViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantViewModelTests.swift; sourceTree = "<group>"; };
 		0F0620462997F2B700D47857 /* SelectedRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantViewModel.swift; sourceTree = "<group>"; };
+		0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantView.swift; sourceTree = "<group>"; };
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
@@ -964,6 +966,7 @@
 			children = (
 				0F3F73F628467BF100A5D2BF /* NewReviewView.swift */,
 				0F591257299697E600D67B21 /* SearchView.swift */,
+				0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */,
 			);
 			path = "New Review";
 			sourceTree = "<group>";
@@ -2642,6 +2645,7 @@
 				0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */,
 				0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */,
 				0F7516472843666900A05A92 /* WhiteButton.swift in Sources */,
+				0F0620492997F33F00D47857 /* SelectedRestaurantView.swift in Sources */,
 				0F591258299697E600D67B21 /* SearchView.swift in Sources */,
 				0F73ECBA292FDAA00025B237 /* SettingsViewModel.swift in Sources */,
 				A2E64BC628422CE600FC41B7 /* ProfileImage.swift in Sources */,

@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public final class SelectedRestaurantViewModel {
+public final class SelectedRestaurantViewModel: ObservableObject {
     public enum State: Equatable {
         case idle
         case isLoading
