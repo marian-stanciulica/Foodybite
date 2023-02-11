@@ -34,7 +34,7 @@ public final class SelectedRestaurantViewModel: ObservableObject {
         self.fetchPlacePhotoService = fetchPlacePhotoService
     }
     
-    public func fetchPhoto() async {
+    @MainActor public func fetchPhoto() async {
         fetchPhotoState = .isLoading
         
         guard let firstPhoto = placeDetails.photos.first else {
