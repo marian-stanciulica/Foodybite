@@ -11,8 +11,9 @@ import Domain
 public class RegisterViewModel: ObservableObject {
     private let signUpService: SignUpService
     
-    public enum RegisterResult: Equatable {
-        case notTriggered
+    public enum State: Equatable {
+        case idle
+        case isLoading
         case success
         case failure(RegisterValidator.Error)
     }
@@ -22,13 +23,15 @@ public class RegisterViewModel: ObservableObject {
     @Published public var password = ""
     @Published public var confirmPassword = ""
     @Published public var profileImage: Data?
-    @Published public var registerResult: RegisterResult = .notTriggered
+    @Published public var registerResult: State = .idle
     
     public init(signUpService: SignUpService) {
         self.signUpService = signUpService
     }
     
-    public func register() async {
+    @MainActor public func register() async {
+        registerResult = .isLoading
+        
         do {
             try RegisterValidator.validate(name: name,
                                            email: email,
@@ -38,27 +41,23 @@ public class RegisterViewModel: ObservableObject {
             try await signUp()
         } catch {
             if let error = error as? RegisterValidator.Error {
-                await updateRegisterResult(.failure(error))
+                registerResult = .failure(error)
             } else if let error = error as? PasswordValidator.Error {
-                await updateRegisterResult(.failure(.passwordError(error)))
+                registerResult = .failure(.passwordError(error))
             }
         }
     }
     
-    private func signUp() async throws {
+    @MainActor private func signUp() async throws {
         do {
             try await signUpService.signUp(name: name,
                                            email: email,
                                            password: password,
                                            confirmPassword: confirmPassword,
                                            profileImage: profileImage)
-            await updateRegisterResult(.success)
+            registerResult = .success
         } catch {
             throw RegisterValidator.Error.serverError
         }
-    }
-    
-    @MainActor private func updateRegisterResult(_ newValue: RegisterResult) {
-        registerResult = newValue
     }
 }

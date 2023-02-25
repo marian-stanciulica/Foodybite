@@ -88,7 +88,7 @@ struct RegisterView: View {
                 .foregroundColor(.red)
                 .font(.headline)
             
-        case .notTriggered:
+        default:
             return Text("")
         }
     }

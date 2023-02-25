@@ -187,16 +187,16 @@ final class RegisterViewModelTests: XCTestCase {
     }
     
     private func assertRegister(on sut: RegisterViewModel,
-                                withExpectedResult expectedResult: RegisterViewModel.RegisterResult,
+                                withExpectedResult expectedResult: RegisterViewModel.State,
                                 file: StaticString = #file,
                                 line: UInt = #line) async {
         let registerResultSpy = PublisherSpy(sut.$registerResult.eraseToAnyPublisher())
 
-        XCTAssertEqual(registerResultSpy.results, [.notTriggered], file: file, line: line)
+        XCTAssertEqual(registerResultSpy.results, [.idle], file: file, line: line)
         
         await sut.register()
         
-        XCTAssertEqual(registerResultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
+        XCTAssertEqual(registerResultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
         registerResultSpy.cancel()
     }
     
