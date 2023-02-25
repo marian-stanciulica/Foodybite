@@ -20,7 +20,15 @@ final class LoginViewSnapshotTests: XCTestCase {
     }
     
     func test_loginViewIsLoadingState() {
-        let sut = makeSUT(email: "testing@testing.com", password: "12345678", state: .isLoading)
+        let sut = makeSUT(email: "testing@testing.com",
+                          password: "12345678",
+                          state: .isLoading)
+        
+        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_loginViewFailureState() {
+        let sut = makeSUT(state: .failure(.serverError))
         
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
