@@ -80,7 +80,7 @@ struct RegisterView: View {
         switch viewModel.registerResult {
         case .success:
             return Text("Registration succedeed")
-                .foregroundColor(.white)
+                .foregroundColor(.green)
                 .font(.headline)
             
         case let .failure(error):
