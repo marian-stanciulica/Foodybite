@@ -19,10 +19,21 @@ final class ReviewViewSnapshotTests: XCTestCase {
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_reviewViewIsLoadingState() {
+        let sut = makeSUT(starsNumber: 4,
+                          reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur.",
+                          state: .isLoading)
+        
+        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(state: ReviewViewModel.State) -> UIViewController {
+    private func makeSUT(starsNumber: Int = 0, reviewText: String = "", state: ReviewViewModel.State) -> UIViewController {
         let viewModel = ReviewViewModel(placeID: "", reviewService: EmptyAddReviewService())
+        viewModel.starsNumber = starsNumber
+        viewModel.reviewText = reviewText
+        viewModel.state = state
         let registerView = ReviewView(viewModel: viewModel, dismissScreen: {})
         let sut = UIHostingController(rootView: registerView)
         return sut

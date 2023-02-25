@@ -25,7 +25,7 @@ struct ReviewView: View {
                 .padding()
             
             VStack {
-                TextField("Write your experience", text: $viewModel.reviewText)
+                TextField("Write your experience", text: $viewModel.reviewText, axis: .vertical)
                     .padding()
                 
                 Spacer()
@@ -38,7 +38,7 @@ struct ReviewView: View {
             
             Spacer()
             
-            MarineButton(title: "Done", isLoading: false) {
+            MarineButton(title: "Done", isLoading: viewModel.isLoading) {
                 Task {
                     await viewModel.addReview()
                 }
