@@ -21,8 +21,16 @@ final class ReviewViewSnapshotTests: XCTestCase {
     
     func test_reviewViewIsLoadingState() {
         let sut = makeSUT(starsNumber: 4,
-                          reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur.",
+                          reviewText: makeReviewText(),
                           state: .isLoading)
+        
+        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_reviewViewFailureState() {
+        let sut = makeSUT(starsNumber: 4,
+                          reviewText: makeReviewText(),
+                          state: .failure(.serverError))
         
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
@@ -37,6 +45,10 @@ final class ReviewViewSnapshotTests: XCTestCase {
         let registerView = ReviewView(viewModel: viewModel, dismissScreen: {})
         let sut = UIHostingController(rootView: registerView)
         return sut
+    }
+    
+    private func makeReviewText() -> String {
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur."
     }
     
     private class EmptyAddReviewService: AddReviewService {

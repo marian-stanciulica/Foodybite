@@ -43,6 +43,8 @@ struct ReviewView: View {
                     await viewModel.addReview()
                 }
             }
+            
+            createFeedbackText()
         }
         .padding()
         .arrowBackButtonStyle()
@@ -51,6 +53,16 @@ struct ReviewView: View {
             
             dismissScreen()
         }
+    }
+    
+    private func createFeedbackText() -> Text {
+        if case let .failure(loginError) = viewModel.state {
+            return Text(loginError.rawValue)
+                .foregroundColor(.red)
+                .font(.headline)
+        }
+        
+        return Text("")
     }
 }
 

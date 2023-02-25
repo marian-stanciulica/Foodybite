@@ -223,6 +223,7 @@
 		0FD5E75C29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5E75B29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift */; };
 		0FD5E76029AA7C2100C5C984 /* test_reviewViewIdleState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E75F29AA7C2100C5C984 /* test_reviewViewIdleState.1.png */; };
 		0FD5E76229AA84AA00C5C984 /* test_reviewViewIsLoadingState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E76129AA84AA00C5C984 /* test_reviewViewIsLoadingState.1.png */; };
+		0FD5E76429AA882400C5C984 /* test_reviewViewFailureState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E76329AA882400C5C984 /* test_reviewViewFailureState.1.png */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
@@ -622,6 +623,7 @@
 		0FD5E75B29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewSnapshotTests.swift; sourceTree = "<group>"; };
 		0FD5E75F29AA7C2100C5C984 /* test_reviewViewIdleState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_reviewViewIdleState.1.png; sourceTree = "<group>"; };
 		0FD5E76129AA84AA00C5C984 /* test_reviewViewIsLoadingState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_reviewViewIsLoadingState.1.png; sourceTree = "<group>"; };
+		0FD5E76329AA882400C5C984 /* test_reviewViewFailureState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_reviewViewFailureState.1.png; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FEF269A298EA84500994657 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
@@ -1916,6 +1918,7 @@
 			children = (
 				0FD5E75F29AA7C2100C5C984 /* test_reviewViewIdleState.1.png */,
 				0FD5E76129AA84AA00C5C984 /* test_reviewViewIsLoadingState.1.png */,
+				0FD5E76329AA882400C5C984 /* test_reviewViewFailureState.1.png */,
 			);
 			path = ReviewViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2468,6 +2471,7 @@
 			files = (
 				0FD5E75229AA734A00C5C984 /* test_loginViewIdleState.1.png in Resources */,
 				0FD5E74B29AA732100C5C984 /* test_registerViewIsLoadingState.1.png in Resources */,
+				0FD5E76429AA882400C5C984 /* test_reviewViewFailureState.1.png in Resources */,
 				0FD5E74D29AA732100C5C984 /* test_registerViewIdleState.1.png in Resources */,
 				0FD5E76029AA7C2100C5C984 /* test_reviewViewIdleState.1.png in Resources */,
 				0FD5E74E29AA732100C5C984 /* test_registerViewSuccessState.1.png in Resources */,
