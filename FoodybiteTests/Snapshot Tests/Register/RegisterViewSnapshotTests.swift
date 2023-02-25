@@ -13,18 +13,24 @@ import Domain
 
 final class RegisterViewSnapshotTests: XCTestCase {
     
-    func test_idleRegisterView() {
+    func test_registerViewIdleState() {
         let sut = makeSUT(registerResult: .idle)
         
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_isLoadingRegisterView() {
+    func test_registerViewIsLoadingState() {
         let sut = makeSUT(name: "Testing",
                           email: "testing@testing.com",
                           password: "12345678",
                           confirmPassword: "12345678",
                           registerResult: .isLoading)
+        
+        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_registerViewFailureState() {
+        let sut = makeSUT(registerResult: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
         
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }

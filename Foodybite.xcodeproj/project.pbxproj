@@ -212,8 +212,9 @@
 		0FD41776298D942200F2BF92 /* LocationCheckerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41775298D942200F2BF92 /* LocationCheckerView.swift */; };
 		0FD5E72929AA4D3F00C5C984 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 0FD5E72829AA4D3F00C5C984 /* SnapshotTesting */; };
 		0FD5E72D29AA4E1500C5C984 /* RegisterViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5E72C29AA4E1500C5C984 /* RegisterViewSnapshotTests.swift */; };
-		0FD5E73829AA570500C5C984 /* test_idleRegisterView.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E73629AA570500C5C984 /* test_idleRegisterView.1.png */; };
-		0FD5E73929AA570500C5C984 /* test_isLoadingRegisterView.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E73729AA570500C5C984 /* test_isLoadingRegisterView.1.png */; };
+		0FD5E73D29AA589500C5C984 /* test_registerViewIdleState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E73A29AA589500C5C984 /* test_registerViewIdleState.1.png */; };
+		0FD5E73E29AA589500C5C984 /* test_registerViewIsLoadingState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E73B29AA589500C5C984 /* test_registerViewIsLoadingState.1.png */; };
+		0FD5E73F29AA589500C5C984 /* test_registerViewFailureState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E73C29AA589500C5C984 /* test_registerViewFailureState.1.png */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
@@ -602,8 +603,9 @@
 		0FD41773298D778500F2BF92 /* TabNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationViewModel.swift; sourceTree = "<group>"; };
 		0FD41775298D942200F2BF92 /* LocationCheckerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCheckerView.swift; sourceTree = "<group>"; };
 		0FD5E72C29AA4E1500C5C984 /* RegisterViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewSnapshotTests.swift; sourceTree = "<group>"; };
-		0FD5E73629AA570500C5C984 /* test_idleRegisterView.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_idleRegisterView.1.png; sourceTree = "<group>"; };
-		0FD5E73729AA570500C5C984 /* test_isLoadingRegisterView.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_isLoadingRegisterView.1.png; sourceTree = "<group>"; };
+		0FD5E73A29AA589500C5C984 /* test_registerViewIdleState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_registerViewIdleState.1.png; sourceTree = "<group>"; };
+		0FD5E73B29AA589500C5C984 /* test_registerViewIsLoadingState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_registerViewIsLoadingState.1.png; sourceTree = "<group>"; };
+		0FD5E73C29AA589500C5C984 /* test_registerViewFailureState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_registerViewFailureState.1.png; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FEF269A298EA84500994657 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
@@ -1840,8 +1842,9 @@
 		0FD5E73329AA552500C5C984 /* RegisterViewSnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
-				0FD5E73629AA570500C5C984 /* test_idleRegisterView.1.png */,
-				0FD5E73729AA570500C5C984 /* test_isLoadingRegisterView.1.png */,
+				0FD5E73C29AA589500C5C984 /* test_registerViewFailureState.1.png */,
+				0FD5E73A29AA589500C5C984 /* test_registerViewIdleState.1.png */,
+				0FD5E73B29AA589500C5C984 /* test_registerViewIsLoadingState.1.png */,
 			);
 			path = RegisterViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2392,8 +2395,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FD5E73929AA570500C5C984 /* test_isLoadingRegisterView.1.png in Resources */,
-				0FD5E73829AA570500C5C984 /* test_idleRegisterView.1.png in Resources */,
+				0FD5E73D29AA589500C5C984 /* test_registerViewIdleState.1.png in Resources */,
+				0FD5E73F29AA589500C5C984 /* test_registerViewFailureState.1.png in Resources */,
+				0FD5E73E29AA589500C5C984 /* test_registerViewIsLoadingState.1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
