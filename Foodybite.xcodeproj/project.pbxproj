@@ -220,6 +220,8 @@
 		0FD5E75229AA734A00C5C984 /* test_loginViewIdleState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E75129AA734A00C5C984 /* test_loginViewIdleState.1.png */; };
 		0FD5E75629AA77CE00C5C984 /* test_loginViewIsLoadingState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E75529AA77CE00C5C984 /* test_loginViewIsLoadingState.1.png */; };
 		0FD5E75829AA787E00C5C984 /* test_loginViewFailureState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E75729AA787E00C5C984 /* test_loginViewFailureState.1.png */; };
+		0FD5E75C29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5E75B29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift */; };
+		0FD5E76029AA7C2100C5C984 /* test_reviewViewIdleState.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD5E75F29AA7C2100C5C984 /* test_reviewViewIdleState.1.png */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
@@ -616,6 +618,8 @@
 		0FD5E75129AA734A00C5C984 /* test_loginViewIdleState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_loginViewIdleState.1.png; sourceTree = "<group>"; };
 		0FD5E75529AA77CE00C5C984 /* test_loginViewIsLoadingState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_loginViewIsLoadingState.1.png; sourceTree = "<group>"; };
 		0FD5E75729AA787E00C5C984 /* test_loginViewFailureState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_loginViewFailureState.1.png; sourceTree = "<group>"; };
+		0FD5E75B29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewSnapshotTests.swift; sourceTree = "<group>"; };
+		0FD5E75F29AA7C2100C5C984 /* test_reviewViewIdleState.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_reviewViewIdleState.1.png; sourceTree = "<group>"; };
 		0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FEF269A298EA84500994657 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
@@ -1826,6 +1830,7 @@
 		0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0FD5E75A29AA7B3500C5C984 /* Review & Ratings */,
 				0FD5E72B29AA4DC800C5C984 /* Register */,
 				0FD5E74229AA719900C5C984 /* Login */,
 			);
@@ -1885,6 +1890,31 @@
 				0FD5E75729AA787E00C5C984 /* test_loginViewFailureState.1.png */,
 			);
 			path = LoginViewSnapshotTests;
+			sourceTree = "<group>";
+		};
+		0FD5E75A29AA7B3500C5C984 /* Review & Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				0FD5E75D29AA7C2100C5C984 /* __Snapshots__ */,
+				0FD5E75B29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift */,
+			);
+			path = "Review & Ratings";
+			sourceTree = "<group>";
+		};
+		0FD5E75D29AA7C2100C5C984 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0FD5E75E29AA7C2100C5C984 /* ReviewViewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0FD5E75E29AA7C2100C5C984 /* ReviewViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FD5E75F29AA7C2100C5C984 /* test_reviewViewIdleState.1.png */,
+			);
+			path = ReviewViewSnapshotTests;
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
@@ -2436,6 +2466,7 @@
 				0FD5E75229AA734A00C5C984 /* test_loginViewIdleState.1.png in Resources */,
 				0FD5E74B29AA732100C5C984 /* test_registerViewIsLoadingState.1.png in Resources */,
 				0FD5E74D29AA732100C5C984 /* test_registerViewIdleState.1.png in Resources */,
+				0FD5E76029AA7C2100C5C984 /* test_reviewViewIdleState.1.png in Resources */,
 				0FD5E74E29AA732100C5C984 /* test_registerViewSuccessState.1.png in Resources */,
 				0FD5E75829AA787E00C5C984 /* test_loginViewFailureState.1.png in Resources */,
 				0FD5E75629AA77CE00C5C984 /* test_loginViewIsLoadingState.1.png in Resources */,
@@ -2642,6 +2673,7 @@
 				0FABD5272996392500918251 /* NewReviewViewModelTests.swift in Sources */,
 				0F423A9729853342009EB345 /* RestaurantDetailsViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
+				0FD5E75C29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
 				0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */,
 				0FD41771298D66F600F2BF92 /* TabNavigationViewModelTests.swift in Sources */,
