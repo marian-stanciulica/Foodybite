@@ -69,7 +69,7 @@ struct LoginView: View {
     }
     
     private func createFeedbackText() -> Text {
-        if let loginError = viewModel.loginError {
+        if case let .failure(loginError) = viewModel.state {
             return Text(loginError.rawValue)
                 .foregroundColor(.red)
                 .font(.headline)
