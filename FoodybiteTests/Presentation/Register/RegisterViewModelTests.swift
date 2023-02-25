@@ -11,6 +11,12 @@ import Domain
 
 final class RegisterViewModelTests: XCTestCase {
     
+    func test_state_initiallyIdle() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertEqual(sut.registerResult, .idle)
+    }
+    
     func test_register_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
         
