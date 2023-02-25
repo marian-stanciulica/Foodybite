@@ -64,7 +64,7 @@ struct ProfileView<Cell: View>: View {
                 }
 
                 HStack {
-                    MarineButton(title: "Edit Profile") {
+                    MarineButton(title: "Edit Profile", isLoading: .constant(false)) {
                         editProfileAlertDisplayed = true
                     }
                     .padding(.horizontal)

@@ -38,7 +38,7 @@ struct ReviewView: View {
             
             Spacer()
             
-            MarineButton(title: "Done") {
+            MarineButton(title: "Done", isLoading: .constant(false)) {
                 Task {
                     await viewModel.addReview()
                 }

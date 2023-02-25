@@ -44,7 +44,7 @@ struct LoginView: View {
 
             Spacer()
 
-            MarineButton(title: "Login") {
+            MarineButton(title: "Login", isLoading: .constant(false)) {
                 Task {
                     await viewModel.login()
                 }
