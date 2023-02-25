@@ -27,6 +27,10 @@ final public class LoginViewModel: ObservableObject {
     @Published public var password = ""
     @Published public var state: State = .idle
     
+    public var isLoading: Bool {
+        state == .isLoading
+    }
+    
     public init(loginService: LoginService, goToMainTab: @escaping (User) -> Void) {
         self.loginService = loginService
         self.goToMainTab = goToMainTab

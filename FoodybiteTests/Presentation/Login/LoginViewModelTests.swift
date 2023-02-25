@@ -15,6 +15,28 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertEqual(LoginViewModel.LoginError.serverError.rawValue, "Invalid Credentials")
     }
     
+    func test_state_initiallyIdle() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertEqual(sut.state, .idle)
+    }
+    
+    func test_isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
+        let (sut, _) = makeSUT()
+
+        sut.state = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.state = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_login_sendsInputsToLoginService() async {
         let (sut, loginServiceSpy) = makeSUT()
         sut.email = anyEmail()
