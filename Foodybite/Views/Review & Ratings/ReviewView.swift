@@ -47,7 +47,7 @@ struct ReviewView: View {
         .padding()
         .arrowBackButtonStyle()
         .onChange(of: viewModel.state) { state in
-            guard state == .requestSucceeeded else { return }
+            guard state == .success else { return }
             
             dismissScreen()
         }
