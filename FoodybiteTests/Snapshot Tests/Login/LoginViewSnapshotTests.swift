@@ -14,17 +14,24 @@ import Domain
 final class LoginViewSnapshotTests: XCTestCase {
  
     func test_loginViewIdleState() {
-        let sut = makeSUT()
+        let sut = makeSUT(state: .idle)
+        
+        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_loginViewIsLoadingState() {
+        let sut = makeSUT(email: "testing@testing.com", password: "12345678", state: .isLoading)
         
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     // MARK: - Helpers
     
-    private func makeSUT(email: String = "", password: String = "") -> UIViewController {
+    private func makeSUT(email: String = "", password: String = "", state: LoginViewModel.State) -> UIViewController {
         let viewModel = LoginViewModel(loginService: EmptyLoginService(), goToMainTab: { _ in })
         viewModel.email = email
         viewModel.password = password
+        viewModel.state = state
         let registerView = LoginView(viewModel: viewModel, goToSignUp: {})
         let sut = UIHostingController(rootView: registerView)
         return sut
