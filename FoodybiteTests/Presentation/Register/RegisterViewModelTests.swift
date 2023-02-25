@@ -17,6 +17,22 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(sut.registerResult, .idle)
     }
     
+    func test_isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
+        let (sut, _) = makeSUT()
+
+        sut.registerResult = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.registerResult = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.registerResult = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.registerResult = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_register_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
         

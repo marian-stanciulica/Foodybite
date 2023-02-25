@@ -25,6 +25,10 @@ public class RegisterViewModel: ObservableObject {
     @Published public var profileImage: Data?
     @Published public var registerResult: State = .idle
     
+    public var isLoading: Bool {
+        registerResult == .isLoading
+    }
+    
     public init(signUpService: SignUpService) {
         self.signUpService = signUpService
     }
