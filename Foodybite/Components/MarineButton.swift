@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MarineButton: View {
     let title: String
-    @Binding var isLoading: Bool
+    let isLoading: Bool
     let action: () -> Void
 
     var body: some View {
@@ -41,12 +41,12 @@ struct MarineButton: View {
 struct RoundedButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            MarineButton(title: "Title", isLoading: .constant(true)) {
+            MarineButton(title: "Title", isLoading: true) {
                 
             }
             .padding(.vertical)
             
-            MarineButton(title: "Title", isLoading: .constant(false)) {
+            MarineButton(title: "Title", isLoading: false) {
                 
             }
         }

@@ -62,7 +62,7 @@ struct RestaurantDetailsView: View {
                     }
                 }
                 
-                MarineButton(title: "Rate Your Experience", isLoading: .constant(false), action: showReviewView)
+                MarineButton(title: "Rate Your Experience", isLoading: false, action: showReviewView)
                     .padding(.horizontal)
             }
         }

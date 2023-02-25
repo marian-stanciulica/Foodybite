@@ -27,11 +27,11 @@ struct SearchCriteriaView: View {
             Spacer()
             
             HStack {
-                MarineButton(title: "Reset", isLoading: .constant(false)) {
+                MarineButton(title: "Reset", isLoading: false) {
                     
                 }
                 
-                MarineButton(title: "Apply", isLoading: .constant(false)) {
+                MarineButton(title: "Apply", isLoading: false) {
                     
                 }
             }

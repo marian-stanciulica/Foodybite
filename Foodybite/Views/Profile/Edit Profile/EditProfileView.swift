@@ -31,7 +31,7 @@ struct EditProfileView: View {
             .padding(.horizontal)
             .padding(.vertical, 4)
 
-            MarineButton(title: "Update", isLoading: .constant(false)) {
+            MarineButton(title: "Update", isLoading: false) {
                 Task {
                     await viewModel.updateAccount()
                 }

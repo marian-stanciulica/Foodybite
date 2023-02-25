@@ -46,7 +46,7 @@ struct TurnOnLocationView: View {
 
             Spacer()
 
-            MarineButton(title: "Turn On GPS", isLoading: .constant(false)) {
+            MarineButton(title: "Turn On GPS", isLoading: false) {
 
             }
         }
