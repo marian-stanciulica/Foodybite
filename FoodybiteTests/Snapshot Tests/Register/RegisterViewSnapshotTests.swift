@@ -35,6 +35,12 @@ final class RegisterViewSnapshotTests: XCTestCase {
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_registerViewSuccessState() {
+        let sut = makeSUT(registerResult: .success)
+        
+        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(name: String = "", email: String = "", password: String = "", confirmPassword: String = "", registerResult: RegisterViewModel.State) -> UIViewController {
