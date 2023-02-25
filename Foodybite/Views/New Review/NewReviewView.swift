@@ -100,7 +100,6 @@ struct NewReviewView_Previews: PreviewProvider {
             viewModel: NewReviewViewModel(
                 autocompletePlacesService: PreviewAutocompletePlacesService(),
                 getPlaceDetailsService: PreviewGetPlaceDetailsService(),
-                fetchPlacePhotoService: PreviewFetchPlacePhotoService(),
                 addReviewService: PreviewAddReviewService(),
                 location: Location(latitude: 0, longitude: 0)
             ),

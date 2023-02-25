@@ -43,7 +43,6 @@ struct TabNavigationView: View {
                             viewModel: NewReviewViewModel(
                                 autocompletePlacesService: placesService,
                                 getPlaceDetailsService: placesService,
-                                fetchPlacePhotoService: placesService,
                                 addReviewService: apiService,
                                 location: location
                             ),

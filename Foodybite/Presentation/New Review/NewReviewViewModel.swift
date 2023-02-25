@@ -9,11 +9,11 @@ import Foundation
 import Domain
 
 public final class NewReviewViewModel: ObservableObject {
-    public enum State<T>: Equatable where T: Equatable {
+    public enum State: Equatable {
         case idle
         case isLoading
         case loadingError(String)
-        case requestSucceeeded(T)
+        case requestSucceeeded(PlaceDetails)
     }
     
     public enum ReviewState: Equatable {
@@ -25,12 +25,10 @@ public final class NewReviewViewModel: ObservableObject {
     
     private let autocompletePlacesService: AutocompletePlacesService
     private let getPlaceDetailsService: GetPlaceDetailsService
-    private let fetchPlacePhotoService: FetchPlacePhotoService
     private let addReviewService: AddReviewService
     private let location: Location
     
-    @Published public var getPlaceDetailsState: State<PlaceDetails> = .idle
-    @Published public var fetchPhotoState: State<Data> = .idle
+    @Published public var getPlaceDetailsState: State = .idle
     @Published public var postReviewState: ReviewState = .idle
     
     @Published public var searchText = ""
@@ -45,17 +43,15 @@ public final class NewReviewViewModel: ObservableObject {
         return false
     }
     
-    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService, addReviewService: AddReviewService, location: Location) {
+    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, addReviewService: AddReviewService, location: Location) {
         self.autocompletePlacesService = autocompletePlacesService
         self.getPlaceDetailsService = getPlaceDetailsService
-        self.fetchPlacePhotoService = fetchPlacePhotoService
         self.addReviewService = addReviewService
         self.location = location
     }
     
     @MainActor public func autocomplete() async {
         getPlaceDetailsState = .idle
-        fetchPhotoState = .idle
         
         do {
             autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText, location: location, radius: 100)
@@ -70,23 +66,8 @@ public final class NewReviewViewModel: ObservableObject {
         do {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
             getPlaceDetailsState = .requestSucceeeded(placeDetails)
-            
-            if let firstPhoto = placeDetails.photos.first {
-                await fetchPhoto(firstPhoto)
-            }
         } catch {
             getPlaceDetailsState = .loadingError("An error occured while fetching place details. Please try again later!")
-        }
-    }
-    
-    @MainActor private func fetchPhoto(_ photo: Photo) async {
-        fetchPhotoState = .isLoading
-        
-        do {
-            let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
-            fetchPhotoState = .requestSucceeeded(photoData)
-        } catch {
-            fetchPhotoState = .loadingError("An error occured while fetching place photo. Please try again later!")
         }
     }
     
