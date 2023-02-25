@@ -123,14 +123,6 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.profileImage), [anyData()])
-        
-        await sut.register()
-        
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName(), validName()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword(), validPassword()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword(), validPassword()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.profileImage), [anyData(), anyData()])
     }
     
     func test_register_throwsErrorWhenSignUpServiceThrowsError() async {
@@ -154,6 +146,21 @@ final class RegisterViewModelTests: XCTestCase {
         sut.confirmPassword = validPassword()
         
         await assertRegister(on: sut, withExpectedResult: .success)
+    }
+    
+    func test_register_resetsInputsWhenSignUpServiceReturnsSuccess() async {
+        let (sut, _) = makeSUT()
+        sut.name = validName()
+        sut.email = validEmail()
+        sut.password = validPassword()
+        sut.confirmPassword = validPassword()
+        
+        await sut.register()
+        
+        XCTAssertTrue(sut.name.isEmpty)
+        XCTAssertTrue(sut.email.isEmpty)
+        XCTAssertTrue(sut.password.isEmpty)
+        XCTAssertTrue(sut.confirmPassword.isEmpty)
     }
     
     // MARK: - Helpers

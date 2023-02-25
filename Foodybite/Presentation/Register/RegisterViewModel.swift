@@ -60,8 +60,16 @@ public class RegisterViewModel: ObservableObject {
                                            confirmPassword: confirmPassword,
                                            profileImage: profileImage)
             registerResult = .success
+            resetInputs()
         } catch {
             throw RegisterValidator.Error.serverError
         }
+    }
+    
+    @MainActor private func resetInputs() {
+        name = ""
+        email = ""
+        password = ""
+        confirmPassword = ""
     }
 }
