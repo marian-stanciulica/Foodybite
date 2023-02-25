@@ -24,6 +24,7 @@ final class RegisterViewSnapshotTests: XCTestCase {
                           email: "testing@testing.com",
                           password: "12345678",
                           confirmPassword: "12345678",
+                          profileImage: UIImage(named: "restaurant_logo_test")?.pngData(),
                           registerResult: .isLoading)
         
         assertSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -43,13 +44,14 @@ final class RegisterViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(name: String = "", email: String = "", password: String = "", confirmPassword: String = "", registerResult: RegisterViewModel.State) -> UIViewController {
+    private func makeSUT(name: String = "", email: String = "", password: String = "", confirmPassword: String = "", profileImage: Data? = nil, registerResult: RegisterViewModel.State) -> UIViewController {
         let viewModel = RegisterViewModel(signUpService: EmptySignUpService())
         viewModel.name = name
         viewModel.email = email
         viewModel.password = password
         viewModel.confirmPassword = confirmPassword
         viewModel.registerResult = registerResult
+        viewModel.profileImage = profileImage
         let registerView = RegisterView(viewModel: viewModel, goToLogin: {})
         let sut = UIHostingController(rootView: registerView)
         return sut
