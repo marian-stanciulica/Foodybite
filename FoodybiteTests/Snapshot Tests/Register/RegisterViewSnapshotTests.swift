@@ -16,7 +16,8 @@ final class RegisterViewSnapshotTests: XCTestCase {
     func test_registerViewIdleState() {
         let sut = makeSUT(registerResult: .idle)
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_registerViewIsLoadingState() {
@@ -27,19 +28,22 @@ final class RegisterViewSnapshotTests: XCTestCase {
                           profileImage: UIImage(named: "restaurant_logo_test")?.pngData(),
                           registerResult: .isLoading)
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_registerViewFailureState() {
         let sut = makeSUT(registerResult: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_registerViewSuccessState() {
         let sut = makeSUT(registerResult: .success)
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     // MARK: - Helpers
