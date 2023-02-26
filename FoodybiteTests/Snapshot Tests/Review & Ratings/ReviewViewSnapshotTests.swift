@@ -16,7 +16,8 @@ final class ReviewViewSnapshotTests: XCTestCase {
     func test_reviewViewIdleState() {
         let sut = makeSUT(state: .idle)
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_reviewViewIsLoadingState() {
@@ -24,7 +25,8 @@ final class ReviewViewSnapshotTests: XCTestCase {
                           reviewText: makeReviewText(),
                           state: .isLoading)
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_reviewViewFailureState() {
@@ -32,7 +34,8 @@ final class ReviewViewSnapshotTests: XCTestCase {
                           reviewText: makeReviewText(),
                           state: .failure(.serverError))
         
-        assertSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     // MARK: - Helpers
