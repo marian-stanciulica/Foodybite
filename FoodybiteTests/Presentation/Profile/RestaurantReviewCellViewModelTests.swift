@@ -40,7 +40,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
 
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .failure(.serverError)])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
     func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
@@ -51,7 +51,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
 
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .success(expectedPlaceDetails)])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedPlaceDetails)])
     }
     
     func test_getPlaceDetails_triggersFetchPhoto() async {
@@ -73,7 +73,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .failure(.serverError)])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
     func test_fetchPhoto_setsFetchPhotoStateToRequestSucceeededWhenFetchPlacePhotoServiceThrowsError() async {
@@ -86,7 +86,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .success(expectedData)])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedData)])
     }
     
     func test_rating_returnsFormattedRating() {

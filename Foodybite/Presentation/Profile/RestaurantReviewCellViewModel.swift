@@ -56,6 +56,8 @@ public class RestaurantReviewCellViewModel: ObservableObject {
     }
     
     @MainActor public func getPlaceDetails() async {
+        getPlaceDetailsState = .isLoading
+        
         do {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: review.placeID)
             getPlaceDetailsState = .success(placeDetails)
@@ -69,6 +71,8 @@ public class RestaurantReviewCellViewModel: ObservableObject {
     }
     
     @MainActor private func fetchPhoto(_ photo: Photo) async {
+        fetchPhotoState = .isLoading
+        
         do {
             let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
             fetchPhotoState = .success(photoData)
