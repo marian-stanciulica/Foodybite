@@ -234,6 +234,8 @@
 		0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4A29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png */; };
 		0FD19A4F29AC98F500DF7326 /* test_changePasswordViewFailureState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4D29AC98F500DF7326 /* test_changePasswordViewFailureState.dark.png */; };
 		0FD19A5029AC98F500DF7326 /* test_changePasswordViewFailureState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4E29AC98F500DF7326 /* test_changePasswordViewFailureState.light.png */; };
+		0FD19A5329AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A5129AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png */; };
+		0FD19A5429AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A5229AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -656,6 +658,8 @@
 		0FD19A4A29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewIsLoadingState.light.png; sourceTree = "<group>"; };
 		0FD19A4D29AC98F500DF7326 /* test_changePasswordViewFailureState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewFailureState.dark.png; sourceTree = "<group>"; };
 		0FD19A4E29AC98F500DF7326 /* test_changePasswordViewFailureState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewFailureState.light.png; sourceTree = "<group>"; };
+		0FD19A5129AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewSuccessState.dark.png; sourceTree = "<group>"; };
+		0FD19A5229AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewSuccessState.light.png; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -1770,6 +1774,8 @@
 				0FD19A4A29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png */,
 				0FD19A4D29AC98F500DF7326 /* test_changePasswordViewFailureState.dark.png */,
 				0FD19A4E29AC98F500DF7326 /* test_changePasswordViewFailureState.light.png */,
+				0FD19A5129AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png */,
+				0FD19A5229AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png */,
 			);
 			path = ChangePasswordViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2609,7 +2615,9 @@
 				0F9A19D629AB4FE7007B2E9B /* test_reviewViewIdleState.light.png in Resources */,
 				0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */,
 				0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */,
+				0FD19A5429AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png in Resources */,
 				0F9A19F329AB51B2007B2E9B /* test_loginViewIsLoadingState.light.png in Resources */,
+				0FD19A5329AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png in Resources */,
 				0FD19A5029AC98F500DF7326 /* test_changePasswordViewFailureState.light.png in Resources */,
 				0F9A19E329AB50EB007B2E9B /* test_registerViewFailureState.dark.png in Resources */,
 				0F9A1A0829AB5551007B2E9B /* test_changePasswordViewIdleState.light.png in Resources */,
