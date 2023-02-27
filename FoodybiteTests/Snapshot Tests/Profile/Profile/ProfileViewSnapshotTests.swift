@@ -15,7 +15,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     func test_profileViewIdleStateForUserWithoutProfileImage() {
         let sut = makeSUT(user: makeUserWithoutProfileImage(),
-                          state: .idle)
+                          getReviewsState: .idle)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -23,7 +23,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     func test_profileViewIdleStateForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
-                          state: .idle)
+                          getReviewsState: .idle)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -31,7 +31,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     func test_profileViewIsLoadingStateForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
-                          state: .isLoading)
+                          getReviewsState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -39,7 +39,16 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     func test_profileViewFailureStateForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
-                          state: .failure(.serverError))
+                          getReviewsState: .failure(.serverError))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_profileViewSuccessStateForUserWithProfileImage() {
+        let sut = makeSUT(user: makeUserWithProfileImage(),
+                          getReviewsState: .success(makeReviews()),
+                          getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -47,12 +56,41 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(user: User, state: ProfileViewModel.State) -> UIViewController {
+    private func makeSUT(
+        user: User,
+        getReviewsState: ProfileViewModel.State,
+        getPlaceDetailsState: RestaurantReviewCellViewModel.State<PlaceDetails> = .isLoading,
+        fetchPhotoState: RestaurantReviewCellViewModel.State<Data> = .isLoading
+    ) -> UIViewController {
         let viewModel = ProfileViewModel(accountService: EmptyAccountService(), getReviewsService: EmptyGetReviewsService(), user: user, goToLogin: {})
-        viewModel.getReviewsState = state
-        let profileView = ProfileView(viewModel: viewModel, cell: { _ in EmptyView() }, goToSettings: {}, goToEditProfile: {})
+        viewModel.getReviewsState = getReviewsState
+        let profileView = ProfileView(
+            viewModel: viewModel,
+            cell: { self.makeCell(review: $0, getPlaceDetailsState: getPlaceDetailsState, fetchPhotoState: fetchPhotoState) },
+            goToSettings: {},
+            goToEditProfile: {}
+        )
         let sut = UIHostingController(rootView: profileView)
         return sut
+    }
+    
+    private func makeCell(
+        review: Review,
+        getPlaceDetailsState: RestaurantReviewCellViewModel.State<PlaceDetails>,
+        fetchPhotoState: RestaurantReviewCellViewModel.State<Data>
+    ) -> RestaurantReviewCellView {
+        let viewModel = RestaurantReviewCellViewModel(
+            review: review,
+            getPlaceDetailsService: EmptyGetPlaceDetailsService(),
+            fetchPlacePhotoService: EmptyFetchPlacePhotoService()
+        )
+        viewModel.getPlaceDetailsState = getPlaceDetailsState
+        viewModel.fetchPhotoState = fetchPhotoState
+        let cell = RestaurantReviewCellView(
+            viewModel: viewModel,
+            showPlaceDetails: { _ in }
+        )
+        return cell
     }
     
     private func makeUserWithoutProfileImage() -> User {
@@ -69,6 +107,29 @@ final class ProfileViewSnapshotTests: XCTestCase {
              profileImage: UIImage.make(withColor: .red).pngData())
     }
     
+    private func makeReviews() -> [Review] {
+        [
+            Review(placeID: "",
+                   profileImageURL: nil,
+                   profileImageData: UIImage.make(withColor: .red).pngData(),
+                   authorName: "Testing",
+                   reviewText: "That was nice",
+                   rating: 4,
+                   relativeTime: "an hour ago"),
+            Review(placeID: "",
+                   profileImageURL: nil,
+                   profileImageData: UIImage.make(withColor: .blue).pngData(),
+                   authorName: "Testing",
+                   reviewText: "That was nice",
+                   rating: 4,
+                   relativeTime: "an hour ago")
+        ]
+    }
+    
+    private func makePlaceDetails() -> PlaceDetails {
+        PlaceDetails(placeID: "", phoneNumber: nil, name: "Place name", address: "Place address", rating: 4, openingHoursDetails: nil, reviews: [], location: Location(latitude: 0, longitude: 0), photos: [])
+    }
+    
     private class EmptyAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
@@ -77,6 +138,26 @@ final class ProfileViewSnapshotTests: XCTestCase {
     private class EmptyGetReviewsService: GetReviewsService {
         func getReviews(placeID: String?) async throws -> [Review] {
             []
+        }
+    }
+    
+    private class EmptyGetPlaceDetailsService: GetPlaceDetailsService {
+        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+            PlaceDetails(placeID: "",
+                         phoneNumber: nil,
+                         name: "ceva",
+                         address: "",
+                         rating: 0,
+                         openingHoursDetails: nil,
+                         reviews: [],
+                         location: Location(latitude: 0, longitude: 0),
+                         photos: [])
+        }
+    }
+    
+    private class EmptyFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            UIImage.make(withColor: .red).pngData()!
         }
     }
 }

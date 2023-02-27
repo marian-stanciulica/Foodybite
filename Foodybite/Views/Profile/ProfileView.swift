@@ -97,7 +97,8 @@ struct ProfileView<Cell: View>: View {
                     LazyVStack {
                         ForEach(reviews, id: \.id) { review in
                             cell(review)
-                                .padding()
+                                .padding(.horizontal)
+                                .padding(.vertical, 4)
                         }
                     }
                 }

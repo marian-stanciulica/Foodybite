@@ -44,7 +44,7 @@ public final class ProfileViewModel: ObservableObject {
             try await accountService.deleteAccount()
             goToLogin()
         } catch {
-            deleteAccountError = DeleteAccountError.serverError
+            deleteAccountError = .serverError
         }
     }
     

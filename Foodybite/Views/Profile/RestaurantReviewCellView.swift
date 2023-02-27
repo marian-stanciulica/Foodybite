@@ -17,7 +17,13 @@ struct RestaurantReviewCellView: View {
             ZStack(alignment: .topTrailing) {
                 switch viewModel.fetchPhotoState {
                 case .isLoading, .loadingError:
-                    ProgressView()
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .foregroundColor(Color(uiColor: .systemGray3))
+                            .frame(height: 200)
+                        
+                        ProgressView()
+                    }
                 case let .requestSucceeeded(photoData):
                     if let uiImage = UIImage(data: photoData) {
                         Image(uiImage: uiImage)
@@ -26,7 +32,7 @@ struct RestaurantReviewCellView: View {
                     }
                 }
                 
-                RatingStar(rating: viewModel.rating, backgroundColor: .white)
+                RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
                     .padding()
             }
             
