@@ -1717,7 +1717,6 @@
 			isa = PBXGroup;
 			children = (
 				0F9A19F729AB5316007B2E9B /* Settings */,
-				0F9A1A0029AB54A7007B2E9B /* Change Password */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1725,8 +1724,8 @@
 		0F9A19F729AB5316007B2E9B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				0F9A19FA29AB5422007B2E9B /* __Snapshots__ */,
-				0F9A19F829AB5326007B2E9B /* SettingsViewSnapshotTests.swift */,
+				0FD19A5629AC9BD800DF7326 /* Settings */,
+				0F9A1A0029AB54A7007B2E9B /* Change Password */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1916,6 +1915,15 @@
 				0FC86403298E87D30024016B /* ReviewViewModel.swift */,
 			);
 			path = "Review & Ratings";
+			sourceTree = "<group>";
+		};
+		0FD19A5629AC9BD800DF7326 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0F9A19FA29AB5422007B2E9B /* __Snapshots__ */,
+				0F9A19F829AB5326007B2E9B /* SettingsViewSnapshotTests.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		0FD41762298D5AE100F2BF92 /* Location */ = {
