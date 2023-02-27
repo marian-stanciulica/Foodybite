@@ -25,7 +25,7 @@ struct NewReviewView<SelectedView: View>: View {
                             plusButtonActive = false
                         }
                     }
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(uiColor: .systemGray))
                     
                     Spacer()
                     
@@ -39,7 +39,8 @@ struct NewReviewView<SelectedView: View>: View {
                             await viewModel.postReview()
                         }
                     }
-                    .foregroundColor(.gray)
+                    .disabled(!viewModel.postReviewEnabled)
+                    .foregroundColor(viewModel.postReviewEnabled ? .marineBlue : Color(uiColor: .systemGray))
                 }
                 .padding()
                 
@@ -66,7 +67,7 @@ struct NewReviewView<SelectedView: View>: View {
                 
                 Text("Rate your experience")
                     .font(.title3)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(uiColor: .systemGray))
                     .padding()
                 
                 Text("Review")
@@ -74,7 +75,7 @@ struct NewReviewView<SelectedView: View>: View {
                     .padding(.top)
                 
                 VStack {
-                    TextField("Write your experience", text: $viewModel.reviewText)
+                    TextField("Write your experience", text: $viewModel.reviewText, axis: .vertical)
                         .padding()
                     
                     Spacer()

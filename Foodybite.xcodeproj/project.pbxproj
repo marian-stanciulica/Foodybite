@@ -243,6 +243,8 @@
 		0FB1D3FC29AD08B200304A94 /* test_newReviewWhenFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3FA29AD08B200304A94 /* test_newReviewWhenFetchPhotoStateIsFailure.light.png */; };
 		0FB1D3FF29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3FD29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.light.png */; };
 		0FB1D40029AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3FE29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.dark.png */; };
+		0FB1D40729AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D40529AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png */; };
+		0FB1D40829AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D40629AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png */; };
 		0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F6298E60500024016B /* ReviewEndpointTests.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
@@ -709,6 +711,8 @@
 		0FB1D3FA29AD08B200304A94 /* test_newReviewWhenFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0FB1D3FD29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenFetchPhotoStateIsSuccess.light.png; sourceTree = "<group>"; };
 		0FB1D3FE29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenFetchPhotoStateIsSuccess.dark.png; sourceTree = "<group>"; };
+		0FB1D40529AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png; sourceTree = "<group>"; };
+		0FB1D40629AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png; sourceTree = "<group>"; };
 		0FC863F6298E60500024016B /* ReviewEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpointTests.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
@@ -2014,6 +2018,8 @@
 				0FB1D3FA29AD08B200304A94 /* test_newReviewWhenFetchPhotoStateIsFailure.light.png */,
 				0FB1D3FE29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.dark.png */,
 				0FB1D3FD29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.light.png */,
+				0FB1D40629AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png */,
+				0FB1D40529AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png */,
 			);
 			path = NewReviewSnapshotTests;
 			sourceTree = "<group>";
@@ -2834,6 +2840,7 @@
 				0F9A19F129AB51B2007B2E9B /* test_loginViewIdleState.light.png in Resources */,
 				0F9A19D729AB4FE7007B2E9B /* test_reviewViewIsLoadingState.dark.png in Resources */,
 				0F9A19D629AB4FE7007B2E9B /* test_reviewViewIdleState.light.png in Resources */,
+				0FB1D40729AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png in Resources */,
 				0FB1D3D029ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */,
 				0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */,
 				0FB1D3CF29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png in Resources */,
@@ -2841,6 +2848,7 @@
 				0FD19A6D29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png in Resources */,
 				0FD19AC429ACBF8900DF7326 /* test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage.dark.png in Resources */,
 				0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */,
+				0FB1D40829AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png in Resources */,
 				0FD19A6829ACA12600DF7326 /* test_editProfileViewIsLoadingState.dark.png in Resources */,
 				0FD19AD329ACC75400DF7326 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsIsLoading.dark.png in Resources */,
 				0FD19AC629ACBF8900DF7326 /* test_profileViewWhenGetReviewsStateIsFailure.light.png in Resources */,

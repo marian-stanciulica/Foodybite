@@ -50,10 +50,6 @@ final class ReviewViewSnapshotTests: XCTestCase {
         return sut
     }
     
-    private func makeReviewText() -> String {
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur."
-    }
-    
     private class EmptyAddReviewService: AddReviewService {
         func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
     }

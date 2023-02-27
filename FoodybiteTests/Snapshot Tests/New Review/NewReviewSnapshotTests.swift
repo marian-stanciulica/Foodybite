@@ -52,9 +52,26 @@ final class NewReviewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_newReviewWhenInputIsValidPostButtonIsEnabled() {
+        let sut = makeSUT(starsNumber: 4,
+                          reviewText: makeReviewText(),
+                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .failure)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle, fetchPhotoState: SelectedRestaurantViewModel.State = .idle) -> UIViewController {
+    private func makeSUT(
+        searchText: String = "",
+        starsNumber: Int = 0,
+        reviewText: String = "",
+        autocompletePredictions: [AutocompletePrediction] = [],
+        getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle,
+        fetchPhotoState: SelectedRestaurantViewModel.State = .idle
+    ) -> UIViewController {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
@@ -62,6 +79,8 @@ final class NewReviewSnapshotTests: XCTestCase {
             location: Location(latitude: 0, longitude: 0)
         )
         viewModel.searchText = searchText
+        viewModel.starsNumber = starsNumber
+        viewModel.reviewText = reviewText
         viewModel.autocompleteResults = autocompletePredictions
         viewModel.getPlaceDetailsState = getPlaceDetailsState
         
