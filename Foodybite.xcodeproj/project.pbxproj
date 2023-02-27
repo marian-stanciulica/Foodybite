@@ -236,6 +236,9 @@
 		0FD19A5029AC98F500DF7326 /* test_changePasswordViewFailureState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4E29AC98F500DF7326 /* test_changePasswordViewFailureState.light.png */; };
 		0FD19A5329AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A5129AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png */; };
 		0FD19A5429AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A5229AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png */; };
+		0FD19A5929AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD19A5829AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift */; };
+		0FD19A6229AC9DDA00DF7326 /* test_editProfileViewIdleState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6029AC9DDA00DF7326 /* test_editProfileViewIdleState.dark.png */; };
+		0FD19A6329AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6129AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -660,6 +663,9 @@
 		0FD19A4E29AC98F500DF7326 /* test_changePasswordViewFailureState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewFailureState.light.png; sourceTree = "<group>"; };
 		0FD19A5129AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewSuccessState.dark.png; sourceTree = "<group>"; };
 		0FD19A5229AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewSuccessState.light.png; sourceTree = "<group>"; };
+		0FD19A5829AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewSnapshotTests.swift; sourceTree = "<group>"; };
+		0FD19A6029AC9DDA00DF7326 /* test_editProfileViewIdleState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewIdleState.dark.png; sourceTree = "<group>"; };
+		0FD19A6129AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewIdleState.light.png; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -1716,6 +1722,7 @@
 		0F9A19F629AB5304007B2E9B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0FD19A5729AC9C2D00DF7326 /* Edit Profile */,
 				0F9A19F729AB5316007B2E9B /* Settings */,
 			);
 			path = Profile;
@@ -1924,6 +1931,32 @@
 				0F9A19F829AB5326007B2E9B /* SettingsViewSnapshotTests.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		0FD19A5729AC9C2D00DF7326 /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0FD19A5A29AC9D0200DF7326 /* __Snapshots__ */,
+				0FD19A5829AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift */,
+			);
+			path = "Edit Profile";
+			sourceTree = "<group>";
+		};
+		0FD19A5A29AC9D0200DF7326 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0FD19A5B29AC9D0200DF7326 /* EditProfileViewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0FD19A5B29AC9D0200DF7326 /* EditProfileViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FD19A6029AC9DDA00DF7326 /* test_editProfileViewIdleState.dark.png */,
+				0FD19A6129AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png */,
+			);
+			path = EditProfileViewSnapshotTests;
 			sourceTree = "<group>";
 		};
 		0FD41762298D5AE100F2BF92 /* Location */ = {
@@ -2611,6 +2644,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F9A19E429AB50EB007B2E9B /* test_registerViewIdleState.dark.png in Resources */,
+				0FD19A6229AC9DDA00DF7326 /* test_editProfileViewIdleState.dark.png in Resources */,
 				0F9A19D829AB4FE7007B2E9B /* test_reviewViewFailureState.dark.png in Resources */,
 				0F9A19F529AB51B2007B2E9B /* test_loginViewIdleState.dark.png in Resources */,
 				0FD19A4B29AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png in Resources */,
@@ -2625,6 +2659,7 @@
 				0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */,
 				0FD19A5429AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png in Resources */,
 				0F9A19F329AB51B2007B2E9B /* test_loginViewIsLoadingState.light.png in Resources */,
+				0FD19A6329AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png in Resources */,
 				0FD19A5329AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png in Resources */,
 				0FD19A5029AC98F500DF7326 /* test_changePasswordViewFailureState.light.png in Resources */,
 				0F9A19E329AB50EB007B2E9B /* test_registerViewFailureState.dark.png in Resources */,
@@ -2828,6 +2863,7 @@
 			files = (
 				0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */,
 				0F9A19F929AB5326007B2E9B /* SettingsViewSnapshotTests.swift in Sources */,
+				0FD19A5929AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
 				0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */,
 				0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */,

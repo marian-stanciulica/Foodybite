@@ -13,7 +13,7 @@ struct EditProfileView: View {
     
     var body: some View {
         VStack {
-            ProfileImage(backgroundColor: .black,
+            ProfileImage(backgroundColor: .primary,
                          selectedImageData: $viewModel.profileImage)
                 .padding(.vertical, 40)
 
