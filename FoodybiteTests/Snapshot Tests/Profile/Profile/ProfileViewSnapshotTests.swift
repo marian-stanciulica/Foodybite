@@ -45,7 +45,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_profileViewWhenGetReviewsStateIsSuccess() {
+    func test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getPlaceDetailsState: .success(makePlaceDetails()))
