@@ -9,8 +9,8 @@ import Foundation
 import Domain
 
 public final class ProfileViewModel: ObservableObject {
-    public enum Error: String, Swift.Error {
-        case accountDeletionError = "An error occured during deletion. Please try again!"
+    public enum DeleteAccountError: String, Swift.Error {
+        case serverError = "An error occured during deletion. Please try again!"
     }
     
     public enum GetReviewsError: String, Swift.Error {
@@ -30,7 +30,7 @@ public final class ProfileViewModel: ObservableObject {
     let user: User
 
     @Published public var getReviewsState: State = .idle
-    @Published public var error: Error?
+    @Published public var deleteAccountError: DeleteAccountError?
     
     public init(accountService: AccountService, getReviewsService: GetReviewsService, user: User, goToLogin: @escaping () -> Void) {
         self.accountService = accountService
@@ -44,7 +44,7 @@ public final class ProfileViewModel: ObservableObject {
             try await accountService.deleteAccount()
             goToLogin()
         } catch {
-            self.error = Error.accountDeletionError
+            deleteAccountError = DeleteAccountError.serverError
         }
     }
     

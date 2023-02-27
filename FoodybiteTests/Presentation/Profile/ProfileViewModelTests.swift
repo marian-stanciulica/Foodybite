@@ -23,7 +23,7 @@ final class ProfileViewModelTests: XCTestCase {
         let expectedError = anyNSError()
         accountServiceSpy.errorToThrow = expectedError
         
-        await assertDeleteAccount(on: sut, withExpectedResult: .accountDeletionError)
+        await assertDeleteAccount(on: sut, withExpectedResult: .serverError)
     }
     
     func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
@@ -95,10 +95,10 @@ final class ProfileViewModelTests: XCTestCase {
     }
     
     private func assertDeleteAccount(on sut: ProfileViewModel,
-                                     withExpectedResult expectedResult: ProfileViewModel.Error,
+                                     withExpectedResult expectedResult: ProfileViewModel.DeleteAccountError,
                                      file: StaticString = #file,
                                      line: UInt = #line) async {
-        let resultSpy = PublisherSpy(sut.$error.eraseToAnyPublisher())
+        let resultSpy = PublisherSpy(sut.$deleteAccountError.eraseToAnyPublisher())
 
         XCTAssertEqual(resultSpy.results, [nil], file: file, line: line)
         
