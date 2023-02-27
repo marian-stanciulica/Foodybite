@@ -13,10 +13,15 @@ public final class ProfileViewModel: ObservableObject {
         case accountDeletionError = "An error occured during deletion. Please try again!"
     }
     
+    public enum GetReviewsError: String, Swift.Error {
+        case serverError = "An error occured while fetching reviews. Please try again later!"
+    }
+    
     public enum State: Equatable {
+        case idle
         case isLoading
-        case loadingError(String)
-        case requestSucceeeded([Review])
+        case failure(GetReviewsError)
+        case success([Review])
     }
     
     private let accountService: AccountService
@@ -24,7 +29,7 @@ public final class ProfileViewModel: ObservableObject {
     private let goToLogin: () -> Void
     let user: User
 
-    @Published public var getReviewsState: State = .isLoading
+    @Published public var getReviewsState: State = .idle
     @Published public var error: Error?
     
     public init(accountService: AccountService, getReviewsService: GetReviewsService, user: User, goToLogin: @escaping () -> Void) {
@@ -44,11 +49,13 @@ public final class ProfileViewModel: ObservableObject {
     }
     
     @MainActor public func getAllReviews() async {
+        getReviewsState = .isLoading
+        
         do {
             let reviews = try await getReviewsService.getReviews(placeID: nil)
-            getReviewsState = .requestSucceeeded(reviews)
+            getReviewsState = .success(reviews)
         } catch {
-            getReviewsState = .loadingError("An error occured while fetching reviews. Please try again later!")
+            getReviewsState = .failure(.serverError)
         }
     }
 }
