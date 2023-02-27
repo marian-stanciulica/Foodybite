@@ -11,6 +11,15 @@ import Domain
 
 final class ChangePasswordViewModelTests: XCTestCase {
 
+    func test_init_variablesInitialValues() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertTrue(sut.currentPassword.isEmpty)
+        XCTAssertTrue(sut.newPassword.isEmpty)
+        XCTAssertTrue(sut.confirmPassword.isEmpty)
+        XCTAssertEqual(sut.result, .idle)
+    }
+    
     func test_changePassword_triggerEmptyPasswordErrorOnEmptyCurrentPassword() async {
         let (sut, _) = makeSUT()
         
