@@ -20,6 +20,22 @@ final class ChangePasswordViewModelTests: XCTestCase {
         XCTAssertEqual(sut.result, .idle)
     }
     
+    func test_isLoading_isTrueOnlyWhenResultIsLoading() {
+        let (sut, _) = makeSUT()
+
+        sut.result = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.result = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.result = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.result = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_changePassword_triggerEmptyPasswordErrorOnEmptyCurrentPassword() async {
         let (sut, _) = makeSUT()
         

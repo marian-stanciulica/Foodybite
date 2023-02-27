@@ -23,6 +23,10 @@ public final class ChangePasswordViewModel: ObservableObject {
     @Published public var confirmPassword = ""
     @Published public var result: Result = .idle
     
+    public var isLoading: Bool {
+        result == .isLoading
+    }
+    
     public init(changePasswordService: ChangePasswordService) {
         self.changePasswordService = changePasswordService
     }
