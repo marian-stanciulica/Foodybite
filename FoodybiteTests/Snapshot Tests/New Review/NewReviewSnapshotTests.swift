@@ -24,13 +24,20 @@ final class NewReviewSnapshotTests: XCTestCase {
         let sut = makeSUT(searchText: "Pred",
                           autocompletePredictions: makeAutocompletePredictions())
         
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_newReviewViewWhenGetPlaceDetailsStateIsSuccess() {
+        let sut = makeSUT(getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
 
     // MARK: - Helpers
     
-    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = []) -> UIViewController {
+    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.State = .idle) -> UIViewController {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
@@ -39,15 +46,23 @@ final class NewReviewSnapshotTests: XCTestCase {
         )
         viewModel.searchText = searchText
         viewModel.autocompleteResults = autocompletePredictions
+        viewModel.getPlaceDetailsState = getPlaceDetailsState
         
         let newReviewView = NewReviewView(
             currentPage: .constant(.newReview),
             plusButtonActive: .constant(true),
             viewModel: viewModel,
-            selectedView: { _ in EmptyView() }
+            selectedView: makeCell(placeDetails:)
         )
         let sut = UIHostingController(rootView: newReviewView)
         return sut
+    }
+    
+    private func makeCell(placeDetails: PlaceDetails) -> SelectedRestaurantView {
+        let viewModel = SelectedRestaurantViewModel(placeDetails: placeDetails,
+                                                    fetchPlacePhotoService: EmptyFetchPlacePhotoService())
+        let view = SelectedRestaurantView(viewModel: viewModel)
+        return view
     }
     
     private func makeAutocompletePredictions() -> [AutocompletePrediction] {

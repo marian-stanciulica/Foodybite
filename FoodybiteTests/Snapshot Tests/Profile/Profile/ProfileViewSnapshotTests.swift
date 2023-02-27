@@ -164,10 +164,6 @@ final class ProfileViewSnapshotTests: XCTestCase {
         ]
     }
     
-    private func makePlaceDetails() -> PlaceDetails {
-        PlaceDetails(placeID: "", phoneNumber: nil, name: "Place name", address: "Place address", rating: 4, openingHoursDetails: nil, reviews: [], location: Location(latitude: 0, longitude: 0), photos: [])
-    }
-    
     private func makePhotoData() -> Data {
         UIImage.make(withColor: .blue).pngData()!
     }
@@ -180,12 +176,6 @@ final class ProfileViewSnapshotTests: XCTestCase {
     private class EmptyGetReviewsService: GetReviewsService {
         func getReviews(placeID: String?) async throws -> [Review] {
             []
-        }
-    }
-    
-    private class EmptyFetchPlacePhotoService: FetchPlacePhotoService {
-        func fetchPlacePhoto(photoReference: String) async throws -> Data {
-            Data()
         }
     }
 }
