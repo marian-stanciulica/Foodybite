@@ -37,6 +37,14 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_profileViewFailureStateForUserWithProfileImage() {
+        let sut = makeSUT(user: makeUserWithProfileImage(),
+                          state: .failure(.serverError))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(user: User, state: ProfileViewModel.State) -> UIViewController {

@@ -82,7 +82,18 @@ struct ProfileView<Cell: View>: View {
                     .foregroundColor(.gray.opacity(0.2))
                     .padding(.top)
 
-                if case let .success(reviews) = viewModel.getReviewsState {
+                switch viewModel.getReviewsState {
+                case .idle:
+                    EmptyView()
+                case .isLoading:
+                    ProgressView()
+                        .tint(.primary)
+                case let .failure(error):
+                    Text(error.rawValue)
+                        .padding()
+                        .foregroundColor(.red)
+                        .font(.headline)
+                case let .success(reviews):
                     LazyVStack {
                         ForEach(reviews, id: \.id) { review in
                             cell(review)

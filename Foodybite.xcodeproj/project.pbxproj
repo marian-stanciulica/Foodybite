@@ -253,6 +253,8 @@
 		0FD19A7E29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A7C29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png */; };
 		0FD19A8129ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A7F29ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.dark.png */; };
 		0FD19A8229ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A8029ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.light.png */; };
+		0FD19A8529ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A8329ACAC8400DF7326 /* test_profileViewFailureStateForUserWithProfileImage.light.png */; };
+		0FD19A8629ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A8429ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.dark.png */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -694,6 +696,8 @@
 		0FD19A7C29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIdleStateForUserWithProfileImage.dark.png; sourceTree = "<group>"; };
 		0FD19A7F29ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIsLoadingStateForUserWithProfileImage.dark.png; sourceTree = "<group>"; };
 		0FD19A8029ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIsLoadingStateForUserWithProfileImage.light.png; sourceTree = "<group>"; };
+		0FD19A8329ACAC8400DF7326 /* test_profileViewFailureStateForUserWithProfileImage.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewFailureStateForUserWithProfileImage.light.png; sourceTree = "<group>"; };
+		0FD19A8429ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewFailureStateForUserWithProfileImage.dark.png; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -2021,6 +2025,8 @@
 				0FD19A7B29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.light.png */,
 				0FD19A7F29ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.dark.png */,
 				0FD19A8029ACAB0800DF7326 /* test_profileViewIsLoadingStateForUserWithProfileImage.light.png */,
+				0FD19A8429ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.dark.png */,
+				0FD19A8329ACAC8400DF7326 /* test_profileViewFailureStateForUserWithProfileImage.light.png */,
 			);
 			path = ProfileViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2728,8 +2734,10 @@
 				0FD19A6829ACA12600DF7326 /* test_editProfileViewIsLoadingState.dark.png in Resources */,
 				0FD19A6929ACA12600DF7326 /* test_editProfileViewIsLoadingState.light.png in Resources */,
 				0FD19A7E29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png in Resources */,
+				0FD19A8629ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.dark.png in Resources */,
 				0FD19A5429AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png in Resources */,
 				0F9A19F329AB51B2007B2E9B /* test_loginViewIsLoadingState.light.png in Resources */,
+				0FD19A8529ACAC8500DF7326 /* test_profileViewFailureStateForUserWithProfileImage.light.png in Resources */,
 				0FD19A6329AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png in Resources */,
 				0FD19A5329AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png in Resources */,
 				0FD19A5029AC98F500DF7326 /* test_changePasswordViewFailureState.light.png in Resources */,
