@@ -59,7 +59,7 @@ struct ChangePasswordView: View {
                 .foregroundColor(.red)
                 .font(.headline)
             
-        case .notTriggered:
+        default:
             return Text("")
         }
     }

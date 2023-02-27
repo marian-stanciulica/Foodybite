@@ -162,11 +162,11 @@ final class ChangePasswordViewModelTests: XCTestCase {
                                 line: UInt = #line) async {
         let registerResultSpy = PublisherSpy(sut.$result.eraseToAnyPublisher())
 
-        XCTAssertEqual(registerResultSpy.results, [.notTriggered], file: file, line: line)
+        XCTAssertEqual(registerResultSpy.results, [.idle], file: file, line: line)
         
         await sut.changePassword()
         
-        XCTAssertEqual(registerResultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
+        XCTAssertEqual(registerResultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
         registerResultSpy.cancel()
     }
     
