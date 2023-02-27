@@ -16,8 +16,10 @@ struct RatingView: View {
                 Button {
                     stars = index
                 } label: {
-                    Image(index > stars ? "rating_gray_star" : "rating_yellow_star")
+                    Image("rating_yellow_star")
                         .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(index > stars ? Color.gray.opacity(0.5) : Color.orange)
                         .aspectRatio(1.0, contentMode: .fit)
                 }
                 .padding(.horizontal, 4)
@@ -26,7 +28,7 @@ struct RatingView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .foregroundColor(.gray.opacity(0.05))
+                .foregroundColor(.gray.opacity(0.2))
         )
     }
 }
