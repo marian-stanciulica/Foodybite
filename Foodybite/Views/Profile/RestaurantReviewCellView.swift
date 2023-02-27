@@ -16,7 +16,7 @@ struct RestaurantReviewCellView: View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topTrailing) {
                 switch viewModel.fetchPhotoState {
-                case .idle, .isLoading, .loadingError:
+                case .idle, .isLoading, .failure:
                     ZStack {
                         RoundedRectangle(cornerRadius: 16)
                             .foregroundColor(Color(uiColor: .systemGray3))
@@ -24,7 +24,7 @@ struct RestaurantReviewCellView: View {
                         
                         ProgressView()
                     }
-                case let .requestSucceeeded(photoData):
+                case let .success(photoData):
                     if let uiImage = UIImage(data: photoData) {
                         Image(uiImage: uiImage)
                             .resizable()
@@ -45,7 +45,7 @@ struct RestaurantReviewCellView: View {
             await viewModel.getPlaceDetails()
         }
         .onTapGesture {
-            if case let .requestSucceeeded(placeDetails) = viewModel.getPlaceDetailsState {
+            if case let .success(placeDetails) = viewModel.getPlaceDetailsState {
                 showPlaceDetails(placeDetails)
             }
         }
