@@ -16,7 +16,7 @@ struct RestaurantReviewCellView: View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topTrailing) {
                 switch viewModel.fetchPhotoState {
-                case .isLoading, .loadingError:
+                case .idle, .isLoading, .loadingError:
                     ZStack {
                         RoundedRectangle(cornerRadius: 16)
                             .foregroundColor(Color(uiColor: .systemGray3))

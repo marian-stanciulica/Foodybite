@@ -10,6 +10,7 @@ import Domain
 
 public class RestaurantReviewCellViewModel: ObservableObject {
     public enum State<T>: Equatable where T: Equatable {
+        case idle
         case isLoading
         case loadingError(String)
         case requestSucceeeded(T)
@@ -19,8 +20,8 @@ public class RestaurantReviewCellViewModel: ObservableObject {
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let fetchPlacePhotoService: FetchPlacePhotoService
     
-    @Published public var getPlaceDetailsState: State<PlaceDetails> = .isLoading
-    @Published public var fetchPhotoState: State<Data> = .isLoading
+    @Published public var getPlaceDetailsState: State<PlaceDetails> = .idle
+    @Published public var fetchPhotoState: State<Data> = .idle
     
     public var rating: String {
         "\(review.rating)"
