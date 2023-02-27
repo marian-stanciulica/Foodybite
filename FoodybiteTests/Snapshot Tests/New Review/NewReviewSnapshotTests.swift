@@ -46,7 +46,7 @@ final class NewReviewSnapshotTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.State = .idle, fetchPhotoState: SelectedRestaurantViewModel.State = .idle) -> UIViewController {
+    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle, fetchPhotoState: SelectedRestaurantViewModel.State = .idle) -> UIViewController {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),

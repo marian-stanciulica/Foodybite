@@ -168,7 +168,7 @@ final class NewReviewViewModelTests: XCTestCase {
         
         await sut.postReview()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("Review couldn't be posted. Please try again later!")])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
     func test_postReview_setsStateToRequestSucceededWhenAddReviewServiceReturnsSuccess() async {
@@ -181,7 +181,7 @@ final class NewReviewViewModelTests: XCTestCase {
 
         await sut.postReview()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success])
     }
     
     // MARK: - Helpers

@@ -13,18 +13,22 @@ public final class NewReviewViewModel: ObservableObject {
         case serverError = "An error occured while fetching place details. Please try again later!"
     }
     
-    public enum State: Equatable {
+    public enum PostReviewError: String, Error {
+        case serverError = "Review couldn't be posted. Please try again later!"
+    }
+    
+    public enum GetPlaceDetailsState: Equatable {
         case idle
         case isLoading
         case failure(GetPlaceDetailsError)
         case success(PlaceDetails)
     }
     
-    public enum ReviewState: Equatable {
+    public enum PostReviewState: Equatable {
         case idle
         case isLoading
-        case loadingError(String)
-        case requestSucceeeded
+        case failure(PostReviewError)
+        case success
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
@@ -32,8 +36,8 @@ public final class NewReviewViewModel: ObservableObject {
     private let addReviewService: AddReviewService
     private let location: Location
     
-    @Published public var getPlaceDetailsState: State = .idle
-    @Published public var postReviewState: ReviewState = .idle
+    @Published public var getPlaceDetailsState: GetPlaceDetailsState = .idle
+    @Published public var postReviewState: PostReviewState = .idle
     
     @Published public var searchText = ""
     @Published public var reviewText = ""
@@ -87,9 +91,9 @@ public final class NewReviewViewModel: ObservableObject {
                     starsNumber: starsNumber,
                     createdAt: Date())
                 
-                postReviewState = .requestSucceeeded
+                postReviewState = .success
             } catch {
-                postReviewState = .loadingError("Review couldn't be posted. Please try again later!")
+                postReviewState = .failure(.serverError)
             }
         }
     }
