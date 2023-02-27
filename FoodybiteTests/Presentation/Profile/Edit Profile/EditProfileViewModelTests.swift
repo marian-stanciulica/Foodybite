@@ -82,11 +82,11 @@ final class EditProfileViewModelTests: XCTestCase {
                                 line: UInt = #line) async {
         let resultSpy = PublisherSpy(sut.$result.eraseToAnyPublisher())
 
-        XCTAssertEqual(resultSpy.results, [.notTriggered], file: file, line: line)
+        XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
         
         await sut.updateAccount()
         
-        XCTAssertEqual(resultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
+        XCTAssertEqual(resultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
         resultSpy.cancel()
     }
     

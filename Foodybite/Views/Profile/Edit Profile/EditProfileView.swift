@@ -62,7 +62,7 @@ struct EditProfileView: View {
                 .foregroundColor(.red)
                 .font(.headline)
 
-        case .notTriggered:
+        default:
             return Text("")
         }
     }

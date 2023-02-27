@@ -17,7 +17,8 @@ public final class EditProfileViewModel: ObservableObject {
     }
     
     public enum Result: Equatable {
-        case notTriggered
+        case idle
+        case isLoading
         case success
         case failure(Error)
     }
@@ -27,13 +28,15 @@ public final class EditProfileViewModel: ObservableObject {
     @Published public var name = ""
     @Published public var email = ""
     @Published public var profileImage: Data? = nil
-    @Published public var result: Result = .notTriggered
+    @Published public var result: Result = .idle
 
     public init(accountService: AccountService) {
         self.accountService = accountService
     }
     
     public func updateAccount() async {
+        result = .isLoading
+        
         if name.isEmpty {
             await updateResult(.failure(.emptyName))
         } else if email.isEmpty {
