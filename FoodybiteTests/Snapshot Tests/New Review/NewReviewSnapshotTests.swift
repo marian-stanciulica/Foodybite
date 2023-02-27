@@ -43,7 +43,15 @@ final class NewReviewSnapshotTests: XCTestCase {
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-
+    
+    func test_newReviewWhenFetchPhotoStateIsSuccess() {
+        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .success(makePhotoData()))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle, fetchPhotoState: SelectedRestaurantViewModel.State = .idle) -> UIViewController {

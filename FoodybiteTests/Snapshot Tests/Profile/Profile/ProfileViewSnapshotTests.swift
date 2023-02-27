@@ -164,10 +164,6 @@ final class ProfileViewSnapshotTests: XCTestCase {
         ]
     }
     
-    private func makePhotoData() -> Data {
-        UIImage.make(withColor: .blue).pngData()!
-    }
-    
     private class EmptyAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
