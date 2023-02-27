@@ -16,7 +16,7 @@ public final class EditProfileViewModel: ObservableObject {
         case serverError = "Server error"
     }
     
-    public enum Result: Equatable {
+    public enum State: Equatable {
         case idle
         case isLoading
         case success
@@ -28,14 +28,14 @@ public final class EditProfileViewModel: ObservableObject {
     @Published public var name = ""
     @Published public var email = ""
     @Published public var profileImage: Data? = nil
-    @Published public var result: Result = .idle
+    @Published public var state: State = .idle
 
     public init(accountService: AccountService) {
         self.accountService = accountService
     }
     
     public func updateAccount() async {
-        result = .isLoading
+        state = .isLoading
         
         if name.isEmpty {
             await updateResult(.failure(.emptyName))
@@ -53,8 +53,8 @@ public final class EditProfileViewModel: ObservableObject {
         }
     }
     
-    @MainActor private func updateResult(_ newValue: Result) {
-        result = newValue
+    @MainActor private func updateResult(_ newValue: State) {
+        state = newValue
     }
     
     private func isValid(email: String) -> Bool {

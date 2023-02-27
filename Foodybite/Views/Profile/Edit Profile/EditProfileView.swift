@@ -51,7 +51,7 @@ struct EditProfileView: View {
     }
     
     private func createFeedbackText() -> Text {
-        switch viewModel.result {
+        switch viewModel.state {
         case .success:
             return Text("Account updated!")
                 .foregroundColor(.green)

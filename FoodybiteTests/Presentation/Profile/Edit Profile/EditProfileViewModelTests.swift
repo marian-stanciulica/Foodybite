@@ -77,10 +77,10 @@ final class EditProfileViewModelTests: XCTestCase {
     }
     
     private func assertRegister(on sut: EditProfileViewModel,
-                                withExpectedResult expectedResult: EditProfileViewModel.Result,
+                                withExpectedResult expectedResult: EditProfileViewModel.State,
                                 file: StaticString = #file,
                                 line: UInt = #line) async {
-        let resultSpy = PublisherSpy(sut.$result.eraseToAnyPublisher())
+        let resultSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
 
         XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
         
