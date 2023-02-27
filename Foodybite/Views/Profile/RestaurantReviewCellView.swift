@@ -14,31 +14,50 @@ struct RestaurantReviewCellView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            ZStack(alignment: .topTrailing) {
-                switch viewModel.fetchPhotoState {
-                case .idle, .isLoading, .failure:
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(Color(uiColor: .systemGray3))
-                            .frame(height: 200)
-                        
-                        ProgressView()
+            switch viewModel.getPlaceDetailsState {
+            case .idle:
+                EmptyView()
+            case .isLoading:
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .frame(height: 200)
+                    
+                    ProgressView()
+                }
+            case let .failure(error):
+                Text(error.rawValue)
+                    .foregroundColor(.red)
+                    .frame(height: 200)
+                    .padding(.horizontal)
+                    .background(Color(uiColor: .systemGray5))
+            case .success:
+                ZStack(alignment: .topTrailing) {
+                    switch viewModel.fetchPhotoState {
+                    case .idle, .isLoading, .failure:
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .foregroundColor(Color(uiColor: .systemGray3))
+                                .frame(height: 200)
+                            
+                            ProgressView()
+                        }
+                    case let .success(photoData):
+                        if let uiImage = UIImage(data: photoData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                        }
                     }
-                case let .success(photoData):
-                    if let uiImage = UIImage(data: photoData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                    }
+                    
+                    RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
+                        .padding()
                 }
                 
-                RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
-                    .padding()
-            }
-            
-            AddressView(placeName: viewModel.placeName,
-                        address: viewModel.placeAddress)
+                AddressView(placeName: viewModel.placeName,
+                            address: viewModel.placeAddress)
                 .padding(.horizontal)
+            }
         }
         .cornerRadius(16)
         .task {
