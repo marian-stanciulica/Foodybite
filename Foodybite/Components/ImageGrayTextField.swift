@@ -30,10 +30,8 @@ struct ImageGrayTextField: View {
                 
                 if secure {
                     SecureField("", text: $text)
-                        .foregroundColor(.black)
                 } else {
                     TextField("", text: $text)
-                        .foregroundColor(.black)
                 }
             }
         }

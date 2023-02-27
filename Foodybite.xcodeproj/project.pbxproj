@@ -230,6 +230,8 @@
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
 		0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86400298E799D0024016B /* ReviewViewModelTests.swift */; };
 		0FC86404298E87D30024016B /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86403298E87D30024016B /* ReviewViewModel.swift */; };
+		0FD19A4B29AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4929AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png */; };
+		0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4A29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -648,6 +650,8 @@
 		0FC863FD298E72F20024016B /* AddReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewService.swift; sourceTree = "<group>"; };
 		0FC86400298E799D0024016B /* ReviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModelTests.swift; sourceTree = "<group>"; };
 		0FC86403298E87D30024016B /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		0FD19A4929AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewIsLoadingState.dark.png; sourceTree = "<group>"; };
+		0FD19A4A29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewIsLoadingState.light.png; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -1758,6 +1762,8 @@
 			children = (
 				0F9A1A0529AB5551007B2E9B /* test_changePasswordViewIdleState.dark.png */,
 				0F9A1A0629AB5551007B2E9B /* test_changePasswordViewIdleState.light.png */,
+				0FD19A4929AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png */,
+				0FD19A4A29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png */,
 			);
 			path = ChangePasswordViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2587,6 +2593,7 @@
 				0F9A19E429AB50EB007B2E9B /* test_registerViewIdleState.dark.png in Resources */,
 				0F9A19D829AB4FE7007B2E9B /* test_reviewViewFailureState.dark.png in Resources */,
 				0F9A19F529AB51B2007B2E9B /* test_loginViewIdleState.dark.png in Resources */,
+				0FD19A4B29AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png in Resources */,
 				0F9A19F229AB51B2007B2E9B /* test_loginViewFailureState.dark.png in Resources */,
 				0F9A19D529AB4FE7007B2E9B /* test_reviewViewIsLoadingState.light.png in Resources */,
 				0F9A19E229AB50EB007B2E9B /* test_registerViewFailureState.light.png in Resources */,
@@ -2595,6 +2602,7 @@
 				0F9A19D729AB4FE7007B2E9B /* test_reviewViewIsLoadingState.dark.png in Resources */,
 				0F9A19D629AB4FE7007B2E9B /* test_reviewViewIdleState.light.png in Resources */,
 				0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */,
+				0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */,
 				0F9A19F329AB51B2007B2E9B /* test_loginViewIsLoadingState.light.png in Resources */,
 				0F9A19E329AB50EB007B2E9B /* test_registerViewFailureState.dark.png in Resources */,
 				0F9A1A0829AB5551007B2E9B /* test_changePasswordViewIdleState.light.png in Resources */,

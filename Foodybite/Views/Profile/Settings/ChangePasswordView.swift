@@ -35,7 +35,7 @@ struct ChangePasswordView: View {
             
             Spacer()
 
-            MarineButton(title: "Update", isLoading: false) {
+            MarineButton(title: "Update", isLoading: viewModel.isLoading) {
                 Task {
                     await viewModel.changePassword()
                 }

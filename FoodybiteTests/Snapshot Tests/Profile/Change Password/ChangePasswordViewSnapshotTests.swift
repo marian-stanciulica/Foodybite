@@ -14,7 +14,17 @@ import Domain
 final class ChangePasswordViewSnapshotTests: XCTestCase {
     
     func test_changePasswordViewIdleState() {
-        let sut = makeSUT()
+        let sut = makeSUT(state: .idle)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_changePasswordViewIsLoadingState() {
+        let sut = makeSUT(currentPassword: "12345678",
+                          newPassword: "12345678",
+                          confirmPassword: "12345678",
+                          state: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -22,8 +32,12 @@ final class ChangePasswordViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> UIViewController {
+    private func makeSUT(currentPassword: String = "", newPassword: String = "", confirmPassword: String = "", state: ChangePasswordViewModel.Result) -> UIViewController {
         let viewModel = ChangePasswordViewModel(changePasswordService: EmptyChangePasswordService())
+        viewModel.result = state
+        viewModel.currentPassword = currentPassword
+        viewModel.newPassword = newPassword
+        viewModel.confirmPassword = confirmPassword
         let settingsView = ChangePasswordView(viewModel: viewModel)
         let sut = UIHostingController(rootView: settingsView)
         return sut
