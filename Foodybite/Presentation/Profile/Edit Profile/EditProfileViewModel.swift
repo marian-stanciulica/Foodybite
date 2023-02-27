@@ -34,27 +34,23 @@ public final class EditProfileViewModel: ObservableObject {
         self.accountService = accountService
     }
     
-    public func updateAccount() async {
+    @MainActor public func updateAccount() async {
         state = .isLoading
         
         if name.isEmpty {
-            await updateResult(.failure(.emptyName))
+            state = .failure(.emptyName)
         } else if email.isEmpty {
-            await updateResult(.failure(.emptyEmail))
+            state = .failure(.emptyEmail)
         } else if !isValid(email: email) {
-            await updateResult(.failure(.invalidEmail))
+            state = .failure(.invalidEmail)
         } else {
             do {
                 try await accountService.updateAccount(name: name, email: email, profileImage: profileImage)
-                await updateResult(.success)
+                state = .success
             } catch {
-                await updateResult(.failure(.serverError))
+                state = .failure(.serverError)
             }
         }
-    }
-    
-    @MainActor private func updateResult(_ newValue: State) {
-        state = newValue
     }
     
     private func isValid(email: String) -> Bool {
