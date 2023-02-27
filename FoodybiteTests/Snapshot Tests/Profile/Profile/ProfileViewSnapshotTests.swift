@@ -79,8 +79,18 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getPlaceDetailsState: .success(makePlaceDetails()),
                           fetchPhotoState: .failure(.serverError))
         
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+        let sut = makeSUT(user: makeUserWithProfileImage(),
+                          getReviewsState: .success(makeReviews()),
+                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .success(makePhotoData()))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     // MARK: - Helpers
@@ -158,6 +168,10 @@ final class ProfileViewSnapshotTests: XCTestCase {
         PlaceDetails(placeID: "", phoneNumber: nil, name: "Place name", address: "Place address", rating: 4, openingHoursDetails: nil, reviews: [], location: Location(latitude: 0, longitude: 0), photos: [])
     }
     
+    private func makePhotoData() -> Data {
+        UIImage.make(withColor: .blue).pngData()!
+    }
+    
     private class EmptyAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
@@ -173,7 +187,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
             PlaceDetails(placeID: "",
                          phoneNumber: nil,
-                         name: "ceva",
+                         name: "",
                          address: "",
                          rating: 0,
                          openingHoursDetails: nil,
@@ -185,7 +199,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     private class EmptyFetchPlacePhotoService: FetchPlacePhotoService {
         func fetchPlacePhoto(photoReference: String) async throws -> Data {
-            UIImage.make(withColor: .red).pngData()!
+            Data()
         }
     }
 }

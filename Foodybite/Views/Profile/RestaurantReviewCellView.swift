@@ -65,7 +65,7 @@ struct RestaurantReviewCellView: View {
                         if let uiImage = UIImage(data: photoData) {
                             Image(uiImage: uiImage)
                                 .resizable()
-                                .scaledToFit()
+                                .aspectRatio(1.25, contentMode: .fit)
                         }
                     }
                     
