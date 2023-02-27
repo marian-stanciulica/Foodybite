@@ -244,6 +244,8 @@
 		0FD19A6929ACA12600DF7326 /* test_editProfileViewIsLoadingState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6729ACA12500DF7326 /* test_editProfileViewIsLoadingState.light.png */; };
 		0FD19A6C29ACA2B100DF7326 /* test_editProfileViewFailureState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6A29ACA2B100DF7326 /* test_editProfileViewFailureState.dark.png */; };
 		0FD19A6D29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6B29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png */; };
+		0FD19A7029ACA32400DF7326 /* test_editProfileViewSuccessState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6E29ACA32300DF7326 /* test_editProfileViewSuccessState.dark.png */; };
+		0FD19A7129ACA32400DF7326 /* test_editProfileViewSuccessState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A6F29ACA32400DF7326 /* test_editProfileViewSuccessState.light.png */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -676,6 +678,8 @@
 		0FD19A6729ACA12500DF7326 /* test_editProfileViewIsLoadingState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewIsLoadingState.light.png; sourceTree = "<group>"; };
 		0FD19A6A29ACA2B100DF7326 /* test_editProfileViewFailureState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewFailureState.dark.png; sourceTree = "<group>"; };
 		0FD19A6B29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewFailureState.light.png; sourceTree = "<group>"; };
+		0FD19A6E29ACA32300DF7326 /* test_editProfileViewSuccessState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewSuccessState.dark.png; sourceTree = "<group>"; };
+		0FD19A6F29ACA32400DF7326 /* test_editProfileViewSuccessState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewSuccessState.light.png; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -1970,6 +1974,8 @@
 				0FD19A6729ACA12500DF7326 /* test_editProfileViewIsLoadingState.light.png */,
 				0FD19A6A29ACA2B100DF7326 /* test_editProfileViewFailureState.dark.png */,
 				0FD19A6B29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png */,
+				0FD19A6E29ACA32300DF7326 /* test_editProfileViewSuccessState.dark.png */,
+				0FD19A6F29ACA32400DF7326 /* test_editProfileViewSuccessState.light.png */,
 			);
 			path = EditProfileViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2664,6 +2670,7 @@
 				0F9A19F529AB51B2007B2E9B /* test_loginViewIdleState.dark.png in Resources */,
 				0FD19A4B29AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png in Resources */,
 				0F9A19F229AB51B2007B2E9B /* test_loginViewFailureState.dark.png in Resources */,
+				0FD19A7129ACA32400DF7326 /* test_editProfileViewSuccessState.light.png in Resources */,
 				0F9A19D529AB4FE7007B2E9B /* test_reviewViewIsLoadingState.light.png in Resources */,
 				0F9A19E229AB50EB007B2E9B /* test_registerViewFailureState.light.png in Resources */,
 				0F9A19FF29AB5422007B2E9B /* test_settingsViewIdleState.dark.png in Resources */,
@@ -2681,6 +2688,7 @@
 				0FD19A5329AC9AE600DF7326 /* test_changePasswordViewSuccessState.dark.png in Resources */,
 				0FD19A5029AC98F500DF7326 /* test_changePasswordViewFailureState.light.png in Resources */,
 				0F9A19E329AB50EB007B2E9B /* test_registerViewFailureState.dark.png in Resources */,
+				0FD19A7029ACA32400DF7326 /* test_editProfileViewSuccessState.dark.png in Resources */,
 				0F9A1A0829AB5551007B2E9B /* test_changePasswordViewIdleState.light.png in Resources */,
 				0F9A19F429AB51B2007B2E9B /* test_loginViewFailureState.light.png in Resources */,
 				0F9A19E529AB50EB007B2E9B /* test_registerViewSuccessState.light.png in Resources */,

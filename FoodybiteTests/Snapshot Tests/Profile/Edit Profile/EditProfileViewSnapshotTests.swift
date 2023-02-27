@@ -37,6 +37,13 @@ final class EditProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_editProfileViewSuccessState() {
+        let sut = makeSUT(state: .success)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(name: String = "", email: String = "", profileImage: Data? = nil, state: EditProfileViewModel.State) -> UIViewController {
