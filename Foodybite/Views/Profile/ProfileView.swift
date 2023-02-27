@@ -37,11 +37,9 @@ struct ProfileView<Cell: View>: View {
 
                 HStack {
                     switch viewModel.getReviewsState {
-                    case .idle:
-                        EmptyView()
                     case .isLoading:
                         ProgressView()
-                    case .failure:
+                    case .idle, .failure:
                         StatsView(stats: "0", description: "Reviews")
                     case let .success(reviews):
                         StatsView(stats: "\(reviews.count)", description: "Reviews")
