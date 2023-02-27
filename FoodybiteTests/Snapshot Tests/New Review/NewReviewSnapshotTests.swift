@@ -29,7 +29,16 @@ final class NewReviewSnapshotTests: XCTestCase {
     }
     
     func test_newReviewViewWhenGetPlaceDetailsStateIsSuccess() {
-        let sut = makeSUT(getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()))
+        let sut = makeSUT(getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()),
+                          fetchPhotoState: .isLoading)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_newReviewWhenFetchPhotoStateIsFailure() {
+        let sut = makeSUT(getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()),
+                          fetchPhotoState: .loadingError("Some went wrong!"))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -37,7 +46,7 @@ final class NewReviewSnapshotTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.State = .idle) -> UIViewController {
+    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = [], getPlaceDetailsState: NewReviewViewModel.State = .idle, fetchPhotoState: SelectedRestaurantViewModel.State = .idle) -> UIViewController {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
@@ -52,15 +61,16 @@ final class NewReviewSnapshotTests: XCTestCase {
             currentPage: .constant(.newReview),
             plusButtonActive: .constant(true),
             viewModel: viewModel,
-            selectedView: makeCell(placeDetails:)
+            selectedView: { self.makeCell(placeDetails: $0, fetchPhotoState: fetchPhotoState) }
         )
         let sut = UIHostingController(rootView: newReviewView)
         return sut
     }
     
-    private func makeCell(placeDetails: PlaceDetails) -> SelectedRestaurantView {
+    private func makeCell(placeDetails: PlaceDetails, fetchPhotoState: SelectedRestaurantViewModel.State) -> SelectedRestaurantView {
         let viewModel = SelectedRestaurantViewModel(placeDetails: placeDetails,
                                                     fetchPlacePhotoService: EmptyFetchPlacePhotoService())
+        viewModel.fetchPhotoState = fetchPhotoState
         let view = SelectedRestaurantView(viewModel: viewModel)
         return view
     }
