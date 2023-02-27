@@ -13,7 +13,7 @@ import Domain
 
 final class ProfileViewSnapshotTests: XCTestCase {
     
-    func test_profileViewIdleStateForUserWithoutProfileImage() {
+    func test_profileViewWhenGetReviewsStateIsIdleForUserWithoutProfileImage() {
         let sut = makeSUT(user: makeUserWithoutProfileImage(),
                           getReviewsState: .idle)
         
@@ -21,7 +21,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_profileViewIdleStateForUserWithProfileImage() {
+    func test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .idle)
         
@@ -29,7 +29,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_profileViewIsLoadingStateForUserWithProfileImage() {
+    func test_profileViewWhenGetReviewsStateIsIsLoading() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .isLoading)
         
@@ -37,7 +37,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_profileViewFailureStateForUserWithProfileImage() {
+    func test_profileViewWhenGetReviewsStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .failure(.serverError))
         
@@ -45,7 +45,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_profileViewSuccessStateForUserWithProfileImage() {
+    func test_profileViewWhenGetReviewsStateIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()))
