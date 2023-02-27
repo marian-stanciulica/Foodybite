@@ -9,11 +9,15 @@ import Foundation
 import Domain
 
 public final class NewReviewViewModel: ObservableObject {
+    public enum GetPlaceDetailsError: String, Error {
+        case serverError = "An error occured while fetching place details. Please try again later!"
+    }
+    
     public enum State: Equatable {
         case idle
         case isLoading
-        case loadingError(String)
-        case requestSucceeeded(PlaceDetails)
+        case failure(GetPlaceDetailsError)
+        case success(PlaceDetails)
     }
     
     public enum ReviewState: Equatable {
@@ -37,7 +41,7 @@ public final class NewReviewViewModel: ObservableObject {
     @Published public var autocompleteResults = [AutocompletePrediction]()
     
     public var postReviewEnabled: Bool {
-        if case .requestSucceeeded = getPlaceDetailsState {
+        if case .success = getPlaceDetailsState {
             return !reviewText.isEmpty && starsNumber > 0
         }
         return false
@@ -65,9 +69,9 @@ public final class NewReviewViewModel: ObservableObject {
         
         do {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-            getPlaceDetailsState = .requestSucceeeded(placeDetails)
+            getPlaceDetailsState = .success(placeDetails)
         } catch {
-            getPlaceDetailsState = .loadingError("An error occured while fetching place details. Please try again later!")
+            getPlaceDetailsState = .failure(.serverError)
         }
     }
     
@@ -75,7 +79,7 @@ public final class NewReviewViewModel: ObservableObject {
         guard postReviewEnabled else { return }
         postReviewState = .isLoading
         
-        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
+        if case let .success(placeDetails) = getPlaceDetailsState {
             do {
                 try await addReviewService.addReview(
                     placeID: placeDetails.placeID,

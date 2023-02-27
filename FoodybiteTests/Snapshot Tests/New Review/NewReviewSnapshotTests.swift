@@ -29,7 +29,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     }
     
     func test_newReviewViewWhenGetPlaceDetailsStateIsSuccess() {
-        let sut = makeSUT(getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()),
+        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
                           fetchPhotoState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -37,7 +37,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     }
     
     func test_newReviewWhenFetchPhotoStateIsFailure() {
-        let sut = makeSUT(getPlaceDetailsState: .requestSucceeeded(makePlaceDetails()),
+        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
                           fetchPhotoState: .loadingError("Some went wrong!"))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))

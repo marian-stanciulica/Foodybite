@@ -54,7 +54,7 @@ struct NewReviewView<SelectedView: View>: View {
                     }
                 )
                 
-                if case let .requestSucceeeded(placeDetails) = viewModel.getPlaceDetailsState {
+                if case let .success(placeDetails) = viewModel.getPlaceDetailsState {
                     selectedView(placeDetails)
                 }
                 
