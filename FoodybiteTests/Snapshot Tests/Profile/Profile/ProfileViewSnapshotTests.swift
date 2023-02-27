@@ -21,6 +21,14 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_profileViewIdleStateForUserWithProfileImage() {
+        let sut = makeSUT(user: makeUserWithProfileImage(),
+                          state: .idle)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(user: User, state: EditProfileViewModel.State) -> UIViewController {
@@ -31,7 +39,17 @@ final class ProfileViewSnapshotTests: XCTestCase {
     }
     
     private func makeUserWithoutProfileImage() -> User {
-        User(id: UUID(), name: "Testing", email: "testing@testing.com", profileImage: nil)
+        User(id: UUID(),
+             name: "Testing",
+             email: "testing@testing.com",
+             profileImage: nil)
+    }
+    
+    private func makeUserWithProfileImage() -> User {
+        User(id: UUID(),
+             name: "Testing",
+             email: "testing@testing.com",
+             profileImage: UIImage.make(withColor: .red).pngData())
     }
     
     private class EmptyAccountService: AccountService {

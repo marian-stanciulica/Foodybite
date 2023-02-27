@@ -249,6 +249,8 @@
 		0FD19A7429ACA3B900DF7326 /* ProfileViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD19A7329ACA3B900DF7326 /* ProfileViewSnapshotTests.swift */; };
 		0FD19A7929ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A7729ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.dark.png */; };
 		0FD19A7A29ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A7829ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.light.png */; };
+		0FD19A7D29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A7B29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.light.png */; };
+		0FD19A7E29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A7C29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png */; };
 		0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */; };
 		0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0FD41768298D5B3500F2BF92 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
@@ -686,6 +688,8 @@
 		0FD19A7329ACA3B900DF7326 /* ProfileViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewSnapshotTests.swift; sourceTree = "<group>"; };
 		0FD19A7729ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIdleStateForUserWithoutProfileImage.dark.png; sourceTree = "<group>"; };
 		0FD19A7829ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIdleStateForUserWithoutProfileImage.light.png; sourceTree = "<group>"; };
+		0FD19A7B29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIdleStateForUserWithProfileImage.light.png; sourceTree = "<group>"; };
+		0FD19A7C29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewIdleStateForUserWithProfileImage.dark.png; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -2009,6 +2013,8 @@
 			children = (
 				0FD19A7729ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.dark.png */,
 				0FD19A7829ACA98500DF7326 /* test_profileViewIdleStateForUserWithoutProfileImage.light.png */,
+				0FD19A7C29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png */,
+				0FD19A7B29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.light.png */,
 			);
 			path = ProfileViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2715,6 +2721,7 @@
 				0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */,
 				0FD19A6829ACA12600DF7326 /* test_editProfileViewIsLoadingState.dark.png in Resources */,
 				0FD19A6929ACA12600DF7326 /* test_editProfileViewIsLoadingState.light.png in Resources */,
+				0FD19A7E29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.dark.png in Resources */,
 				0FD19A5429AC9AE600DF7326 /* test_changePasswordViewSuccessState.light.png in Resources */,
 				0F9A19F329AB51B2007B2E9B /* test_loginViewIsLoadingState.light.png in Resources */,
 				0FD19A6329AC9DDA00DF7326 /* test_editProfileViewIdleState.light.png in Resources */,
@@ -2737,6 +2744,7 @@
 				0F9A19D929AB4FE7007B2E9B /* test_reviewViewFailureState.light.png in Resources */,
 				0F9A19E629AB50EB007B2E9B /* test_registerViewIsLoadingState.dark.png in Resources */,
 				0F9A1A0729AB5551007B2E9B /* test_changePasswordViewIdleState.dark.png in Resources */,
+				0FD19A7D29ACAA7A00DF7326 /* test_profileViewIdleStateForUserWithProfileImage.light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
