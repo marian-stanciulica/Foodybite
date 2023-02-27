@@ -10,7 +10,23 @@ import Foodybite
 import Domain
 
 final class EditProfileViewModelTests: XCTestCase {
+    
+    func test_isLoading_isTrueOnlyWhenResultIsLoading() {
+        let (sut, _) = makeSUT()
 
+        sut.state = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.state = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_updateAccount_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
         

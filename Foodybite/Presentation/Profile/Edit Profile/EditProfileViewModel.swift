@@ -30,6 +30,10 @@ public final class EditProfileViewModel: ObservableObject {
     @Published public var profileImage: Data? = nil
     @Published public var state: State = .idle
 
+    public var isLoading: Bool {
+        state == .isLoading
+    }
+    
     public init(accountService: AccountService) {
         self.accountService = accountService
     }

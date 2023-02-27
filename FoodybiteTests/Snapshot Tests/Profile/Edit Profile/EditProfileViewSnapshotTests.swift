@@ -14,7 +14,17 @@ import Domain
 final class EditProfileViewSnapshotTests: XCTestCase {
     
     func test_editProfileViewIdleState() {
-        let sut = makeSUT()
+        let sut = makeSUT(state: .idle)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_editProfileViewIsLoadingState() {
+        let sut = makeSUT(name: "Testing",
+                          email: "testing@testing.com",
+                          profileImage: UIImage.make(withColor: .red).pngData(),
+                          state: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -22,8 +32,12 @@ final class EditProfileViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> UIViewController {
+    private func makeSUT(name: String = "", email: String = "", profileImage: Data? = nil, state: EditProfileViewModel.State) -> UIViewController {
         let viewModel = EditProfileViewModel(accountService: EmptyAccountService())
+        viewModel.name = name
+        viewModel.email = email
+        viewModel.profileImage = profileImage
+        viewModel.state = state
         let editProfileView = EditProfileView(viewModel: viewModel)
         let sut = UIHostingController(rootView: editProfileView)
         return sut
