@@ -31,16 +31,35 @@ struct RestaurantReviewCellView: View {
                     .frame(height: 200)
                     .padding(.horizontal)
                     .background(Color(uiColor: .systemGray5))
-            case .success:
+            case let .success(placeDetails):
                 ZStack(alignment: .topTrailing) {
                     switch viewModel.fetchPhotoState {
-                    case .idle, .isLoading, .failure:
+                    case .idle:
+                        EmptyView()
+                    case .isLoading:
                         ZStack {
                             RoundedRectangle(cornerRadius: 16)
                                 .foregroundColor(Color(uiColor: .systemGray3))
                                 .frame(height: 200)
                             
                             ProgressView()
+                        }
+                    case .failure:
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .foregroundColor(Color(uiColor: .systemGray3))
+                                .frame(height: 200)
+                            
+                            Image(systemName: "arrow.clockwise.circle")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                                .onTapGesture {
+                                    Task {
+                                        if let firstPhoto = placeDetails.photos.first {
+                                            await viewModel.fetchPhoto(firstPhoto)
+                                        }
+                                    }
+                                }
                         }
                     case let .success(photoData):
                         if let uiImage = UIImage(data: photoData) {

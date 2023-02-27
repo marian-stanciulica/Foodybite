@@ -59,17 +59,28 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getReviewsState: .success(makeReviews()),
                           getPlaceDetailsState: .failure(.serverError))
         
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
-                          getPlaceDetailsState: .success(makePlaceDetails()))
+                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
+        let sut = makeSUT(user: makeUserWithProfileImage(),
+                          getReviewsState: .success(makeReviews()),
+                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .failure(.serverError))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
     }
     
     // MARK: - Helpers

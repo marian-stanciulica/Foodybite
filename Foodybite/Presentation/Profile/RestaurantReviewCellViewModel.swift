@@ -70,7 +70,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         }
     }
     
-    @MainActor private func fetchPhoto(_ photo: Photo) async {
+    @MainActor func fetchPhoto(_ photo: Photo) async {
         fetchPhotoState = .isLoading
         
         do {
