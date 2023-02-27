@@ -19,16 +19,27 @@ final class NewReviewSnapshotTests: XCTestCase {
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
+    
+    func test_newReviewViewWithAutocompletePredictions() {
+        let sut = makeSUT(searchText: "Pred",
+                          autocompletePredictions: makeAutocompletePredictions())
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+    }
 
     // MARK: - Helpers
     
-    private func makeSUT() -> UIViewController {
+    private func makeSUT(searchText: String = "", autocompletePredictions: [AutocompletePrediction] = []) -> UIViewController {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
             addReviewService: EmptyAddReviewService(),
             location: Location(latitude: 0, longitude: 0)
         )
+        viewModel.searchText = searchText
+        viewModel.autocompleteResults = autocompletePredictions
+        
         let newReviewView = NewReviewView(
             currentPage: .constant(.newReview),
             plusButtonActive: .constant(true),
@@ -37,6 +48,14 @@ final class NewReviewSnapshotTests: XCTestCase {
         )
         let sut = UIHostingController(rootView: newReviewView)
         return sut
+    }
+    
+    private func makeAutocompletePredictions() -> [AutocompletePrediction] {
+        [
+            AutocompletePrediction(placePrediction: "Prediction #1", placeID: "place #1"),
+            AutocompletePrediction(placePrediction: "Prediction #2", placeID: "place #2"),
+            AutocompletePrediction(placePrediction: "Prediction #3", placeID: "place #3")
+        ]
     }
     
     private class EmptyAutocompletePlacesService: AutocompletePlacesService {

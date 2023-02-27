@@ -23,7 +23,7 @@ struct SearchView: View {
                 
                 TextField("Search Restaurant", text: $searchText)
                     .padding(.vertical, 12)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .onChange(of: searchText) { newValue in
                         Task {
                             await onChange()
