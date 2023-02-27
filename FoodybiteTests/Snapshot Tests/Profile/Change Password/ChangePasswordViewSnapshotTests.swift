@@ -30,6 +30,13 @@ final class ChangePasswordViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_changePasswordViewFailureState() {
+        let sut = makeSUT(state: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(currentPassword: String = "", newPassword: String = "", confirmPassword: String = "", state: ChangePasswordViewModel.Result) -> UIViewController {

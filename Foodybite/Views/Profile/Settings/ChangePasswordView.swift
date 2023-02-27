@@ -12,7 +12,7 @@ struct ChangePasswordView: View {
     @ObservedObject var viewModel: ChangePasswordViewModel
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             ImageGrayTextField(placeholder: "Current Password",
                                imageName: "lock.circle",
                                secure: true,
