@@ -29,7 +29,7 @@ final class SelectedRestaurantViewModelTests: XCTestCase {
         
         await sut.fetchPhoto()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("This place has no photos!")])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure])
     }
     
     func test_fetchPhoto_sendsInputsToFetchPlacePhotoService() async {
@@ -49,7 +49,7 @@ final class SelectedRestaurantViewModelTests: XCTestCase {
         serviceSpy.result = .failure(anyError)
         await sut.fetchPhoto()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("An error occured while fetching place photo. Please try again later!")])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure])
     }
     
     func test_fetchPhoto_updatesImageDataWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
@@ -61,7 +61,7 @@ final class SelectedRestaurantViewModelTests: XCTestCase {
         serviceSpy.result = .success(expectedData)
         await sut.fetchPhoto()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded(expectedData)])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedData)])
     }
     
     // MARK: - Helpers

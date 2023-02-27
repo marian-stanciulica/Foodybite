@@ -24,7 +24,7 @@ struct SelectedRestaurantView: View {
                     
                     ProgressView()
                 }
-            case .loadingError:
+            case .failure:
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(Color(uiColor: .systemGray3))
@@ -39,7 +39,7 @@ struct SelectedRestaurantView: View {
                             }
                         }
                 }
-            case let .requestSucceeeded(photoData):
+            case let .success(photoData):
                 if let uiImage = UIImage(data: photoData) {
                     Image(uiImage: uiImage)
                         .resizable()

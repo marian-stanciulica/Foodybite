@@ -38,7 +38,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     
     func test_newReviewWhenFetchPhotoStateIsFailure() {
         let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
-                          fetchPhotoState: .loadingError("Some went wrong!"))
+                          fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
