@@ -29,10 +29,19 @@ final class ProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_profileViewIsLoadingStateForUserWithProfileImage() {
+        let sut = makeSUT(user: makeUserWithProfileImage(),
+                          state: .isLoading)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(user: User, state: EditProfileViewModel.State) -> UIViewController {
+    private func makeSUT(user: User, state: ProfileViewModel.State) -> UIViewController {
         let viewModel = ProfileViewModel(accountService: EmptyAccountService(), getReviewsService: EmptyGetReviewsService(), user: user, goToLogin: {})
+        viewModel.getReviewsState = state
         let profileView = ProfileView(viewModel: viewModel, cell: { _ in EmptyView() }, goToSettings: {}, goToEditProfile: {})
         let sut = UIHostingController(rootView: profileView)
         return sut

@@ -39,6 +39,7 @@ struct ProfileView<Cell: View>: View {
                     switch viewModel.getReviewsState {
                     case .isLoading:
                         ProgressView()
+                            .tint(.primary)
                     case .idle, .failure:
                         StatsView(stats: "0", description: "Reviews")
                     case let .success(reviews):
