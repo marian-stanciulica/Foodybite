@@ -229,6 +229,10 @@
 		0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */; };
 		0FB1D3CF29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3CD29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png */; };
 		0FB1D3D029ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3CE29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png */; };
+		0FB1D3D729ACEB4500304A94 /* NewReviewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1D3D629ACEB4500304A94 /* NewReviewSnapshotTests.swift */; };
+		0FB1D3D929ACEC2700304A94 /* EmptyGetPlaceDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1D3D829ACEC2700304A94 /* EmptyGetPlaceDetailsService.swift */; };
+		0FB1D3DE29ACED1100304A94 /* test_newReviewViewIdleState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3DC29ACED1100304A94 /* test_newReviewViewIdleState.dark.png */; };
+		0FB1D3DF29ACED1100304A94 /* test_newReviewViewIdleState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D3DD29ACED1100304A94 /* test_newReviewViewIdleState.light.png */; };
 		0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F6298E60500024016B /* ReviewEndpointTests.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
@@ -681,6 +685,10 @@
 		0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceSender.swift; sourceTree = "<group>"; };
 		0FB1D3CD29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png; sourceTree = "<group>"; };
 		0FB1D3CE29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png; sourceTree = "<group>"; };
+		0FB1D3D629ACEB4500304A94 /* NewReviewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewSnapshotTests.swift; sourceTree = "<group>"; };
+		0FB1D3D829ACEC2700304A94 /* EmptyGetPlaceDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyGetPlaceDetailsService.swift; sourceTree = "<group>"; };
+		0FB1D3DC29ACED1100304A94 /* test_newReviewViewIdleState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewIdleState.dark.png; sourceTree = "<group>"; };
+		0FB1D3DD29ACED1100304A94 /* test_newReviewViewIdleState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewIdleState.light.png; sourceTree = "<group>"; };
 		0FC863F6298E60500024016B /* ReviewEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpointTests.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
@@ -1524,6 +1532,7 @@
 			children = (
 				0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */,
 				0FD19A6429ACA03D00DF7326 /* UIImage+.swift */,
+				0FB1D3D829ACEC2700304A94 /* EmptyGetPlaceDetailsService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1953,6 +1962,32 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		0FB1D3D529ACEB0E00304A94 /* New Review */ = {
+			isa = PBXGroup;
+			children = (
+				0FB1D3DA29ACED1100304A94 /* __Snapshots__ */,
+				0FB1D3D629ACEB4500304A94 /* NewReviewSnapshotTests.swift */,
+			);
+			path = "New Review";
+			sourceTree = "<group>";
+		};
+		0FB1D3DA29ACED1100304A94 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0FB1D3DB29ACED1100304A94 /* NewReviewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0FB1D3DB29ACED1100304A94 /* NewReviewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FB1D3DC29ACED1100304A94 /* test_newReviewViewIdleState.dark.png */,
+				0FB1D3DD29ACED1100304A94 /* test_newReviewViewIdleState.light.png */,
+			);
+			path = NewReviewSnapshotTests;
+			sourceTree = "<group>";
+		};
 		0FC863FC298E72C70024016B /* Review Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -2099,6 +2134,7 @@
 			isa = PBXGroup;
 			children = (
 				0F53B86B29AB4CE500DE5E13 /* Helpers */,
+				0FB1D3D529ACEB0E00304A94 /* New Review */,
 				0F9A19F629AB5304007B2E9B /* Profile */,
 				0FD5E75A29AA7B3500C5C984 /* Review & Ratings */,
 				0FD5E72B29AA4DC800C5C984 /* Register */,
@@ -2746,6 +2782,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FD19AD529ACC75400DF7326 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsIsLoading.light.png in Resources */,
+				0FB1D3DF29ACED1100304A94 /* test_newReviewViewIdleState.light.png in Resources */,
 				0FD19AD629ACC75400DF7326 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccess.light.png in Resources */,
 				0F9A19E429AB50EB007B2E9B /* test_registerViewIdleState.dark.png in Resources */,
 				0FD19A6229AC9DDA00DF7326 /* test_editProfileViewIdleState.dark.png in Resources */,
@@ -2768,6 +2805,7 @@
 				0FB1D3D029ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */,
 				0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */,
 				0FB1D3CF29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png in Resources */,
+				0FB1D3DE29ACED1100304A94 /* test_newReviewViewIdleState.dark.png in Resources */,
 				0FD19A6D29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png in Resources */,
 				0FD19AC429ACBF8900DF7326 /* test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage.dark.png in Resources */,
 				0FD19A4C29AC970300DF7326 /* test_changePasswordViewIsLoadingState.light.png in Resources */,
@@ -2992,6 +3030,7 @@
 				0FD19A5929AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
 				0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */,
+				0FB1D3D729ACEB4500304A94 /* NewReviewSnapshotTests.swift in Sources */,
 				0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */,
 				0FD5E72D29AA4E1500C5C984 /* RegisterViewSnapshotTests.swift in Sources */,
 				0F70C49D29866D3600C004DD /* RestaurantCellViewModelTests.swift in Sources */,
@@ -3007,6 +3046,7 @@
 				0F423A9729853342009EB345 /* RestaurantDetailsViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
 				0FD5E75C29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift in Sources */,
+				0FB1D3D929ACEC2700304A94 /* EmptyGetPlaceDetailsService.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
 				0F9A1A0229AB54CD007B2E9B /* ChangePasswordViewSnapshotTests.swift in Sources */,
 				0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */,
