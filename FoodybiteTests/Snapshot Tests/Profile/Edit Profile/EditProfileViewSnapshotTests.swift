@@ -30,6 +30,13 @@ final class EditProfileViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_editProfileViewFailureState() {
+        let sut = makeSUT(state: .failure(.invalidEmail))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(name: String = "", email: String = "", profileImage: Data? = nil, state: EditProfileViewModel.State) -> UIViewController {
