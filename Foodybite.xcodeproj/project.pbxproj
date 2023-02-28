@@ -204,6 +204,9 @@
 		0F9A1A0829AB5551007B2E9B /* test_changePasswordViewIdleState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A1A0629AB5551007B2E9B /* test_changePasswordViewIdleState.light.png */; };
 		0F9BEC0529ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9BEC0329ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.dark.png */; };
 		0F9BEC0629ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9BEC0429ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.light.png */; };
+		0F9BEC0929ADE49800641D74 /* SearchCriteriaViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BEC0829ADE49800641D74 /* SearchCriteriaViewSnapshotTests.swift */; };
+		0F9BEC0E29ADE54000641D74 /* test_searchCriteriaView.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9BEC0C29ADE54000641D74 /* test_searchCriteriaView.dark.png */; };
+		0F9BEC0F29ADE54000641D74 /* test_searchCriteriaView.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9BEC0D29ADE54000641D74 /* test_searchCriteriaView.light.png */; };
 		0FA6BE2B2994E8A0003E1912 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AD2930D44A00387A1C /* AccountService.swift */; };
 		0FA6BE2C2994E8A0003E1912 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E10D291F7D380058ABCB /* SignUpService.swift */; };
 		0FA6BE2D2994E8A0003E1912 /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECB4292FD9150025B237 /* LogoutService.swift */; };
@@ -673,6 +676,9 @@
 		0F9A1A0629AB5551007B2E9B /* test_changePasswordViewIdleState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_changePasswordViewIdleState.light.png; sourceTree = "<group>"; };
 		0F9BEC0329ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenPostReviewStateIsIsLoading.dark.png; sourceTree = "<group>"; };
 		0F9BEC0429ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenPostReviewStateIsIsLoading.light.png; sourceTree = "<group>"; };
+		0F9BEC0829ADE49800641D74 /* SearchCriteriaViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteriaViewSnapshotTests.swift; sourceTree = "<group>"; };
+		0F9BEC0C29ADE54000641D74 /* test_searchCriteriaView.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_searchCriteriaView.dark.png; sourceTree = "<group>"; };
+		0F9BEC0D29ADE54000641D74 /* test_searchCriteriaView.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_searchCriteriaView.light.png; sourceTree = "<group>"; };
 		0FA6BE32299500E1003E1912 /* InitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsView.swift; sourceTree = "<group>"; };
 		0FA6BE3429950892003E1912 /* RestaurantReviewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellViewModelTests.swift; sourceTree = "<group>"; };
 		0FA6BE3629952027003E1912 /* RestaurantReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantReviewCellViewModel.swift; sourceTree = "<group>"; };
@@ -1879,6 +1885,32 @@
 			path = ChangePasswordViewSnapshotTests;
 			sourceTree = "<group>";
 		};
+		0F9BEC0729ADE46000641D74 /* Search Filtering */ = {
+			isa = PBXGroup;
+			children = (
+				0F9BEC0A29ADE54000641D74 /* __Snapshots__ */,
+				0F9BEC0829ADE49800641D74 /* SearchCriteriaViewSnapshotTests.swift */,
+			);
+			path = "Search Filtering";
+			sourceTree = "<group>";
+		};
+		0F9BEC0A29ADE54000641D74 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0F9BEC0B29ADE54000641D74 /* SearchCriteriaViewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0F9BEC0B29ADE54000641D74 /* SearchCriteriaViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F9BEC0C29ADE54000641D74 /* test_searchCriteriaView.dark.png */,
+				0F9BEC0D29ADE54000641D74 /* test_searchCriteriaView.light.png */,
+			);
+			path = SearchCriteriaViewSnapshotTests;
+			sourceTree = "<group>";
+		};
 		0FA6BE292994E829003E1912 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -2176,6 +2208,7 @@
 			isa = PBXGroup;
 			children = (
 				0F53B86B29AB4CE500DE5E13 /* Helpers */,
+				0F9BEC0729ADE46000641D74 /* Search Filtering */,
 				0FB1D3D529ACEB0E00304A94 /* New Review */,
 				0F9A19F629AB5304007B2E9B /* Profile */,
 				0FD5E75A29AA7B3500C5C984 /* Review & Ratings */,
@@ -2851,6 +2884,7 @@
 				0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */,
 				0F9BEC0529ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.dark.png in Resources */,
 				0FB1D3CF29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png in Resources */,
+				0F9BEC0E29ADE54000641D74 /* test_searchCriteriaView.dark.png in Resources */,
 				0FB1D3F129ACF2B100304A94 /* test_newReviewViewIdleState.dark.png in Resources */,
 				0FD19A6D29ACA2B100DF7326 /* test_editProfileViewFailureState.light.png in Resources */,
 				0FD19AC429ACBF8900DF7326 /* test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage.dark.png in Resources */,
@@ -2893,6 +2927,7 @@
 				0F9A19E629AB50EB007B2E9B /* test_registerViewIsLoadingState.dark.png in Resources */,
 				0F9A1A0729AB5551007B2E9B /* test_changePasswordViewIdleState.dark.png in Resources */,
 				0FB1D3F429ACF2B100304A94 /* test_newReviewViewWhenGetPlaceDetailsStateIsSuccess.light.png in Resources */,
+				0F9BEC0F29ADE54000641D74 /* test_searchCriteriaView.light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3106,6 +3141,7 @@
 				0F9A1A0229AB54CD007B2E9B /* ChangePasswordViewSnapshotTests.swift in Sources */,
 				0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */,
 				0FD41771298D66F600F2BF92 /* TabNavigationViewModelTests.swift in Sources */,
+				0F9BEC0929ADE49800641D74 /* SearchCriteriaViewSnapshotTests.swift in Sources */,
 				0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */,
 				0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */,
 				0FB1D3F829ACF36A00304A94 /* EmptyFetchPlacePhotoService.swift in Sources */,
