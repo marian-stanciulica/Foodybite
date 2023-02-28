@@ -34,13 +34,17 @@ struct NewReviewView<SelectedView: View>: View {
                     
                     Spacer()
                     
-                    Button("Post") {
-                        Task {
-                            await viewModel.postReview()
+                    if viewModel.postReviewState == .isLoading {
+                        ProgressView()
+                    } else {
+                        Button("Post") {
+                            Task {
+                                await viewModel.postReview()
+                            }
                         }
+                        .disabled(!viewModel.postReviewEnabled)
+                        .foregroundColor(viewModel.postReviewEnabled ? .marineBlue : Color(uiColor: .systemGray))
                     }
-                    .disabled(!viewModel.postReviewEnabled)
-                    .foregroundColor(viewModel.postReviewEnabled ? .marineBlue : Color(uiColor: .systemGray))
                 }
                 .padding()
                 

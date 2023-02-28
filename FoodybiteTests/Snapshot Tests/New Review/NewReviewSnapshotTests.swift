@@ -62,6 +62,17 @@ final class NewReviewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_newReviewWhenPostReviewStateIsIsLoading() {
+        let sut = makeSUT(starsNumber: 4,
+                          reviewText: makeReviewText(),
+                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .failure,
+                          postReviewState: .isLoading)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -70,7 +81,8 @@ final class NewReviewSnapshotTests: XCTestCase {
         reviewText: String = "",
         autocompletePredictions: [AutocompletePrediction] = [],
         getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle,
-        fetchPhotoState: SelectedRestaurantViewModel.State = .idle
+        fetchPhotoState: SelectedRestaurantViewModel.State = .idle,
+        postReviewState: NewReviewViewModel.PostReviewState = .idle
     ) -> UIViewController {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
@@ -83,6 +95,7 @@ final class NewReviewSnapshotTests: XCTestCase {
         viewModel.reviewText = reviewText
         viewModel.autocompleteResults = autocompletePredictions
         viewModel.getPlaceDetailsState = getPlaceDetailsState
+        viewModel.postReviewState = postReviewState
         
         let newReviewView = NewReviewView(
             currentPage: .constant(.newReview),
