@@ -19,7 +19,7 @@ struct RatingView: View {
                     Image("rating_yellow_star")
                         .resizable()
                         .renderingMode(.template)
-                        .foregroundColor(index > stars ? Color.gray.opacity(0.5) : Color.orange)
+                        .foregroundColor(index > stars ? Color.gray.opacity(0.5) : Color.yellow)
                         .aspectRatio(1.0, contentMode: .fit)
                 }
                 .padding(.horizontal, 4)
