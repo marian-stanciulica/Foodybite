@@ -20,22 +20,28 @@ struct HomeFlowView: View {
     var body: some View {
         NavigationStack(path: $flow.path) {
             TabBarPageView(page: $page) {
-                HomeView(viewModel: HomeViewModel(searchNearbyService: placesService, currentLocation: currentLocation), showPlaceDetails: { placeID in
-                    flow.append(.placeDetails(placeID))
-                }, cell: { nearbyPlace in
-                    RestaurantCell(
-                        photoView: PhotoView(
-                            viewModel: PhotoViewModel(
-                                photoReference: nearbyPlace.photo?.photoReference,
-                                fetchPhotoService: placesService
+                HomeView(
+                    viewModel: HomeViewModel(
+                        searchNearbyService: placesService,
+                        currentLocation: currentLocation),
+                    showPlaceDetails: { placeID in
+                        flow.append(.placeDetails(placeID))
+                    },
+                    cell: { nearbyPlace in
+                        RestaurantCell(
+                            photoView: PhotoView(
+                                viewModel: PhotoViewModel(
+                                    photoReference: nearbyPlace.photo?.photoReference,
+                                    fetchPhotoService: placesService
+                                )
+                            ),
+                            viewModel: RestaurantCellViewModel(
+                                nearbyPlace: nearbyPlace,
+                                currentLocation: currentLocation
                             )
-                        ),
-                        viewModel: RestaurantCellViewModel(
-                            nearbyPlace: nearbyPlace,
-                            currentLocation: currentLocation
                         )
-                    )
-                })
+                    }
+                )
             }
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
@@ -54,13 +60,19 @@ struct HomeFlowView: View {
                                     fetchPhotoService: placesService
                                 )
                             )
-                        }) {
+                        }, showReviewView: {
                             flow.append(.addReview(placeID))
                         }
+                    )
                 case let .addReview(placeID):
-                    ReviewView(viewModel: ReviewViewModel(placeID: placeID, reviewService: apiService)) {
-                        flow.navigateBack()
-                    }
+                    ReviewView(
+                        viewModel: ReviewViewModel(
+                            placeID: placeID,
+                            reviewService: apiService
+                        ), dismissScreen: {
+                            flow.navigateBack()
+                        }
+                    )
                 }
             }
         }
