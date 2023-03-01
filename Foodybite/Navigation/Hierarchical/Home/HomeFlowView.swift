@@ -47,7 +47,15 @@ struct HomeFlowView: View {
                             getPlaceDetailsService: placesService,
                             fetchPhotoService: placesService,
                             getReviewsService: apiService
-                        )) {
+                        ),
+                        makePhotoView: { photoReference in
+                            PhotoView(
+                                viewModel: PhotoViewModel(
+                                    photoReference: photoReference,
+                                    fetchPhotoService: placesService
+                                )
+                            )
+                        }) {
                             flow.append(.addReview(placeID))
                         }
                 case let .addReview(placeID):

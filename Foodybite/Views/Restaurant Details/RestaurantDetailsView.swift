@@ -10,6 +10,7 @@ import Domain
 
 struct RestaurantDetailsView: View {
     @StateObject var viewModel: RestaurantDetailsViewModel
+    let makePhotoView: (String?) -> PhotoView
     let showReviewView: () -> Void
     
     var body: some View {
@@ -18,9 +19,10 @@ struct RestaurantDetailsView: View {
                 ScrollView {
                     if let placeDetails = viewModel.placeDetails {
                         VStack(alignment: .leading) {
-                            RestaurantImageView(phoneNumber: placeDetails.phoneNumber,
-                                                showMaps: viewModel.showMaps,
-                                                imageData: $viewModel.imageData)
+                            RestaurantImageView(
+                                photoView: makePhotoView(placeDetails.photos.first?.photoReference),
+                                phoneNumber: placeDetails.phoneNumber,
+                                showMaps: viewModel.showMaps)
                             
                             HStack {
                                 RestaurantInformationView(
@@ -88,6 +90,14 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                     fetchPhotoService: PreviewFetchPlacePhotoService(),
                     getReviewsService: PreviewGetReviewsService()
                 ),
+                makePhotoView: { _ in
+                    PhotoView(
+                        viewModel: PhotoViewModel(
+                            photoReference: "reference",
+                            fetchPhotoService: PreviewFetchPlacePhotoService()
+                        )
+                    )
+                },
                 showReviewView: {}
             )
         }
@@ -141,7 +151,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
     
     private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
         func fetchPlacePhoto(photoReference: String) async throws -> Data {
-            throw NSError(domain: "any error", code: 1)
+            UIImage(named: "restaurant_logo_test")!.pngData()!
         }
     }
     

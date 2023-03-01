@@ -68,7 +68,14 @@ struct ProfileFlowView: View {
                             getPlaceDetailsService: placesService,
                             fetchPhotoService: placesService,
                             getReviewsService: apiService
-                        )) {
+                        ), makePhotoView: { photoReference in
+                            PhotoView(
+                                viewModel: PhotoViewModel(
+                                    photoReference: photoReference,
+                                    fetchPhotoService: placesService
+                                )
+                            )
+                        }) {
                             flow.append(.addReview(placeDetails.placeID))
                         }
                 case let .addReview(placeID):

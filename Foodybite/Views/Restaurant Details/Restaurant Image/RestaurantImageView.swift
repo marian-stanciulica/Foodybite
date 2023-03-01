@@ -6,23 +6,16 @@
 //
 
 import SwiftUI
+import Domain
 
 struct RestaurantImageView: View {
+    let photoView: PhotoView
     let phoneNumber: String?
     let showMaps: () -> Void
-    @Binding var imageData: Data?
 
     var body: some View {
         ZStack {
-            if let imageData = imageData, let uiImage = UIImage(data: imageData) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .aspectRatio(1.2, contentMode: .fit)
-            } else {
-                Image("restaurant_logo_test")
-                    .resizable()
-                    .aspectRatio(1.2, contentMode: .fit)
-            }
+            photoView
 
             VStack {
                 Spacer()
@@ -36,7 +29,22 @@ struct RestaurantImageView: View {
 
 struct RestaurantImageView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantImageView(phoneNumber: "+61 2 9374 4000", showMaps: {}, imageData: .constant(nil))
-            .background(.black)
+        RestaurantImageView(
+            photoView: PhotoView(
+                viewModel: PhotoViewModel(
+                    photoReference: "reference",
+                    fetchPhotoService: PreviewFetchPlacePhotoService()
+                )
+            ),
+            phoneNumber: "+61 2 9374 4000",
+            showMaps: {}
+        )
+        .background(.black)
+    }
+    
+    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
+        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+            UIImage(named: "restaurant_logo_test")!.pngData()!
+        }
     }
 }

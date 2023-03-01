@@ -28,7 +28,6 @@ public final class RestaurantDetailsViewModel: ObservableObject {
 
     @Published public var error: Error?
     @Published public var placeDetails: PlaceDetails?
-    @Published public var imageData: Data?
     @Published public var photosData = [Data?]()
     
     public var rating: String {
@@ -81,10 +80,6 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     @MainActor private func initializeFirstPhotoFetch(placeDetails: PlaceDetails) async {
-        if let firstPhoto = placeDetails.photos.first {
-            imageData = await fetchPhoto(firstPhoto)
-        }
-        
         photosData = Array(repeating: nil, count: placeDetails.photos.count - 1)
     }
     
