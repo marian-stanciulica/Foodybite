@@ -39,9 +39,10 @@ struct ProfileView<Cell: View>: View {
                     switch viewModel.getReviewsState {
                     case .isLoading:
                         ProgressView()
-                    case .loadingError:
+                            .tint(.primary)
+                    case .idle, .failure:
                         StatsView(stats: "0", description: "Reviews")
-                    case let .requestSucceeeded(reviews):
+                    case let .success(reviews):
                         StatsView(stats: "\(reviews.count)", description: "Reviews")
                     }
 
@@ -81,11 +82,23 @@ struct ProfileView<Cell: View>: View {
                     .foregroundColor(.gray.opacity(0.2))
                     .padding(.top)
 
-                if case let .requestSucceeeded(reviews) = viewModel.getReviewsState {
+                switch viewModel.getReviewsState {
+                case .idle:
+                    EmptyView()
+                case .isLoading:
+                    ProgressView()
+                        .tint(.primary)
+                case let .failure(error):
+                    Text(error.rawValue)
+                        .padding()
+                        .foregroundColor(.red)
+                        .font(.headline)
+                case let .success(reviews):
                     LazyVStack {
                         ForEach(reviews, id: \.id) { review in
                             cell(review)
-                                .padding()
+                                .padding(.horizontal)
+                                .padding(.vertical, 4)
                         }
                     }
                 }

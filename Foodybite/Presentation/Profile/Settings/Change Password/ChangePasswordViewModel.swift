@@ -12,21 +12,28 @@ public final class ChangePasswordViewModel: ObservableObject {
     private let changePasswordService: ChangePasswordService
 
     public enum Result: Equatable {
-        case notTriggered
-        case success
+        case idle
+        case isLoading
         case failure(ChangePasswordValidator.Error)
+        case success
     }
     
     @Published public var currentPassword = ""
     @Published public var newPassword = ""
     @Published public var confirmPassword = ""
-    @Published public var result: Result = .notTriggered
+    @Published public var result: Result = .idle
+    
+    public var isLoading: Bool {
+        result == .isLoading
+    }
     
     public init(changePasswordService: ChangePasswordService) {
         self.changePasswordService = changePasswordService
     }
 
-    public func changePassword() async {
+    @MainActor public func changePassword() async {
+        result = .isLoading
+
         do {
             try ChangePasswordValidator.validate(currentPassword: currentPassword,
                                                  newPassword: newPassword,
@@ -35,25 +42,22 @@ public final class ChangePasswordViewModel: ObservableObject {
             try await makeRequest()
         } catch {
             if let error = error as? ChangePasswordValidator.Error {
-                await updateResult(.failure(error))
+                result  = .failure(error)
             } else if let error = error as? PasswordValidator.Error {
-                await updateResult(.failure(.passwordError(error)))
+                result = .failure(.passwordError(error))
             }
         }
     }
     
-    private func makeRequest() async throws {
+    @MainActor private func makeRequest() async throws {
         do {
             try await changePasswordService.changePassword(currentPassword: currentPassword,
                                                            newPassword: newPassword,
                                                            confirmPassword: confirmPassword)
-            await updateResult(.success)
+            result = .success
         } catch {
             throw ChangePasswordValidator.Error.serverError
         }
     }
     
-    @MainActor private func updateResult(_ newValue: Result) {
-        result = newValue
-    }
 }

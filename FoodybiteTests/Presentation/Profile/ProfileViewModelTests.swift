@@ -14,7 +14,7 @@ final class ProfileViewModelTests: XCTestCase {
     func test_init_getReviewsStateIsIdle() {
         let (sut, _, _) = makeSUT()
         
-        XCTAssertEqual(sut.getReviewsState, .isLoading)
+        XCTAssertEqual(sut.getReviewsState, .idle)
     }
     
     func test_deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
@@ -23,7 +23,7 @@ final class ProfileViewModelTests: XCTestCase {
         let expectedError = anyNSError()
         accountServiceSpy.errorToThrow = expectedError
         
-        await assertDeleteAccount(on: sut, withExpectedResult: .accountDeletionError)
+        await assertDeleteAccount(on: sut, withExpectedResult: .serverError)
     }
     
     func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
@@ -53,7 +53,7 @@ final class ProfileViewModelTests: XCTestCase {
         
         await sut.getAllReviews()
         
-        XCTAssertEqual(stateSpy.results, [.isLoading, .loadingError("An error occured while fetching reviews. Please try again later!")])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
     func test_getAllReviews_setsStateToRequestSucceededWhenGetReviewsServiceReturnsSuccess() async {
@@ -64,7 +64,7 @@ final class ProfileViewModelTests: XCTestCase {
 
         await sut.getAllReviews()
         
-        XCTAssertEqual(stateSpy.results, [.isLoading, .requestSucceeeded(expectedReviews)])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedReviews)])
     }
     
     // MARK: - Helpers
@@ -95,10 +95,10 @@ final class ProfileViewModelTests: XCTestCase {
     }
     
     private func assertDeleteAccount(on sut: ProfileViewModel,
-                                     withExpectedResult expectedResult: ProfileViewModel.Error,
+                                     withExpectedResult expectedResult: ProfileViewModel.DeleteAccountError,
                                      file: StaticString = #file,
                                      line: UInt = #line) async {
-        let resultSpy = PublisherSpy(sut.$error.eraseToAnyPublisher())
+        let resultSpy = PublisherSpy(sut.$deleteAccountError.eraseToAnyPublisher())
 
         XCTAssertEqual(resultSpy.results, [nil], file: file, line: line)
         

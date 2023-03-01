@@ -16,8 +16,9 @@ public final class EditProfileViewModel: ObservableObject {
         case serverError = "Server error"
     }
     
-    public enum Result: Equatable {
-        case notTriggered
+    public enum State: Equatable {
+        case idle
+        case isLoading
         case success
         case failure(Error)
     }
@@ -27,31 +28,33 @@ public final class EditProfileViewModel: ObservableObject {
     @Published public var name = ""
     @Published public var email = ""
     @Published public var profileImage: Data? = nil
-    @Published public var result: Result = .notTriggered
+    @Published public var state: State = .idle
 
+    public var isLoading: Bool {
+        state == .isLoading
+    }
+    
     public init(accountService: AccountService) {
         self.accountService = accountService
     }
     
-    public func updateAccount() async {
+    @MainActor public func updateAccount() async {
+        state = .isLoading
+        
         if name.isEmpty {
-            await updateResult(.failure(.emptyName))
+            state = .failure(.emptyName)
         } else if email.isEmpty {
-            await updateResult(.failure(.emptyEmail))
+            state = .failure(.emptyEmail)
         } else if !isValid(email: email) {
-            await updateResult(.failure(.invalidEmail))
+            state = .failure(.invalidEmail)
         } else {
             do {
                 try await accountService.updateAccount(name: name, email: email, profileImage: profileImage)
-                await updateResult(.success)
+                state = .success
             } catch {
-                await updateResult(.failure(.serverError))
+                state = .failure(.serverError)
             }
         }
-    }
-    
-    @MainActor private func updateResult(_ newValue: Result) {
-        result = newValue
     }
     
     private func isValid(email: String) -> Bool {

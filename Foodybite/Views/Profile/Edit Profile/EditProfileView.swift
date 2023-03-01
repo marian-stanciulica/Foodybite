@@ -13,7 +13,7 @@ struct EditProfileView: View {
     
     var body: some View {
         VStack {
-            ProfileImage(backgroundColor: .black,
+            ProfileImage(backgroundColor: .primary,
                          selectedImageData: $viewModel.profileImage)
                 .padding(.vertical, 40)
 
@@ -31,7 +31,7 @@ struct EditProfileView: View {
             .padding(.horizontal)
             .padding(.vertical, 4)
 
-            MarineButton(title: "Update", isLoading: false) {
+            MarineButton(title: "Update", isLoading: viewModel.isLoading) {
                 Task {
                     await viewModel.updateAccount()
                 }
@@ -51,7 +51,7 @@ struct EditProfileView: View {
     }
     
     private func createFeedbackText() -> Text {
-        switch viewModel.result {
+        switch viewModel.state {
         case .success:
             return Text("Account updated!")
                 .foregroundColor(.green)
@@ -62,7 +62,7 @@ struct EditProfileView: View {
                 .foregroundColor(.red)
                 .font(.headline)
 
-        case .notTriggered:
+        default:
             return Text("")
         }
     }

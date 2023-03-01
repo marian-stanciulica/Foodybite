@@ -9,11 +9,15 @@ import Foundation
 import Domain
 
 public final class ReviewViewModel: ObservableObject {
+    public enum AddReviewError: String, Error {
+        case serverError = "Review couldn't be posted. Try again!"
+    }
+    
     public enum State: Equatable {
         case idle
         case isLoading
-        case loadingError(String)
-        case requestSucceeeded
+        case failure(AddReviewError)
+        case success
     }
     
     private let reviewService: AddReviewService
@@ -22,6 +26,10 @@ public final class ReviewViewModel: ObservableObject {
     @Published public var state: State = .idle
     @Published public var reviewText = ""
     @Published public var starsNumber = 0
+    
+    public var isLoading: Bool {
+        state == .isLoading
+    }
     
     public init(placeID: String, reviewService: AddReviewService) {
         self.placeID = placeID
@@ -33,9 +41,9 @@ public final class ReviewViewModel: ObservableObject {
         
         do {
             try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: Date())
-            state = .requestSucceeeded
+            state = .success
         } catch {
-            state = .loadingError("Review couldn't be posted. Try again!")
+            state = .failure(.serverError)
         }
     }
 }

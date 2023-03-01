@@ -14,16 +14,37 @@ struct SelectedRestaurantView: View {
     var body: some View {
         VStack(alignment: .leading) {
             switch viewModel.fetchPhotoState {
-            case .requestSucceeeded(let imageData):
-                if let imageData = imageData, let uiImage = UIImage(data: imageData) {
+            case .idle:
+                EmptyView()
+            case .isLoading:
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .frame(height: 200)
+                    
+                    ProgressView()
+                }
+            case .failure:
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .frame(height: 200)
+                    
+                    Image(systemName: "arrow.clockwise.circle")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .onTapGesture {
+                            Task {
+                                await viewModel.fetchPhoto()
+                            }
+                        }
+                }
+            case let .success(photoData):
+                if let uiImage = UIImage(data: photoData) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .scaledToFit()
+                        .aspectRatio(1.25, contentMode: .fit)
                 }
-            default:
-                Image("restaurant_logo_test")
-                    .resizable()
-                    .scaledToFit()
             }
 
             AddressView(

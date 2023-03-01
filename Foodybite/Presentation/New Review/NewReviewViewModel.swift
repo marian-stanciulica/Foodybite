@@ -9,18 +9,26 @@ import Foundation
 import Domain
 
 public final class NewReviewViewModel: ObservableObject {
-    public enum State: Equatable {
-        case idle
-        case isLoading
-        case loadingError(String)
-        case requestSucceeeded(PlaceDetails)
+    public enum GetPlaceDetailsError: String, Error {
+        case serverError = "An error occured while fetching place details. Please try again later!"
     }
     
-    public enum ReviewState: Equatable {
+    public enum PostReviewError: String, Error {
+        case serverError = "Review couldn't be posted. Please try again later!"
+    }
+    
+    public enum GetPlaceDetailsState: Equatable {
         case idle
         case isLoading
-        case loadingError(String)
-        case requestSucceeeded
+        case failure(GetPlaceDetailsError)
+        case success(PlaceDetails)
+    }
+    
+    public enum PostReviewState: Equatable {
+        case idle
+        case isLoading
+        case failure(PostReviewError)
+        case success
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
@@ -28,8 +36,8 @@ public final class NewReviewViewModel: ObservableObject {
     private let addReviewService: AddReviewService
     private let location: Location
     
-    @Published public var getPlaceDetailsState: State = .idle
-    @Published public var postReviewState: ReviewState = .idle
+    @Published public var getPlaceDetailsState: GetPlaceDetailsState = .idle
+    @Published public var postReviewState: PostReviewState = .idle
     
     @Published public var searchText = ""
     @Published public var reviewText = ""
@@ -37,7 +45,7 @@ public final class NewReviewViewModel: ObservableObject {
     @Published public var autocompleteResults = [AutocompletePrediction]()
     
     public var postReviewEnabled: Bool {
-        if case .requestSucceeeded = getPlaceDetailsState {
+        if case .success = getPlaceDetailsState {
             return !reviewText.isEmpty && starsNumber > 0
         }
         return false
@@ -65,9 +73,9 @@ public final class NewReviewViewModel: ObservableObject {
         
         do {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-            getPlaceDetailsState = .requestSucceeeded(placeDetails)
+            getPlaceDetailsState = .success(placeDetails)
         } catch {
-            getPlaceDetailsState = .loadingError("An error occured while fetching place details. Please try again later!")
+            getPlaceDetailsState = .failure(.serverError)
         }
     }
     
@@ -75,7 +83,7 @@ public final class NewReviewViewModel: ObservableObject {
         guard postReviewEnabled else { return }
         postReviewState = .isLoading
         
-        if case let .requestSucceeeded(placeDetails) = getPlaceDetailsState {
+        if case let .success(placeDetails) = getPlaceDetailsState {
             do {
                 try await addReviewService.addReview(
                     placeID: placeDetails.placeID,
@@ -83,9 +91,9 @@ public final class NewReviewViewModel: ObservableObject {
                     starsNumber: starsNumber,
                     createdAt: Date())
                 
-                postReviewState = .requestSucceeeded
+                postReviewState = .success
             } catch {
-                postReviewState = .loadingError("Review couldn't be posted. Please try again later!")
+                postReviewState = .failure(.serverError)
             }
         }
     }

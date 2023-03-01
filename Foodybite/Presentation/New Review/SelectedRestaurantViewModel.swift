@@ -12,8 +12,8 @@ public final class SelectedRestaurantViewModel: ObservableObject {
     public enum State: Equatable {
         case idle
         case isLoading
-        case loadingError(String)
-        case requestSucceeeded(Data)
+        case failure
+        case success(Data)
     }
     
     private let placeDetails: PlaceDetails
@@ -38,15 +38,15 @@ public final class SelectedRestaurantViewModel: ObservableObject {
         fetchPhotoState = .isLoading
         
         guard let firstPhoto = placeDetails.photos.first else {
-            fetchPhotoState = .loadingError("This place has no photos!")
+            fetchPhotoState = .failure
             return
         }
         
         do {
             let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: firstPhoto.photoReference)
-            fetchPhotoState = .requestSucceeeded(photoData)
+            fetchPhotoState = .success(photoData)
         } catch {
-            fetchPhotoState = .loadingError("An error occured while fetching place photo. Please try again later!")
+            fetchPhotoState = .failure
         }
     }
 }

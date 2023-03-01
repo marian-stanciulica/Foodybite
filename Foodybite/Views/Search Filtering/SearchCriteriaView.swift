@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct SearchCriteriaView: View {
+    @State var radius: CGFloat
+    @Binding var starsNumber: Int
+    
     var body: some View {
         VStack {
             Text("Distance")
                 .font(.title)
                 .padding(.top)
             
-            SelectRadiusView(radius: 20)
+            SelectRadiusView(radius: radius)
                 .padding(.bottom)
             
             Text("Ratings")
                 .font(.title)
                 .padding(.top)
             
-            RatingView(stars: .constant(3))
+            RatingView(stars: $starsNumber)
                 .padding(.bottom)
             
             Spacer()
@@ -42,6 +45,6 @@ struct SearchCriteriaView: View {
 
 struct SearchCriteriaView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchCriteriaView()
+        SearchCriteriaView(radius: 20, starsNumber: .constant(4))
     }
 }

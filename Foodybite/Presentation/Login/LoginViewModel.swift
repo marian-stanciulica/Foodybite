@@ -13,12 +13,23 @@ final public class LoginViewModel: ObservableObject {
         case serverError = "Invalid Credentials"
     }
     
+    public enum State: Equatable {
+        case idle
+        case isLoading
+        case success
+        case failure(LoginError)
+    }
+    
     private let loginService: LoginService
     private let goToMainTab: (User) -> Void
     
     @Published public var email = ""
     @Published public var password = ""
-    @Published public var loginError: LoginError?
+    @Published public var state: State = .idle
+    
+    public var isLoading: Bool {
+        state == .isLoading
+    }
     
     public init(loginService: LoginService, goToMainTab: @escaping (User) -> Void) {
         self.loginService = loginService
@@ -26,11 +37,13 @@ final public class LoginViewModel: ObservableObject {
     }
     
     @MainActor public func login() async {
+        state = .isLoading
+        
         do {
             let user = try await loginService.login(email: email, password: password)
             goToMainTab(user)
         } catch {
-            loginError = LoginError.serverError
+            state = .failure(.serverError)
         }
     }
     

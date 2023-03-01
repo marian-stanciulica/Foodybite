@@ -12,7 +12,7 @@ struct ChangePasswordView: View {
     @ObservedObject var viewModel: ChangePasswordViewModel
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             ImageGrayTextField(placeholder: "Current Password",
                                imageName: "lock.circle",
                                secure: true,
@@ -35,7 +35,7 @@ struct ChangePasswordView: View {
             
             Spacer()
 
-            MarineButton(title: "Update", isLoading: false) {
+            MarineButton(title: "Update", isLoading: viewModel.isLoading) {
                 Task {
                     await viewModel.changePassword()
                 }
@@ -59,7 +59,7 @@ struct ChangePasswordView: View {
                 .foregroundColor(.red)
                 .font(.headline)
             
-        case .notTriggered:
+        default:
             return Text("")
         }
     }

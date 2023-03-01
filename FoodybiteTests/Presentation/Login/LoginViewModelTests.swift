@@ -15,6 +15,28 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertEqual(LoginViewModel.LoginError.serverError.rawValue, "Invalid Credentials")
     }
     
+    func test_state_initiallyIdle() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertEqual(sut.state, .idle)
+    }
+    
+    func test_isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
+        let (sut, _) = makeSUT()
+
+        sut.state = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.state = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_login_sendsInputsToLoginService() async {
         let (sut, loginServiceSpy) = makeSUT()
         sut.email = anyEmail()
@@ -40,7 +62,7 @@ final class LoginViewModelTests: XCTestCase {
         loginServiceSpy.errorToThrow = expectedError
         
         await sut.login()
-        XCTAssertEqual(sut.loginError, .serverError)
+        XCTAssertEqual(sut.state, .failure(.serverError))
     }
     
     func test_login_callsGoToMainTabWhenLoginServiceFinishedSuccessfully() async {
@@ -62,6 +84,20 @@ final class LoginViewModelTests: XCTestCase {
         let loginServiceSpy = LoginServiceSpy()
         let sut = LoginViewModel(loginService: loginServiceSpy, goToMainTab: goToMainTab)
         return (sut, loginServiceSpy)
+    }
+    
+    private func assertLogin(on sut: LoginViewModel,
+                             withExpectedResult expectedResult: LoginViewModel.State,
+                             file: StaticString = #file,
+                             line: UInt = #line) async {
+        let registerResultSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
+
+        XCTAssertEqual(registerResultSpy.results, [.idle], file: file, line: line)
+        
+        await sut.login()
+        
+        XCTAssertEqual(registerResultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
+        registerResultSpy.cancel()
     }
     
     private func anyEmail() -> String {

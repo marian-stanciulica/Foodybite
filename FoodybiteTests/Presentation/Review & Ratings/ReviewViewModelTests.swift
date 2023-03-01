@@ -19,6 +19,22 @@ final class ReviewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.starsNumber, 0)
     }
     
+    func test_isLoading_isTrueOnlyWhenStateIsLoading() {
+        let (sut, _) = makeSUT()
+
+        sut.state = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.state = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_postReview_sendsParametersCorrectlyToReviewService() async {
         let expectedPlaceId = anyPlaceID()
         let (sut, reviewServiceSpy) = makeSUT(placeID: expectedPlaceId)
@@ -40,7 +56,7 @@ final class ReviewViewModelTests: XCTestCase {
         
         await sut.addReview()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .loadingError("Review couldn't be posted. Try again!")])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
     func test_postReview_setsStateToRequestSucceededWhenReviewServiceReturnsSuccess() async {
@@ -49,7 +65,7 @@ final class ReviewViewModelTests: XCTestCase {
 
         await sut.addReview()
         
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .requestSucceeeded])
+        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success])
     }
     
     // MARK: - Helpers

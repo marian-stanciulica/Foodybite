@@ -11,6 +11,31 @@ import Domain
 
 final class ChangePasswordViewModelTests: XCTestCase {
 
+    func test_init_variablesInitialValues() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertTrue(sut.currentPassword.isEmpty)
+        XCTAssertTrue(sut.newPassword.isEmpty)
+        XCTAssertTrue(sut.confirmPassword.isEmpty)
+        XCTAssertEqual(sut.result, .idle)
+    }
+    
+    func test_isLoading_isTrueOnlyWhenResultIsLoading() {
+        let (sut, _) = makeSUT()
+
+        sut.result = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.result = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.result = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.result = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_changePassword_triggerEmptyPasswordErrorOnEmptyCurrentPassword() async {
         let (sut, _) = makeSUT()
         
@@ -162,11 +187,11 @@ final class ChangePasswordViewModelTests: XCTestCase {
                                 line: UInt = #line) async {
         let registerResultSpy = PublisherSpy(sut.$result.eraseToAnyPublisher())
 
-        XCTAssertEqual(registerResultSpy.results, [.notTriggered], file: file, line: line)
+        XCTAssertEqual(registerResultSpy.results, [.idle], file: file, line: line)
         
         await sut.changePassword()
         
-        XCTAssertEqual(registerResultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
+        XCTAssertEqual(registerResultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
         registerResultSpy.cancel()
     }
     

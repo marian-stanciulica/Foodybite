@@ -25,7 +25,7 @@ struct NewReviewView<SelectedView: View>: View {
                             plusButtonActive = false
                         }
                     }
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(uiColor: .systemGray))
                     
                     Spacer()
                     
@@ -34,12 +34,17 @@ struct NewReviewView<SelectedView: View>: View {
                     
                     Spacer()
                     
-                    Button("Post") {
-                        Task {
-                            await viewModel.postReview()
+                    if viewModel.postReviewState == .isLoading {
+                        ProgressView()
+                    } else {
+                        Button("Post") {
+                            Task {
+                                await viewModel.postReview()
+                            }
                         }
+                        .disabled(!viewModel.postReviewEnabled)
+                        .foregroundColor(viewModel.postReviewEnabled ? .marineBlue : Color(uiColor: .systemGray))
                     }
-                    .foregroundColor(.gray)
                 }
                 .padding()
                 
@@ -54,7 +59,7 @@ struct NewReviewView<SelectedView: View>: View {
                     }
                 )
                 
-                if case let .requestSucceeeded(placeDetails) = viewModel.getPlaceDetailsState {
+                if case let .success(placeDetails) = viewModel.getPlaceDetailsState {
                     selectedView(placeDetails)
                 }
                 
@@ -66,7 +71,7 @@ struct NewReviewView<SelectedView: View>: View {
                 
                 Text("Rate your experience")
                     .font(.title3)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(uiColor: .systemGray))
                     .padding()
                 
                 Text("Review")
@@ -74,7 +79,7 @@ struct NewReviewView<SelectedView: View>: View {
                     .padding(.top)
                 
                 VStack {
-                    TextField("Write your experience", text: $viewModel.reviewText)
+                    TextField("Write your experience", text: $viewModel.reviewText, axis: .vertical)
                         .padding()
                     
                     Spacer()

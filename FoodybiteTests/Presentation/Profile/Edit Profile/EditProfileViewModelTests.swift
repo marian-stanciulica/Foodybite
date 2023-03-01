@@ -10,7 +10,23 @@ import Foodybite
 import Domain
 
 final class EditProfileViewModelTests: XCTestCase {
+    
+    func test_isLoading_isTrueOnlyWhenResultIsLoading() {
+        let (sut, _) = makeSUT()
 
+        sut.state = .idle
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .isLoading
+        XCTAssertTrue(sut.isLoading)
+        
+        sut.state = .failure(.serverError)
+        XCTAssertFalse(sut.isLoading)
+        
+        sut.state = .success
+        XCTAssertFalse(sut.isLoading)
+    }
+    
     func test_updateAccount_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
         
@@ -77,16 +93,16 @@ final class EditProfileViewModelTests: XCTestCase {
     }
     
     private func assertRegister(on sut: EditProfileViewModel,
-                                withExpectedResult expectedResult: EditProfileViewModel.Result,
+                                withExpectedResult expectedResult: EditProfileViewModel.State,
                                 file: StaticString = #file,
                                 line: UInt = #line) async {
-        let resultSpy = PublisherSpy(sut.$result.eraseToAnyPublisher())
+        let resultSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
 
-        XCTAssertEqual(resultSpy.results, [.notTriggered], file: file, line: line)
+        XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
         
         await sut.updateAccount()
         
-        XCTAssertEqual(resultSpy.results, [.notTriggered, expectedResult], file: file, line: line)
+        XCTAssertEqual(resultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
         resultSpy.cancel()
     }
     
