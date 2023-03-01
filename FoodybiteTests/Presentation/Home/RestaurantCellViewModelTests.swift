@@ -12,58 +12,32 @@ import Domain
 final class RestaurantCellViewModelTests: XCTestCase {
     
     func test_rating_returnsFormattedRating() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT()
         
         XCTAssertEqual(sut.rating, rating().formatted)
     }
     
     func test_distanceInKmFromCurrentLocation_computedCorrectly() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT()
 
         XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
     }
     
     func test_isOpen_equalsNearbyPlaceIsOpen() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT()
 
         XCTAssertEqual(sut.isOpen, isOpen())
     }
     
     func test_placeName_equalsNearbyPlaceName() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT()
 
         XCTAssertEqual(sut.placeName, anyPlaceName())
     }
     
-    func test_fetchPhoto_sendsInputsToFetchPlacePhotoService() async {
-        let (sut, serviceSpy) = makeSUT()
-
-        await sut.fetchPhoto()
-
-        XCTAssertEqual(serviceSpy.capturedValues.first, anyPhoto().photoReference)
-    }
-    
-    func test_fetchPhoto_setsImageDataToNilWhenFetchPlacePhotoServiceThrowsError() async {
-        let (sut, serviceSpy) = makeSUT()
-        
-        serviceSpy.result = .failure(anyError)
-        await sut.fetchPhoto()
-        XCTAssertNil(sut.imageData)
-    }
-    
-    func test_fetchPhoto_updatesImageDataWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
-        let (sut, serviceSpy) = makeSUT()
-        let expectedData = anyData()
-        
-        serviceSpy.result = .success(expectedData)
-        await sut.fetchPhoto()
-        XCTAssertEqual(sut.imageData, expectedData)
-    }
-    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RestaurantCellViewModel, serviceSpy: FetchPlacePhotoServiceSpy) {
-        let serviceSpy = FetchPlacePhotoServiceSpy()
+    private func makeSUT() -> RestaurantCellViewModel {
         let sut = RestaurantCellViewModel(
             nearbyPlace: NearbyPlace(
                 placeID: UUID().uuidString,
@@ -73,10 +47,9 @@ final class RestaurantCellViewModelTests: XCTestCase {
                 location: Location(latitude: 4.4, longitude: 6.9),
                 photo: anyPhoto()
             ),
-            fetchPhotoService: serviceSpy,
             currentLocation: anyLocation
         )
-        return (sut, serviceSpy)
+        return sut
     }
     
     private func rating() -> (raw: Double, formatted: String) {
@@ -105,21 +78,6 @@ final class RestaurantCellViewModelTests: XCTestCase {
     
     private var anyLocation: Location {
         Location(latitude: 2.3, longitude: 4.5)
-    }
-    
-    private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {
-        var result: Result<Data, Error>?
-        private(set) var capturedValues = [String]()
-
-        func fetchPlacePhoto(photoReference: String) async throws -> Data {
-            capturedValues.append(photoReference)
-            
-            if let result = result {
-                return try result.get()
-            }
-            
-            return Data()
-        }
     }
     
 }

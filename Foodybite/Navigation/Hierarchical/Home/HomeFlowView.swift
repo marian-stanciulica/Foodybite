@@ -23,7 +23,18 @@ struct HomeFlowView: View {
                 HomeView(viewModel: HomeViewModel(searchNearbyService: placesService, currentLocation: currentLocation), showPlaceDetails: { placeID in
                     flow.append(.placeDetails(placeID))
                 }, cell: { nearbyPlace in
-                    RestaurantCell(viewModel: RestaurantCellViewModel(nearbyPlace: nearbyPlace, fetchPhotoService: placesService, currentLocation: currentLocation))
+                    RestaurantCell(
+                        photoView: PhotoView(
+                            viewModel: PhotoViewModel(
+                                photoReference: nearbyPlace.photo?.photoReference,
+                                fetchPhotoService: placesService
+                            )
+                        ),
+                        viewModel: RestaurantCellViewModel(
+                            nearbyPlace: nearbyPlace,
+                            currentLocation: currentLocation
+                        )
+                    )
                 })
             }
             .navigationDestination(for: HomeRoute.self) { route in

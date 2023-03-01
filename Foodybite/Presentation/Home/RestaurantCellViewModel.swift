@@ -10,14 +10,12 @@ import Domain
 
 public final class RestaurantCellViewModel: ObservableObject {
     private let nearbyPlace: NearbyPlace
-    private let fetchPhotoService: FetchPlacePhotoService
     private let currentLocation: Location
     
     @Published public var imageData: Data?
     
-    public init(nearbyPlace: NearbyPlace, fetchPhotoService: FetchPlacePhotoService, currentLocation: Location) {
+    public init(nearbyPlace: NearbyPlace, currentLocation: Location) {
         self.nearbyPlace = nearbyPlace
-        self.fetchPhotoService = fetchPhotoService
         self.currentLocation = currentLocation
     }
     
@@ -36,11 +34,5 @@ public final class RestaurantCellViewModel: ObservableObject {
     public var distanceInKmFromCurrentLocation: String {
         let distance = DistanceSolver.getDistanceInKm(from: currentLocation, to: nearbyPlace.location)
         return "\(distance)"
-    }
-    
-    @MainActor public func fetchPhoto() async {
-        if let photo = nearbyPlace.photo {
-            imageData = try? await fetchPhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
-        }
     }
 }
