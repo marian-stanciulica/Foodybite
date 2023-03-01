@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  NewReviewSearchView.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 10.02.2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Domain
 
-struct SearchView: View {
+struct NewReviewSearchView: View {
     @Binding var searchText: String
     @Binding var autocompleteResults: [AutocompletePrediction]
     let onChange: () async -> Void
@@ -83,6 +83,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: .constant(""), autocompleteResults: .constant([]), onChange: {}, onPlaceSelected: { _ in })
+        NewReviewSearchView(searchText: .constant(""), autocompleteResults: .constant([]), onChange: {}, onPlaceSelected: { _ in })
     }
 }

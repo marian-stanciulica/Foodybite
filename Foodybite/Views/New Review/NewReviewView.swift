@@ -48,7 +48,7 @@ struct NewReviewView<SelectedView: View>: View {
                 }
                 .padding()
                 
-                SearchView(
+                NewReviewSearchView(
                     searchText: $viewModel.searchText,
                     autocompleteResults: $viewModel.autocompleteResults,
                     onChange: {
