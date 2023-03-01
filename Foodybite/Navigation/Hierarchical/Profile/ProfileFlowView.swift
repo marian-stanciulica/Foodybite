@@ -33,9 +33,16 @@ struct ProfileFlowView: View {
                         RestaurantReviewCellView(
                             viewModel: RestaurantReviewCellViewModel(
                                 review: review,
-                                getPlaceDetailsService: placesService,
-                                fetchPlacePhotoService: placesService
+                                getPlaceDetailsService: placesService
                             ),
+                            makePhotoView: { photoReference in
+                                PhotoView(
+                                    viewModel: PhotoViewModel(
+                                        photoReference: photoReference,
+                                        fetchPhotoService: placesService
+                                    )
+                                )
+                            },
                             showPlaceDetails: { placeDetails in
                                 flow.append(.placeDetails(placeDetails))
                             }

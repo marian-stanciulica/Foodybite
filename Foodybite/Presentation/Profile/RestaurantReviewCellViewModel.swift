@@ -13,23 +13,17 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         case serverError = "An error occured while fetching review details. Please try again later!"
     }
     
-    public enum FetchPhotoError: String, Error {
-        case serverError = "An error occured while fetching place photo. Please try again later!"
-    }
-    
-    public enum State<T, E: Error>: Equatable where T: Equatable, E: Equatable {
+    public enum State: Equatable {
         case idle
         case isLoading
-        case failure(E)
-        case success(T)
+        case failure(GetPlaceDetailsError)
+        case success(PlaceDetails)
     }
     
     private let review: Review
     private let getPlaceDetailsService: GetPlaceDetailsService
-    private let fetchPlacePhotoService: FetchPlacePhotoService
     
-    @Published public var getPlaceDetailsState: State<PlaceDetails, GetPlaceDetailsError> = .idle
-    @Published public var fetchPhotoState: State<Data, FetchPhotoError> = .idle
+    @Published public var getPlaceDetailsState: State = .idle
     
     public var rating: String {
         "\(review.rating)"
@@ -49,10 +43,9 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         return ""
     }
     
-    public init(review: Review, getPlaceDetailsService: GetPlaceDetailsService, fetchPlacePhotoService: FetchPlacePhotoService) {
+    public init(review: Review, getPlaceDetailsService: GetPlaceDetailsService) {
         self.review = review
         self.getPlaceDetailsService = getPlaceDetailsService
-        self.fetchPlacePhotoService = fetchPlacePhotoService
     }
     
     @MainActor public func getPlaceDetails() async {
@@ -61,23 +54,8 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         do {
             let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: review.placeID)
             getPlaceDetailsState = .success(placeDetails)
-            
-            if let firstPhoto = placeDetails.photos.first {
-                await fetchPhoto(firstPhoto)
-            }
         } catch {
             getPlaceDetailsState = .failure(.serverError)
-        }
-    }
-    
-    @MainActor func fetchPhoto(_ photo: Photo) async {
-        fetchPhotoState = .isLoading
-        
-        do {
-            let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photo.photoReference)
-            fetchPhotoState = .success(photoData)
-        } catch {
-            fetchPhotoState = .failure(.serverError)
         }
     }
 }

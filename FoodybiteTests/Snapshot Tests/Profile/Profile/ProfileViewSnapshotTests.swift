@@ -77,7 +77,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getPlaceDetailsState: .success(makePlaceDetails()),
-                          fetchPhotoState: .failure(.serverError))
+                          fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -95,14 +95,11 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private typealias GetPlaceDetailsState = RestaurantReviewCellViewModel.State<PlaceDetails, RestaurantReviewCellViewModel.GetPlaceDetailsError>
-    private typealias FetchPhotoState = RestaurantReviewCellViewModel.State<Data, RestaurantReviewCellViewModel.FetchPhotoError>
-    
     private func makeSUT(
         user: User,
         getReviewsState: ProfileViewModel.State,
-        getPlaceDetailsState: GetPlaceDetailsState = .idle,
-        fetchPhotoState: FetchPhotoState = .idle
+        getPlaceDetailsState: RestaurantReviewCellViewModel.State = .idle,
+        fetchPhotoState: PhotoViewModel.State = .isLoading
     ) -> UIViewController {
         let viewModel = ProfileViewModel(accountService: EmptyAccountService(), getReviewsService: EmptyGetReviewsService(), user: user, goToLogin: {})
         viewModel.getReviewsState = getReviewsState
@@ -116,16 +113,28 @@ final class ProfileViewSnapshotTests: XCTestCase {
         return sut
     }
     
-    private func makeCell(review: Review, getPlaceDetailsState: GetPlaceDetailsState, fetchPhotoState: FetchPhotoState) -> RestaurantReviewCellView {
-        let viewModel = RestaurantReviewCellViewModel(
+    private func makeCell(
+        review: Review,
+        getPlaceDetailsState: RestaurantReviewCellViewModel.State,
+        fetchPhotoState: PhotoViewModel.State
+    ) -> RestaurantReviewCellView {
+        let restaurantReviewCellViewModel = RestaurantReviewCellViewModel(
             review: review,
-            getPlaceDetailsService: EmptyGetPlaceDetailsService(),
-            fetchPlacePhotoService: EmptyFetchPlacePhotoService()
+            getPlaceDetailsService: EmptyGetPlaceDetailsService()
         )
-        viewModel.getPlaceDetailsState = getPlaceDetailsState
-        viewModel.fetchPhotoState = fetchPhotoState
+        restaurantReviewCellViewModel.getPlaceDetailsState = getPlaceDetailsState
+        
+        let photoViewModel = PhotoViewModel(
+            photoReference: "reference",
+            fetchPhotoService: EmptyFetchPlacePhotoService()
+        )
+        photoViewModel.fetchPhotoState = fetchPhotoState
+        
         let cell = RestaurantReviewCellView(
-            viewModel: viewModel,
+            viewModel: restaurantReviewCellViewModel,
+            makePhotoView: { _ in
+                PhotoView(viewModel: photoViewModel)
+            },
             showPlaceDetails: { _ in }
         )
         return cell

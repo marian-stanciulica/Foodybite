@@ -10,6 +10,7 @@ import Domain
 
 struct RestaurantReviewCellView: View {
     @StateObject var viewModel: RestaurantReviewCellViewModel
+    let makePhotoView: (String?) -> PhotoView
     let showPlaceDetails: (PlaceDetails) -> Void
     
     var body: some View {
@@ -33,41 +34,7 @@ struct RestaurantReviewCellView: View {
                     .background(Color(uiColor: .systemGray5))
             case let .success(placeDetails):
                 ZStack(alignment: .topTrailing) {
-                    switch viewModel.fetchPhotoState {
-                    case .idle:
-                        EmptyView()
-                    case .isLoading:
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(Color(uiColor: .systemGray3))
-                                .frame(height: 200)
-                            
-                            ProgressView()
-                        }
-                    case .failure:
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(Color(uiColor: .systemGray3))
-                                .frame(height: 200)
-                            
-                            Image(systemName: "arrow.clockwise.circle")
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                                .onTapGesture {
-                                    Task {
-                                        if let firstPhoto = placeDetails.photos.first {
-                                            await viewModel.fetchPhoto(firstPhoto)
-                                        }
-                                    }
-                                }
-                        }
-                    case let .success(photoData):
-                        if let uiImage = UIImage(data: photoData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(1.25, contentMode: .fit)
-                        }
-                    }
+                    makePhotoView(placeDetails.photos.first?.photoReference)
                     
                     RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
                         .padding()
@@ -95,9 +62,16 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
         RestaurantReviewCellView(
             viewModel: RestaurantReviewCellViewModel(
                 review: Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Marian", reviewText: "nice", rating: 2, relativeTime: "10 hours ago"),
-                getPlaceDetailsService: PreviewGetPlaceDetailsService(),
-                fetchPlacePhotoService: PreviewFetchPlacePhotoService()
+                getPlaceDetailsService: PreviewGetPlaceDetailsService()
             ),
+            makePhotoView: { _ in
+                PhotoView(
+                    viewModel: PhotoViewModel(
+                        photoReference: "reference",
+                        fetchPhotoService: PreviewFetchPlacePhotoService()
+                    )
+                )
+            },
             showPlaceDetails: { _ in }
         )
     }

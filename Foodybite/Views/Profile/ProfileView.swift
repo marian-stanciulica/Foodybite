@@ -131,9 +131,16 @@ struct ProfileView_Previews: PreviewProvider {
                 RestaurantReviewCellView(
                     viewModel: RestaurantReviewCellViewModel(
                         review: review,
-                        getPlaceDetailsService: PreviewGetPlaceDetailsService(),
-                        fetchPlacePhotoService: PreviewFetchPlacePhotoService()
+                        getPlaceDetailsService: PreviewGetPlaceDetailsService()
                     ),
+                    makePhotoView: { _ in
+                        PhotoView(
+                            viewModel: PhotoViewModel(
+                                photoReference: "reference",
+                                fetchPhotoService: PreviewFetchPlacePhotoService()
+                            )
+                        )
+                    },
                     showPlaceDetails: { _ in }
                 )
             },
