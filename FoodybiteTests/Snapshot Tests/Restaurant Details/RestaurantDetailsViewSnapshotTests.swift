@@ -41,6 +41,14 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
+        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
+                          fetchPhotoState: .failure)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(getPlaceDetailsState: RestaurantDetailsViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
