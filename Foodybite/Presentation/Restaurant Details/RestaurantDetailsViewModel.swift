@@ -11,7 +11,7 @@ import Domain
 
 public final class RestaurantDetailsViewModel: ObservableObject {
     public enum GetPlaceDetailsError: String, Swift.Error {
-        case connectionFailure = "Server connection failed. Please try again!"
+        case serverError = "Server connection failed. Please try again!"
     }
     
     public enum Input {
@@ -77,7 +77,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
                 let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
                 getPlaceDetailsState = .success(placeDetails)
             } catch {
-                getPlaceDetailsState = .failure(.connectionFailure)
+                getPlaceDetailsState = .failure(.serverError)
             }
             
         case let .fetchedPlaceDetails(placeDetails):

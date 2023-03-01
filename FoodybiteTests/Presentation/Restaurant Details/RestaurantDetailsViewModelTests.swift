@@ -33,7 +33,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         getPlaceDetailsServiceSpy.result = .failure(anyError)
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(sut.getPlaceDetailsState, .failure(.connectionFailure))
+        XCTAssertEqual(sut.getPlaceDetailsState, .failure(.serverError))
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
