@@ -81,7 +81,7 @@ final class NewReviewSnapshotTests: XCTestCase {
         reviewText: String = "",
         autocompletePredictions: [AutocompletePrediction] = [],
         getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle,
-        fetchPhotoState: SelectedRestaurantViewModel.State = .idle,
+        fetchPhotoState: PhotoViewModel.State = .isLoading,
         postReviewState: NewReviewViewModel.PostReviewState = .idle
     ) -> UIViewController {
         let viewModel = NewReviewViewModel(
@@ -107,11 +107,13 @@ final class NewReviewSnapshotTests: XCTestCase {
         return sut
     }
     
-    private func makeCell(placeDetails: PlaceDetails, fetchPhotoState: SelectedRestaurantViewModel.State) -> SelectedRestaurantView {
-        let viewModel = SelectedRestaurantViewModel(placeDetails: placeDetails,
-                                                    fetchPlacePhotoService: EmptyFetchPlacePhotoService())
+    private func makeCell(placeDetails: PlaceDetails, fetchPhotoState: PhotoViewModel.State) -> SelectedRestaurantView {
+        let viewModel = PhotoViewModel(
+            photoReference: placeDetails.photos.first?.photoReference,
+            fetchPhotoService: EmptyFetchPlacePhotoService()
+        )
         viewModel.fetchPhotoState = fetchPhotoState
-        let view = SelectedRestaurantView(viewModel: viewModel)
+        let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), placeDetails: placeDetails)
         return view
     }
     

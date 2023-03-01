@@ -48,10 +48,13 @@ struct TabNavigationView: View {
                             ),
                             selectedView: { placeDetails in
                                 SelectedRestaurantView(
-                                    viewModel: SelectedRestaurantViewModel(
-                                        placeDetails: placeDetails,
-                                        fetchPlacePhotoService: placesService
-                                    )
+                                    photoView: PhotoView(
+                                        viewModel: PhotoViewModel(
+                                            photoReference: placeDetails.photos.first?.photoReference,
+                                            fetchPhotoService: placesService
+                                        )
+                                    ),
+                                    placeDetails: placeDetails
                                 )
                             }
                         )

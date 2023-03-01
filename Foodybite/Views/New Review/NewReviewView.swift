@@ -110,10 +110,13 @@ struct NewReviewView_Previews: PreviewProvider {
             ),
             selectedView: { placeDetails in
                 SelectedRestaurantView(
-                    viewModel: SelectedRestaurantViewModel(
-                        placeDetails: placeDetails,
-                        fetchPlacePhotoService: PreviewFetchPlacePhotoService()
-                    )
+                    photoView: PhotoView(
+                        viewModel: PhotoViewModel(
+                            photoReference: "reference",
+                            fetchPhotoService: PreviewFetchPlacePhotoService()
+                        )
+                    ),
+                    placeDetails: placeDetails
                 )
             }
         )
