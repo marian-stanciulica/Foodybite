@@ -11,12 +11,18 @@ struct HomeSearchView: View {
     @Binding var searchText: String
     
     var body: some View {
-        SearchView(searchText: $searchText)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-            )
-            .padding()
+        ZStack(alignment: .trailing) {
+            SearchView(searchText: $searchText)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+                )
+            
+            Image("filters_icon")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .padding()
+        }
     }
 }
 

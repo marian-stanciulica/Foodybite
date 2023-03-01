@@ -16,7 +16,7 @@ struct SearchView: View {
                 .foregroundColor(.gray)
                 .padding(.leading)
             
-            TextField("Search Restaurant", text: $searchText)
+            TextField("Find Restaurant", text: $searchText)
                 .padding(.vertical, 12)
                 .foregroundColor(.primary)
             

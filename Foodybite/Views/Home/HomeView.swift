@@ -30,6 +30,9 @@ struct HomeView<Cell: View>: View {
                 
             case let .success(nearbyPlaces):
                 ScrollView(.vertical, showsIndicators: false) {
+                    HomeSearchView(searchText: .constant(""))
+                        .padding(.bottom)
+                    
                     LazyVStack {
                         ForEach(nearbyPlaces, id: \.placeID) { place in
                             cell(place)
