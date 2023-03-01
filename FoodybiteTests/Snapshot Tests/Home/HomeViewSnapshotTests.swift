@@ -113,9 +113,5 @@ final class HomeViewSnapshotTests: XCTestCase {
     private class EmptySearchNearbyService: SearchNearbyService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] { [] }
     }
-    
-    private class EmptyFetchPlacePhotoService: FetchPlacePhotoService {
-        func fetchPlacePhoto(photoReference: String) async throws -> Data { Data() }
-    }
 }
  
