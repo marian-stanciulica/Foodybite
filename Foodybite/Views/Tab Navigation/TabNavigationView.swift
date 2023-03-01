@@ -27,7 +27,7 @@ struct TabNavigationView: View {
             case let .failure(error):
                 Text(error.rawValue)
                 
-            case let .loaded(location):
+            case let .success(location):
                 switch tabRouter.currentPage {
                 case .home:
                 HomeFlowView(page: $tabRouter.currentPage,

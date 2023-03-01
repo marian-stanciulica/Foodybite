@@ -16,7 +16,7 @@ public final class TabNavigationViewModel: ObservableObject {
     public enum State: Equatable {
         case isLoading
         case failure(LocationLoadingError)
-        case loaded(location: Location)
+        case success(Location)
     }
     
     private let locationProvider: LocationProviding
@@ -35,7 +35,7 @@ public final class TabNavigationViewModel: ObservableObject {
         
         do {
             let location = try await locationProvider.requestLocation()
-            state = .loaded(location: location)
+            state = .success(location)
         } catch {
             state = .failure(.unauthorized)
         }

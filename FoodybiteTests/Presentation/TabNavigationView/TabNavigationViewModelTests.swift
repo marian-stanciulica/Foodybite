@@ -50,7 +50,7 @@ final class TabNavigationViewModelTests: XCTestCase {
         
         await sut.getCurrentLocation()
         
-        XCTAssertEqual(sut.state, .loaded(location: anyLocation()))
+        XCTAssertEqual(sut.state, .success(anyLocation()))
     }
     
     // MARK: - Helpers
