@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  HomeSearchView.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 01.03.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct HomeSearchView: View {
     @Binding var searchText: String
     
     var body: some View {
@@ -38,8 +38,8 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
+struct HomeSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchText: .constant(""))
+        HomeSearchView(searchText: .constant(""))
     }
 }
