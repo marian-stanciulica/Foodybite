@@ -10,7 +10,7 @@ import UIKit
 import Domain
 
 public final class RestaurantDetailsViewModel: ObservableObject {
-    public enum Error: String, Swift.Error {
+    public enum GetPlaceDetailsError: String, Swift.Error {
         case connectionFailure = "Server connection failed. Please try again!"
     }
     
@@ -19,24 +19,35 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         case fetchedPlaceDetails(PlaceDetails)
     }
     
+    public enum State: Equatable {
+        case idle
+        case isLoading
+        case failure(GetPlaceDetailsError)
+        case success(PlaceDetails)
+    }
+    
     private let input: Input
     private let currentLocation: Location
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let getReviewsService: GetReviewsService
-    private var placeDetailsReviews = [Review]()
+    private var userPlacedReviews = [Review]()
 
-    @Published public var error: Error?
-    @Published public var placeDetails: PlaceDetails?
+    public var reviews: [Review] {
+        guard case let .success(placeDetails) = getPlaceDetailsState else { return userPlacedReviews }
+        return placeDetails.reviews + userPlacedReviews
+    }
+    
+    @Published public var getPlaceDetailsState: State = .idle
     
     public var rating: String {
-        guard let placeDetails = placeDetails else { return "" }
+        guard case let .success(placeDetails) = getPlaceDetailsState else { return "" }
         
         return String(format: "%.1f", placeDetails.rating)
     }
     
     public var distanceInKmFromCurrentLocation: String {
-        guard let placeDetails = placeDetails else { return "" }
-        
+        guard case let .success(placeDetails) = getPlaceDetailsState else { return "" }
+
         let distance = DistanceSolver.getDistanceInKm(from: currentLocation, to: placeDetails.location)
         return "\(distance)"
     }
@@ -49,7 +60,9 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     public func showMaps() {
-        guard let location = placeDetails?.location else { return }
+        guard case let .success(placeDetails) = getPlaceDetailsState else { return }
+
+        let location = placeDetails.location
         guard let url = URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)") else { return }
         
         if UIApplication.shared.canOpenURL(url) {
@@ -62,21 +75,20 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         case let .placeIdToFetch(placeID):
             do {
                 let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-                placeDetailsReviews = placeDetails.reviews
-                self.placeDetails = placeDetails
+                getPlaceDetailsState = .success(placeDetails)
             } catch {
-                self.error = .connectionFailure
+                getPlaceDetailsState = .failure(.connectionFailure)
             }
             
         case let .fetchedPlaceDetails(placeDetails):
-            self.placeDetails = placeDetails
+            getPlaceDetailsState = .success(placeDetails)
         }
     }
     
     @MainActor public func getPlaceReviews() async {
         if case let .placeIdToFetch(placeID) = input {
             if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
-                placeDetails?.reviews = placeDetailsReviews + reviews
+                userPlacedReviews = reviews
             }
         }
     }

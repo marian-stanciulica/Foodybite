@@ -14,62 +14,72 @@ struct RestaurantDetailsView: View {
     let showReviewView: () -> Void
     
     var body: some View {
-        GeometryReader { proxy in
-            ZStack(alignment: .bottom) {
-                ScrollView {
-                    if let placeDetails = viewModel.placeDetails {
-                        VStack(alignment: .leading) {
-                            RestaurantImageView(
-                                photoView: makePhotoView(placeDetails.photos.first?.photoReference),
-                                phoneNumber: placeDetails.phoneNumber,
-                                showMaps: viewModel.showMaps)
-                            
-                            HStack {
-                                RestaurantInformationView(
-                                    placeName: placeDetails.name,
-                                    distance: viewModel.distanceInKmFromCurrentLocation,
-                                    address: placeDetails.address
-                                )
+        Group {
+            switch viewModel.getPlaceDetailsState {
+            case .idle:
+                EmptyView()
+            case .isLoading:
+                ProgressView()
+            case let .failure(error):
+                Text(error.rawValue)
+                    .foregroundColor(.red)
+            case let .success(placeDetails):
+                GeometryReader { proxy in
+                    ZStack(alignment: .bottom) {
+                        ScrollView {
+                            VStack(alignment: .leading) {
+                                RestaurantImageView(
+                                    photoView: makePhotoView(placeDetails.photos.first?.photoReference),
+                                    phoneNumber: placeDetails.phoneNumber,
+                                    showMaps: viewModel.showMaps)
                                 
-                                Spacer()
+                                HStack {
+                                    RestaurantInformationView(
+                                        placeName: placeDetails.name,
+                                        distance: viewModel.distanceInKmFromCurrentLocation,
+                                        address: placeDetails.address
+                                    )
+                                    
+                                    Spacer()
+                                    
+                                    RatingStar(
+                                        rating: viewModel.rating,
+                                        backgroundColor: .gray.opacity(0.1)
+                                    )
+                                    .padding(4)
+                                }
+                                .padding(.horizontal)
                                 
-                                RatingStar(
-                                    rating: viewModel.rating,
-                                    backgroundColor: .gray.opacity(0.1)
+                                if let openingHoursDetails = placeDetails.openingHoursDetails {
+                                    OpenHoursView(openingHoursDetails: openingHoursDetails)
+                                        .padding(.horizontal)
+                                }
+                                
+                                RestaurantPhotosView(
+                                    imageWidth: proxy.size.width / 2.5,
+                                    photosReferences: placeDetails.photos.map { $0.photoReference },
+                                    makePhotoView: makePhotoView
                                 )
-                                .padding(4)
-                            }
-                            .padding(.horizontal)
-                            
-                            if let openingHoursDetails = placeDetails.openingHoursDetails {
-                                OpenHoursView(openingHoursDetails: openingHoursDetails)
-                                    .padding(.horizontal)
-                            }
-                            
-                            RestaurantPhotosView(
-                                imageWidth: proxy.size.width / 2.5,
-                                photosReferences: placeDetails.photos.map { $0.photoReference },
-                                makePhotoView: makePhotoView
-                            )
-                            .padding(.bottom)
-                            
-                            HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
-                            
-                            LazyVStack {
-                                ForEach(placeDetails.reviews) { review in
-                                    ReviewCell(review: review)
+                                .padding(.bottom)
+                                
+                                HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
+                                
+                                LazyVStack {
+                                    ForEach(placeDetails.reviews) { review in
+                                        ReviewCell(review: review)
+                                    }
                                 }
                             }
                         }
+                        
+                        MarineButton(title: "Rate Your Experience", isLoading: false, action: showReviewView)
+                            .padding(.horizontal)
                     }
                 }
-                
-                MarineButton(title: "Rate Your Experience", isLoading: false, action: showReviewView)
-                    .padding(.horizontal)
             }
         }
         .task {
-            if viewModel.placeDetails == nil {
+            if viewModel.getPlaceDetailsState == .idle {
                 await viewModel.getPlaceDetails()
             }
             

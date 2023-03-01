@@ -33,8 +33,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         getPlaceDetailsServiceSpy.result = .failure(anyError)
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(sut.error, .connectionFailure)
-        XCTAssertNil(sut.placeDetails)
+        XCTAssertEqual(sut.getPlaceDetailsState, .failure(.connectionFailure))
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
@@ -44,8 +43,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(sut.placeDetails, expectedPlaceDetails)
-        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.getPlaceDetailsState, .success(expectedPlaceDetails))
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenInputIsFetchedPlaceDetails() async {
@@ -54,28 +52,27 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
 
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(sut.placeDetails, expectedPlaceDetails)
-        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.getPlaceDetailsState, .success(expectedPlaceDetails))
     }
     
     func test_rating_returnsFormattedRating() {
         let (sut, _, _) = makeSUT()
-        sut.placeDetails = anyPlaceDetails()
+        sut.getPlaceDetailsState = .success(anyPlaceDetails())
         
         XCTAssertEqual(sut.rating, rating().formatted)
     }
     
     func test_distanceInKmFromCurrentLocation_computedCorrectly() {
         let (sut, _, _) = makeSUT()
-        sut.placeDetails = anyPlaceDetails()
-        
+        sut.getPlaceDetailsState = .success(anyPlaceDetails())
+
         XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
     }
     
     func test_getPlaceReviews_sendsInputToGetReviewsService() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
-        sut.placeDetails = anyPlaceDetails()
-        
+        sut.getPlaceDetailsState = .success(anyPlaceDetails())
+
         await sut.getPlaceReviews()
         
         XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
@@ -91,35 +88,37 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceReviews_appendsReviewsToPlaceDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
         let (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
-        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
+        let placeDetails = anyPlaceDetails()
+        getPlaceDetailsServiceSpy.result = .success(placeDetails)
         await sut.getPlaceDetails()
         
-        let anyPlaceReviews = sut.placeDetails!.reviews
+        let anyPlaceReviews = placeDetails.reviews
         let getReviewsResult = firstGetReviewsResult()
         let expectedReviews = anyPlaceReviews + getReviewsResult
         
         getReviewsServiceSpy.result = getReviewsResult
         await sut.getPlaceReviews()
         
-        XCTAssertEqual(sut.placeDetails?.reviews, expectedReviews)
+        XCTAssertEqual(sut.reviews, expectedReviews)
     }
     
     func test_getPlaceReviews_doesNotDuplicateReviewsWhenCalledTwice() async {
         let (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
-        
-        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails())
+        let placeDetails = anyPlaceDetails()
+
+        getPlaceDetailsServiceSpy.result = .success(placeDetails)
         await sut.getPlaceDetails()
-        let anyPlaceReviews = sut.placeDetails!.reviews
+        let anyPlaceReviews = placeDetails.reviews
         
         let firstGetReviewsResult = firstGetReviewsResult()
         getReviewsServiceSpy.result = firstGetReviewsResult
         await sut.getPlaceReviews()
-        XCTAssertEqual(sut.placeDetails?.reviews, anyPlaceReviews + firstGetReviewsResult)
+        XCTAssertEqual(sut.reviews, anyPlaceReviews + firstGetReviewsResult)
 
         let secondGetReviewsResult = secondGetReviewsResult()
         getReviewsServiceSpy.result = secondGetReviewsResult
         await sut.getPlaceReviews()
-        XCTAssertEqual(sut.placeDetails?.reviews, anyPlaceReviews + secondGetReviewsResult)
+        XCTAssertEqual(sut.reviews, anyPlaceReviews + secondGetReviewsResult)
     }
     
     // MARK: - Helpers
