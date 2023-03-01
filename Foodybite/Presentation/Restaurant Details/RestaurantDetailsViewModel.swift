@@ -71,6 +71,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     @MainActor public func getPlaceDetails() async {
+        getPlaceDetailsState = .isLoading
+        
         switch input {
         case let .placeIdToFetch(placeID):
             await fetchPlaceDetails(placeID: placeID)

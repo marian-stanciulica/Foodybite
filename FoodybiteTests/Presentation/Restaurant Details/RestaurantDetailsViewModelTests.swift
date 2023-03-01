@@ -29,30 +29,24 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getPlaceDetails_setsErrorWhenGetPlaceDetailsServiceThrowsError() async {
         let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
-        
         getPlaceDetailsServiceSpy.result = .failure(anyError)
-        await sut.getPlaceDetails()
         
-        XCTAssertEqual(sut.getPlaceDetailsState, .failure(.serverError))
+        await assertGetPlaceDetails(on: sut, withExpectedResult: .failure(.serverError))
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
         let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
-        
         getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
-        await sut.getPlaceDetails()
         
-        XCTAssertEqual(sut.getPlaceDetailsState, .success(expectedPlaceDetails))
+        await assertGetPlaceDetails(on: sut, withExpectedResult: .success(expectedPlaceDetails))
     }
     
     func test_getPlaceDetails_updatesPlaceDetailsWhenInputIsFetchedPlaceDetails() async {
         let expectedPlaceDetails = anyPlaceDetails()
         let (sut, _, _) = makeSUT(input: .fetchedPlaceDetails(expectedPlaceDetails))
 
-        await sut.getPlaceDetails()
-        
-        XCTAssertEqual(sut.getPlaceDetailsState, .success(expectedPlaceDetails))
+        await assertGetPlaceDetails(on: sut, withExpectedResult: .success(expectedPlaceDetails))
     }
     
     func test_rating_returnsFormattedRating() {
@@ -137,6 +131,20 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             getReviewsService: getReviewsServiceSpy
         )
         return (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy)
+    }
+    
+    private func assertGetPlaceDetails(on sut: RestaurantDetailsViewModel,
+                                       withExpectedResult expectedResult: RestaurantDetailsViewModel.State,
+                                       file: StaticString = #file,
+                                       line: UInt = #line) async {
+        let resultSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
+
+        XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
+        
+        await sut.getPlaceDetails()
+        
+        XCTAssertEqual(resultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
+        resultSpy.cancel()
     }
     
     private func anyPlaceID() -> String {
