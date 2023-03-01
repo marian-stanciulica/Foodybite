@@ -14,19 +14,31 @@ struct HomeView<Cell: View>: View {
     let cell: (NearbyPlace) -> Cell
 
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack {
-                ForEach(viewModel.nearbyPlaces, id: \.placeID) { place in
-                    cell(place)
-                        .background(.white)
-                        .cornerRadius(16)
-                        .frame(maxWidth: .infinity)
-                        .aspectRatio(0.75, contentMode: .fit)
-                        .padding(4)
-                        .shadow(color:.gray.opacity(0.2), radius: 2)
-                        .onTapGesture {
-                            showPlaceDetails(place.placeID)
+        Group {
+            switch viewModel.searchNearbyState {
+            case .idle:
+                EmptyView()
+            case .isLoading:
+                ProgressView()
+            case let .failure(error):
+                Text(error.rawValue)
+                    .foregroundColor(.red)
+            case let .success(nearbyPlaces):
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(nearbyPlaces, id: \.placeID) { place in
+                            cell(place)
+                                .background(.white)
+                                .cornerRadius(16)
+                                .frame(maxWidth: .infinity)
+                                .aspectRatio(0.75, contentMode: .fit)
+                                .padding(4)
+                                .shadow(color:.gray.opacity(0.2), radius: 2)
+                                .onTapGesture {
+                                    showPlaceDetails(place.placeID)
+                                }
                         }
+                    }
                 }
             }
         }

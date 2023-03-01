@@ -9,15 +9,21 @@ import Foundation
 import Domain
 
 public final class HomeViewModel: ObservableObject {
-    public enum Error: String, Swift.Error {
+    public enum SearchNearbyError: String, Swift.Error {
         case connectionFailure = "Server connection failed. Please try again!"
+    }
+    
+    public enum State: Equatable {
+        case idle
+        case isLoading
+        case failure(SearchNearbyError)
+        case success([NearbyPlace])
     }
     
     private let searchNearbyService: SearchNearbyService
     private let currentLocation: Location
     
-    @Published public var error: Error?
-    @Published public var nearbyPlaces = [NearbyPlace]()
+    @Published public var searchNearbyState: State = .idle
     
     public init(searchNearbyService: SearchNearbyService, currentLocation: Location) {
         self.searchNearbyService = searchNearbyService
@@ -25,11 +31,13 @@ public final class HomeViewModel: ObservableObject {
     }
     
     @MainActor public func searchNearby() async {
+        searchNearbyState = .isLoading
+        
         do {
-            error = nil
-            nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 10000)
+            let nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 10000)
+            searchNearbyState = .success(nearbyPlaces)
         } catch {
-            self.error = .connectionFailure
+            searchNearbyState = .failure(.connectionFailure)
         }
     }
 }
