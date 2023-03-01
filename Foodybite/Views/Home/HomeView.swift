@@ -18,12 +18,16 @@ struct HomeView<Cell: View>: View {
             switch viewModel.searchNearbyState {
             case .idle:
                 EmptyView()
+                
             case .isLoading:
                 ProgressView()
                 Spacer()
+                
             case let .failure(error):
                 Text(error.rawValue)
                     .foregroundColor(.red)
+                Spacer()
+                
             case let .success(nearbyPlaces):
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVStack {

@@ -27,6 +27,13 @@ final class HomeViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_homeViewFailureState() {
+        let sut = makeSUT(state: .failure(.serverError))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(state: HomeViewModel.State) -> UIViewController {
