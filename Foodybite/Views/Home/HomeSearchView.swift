@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeSearchView: View {
     @Binding var searchText: String
+    @State var showSearchCriteria = false
     
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -18,12 +19,19 @@ struct HomeSearchView: View {
                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
                 )
             
-            Image("filters_icon")
-                .resizable()
-                .renderingMode(.template)
-                .foregroundColor(Color(uiColor: .systemGray3))
-                .frame(width: 20, height: 20)
-                .padding()
+            Button {
+                showSearchCriteria.toggle()
+            } label: {
+                Image("filters_icon")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(Color(uiColor: .systemGray3))
+                    .frame(width: 20, height: 20)
+                    .padding()
+            }
+        }
+        .sheet(isPresented: $showSearchCriteria) {
+            SearchCriteriaView(radius: 100, starsNumber: .constant(2))
         }
     }
 }

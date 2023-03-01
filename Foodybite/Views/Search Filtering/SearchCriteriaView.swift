@@ -10,22 +10,41 @@ import SwiftUI
 struct SearchCriteriaView: View {
     @State var radius: CGFloat
     @Binding var starsNumber: Int
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                
+                Text("Filter")
+                    .font(.title)
+                
+                Spacer()
+                
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color(.systemGray))
+                }
+            }
+            .padding(.horizontal)
+            
             Text("Distance")
                 .font(.title)
                 .padding(.top)
             
             SelectRadiusView(radius: radius)
-                .padding(.bottom)
+                .padding(.bottom, 56)
             
             Text("Ratings")
                 .font(.title)
                 .padding(.top)
             
             RatingView(stars: $starsNumber)
-                .padding(.bottom)
             
             Spacer()
             
