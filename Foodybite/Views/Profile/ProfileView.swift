@@ -61,6 +61,8 @@ struct ProfileView<Cell: View>: View {
                 .padding(.horizontal, 56)
                 .padding(.vertical)
                 .task {
+                    guard viewModel.getReviewsState == .idle else { return }
+                    
                     await viewModel.getAllReviews()
                 }
 

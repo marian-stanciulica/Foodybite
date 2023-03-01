@@ -47,6 +47,8 @@ struct RestaurantReviewCellView: View {
         }
         .cornerRadius(16)
         .task {
+            guard viewModel.getPlaceDetailsState == .idle else { return }
+            
             await viewModel.getPlaceDetails()
         }
         .onTapGesture {
