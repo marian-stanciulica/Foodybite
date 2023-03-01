@@ -16,30 +16,12 @@ struct NewReviewSearchView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.gray)
-                    .padding(.leading)
-                
-                TextField("Search Restaurant", text: $searchText)
-                    .padding(.vertical, 12)
-                    .foregroundColor(.primary)
-                    .onChange(of: searchText) { newValue in
-                        Task {
-                            await onChange()
-                        }
-                    }
-                
-                if !searchText.isEmpty {
-                    Button {
-                        searchText = ""
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.gray)
-                            .padding(.horizontal)
+            SearchView(searchText: $searchText)
+                .onChange(of: searchText) { newValue in
+                    Task {
+                        await onChange()
                     }
                 }
-            }
             
             if !autocompleteResults.isEmpty {
                 VStack(alignment: .leading) {
