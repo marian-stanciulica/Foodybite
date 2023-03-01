@@ -14,7 +14,14 @@ import Domain
 final class HomeViewSnapshotTests: XCTestCase {
     
     func test_homeViewIdleState() {
-        let sut = makeSUT()
+        let sut = makeSUT(state: .idle)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_homeViewLoadingState() {
+        let sut = makeSUT(state: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -22,10 +29,12 @@ final class HomeViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> UIViewController {
+    private func makeSUT(state: HomeViewModel.State) -> UIViewController {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
         let homeViewModel = HomeViewModel(searchNearbyService: EmptySearchNearbyService(), currentLocation: currentLocation)
+        homeViewModel.searchNearbyState = state
+        
         let homeView = HomeView(viewModel: homeViewModel, showPlaceDetails: { _ in }) { nearbyPlace in
             RestaurantCell(
                 photoView: PhotoView(
