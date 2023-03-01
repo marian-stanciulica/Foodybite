@@ -12,8 +12,6 @@ public final class RestaurantCellViewModel: ObservableObject {
     private let nearbyPlace: NearbyPlace
     private let currentLocation: Location
     
-    @Published public var imageData: Data?
-    
     public init(nearbyPlace: NearbyPlace, currentLocation: Location) {
         self.nearbyPlace = nearbyPlace
         self.currentLocation = currentLocation
