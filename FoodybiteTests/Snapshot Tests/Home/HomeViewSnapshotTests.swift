@@ -14,28 +14,36 @@ import Domain
 final class HomeViewSnapshotTests: XCTestCase {
     
     func test_homeViewIdleState() {
-        let sut = makeSUT(state: .idle)
+        let sut = makeSUT(getNearbyPlacesState: .idle)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewLoadingState() {
-        let sut = makeSUT(state: .isLoading)
+        let sut = makeSUT(getNearbyPlacesState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewFailureState() {
-        let sut = makeSUT(state: .failure(.serverError))
+        let sut = makeSUT(getNearbyPlacesState: .failure(.serverError))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewSuccessState() {
-        let sut = makeSUT(state: .success(makeNearbyPlaces()))
+        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_homeViewGetNearbyPlaceSuccessStateAndFetchPhotoFailure() {
+        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()),
+                          fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -43,20 +51,21 @@ final class HomeViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(state: HomeViewModel.State) -> UIViewController {
+    private func makeSUT(getNearbyPlacesState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
         let homeViewModel = HomeViewModel(searchNearbyService: EmptySearchNearbyService(), currentLocation: currentLocation)
-        homeViewModel.searchNearbyState = state
+        homeViewModel.searchNearbyState = getNearbyPlacesState
+        
+        let photoViewModel = PhotoViewModel(
+            photoReference: "reference",
+            fetchPhotoService: EmptyFetchPlacePhotoService()
+        )
+        photoViewModel.fetchPhotoState = fetchPhotoState
         
         let homeView = HomeView(viewModel: homeViewModel, showPlaceDetails: { _ in }) { nearbyPlace in
             RestaurantCell(
-                photoView: PhotoView(
-                    viewModel: PhotoViewModel(
-                        photoReference: nearbyPlace.photo?.photoReference,
-                        fetchPhotoService: EmptyFetchPlacePhotoService()
-                    )
-                ),
+                photoView: PhotoView(viewModel: photoViewModel),
                 viewModel: RestaurantCellViewModel(
                     nearbyPlace: nearbyPlace,
                     currentLocation: currentLocation
