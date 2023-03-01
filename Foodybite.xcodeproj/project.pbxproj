@@ -147,6 +147,9 @@
 		0F62F29929AF2FED008F1C19 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F62F29829AF2FED008F1C19 /* PhotoViewModel.swift */; };
 		0F62F29B29AF300C008F1C19 /* PhotoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F62F29A29AF300C008F1C19 /* PhotoViewModelTests.swift */; };
 		0F62F29F29AF37E6008F1C19 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F62F29E29AF37E6008F1C19 /* PhotoView.swift */; };
+		0F62F2AE29AF669C008F1C19 /* HomeViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F62F2AD29AF669C008F1C19 /* HomeViewSnapshotTests.swift */; };
+		0F62F2B129AF66C9008F1C19 /* test_homeViewIdleState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2AF29AF66C9008F1C19 /* test_homeViewIdleState.dark.png */; };
+		0F62F2B229AF66C9008F1C19 /* test_homeViewIdleState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2B029AF66C9008F1C19 /* test_homeViewIdleState.light.png */; };
 		0F70C49D29866D3600C004DD /* RestaurantCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C49C29866D3600C004DD /* RestaurantCellViewModelTests.swift */; };
 		0F70C49F2986798F00C004DD /* RestaurantCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C49E2986798F00C004DD /* RestaurantCellViewModel.swift */; };
 		0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */; };
@@ -618,6 +621,9 @@
 		0F62F29829AF2FED008F1C19 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		0F62F29A29AF300C008F1C19 /* PhotoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModelTests.swift; sourceTree = "<group>"; };
 		0F62F29E29AF37E6008F1C19 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		0F62F2AD29AF669C008F1C19 /* HomeViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSnapshotTests.swift; sourceTree = "<group>"; };
+		0F62F2AF29AF66C9008F1C19 /* test_homeViewIdleState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_homeViewIdleState.dark.png; sourceTree = "<group>"; };
+		0F62F2B029AF66C9008F1C19 /* test_homeViewIdleState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_homeViewIdleState.light.png; sourceTree = "<group>"; };
 		0F70C49C29866D3600C004DD /* RestaurantCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModelTests.swift; sourceTree = "<group>"; };
 		0F70C49E2986798F00C004DD /* RestaurantCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModel.swift; sourceTree = "<group>"; };
 		0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoService.swift; sourceTree = "<group>"; };
@@ -1585,6 +1591,32 @@
 			path = "New Review";
 			sourceTree = "<group>";
 		};
+		0F62F2AA29AF668A008F1C19 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0F62F2AB29AF668A008F1C19 /* __Snapshots__ */,
+				0F62F2AD29AF669C008F1C19 /* HomeViewSnapshotTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0F62F2AB29AF668A008F1C19 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0F62F2AC29AF668A008F1C19 /* HomeViewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0F62F2AC29AF668A008F1C19 /* HomeViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F62F2AF29AF66C9008F1C19 /* test_homeViewIdleState.dark.png */,
+				0F62F2B029AF66C9008F1C19 /* test_homeViewIdleState.light.png */,
+			);
+			path = HomeViewSnapshotTests;
+			sourceTree = "<group>";
+		};
 		0F7137AE2841F8340058757A = {
 			isa = PBXGroup;
 			children = (
@@ -2210,6 +2242,7 @@
 			isa = PBXGroup;
 			children = (
 				0F53B86B29AB4CE500DE5E13 /* Helpers */,
+				0F62F2AA29AF668A008F1C19 /* Home */,
 				0F9BEC0729ADE46000641D74 /* Search Filtering */,
 				0FB1D3D529ACEB0E00304A94 /* New Review */,
 				0F9A19F629AB5304007B2E9B /* Profile */,
@@ -2894,6 +2927,7 @@
 				0F9A19E529AB50EB007B2E9B /* test_registerViewSuccessState.light.png in Resources */,
 				0FD19A4F29AC98F500DF7326 /* test_changePasswordViewFailureState.dark.png in Resources */,
 				0F9A19E929AB50EB007B2E9B /* test_registerViewIdleState.light.png in Resources */,
+				0F62F2B129AF66C9008F1C19 /* test_homeViewIdleState.dark.png in Resources */,
 				0F9A19E829AB50EB007B2E9B /* test_registerViewIsLoadingState.light.png in Resources */,
 				0F9A19F029AB51B2007B2E9B /* test_loginViewIsLoadingState.dark.png in Resources */,
 				0F9A19FE29AB5422007B2E9B /* test_settingsViewIdleState.light.png in Resources */,
@@ -2902,6 +2936,7 @@
 				0FD19AC229ACBF8900DF7326 /* test_profileViewWhenGetReviewsStateIsIsLoading.dark.png in Resources */,
 				0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */,
 				0F9A19E729AB50EB007B2E9B /* test_registerViewSuccessState.dark.png in Resources */,
+				0F62F2B229AF66C9008F1C19 /* test_homeViewIdleState.light.png in Resources */,
 				0F9A19D929AB4FE7007B2E9B /* test_reviewViewFailureState.light.png in Resources */,
 				0F9A19E629AB50EB007B2E9B /* test_registerViewIsLoadingState.dark.png in Resources */,
 				0F9A1A0729AB5551007B2E9B /* test_changePasswordViewIdleState.dark.png in Resources */,
@@ -3110,6 +3145,7 @@
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
 				0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */,
+				0F62F2AE29AF669C008F1C19 /* HomeViewSnapshotTests.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
 				0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */,
 				0FABD5272996392500918251 /* NewReviewViewModelTests.swift in Sources */,
