@@ -23,7 +23,7 @@ struct RestaurantCell: View {
                         .padding(.horizontal, 16)
                         .padding(.vertical, 4)
                         .foregroundColor(viewModel.isOpen ? .green : .red)
-                        .background(Color.white)
+                        .background(Color(uiColor: .systemBackground))
                         .cornerRadius(16)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
@@ -32,7 +32,7 @@ struct RestaurantCell: View {
 
                     Spacer()
 
-                    RatingStar(rating: viewModel.rating, backgroundColor: .white)
+                    RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
                 }
                 .padding()
             }

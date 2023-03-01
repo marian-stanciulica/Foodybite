@@ -33,12 +33,12 @@ struct HomeView<Cell: View>: View {
                     LazyVStack {
                         ForEach(nearbyPlaces, id: \.placeID) { place in
                             cell(place)
-                                .background(.white)
+                                .background(Color(uiColor: .systemBackground))
                                 .cornerRadius(16)
                                 .frame(maxWidth: .infinity)
                                 .aspectRatio(0.75, contentMode: .fit)
                                 .padding(4)
-                                .shadow(color:.gray.opacity(0.2), radius: 2)
+                                .shadow(color: Color(uiColor: .systemGray3), radius: 2)
                                 .onTapGesture {
                                     showPlaceDetails(place.placeID)
                                 }

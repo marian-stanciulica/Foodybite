@@ -34,6 +34,13 @@ final class HomeViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
+    func test_homeViewSuccessState() {
+        let sut = makeSUT(state: .success(makeNearbyPlaces()))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(state: HomeViewModel.State) -> UIViewController {
@@ -58,6 +65,32 @@ final class HomeViewSnapshotTests: XCTestCase {
         }
         let sut = UIHostingController(rootView: homeView)
         return sut
+    }
+    
+    private func makeNearbyPlaces() -> [NearbyPlace] {
+        [
+            NearbyPlace(
+                placeID: "place #1",
+                placeName: "Place name 1",
+                isOpen: true,
+                rating: 3,
+                location: Location(latitude: 2, longitude: 5),
+                photo: nil),
+            NearbyPlace(
+                placeID: "place #2",
+                placeName: "Place name 2",
+                isOpen: false,
+                rating: 4,
+                location: Location(latitude: 43, longitude: 56),
+                photo: nil),
+            NearbyPlace(
+                placeID: "place #3",
+                placeName: "Place name 3",
+                isOpen: true,
+                rating: 5,
+                location: Location(latitude: 3, longitude: 6),
+                photo: nil)
+        ]
     }
     
     private class EmptySearchNearbyService: SearchNearbyService {
