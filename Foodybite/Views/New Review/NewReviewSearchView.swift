@@ -81,7 +81,7 @@ struct NewReviewSearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
+struct NewReviewSearchView_Previews: PreviewProvider {
     static var previews: some View {
         NewReviewSearchView(searchText: .constant(""), autocompleteResults: .constant([]), onChange: {}, onPlaceSelected: { _ in })
     }
