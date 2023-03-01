@@ -10,15 +10,21 @@ import UIKit
 import Domain
 
 func makePlaceDetails() -> PlaceDetails {
-    PlaceDetails(placeID: "",
-                 phoneNumber: nil,
+    PlaceDetails(placeID: "place #1",
+                 phoneNumber: "0764 456 321",
                  name: "Place name",
                  address: "Place address",
                  rating: 4,
-                 openingHoursDetails: nil,
-                 reviews: [],
-                 location: Location(latitude: 0, longitude: 0),
-                 photos: [])
+                 openingHoursDetails: OpeningHoursDetails(openNow: true, weekdayText: ["Mon: 10:00 - 17:00"]),
+                 reviews: [
+                    Review(placeID: "place #1", profileImageURL: nil, profileImageData: makePhotoData(), authorName: "Author", reviewText: makeReviewText(), rating: 4, relativeTime: "an hour ago")
+                 ],
+                 location: Location(latitude: 3.4, longitude: 6.5),
+                 photos: [
+                    Photo(width: 100, height: 100, photoReference: "reference"),
+                    Photo(width: 100, height: 100, photoReference: "reference"),
+                    Photo(width: 100, height: 100, photoReference: "reference")
+                 ])
 }
 
 func makePhotoData() -> Data {
