@@ -9,14 +9,19 @@ import Foundation
 import Domain
 
 public final class TabNavigationViewModel: ObservableObject {
+    public enum LocationLoadingError: String, Error {
+        case unauthorized = "Location couldn't be fetched. Try again!"
+    }
+    
     public enum State: Equatable {
         case isLoading
-        case loadingError(message: String)
+        case failure(LocationLoadingError)
         case loaded(location: Location)
     }
     
     private let locationProvider: LocationProviding
     @Published public var state: State = .isLoading
+    
     public var locationServicesEnabled: Bool {
         locationProvider.locationServicesEnabled
     }
@@ -32,7 +37,7 @@ public final class TabNavigationViewModel: ObservableObject {
             let location = try await locationProvider.requestLocation()
             state = .loaded(location: location)
         } catch {
-            state = .loadingError(message: "Location couldn't be fetched. Try again!")
+            state = .failure(.unauthorized)
         }
     }
 }

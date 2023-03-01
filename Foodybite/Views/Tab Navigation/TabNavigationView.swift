@@ -24,8 +24,8 @@ struct TabNavigationView: View {
             case .isLoading:
                 ProgressView()
                 
-            case let .loadingError(message):
-                Text(message)
+            case let .failure(error):
+                Text(error.rawValue)
                 
             case let .loaded(location):
                 switch tabRouter.currentPage {

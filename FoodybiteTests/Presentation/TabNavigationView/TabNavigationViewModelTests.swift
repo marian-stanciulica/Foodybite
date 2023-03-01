@@ -41,7 +41,7 @@ final class TabNavigationViewModelTests: XCTestCase {
         
         await sut.getCurrentLocation()
         
-        XCTAssertEqual(sut.state, .loadingError(message: "Location couldn't be fetched. Try again!"))
+        XCTAssertEqual(sut.state, .failure(.unauthorized))
     }
     
     func test_getCurrentLocation_setsStateToLoadedWhenLocationProviderReturnsLocation() async {
