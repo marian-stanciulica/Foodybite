@@ -9,8 +9,13 @@ import Foundation
 import Domain
 
 public final class PhotoViewModel: ObservableObject {
+    public enum Error: Swift.Error {
+        case serverError
+    }
+    
     public enum State: Equatable {
         case isLoading
+        case failure
     }
     
     private let fetchPhotoService: FetchPlacePhotoService
@@ -19,5 +24,9 @@ public final class PhotoViewModel: ObservableObject {
 
     public init(fetchPhotoService: FetchPlacePhotoService) {
         self.fetchPhotoService = fetchPhotoService
+    }
+    
+    public func fetchPhoto() async {
+        fetchPhotoState = .failure
     }
 }

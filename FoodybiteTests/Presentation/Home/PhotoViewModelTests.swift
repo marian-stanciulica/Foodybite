@@ -17,12 +17,27 @@ final class PhotoViewModelTests: XCTestCase {
         XCTAssertEqual(sut.fetchPhotoState, .isLoading)
     }
     
+    func test_fetchPhoto_setsFetchPhotoStateToFailureWhenFetchPlacePhotoServiceThrowsError() async {
+        let (sut, photoServiceSpy) = makeSUT()
+        let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
+
+        photoServiceSpy.result = .failure(anyError())
+        
+        await sut.fetchPhoto()
+        
+        XCTAssertEqual(stateSpy.results, [.isLoading, .failure])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: PhotoViewModel, fetchPlacePhotoServiceSpy: FetchPlacePhotoServiceSpy) {
-        let fetchPlacePhotoServiceSpy = FetchPlacePhotoServiceSpy()
-        let sut = PhotoViewModel(fetchPlacePhotoService: fetchPlacePhotoServiceSpy)
-        return (sut, fetchPlacePhotoServiceSpy)
+    private func makeSUT() -> (sut: PhotoViewModel, fetchPhotoServiceSpy: FetchPlacePhotoServiceSpy) {
+        let fetchPhotoServiceSpy = FetchPlacePhotoServiceSpy()
+        let sut = PhotoViewModel(fetchPhotoService: fetchPhotoServiceSpy)
+        return (sut, fetchPhotoServiceSpy)
+    }
+    
+    private func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
     }
     
     private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {
