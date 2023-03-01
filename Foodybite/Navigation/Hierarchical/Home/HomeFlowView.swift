@@ -45,7 +45,6 @@ struct HomeFlowView: View {
                             input: .placeIdToFetch(placeID),
                             currentLocation: currentLocation,
                             getPlaceDetailsService: placesService,
-                            fetchPhotoService: placesService,
                             getReviewsService: apiService
                         ),
                         makePhotoView: { photoReference in

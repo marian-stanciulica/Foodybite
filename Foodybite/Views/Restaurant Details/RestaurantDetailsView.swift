@@ -48,8 +48,8 @@ struct RestaurantDetailsView: View {
                             
                             RestaurantPhotosView(
                                 imageWidth: proxy.size.width / 2.5,
-                                fetchPhoto: viewModel.fetchPhoto(at:),
-                                photosData: $viewModel.photosData
+                                photosReferences: placeDetails.photos.map { $0.photoReference },
+                                makePhotoView: makePhotoView
                             )
                             .padding(.bottom)
                             
@@ -87,7 +87,6 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                     input: .placeIdToFetch("#1"),
                     currentLocation: Location(latitude: 1.2, longitude: 3.4),
                     getPlaceDetailsService: PreviewSearchNearbyService(),
-                    fetchPhotoService: PreviewFetchPlacePhotoService(),
                     getReviewsService: PreviewGetReviewsService()
                 ),
                 makePhotoView: { _ in

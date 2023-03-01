@@ -66,7 +66,6 @@ struct ProfileFlowView: View {
                             input: .fetchedPlaceDetails(placeDetails),
                             currentLocation: currentLocation,
                             getPlaceDetailsService: placesService,
-                            fetchPhotoService: placesService,
                             getReviewsService: apiService
                         ), makePhotoView: { photoReference in
                             PhotoView(
