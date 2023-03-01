@@ -41,9 +41,17 @@ final class HomeViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_homeViewGetNearbyPlaceSuccessStateAndFetchPhotoFailure() {
+    func test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()),
                           fetchPhotoState: .failure)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsSuccess() {
+        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()),
+                          fetchPhotoState: .success(makePhotoData()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
