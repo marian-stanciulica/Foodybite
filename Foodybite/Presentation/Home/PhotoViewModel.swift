@@ -30,7 +30,7 @@ public final class PhotoViewModel: ObservableObject {
         self.fetchPhotoService = fetchPhotoService
     }
     
-    public func fetchPhoto() async {
+    @MainActor public func fetchPhoto() async {
         guard let photoReference = photoReference else {
             fetchPhotoState = .noImageAvailable
             return
