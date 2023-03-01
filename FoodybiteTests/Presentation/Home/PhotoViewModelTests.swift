@@ -26,6 +26,12 @@ final class PhotoViewModelTests: XCTestCase {
         XCTAssertEqual(photoServiceSpy.capturedValues, [photoReference])
     }
     
+    func test_fetchPhoto_setsFetchPhotoStateToNoImageAvailableWhenPhotoReferenceIsNil() async {
+        let (sut, _) = makeSUT(photoReference: nil)
+
+        await assert(on: sut, expectedResult: .noImageAvailable)
+    }
+    
     func test_fetchPhoto_setsFetchPhotoStateToFailureWhenFetchPlacePhotoServiceThrowsError() async {
         let (sut, photoServiceSpy) = makeSUT()
         photoServiceSpy.result = .failure(anyError())
@@ -43,7 +49,7 @@ final class PhotoViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(photoReference: String = "") -> (sut: PhotoViewModel, fetchPhotoServiceSpy: FetchPlacePhotoServiceSpy) {
+    private func makeSUT(photoReference: String? = "photo reference") -> (sut: PhotoViewModel, fetchPhotoServiceSpy: FetchPlacePhotoServiceSpy) {
         let fetchPhotoServiceSpy = FetchPlacePhotoServiceSpy()
         let sut = PhotoViewModel(photoReference: photoReference, fetchPhotoService: fetchPhotoServiceSpy)
         return (sut, fetchPhotoServiceSpy)

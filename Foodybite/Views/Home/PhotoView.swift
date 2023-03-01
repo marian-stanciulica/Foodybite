@@ -22,6 +22,15 @@ struct PhotoView: View {
                     
                     ProgressView()
                 }
+            case .noImageAvailable:
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .frame(height: 200)
+                    
+                    Text("No Image Available")
+                        .foregroundColor(.red)
+                }
             case .failure:
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
