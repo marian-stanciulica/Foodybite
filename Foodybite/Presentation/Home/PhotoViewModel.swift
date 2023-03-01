@@ -16,17 +16,25 @@ public final class PhotoViewModel: ObservableObject {
     public enum State: Equatable {
         case isLoading
         case failure
+        case success(Data)
     }
     
+    private let photoReference: String
     private let fetchPhotoService: FetchPlacePhotoService
     
     @Published public var fetchPhotoState: State = .isLoading
 
-    public init(fetchPhotoService: FetchPlacePhotoService) {
+    public init(photoReference: String, fetchPhotoService: FetchPlacePhotoService) {
+        self.photoReference = photoReference
         self.fetchPhotoService = fetchPhotoService
     }
     
     public func fetchPhoto() async {
-        fetchPhotoState = .failure
+        do {
+            let imageData = try await fetchPhotoService.fetchPlacePhoto(photoReference: photoReference)
+            fetchPhotoState = .success(imageData)
+        } catch {
+            fetchPhotoState = .failure
+        }
     }
 }
