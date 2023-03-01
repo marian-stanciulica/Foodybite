@@ -9,30 +9,30 @@ import SwiftUI
 
 struct SelectRadiusView: View {
     @State var radius: CGFloat
-    
     @GestureState private var widthOffset: CGFloat = 0
-
+    private let maximumRadius: CGFloat = 1000
+    
     var body: some View {
         GeometryReader { proxy in
             VStack {
                 ZStack(alignment: .bottomLeading) {
                     ZStack {
                         RadiusIndicatorView(
-                            startAngle: .degrees(0),
-                            endAngle: .degrees(180),
+                            startAngle: .degrees(30),
+                            endAngle: .degrees(150),
                             clockwise: true
                         )
-                            .fill(Color.marineBlue)
-                            .frame(width: 30, height: 50)
+                        .fill(Color.marineBlue)
+                        .frame(width: 36, height: 66)
                         
                         Text("\(Int(radius))")
                             .foregroundColor(.white)
                     }
-                    .offset(x: radius / 100 * (proxy.size.width - 30), y: 0)
+                    .offset(x: radius / maximumRadius * (proxy.size.width - 30), y: 0)
                     
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 6)
-                            .frame(width: radius / 100 * (proxy.size.width - 30), height: 12)
+                            .frame(width: radius / maximumRadius * (proxy.size.width - 30), height: 12)
                             .offset(x: 0, y: 6)
                             .foregroundColor(.marineBlue)
                         
@@ -47,10 +47,10 @@ struct SelectRadiusView: View {
                 HStack {
                     Text("0")
                     Spacer()
-                    Text("100")
+                    Text("\(Int(maximumRadius))")
                 }
                 .foregroundColor(.gray)
-                .padding(.horizontal, 15)
+                .padding(.horizontal)
             }
         }
         .frame(height: 44)
