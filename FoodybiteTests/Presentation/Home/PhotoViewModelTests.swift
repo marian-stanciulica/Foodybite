@@ -28,25 +28,17 @@ final class PhotoViewModelTests: XCTestCase {
     
     func test_fetchPhoto_setsFetchPhotoStateToFailureWhenFetchPlacePhotoServiceThrowsError() async {
         let (sut, photoServiceSpy) = makeSUT()
-        let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
-
         photoServiceSpy.result = .failure(anyError())
         
-        await sut.fetchPhoto()
-        
-        XCTAssertEqual(stateSpy.results, [.isLoading, .failure])
+        await assert(on: sut, expectedResult: .failure)
     }
     
     func test_fetchPhoto_setsFetchPhotoStateToSuccessWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
         let (sut, photoServiceSpy) = makeSUT()
-        let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
         let expectedData = anyData()
-        
         photoServiceSpy.result = .success(expectedData)
-        
-        await sut.fetchPhoto()
-        
-        XCTAssertEqual(stateSpy.results, [.isLoading, .success(expectedData)])
+
+        await assert(on: sut, expectedResult: .success(expectedData))
     }
     
     // MARK: - Helpers
@@ -55,6 +47,17 @@ final class PhotoViewModelTests: XCTestCase {
         let fetchPhotoServiceSpy = FetchPlacePhotoServiceSpy()
         let sut = PhotoViewModel(photoReference: photoReference, fetchPhotoService: fetchPhotoServiceSpy)
         return (sut, fetchPhotoServiceSpy)
+    }
+    
+    private func assert(on sut: PhotoViewModel,
+                        expectedResult: PhotoViewModel.State,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) async {
+        let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
+        
+        await sut.fetchPhoto()
+        
+        XCTAssertEqual(stateSpy.results, [.isLoading, expectedResult], file: file, line: line)
     }
     
     private func anyError() -> NSError {
