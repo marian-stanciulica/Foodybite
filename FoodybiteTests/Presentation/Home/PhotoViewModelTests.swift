@@ -17,6 +17,15 @@ final class PhotoViewModelTests: XCTestCase {
         XCTAssertEqual(sut.fetchPhotoState, .isLoading)
     }
     
+    func test_fetchPhoto_sendsPhotoReferenceToFetchPlacePhotoService() async {
+        let photoReference = "photo reference"
+        let (sut, photoServiceSpy) = makeSUT(photoReference: photoReference)
+        
+        await sut.fetchPhoto()
+        
+        XCTAssertEqual(photoServiceSpy.capturedValues, [photoReference])
+    }
+    
     func test_fetchPhoto_setsFetchPhotoStateToFailureWhenFetchPlacePhotoServiceThrowsError() async {
         let (sut, photoServiceSpy) = makeSUT()
         let stateSpy = PublisherSpy(sut.$fetchPhotoState.eraseToAnyPublisher())
