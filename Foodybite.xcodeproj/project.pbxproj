@@ -2427,9 +2427,9 @@
 			children = (
 				A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */,
 				A2C2422328475C4600CB233B /* Restaurant Image */,
-				A2C2422528475C9C00CB233B /* Restaurant Order Hours */,
-				A2C2422E284763CD00CB233B /* Restaurant Photos */,
-				A2C2423128476DB800CB233B /* Restaurant Reviews */,
+				A2C2422628475CE600CB233B /* OpenHoursView.swift */,
+				A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */,
+				A2C2423428476E1300CB233B /* ReviewCell.swift */,
 			);
 			path = "Restaurant Details";
 			sourceTree = "<group>";
@@ -2441,30 +2441,6 @@
 				A2C2421F2847516B00CB233B /* PhoneAndDirectionsView.swift */,
 			);
 			path = "Restaurant Image";
-			sourceTree = "<group>";
-		};
-		A2C2422528475C9C00CB233B /* Restaurant Order Hours */ = {
-			isa = PBXGroup;
-			children = (
-				A2C2422628475CE600CB233B /* OpenHoursView.swift */,
-			);
-			path = "Restaurant Order Hours";
-			sourceTree = "<group>";
-		};
-		A2C2422E284763CD00CB233B /* Restaurant Photos */ = {
-			isa = PBXGroup;
-			children = (
-				A2C2422F284763F000CB233B /* RestaurantPhotosView.swift */,
-			);
-			path = "Restaurant Photos";
-			sourceTree = "<group>";
-		};
-		A2C2423128476DB800CB233B /* Restaurant Reviews */ = {
-			isa = PBXGroup;
-			children = (
-				A2C2423428476E1300CB233B /* ReviewCell.swift */,
-			);
-			path = "Restaurant Reviews";
 			sourceTree = "<group>";
 		};
 		A2C24241284780BF00CB233B /* Settings */ = {
