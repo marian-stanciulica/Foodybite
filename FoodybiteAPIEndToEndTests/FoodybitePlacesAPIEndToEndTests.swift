@@ -225,8 +225,8 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 placeID: "ChIJW1WlL634sUAR2DY7DgRv5ig"
             ),
             AutocompletePrediction(
-                placePrediction: "Trattoria Adagio Cismigiu, Strada Știrbei Vodă, Bucharest, Romania",
-                placeID: "ChIJ23Up4Fr_sUARS127PwOniRU"
+                placePrediction: "Trattoria La Famiglia, Strada Nicolae Golescu, Bucharest, Romania",
+                placeID: "ChIJizLJDE__sUARWSZT2x5bxhE"
             )
         ]
     }
