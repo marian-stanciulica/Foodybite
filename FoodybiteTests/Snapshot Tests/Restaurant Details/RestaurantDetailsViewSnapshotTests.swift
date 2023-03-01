@@ -14,7 +14,14 @@ import Domain
 final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     
     func test_restaurantDetailsViewIdleState() {
-        let sut = makeSUT()
+        let sut = makeSUT(getPlaceDetailsState: .idle)
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_restaurantDetailsViewIsLoadingState() {
+        let sut = makeSUT(getPlaceDetailsState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -22,7 +29,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
+    private func makeSUT(getPlaceDetailsState: RestaurantDetailsViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
         let restaurantDetailsViewModel = RestaurantDetailsViewModel(
@@ -31,6 +38,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
             getReviewsService: EmptyGetReviewsService()
         )
+        restaurantDetailsViewModel.getPlaceDetailsState = getPlaceDetailsState
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",

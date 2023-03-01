@@ -20,6 +20,7 @@ struct RestaurantDetailsView: View {
                 EmptyView()
             case .isLoading:
                 ProgressView()
+                Spacer()
             case let .failure(error):
                 Text(error.rawValue)
                     .foregroundColor(.red)
