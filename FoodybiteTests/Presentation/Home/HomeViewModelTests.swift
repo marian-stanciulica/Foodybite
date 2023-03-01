@@ -21,7 +21,7 @@ final class HomeViewModelTests: XCTestCase {
         let (sut, serviceSpy) = makeSUT()
         serviceSpy.result = .failure(anyError)
         
-        await assert(on: sut, withExpectedResult: .failure(.connectionFailure))
+        await assert(on: sut, withExpectedResult: .failure(.serverError))
     }
     
     func test_searchNearby_updatesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {

@@ -10,7 +10,7 @@ import Domain
 
 public final class HomeViewModel: ObservableObject {
     public enum SearchNearbyError: String, Swift.Error {
-        case connectionFailure = "Server connection failed. Please try again!"
+        case serverError = "Server connection failed. Please try again!"
     }
     
     public enum State: Equatable {
@@ -37,7 +37,7 @@ public final class HomeViewModel: ObservableObject {
             let nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 10000)
             searchNearbyState = .success(nearbyPlaces)
         } catch {
-            searchNearbyState = .failure(.connectionFailure)
+            searchNearbyState = .failure(.serverError)
         }
     }
 }
