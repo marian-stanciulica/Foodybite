@@ -14,7 +14,7 @@ struct RestaurantDetailsView: View {
     let showReviewView: () -> Void
     
     var body: some View {
-        Group {
+        VStack {
             switch viewModel.getPlaceDetailsState {
             case .idle:
                 EmptyView()

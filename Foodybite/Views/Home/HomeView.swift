@@ -14,7 +14,7 @@ struct HomeView<Cell: View>: View {
     let cell: (NearbyPlace) -> Cell
 
     var body: some View {
-        Group {
+        VStack {
             switch viewModel.searchNearbyState {
             case .idle:
                 EmptyView()
