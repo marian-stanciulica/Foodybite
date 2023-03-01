@@ -20,6 +20,8 @@ struct HomeSearchView: View {
             
             Image("filters_icon")
                 .resizable()
+                .renderingMode(.template)
+                .foregroundColor(Color(uiColor: .systemGray3))
                 .frame(width: 20, height: 20)
                 .padding()
         }
