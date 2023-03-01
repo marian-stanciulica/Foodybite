@@ -32,12 +32,12 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     private let getReviewsService: GetReviewsService
     private var userPlacedReviews = [Review]()
 
+    @Published public var getPlaceDetailsState: State = .idle
+    
     public var reviews: [Review] {
         guard case let .success(placeDetails) = getPlaceDetailsState else { return userPlacedReviews }
         return placeDetails.reviews + userPlacedReviews
     }
-    
-    @Published public var getPlaceDetailsState: State = .idle
     
     public var rating: String {
         guard case let .success(placeDetails) = getPlaceDetailsState else { return "" }
@@ -73,15 +73,19 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     @MainActor public func getPlaceDetails() async {
         switch input {
         case let .placeIdToFetch(placeID):
-            do {
-                let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-                getPlaceDetailsState = .success(placeDetails)
-            } catch {
-                getPlaceDetailsState = .failure(.serverError)
-            }
+            await fetchPlaceDetails(placeID: placeID)
             
         case let .fetchedPlaceDetails(placeDetails):
             getPlaceDetailsState = .success(placeDetails)
+        }
+    }
+    
+    @MainActor private func fetchPlaceDetails(placeID: String) async {
+        do {
+            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            getPlaceDetailsState = .success(placeDetails)
+        } catch {
+            getPlaceDetailsState = .failure(.serverError)
         }
     }
     
