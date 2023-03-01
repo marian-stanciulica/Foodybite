@@ -165,6 +165,8 @@
 		0F62F2D329AF7177008F1C19 /* test_restaurantDetailsViewIdleState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2D129AF7177008F1C19 /* test_restaurantDetailsViewIdleState.dark.png */; };
 		0F62F2D629AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2D429AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.dark.png */; };
 		0F62F2D729AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2D529AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.light.png */; };
+		0F62F2DA29AF732A008F1C19 /* test_restaurantDetailsViewFailureState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2D829AF7329008F1C19 /* test_restaurantDetailsViewFailureState.light.png */; };
+		0F62F2DB29AF732A008F1C19 /* test_restaurantDetailsViewFailureState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F62F2D929AF7329008F1C19 /* test_restaurantDetailsViewFailureState.dark.png */; };
 		0F70C49D29866D3600C004DD /* RestaurantCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C49C29866D3600C004DD /* RestaurantCellViewModelTests.swift */; };
 		0F70C49F2986798F00C004DD /* RestaurantCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C49E2986798F00C004DD /* RestaurantCellViewModel.swift */; };
 		0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */; };
@@ -654,6 +656,8 @@
 		0F62F2D129AF7177008F1C19 /* test_restaurantDetailsViewIdleState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewIdleState.dark.png; sourceTree = "<group>"; };
 		0F62F2D429AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewIsLoadingState.dark.png; sourceTree = "<group>"; };
 		0F62F2D529AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewIsLoadingState.light.png; sourceTree = "<group>"; };
+		0F62F2D829AF7329008F1C19 /* test_restaurantDetailsViewFailureState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewFailureState.light.png; sourceTree = "<group>"; };
+		0F62F2D929AF7329008F1C19 /* test_restaurantDetailsViewFailureState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewFailureState.dark.png; sourceTree = "<group>"; };
 		0F70C49C29866D3600C004DD /* RestaurantCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModelTests.swift; sourceTree = "<group>"; };
 		0F70C49E2986798F00C004DD /* RestaurantCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModel.swift; sourceTree = "<group>"; };
 		0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoService.swift; sourceTree = "<group>"; };
@@ -1681,6 +1685,8 @@
 				0F62F2D129AF7177008F1C19 /* test_restaurantDetailsViewIdleState.dark.png */,
 				0F62F2D429AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.dark.png */,
 				0F62F2D529AF72A1008F1C19 /* test_restaurantDetailsViewIsLoadingState.light.png */,
+				0F62F2D929AF7329008F1C19 /* test_restaurantDetailsViewFailureState.dark.png */,
+				0F62F2D829AF7329008F1C19 /* test_restaurantDetailsViewFailureState.light.png */,
 			);
 			path = RestaurantDetailsViewSnapshotTests;
 			sourceTree = "<group>";
@@ -2937,6 +2943,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F62F2DB29AF732A008F1C19 /* test_restaurantDetailsViewFailureState.dark.png in Resources */,
 				0FD19AD529ACC75400DF7326 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsIsLoading.light.png in Resources */,
 				0F62F2BE29AF6941008F1C19 /* test_homeViewSuccessState.light.png in Resources */,
 				0FB1D3F229ACF2B100304A94 /* test_newReviewViewIdleState.light.png in Resources */,
@@ -2969,6 +2976,7 @@
 				0FB1D40729AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png in Resources */,
 				0FB1D3D029ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */,
 				0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */,
+				0F62F2DA29AF732A008F1C19 /* test_restaurantDetailsViewFailureState.light.png in Resources */,
 				0F62F2C729AF6EF1008F1C19 /* test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */,
 				0F9BEC0529ADE18800641D74 /* test_newReviewWhenPostReviewStateIsIsLoading.dark.png in Resources */,
 				0FB1D3CF29ACE5CA00304A94 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png in Resources */,

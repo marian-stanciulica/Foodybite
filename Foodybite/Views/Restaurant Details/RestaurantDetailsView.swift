@@ -18,12 +18,17 @@ struct RestaurantDetailsView: View {
             switch viewModel.getPlaceDetailsState {
             case .idle:
                 EmptyView()
+                
             case .isLoading:
                 ProgressView()
                 Spacer()
+                
             case let .failure(error):
                 Text(error.rawValue)
                     .foregroundColor(.red)
+                
+                Spacer()
+                
             case let .success(placeDetails):
                 GeometryReader { proxy in
                     ZStack(alignment: .bottom) {
