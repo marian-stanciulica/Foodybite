@@ -9,10 +9,6 @@ public enum ReviewEndpoint: Endpoint {
     case addReview(AddReviewRequest)
     case getReviews(String?)
     
-    public var host: String {
-        "localhost"
-    }
-    
     public var path: String {
         switch self {
         case .addReview:

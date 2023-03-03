@@ -16,10 +16,6 @@ enum ServerEndpoint: Endpoint {
     case updateAccount(UpdateAccountRequest)
     case deleteAccount
     
-    var host: String {
-        "localhost"
-    }
-    
     var path: String {
         switch self {
         case .signup:

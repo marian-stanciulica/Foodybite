@@ -8,7 +8,6 @@
 import Foundation
 
 protocol Endpoint {
-    var host: String { get }
     var path: String { get }
     var method: RequestMethod { get }
     var body: Codable? { get }
@@ -18,7 +17,7 @@ extension Endpoint {
     func createURLRequest() throws -> URLRequest {
         var components = URLComponents()
         components.scheme = "http"
-        components.host = host
+        components.host = "localhost"
         components.port = 8080
         components.path = path
 
