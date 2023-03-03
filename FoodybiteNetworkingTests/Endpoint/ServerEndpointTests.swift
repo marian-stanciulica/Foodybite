@@ -32,25 +32,6 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    // MARK: - Login
-    
-    func test_login_path() {
-        XCTAssertEqual(makeLoginSUT().path, "/auth/login")
-    }
-    
-    func test_login_methodIsPost() {
-        XCTAssertEqual(makeLoginSUT().method, .post)
-    }
-    
-    func test_login_body() throws {
-        let body = LoginRequest(email: anyEmail(), password: anyPassword())
-
-        let sut = makeLoginSUT(body: body)
-        let receivedBody = try XCTUnwrap(sut.body as? LoginRequest)
-        
-        XCTAssertEqual(receivedBody, body)
-    }
-    
     // MARK: - Helpers
     
     private func anyName() -> String {
@@ -78,11 +59,4 @@ final class ServerEndpointTests: XCTestCase {
         
         return .signup(body ?? defaultBody)
     }
-    
-    private func makeLoginSUT(body: LoginRequest? = nil) -> ServerEndpoint {
-        let defaultBody = LoginRequest(email: anyEmail(), password: anyPassword())
-        
-        return .login(body ?? defaultBody)
-    }
-    
 }
