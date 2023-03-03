@@ -155,7 +155,7 @@ final class APIServiceTests: XCTestCase {
         let photoReference = randomString()
         
         let (sut, loader) = makeSUT(response: anyData())
-        let getPlacePhotoEndpoint = PlacesEndpoint.getPlacePhoto(photoReference: photoReference)
+        let getPlacePhotoEndpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
         let urlRequest = try getPlacePhotoEndpoint.createURLRequest()
         
         _ = try await sut.fetchPlacePhoto(photoReference: photoReference)
@@ -168,7 +168,7 @@ final class APIServiceTests: XCTestCase {
         let photoReference = randomString()
 
         let (sut, loader) = makeSUT(response: anyData())
-        let getPlacePhotoEndpoint = PlacesEndpoint.getPlacePhoto(photoReference: photoReference)
+        let getPlacePhotoEndpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
         let urlRequest = try getPlacePhotoEndpoint.createURLRequest()
         
         _ = try await sut.fetchPlacePhoto(photoReference: photoReference)

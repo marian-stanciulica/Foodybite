@@ -11,24 +11,6 @@ import Domain
 
 final class PlacesEndpointTests: XCTestCase {
     
-    // MARK: - Get Place Photo
-    
-    func test_getPlacePhoto_path() {
-        XCTAssertEqual(makePlacePhotoSUT().path, "/maps/api/place/photo")
-    }
-    
-    func test_getPlacePhoto_queryItems() throws {
-        let photoReference = randomString()
-        let sut = makePlacePhotoSUT(photoReference: photoReference)
-        let urlRequest = try sut.createURLRequest()
-        
-        guard let url = urlRequest.url,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
-        
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "photo_reference" })?.value, photoReference)
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
-    }
-    
     // MARK: - Autocomplete
     
     func test_autocomplete_path() {
@@ -53,10 +35,6 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    private func makePlacePhotoSUT(photoReference: String = "") -> PlacesEndpoint {
-        return PlacesEndpoint.getPlacePhoto(photoReference: photoReference)
-    }
     
     private func makeAutocompleteSUT(input: String = "", location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> PlacesEndpoint {
         return PlacesEndpoint.autocomplete(input: input, location: location, radius: radius)
