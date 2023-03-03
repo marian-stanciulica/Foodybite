@@ -342,6 +342,8 @@
 		0FF7C66329B1EE6100622E9C /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66229B1EE6100622E9C /* EndpointTests.swift */; };
 		0FF7C66629B1F1E300622E9C /* SearchNearbyEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66529B1F1E300622E9C /* SearchNearbyEndpointTests.swift */; };
 		0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */; };
+		0FF7C66A29B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66929B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift */; };
+		0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
@@ -856,6 +858,8 @@
 		0FF7C66229B1EE6100622E9C /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C66529B1F1E300622E9C /* SearchNearbyEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyEndpoint.swift; sourceTree = "<group>"; };
+		0FF7C66929B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsEndpointTests.swift; sourceTree = "<group>"; };
+		0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsEndpoint.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1297,6 +1301,7 @@
 				0F412E9C2962CA4900FDDF41 /* Endpoint.swift */,
 				0F412EB62962CE8000FDDF41 /* PlacesEndpoint.swift */,
 				0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */,
+				0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -1342,6 +1347,7 @@
 				0FF7C66229B1EE6100622E9C /* EndpointTests.swift */,
 				0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */,
 				0FF7C66529B1F1E300622E9C /* SearchNearbyEndpointTests.swift */,
+				0FF7C66929B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -3393,6 +3399,7 @@
 				0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */,
 				0F412E9A2962CA0D00FDDF41 /* URLSessionProtocol.swift in Sources */,
 				0F412E962962C9DD00FDDF41 /* HTTPClient.swift in Sources */,
+				0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* PlacesEndpoint.swift in Sources */,
 				0F2BACAE2982922F006D4A7F /* Location.swift in Sources */,
 				0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */,
@@ -3417,6 +3424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FF7C66A29B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift in Sources */,
 				0F412EB52962CD9800FDDF41 /* PlacesEndpointTests.swift in Sources */,
 				0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */,
 				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,

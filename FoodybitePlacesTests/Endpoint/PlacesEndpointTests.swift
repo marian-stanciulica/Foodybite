@@ -11,24 +11,6 @@ import Domain
 
 final class PlacesEndpointTests: XCTestCase {
     
-    // MARK: - Get Place Details
-    
-    func test_getPlaceDetails_path() {
-        XCTAssertEqual(makePlaceDetailsSUT().path, "/maps/api/place/details/json")
-    }
-    
-    func test_getPlaceDetails_queryItems() throws {
-        let placeID = randomString()
-        let sut = makePlaceDetailsSUT(placeID: placeID)
-        let urlRequest = try sut.createURLRequest()
-        
-        guard let url = urlRequest.url,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
-        
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "place_id" })?.value, placeID)
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
-    }
-    
     // MARK: - Get Place Photo
     
     func test_getPlacePhoto_path() {
@@ -71,10 +53,6 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    private func makePlaceDetailsSUT(placeID: String = "") -> PlacesEndpoint {
-        return PlacesEndpoint.getPlaceDetails(placeID: placeID)
-    }
     
     private func makePlacePhotoSUT(photoReference: String = "") -> PlacesEndpoint {
         return PlacesEndpoint.getPlacePhoto(photoReference: photoReference)
