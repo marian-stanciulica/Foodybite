@@ -53,7 +53,16 @@ final class UserPreferencesLocalStoreTests: XCTestCase {
     }
     
     func test_load_returnsDefaultUserPreferencesWhenEmptyStore() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
+        
+        let receivedUserPrefences = sut.load()
+        
+        XCTAssertEqual(receivedUserPrefences, .default)
+    }
+    
+    func test_load_returnsDefaultUserPreferencesWhenDecodingFailed() {
+        let (sut, userDefaults) = makeSUT()
+        userDefaults.set(Data(), forKey: UserPreferencesLocalStore.Keys.userPreferences.rawValue)
         
         let receivedUserPrefences = sut.load()
         
@@ -61,7 +70,7 @@ final class UserPreferencesLocalStoreTests: XCTestCase {
     }
     
     func test_load_loadsStoredUserPreferences() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let expectedUserPreferences = UserPreferences(radius: 123, starsNumber: 3)
         sut.save(expectedUserPreferences)
         
@@ -72,9 +81,10 @@ final class UserPreferencesLocalStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> UserPreferencesLocalStore {
+    private func makeSUT() -> (sut: UserPreferencesLocalStore, userDefaults: UserDefaults) {
         let userDefaults = makeEmptyUserDefaults()
-        return UserPreferencesLocalStore(userDefaults: userDefaults)
+        let sut = UserPreferencesLocalStore(userDefaults: userDefaults)
+        return (sut, userDefaults)
     }
     
     private func makeEmptyUserDefaults() -> UserDefaults {
