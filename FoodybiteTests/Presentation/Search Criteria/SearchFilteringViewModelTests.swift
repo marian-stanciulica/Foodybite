@@ -1,5 +1,5 @@
 //
-//  SearchFilteringViewModelTests.swift
+//  SearchCriteriaViewModelTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 03.03.2023.
@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import Foodybite
 
-final class SearchFilteringViewModelTests: XCTestCase {
+final class SearchCriteriaViewModelTests: XCTestCase {
 
     func test_init_setsRadiusAndStarsNumberByLoadingUserPreferences() {
         let radius = 123
@@ -39,9 +39,9 @@ final class SearchFilteringViewModelTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private func makeSUT(stub: UserPreferences) -> (sut: SearchFilteringViewModel, userPreferencesSaverSpy: UserPreferencesSaverSpy) {
+    private func makeSUT(stub: UserPreferences) -> (sut: SearchCriteriaViewModel, userPreferencesSaverSpy: UserPreferencesSaverSpy) {
         let userPreferencesSaverSpy = UserPreferencesSaverSpy()
-        let sut = SearchFilteringViewModel(userPreferences: stub, userPreferencesSaver: userPreferencesSaverSpy)
+        let sut = SearchCriteriaViewModel(userPreferences: stub, userPreferencesSaver: userPreferencesSaverSpy)
         return (sut, userPreferencesSaverSpy)
     }
     

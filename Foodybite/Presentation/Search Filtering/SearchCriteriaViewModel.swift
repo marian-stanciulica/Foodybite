@@ -1,5 +1,5 @@
 //
-//  SearchFilteringViewModel.swift
+//  SearchCriteriaViewModel.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 03.03.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class SearchFilteringViewModel {
+public final class SearchCriteriaViewModel {
     private let userPreferencesSaver: UserPreferencesSaver
     
     public var radius: Int
