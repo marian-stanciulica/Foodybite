@@ -14,10 +14,6 @@ public enum PlacesEndpoint: Endpoint {
     case getPlacePhoto(photoReference: String)
     case autocomplete(input: String, location: Domain.Location, radius: Int)
     
-    var host: String {
-        "maps.googleapis.com"
-    }
-    
     var path: String {
         switch self {
         case .searchNearby:
@@ -29,10 +25,6 @@ public enum PlacesEndpoint: Endpoint {
         case .autocomplete:
             return "/maps/api/place/autocomplete/json"
         }
-    }
-    
-    var method: RequestMethod {
-        .get
     }
     
     var queryItems: [URLQueryItem]? {

@@ -9,18 +9,16 @@ import Foundation
 @testable import FoodybitePlaces
 
 enum EndpointStub: Endpoint {
+    case invalidPath
     case stub
     
-    var host: String {
-        "host"
-    }
-    
     var path: String {
-        "/stub"
-    }
-    
-    var method: RequestMethod {
-        .get
+        switch self {
+        case .invalidPath:
+            return "invalid path"
+        case .stub:
+            return "/valid/path"
+        }
     }
     
     var queryItems: [URLQueryItem]? {

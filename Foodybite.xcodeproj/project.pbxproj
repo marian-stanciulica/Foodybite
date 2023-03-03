@@ -340,6 +340,7 @@
 		0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */; };
 		0FF7C65E29B1E54E00622E9C /* LoginEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65D29B1E54E00622E9C /* LoginEndpointTests.swift */; };
 		0FF7C66029B1E5B800622E9C /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */; };
+		0FF7C66329B1EE6100622E9C /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66229B1EE6100622E9C /* EndpointTests.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
@@ -852,6 +853,7 @@
 		0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C65D29B1E54E00622E9C /* LoginEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
+		0FF7C66229B1EE6100622E9C /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1336,6 +1338,7 @@
 		0F412EB32962CD7A00FDDF41 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
+				0FF7C66229B1EE6100622E9C /* EndpointTests.swift */,
 				0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */,
 			);
 			path = Endpoint;
@@ -3413,6 +3416,7 @@
 				0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */,
 				0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */,
 				0F412E932962C97300FDDF41 /* Helpers.swift in Sources */,
+				0FF7C66329B1EE6100622E9C /* EndpointTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

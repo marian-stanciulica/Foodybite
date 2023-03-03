@@ -13,10 +13,6 @@ final class PlacesEndpointTests: XCTestCase {
     
     // MARK: - Search Nearby
     
-    func test_searchNearby_baseURL() {
-        XCTAssertEqual(makeSearchNearbySUT().host, "maps.googleapis.com")
-    }
-    
     func test_searchNearby_path() {
         XCTAssertEqual(makeSearchNearbySUT().path, "/maps/api/place/nearbysearch/json")
     }
@@ -36,15 +32,7 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
     
-    func test_searchNearby_methodIsGet() {
-        XCTAssertEqual(makeSearchNearbySUT().method, .get)
-    }
-    
     // MARK: - Get Place Details
-    
-    func test_getPlaceDetails_baseURL() {
-        XCTAssertEqual(makePlaceDetailsSUT().host, "maps.googleapis.com")
-    }
     
     func test_getPlaceDetails_path() {
         XCTAssertEqual(makePlaceDetailsSUT().path, "/maps/api/place/details/json")
@@ -62,15 +50,7 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
     
-    func test_getPlaceDetails_methodIsGet() {
-        XCTAssertEqual(makePlaceDetailsSUT().method, .get)
-    }
-    
     // MARK: - Get Place Photo
-    
-    func test_getPlacePhoto_baseURL() {
-        XCTAssertEqual(makePlacePhotoSUT().host, "maps.googleapis.com")
-    }
     
     func test_getPlacePhoto_path() {
         XCTAssertEqual(makePlacePhotoSUT().path, "/maps/api/place/photo")
@@ -88,15 +68,7 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
     
-    func test_getPlacePhoto_methodIsGet() {
-        XCTAssertEqual(makePlacePhotoSUT().method, .get)
-    }
-    
     // MARK: - Autocomplete
-    
-    func test_autocomplete_baseURL() {
-        XCTAssertEqual(makeAutocompleteSUT().host, "maps.googleapis.com")
-    }
     
     func test_autocomplete_path() {
         XCTAssertEqual(makeAutocompleteSUT().path, "/maps/api/place/autocomplete/json")
@@ -118,11 +90,6 @@ final class PlacesEndpointTests: XCTestCase {
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "type" })?.value, "restaurant")
         XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
     }
-    
-    func test_autocomplete_methodIsGet() {
-        XCTAssertEqual(makeAutocompleteSUT().method, .get)
-    }
-    
     
     // MARK: - Helpers
     

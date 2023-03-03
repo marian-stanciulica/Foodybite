@@ -8,13 +8,19 @@
 import Foundation
 
 protocol Endpoint {
-    var host: String { get }
     var path: String { get }
-    var method: RequestMethod { get }
     var queryItems: [URLQueryItem]? { get }
 }
 
 extension Endpoint {
+    var host: String {
+        "maps.googleapis.com"
+    }
+    
+    private var method: RequestMethod {
+        .get
+    }
+    
     var apiKey: String {
         let bundle = Bundle(for: APIService.self)
         guard let filePath = bundle.path(forResource: "GooglePlaces-Info", ofType: "plist") else {
