@@ -5,6 +5,8 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
+import Foundation
+
 struct PlaceDetailsResponse: Decodable {
     let result: Details
     let status: String
