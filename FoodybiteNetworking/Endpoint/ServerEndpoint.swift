@@ -11,7 +11,6 @@ enum ServerEndpoint: Endpoint {
     case signup(SignUpRequest)
     case login(LoginRequest)
     case refreshToken(RefreshTokenRequest)
-    case changePassword(ChangePasswordRequest)
     
     var path: String {
         switch self {
@@ -21,8 +20,6 @@ enum ServerEndpoint: Endpoint {
             return "/auth/login"
         case .refreshToken:
             return "/auth/accessToken"
-        case .changePassword:
-            return "/auth/changePassword"
         }
     }
     
@@ -38,8 +35,6 @@ enum ServerEndpoint: Endpoint {
             return loginRequest
         case let .refreshToken(refreshToken):
             return refreshToken
-        case let .changePassword(changePasswordRequest):
-            return changePasswordRequest
         }
     }
 }

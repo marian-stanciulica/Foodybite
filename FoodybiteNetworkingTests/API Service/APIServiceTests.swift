@@ -116,7 +116,7 @@ final class APIServiceTests: XCTestCase {
         let confirmPassword = newPassword
         
         let (sut, _, sender, _) = makeSUT()
-        let changePasswordEndpoint = ServerEndpoint.changePassword(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
+        let changePasswordEndpoint = ChangePasswordEndpoint.post(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
         let urlRequest = try changePasswordEndpoint.createURLRequest()
         
         try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
@@ -131,7 +131,7 @@ final class APIServiceTests: XCTestCase {
         let confirmPassword = newPassword
         
         let (sut, _, sender, _) = makeSUT()
-        let changePasswordEndpoint = ServerEndpoint.changePassword(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
+        let changePasswordEndpoint = ChangePasswordEndpoint.post(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
         let urlRequest = try changePasswordEndpoint.createURLRequest()
         
         try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)

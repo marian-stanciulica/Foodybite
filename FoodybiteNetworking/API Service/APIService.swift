@@ -46,7 +46,7 @@ extension APIService: ChangePasswordService {
         let changePasswordRequest = ChangePasswordRequest(currentPassword: currentPassword,
                                                           newPassword: newPassword,
                                                           confirmPassword: confirmPassword)
-        let endpoint = ServerEndpoint.changePassword(changePasswordRequest)
+        let endpoint = ChangePasswordEndpoint.post(changePasswordRequest)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
