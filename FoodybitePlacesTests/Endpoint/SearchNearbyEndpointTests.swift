@@ -33,7 +33,7 @@ final class SearchNearbyEndpointTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSearchNearbySUT(location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> SearchNearbyEndpoint {
-        return SearchNearbyEndpoint.searchNearby(location: location, radius: radius)
+        return SearchNearbyEndpoint(location: location, radius: radius)
     }
     
 }

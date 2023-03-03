@@ -18,7 +18,7 @@ public class APIService {
 
 extension APIService: SearchNearbyService {
     public func searchNearby(location: Domain.Location, radius: Int) async throws -> [NearbyPlace] {
-        let endpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
+        let endpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
         

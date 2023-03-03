@@ -23,7 +23,7 @@ final class APIServiceTests: XCTestCase {
         let radius = 1500
         
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
-        let searchNearbyEndpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
+        let searchNearbyEndpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let urlRequest = try searchNearbyEndpoint.createURLRequest()
 
         _ = try await sut.searchNearby(location: location, radius: radius)
@@ -37,7 +37,7 @@ final class APIServiceTests: XCTestCase {
         let radius = 1500
         
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
-        let searchNearbyEndpoint = PlacesEndpoint.searchNearby(location: location, radius: radius)
+        let searchNearbyEndpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let urlRequest = try searchNearbyEndpoint.createURLRequest()
 
         _ = try await sut.searchNearby(location: location, radius: radius)

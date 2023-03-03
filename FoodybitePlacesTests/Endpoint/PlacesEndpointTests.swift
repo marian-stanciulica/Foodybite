@@ -11,27 +11,6 @@ import Domain
 
 final class PlacesEndpointTests: XCTestCase {
     
-    // MARK: - Search Nearby
-    
-    func test_searchNearby_path() {
-        XCTAssertEqual(makeSearchNearbySUT().path, "/maps/api/place/nearbysearch/json")
-    }
-    
-    func test_searchNearby_queryItems() throws {
-        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
-        let sut = makeSearchNearbySUT(location: location, radius: radius)
-        let urlRequest = try sut.createURLRequest()
-        
-        guard let url = urlRequest.url,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
-        
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "location" })?.value, "\(location.latitude),\(location.longitude)")
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "radius" })?.value, "\(radius)")
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "type" })?.value, "restaurant")
-        XCTAssertEqual(components.queryItems?.first(where: { $0.name == "key" })?.value, sut.apiKey)
-    }
-    
     // MARK: - Get Place Details
     
     func test_getPlaceDetails_path() {
@@ -92,10 +71,6 @@ final class PlacesEndpointTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    private func makeSearchNearbySUT(location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> PlacesEndpoint {
-        return PlacesEndpoint.searchNearby(location: location, radius: radius)
-    }
     
     private func makePlaceDetailsSUT(placeID: String = "") -> PlacesEndpoint {
         return PlacesEndpoint.getPlaceDetails(placeID: placeID)
