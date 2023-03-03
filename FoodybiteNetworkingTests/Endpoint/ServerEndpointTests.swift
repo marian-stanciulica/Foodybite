@@ -92,21 +92,6 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    // MARK: - Logout
-    
-    func test_logout_path() {
-        XCTAssertEqual(makeLogoutSUT().path, "/auth/logout")
-    }
-    
-    func test_logout_methodIsPost() {
-        XCTAssertEqual(makeLogoutSUT().method, .post)
-    }
-    
-    func test_logout_bodyContainsChangePasswordRequest() throws {
-        let sut = makeLogoutSUT()
-        XCTAssertNil(sut.body)
-    }
-    
     // MARK: - Helpers
     
     private func anyName() -> String {
@@ -158,10 +143,6 @@ final class ServerEndpointTests: XCTestCase {
                                                 confirmPassword: "")
         
         return .changePassword(body ?? defaultBody)
-    }
-    
-    private func makeLogoutSUT() -> ServerEndpoint {
-        return .logout
     }
     
 }

@@ -332,6 +332,8 @@
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
 		0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */; };
 		0FF7C65029B1DC2900622E9C /* AccountEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */; };
+		0FF7C65229B1E0A500622E9C /* LogoutEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */; };
+		0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
@@ -836,6 +838,8 @@
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpointTests.swift; sourceTree = "<group>"; };
+		0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpointTests.swift; sourceTree = "<group>"; };
+		0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1500,6 +1504,7 @@
 				0F0BDA3828F8679100E91FD0 /* ServerEndpoint.swift */,
 				0FC863F8298E614C0024016B /* ReviewEndpoint.swift */,
 				0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */,
+				0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -1540,6 +1545,7 @@
 				0F0BDA3628F8546800E91FD0 /* ServerEndpointTests.swift */,
 				0FC863F6298E60500024016B /* ReviewEndpointTests.swift */,
 				0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */,
+				0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -3195,6 +3201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */,
 				0F447CC128FB06C90026C5DB /* URLSessionProtocol.swift in Sources */,
 				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */,
@@ -3233,6 +3240,7 @@
 			files = (
 				0F447CBB28FAC5010026C5DB /* URLSessionHTTPClientTests.swift in Sources */,
 				0F447CC428FB073C0026C5DB /* URLSessionSpy.swift in Sources */,
+				0FF7C65229B1E0A500622E9C /* LogoutEndpointTests.swift in Sources */,
 				0F1FDE46290161E000E12B09 /* TokenStoreStub.swift in Sources */,
 				0F1FDE4D2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift in Sources */,
 				0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */,
