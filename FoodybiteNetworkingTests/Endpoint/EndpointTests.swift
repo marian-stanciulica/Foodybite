@@ -36,10 +36,10 @@ final class EndpointTests: XCTestCase {
     }
     
     func test_createURLRequest_returnsURLRequestWithCorrectHeaders() throws {
-        let endpoint = EndpointStub.headers(headers: someHeaders())
+        let endpoint = EndpointStub.headers(headers: makeHeaders())
         let urlRequest = try endpoint.createURLRequest()
         
-        XCTAssertEqual(urlRequest.allHTTPHeaderFields, someHeaders())
+        XCTAssertEqual(urlRequest.allHTTPHeaderFields, makeHeaders())
     }
     
     func test_createURLRequest_returnsURLRequestWithCorrectBody() throws {
@@ -55,12 +55,8 @@ final class EndpointTests: XCTestCase {
     
     // MARK: - Helpers
 
-    private func someHeaders() -> [String : String] {
-        return [
-            "header 1 key" : "header 1 value",
-            "header 2 key" : "header 2 value",
-            "header 3 key" : "header 3 value",
-        ]
+    private func makeHeaders() -> [String : String] {
+        ["Content-Type": "application/json"]
     }
 
     private func anyBody() -> String {

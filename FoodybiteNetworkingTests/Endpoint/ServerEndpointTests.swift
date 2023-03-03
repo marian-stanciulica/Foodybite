@@ -12,10 +12,6 @@ final class ServerEndpointTests: XCTestCase {
 
     // MARK: - Sign up
     
-    func test_signup_baseURL() {
-        XCTAssertEqual(makeSignUpSUT().host, "localhost")
-    }
-    
     func test_signup_path() {
         XCTAssertEqual(makeSignUpSUT().path, "/auth/signup")
     }
@@ -36,15 +32,7 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_signup_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeSignUpSUT().headers["Content-Type"], "application/json")
-    }
-    
     // MARK: - Login
-    
-    func test_login_baseURL() {
-        XCTAssertEqual(makeLoginSUT().host, "localhost")
-    }
     
     func test_login_path() {
         XCTAssertEqual(makeLoginSUT().path, "/auth/login")
@@ -63,15 +51,7 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_login_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeLoginSUT().headers["Content-Type"], "application/json")
-    }
-    
     // MARK: - Refresh Token
-    
-    func test_refreshToken_baseURL() {
-        XCTAssertEqual(makeRefreshTokenSUT().host, "localhost")
-    }
     
     func test_refreshToken_path() {
         XCTAssertEqual(makeRefreshTokenSUT().path, "/auth/accessToken")
@@ -89,15 +69,7 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_refreshToken_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeRefreshTokenSUT().headers["Content-Type"], "application/json")
-    }
-    
     // MARK: - Change Password
-    
-    func test_changePassword_baseURL() {
-        XCTAssertEqual(makeChangePasswordSUT().host, "localhost")
-    }
     
     func test_changePassword_path() {
         XCTAssertEqual(makeChangePasswordSUT().path, "/auth/changePassword")
@@ -120,15 +92,7 @@ final class ServerEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_changePassword_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeChangePasswordSUT().headers["Content-Type"], "application/json")
-    }
-    
     // MARK: - Logout
-    
-    func test_logout_baseURL() {
-        XCTAssertEqual(makeLogoutSUT().host, "localhost")
-    }
     
     func test_logout_path() {
         XCTAssertEqual(makeLogoutSUT().path, "/auth/logout")
@@ -142,55 +106,6 @@ final class ServerEndpointTests: XCTestCase {
         let sut = makeLogoutSUT()
         XCTAssertNil(sut.body)
     }
-    
-    func test_logout_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeLogoutSUT().headers["Content-Type"], "application/json")
-    }
-    
-    // MARK: - Update Account
-    
-    func test_updateAccount_baseURL() {
-        XCTAssertEqual(makeUpdateAccountSUT().host, "localhost")
-    }
-    
-    func test_updateAccount_path() {
-        XCTAssertEqual(makeUpdateAccountSUT().path, "/auth/account")
-    }
-    
-    func test_updateAccount_methodIsPost() {
-        XCTAssertEqual(makeUpdateAccountSUT().method, .post)
-    }
-    
-    func test_updateAccount_bodyContainsUpdateAccountRequest() throws {
-        let body = UpdateAccountRequest(name: anyName(), email: anyEmail(), profileImage: anyData())
-        let sut = makeUpdateAccountSUT(body: body)
-        
-        let receivedBody = try XCTUnwrap(sut.body as? UpdateAccountRequest)
-        XCTAssertEqual(receivedBody, body)
-    }
-    
-    func test_updateAccount_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeUpdateAccountSUT().headers["Content-Type"], "application/json")
-    }
-    
-    // MARK: - Delete Account
-    
-    func test_deleteAccount_baseURL() {
-        XCTAssertEqual(makeDeleteAccountSUT().host, "localhost")
-    }
-    
-    func test_deleteAccount_path() {
-        XCTAssertEqual(makeDeleteAccountSUT().path, "/auth/account")
-    }
-    
-    func test_deleteAccount_methodIsPost() {
-        XCTAssertEqual(makeDeleteAccountSUT().method, .delete)
-    }
-    
-    func test_deleteAccount_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeDeleteAccountSUT().headers["Content-Type"], "application/json")
-    }
-    
     
     // MARK: - Helpers
     
@@ -249,13 +164,4 @@ final class ServerEndpointTests: XCTestCase {
         return .logout
     }
     
-    private func makeUpdateAccountSUT(body: UpdateAccountRequest? = nil) -> ServerEndpoint {
-        let defaultBody = UpdateAccountRequest(name: "", email: "", profileImage: nil)
-        return .updateAccount(body ?? defaultBody)
-    }
-    
-    private func makeDeleteAccountSUT() -> ServerEndpoint {
-        return .deleteAccount
-    }
-
 }

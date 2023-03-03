@@ -17,7 +17,7 @@ enum EndpointStub: Endpoint {
     case body(body: Codable)
     
     var host: String {
-        "host"
+        "localhost"
     }
     
     var path: String {
