@@ -11,12 +11,12 @@ import XCTest
 final class GetPlacePhotoEndpointTests: XCTestCase {
     
     func test_getPlacePhoto_path() {
-        XCTAssertEqual(makePlacePhotoSUT().path, "/maps/api/place/photo")
+        XCTAssertEqual(makeSUT().path, "/maps/api/place/photo")
     }
     
     func test_getPlacePhoto_queryItems() throws {
         let photoReference = randomString()
-        let sut = makePlacePhotoSUT(photoReference: photoReference)
+        let sut = makeSUT(photoReference: photoReference)
         let urlRequest = try sut.createURLRequest()
         
         guard let url = urlRequest.url,
@@ -28,7 +28,7 @@ final class GetPlacePhotoEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makePlacePhotoSUT(photoReference: String = "") -> GetPlacePhotoEndpoint {
+    private func makeSUT(photoReference: String = "") -> GetPlacePhotoEndpoint {
         return GetPlacePhotoEndpoint(photoReference: photoReference)
     }
 }

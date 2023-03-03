@@ -11,12 +11,12 @@ import XCTest
 final class GetPlaceDetailsEndpointTests: XCTestCase {
     
     func test_getPlaceDetails_path() {
-        XCTAssertEqual(makePlaceDetailsSUT().path, "/maps/api/place/details/json")
+        XCTAssertEqual(makeSUT().path, "/maps/api/place/details/json")
     }
     
     func test_getPlaceDetails_queryItems() throws {
         let placeID = randomString()
-        let sut = makePlaceDetailsSUT(placeID: placeID)
+        let sut = makeSUT(placeID: placeID)
         let urlRequest = try sut.createURLRequest()
         
         guard let url = urlRequest.url,
@@ -28,7 +28,7 @@ final class GetPlaceDetailsEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makePlaceDetailsSUT(placeID: String = "") -> GetPlaceDetailsEndpoint {
+    private func makeSUT(placeID: String = "") -> GetPlaceDetailsEndpoint {
         return GetPlaceDetailsEndpoint(placeID: placeID)
     }
 }

@@ -12,13 +12,13 @@ import Domain
 final class SearchNearbyEndpointTests: XCTestCase {
     
     func test_searchNearby_path() {
-        XCTAssertEqual(makeSearchNearbySUT().path, "/maps/api/place/nearbysearch/json")
+        XCTAssertEqual(makeSUT().path, "/maps/api/place/nearbysearch/json")
     }
     
     func test_searchNearby_queryItems() throws {
         let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
-        let sut = makeSearchNearbySUT(location: location, radius: radius)
+        let sut = makeSUT(location: location, radius: radius)
         let urlRequest = try sut.createURLRequest()
         
         guard let url = urlRequest.url,
@@ -32,9 +32,8 @@ final class SearchNearbyEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSearchNearbySUT(location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> SearchNearbyEndpoint {
+    private func makeSUT(location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> SearchNearbyEndpoint {
         return SearchNearbyEndpoint(location: location, radius: radius)
     }
-    
 }
 
