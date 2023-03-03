@@ -344,6 +344,8 @@
 		0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */; };
 		0FF7C66A29B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66929B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift */; };
 		0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */; };
+		0FF7C66E29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66D29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift */; };
+		0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66F29B1F63E00622E9C /* GetPlacePhotoEndpoint.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
@@ -860,6 +862,8 @@
 		0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C66929B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsEndpoint.swift; sourceTree = "<group>"; };
+		0FF7C66D29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacePhotoEndpointTests.swift; sourceTree = "<group>"; };
+		0FF7C66F29B1F63E00622E9C /* GetPlacePhotoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacePhotoEndpoint.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1302,6 +1306,7 @@
 				0F412EB62962CE8000FDDF41 /* PlacesEndpoint.swift */,
 				0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */,
 				0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */,
+				0FF7C66F29B1F63E00622E9C /* GetPlacePhotoEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -1348,6 +1353,7 @@
 				0F412EB42962CD9800FDDF41 /* PlacesEndpointTests.swift */,
 				0FF7C66529B1F1E300622E9C /* SearchNearbyEndpointTests.swift */,
 				0FF7C66929B1F49300622E9C /* GetPlaceDetailsEndpointTests.swift */,
+				0FF7C66D29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -3414,6 +3420,7 @@
 				0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */,
 				0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */,
 				0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */,
+				0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */,
 				0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */,
 				0F2BACB029829243006D4A7F /* Viewport.swift in Sources */,
 				0F412E982962C9F900FDDF41 /* URLSessionHTTPClient.swift in Sources */,
@@ -3430,6 +3437,7 @@
 				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
 				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
 				0F412E832962C78E00FDDF41 /* URLSessionHTTPClientTests.swift in Sources */,
+				0FF7C66E29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift in Sources */,
 				0F412E8E2962C89A00FDDF41 /* URLSessionSpy.swift in Sources */,
 				0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */,
 				0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */,
