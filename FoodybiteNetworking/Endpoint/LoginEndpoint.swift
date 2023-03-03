@@ -6,7 +6,7 @@
 //
 
 enum LoginEndpoint: Endpoint {
-    case login(LoginRequest)
+    case post(LoginRequest)
 
     public var path: String {
         "/auth/login"
@@ -18,7 +18,7 @@ enum LoginEndpoint: Endpoint {
     
     public var body: Codable? {
         switch self {
-        case let .login(body):
+        case let .post(body):
             return body
         }
     }

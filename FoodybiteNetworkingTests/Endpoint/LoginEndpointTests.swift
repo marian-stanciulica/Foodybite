@@ -32,7 +32,7 @@ final class LoginEndpointTests: XCTestCase {
     private func makeLoginSUT(body: LoginRequest? = nil) -> LoginEndpoint {
         let defaultBody = LoginRequest(email: anyEmail(), password: anyPassword())
         
-        return .login(body ?? defaultBody)
+        return .post(body ?? defaultBody)
     }
     
     private func anyName() -> String {

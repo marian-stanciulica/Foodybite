@@ -23,7 +23,7 @@ final class APIServiceTests: XCTestCase {
         let password = anyPassword()
         
         let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
-        let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
+        let loginEndpoint = LoginEndpoint.post(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
         _ = try await sut.login(email: email, password: password)
@@ -37,7 +37,7 @@ final class APIServiceTests: XCTestCase {
         let password = anyPassword()
         
         let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
-        let loginEndpoint = ServerEndpoint.login(LoginRequest(email: email, password: password))
+        let loginEndpoint = LoginEndpoint.post(LoginRequest(email: email, password: password))
         let urlRequest = try loginEndpoint.createURLRequest()
         
         _ = try await sut.login(email: email, password: password)
