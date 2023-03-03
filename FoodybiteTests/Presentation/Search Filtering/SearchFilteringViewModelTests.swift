@@ -9,19 +9,16 @@ import XCTest
 import Domain
 
 final class SearchFilteringViewModel {
-    private let userPreferencesLoader: UserPreferencesLoader
     private let userPreferencesSaver: UserPreferencesSaver
     
-    var radius: Int = 0
-    var starsNumber: Int = 0
+    var radius: Int
+    var starsNumber: Int
     
-    init(userPreferencesLoader: UserPreferencesLoader, userPreferencesSaver: UserPreferencesSaver) {
-        self.userPreferencesLoader = userPreferencesLoader
+    init(userPreferences: UserPreferences, userPreferencesSaver: UserPreferencesSaver) {
         self.userPreferencesSaver = userPreferencesSaver
-    }
-    
-    var userPreferences: UserPreferences {
-        userPreferencesLoader.load()
+        
+        radius = userPreferences.radius
+        starsNumber = userPreferences.starsNumber
     }
     
     func apply() {
@@ -31,11 +28,13 @@ final class SearchFilteringViewModel {
 
 final class SearchFilteringViewModelTests: XCTestCase {
 
-    func test_userPreferences_retrievedSuccessfullyByLoader() {
-        let expectedUserPreferences = UserPreferences(radius: 123, starsNumber: 3)
-        let (sut, _) = makeSUT(stub: expectedUserPreferences)
+    func test_init_setsRadiusAndStarsNumberByLoadingUserPreferences() {
+        let radius = 123
+        let starsNumber = 3
+        let (sut, _) = makeSUT(stub: UserPreferences(radius: radius, starsNumber: starsNumber))
         
-        XCTAssertEqual(sut.userPreferences, expectedUserPreferences)
+        XCTAssertEqual(sut.radius, radius)
+        XCTAssertEqual(sut.starsNumber, starsNumber)
     }
     
     func test_apply_savesUserPreferencesUsingUserPreferencesSaver() {
@@ -53,22 +52,9 @@ final class SearchFilteringViewModelTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(stub: UserPreferences) -> (sut: SearchFilteringViewModel, userPreferencesSaverSpy: UserPreferencesSaverSpy) {
-        let userPreferencesLoaderStub = UserPreferencesLoaderStub(stub: stub)
         let userPreferencesSaverSpy = UserPreferencesSaverSpy()
-        let sut = SearchFilteringViewModel(userPreferencesLoader: userPreferencesLoaderStub, userPreferencesSaver: userPreferencesSaverSpy)
+        let sut = SearchFilteringViewModel(userPreferences: stub, userPreferencesSaver: userPreferencesSaverSpy)
         return (sut, userPreferencesSaverSpy)
-    }
-    
-    private class UserPreferencesLoaderStub: UserPreferencesLoader {
-        private let stub: UserPreferences
-        
-        init(stub: UserPreferences) {
-            self.stub = stub
-        }
-        
-        func load() -> UserPreferences {
-            return stub
-        }
     }
     
     private class UserPreferencesSaverSpy: UserPreferencesSaver {
