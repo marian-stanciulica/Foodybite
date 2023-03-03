@@ -13,8 +13,6 @@ enum ServerEndpoint: Endpoint {
     case refreshToken(RefreshTokenRequest)
     case changePassword(ChangePasswordRequest)
     case logout
-    case updateAccount(UpdateAccountRequest)
-    case deleteAccount
     
     var path: String {
         switch self {
@@ -28,18 +26,11 @@ enum ServerEndpoint: Endpoint {
             return "/auth/changePassword"
         case .logout:
             return "/auth/logout"
-        case .updateAccount, .deleteAccount:
-            return "/auth/account"
         }
     }
     
     var method: RequestMethod {
-        switch self {
-        case .deleteAccount:
-            return .delete
-        default:
-            return .post
-        }
+        .post
     }
     
     var body: Codable? {
@@ -52,8 +43,6 @@ enum ServerEndpoint: Endpoint {
             return refreshToken
         case let .changePassword(changePasswordRequest):
             return changePasswordRequest
-        case let .updateAccount(updateAccountRequest):
-            return updateAccountRequest
         default:
             return nil
         }

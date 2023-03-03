@@ -330,6 +330,7 @@
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
+		0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
@@ -832,6 +833,7 @@
 		0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		0FEF269A298EA84500994657 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpoint.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1495,6 +1497,7 @@
 				0F0BDA3428F8476E00E91FD0 /* RequestMethod.swift */,
 				0F0BDA3828F8679100E91FD0 /* ServerEndpoint.swift */,
 				0FC863F8298E614C0024016B /* ReviewEndpoint.swift */,
+				0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -3212,6 +3215,7 @@
 				0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */,
 				0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */,
 				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
+				0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */,
 				0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */,
 				0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */,
 				0F0280FD29262FE7006B219F /* SignUpRequest.swift in Sources */,

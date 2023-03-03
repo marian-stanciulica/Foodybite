@@ -63,13 +63,13 @@ extension APIService: LogoutService {
 extension APIService: AccountService {
     public func updateAccount(name: String, email: String, profileImage: Data?) async throws {
         let updateAccountRequest = UpdateAccountRequest(name: name, email: email, profileImage: profileImage)
-        let endpoint = ServerEndpoint.updateAccount(updateAccountRequest)
+        let endpoint = AccountEndpoint.updateAccount(updateAccountRequest)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
     
     public func deleteAccount() async throws {
-        let endpoint = ServerEndpoint.deleteAccount
+        let endpoint = AccountEndpoint.deleteAccount
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
