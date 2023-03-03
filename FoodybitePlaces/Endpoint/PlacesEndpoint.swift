@@ -9,14 +9,11 @@ import Foundation
 import Domain
 
 public enum PlacesEndpoint: Endpoint {
-    case getPlaceDetails(placeID: String)
     case getPlacePhoto(photoReference: String)
     case autocomplete(input: String, location: Domain.Location, radius: Int)
     
     var path: String {
         switch self {
-        case .getPlaceDetails:
-            return "/maps/api/place/details/json"
         case .getPlacePhoto:
             return "/maps/api/place/photo"
         case .autocomplete:
@@ -26,11 +23,6 @@ public enum PlacesEndpoint: Endpoint {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case let .getPlaceDetails(placeID):
-            return [
-                URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "place_id", value: placeID)
-            ]
         case let .getPlacePhoto(photoReference):
             return [
                 URLQueryItem(name: "key", value: apiKey),
