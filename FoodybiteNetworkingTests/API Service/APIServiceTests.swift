@@ -148,7 +148,7 @@ final class APIServiceTests: XCTestCase {
     
     func test_logout_usesLogoutEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
-        let logoutEndpoint = ServerEndpoint.logout
+        let logoutEndpoint = LogoutEndpoint.post
         let urlRequest = try logoutEndpoint.createURLRequest()
         
         try await sut.logout()
