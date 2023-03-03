@@ -200,7 +200,7 @@ final class APIServiceTests: XCTestCase {
         let radius = 1500
         
         let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
-        let autocompleteEndpoint = PlacesEndpoint.autocomplete(input: input, location: location, radius: radius)
+        let autocompleteEndpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
         let urlRequest = try autocompleteEndpoint.createURLRequest()
         
         _ = try await sut.autocomplete(input: input, location: location, radius: radius)

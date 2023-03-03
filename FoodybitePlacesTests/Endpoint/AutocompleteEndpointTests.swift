@@ -9,9 +9,7 @@ import XCTest
 @testable import FoodybitePlaces
 import Domain
 
-final class PlacesEndpointTests: XCTestCase {
-    
-    // MARK: - Autocomplete
+final class AutocompleteEndpointTests: XCTestCase {
     
     func test_autocomplete_path() {
         XCTAssertEqual(makeAutocompleteSUT().path, "/maps/api/place/autocomplete/json")
@@ -36,8 +34,7 @@ final class PlacesEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeAutocompleteSUT(input: String = "", location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> PlacesEndpoint {
-        return PlacesEndpoint.autocomplete(input: input, location: location, radius: radius)
+    private func makeAutocompleteSUT(input: String = "", location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> AutocompleteEndpoint {
+        return AutocompleteEndpoint(input: input, location: location, radius: radius)
     }
-    
 }
