@@ -24,6 +24,10 @@ final class SearchFilteringViewModel {
     func apply() {
         userPreferencesSaver.save(UserPreferences(radius: radius, starsNumber: starsNumber))
     }
+    
+    func reset() {
+        userPreferencesSaver.save(.default)
+    }
 }
 
 final class SearchFilteringViewModelTests: XCTestCase {
@@ -38,15 +42,20 @@ final class SearchFilteringViewModelTests: XCTestCase {
     }
     
     func test_apply_savesUserPreferencesUsingUserPreferencesSaver() {
-        let radius = 123
-        let starsNumber = 3
-        let (sut, userPreferencesSaverSpy) = makeSUT(stub: .default)
-        sut.radius = radius
-        sut.starsNumber = starsNumber
+        let expectedUserPreferences = UserPreferences(radius: 123, starsNumber: 3)
+        let (sut, userPreferencesSaverSpy) = makeSUT(stub: expectedUserPreferences)
         
         sut.apply()
         
-        XCTAssertEqual(userPreferencesSaverSpy.capturedValues, [UserPreferences(radius: radius, starsNumber: starsNumber)])
+        XCTAssertEqual(userPreferencesSaverSpy.capturedValues, [expectedUserPreferences])
+    }
+    
+    func test_reset_savesDefaultUserPreferences() {
+        let (sut, userPreferencesSaverSpy) = makeSUT(stub: UserPreferences(radius: 123, starsNumber: 3))
+        
+        sut.reset()
+        
+        XCTAssertEqual(userPreferencesSaverSpy.capturedValues, [.default])
     }
 
     // MARK: - Helpers
