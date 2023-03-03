@@ -34,9 +34,6 @@
 		0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */; };
 		0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D929169D6700A8FC8F /* ManagedUser.swift */; };
 		0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */; };
-		0F19B4E62916B1DA00A8FC8F /* RealmUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */; };
-		0F19B4E92916B26400A8FC8F /* RealmUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */; };
-		0F19B4EB2916B8C700A8FC8F /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4EA2916B8C700A8FC8F /* RealmUser.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -549,9 +546,6 @@
 		0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store.xcdatamodel; sourceTree = "<group>"; };
 		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
 		0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
-		0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserStoreTests.swift; sourceTree = "<group>"; };
-		0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserStore.swift; sourceTree = "<group>"; };
-		0F19B4EA2916B8C700A8FC8F /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -1048,7 +1042,6 @@
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				0F19B4E72916B24B00A8FC8F /* Realm */,
 				0F19B4CF29169C0900A8FC8F /* Core Data */,
 				0F19B4BF29167ACC00A8FC8F /* Disk */,
 			);
@@ -1108,18 +1101,8 @@
 			children = (
 				0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */,
 				0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */,
-				0F19B4E52916B1DA00A8FC8F /* RealmUserStoreTests.swift */,
 			);
 			path = Infrastructure;
-			sourceTree = "<group>";
-		};
-		0F19B4E72916B24B00A8FC8F /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				0F19B4E82916B26400A8FC8F /* RealmUserStore.swift */,
-				0F19B4EA2916B8C700A8FC8F /* RealmUser.swift */,
-			);
-			path = Realm;
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
@@ -2856,6 +2839,8 @@
 				0F19B48F2916486A00A8FC8F /* PBXTargetDependency */,
 			);
 			name = FoodybitePersistence;
+			packageProductDependencies = (
+			);
 			productName = FoodybitePersistence;
 			productReference = 0FB0E120291FBDBD0058ABCB /* FoodybitePersistence.framework */;
 			productType = "com.apple.product-type.framework";
@@ -3426,11 +3411,9 @@
 			files = (
 				0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */,
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
-				0F19B4E92916B26400A8FC8F /* RealmUserStore.swift in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
-				0F19B4EB2916B8C700A8FC8F /* RealmUser.swift in Sources */,
 				0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */,
 				0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */,
 				0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */,
@@ -3450,7 +3433,6 @@
 				0F41D9B32913E9A700F0E4C2 /* DiskUserStoreTests.swift in Sources */,
 				0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */,
 				0F19B4C629168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift in Sources */,
-				0F19B4E62916B1DA00A8FC8F /* RealmUserStoreTests.swift in Sources */,
 				0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4433,8 +4415,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				kind = exactVersion;
+				version = 1.11.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

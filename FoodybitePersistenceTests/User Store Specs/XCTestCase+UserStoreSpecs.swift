@@ -134,11 +134,11 @@ extension UserStoreSpecs where Self: XCTestCase {
     }
     
     func anyUser() -> LocalUser {
-        return LocalUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: URL(string: "http://any.com")!)
+        return LocalUser(id: UUID(), name: "any name", email: "any@email.com", profileImage: nil)
     }
     
     private func anotherUser() -> LocalUser {
-        return LocalUser(id: UUID(), name: "another name", email: "another@email.com", profileImage: URL(string: "http://another.com")!)
+        return LocalUser(id: UUID(), name: "another name", email: "another@email.com", profileImage: nil)
     }
     
 }

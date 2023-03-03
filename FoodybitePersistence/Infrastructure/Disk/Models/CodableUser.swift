@@ -11,7 +11,7 @@ struct CodableUser: Codable {
     let id: UUID
     let name: String
     let email: String
-    let profileImage: URL
+    let profileImage: Data?
     
     init(_ user: LocalUser) {
         self.id = user.id

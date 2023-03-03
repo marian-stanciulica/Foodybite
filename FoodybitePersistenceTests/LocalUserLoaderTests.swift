@@ -133,7 +133,7 @@ final class LocalUserLoaderTests: XCTestCase {
         let local = LocalUser(id: UUID(),
                               name: "any name",
                               email: "any@email.com",
-                              profileImage: URL(string: "http://any.com")!)
+                              profileImage: nil)
         return (local.model, local)
     }
     
