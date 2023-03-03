@@ -11,26 +11,25 @@ import XCTest
 final class RefreshTokenEndpointTests: XCTestCase {
     
     func test_refreshToken_path() {
-        XCTAssertEqual(makeRefreshTokenSUT().path, "/auth/accessToken")
+        XCTAssertEqual(makeSUT().path, "/auth/accessToken")
     }
     
     func test_refreshToken_methodIsPost() {
-        XCTAssertEqual(makeRefreshTokenSUT().method, .post)
+        XCTAssertEqual(makeSUT().method, .post)
     }
     
     func test_refreshToken_body() throws {
         let randomRefreshToken = randomString(size: 20)
         let body = RefreshTokenRequest(refreshToken: randomRefreshToken)
-        let sut = makeRefreshTokenSUT(body: body)
+        let sut = makeSUT(body: body)
         let receivedBody = try XCTUnwrap(sut.body as? RefreshTokenRequest)
         XCTAssertEqual(receivedBody, body)
     }
     
     // MARK: - Helpers
     
-    private func makeRefreshTokenSUT(body: RefreshTokenRequest? = nil) -> RefreshTokenEndpoint {
+    private func makeSUT(body: RefreshTokenRequest? = nil) -> RefreshTokenEndpoint {
         let defaultBody = RefreshTokenRequest(refreshToken: "")
-        
         return .post(body ?? defaultBody)
     }
 }

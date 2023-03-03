@@ -11,11 +11,11 @@ import XCTest
 final class ChangePasswordEndpointTests: XCTestCase {
     
     func test_changePassword_path() {
-        XCTAssertEqual(makeChangePasswordSUT().path, "/auth/changePassword")
+        XCTAssertEqual(makeSUT().path, "/auth/changePassword")
     }
     
     func test_changePassword_methodIsPost() {
-        XCTAssertEqual(makeChangePasswordSUT().method, .post)
+        XCTAssertEqual(makeSUT().method, .post)
     }
     
     func test_changePassword_bodyContainsChangePasswordRequest() throws {
@@ -26,18 +26,17 @@ final class ChangePasswordEndpointTests: XCTestCase {
                                          newPassword: newPassword,
                                          confirmPassword: confirmPassword)
 
-        let sut = makeChangePasswordSUT(body: body)
+        let sut = makeSUT(body: body)
         let receivedBody = try XCTUnwrap(sut.body as? ChangePasswordRequest)
         XCTAssertEqual(receivedBody, body)
     }
     
     // MARK: - Helpers
     
-    private func makeChangePasswordSUT(body: ChangePasswordRequest? = nil) -> ChangePasswordEndpoint {
+    private func makeSUT(body: ChangePasswordRequest? = nil) -> ChangePasswordEndpoint {
         let defaultBody = ChangePasswordRequest(currentPassword: "",
                                                 newPassword: "",
                                                 confirmPassword: "")
-        
         return .post(body ?? defaultBody)
     }
 }

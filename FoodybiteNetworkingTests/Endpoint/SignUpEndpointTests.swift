@@ -11,11 +11,11 @@ import XCTest
 final class SignUpEndpointTests: XCTestCase {
 
     func test_signup_path() {
-        XCTAssertEqual(makeSignUpSUT().path, "/auth/signup")
+        XCTAssertEqual(makeSUT().path, "/auth/signup")
     }
     
     func test_signup_methodIsPost() {
-        XCTAssertEqual(makeSignUpSUT().method, .post)
+        XCTAssertEqual(makeSUT().method, .post)
     }
     
     func test_signup_body() throws {
@@ -24,7 +24,7 @@ final class SignUpEndpointTests: XCTestCase {
                                  password: anyPassword(),
                                  confirmPassword: anyPassword(),
                                  profileImage: anyData())
-        let sut = makeSignUpSUT(body: body)
+        let sut = makeSUT(body: body)
         let receivedBody = try XCTUnwrap(sut.body as? SignUpRequest)
         
         XCTAssertEqual(receivedBody, body)
@@ -32,13 +32,12 @@ final class SignUpEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSignUpSUT(body: SignUpRequest? = nil) -> SignUpEndpoint {
+    private func makeSUT(body: SignUpRequest? = nil) -> SignUpEndpoint {
         let defaultBody = SignUpRequest(name: anyName(),
                                         email: anyEmail(),
                                         password: anyPassword(),
                                         confirmPassword: anyPassword(),
                                         profileImage: anyData())
-        
         return .post(body ?? defaultBody)
     }
     

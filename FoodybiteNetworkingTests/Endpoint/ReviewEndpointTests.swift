@@ -65,5 +65,4 @@ final class ReviewEndpointTests: XCTestCase {
     private func anyStarsNumber() -> Int {
         3
     }
-    
 }

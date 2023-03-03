@@ -11,21 +11,21 @@ import XCTest
 final class LogoutEndpointTests: XCTestCase {
     
     func test_logout_path() {
-        XCTAssertEqual(makeLogoutSUT().path, "/auth/logout")
+        XCTAssertEqual(makeSUT().path, "/auth/logout")
     }
     
     func test_logout_methodIsPost() {
-        XCTAssertEqual(makeLogoutSUT().method, .post)
+        XCTAssertEqual(makeSUT().method, .post)
     }
     
     func test_logout_bodyContainsChangePasswordRequest() throws {
-        let sut = makeLogoutSUT()
+        let sut = makeSUT()
         XCTAssertNil(sut.body)
     }
     
     // MARK: - Helpers
     
-    private func makeLogoutSUT() -> LogoutEndpoint {
+    private func makeSUT() -> LogoutEndpoint {
         return .post
     }
 }
