@@ -333,6 +333,8 @@
 		0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66F29B1F63E00622E9C /* GetPlacePhotoEndpoint.swift */; };
 		0FF7C68A29B2281300622E9C /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68929B2281300622E9C /* UserPreferences.swift */; };
 		0FF7C68D29B228F200622E9C /* UserPreferencesStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68C29B228F200622E9C /* UserPreferencesStoreTests.swift */; };
+		0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68F29B233D400622E9C /* UserPreferencesLocalStore.swift */; };
+		0FF7C69229B233F000622E9C /* LocalUserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
@@ -858,6 +860,8 @@
 		0FF7C68829B2280100622E9C /* FoodybiteAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteAPIEndToEndTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteAPIEndToEndTests.xctest; sourceTree = "<absolute>"; };
 		0FF7C68929B2281300622E9C /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		0FF7C68C29B228F200622E9C /* UserPreferencesStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesStoreTests.swift; sourceTree = "<group>"; };
+		0FF7C68F29B233D400622E9C /* UserPreferencesLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesLocalStore.swift; sourceTree = "<group>"; };
+		0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserPreferences.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
@@ -1933,6 +1937,7 @@
 			children = (
 				0F19B49329164B1000A8FC8F /* Infrastructure */,
 				0F19B4BC291675D000A8FC8F /* Models */,
+				0FF7C68E29B233B100622E9C /* User Preferences Store */,
 				0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */,
 				0F41D9AD2913E7BE00F0E4C2 /* UserStore.swift */,
 			);
@@ -2511,6 +2516,15 @@
 			isa = PBXGroup;
 			children = (
 				0FF7C68C29B228F200622E9C /* UserPreferencesStoreTests.swift */,
+			);
+			path = "User Preferences Store";
+			sourceTree = "<group>";
+		};
+		0FF7C68E29B233B100622E9C /* User Preferences Store */ = {
+			isa = PBXGroup;
+			children = (
+				0FF7C68F29B233D400622E9C /* UserPreferencesLocalStore.swift */,
+				0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */,
 			);
 			path = "User Preferences Store";
 			sourceTree = "<group>";
@@ -3429,8 +3443,10 @@
 				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
+				0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */,
 				0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */,
 				0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */,
+				0FF7C69229B233F000622E9C /* LocalUserPreferences.swift in Sources */,
 				0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */,
 				0F41D9AE2913E7BE00F0E4C2 /* UserStore.swift in Sources */,
 			);
