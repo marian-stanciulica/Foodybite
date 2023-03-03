@@ -14,8 +14,8 @@
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
 		0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */; };
 		0F0BDA3528F8476E00E91FD0 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3428F8476E00E91FD0 /* RequestMethod.swift */; };
-		0F0BDA3728F8546800E91FD0 /* ServerEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3628F8546800E91FD0 /* ServerEndpointTests.swift */; };
-		0F0BDA3928F8679100E91FD0 /* ServerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3828F8679100E91FD0 /* ServerEndpoint.swift */; };
+		0F0BDA3728F8546800E91FD0 /* SignUpEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3628F8546800E91FD0 /* SignUpEndpointTests.swift */; };
+		0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */; };
 		0F0BDA3B28F86A6C00E91FD0 /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3A28F86A6C00E91FD0 /* EndpointTests.swift */; };
 		0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */; };
 		0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */; };
@@ -528,8 +528,8 @@
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
 		0F0BDA3428F8476E00E91FD0 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
-		0F0BDA3628F8546800E91FD0 /* ServerEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEndpointTests.swift; sourceTree = "<group>"; };
-		0F0BDA3828F8679100E91FD0 /* ServerEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEndpoint.swift; sourceTree = "<group>"; };
+		0F0BDA3628F8546800E91FD0 /* SignUpEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndpointTests.swift; sourceTree = "<group>"; };
+		0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3A28F86A6C00E91FD0 /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
@@ -1513,7 +1513,7 @@
 				0F0BDA3C28F86C3700E91FD0 /* NetworkError.swift */,
 				0F0BDA3028F8411900E91FD0 /* Endpoint.swift */,
 				0F0BDA3428F8476E00E91FD0 /* RequestMethod.swift */,
-				0F0BDA3828F8679100E91FD0 /* ServerEndpoint.swift */,
+				0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */,
 				0FC863F8298E614C0024016B /* ReviewEndpoint.swift */,
 				0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */,
 				0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */,
@@ -1557,7 +1557,7 @@
 			isa = PBXGroup;
 			children = (
 				0F0BDA3A28F86A6C00E91FD0 /* EndpointTests.swift */,
-				0F0BDA3628F8546800E91FD0 /* ServerEndpointTests.swift */,
+				0F0BDA3628F8546800E91FD0 /* SignUpEndpointTests.swift */,
 				0FC863F6298E60500024016B /* ReviewEndpointTests.swift */,
 				0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */,
 				0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */,
@@ -3241,7 +3241,7 @@
 				0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */,
 				0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */,
 				0F0BDA3528F8476E00E91FD0 /* RequestMethod.swift in Sources */,
-				0F0BDA3928F8679100E91FD0 /* ServerEndpoint.swift in Sources */,
+				0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */,
 				0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */,
 				0F0BDA3D28F86C3700E91FD0 /* NetworkError.swift in Sources */,
 				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
@@ -3277,7 +3277,7 @@
 				0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */,
 				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
 				0F0BDA3B28F86A6C00E91FD0 /* EndpointTests.swift in Sources */,
-				0F0BDA3728F8546800E91FD0 /* ServerEndpointTests.swift in Sources */,
+				0F0BDA3728F8546800E91FD0 /* SignUpEndpointTests.swift in Sources */,
 				0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */,
 				0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */,
 				0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */,

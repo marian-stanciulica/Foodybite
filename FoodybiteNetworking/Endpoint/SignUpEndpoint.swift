@@ -1,5 +1,5 @@
 //
-//  ServerEndpoint.swift
+//  SignUpEndpoint.swift
 //  FoodybiteNetworking
 //
 //  Created by Marian Stanciulica on 13.10.2022.
@@ -7,14 +7,11 @@
 
 import Foundation
 
-enum ServerEndpoint: Endpoint {
-    case signup(SignUpRequest)
+enum SignUpEndpoint: Endpoint {
+    case post(SignUpRequest)
     
     var path: String {
-        switch self {
-        case .signup:
-            return "/auth/signup"
-        }
+        "/auth/signup"
     }
     
     var method: RequestMethod {
@@ -23,7 +20,7 @@ enum ServerEndpoint: Endpoint {
     
     var body: Codable? {
         switch self {
-        case let .signup(signUpRequest):
+        case let .post(signUpRequest):
             return signUpRequest
         }
     }

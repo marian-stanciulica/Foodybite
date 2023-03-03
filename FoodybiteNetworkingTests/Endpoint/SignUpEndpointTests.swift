@@ -1,5 +1,5 @@
 //
-//  ServerEndpointTests.swift
+//  SignUpEndpointTests.swift
 //  FoodybiteNetworkingTests
 //
 //  Created by Marian Stanciulica on 13.10.2022.
@@ -8,10 +8,8 @@
 import XCTest
 @testable import FoodybiteNetworking
 
-final class ServerEndpointTests: XCTestCase {
+final class SignUpEndpointTests: XCTestCase {
 
-    // MARK: - Sign up
-    
     func test_signup_path() {
         XCTAssertEqual(makeSignUpSUT().path, "/auth/signup")
     }
@@ -34,6 +32,16 @@ final class ServerEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
+    private func makeSignUpSUT(body: SignUpRequest? = nil) -> SignUpEndpoint {
+        let defaultBody = SignUpRequest(name: anyName(),
+                                        email: anyEmail(),
+                                        password: anyPassword(),
+                                        confirmPassword: anyPassword(),
+                                        profileImage: anyData())
+        
+        return .post(body ?? defaultBody)
+    }
+    
     private func anyName() -> String {
         "any name"
     }
@@ -48,15 +56,5 @@ final class ServerEndpointTests: XCTestCase {
     
     private func anyData() -> Data {
         "any name".data(using: .utf8)!
-    }
-    
-    private func makeSignUpSUT(body: SignUpRequest? = nil) -> ServerEndpoint {
-        let defaultBody = SignUpRequest(name: anyName(),
-                                        email: anyEmail(),
-                                        password: anyPassword(),
-                                        confirmPassword: anyPassword(),
-                                        profileImage: anyData())
-        
-        return .signup(body ?? defaultBody)
     }
 }

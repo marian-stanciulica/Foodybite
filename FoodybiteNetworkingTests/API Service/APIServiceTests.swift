@@ -78,7 +78,7 @@ final class APIServiceTests: XCTestCase {
         let profileImage = anyData()
         
         let (sut, _, sender, _) = makeSUT()
-        let signUpEndpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: anyData()))
+        let signUpEndpoint = SignUpEndpoint.post(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: anyData()))
         let urlRequest = try signUpEndpoint.createURLRequest()
         
         try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage)
@@ -95,7 +95,7 @@ final class APIServiceTests: XCTestCase {
         let profileImage = anyData()
         
         let (sut, _, sender, _) = makeSUT()
-        let signUpEndpoint = ServerEndpoint.signup(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
+        let signUpEndpoint = SignUpEndpoint.post(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
         let urlRequest = try signUpEndpoint.createURLRequest()
         
         try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage)
