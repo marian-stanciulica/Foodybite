@@ -42,11 +42,11 @@ final class AccountEndpointTests: XCTestCase {
     
     private func makeUpdateAccountSUT(body: UpdateAccountRequest? = nil) -> AccountEndpoint {
         let defaultBody = UpdateAccountRequest(name: "", email: "", profileImage: nil)
-        return .updateAccount(body ?? defaultBody)
+        return .post(body ?? defaultBody)
     }
     
     private func makeDeleteAccountSUT() -> AccountEndpoint {
-        return .deleteAccount
+        return .delete
     }
     
     private func anyName() -> String {

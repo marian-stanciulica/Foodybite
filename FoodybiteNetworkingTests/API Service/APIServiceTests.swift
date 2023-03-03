@@ -169,7 +169,7 @@ final class APIServiceTests: XCTestCase {
         let profileImage = anyData()
         
         let (sut, _, sender, _) = makeSUT()
-        let changePasswordEndpoint = AccountEndpoint.updateAccount(UpdateAccountRequest(name: name, email: email, profileImage: profileImage))
+        let changePasswordEndpoint = AccountEndpoint.post(UpdateAccountRequest(name: name, email: email, profileImage: profileImage))
         let urlRequest = try changePasswordEndpoint.createURLRequest()
         
         try await sut.updateAccount(name: name, email: email, profileImage: profileImage)
@@ -184,7 +184,7 @@ final class APIServiceTests: XCTestCase {
         let profileImage = anyData()
         
         let (sut, _, sender, _) = makeSUT()
-        let changePasswordEndpoint = AccountEndpoint.updateAccount(UpdateAccountRequest(name: name, email: email, profileImage: profileImage))
+        let changePasswordEndpoint = AccountEndpoint.post(UpdateAccountRequest(name: name, email: email, profileImage: profileImage))
         let urlRequest = try changePasswordEndpoint.createURLRequest()
         
         try await sut.updateAccount(name: name, email: email, profileImage: profileImage)
@@ -194,7 +194,7 @@ final class APIServiceTests: XCTestCase {
     
     func test_deleteAccount_usesDeleteAccountEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
-        let logoutEndpoint = AccountEndpoint.deleteAccount
+        let logoutEndpoint = AccountEndpoint.delete
         let urlRequest = try logoutEndpoint.createURLRequest()
         
         try await sut.deleteAccount()

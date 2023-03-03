@@ -8,8 +8,8 @@
 import Foundation
 
 enum AccountEndpoint: Endpoint {
-    case updateAccount(UpdateAccountRequest)
-    case deleteAccount
+    case post(UpdateAccountRequest)
+    case delete
     
     public var path: String {
         "/auth/account"
@@ -17,18 +17,18 @@ enum AccountEndpoint: Endpoint {
     
     public var method: RequestMethod {
         switch self {
-        case .deleteAccount:
+        case .delete:
             return .delete
-        case .updateAccount:
+        case .post:
             return .post
         }
     }
     
     public var body: Codable? {
         switch self {
-        case let .updateAccount(updateAccountBody):
+        case let .post(updateAccountBody):
             return updateAccountBody
-        case .deleteAccount:
+        case .delete:
             return nil
         }
     }
