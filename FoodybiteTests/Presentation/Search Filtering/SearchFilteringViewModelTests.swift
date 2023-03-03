@@ -7,28 +7,7 @@
 
 import XCTest
 import Domain
-
-final class SearchFilteringViewModel {
-    private let userPreferencesSaver: UserPreferencesSaver
-    
-    var radius: Int
-    var starsNumber: Int
-    
-    init(userPreferences: UserPreferences, userPreferencesSaver: UserPreferencesSaver) {
-        self.userPreferencesSaver = userPreferencesSaver
-        
-        radius = userPreferences.radius
-        starsNumber = userPreferences.starsNumber
-    }
-    
-    func apply() {
-        userPreferencesSaver.save(UserPreferences(radius: radius, starsNumber: starsNumber))
-    }
-    
-    func reset() {
-        userPreferencesSaver.save(.default)
-    }
-}
+import Foodybite
 
 final class SearchFilteringViewModelTests: XCTestCase {
 
