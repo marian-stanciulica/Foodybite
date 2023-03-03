@@ -336,6 +336,8 @@
 		0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */; };
 		0FF7C65629B1E23A00622E9C /* ChangePasswordEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */; };
 		0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */; };
+		0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */; };
+		0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		2858635F03CD1EFF411909F6 /* Pods_FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC252C277DB9E21E54B619B /* Pods_FoodybitePersistence.framework */; };
@@ -844,6 +846,8 @@
 		0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEndpoint.swift; sourceTree = "<group>"; };
+		0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpointTests.swift; sourceTree = "<group>"; };
+		0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpoint.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3B1E9B924321BCC9B8F9395F /* Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodybitePersistence-FoodybitePersistenceTests/Pods-FoodybitePersistence-FoodybitePersistenceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1510,6 +1514,7 @@
 				0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */,
 				0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */,
 				0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */,
+				0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -1552,6 +1557,7 @@
 				0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */,
 				0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */,
 				0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */,
+				0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -3213,6 +3219,7 @@
 				0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0FB0E12C291FD3AF0058ABCB /* ResourceSender.swift in Sources */,
+				0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */,
 				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,
 				0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */,
 				0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */,
@@ -3265,6 +3272,7 @@
 				0F0BDA3728F8546800E91FD0 /* ServerEndpointTests.swift in Sources */,
 				0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */,
 				0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */,
+				0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */,
 				0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
