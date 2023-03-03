@@ -20,7 +20,7 @@ public class RefreshTokenService: TokenRefresher {
     
     public func fetchLocallyRemoteToken() async throws {
         let authToken = try tokenStore.read()
-        let endpoint = ServerEndpoint.refreshToken(RefreshTokenRequest(refreshToken: authToken.refreshToken))
+        let endpoint = RefreshTokenEndpoint.post(RefreshTokenRequest(refreshToken: authToken.refreshToken))
         let urlRequest = try endpoint.createURLRequest()
         let remoteAuthToken: AuthToken = try await loader.get(for: urlRequest)
         try tokenStore.write(remoteAuthToken)

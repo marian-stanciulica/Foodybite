@@ -10,7 +10,6 @@ import Foundation
 enum ServerEndpoint: Endpoint {
     case signup(SignUpRequest)
     case login(LoginRequest)
-    case refreshToken(RefreshTokenRequest)
     
     var path: String {
         switch self {
@@ -18,8 +17,6 @@ enum ServerEndpoint: Endpoint {
             return "/auth/signup"
         case .login:
             return "/auth/login"
-        case .refreshToken:
-            return "/auth/accessToken"
         }
     }
     
@@ -33,8 +30,6 @@ enum ServerEndpoint: Endpoint {
             return signUpRequest
         case let .login(loginRequest):
             return loginRequest
-        case let .refreshToken(refreshToken):
-            return refreshToken
         }
     }
 }

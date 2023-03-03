@@ -31,6 +31,6 @@ final class RefreshTokenEndpointTests: XCTestCase {
     private func makeRefreshTokenSUT(body: RefreshTokenRequest? = nil) -> RefreshTokenEndpoint {
         let defaultBody = RefreshTokenRequest(refreshToken: "")
         
-        return .refreshToken(body ?? defaultBody)
+        return .post(body ?? defaultBody)
     }
 }

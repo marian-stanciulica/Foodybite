@@ -6,7 +6,7 @@
 //
 
 enum RefreshTokenEndpoint: Endpoint {
-    case refreshToken(RefreshTokenRequest)
+    case post(RefreshTokenRequest)
 
     public var path: String {
         "/auth/accessToken"
@@ -18,7 +18,7 @@ enum RefreshTokenEndpoint: Endpoint {
     
     public var body: Codable? {
         switch self {
-        case let .refreshToken(body):
+        case let .post(body):
             return body
         }
     }
