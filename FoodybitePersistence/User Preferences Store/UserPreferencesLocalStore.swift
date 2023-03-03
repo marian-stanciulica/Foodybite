@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public final class UserPreferencesLocalStore {
+public final class UserPreferencesLocalStore: UserPreferencesSaver, UserPreferencesLoader {
     public enum Keys: String {
         case userPreferences
     }
