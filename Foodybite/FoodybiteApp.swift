@@ -9,6 +9,7 @@ import Domain
 import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
+import FoodybitePersistence
 
 final class AppViewModel {
     func makeApiService() -> FoodybiteNetworking.APIService {
@@ -40,6 +41,10 @@ final class AppViewModel {
         let loader = FoodybitePlaces.RemoteResourceLoader(client: httpClient)
         return FoodybitePlaces.APIService(loader: loader)
     }
+    
+    func makeUserPreferencesStore() -> UserPreferencesLocalStore {
+        return UserPreferencesLocalStore()
+    }
 }
 
 @main
@@ -56,6 +61,8 @@ struct FoodybiteApp: App {
                         tabRouter: TabRouter(),
                         apiService: appViewModel.makeAuthenticatedApiService(),
                         placesService: appViewModel.makePlacesService(),
+                        userPreferencesLoader: appViewModel.makeUserPreferencesStore(),
+                        userPreferencesSaver: appViewModel.makeUserPreferencesStore(),
                         viewModel: TabNavigationViewModel(locationProvider: locationProvider),
                         user: user)
                 }

@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import Domain
 
 struct SearchCriteriaView: View {
-    @State var radius: CGFloat
-    @Binding var starsNumber: Int
+    @StateObject var viewModel: SearchCriteriaViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -37,24 +37,25 @@ struct SearchCriteriaView: View {
                 .font(.title)
                 .padding(.top)
             
-            SelectRadiusView(radius: radius)
+            SelectRadiusView(radius: $viewModel.radius)
                 .padding(.bottom, 56)
             
             Text("Ratings")
                 .font(.title)
                 .padding(.top)
             
-            RatingView(stars: $starsNumber)
+            RatingView(stars: $viewModel.starsNumber)
             
             Spacer()
             
             HStack {
                 MarineButton(title: "Reset", isLoading: false) {
-                    
+                    viewModel.reset()
                 }
                 
                 MarineButton(title: "Apply", isLoading: false) {
-                    
+                    viewModel.apply()
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }
@@ -64,6 +65,15 @@ struct SearchCriteriaView: View {
 
 struct SearchCriteriaView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchCriteriaView(radius: 20, starsNumber: .constant(4))
+        SearchCriteriaView(
+            viewModel: SearchCriteriaViewModel(
+                userPreferences: UserPreferences(radius: 200, starsNumber: 3),
+                userPreferencesSaver: PreviewUserPreferencesSaver()
+            )
+        )
+    }
+    
+    private class PreviewUserPreferencesSaver: UserPreferencesSaver {
+        func save(_ userPreferences: UserPreferences) {}
     }
 }

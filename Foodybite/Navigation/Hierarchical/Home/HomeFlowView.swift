@@ -15,6 +15,8 @@ struct HomeFlowView: View {
     @ObservedObject var flow: Flow<HomeRoute>
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
+    let userPreferencesLoader: UserPreferencesLoader
+    let userPreferencesSaver: UserPreferencesSaver
     let currentLocation: Location
     
     var body: some View {
@@ -40,7 +42,19 @@ struct HomeFlowView: View {
                                 currentLocation: currentLocation
                             )
                         )
-                    }
+                    },
+                    searchView: AnyView(
+                        HomeSearchView(
+                            searchText: .constant(""),
+                            searchCriteriaView: AnyView(
+                                SearchCriteriaView(
+                                    viewModel: SearchCriteriaViewModel(
+                                        userPreferences: userPreferencesLoader.load(),
+                                        userPreferencesSaver: userPreferencesSaver)
+                                )
+                            )
+                        )
+                    )
                 )
             }
             .navigationDestination(for: HomeRoute.self) { route in

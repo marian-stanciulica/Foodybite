@@ -5,13 +5,14 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
+import Foundation
 import Domain
 
-public final class SearchCriteriaViewModel {
+public final class SearchCriteriaViewModel: ObservableObject {
     private let userPreferencesSaver: UserPreferencesSaver
     
-    public var radius: Int
-    public var starsNumber: Int
+    @Published public var radius: Int
+    @Published public var starsNumber: Int
     
     public init(userPreferences: UserPreferences, userPreferencesSaver: UserPreferencesSaver) {
         self.userPreferencesSaver = userPreferencesSaver

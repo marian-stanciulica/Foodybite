@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Domain
 
 struct HomeSearchView: View {
     @Binding var searchText: String
     @State var showSearchCriteria = false
+    let searchCriteriaView: AnyView
     
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -31,13 +33,27 @@ struct HomeSearchView: View {
             }
         }
         .sheet(isPresented: $showSearchCriteria) {
-            SearchCriteriaView(radius: 100, starsNumber: .constant(2))
+            searchCriteriaView
         }
     }
 }
 
 struct HomeSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeSearchView(searchText: .constant(""))
+        HomeSearchView(
+            searchText: .constant(""),
+            searchCriteriaView: AnyView(
+                SearchCriteriaView(
+                    viewModel: SearchCriteriaViewModel(
+                        userPreferences: UserPreferences(radius: 200, starsNumber: 3),
+                        userPreferencesSaver: PreviewUserPreferencesSaver()
+                    )
+                )
+            )
+        )
+    }
+    
+    private class PreviewUserPreferencesSaver: UserPreferencesSaver {
+        func save(_ userPreferences: UserPreferences) {}
     }
 }

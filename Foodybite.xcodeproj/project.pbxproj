@@ -439,20 +439,6 @@
 			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
 			remoteInfo = DomainModels;
 		};
-		0F423AB62985A7C9009EB345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F0BDA1828F83FD500E91FD0;
-			remoteInfo = FoodybiteNetworking;
-		};
-		0F423ABA2985A7CC009EB345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
-			remoteInfo = FoodybitePlaces;
-		};
 		0F95A87F290D024500806AE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -480,6 +466,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0F7137B62841F8340058757A;
 			remoteInfo = Foodybite;
+		};
+		0FF7C6A029B24FF300622E9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F95A875290D024400806AE9;
+			remoteInfo = FoodybitePersistence;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2131,7 +2124,7 @@
 				0FD41772298D777A00F2BF92 /* Tab Navigation */,
 				0F423A9029850F64009EB345 /* Home */,
 				0F423A9829853C8A009EB345 /* Restaurant Details */,
-				0FF7C69829B2372A00622E9C /* Search Filtering */,
+				0FF7C69829B2372A00622E9C /* Search Criteria */,
 				0FC86402298E87BE0024016B /* Review & Ratings */,
 				0F5912542996884900D67B21 /* New Review */,
 				0F73ECB7292FDA7E0025B237 /* Profile */,
@@ -2551,12 +2544,12 @@
 			path = "User Preferences Feature";
 			sourceTree = "<group>";
 		};
-		0FF7C69829B2372A00622E9C /* Search Filtering */ = {
+		0FF7C69829B2372A00622E9C /* Search Criteria */ = {
 			isa = PBXGroup;
 			children = (
 				0FF7C69E29B247E000622E9C /* SearchCriteriaViewModel.swift */,
 			);
-			path = "Search Filtering";
+			path = "Search Criteria";
 			sourceTree = "<group>";
 		};
 		0FF7C69929B2378100622E9C /* Search Criteria */ = {
@@ -2878,11 +2871,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				0F412ED02962F9E300FDDF41 /* PBXTargetDependency */,
-				0FB0E110291F7FB80058ABCB /* PBXTargetDependency */,
 				0F423AB32985A7B2009EB345 /* PBXTargetDependency */,
-				0F423AB72985A7C9009EB345 /* PBXTargetDependency */,
-				0F423ABB2985A7CC009EB345 /* PBXTargetDependency */,
+				0FB0E110291F7FB80058ABCB /* PBXTargetDependency */,
+				0F412ED02962F9E300FDDF41 /* PBXTargetDependency */,
+				0FF7C6A129B24FF300622E9C /* PBXTargetDependency */,
 			);
 			name = Foodybite;
 			productName = Foodybite;
@@ -3564,16 +3556,6 @@
 			target = 0F19B474291647DB00A8FC8F /* Domain */;
 			targetProxy = 0F423AB22985A7B2009EB345 /* PBXContainerItemProxy */;
 		};
-		0F423AB72985A7C9009EB345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
-			targetProxy = 0F423AB62985A7C9009EB345 /* PBXContainerItemProxy */;
-		};
-		0F423ABB2985A7CC009EB345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
-			targetProxy = 0F423ABA2985A7CC009EB345 /* PBXContainerItemProxy */;
-		};
 		0F95A880290D024500806AE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
@@ -3593,6 +3575,11 @@
 			isa = PBXTargetDependency;
 			target = 0F7137B62841F8340058757A /* Foodybite */;
 			targetProxy = 0FF7C67429B2070F00622E9C /* PBXContainerItemProxy */;
+		};
+		0FF7C6A129B24FF300622E9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
+			targetProxy = 0FF7C6A029B24FF300622E9C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -12,6 +12,7 @@ struct HomeView<Cell: View>: View {
     @StateObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
     let cell: (NearbyPlace) -> Cell
+    let searchView: AnyView
 
     var body: some View {
         VStack {
@@ -30,7 +31,7 @@ struct HomeView<Cell: View>: View {
                 
             case let .success(nearbyPlaces):
                 ScrollView(.vertical, showsIndicators: false) {
-                    HomeSearchView(searchText: .constant(""))
+                    searchView
                         .padding(.bottom)
                     
                     LazyVStack {
@@ -60,19 +61,21 @@ struct HomeView<Cell: View>: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService(), currentLocation: Location(latitude: 2.3, longitude: 4.5)), showPlaceDetails: { _ in }, cell: { nearbyPlace in
-            RestaurantCell(
-                photoView: PhotoView(
-                    viewModel: PhotoViewModel(
-                        photoReference: "reference",
-                        fetchPhotoService: PreviewFetchPlacePhotoService()
+                RestaurantCell(
+                    photoView: PhotoView(
+                        viewModel: PhotoViewModel(
+                            photoReference: "reference",
+                            fetchPhotoService: PreviewFetchPlacePhotoService()
+                        )
+                    ),
+                    viewModel: RestaurantCellViewModel(
+                        nearbyPlace: nearbyPlace,
+                        currentLocation: Location(latitude: 2.1, longitude: 3.4)
                     )
-                ),
-                viewModel: RestaurantCellViewModel(
-                    nearbyPlace: nearbyPlace,
-                    currentLocation: Location(latitude: 2.1, longitude: 3.4)
                 )
-            )
-        })
+            },
+            searchView: AnyView(EmptyView())
+        )
     }
     
     private class PreviewSearchNearbyService: SearchNearbyService {

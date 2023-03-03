@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SelectRadiusView: View {
-    @State var radius: CGFloat
+    @Binding var radius: Int
     @GestureState private var widthOffset: CGFloat = 0
-    private let maximumRadius: CGFloat = 1000
+    private let maximumRadius: CGFloat = 999
     
     var body: some View {
         GeometryReader { proxy in
@@ -25,14 +25,24 @@ struct SelectRadiusView: View {
                         .fill(Color.marineBlue)
                         .frame(width: 36, height: 66)
                         
-                        Text("\(Int(radius))")
+                        Text("\(radius + Int(widthOffset))")
                             .foregroundColor(.white)
                     }
-                    .offset(x: radius / maximumRadius * (proxy.size.width - 30), y: 0)
+                    .offset(x: (CGFloat(radius) + widthOffset) / maximumRadius * (proxy.size.width - 30), y: 0)
+                    .animation(.easeInOut, value: widthOffset)
+                    .gesture(
+                        DragGesture()
+                            .updating($widthOffset) { value, state, _ in
+                                state = value.translation.width * 3
+                            }
+                            .onEnded { value in
+                                radius += Int(value.translation.width) * 3
+                            }
+                    )
                     
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 6)
-                            .frame(width: radius / maximumRadius * (proxy.size.width - 30), height: 12)
+                            .frame(width: (CGFloat(radius) + widthOffset) / maximumRadius * (proxy.size.width - 30), height: 12)
                             .offset(x: 0, y: 6)
                             .foregroundColor(.marineBlue)
                         
@@ -59,7 +69,7 @@ struct SelectRadiusView: View {
 
 struct SelectRadiusView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectRadiusView(radius: 20)
+        SelectRadiusView(radius: .constant(200))
             .padding(44)
     }
 }
