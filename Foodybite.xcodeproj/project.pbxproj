@@ -337,6 +337,7 @@
 		0FF7C69229B233F000622E9C /* LocalUserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */; };
 		0FF7C69529B2354F00622E9C /* UserPreferencesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69429B2354F00622E9C /* UserPreferencesLoader.swift */; };
 		0FF7C69729B2356200622E9C /* UserPreferencesSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */; };
+		0FF7C69B29B237A800622E9C /* SearchFilteringViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69A29B237A800622E9C /* SearchFilteringViewModelTests.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
@@ -866,6 +867,7 @@
 		0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserPreferences.swift; sourceTree = "<group>"; };
 		0FF7C69429B2354F00622E9C /* UserPreferencesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesLoader.swift; sourceTree = "<group>"; };
 		0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesSaver.swift; sourceTree = "<group>"; };
+		0FF7C69A29B237A800622E9C /* SearchFilteringViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilteringViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
@@ -1839,6 +1841,7 @@
 				0FD4176F298D66E700F2BF92 /* TabNavigationView */,
 				0F423A852984FFCB009EB345 /* Home */,
 				0F423A952985332B009EB345 /* Restaurant Details */,
+				0FF7C69929B2378100622E9C /* Search Filtering */,
 				0FC863FF298E793A0024016B /* Review & Ratings */,
 				0FABD5252996386B00918251 /* New Review */,
 				0F73ECBB292FDADB0025B237 /* Profile */,
@@ -2124,6 +2127,7 @@
 				0FD41772298D777A00F2BF92 /* Tab Navigation */,
 				0F423A9029850F64009EB345 /* Home */,
 				0F423A9829853C8A009EB345 /* Restaurant Details */,
+				0FF7C69829B2372A00622E9C /* Search Filtering */,
 				0FC86402298E87BE0024016B /* Review & Ratings */,
 				0F5912542996884900D67B21 /* New Review */,
 				0F73ECB7292FDA7E0025B237 /* Profile */,
@@ -2541,6 +2545,21 @@
 				0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */,
 			);
 			path = "User Preferences Feature";
+			sourceTree = "<group>";
+		};
+		0FF7C69829B2372A00622E9C /* Search Filtering */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Search Filtering";
+			sourceTree = "<group>";
+		};
+		0FF7C69929B2378100622E9C /* Search Filtering */ = {
+			isa = PBXGroup;
+			children = (
+				0FF7C69A29B237A800622E9C /* SearchFilteringViewModelTests.swift */,
+			);
+			path = "Search Filtering";
 			sourceTree = "<group>";
 		};
 		A2032B9F2842049300F8D8C8 /* Resources */ = {
@@ -3265,6 +3284,7 @@
 				0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */,
 				0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */,
 				0FB1D3F829ACF36A00304A94 /* EmptyFetchPlacePhotoService.swift in Sources */,
+				0FF7C69B29B237A800622E9C /* SearchFilteringViewModelTests.swift in Sources */,
 				0F62F2CD29AF7002008F1C19 /* RestaurantDetailsViewSnapshotTests.swift in Sources */,
 				0FD19A7429ACA3B900DF7326 /* ProfileViewSnapshotTests.swift in Sources */,
 				0FD19A6529ACA03D00DF7326 /* UIImage+.swift in Sources */,
