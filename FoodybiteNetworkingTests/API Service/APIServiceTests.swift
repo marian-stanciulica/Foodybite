@@ -216,7 +216,7 @@ final class APIServiceTests: XCTestCase {
         let createdAt = Date()
         
         let (sut, _, sender, _) = makeSUT()
-        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt))
+        let addReviewEndpoint = ReviewEndpoint.post(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt))
         let urlRequest = try addReviewEndpoint.createURLRequest()
         
         try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: createdAt)
@@ -232,7 +232,7 @@ final class APIServiceTests: XCTestCase {
         let createdAt = Date()
         
         let (sut, _, sender, _) = makeSUT()
-        let addReviewEndpoint = ReviewEndpoint.addReview(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt))
+        let addReviewEndpoint = ReviewEndpoint.post(AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt))
         let urlRequest = try addReviewEndpoint.createURLRequest()
         
         try await sut.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: createdAt)
@@ -242,7 +242,7 @@ final class APIServiceTests: XCTestCase {
     
     func test_getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
         let (sut, loader, _, _) = makeSUT(response: anyGetReviews().response)
-        let getReviewsEndpoint = ReviewEndpoint.getReviews(anyPlaceID())
+        let getReviewsEndpoint = ReviewEndpoint.get(anyPlaceID())
         let urlRequest = try getReviewsEndpoint.createURLRequest()
         
         _ = try await sut.getReviews(placeID: anyPlaceID())

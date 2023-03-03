@@ -78,7 +78,7 @@ extension APIService: AccountService {
 extension APIService: AddReviewService {
     public func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
         let requestBody = AddReviewRequest(placeID: placeID, text: reviewText, stars: starsNumber, createdAt: createdAt)
-        let endpoint = ReviewEndpoint.addReview(requestBody)
+        let endpoint = ReviewEndpoint.post(requestBody)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
@@ -86,7 +86,7 @@ extension APIService: AddReviewService {
 
 extension APIService: GetReviewsService {
     public func getReviews(placeID: String? = nil) async throws -> [Review] {
-        let endpoint = ReviewEndpoint.getReviews(placeID)
+        let endpoint = ReviewEndpoint.get(placeID)
         let urlRequest = try endpoint.createURLRequest()
         let response: [RemoteReview] = try await loader.get(for: urlRequest)
         

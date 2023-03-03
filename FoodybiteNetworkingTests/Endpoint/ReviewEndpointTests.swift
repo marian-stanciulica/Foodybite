@@ -47,11 +47,11 @@ final class ReviewEndpointTests: XCTestCase {
     
     private func makeAddReviewSUT(body: AddReviewRequest? = nil) -> ReviewEndpoint {
         let defaultBody = AddReviewRequest(placeID: anyPlaceID(), text: anyReviewText(), stars: anyStarsNumber(), createdAt: Date())
-        return .addReview(body ?? defaultBody)
+        return .post(body ?? defaultBody)
     }
     
     private func makeGetReviewsSUT(placeID: String? = nil) -> ReviewEndpoint {
-        return .getReviews(placeID)
+        return .get(placeID)
     }
     
     private func anyPlaceID() -> String {

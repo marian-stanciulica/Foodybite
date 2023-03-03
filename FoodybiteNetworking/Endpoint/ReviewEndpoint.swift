@@ -6,14 +6,14 @@
 //
 
 public enum ReviewEndpoint: Endpoint {
-    case addReview(AddReviewRequest)
-    case getReviews(String?)
+    case post(AddReviewRequest)
+    case get(String?)
     
     public var path: String {
         switch self {
-        case .addReview:
+        case .post:
             return "/review"
-        case let .getReviews(placeID):
+        case let .get(placeID):
             if let placeID = placeID {
                 return "/review/\(placeID)"
             }
@@ -24,16 +24,16 @@ public enum ReviewEndpoint: Endpoint {
     
     public var method: RequestMethod {
         switch self {
-        case .addReview:
+        case .post:
             return .post
-        case .getReviews:
+        case .get:
             return .get
         }
     }
     
     public var body: Codable? {
         switch self {
-        case let .addReview(body):
+        case let .post(body):
             return body
         default:
             return nil
