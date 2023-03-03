@@ -35,10 +35,6 @@ public enum ReviewEndpoint: Endpoint {
         }
     }
     
-    public var headers: [String : String] {
-        ["Content-Type" : "application/json"]
-    }
-    
     public var body: Codable? {
         switch self {
         case let .addReview(body):

@@ -11,7 +11,6 @@ protocol Endpoint {
     var host: String { get }
     var path: String { get }
     var method: RequestMethod { get }
-    var headers: [String: String] { get }
     var body: Codable? { get }
 }
 
@@ -27,10 +26,7 @@ extension Endpoint {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        
-        if !headers.isEmpty {
-            urlRequest.allHTTPHeaderFields = headers
-        }
+        urlRequest.allHTTPHeaderFields = ["Content-Type" : "application/json"]
         
         if let encodable = body {
             let encoder = JSONEncoder()

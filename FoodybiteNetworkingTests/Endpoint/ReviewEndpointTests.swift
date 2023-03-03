@@ -32,10 +32,6 @@ final class ReviewEndpointTests: XCTestCase {
         XCTAssertEqual(receivedBody, body)
     }
     
-    func test_addReview_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeAddReviewSUT().headers["Content-Type"], "application/json")
-    }
-    
     // MARK: - Get Reviews
     
     func test_getReviews_baseURL() {
@@ -53,10 +49,6 @@ final class ReviewEndpointTests: XCTestCase {
     
     func test_getReviews_body() throws {
         XCTAssertNil(makeGetReviewsSUT().body)
-    }
-    
-    func test_getReviews_headersContainContentTypeJSON() {
-        XCTAssertEqual(makeGetReviewsSUT().headers["Content-Type"], "application/json")
     }
     
     // MARK: - Helpers

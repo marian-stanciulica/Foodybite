@@ -46,10 +46,6 @@ enum ServerEndpoint: Endpoint {
         }
     }
     
-    var headers: [String : String] {
-        ["Content-Type" : "application/json"]
-    }
-    
     var body: Codable? {
         switch self {
         case let .signup(signUpRequest):
