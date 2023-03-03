@@ -335,6 +335,8 @@
 		0FF7C68D29B228F200622E9C /* UserPreferencesStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68C29B228F200622E9C /* UserPreferencesStoreTests.swift */; };
 		0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68F29B233D400622E9C /* UserPreferencesLocalStore.swift */; };
 		0FF7C69229B233F000622E9C /* LocalUserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */; };
+		0FF7C69529B2354F00622E9C /* UserPreferencesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69429B2354F00622E9C /* UserPreferencesLoader.swift */; };
+		0FF7C69729B2356200622E9C /* UserPreferencesSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */; };
 		0FFD67A829311E47008F3333 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */; };
 		0FFD67AA29311FFB008F3333 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */; };
 		A2C2421C28474D7100CB233B /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */; };
@@ -862,6 +864,8 @@
 		0FF7C68C29B228F200622E9C /* UserPreferencesStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesStoreTests.swift; sourceTree = "<group>"; };
 		0FF7C68F29B233D400622E9C /* UserPreferencesLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesLocalStore.swift; sourceTree = "<group>"; };
 		0FF7C69129B233F000622E9C /* LocalUserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserPreferences.swift; sourceTree = "<group>"; };
+		0FF7C69429B2354F00622E9C /* UserPreferencesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesLoader.swift; sourceTree = "<group>"; };
+		0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesSaver.swift; sourceTree = "<group>"; };
 		0FFD67A729311E47008F3333 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0FFD67A929311FFB008F3333 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A2C2421B28474D7100CB233B /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
@@ -1041,6 +1045,7 @@
 		0F19B476291647DB00A8FC8F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
 				0F423AA229855F64009EB345 /* Models */,
 				0FA6BE292994E829003E1912 /* Protocols */,
 			);
@@ -2529,6 +2534,15 @@
 			path = "User Preferences Store";
 			sourceTree = "<group>";
 		};
+		0FF7C69329B2353E00622E9C /* User Preferences Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0FF7C69429B2354F00622E9C /* UserPreferencesLoader.swift */,
+				0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */,
+			);
+			path = "User Preferences Feature";
+			sourceTree = "<group>";
+		};
 		A2032B9F2842049300F8D8C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3262,6 +3276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FF7C69529B2354F00622E9C /* UserPreferencesLoader.swift in Sources */,
 				0FA6BE2F2994E8A0003E1912 /* ChangePasswordService.swift in Sources */,
 				0FF7C68A29B2281300622E9C /* UserPreferences.swift in Sources */,
 				0F423AA729855FDD009EB345 /* OpeningHoursDetails.swift in Sources */,
@@ -3272,6 +3287,7 @@
 				0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */,
 				0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */,
 				0F70C4A329869C8C00C004DD /* Photo.swift in Sources */,
+				0FF7C69729B2356200622E9C /* UserPreferencesSaver.swift in Sources */,
 				0FA6BE2E2994E8A0003E1912 /* LoginService.swift in Sources */,
 				0F423A8C29850CE8009EB345 /* GetPlaceDetailsService.swift in Sources */,
 				0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */,
