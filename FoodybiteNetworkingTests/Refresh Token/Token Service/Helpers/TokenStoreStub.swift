@@ -28,4 +28,8 @@ class TokenStoreStub: TokenStore {
     func write(_ token: AuthToken) throws {
         stub = token
     }
+    
+    func delete() throws {
+        stub = nil
+    }
 }

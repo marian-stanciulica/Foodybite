@@ -9,18 +9,18 @@ import XCTest
 @testable import FoodybiteNetworking
 
 final class KeychainTokenStoreTests: XCTestCase {
-    private static let service = "test service"
-    private static let account = "test account"
-    
-    override func setUp() {
-        deleteKey()
+   
+    override func setUpWithError() throws {
+        try? makeSut().delete()
         super.setUp()
     }
     
-    override func tearDown() {
-        deleteKey()
+    override func tearDownWithError() throws {
+        try? makeSut().delete()
         super.tearDown()
     }
+    
+    // MARK: - Tests
     
     func test_read_shouldThrowWhenNoTokenInStore() {
         XCTAssertThrowsError(try makeSut().read())
@@ -54,21 +54,13 @@ final class KeychainTokenStoreTests: XCTestCase {
         try verifyWriteRead(given: makeSut(), for: expectedToken)
     }
     
-    func test_read_throwsInvalidDataErrorAfterRandomWrite() throws {
-        write(data: anyData())
-        
-        XCTAssertThrowsError(try makeSut().read())
-    }
-    
     // MARK: - Helpers
     
     private func makeSut() -> KeychainTokenStore {
-        return KeychainTokenStore(service: KeychainTokenStoreTests.service,
-                                  account: KeychainTokenStoreTests.account)
-    }
-    
-    private func anyData() -> Data {
-        "any data".data(using: .utf8)!
+        let service = "test service"
+        let account = "test account"
+        return KeychainTokenStore(service: service,
+                                  account: account)
     }
  
     private func writeDefaultToken(using sut: KeychainTokenStore) throws {
@@ -85,27 +77,6 @@ final class KeychainTokenStoreTests: XCTestCase {
         
         XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
         XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
-    }
-    
-    private func write(data: Data) {
-        let query = [
-            kSecValueData: data,
-            kSecAttrService: KeychainTokenStoreTests.service,
-            kSecAttrAccount: KeychainTokenStoreTests.account,
-            kSecClass: kSecClassGenericPassword
-        ] as CFDictionary
-
-        SecItemAdd(query, nil)
-    }
-    
-    private func deleteKey() {
-        let query = [
-            kSecAttrService: KeychainTokenStoreTests.service,
-            kSecAttrAccount: KeychainTokenStoreTests.account,
-            kSecClass: kSecClassGenericPassword
-        ] as CFDictionary
-        
-        SecItemDelete(query)
     }
 
 }

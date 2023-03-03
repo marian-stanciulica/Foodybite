@@ -16,6 +16,7 @@ public class KeychainTokenStore: TokenStore {
         case notFound
         case invalidData
         case writeFailed
+        case deleteFailed
     }
     
     public init(service: String = "store", account: String = "token") {
@@ -68,6 +69,19 @@ public class KeychainTokenStore: TokenStore {
             SecItemUpdate(query, attributesToUpdate)
         } else if status != errSecSuccess {
             throw Error.writeFailed
+        }
+    }
+    
+    public func delete() throws {
+        let query = [
+                kSecAttrService: service as AnyObject,
+                kSecAttrAccount: account as AnyObject,
+                kSecClass: kSecClassGenericPassword
+            ] as CFDictionary
+        let status = SecItemDelete(query)
+
+        guard status == errSecSuccess else {
+            throw Error.deleteFailed
         }
     }
 }
