@@ -23,6 +23,16 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(sut.searchNearbyState, .idle)
     }
     
+    func test_searchNearby_sendsInputToSearchNearbyService() async {
+        let (sut, serviceSpy) = makeSUT()
+
+        await sut.searchNearby()
+        
+        XCTAssertEqual(serviceSpy.capturedValues.count, 1)
+        XCTAssertEqual(serviceSpy.capturedValues[0].location, anyLocation)
+        XCTAssertEqual(serviceSpy.capturedValues[0].radius, anyUserPreferences.radius)
+    }
+    
     func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
         let (sut, serviceSpy) = makeSUT()
         serviceSpy.result = .failure(anyError)
@@ -73,7 +83,7 @@ final class HomeViewModelTests: XCTestCase {
     
     private func makeSUT() -> (sut: HomeViewModel, serviceSpy: SearchNearbyServiceSpy) {
         let serviceSpy = SearchNearbyServiceSpy()
-        let sut = HomeViewModel(searchNearbyService: serviceSpy, currentLocation: anyLocation)
+        let sut = HomeViewModel(searchNearbyService: serviceSpy, currentLocation: anyLocation, userPreferences: anyUserPreferences)
         return (sut, serviceSpy)
     }
     
@@ -97,6 +107,10 @@ final class HomeViewModelTests: XCTestCase {
     
     private var anyLocation: Location {
         Location(latitude: 2.3, longitude: 4.5)
+    }
+    
+    private var anyUserPreferences: UserPreferences {
+        UserPreferences(radius: 200, starsNumber: 4)
     }
     
     private func makeNearbyPlaces() -> [NearbyPlace] {

@@ -63,8 +63,8 @@ final class HomeViewSnapshotTests: XCTestCase {
                           getNearbyPlacesState: .success(nearbyPlaces),
                           fetchPhotoState: .success(makePhotoData()))
         
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13), record: true)
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     // MARK: - Helpers
@@ -72,7 +72,9 @@ final class HomeViewSnapshotTests: XCTestCase {
     private func makeSUT(searchText: String = "", getNearbyPlacesState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
-        let homeViewModel = HomeViewModel(searchNearbyService: EmptySearchNearbyService(), currentLocation: currentLocation)
+        let homeViewModel = HomeViewModel(searchNearbyService: EmptySearchNearbyService(),
+                                          currentLocation: currentLocation,
+                                          userPreferences: UserPreferences(radius: 200, starsNumber: 4))
         homeViewModel.searchNearbyState = getNearbyPlacesState
         homeViewModel.searchText = searchText
         

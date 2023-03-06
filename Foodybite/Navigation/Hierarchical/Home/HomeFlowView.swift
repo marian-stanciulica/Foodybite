@@ -25,7 +25,8 @@ struct HomeFlowView: View {
                 HomeView(
                     viewModel: HomeViewModel(
                         searchNearbyService: placesService,
-                        currentLocation: currentLocation),
+                        currentLocation: currentLocation,
+                        userPreferences: userPreferencesLoader.load()),
                     showPlaceDetails: { placeID in
                         flow.append(.placeDetails(placeID))
                     },

@@ -22,6 +22,7 @@ public final class HomeViewModel: ObservableObject {
     
     private let searchNearbyService: SearchNearbyService
     private let currentLocation: Location
+    private let userPreferences: UserPreferences
     
     @Published public var searchNearbyState: State = .idle
     @Published public var searchText = ""
@@ -36,16 +37,17 @@ public final class HomeViewModel: ObservableObject {
         return nearbyPlaces.filter { $0.placeName.contains(searchText) }
     }
     
-    public init(searchNearbyService: SearchNearbyService, currentLocation: Location) {
+    public init(searchNearbyService: SearchNearbyService, currentLocation: Location, userPreferences: UserPreferences) {
         self.searchNearbyService = searchNearbyService
         self.currentLocation = currentLocation
+        self.userPreferences = userPreferences
     }
     
     @MainActor public func searchNearby() async {
         searchNearbyState = .isLoading
         
         do {
-            let nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: 10000)
+            let nearbyPlaces = try await searchNearbyService.searchNearby(location: currentLocation, radius: userPreferences.radius)
             searchNearbyState = .success(nearbyPlaces)
         } catch {
             searchNearbyState = .failure(.serverError)
