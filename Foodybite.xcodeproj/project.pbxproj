@@ -21,8 +21,6 @@
 		0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */; };
 		0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F108809291E2397007A28FA /* RegisterViewModelTests.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
-		0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B49129164A6800A8FC8F /* DiskUserStore.swift */; };
-		0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B49629164C7700A8FC8F /* CodableUser.swift */; };
 		0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4BD291675DC00A8FC8F /* LocalUser.swift */; };
 		0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */; };
 		0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */; };
@@ -94,7 +92,6 @@
 		0F41D9AC2913E7A700F0E4C2 /* LocalUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */; };
 		0F41D9AE2913E7BE00F0E4C2 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9AD2913E7BE00F0E4C2 /* UserStore.swift */; };
 		0F41D9B12913E82A00F0E4C2 /* UserStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9B02913E82A00F0E4C2 /* UserStoreSpy.swift */; };
-		0F41D9B32913E9A700F0E4C2 /* DiskUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */; };
 		0F423A872984FFF2009EB345 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423A862984FFF2009EB345 /* HomeViewModelTests.swift */; };
 		0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */; };
 		0F423A8C29850CE8009EB345 /* GetPlaceDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */; };
@@ -547,8 +544,6 @@
 		0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F108809291E2397007A28FA /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0F19B49129164A6800A8FC8F /* DiskUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskUserStore.swift; sourceTree = "<group>"; };
-		0F19B49629164C7700A8FC8F /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		0F19B4BD291675DC00A8FC8F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreSpecs.swift; sourceTree = "<group>"; };
 		0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserStoreSpecs.swift"; sourceTree = "<group>"; };
@@ -623,7 +618,6 @@
 		0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserLoader.swift; sourceTree = "<group>"; };
 		0F41D9AD2913E7BE00F0E4C2 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		0F41D9B02913E82A00F0E4C2 /* UserStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreSpy.swift; sourceTree = "<group>"; };
-		0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskUserStoreTests.swift; sourceTree = "<group>"; };
 		0F423A862984FFF2009EB345 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		0F423A8E29850D0D009EB345 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0F423A9129850F68009EB345 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -1079,18 +1073,12 @@
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				0F19B4CF29169C0900A8FC8F /* Core Data */,
-				0F19B4BF29167ACC00A8FC8F /* Disk */,
+				0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */,
+				0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */,
+				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
+				0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */,
 			);
 			path = Infrastructure;
-			sourceTree = "<group>";
-		};
-		0F19B49529164C6800A8FC8F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0F19B49629164C7700A8FC8F /* CodableUser.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		0F19B4BC291675D000A8FC8F /* Models */ = {
@@ -1100,15 +1088,6 @@
 				0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		0F19B4BF29167ACC00A8FC8F /* Disk */ = {
-			isa = PBXGroup;
-			children = (
-				0F19B49529164C6800A8FC8F /* Models */,
-				0F19B49129164A6800A8FC8F /* DiskUserStore.swift */,
-			);
-			path = Disk;
 			sourceTree = "<group>";
 		};
 		0F19B4CC291694C800A8FC8F /* User Store Specs */ = {
@@ -1123,21 +1102,9 @@
 			path = "User Store Specs";
 			sourceTree = "<group>";
 		};
-		0F19B4CF29169C0900A8FC8F /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-				0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */,
-				0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */,
-				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
-				0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */,
-			);
-			path = "Core Data";
-			sourceTree = "<group>";
-		};
 		0F19B4DD2916B01F00A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				0F41D9B22913E9A700F0E4C2 /* DiskUserStoreTests.swift */,
 				0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */,
 			);
 			path = Infrastructure;
@@ -3576,10 +3543,8 @@
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
 				0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */,
 				0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */,
-				0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */,
 				0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */,
 				0FF7C69229B233F000622E9C /* LocalUserPreferences.swift in Sources */,
-				0F19B49229164A6800A8FC8F /* DiskUserStore.swift in Sources */,
 				0F41D9AE2913E7BE00F0E4C2 /* UserStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3593,7 +3558,6 @@
 				0F19B4C82916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift in Sources */,
 				0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */,
 				0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */,
-				0F41D9B32913E9A700F0E4C2 /* DiskUserStoreTests.swift in Sources */,
 				0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */,
 				0F19B4C629168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift in Sources */,
 				0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */,
