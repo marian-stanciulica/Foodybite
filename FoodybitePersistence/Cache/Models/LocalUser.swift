@@ -20,15 +20,14 @@ public struct LocalUser: Equatable {
         self.email = email
         self.profileImage = profileImage
     }
-    
-    public init(user: User) {
-        self.id = user.id
-        self.name = user.name
-        self.email = user.email
-        self.profileImage = user.profileImage
+}
+
+extension User: LocalModelConvertable {
+    public init(from localUser: LocalUser) {
+        self.init(id: localUser.id, name: localUser.name, email: localUser.email, profileImage: localUser.profileImage)
     }
     
-    public var model: User {
-        User(id: id, name: name, email: email, profileImage: profileImage)
+    public func toLocalModel() -> LocalUser {
+        LocalUser(id: id, name: name, email: email, profileImage: profileImage)
     }
 }

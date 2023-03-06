@@ -268,6 +268,7 @@
 		0FC73C5429B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */; };
 		0FC73C5529B6097C005879B8 /* FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5229B5F68E008CDA48 /* FoodybitePersistence.framework */; };
 		0FC73C5E29B611F5005879B8 /* NullUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5D29B611F5005879B8 /* NullUserStore.swift */; };
+		0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */; };
 		0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F6298E60500024016B /* ReviewEndpointTests.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
@@ -803,6 +804,7 @@
 		0FC73C5129B6097C005879B8 /* FoodybiteCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		0FC73C5D29B611F5005879B8 /* NullUserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullUserStore.swift; sourceTree = "<group>"; };
+		0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelConvertable.swift; sourceTree = "<group>"; };
 		0FC863F6298E60500024016B /* ReviewEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpointTests.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
@@ -1095,6 +1097,7 @@
 			isa = PBXGroup;
 			children = (
 				0F19B4BD291675DC00A8FC8F /* LocalUser.swift */,
+				0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3571,6 +3574,7 @@
 				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
+				0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */,
 				0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */,
 				0F19B49729164C7700A8FC8F /* CodableUser.swift in Sources */,
 				0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */,
