@@ -21,15 +21,17 @@ struct HomeSearchView<SearchCriteriaView: View>: View {
                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
                 )
             
-            Button {
-                showSearchCriteria.toggle()
-            } label: {
-                Image("filters_icon")
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(Color(uiColor: .systemGray3))
-                    .frame(width: 20, height: 20)
-                    .padding()
+            if searchText.isEmpty {
+                Button {
+                    showSearchCriteria.toggle()
+                } label: {
+                    Image("filters_icon")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .frame(width: 20, height: 20)
+                        .padding()
+                }
             }
         }
         .sheet(isPresented: $showSearchCriteria) {

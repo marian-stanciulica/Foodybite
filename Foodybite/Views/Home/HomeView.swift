@@ -29,13 +29,13 @@ struct HomeView<Cell: View, SearchView: View>: View {
                     .foregroundColor(.red)
                 Spacer()
                 
-            case let .success(nearbyPlaces):
+            case .success:
                 ScrollView(.vertical, showsIndicators: false) {
                     searchView($viewModel.searchText)
                         .padding(.bottom)
                     
                     LazyVStack {
-                        ForEach(nearbyPlaces, id: \.placeID) { place in
+                        ForEach(viewModel.filteredNearbyPlaces, id: \.placeID) { place in
                             cell(place)
                                 .background(Color(uiColor: .systemBackground))
                                 .cornerRadius(16)
