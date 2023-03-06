@@ -7,7 +7,7 @@
 
 import CoreData
 
-public class CoreDataUserStore: UserStore {
+public class CoreDataUserStore<T: LocalModelConvertable>: UserStore {
     private let context: NSManagedObjectContext
     
     private struct CacheMissError: Error {}
@@ -17,23 +17,23 @@ public class CoreDataUserStore: UserStore {
         context = container.newBackgroundContext()
     }
     
-    public func read() async throws -> LocalUser {
+    public func read() async throws -> T {
         try await context.perform {
             let results = try self.context.fetch(ManagedUser.fetchRequest())
             
-            if let firstResult = results.first {
-                return firstResult.local
+            if let firstResult = results.first as? T.LocalModel {
+                return T(from: firstResult)
             } else {
                 throw CacheMissError()
             }
         }
     }
     
-    public func write(_ user: LocalUser) async throws {
+    public func write(_ user: T) async throws {
         try await context.perform {
             try self.deleteAll(context: self.context)
             
-            self.context.insert(ManagedUser(user, for: self.context))
+            self.context.insert(user.toLocalModel(context: self.context))
             try self.context.save()
         }
     }

@@ -38,19 +38,19 @@ final class LocalUserLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         let user = anyUser()
-        client.setRead(returnedObject: user.local)
+        client.setRead(returnedObject: user)
         
-        await expectLoad(sut, toCompleteWith: .success(user.model))
+        await expectLoad(sut, toCompleteWith: .success(user))
     }
     
     func test_load_hasNoSideEffectsWhenCalledTwice() async {
         let (sut, client) = makeSUT()
         
         let user = anyUser()
-        client.setRead(returnedObject: user.local)
+        client.setRead(returnedObject: user)
         
-        await expectLoad(sut, toCompleteWith: .success(user.model))
-        await expectLoad(sut, toCompleteWith: .success(user.model))
+        await expectLoad(sut, toCompleteWith: .success(user))
+        await expectLoad(sut, toCompleteWith: .success(user))
     }
     
     func test_save_doesntWriteOnDeletionError() async {
@@ -58,7 +58,7 @@ final class LocalUserLoaderTests: XCTestCase {
         let expectedError = anyNSError()
         client.setDeletion(error: expectedError)
         
-        try? await sut.save(user: anyUser().model)
+        try? await sut.save(user: anyUser())
         
         XCTAssertEqual(client.messages, [.delete])
     }
@@ -75,7 +75,7 @@ final class LocalUserLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         client.setDeletion(error: nil)
         
-        try? await sut.save(user: anyUser().model)
+        try? await sut.save(user: anyUser())
         
         XCTAssertEqual(client.messages, [.delete, .write])
     }
@@ -85,9 +85,9 @@ final class LocalUserLoaderTests: XCTestCase {
         let user = anyUser()
         client.setDeletion(error: nil)
         
-        try? await sut.save(user: user.model)
+        try? await sut.save(user: user)
         
-        XCTAssertEqual(client.writeParameter, user.local)
+        XCTAssertEqual(client.writeParameter, user)
     }
     
     func test_save_returnsErrorOnWriteError() async {
@@ -102,13 +102,13 @@ final class LocalUserLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalUserLoader, store: UserStoreSpy) {
+    private func makeSUT() -> (sut: LocalUserLoader<User, UserStoreSpy>, store: UserStoreSpy) {
         let store = UserStoreSpy()
-        let sut = LocalUserLoader(store: store)
+        let sut = LocalUserLoader<User, UserStoreSpy>(store: store)
         return (sut, store)
     }
     
-    private func expectLoad(_ sut: LocalUserLoader, toCompleteWith expectedResult: Result<User, Error>) async {
+    private func expectLoad(_ sut: LocalUserLoader<User, UserStoreSpy>, toCompleteWith expectedResult: Result<User, Error>) async {
         do {
             let resultObject = try await sut.load()
             XCTAssertEqual(resultObject, try expectedResult.get())
@@ -117,9 +117,9 @@ final class LocalUserLoaderTests: XCTestCase {
         }
     }
     
-    private func expectSave(_ sut: LocalUserLoader, toCompleteWith expectedError: Error?) async {
+    private func expectSave(_ sut: LocalUserLoader<User, UserStoreSpy>, toCompleteWith expectedError: Error?) async {
         do {
-            try await sut.save(user: anyUser().model)
+            try await sut.save(user: anyUser())
         } catch {
             XCTAssertEqual(error as NSError, expectedError as NSError?)
         }
@@ -129,14 +129,12 @@ final class LocalUserLoaderTests: XCTestCase {
         return NSError(domain: "any error", code: 1)
     }
     
-    private func anyUser() -> (model: User, local: LocalUser) {
-        let local = LocalUser(id: UUID(),
-                              name: "any name",
-                              email: "any@email.com",
-                              profileImage: nil)
-        return (local.model, local)
+    private func anyUser() -> User {
+        return User(id: UUID(),
+                      name: "any name",
+                      email: "any@email.com",
+                      profileImage: nil)
     }
-    
 }
 
 private extension Result {

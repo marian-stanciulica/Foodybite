@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Domain
 import FoodybitePersistence
 
 class UserStoreSpy: UserStore {
@@ -19,14 +20,14 @@ class UserStoreSpy: UserStore {
     
     private(set) var messages = [Message]()
     
-    private(set) var readResult: Result<LocalUser, Error>?
+    private(set) var readResult: Result<User, Error>?
     
     private(set) var writeError: Error? = nil
-    private(set) var writeParameter: LocalUser?
+    private(set) var writeParameter: User?
 
     private(set) var deleteError: Error? = nil
     
-    func read() async throws -> LocalUser {
+    func read() async throws -> User {
         messages.append(.read)
         
         if let readCompletion = readResult {
@@ -40,11 +41,11 @@ class UserStoreSpy: UserStore {
         readResult = .failure(error)
     }
     
-    func setRead(returnedObject object: LocalUser) {
+    func setRead(returnedObject object: User) {
         readResult = .success(object)
     }
     
-    func write(_ user: LocalUser) async throws {
+    func write(_ user: User) async throws {
         messages.append(.write)
         writeParameter = user
         

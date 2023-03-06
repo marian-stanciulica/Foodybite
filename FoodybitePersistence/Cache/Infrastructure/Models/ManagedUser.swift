@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Domain
 
 @objc(ManagedUser)
 public class ManagedUser: NSManagedObject {
@@ -19,16 +20,12 @@ public class ManagedUser: NSManagedObject {
         return NSFetchRequest<ManagedUser>(entityName: "ManagedUser")
     }
     
-    convenience init(_ user: LocalUser, for context: NSManagedObjectContext) {
+    public convenience init(_ model: User, for context: NSManagedObjectContext) {
         self.init(context: context)
-        
-        self.id = user.id
-        self.name = user.name
-        self.email = user.email
-        self.profileImage = user.profileImage
-    }
-    
-    var local: LocalUser {
-        LocalUser(id: id, name: name, email: email, profileImage: profileImage)
+
+        self.id = model.id
+        self.name = model.name
+        self.email = model.email
+        self.profileImage = model.profileImage
     }
 }

@@ -21,12 +21,6 @@
 		0F0BDA4028F88C2300E91FD0 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */; };
 		0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F108809291E2397007A28FA /* RegisterViewModelTests.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
-		0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4BD291675DC00A8FC8F /* LocalUser.swift */; };
-		0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */; };
-		0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */; };
-		0F19B4C629168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C529168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift */; };
-		0F19B4C82916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4C72916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift */; };
-		0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */; };
 		0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */; };
 		0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */; };
@@ -544,12 +538,6 @@
 		0F0BDA3F28F88C2300E91FD0 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F108809291E2397007A28FA /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0F19B4BD291675DC00A8FC8F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
-		0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreSpecs.swift; sourceTree = "<group>"; };
-		0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+UserStoreSpecs.swift"; sourceTree = "<group>"; };
-		0F19B4C529168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableReadUserStore.swift"; sourceTree = "<group>"; };
-		0F19B4C72916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableWriteUserStoreSpecs.swift"; sourceTree = "<group>"; };
-		0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteUserStoreSpecs.swift"; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStore.swift; sourceTree = "<group>"; };
 		0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store.xcdatamodel; sourceTree = "<group>"; };
@@ -1073,9 +1061,9 @@
 		0F19B49329164B1000A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				0F19B4BC291675D000A8FC8F /* Models */,
 				0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */,
 				0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */,
-				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
 				0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */,
 			);
 			path = Infrastructure;
@@ -1084,22 +1072,9 @@
 		0F19B4BC291675D000A8FC8F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0F19B4BD291675DC00A8FC8F /* LocalUser.swift */,
-				0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */,
+				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		0F19B4CC291694C800A8FC8F /* User Store Specs */ = {
-			isa = PBXGroup;
-			children = (
-				0F19B4C1291681B800A8FC8F /* UserStoreSpecs.swift */,
-				0F19B4C3291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift */,
-				0F19B4C529168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift */,
-				0F19B4C72916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift */,
-				0F19B4CA2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift */,
-			);
-			path = "User Store Specs";
 			sourceTree = "<group>";
 		};
 		0F19B4DD2916B01F00A8FC8F /* Infrastructure */ = {
@@ -1733,7 +1708,7 @@
 			isa = PBXGroup;
 			children = (
 				0F19B49329164B1000A8FC8F /* Infrastructure */,
-				0F19B4BC291675D000A8FC8F /* Models */,
+				0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */,
 				0F41D9AB2913E7A700F0E4C2 /* LocalUserLoader.swift */,
 				0F41D9AD2913E7BE00F0E4C2 /* UserStore.swift */,
 			);
@@ -1745,7 +1720,6 @@
 			children = (
 				0F41D9AF2913E81B00F0E4C2 /* Helpers */,
 				0F19B4DD2916B01F00A8FC8F /* Infrastructure */,
-				0F19B4CC291694C800A8FC8F /* User Store Specs */,
 				0F95A88B290D03CE00806AE9 /* LocalUserLoaderTests.swift */,
 			);
 			path = Cache;
@@ -3540,7 +3514,6 @@
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
-				0F19B4BE291675DC00A8FC8F /* LocalUser.swift in Sources */,
 				0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */,
 				0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */,
 				0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */,
@@ -3555,12 +3528,7 @@
 			files = (
 				0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */,
 				0F41D9B12913E82A00F0E4C2 /* UserStoreSpy.swift in Sources */,
-				0F19B4C82916900300A8FC8F /* XCTestCase+FailableWriteUserStoreSpecs.swift in Sources */,
-				0F19B4C2291681B800A8FC8F /* UserStoreSpecs.swift in Sources */,
 				0F95A88C290D03CE00806AE9 /* LocalUserLoaderTests.swift in Sources */,
-				0F19B4C4291684E000A8FC8F /* XCTestCase+UserStoreSpecs.swift in Sources */,
-				0F19B4C629168B4100A8FC8F /* XCTestCase+FailableReadUserStore.swift in Sources */,
-				0F19B4CB2916932200A8FC8F /* XCTestCase+FailableDeleteUserStoreSpecs.swift in Sources */,
 				0FF7C68D29B228F200622E9C /* UserPreferencesStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

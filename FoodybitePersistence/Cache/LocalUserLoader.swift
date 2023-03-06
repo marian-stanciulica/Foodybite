@@ -7,7 +7,7 @@
 
 import Domain
 
-public class LocalUserLoader<T: LocalModelConvertable, Store: UserStore> where Store.LocalModel == T.LocalModel {
+public class LocalUserLoader<T: LocalModelConvertable, Store: UserStore> where Store.LocalModel == T {
     private let store: Store
     
     public init(store: Store) {
@@ -15,12 +15,11 @@ public class LocalUserLoader<T: LocalModelConvertable, Store: UserStore> where S
     }
     
     public func load() async throws -> T {
-        let local = try await store.read()
-        return T(from: local)
+        try await store.read()
     }
     
     public func save(user: T) async throws {
         try await store.delete()
-        try await store.write(user.toLocalModel())
+        try await store.write(user)
     }
 }
