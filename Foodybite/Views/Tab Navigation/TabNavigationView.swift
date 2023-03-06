@@ -48,7 +48,8 @@ struct TabNavigationView: View {
                                 autocompletePlacesService: placesService,
                                 getPlaceDetailsService: placesService,
                                 addReviewService: apiService,
-                                location: location
+                                location: location,
+                                userPreferences: userPreferencesLoader.load()
                             ),
                             selectedView: { placeDetails in
                                 SelectedRestaurantView(

@@ -22,17 +22,17 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     func test_autocomplete_sendsParametersCorrectlyToAutocompletePlacesService() async {
-        let anyLocation = anyLocation()
-        let radius = 100
-        let (sut, autocompleteSpy, _, _) = makeSUT(location: anyLocation)
+        let location = anyLocation()
+        let userPreferences = anyUserPreferences()
+        let (sut, autocompleteSpy, _, _) = makeSUT(location: location, userPreferences: userPreferences)
         sut.searchText = anySearchText()
         
         await sut.autocomplete()
         
         XCTAssertEqual(autocompleteSpy.capturedValues.count, 1)
         XCTAssertEqual(autocompleteSpy.capturedValues.first?.input, anySearchText())
-        XCTAssertEqual(autocompleteSpy.capturedValues.first?.location, anyLocation)
-        XCTAssertEqual(autocompleteSpy.capturedValues.first?.radius, radius)
+        XCTAssertEqual(autocompleteSpy.capturedValues.first?.location, location)
+        XCTAssertEqual(autocompleteSpy.capturedValues.first?.radius, userPreferences.radius)
     }
     
     func test_autocomplete_setsResultsToEmptyWhenAutocompletePlacesServiceThrowsError() async {
@@ -186,7 +186,7 @@ final class NewReviewViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(location: Location? = nil) -> (
+    private func makeSUT(location: Location? = nil, userPreferences: UserPreferences? = nil) -> (
         sut: NewReviewViewModel,
         autocompleteSpy: AutocompletePlacesServiceSpy,
         getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy,
@@ -201,7 +201,8 @@ final class NewReviewViewModelTests: XCTestCase {
             autocompletePlacesService: autocompleteSpy,
             getPlaceDetailsService: getPlaceDetailsServiceSpy,
             addReviewService: addReviewServiceSpy,
-            location: location ?? defaultLocation
+            location: location ?? defaultLocation,
+            userPreferences: userPreferences ?? .default
         )
         return (sut, autocompleteSpy, getPlaceDetailsServiceSpy, addReviewServiceSpy)
     }
@@ -216,6 +217,10 @@ final class NewReviewViewModelTests: XCTestCase {
     
     private func anyLocation() -> Location {
         Location(latitude: 44.439663, longitude: 26.096306)
+    }
+    
+    private func anyUserPreferences() -> UserPreferences {
+        UserPreferences(radius: 200, starsNumber: 4)
     }
     
     private func anySearchText() -> String {

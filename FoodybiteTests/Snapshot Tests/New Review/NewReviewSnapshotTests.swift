@@ -88,7 +88,8 @@ final class NewReviewSnapshotTests: XCTestCase {
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
             addReviewService: EmptyAddReviewService(),
-            location: Location(latitude: 0, longitude: 0)
+            location: Location(latitude: 0, longitude: 0),
+            userPreferences: UserPreferences(radius: 0, starsNumber: 0)
         )
         viewModel.searchText = searchText
         viewModel.starsNumber = starsNumber
