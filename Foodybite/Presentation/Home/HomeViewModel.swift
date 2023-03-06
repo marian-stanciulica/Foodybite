@@ -28,6 +28,11 @@ public final class HomeViewModel: ObservableObject {
     
     public var filteredNearbyPlaces: [NearbyPlace] {
         guard case let .success(nearbyPlaces) = searchNearbyState else { return [] }
+        
+        if searchText.isEmpty {
+            return nearbyPlaces
+        }
+        
         return nearbyPlaces.filter { $0.placeName.contains(searchText) }
     }
     

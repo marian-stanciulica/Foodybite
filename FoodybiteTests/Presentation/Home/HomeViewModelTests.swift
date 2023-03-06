@@ -60,6 +60,15 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(sut.filteredNearbyPlaces, [nearbyPlaces[1]])
     }
     
+    func test_filteredNearbyPlaces_equalsNearbyPlacesWhensearchTextIsEmpty() {
+        let (sut, _) = makeSUT()
+        let nearbyPlaces = makeNearbyPlaces()
+        sut.searchNearbyState = .success(nearbyPlaces)
+        sut.searchText = ""
+        
+        XCTAssertEqual(sut.filteredNearbyPlaces, nearbyPlaces)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: HomeViewModel, serviceSpy: SearchNearbyServiceSpy) {
