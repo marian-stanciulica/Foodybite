@@ -44,6 +44,20 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         XCTAssertEqual(receivedUser, user)
     }
     
+    func test_saveUser_overridesUserSavedOnASeparateInstance() async throws {
+        let userLoaderToPerformFirstSave = makeUserLoader()
+        let userLoaderToPerformSecondSave = makeUserLoader()
+        let userLoaderToPerformLoad = makeUserLoader()
+        let firstUser = makeUser()
+        let secondUser = makeUser()
+        
+        try await userLoaderToPerformFirstSave.save(user: firstUser)
+        try await userLoaderToPerformSecondSave.save(user: secondUser)
+        
+        let receivedUser = try await userLoaderToPerformLoad.load()
+        XCTAssertEqual(receivedUser, secondUser)
+    }
+    
     // MARK: - Helpers
     
     private func makeUserLoader() -> LocalUserLoader {
