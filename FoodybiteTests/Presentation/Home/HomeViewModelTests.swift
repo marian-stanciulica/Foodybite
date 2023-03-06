@@ -11,6 +11,12 @@ import Foodybite
 
 final class HomeViewModelTests: XCTestCase {
     
+    func test_init_searchText() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertTrue(sut.searchText.isEmpty)
+    }
+    
     func test_init_searchNearbyState() {
         let (sut, _) = makeSUT()
 
