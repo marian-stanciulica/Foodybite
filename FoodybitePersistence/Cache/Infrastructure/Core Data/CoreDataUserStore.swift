@@ -12,7 +12,7 @@ public class CoreDataUserStore: UserStore {
     
     private struct CacheMissError: Error {}
     
-    public init(storeURL: URL, bundle: Bundle = .main) throws {
+    public init(storeURL: URL, bundle: Bundle = .init(for: CoreDataUserStore.self)) throws {
         let container = try NSPersistentContainer.load(modelName: "Store", bundle: bundle, storeURL: storeURL)
         context = container.newBackgroundContext()
     }
