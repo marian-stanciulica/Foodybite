@@ -71,15 +71,30 @@ final class HomeViewSnapshotTests: XCTestCase {
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
         
-        let homeView = HomeView(viewModel: homeViewModel, showPlaceDetails: { _ in }) { nearbyPlace in
-            RestaurantCell(
-                photoView: PhotoView(viewModel: photoViewModel),
-                viewModel: RestaurantCellViewModel(
-                    nearbyPlace: nearbyPlace,
-                    currentLocation: currentLocation
+        let searchCriteriaViewModel = SearchCriteriaViewModel(
+            userPreferences: makeUserPreferences(),
+            userPreferencesSaver: EmptyUserPreferencesSaver()
+        )
+        
+        let homeView = HomeView(
+            viewModel: homeViewModel,
+            showPlaceDetails: { _ in },
+            cell: { nearbyPlace in
+                RestaurantCell(
+                    photoView: PhotoView(viewModel: photoViewModel),
+                    viewModel: RestaurantCellViewModel(
+                        nearbyPlace: nearbyPlace,
+                        currentLocation: currentLocation
+                    )
                 )
-            )
-        }
+            },
+            searchView: { searchText in
+                HomeSearchView(
+                    searchText: searchText,
+                    searchCriteriaView: SearchCriteriaView(viewModel: searchCriteriaViewModel)
+                )
+            }
+        )
         let sut = UIHostingController(rootView: homeView)
         return sut
     }
@@ -112,6 +127,14 @@ final class HomeViewSnapshotTests: XCTestCase {
     
     private class EmptySearchNearbyService: SearchNearbyService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] { [] }
+    }
+            
+    private func makeUserPreferences() -> UserPreferences {
+        UserPreferences(radius: 200, starsNumber: 4)
+    }
+    
+    private class EmptyUserPreferencesSaver: UserPreferencesSaver {
+        func save(_ userPreferences: UserPreferences) {}
     }
 }
  
