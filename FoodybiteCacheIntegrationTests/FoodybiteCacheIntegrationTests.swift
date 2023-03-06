@@ -11,6 +11,20 @@ import FoodybitePersistence
 
 final class FoodybiteUserCacheIntegrationTests: XCTestCase {
 
+    override func setUp() {
+        super.setUp()
+        
+        setupEmptyStoreState()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        undoStoreSideEffects()
+    }
+    
+    // MARK: - LocalUserLoader Tests
+    
     func test_loadUser_deliversNilOnEmptyCache() async {
         let userLoader = makeUserLoader()
         
@@ -49,5 +63,17 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
     
     private func cachesDirectory() -> URL {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    }
+    
+    private func setupEmptyStoreState() {
+        deleteStoreArtifacts()
+    }
+    
+    private func undoStoreSideEffects() {
+        deleteStoreArtifacts()
+    }
+    
+    private func deleteStoreArtifacts() {
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 }
