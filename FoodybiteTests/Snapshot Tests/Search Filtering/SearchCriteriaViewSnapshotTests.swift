@@ -33,7 +33,7 @@ final class SearchCriteriaViewSnapshotTests: XCTestCase {
     }
     
     private func makeUserPreferences() -> UserPreferences {
-        UserPreferences(radius: 200, starsNumber: 4)
+        UserPreferences(radius: 10_000, starsNumber: 4)
     }
     
     private class EmptyUserPreferencesSaver: UserPreferencesSaver {

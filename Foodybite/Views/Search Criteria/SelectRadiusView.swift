@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectRadiusView: View {
     @Binding var radius: Int
     @GestureState private var widthOffset: CGFloat = 0
-    private let maximumRadius: CGFloat = 999
+    private let maximumRadius: CGFloat = 20_000
     
     var body: some View {
         GeometryReader { proxy in
@@ -25,7 +25,7 @@ struct SelectRadiusView: View {
                         .fill(Color.marineBlue)
                         .frame(width: 36, height: 66)
                         
-                        Text("\(radius + Int(widthOffset))")
+                        Text(String(format: "%.1f", (CGFloat(radius) + widthOffset) / 1_000))
                             .foregroundColor(.white)
                     }
                     .offset(x: (CGFloat(radius) + widthOffset) / maximumRadius * (proxy.size.width - 30), y: 0)
@@ -57,7 +57,7 @@ struct SelectRadiusView: View {
                 HStack {
                     Text("0")
                     Spacer()
-                    Text("\(Int(maximumRadius))")
+                    Text("\(Int(maximumRadius / 1_000)) km")
                 }
                 .foregroundColor(.gray)
                 .padding(.horizontal)
@@ -69,7 +69,7 @@ struct SelectRadiusView: View {
 
 struct SelectRadiusView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectRadiusView(radius: .constant(200))
+        SelectRadiusView(radius: .constant(10000))
             .padding(44)
     }
 }
