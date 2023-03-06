@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Domain
 import FoodybitePersistence
 
 final class FoodybiteUserCacheIntegrationTests: XCTestCase {
@@ -18,6 +19,17 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         XCTAssertEqual(user, nil)
     }
     
+    func test_loadUser_deliversUserSavedOnASeparateInstance() async throws {
+        let userLoaderToPerformSave = makeUserLoader()
+        let userLoaderToPerformLoad = makeUserLoader()
+        let user = makeUser()
+        
+        try await userLoaderToPerformSave.save(user: user)
+        
+        let receivedUser = try await userLoaderToPerformLoad.load()
+        XCTAssertEqual(receivedUser, user)
+    }
+    
     // MARK: - Helpers
     
     private func makeUserLoader() -> LocalUserLoader {
@@ -25,6 +37,10 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         let store = try! CoreDataUserStore(storeURL: storeURL)
         let sut = LocalUserLoader(store: store)
         return sut
+    }
+    
+    private func makeUser() -> User {
+        User(id: UUID(), name: "User #1", email: "testing@testing.com", profileImage: nil)
     }
     
     private func testSpecificStoreURL() -> URL {
