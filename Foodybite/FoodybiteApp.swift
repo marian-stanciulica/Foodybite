@@ -6,6 +6,7 @@
 //
 
 import Domain
+import CoreData
 import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
@@ -45,32 +46,54 @@ final class AppViewModel {
     func makeUserPreferencesStore() -> UserPreferencesLocalStore {
         return UserPreferencesLocalStore()
     }
+    
+    private func makeUserStore() -> UserStore {
+        do {
+            return try CoreDataUserStore(
+                storeURL: NSPersistentContainer
+                    .defaultDirectoryURL()
+                    .appendingPathComponent("foodybite-store.sqlite"))
+            
+        } catch {
+            return NullUserStore()
+        }
+    }
+    
+    lazy var localUserLoader: LocalUserLoader = {
+        return LocalUserLoader(store: makeUserStore())
+    }()
 }
 
 @main
 struct FoodybiteApp: App {
     private let appViewModel = AppViewModel()
-    @AppStorage("userLoggedIn") var userLoggedIn = false
     @State var user: User?
     
     var body: some Scene {
         WindowGroup {
-            if let user = user, userLoggedIn {
-                LocationCheckView { locationProvider in
-                    TabNavigationView(
-                        tabRouter: TabRouter(),
-                        apiService: appViewModel.makeAuthenticatedApiService(),
-                        placesService: appViewModel.makePlacesService(),
-                        userPreferencesLoader: appViewModel.makeUserPreferencesStore(),
-                        userPreferencesSaver: appViewModel.makeUserPreferencesStore(),
-                        viewModel: TabNavigationViewModel(locationProvider: locationProvider),
-                        user: user)
+            HStack {
+                if let user = user {
+                    LocationCheckView { locationProvider in
+                        TabNavigationView(
+                            tabRouter: TabRouter(),
+                            apiService: appViewModel.makeAuthenticatedApiService(),
+                            placesService: appViewModel.makePlacesService(),
+                            userPreferencesLoader: appViewModel.makeUserPreferencesStore(),
+                            userPreferencesSaver: appViewModel.makeUserPreferencesStore(),
+                            viewModel: TabNavigationViewModel(locationProvider: locationProvider),
+                            user: user)
+                    }
+                } else {
+                    AuthFlowView(flow: Flow<AuthRoute>(), apiService: appViewModel.makeApiService()) { user in
+                        Task {
+                            self.user = user
+                            try? await appViewModel.localUserLoader.save(user: user)
+                        }
+                    }
                 }
-            } else {
-                AuthFlowView(flow: Flow<AuthRoute>(), apiService: appViewModel.makeApiService()) { user in
-                    self.user = user
-                    userLoggedIn = true
-                }
+            }
+            .task {
+                self.user = try? await appViewModel.localUserLoader.load()
             }
         }
     }

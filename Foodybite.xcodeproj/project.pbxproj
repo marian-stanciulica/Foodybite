@@ -267,6 +267,7 @@
 		0FB1D40829AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB1D40629AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png */; };
 		0FC73C5429B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */; };
 		0FC73C5529B6097C005879B8 /* FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5229B5F68E008CDA48 /* FoodybitePersistence.framework */; };
+		0FC73C5E29B611F5005879B8 /* NullUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5D29B611F5005879B8 /* NullUserStore.swift */; };
 		0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F6298E60500024016B /* ReviewEndpointTests.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
@@ -801,6 +802,7 @@
 		0FB1D40629AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png; sourceTree = "<group>"; };
 		0FC73C5129B6097C005879B8 /* FoodybiteCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteCacheIntegrationTests.swift; sourceTree = "<group>"; };
+		0FC73C5D29B611F5005879B8 /* NullUserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullUserStore.swift; sourceTree = "<group>"; };
 		0FC863F6298E60500024016B /* ReviewEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpointTests.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
@@ -1813,6 +1815,7 @@
 				0FF7C67329B2028B00622E9C /* Foodybite.entitlements */,
 				0F423AAF29859FB8009EB345 /* Info.plist */,
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
+				0FC73C5D29B611F5005879B8 /* NullUserStore.swift */,
 				0F2B4CBC28454EC2004D0EF7 /* Enums */,
 				A2E64B9C2842145900FC41B7 /* Extension */,
 				A2C242482847A26700CB233B /* View Modifiers */,
@@ -3533,6 +3536,7 @@
 				0FB0E12A291FC7630058ABCB /* LoginViewModel.swift in Sources */,
 				0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */,
 				0F7516382843502400A05A92 /* UIScreen+.swift in Sources */,
+				0FC73C5E29B611F5005879B8 /* NullUserStore.swift in Sources */,
 				A2E64BD5284253D800FC41B7 /* RestaurantInformationView.swift in Sources */,
 				0FB0E113291F86370058ABCB /* RegisterViewModel.swift in Sources */,
 				0F751645284364B600A05A92 /* StatsView.swift in Sources */,
