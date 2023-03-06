@@ -43,14 +43,16 @@ struct HomeFlowView: View {
                             )
                         )
                     },
-                    searchView: HomeSearchView(
-                        searchText: .constant(""),
-                        searchCriteriaView: SearchCriteriaView(
-                            viewModel: SearchCriteriaViewModel(
-                                userPreferences: userPreferencesLoader.load(),
-                                userPreferencesSaver: userPreferencesSaver)
+                    searchView: { searchText in
+                        HomeSearchView(
+                            searchText: searchText,
+                            searchCriteriaView: SearchCriteriaView(
+                                viewModel: SearchCriteriaViewModel(
+                                    userPreferences: userPreferencesLoader.load(),
+                                    userPreferencesSaver: userPreferencesSaver)
+                            )
                         )
-                    )
+                    }
                 )
             }
             .navigationDestination(for: HomeRoute.self) { route in

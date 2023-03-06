@@ -12,7 +12,7 @@ struct HomeView<Cell: View, SearchView: View>: View {
     @StateObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
     let cell: (NearbyPlace) -> Cell
-    let searchView: SearchView
+    let searchView: (Binding<String>) -> SearchView
     
     var body: some View {
         VStack {
@@ -31,7 +31,7 @@ struct HomeView<Cell: View, SearchView: View>: View {
                 
             case let .success(nearbyPlaces):
                 ScrollView(.vertical, showsIndicators: false) {
-                    searchView
+                    searchView($viewModel.searchText)
                         .padding(.bottom)
                     
                     LazyVStack {
@@ -74,7 +74,7 @@ struct HomeView_Previews: PreviewProvider {
                     )
                 )
             },
-            searchView: EmptyView()
+                 searchView: { _ in EmptyView() }
         )
     }
     

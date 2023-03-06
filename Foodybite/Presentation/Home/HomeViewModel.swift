@@ -24,6 +24,7 @@ public final class HomeViewModel: ObservableObject {
     private let currentLocation: Location
     
     @Published public var searchNearbyState: State = .idle
+    @Published public var searchText = ""
     
     public init(searchNearbyService: SearchNearbyService, currentLocation: Location) {
         self.searchNearbyService = searchNearbyService
