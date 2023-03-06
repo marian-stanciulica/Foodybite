@@ -43,16 +43,12 @@ struct HomeFlowView: View {
                             )
                         )
                     },
-                    searchView: AnyView(
-                        HomeSearchView(
-                            searchText: .constant(""),
-                            searchCriteriaView: AnyView(
-                                SearchCriteriaView(
-                                    viewModel: SearchCriteriaViewModel(
-                                        userPreferences: userPreferencesLoader.load(),
-                                        userPreferencesSaver: userPreferencesSaver)
-                                )
-                            )
+                    searchView: HomeSearchView(
+                        searchText: .constant(""),
+                        searchCriteriaView: SearchCriteriaView(
+                            viewModel: SearchCriteriaViewModel(
+                                userPreferences: userPreferencesLoader.load(),
+                                userPreferencesSaver: userPreferencesSaver)
                         )
                     )
                 )

@@ -8,10 +8,10 @@
 import SwiftUI
 import Domain
 
-struct HomeSearchView: View {
+struct HomeSearchView<SearchCriteriaView: View>: View {
     @Binding var searchText: String
     @State var showSearchCriteria = false
-    let searchCriteriaView: AnyView
+    let searchCriteriaView: SearchCriteriaView
     
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -42,14 +42,13 @@ struct HomeSearchView_Previews: PreviewProvider {
     static var previews: some View {
         HomeSearchView(
             searchText: .constant(""),
-            searchCriteriaView: AnyView(
+            searchCriteriaView:
                 SearchCriteriaView(
                     viewModel: SearchCriteriaViewModel(
                         userPreferences: UserPreferences(radius: 200, starsNumber: 3),
                         userPreferencesSaver: PreviewUserPreferencesSaver()
                     )
                 )
-            )
         )
     }
     

@@ -8,12 +8,12 @@
 import Domain
 import SwiftUI
 
-struct HomeView<Cell: View>: View {
+struct HomeView<Cell: View, SearchView: View>: View {
     @StateObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
     let cell: (NearbyPlace) -> Cell
-    let searchView: AnyView
-
+    let searchView: SearchView
+    
     var body: some View {
         VStack {
             switch viewModel.searchNearbyState {
@@ -74,7 +74,7 @@ struct HomeView_Previews: PreviewProvider {
                     )
                 )
             },
-            searchView: AnyView(EmptyView())
+            searchView: EmptyView()
         )
     }
     
