@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Domain
 
-struct HomeSearchView: View {
+struct HomeSearchView<SearchCriteriaView: View>: View {
     @Binding var searchText: String
     @State var showSearchCriteria = false
+    let searchCriteriaView: SearchCriteriaView
     
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -19,25 +21,40 @@ struct HomeSearchView: View {
                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
                 )
             
-            Button {
-                showSearchCriteria.toggle()
-            } label: {
-                Image("filters_icon")
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(Color(uiColor: .systemGray3))
-                    .frame(width: 20, height: 20)
-                    .padding()
+            if searchText.isEmpty {
+                Button {
+                    showSearchCriteria.toggle()
+                } label: {
+                    Image("filters_icon")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .frame(width: 20, height: 20)
+                        .padding()
+                }
             }
         }
         .sheet(isPresented: $showSearchCriteria) {
-            SearchCriteriaView(radius: 100, starsNumber: .constant(2))
+            searchCriteriaView
         }
     }
 }
 
 struct HomeSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeSearchView(searchText: .constant(""))
+        HomeSearchView(
+            searchText: .constant(""),
+            searchCriteriaView:
+                SearchCriteriaView(
+                    viewModel: SearchCriteriaViewModel(
+                        userPreferences: UserPreferences(radius: 200, starsNumber: 3),
+                        userPreferencesSaver: PreviewUserPreferencesSaver()
+                    )
+                )
+        )
+    }
+    
+    private class PreviewUserPreferencesSaver: UserPreferencesSaver {
+        func save(_ userPreferences: UserPreferences) {}
     }
 }

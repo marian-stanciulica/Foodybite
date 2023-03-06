@@ -15,6 +15,8 @@ struct TabNavigationView: View {
     @State var plusButtonActive = false
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
+    let userPreferencesLoader: UserPreferencesLoader
+    let userPreferencesSaver: UserPreferencesSaver
     @StateObject var viewModel: TabNavigationViewModel
     let user: User
     
@@ -34,6 +36,8 @@ struct TabNavigationView: View {
                              flow: Flow<HomeRoute>(),
                              apiService: apiService,
                              placesService: placesService,
+                             userPreferencesLoader: userPreferencesLoader,
+                             userPreferencesSaver: userPreferencesSaver,
                              currentLocation: location)
                 case .newReview:
                     TabBarPageView(page: $tabRouter.currentPage) {
@@ -44,7 +48,8 @@ struct TabNavigationView: View {
                                 autocompletePlacesService: placesService,
                                 getPlaceDetailsService: placesService,
                                 addReviewService: apiService,
-                                location: location
+                                location: location,
+                                userPreferences: userPreferencesLoader.load()
                             ),
                             selectedView: { placeDetails in
                                 SelectedRestaurantView(

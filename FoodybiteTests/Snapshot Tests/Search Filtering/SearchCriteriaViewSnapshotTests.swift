@@ -23,9 +23,21 @@ final class SearchCriteriaViewSnapshotTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(radius: CGFloat, starsNumber: Int) -> UIViewController {
-        let registerView = SearchCriteriaView(radius: radius, starsNumber: .constant(starsNumber))
+        let viewModel = SearchCriteriaViewModel(
+            userPreferences: makeUserPreferences(),
+            userPreferencesSaver: EmptyUserPreferencesSaver()
+        )
+        let registerView = SearchCriteriaView(viewModel: viewModel)
         let sut = UIHostingController(rootView: registerView)
         return sut
+    }
+    
+    private func makeUserPreferences() -> UserPreferences {
+        UserPreferences(radius: 200, starsNumber: 4)
+    }
+    
+    private class EmptyUserPreferencesSaver: UserPreferencesSaver {
+        func save(_ userPreferences: UserPreferences) {}
     }
 }
  

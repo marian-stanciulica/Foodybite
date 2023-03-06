@@ -106,7 +106,8 @@ struct NewReviewView_Previews: PreviewProvider {
                 autocompletePlacesService: PreviewAutocompletePlacesService(),
                 getPlaceDetailsService: PreviewGetPlaceDetailsService(),
                 addReviewService: PreviewAddReviewService(),
-                location: Location(latitude: 0, longitude: 0)
+                location: Location(latitude: 0, longitude: 0),
+                userPreferences: UserPreferences(radius: 0, starsNumber: 0)
             ),
             selectedView: { placeDetails in
                 SelectedRestaurantView(

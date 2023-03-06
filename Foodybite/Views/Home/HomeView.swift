@@ -8,11 +8,12 @@
 import Domain
 import SwiftUI
 
-struct HomeView<Cell: View>: View {
+struct HomeView<Cell: View, SearchView: View>: View {
     @StateObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
     let cell: (NearbyPlace) -> Cell
-
+    let searchView: (Binding<String>) -> SearchView
+    
     var body: some View {
         VStack {
             switch viewModel.searchNearbyState {
@@ -28,13 +29,13 @@ struct HomeView<Cell: View>: View {
                     .foregroundColor(.red)
                 Spacer()
                 
-            case let .success(nearbyPlaces):
+            case .success:
                 ScrollView(.vertical, showsIndicators: false) {
-                    HomeSearchView(searchText: .constant(""))
+                    searchView($viewModel.searchText)
                         .padding(.bottom)
                     
                     LazyVStack {
-                        ForEach(nearbyPlaces, id: \.placeID) { place in
+                        ForEach(viewModel.filteredNearbyPlaces, id: \.placeID) { place in
                             cell(place)
                                 .background(Color(uiColor: .systemBackground))
                                 .cornerRadius(16)
@@ -59,20 +60,28 @@ struct HomeView<Cell: View>: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(searchNearbyService: PreviewSearchNearbyService(), currentLocation: Location(latitude: 2.3, longitude: 4.5)), showPlaceDetails: { _ in }, cell: { nearbyPlace in
-            RestaurantCell(
-                photoView: PhotoView(
-                    viewModel: PhotoViewModel(
-                        photoReference: "reference",
-                        fetchPhotoService: PreviewFetchPlacePhotoService()
+        HomeView(
+            viewModel: HomeViewModel(
+                searchNearbyService: PreviewSearchNearbyService(),
+                currentLocation: Location(latitude: 2.3, longitude: 4.5),
+                userPreferences: UserPreferences(radius: 200, starsNumber: 4)
+            ),
+            showPlaceDetails: { _ in }, cell: { nearbyPlace in
+                RestaurantCell(
+                    photoView: PhotoView(
+                        viewModel: PhotoViewModel(
+                            photoReference: "reference",
+                            fetchPhotoService: PreviewFetchPlacePhotoService()
+                        )
+                    ),
+                    viewModel: RestaurantCellViewModel(
+                        nearbyPlace: nearbyPlace,
+                        currentLocation: Location(latitude: 2.1, longitude: 3.4)
                     )
-                ),
-                viewModel: RestaurantCellViewModel(
-                    nearbyPlace: nearbyPlace,
-                    currentLocation: Location(latitude: 2.1, longitude: 3.4)
                 )
-            )
-        })
+            },
+                 searchView: { _ in EmptyView() }
+        )
     }
     
     private class PreviewSearchNearbyService: SearchNearbyService {

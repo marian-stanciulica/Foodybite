@@ -11,10 +11,26 @@ import Foodybite
 
 final class HomeViewModelTests: XCTestCase {
     
+    func test_init_searchText() {
+        let (sut, _) = makeSUT()
+
+        XCTAssertTrue(sut.searchText.isEmpty)
+    }
+    
     func test_init_searchNearbyState() {
         let (sut, _) = makeSUT()
 
         XCTAssertEqual(sut.searchNearbyState, .idle)
+    }
+    
+    func test_searchNearby_sendsInputToSearchNearbyService() async {
+        let (sut, serviceSpy) = makeSUT()
+
+        await sut.searchNearby()
+        
+        XCTAssertEqual(serviceSpy.capturedValues.count, 1)
+        XCTAssertEqual(serviceSpy.capturedValues[0].location, anyLocation)
+        XCTAssertEqual(serviceSpy.capturedValues[0].radius, anyUserPreferences.radius)
     }
     
     func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
@@ -26,17 +42,48 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_searchNearby_updatesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
         let (sut, serviceSpy) = makeSUT()
-        let expectedNearbyPlaces = anyNearbyPlaces
+        let expectedNearbyPlaces = makeNearbyPlaces()
         serviceSpy.result = .success(expectedNearbyPlaces)
         
         await assert(on: sut, withExpectedResult: .success(expectedNearbyPlaces))
+    }
+    
+    func test_filteredNearbyPlaces_isEmptyWhenSearchNearbyStateIsNotSuccess() {
+        let (sut, _) = makeSUT()
+        
+        sut.searchNearbyState = .idle
+        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        
+        sut.searchNearbyState = .isLoading
+        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        
+        sut.searchNearbyState = .failure(.serverError)
+        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+    }
+    
+    func test_filteredNearbyPlaces_filtersNearbyPlacesUsingSearchText() {
+        let (sut, _) = makeSUT()
+        let nearbyPlaces = makeNearbyPlaces()
+        sut.searchNearbyState = .success(nearbyPlaces)
+        sut.searchText = nearbyPlaces[1].placeName
+        
+        XCTAssertEqual(sut.filteredNearbyPlaces, [nearbyPlaces[1]])
+    }
+    
+    func test_filteredNearbyPlaces_equalsNearbyPlacesWhensearchTextIsEmpty() {
+        let (sut, _) = makeSUT()
+        let nearbyPlaces = makeNearbyPlaces()
+        sut.searchNearbyState = .success(nearbyPlaces)
+        sut.searchText = ""
+        
+        XCTAssertEqual(sut.filteredNearbyPlaces, nearbyPlaces)
     }
     
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: HomeViewModel, serviceSpy: SearchNearbyServiceSpy) {
         let serviceSpy = SearchNearbyServiceSpy()
-        let sut = HomeViewModel(searchNearbyService: serviceSpy, currentLocation: anyLocation)
+        let sut = HomeViewModel(searchNearbyService: serviceSpy, currentLocation: anyLocation, userPreferences: anyUserPreferences)
         return (sut, serviceSpy)
     }
     
@@ -62,7 +109,11 @@ final class HomeViewModelTests: XCTestCase {
         Location(latitude: 2.3, longitude: 4.5)
     }
     
-    private var anyNearbyPlaces: [NearbyPlace] {
+    private var anyUserPreferences: UserPreferences {
+        UserPreferences(radius: 200, starsNumber: 4)
+    }
+    
+    private func makeNearbyPlaces() -> [NearbyPlace] {
         [
             NearbyPlace(placeID: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
             NearbyPlace(placeID: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),

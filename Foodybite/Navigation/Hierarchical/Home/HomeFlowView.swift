@@ -15,6 +15,8 @@ struct HomeFlowView: View {
     @ObservedObject var flow: Flow<HomeRoute>
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
+    let userPreferencesLoader: UserPreferencesLoader
+    let userPreferencesSaver: UserPreferencesSaver
     let currentLocation: Location
     
     var body: some View {
@@ -23,7 +25,8 @@ struct HomeFlowView: View {
                 HomeView(
                     viewModel: HomeViewModel(
                         searchNearbyService: placesService,
-                        currentLocation: currentLocation),
+                        currentLocation: currentLocation,
+                        userPreferences: userPreferencesLoader.load()),
                     showPlaceDetails: { placeID in
                         flow.append(.placeDetails(placeID))
                     },
@@ -38,6 +41,16 @@ struct HomeFlowView: View {
                             viewModel: RestaurantCellViewModel(
                                 nearbyPlace: nearbyPlace,
                                 currentLocation: currentLocation
+                            )
+                        )
+                    },
+                    searchView: { searchText in
+                        HomeSearchView(
+                            searchText: searchText,
+                            searchCriteriaView: SearchCriteriaView(
+                                viewModel: SearchCriteriaViewModel(
+                                    userPreferences: userPreferencesLoader.load(),
+                                    userPreferencesSaver: userPreferencesSaver)
                             )
                         )
                     }

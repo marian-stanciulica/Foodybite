@@ -35,6 +35,7 @@ public final class NewReviewViewModel: ObservableObject {
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let addReviewService: AddReviewService
     private let location: Location
+    private let userPreferences: UserPreferences
     
     @Published public var getPlaceDetailsState: GetPlaceDetailsState = .idle
     @Published public var postReviewState: PostReviewState = .idle
@@ -51,18 +52,21 @@ public final class NewReviewViewModel: ObservableObject {
         return false
     }
     
-    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, addReviewService: AddReviewService, location: Location) {
+    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
         self.autocompletePlacesService = autocompletePlacesService
         self.getPlaceDetailsService = getPlaceDetailsService
         self.addReviewService = addReviewService
         self.location = location
+        self.userPreferences = userPreferences
     }
     
     @MainActor public func autocomplete() async {
         getPlaceDetailsState = .idle
         
         do {
-            autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText, location: location, radius: 100)
+            autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText,
+                                                                                   location: location,
+                                                                                   radius: userPreferences.radius)
         } catch {
             autocompleteResults = []
         }
