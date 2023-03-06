@@ -26,6 +26,11 @@ public final class HomeViewModel: ObservableObject {
     @Published public var searchNearbyState: State = .idle
     @Published public var searchText = ""
     
+    public var filteredNearbyPlaces: [NearbyPlace] {
+        guard case let .success(nearbyPlaces) = searchNearbyState else { return [] }
+        return nearbyPlaces.filter { $0.placeName.contains(searchText) }
+    }
+    
     public init(searchNearbyService: SearchNearbyService, currentLocation: Location) {
         self.searchNearbyService = searchNearbyService
         self.currentLocation = currentLocation

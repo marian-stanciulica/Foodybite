@@ -32,10 +32,32 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_searchNearby_updatesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
         let (sut, serviceSpy) = makeSUT()
-        let expectedNearbyPlaces = anyNearbyPlaces
+        let expectedNearbyPlaces = makeNearbyPlaces()
         serviceSpy.result = .success(expectedNearbyPlaces)
         
         await assert(on: sut, withExpectedResult: .success(expectedNearbyPlaces))
+    }
+    
+    func test_filteredNearbyPlaces_isEmptyWhenSearchNearbyStateIsNotSuccess() {
+        let (sut, _) = makeSUT()
+        
+        sut.searchNearbyState = .idle
+        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        
+        sut.searchNearbyState = .isLoading
+        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        
+        sut.searchNearbyState = .failure(.serverError)
+        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+    }
+    
+    func test_filteredNearbyPlaces_filtersNearbyPlacesUsingSearchText() {
+        let (sut, _) = makeSUT()
+        let nearbyPlaces = makeNearbyPlaces()
+        sut.searchNearbyState = .success(nearbyPlaces)
+        sut.searchText = nearbyPlaces[1].placeName
+        
+        XCTAssertEqual(sut.filteredNearbyPlaces, [nearbyPlaces[1]])
     }
     
     // MARK: - Helpers
@@ -68,7 +90,7 @@ final class HomeViewModelTests: XCTestCase {
         Location(latitude: 2.3, longitude: 4.5)
     }
     
-    private var anyNearbyPlaces: [NearbyPlace] {
+    private func makeNearbyPlaces() -> [NearbyPlace] {
         [
             NearbyPlace(placeID: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
             NearbyPlace(placeID: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
