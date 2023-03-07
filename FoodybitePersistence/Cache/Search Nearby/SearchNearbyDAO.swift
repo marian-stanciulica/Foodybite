@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class SearchNearbyDAO {
+public final class SearchNearbyDAO: SearchNearbyService {
     private let store: UserStore
     private let getDistanceInKm: (Location, Location) -> Double
     
