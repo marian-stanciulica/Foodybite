@@ -25,6 +25,7 @@
 		0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976429B766000052094F /* ManagedNearbyPlace.swift */; };
 		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
 		0F18976B29B786B00052094F /* LocalStoreWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976A29B786B00052094F /* LocalStoreWriter.swift */; };
+		0F18976E29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataLocalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */; };
 		0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */; };
@@ -543,6 +544,7 @@
 		0F18976429B766000052094F /* ManagedNearbyPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedNearbyPlace.swift; sourceTree = "<group>"; };
 		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
 		0F18976A29B786B00052094F /* LocalStoreWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStoreWriter.swift; sourceTree = "<group>"; };
+		0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStore.swift; sourceTree = "<group>"; };
@@ -1041,6 +1043,7 @@
 		0F108808291E2397007A28FA /* FoodybiteTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F18976C29B78CF70052094F /* Composition Root */,
 				0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */,
 				0F7E23CE2920E329005196EA /* Navigation */,
 				0F73ECA2292F9D700025B237 /* Input Validators */,
@@ -1065,6 +1068,14 @@
 				0F18976829B785020052094F /* SearchNearbyDAO.swift */,
 			);
 			path = "Search Nearby";
+			sourceTree = "<group>";
+		};
+		0F18976C29B78CF70052094F /* Composition Root */ = {
+			isa = PBXGroup;
+			children = (
+				0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */,
+			);
+			path = "Composition Root";
 			sourceTree = "<group>";
 		};
 		0F19B476291647DB00A8FC8F /* Domain */ = {
@@ -3301,6 +3312,7 @@
 				0F9A19F929AB5326007B2E9B /* SettingsViewSnapshotTests.swift in Sources */,
 				0FD19A5929AC9C6E00DF7326 /* EditProfileViewSnapshotTests.swift in Sources */,
 				0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */,
+				0F18976E29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift in Sources */,
 				0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */,
 				0FB1D3D729ACEB4500304A94 /* NewReviewSnapshotTests.swift in Sources */,
 				0FABA447298BF80A00EACFE5 /* LocationProviderTests.swift in Sources */,
