@@ -56,6 +56,16 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
     }
     
+    func test_searchNearby_cachesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        let expectedNearbyPlaces = makeNearbyPlaces()
+        serviceStub.stub = .success(expectedNearbyPlaces)
+        
+        _ = try? await searchNearby(on: sut)
+        
+        XCTAssertEqual(cacheSpy.capturedValues, [expectedNearbyPlaces])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: SearchNearbyServiceCacheDecorator, serviceStub: SearchNearbyServiceStub, cacheSpy: SearchNearbyCacheSpy) {
