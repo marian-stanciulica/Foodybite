@@ -12,46 +12,43 @@ import FoodybitePersistence
 class UserStoreSpy: UserStore {
     enum Message {
         case read
-        case write
+        case readAll
+        case write(User)
     }
     
     struct CompletionNotSet: Error {}
     
     private(set) var messages = [Message]()
     
-    private(set) var readResult: Result<User, Error>?
-    
-    private(set) var writeError: Error? = nil
-    private(set) var writeParameter: User?
+    var readResult: Result<User, Error>?
+    var readAllResult: Result<[User], Error>?
+    var writeResult: Result<Void, Error>?
 
     func read<T: LocalModelConvertable>() async throws -> T {
         messages.append(.read)
         
-        if let readCompletion = readResult {
-            return try readCompletion.get() as! T
+        if let result = readResult {
+            return try result.get() as! T
         } else {
             throw CompletionNotSet()
         }
     }
     
-    func setRead(error: Error) {
-        readResult = .failure(error)
-    }
-    
-    func setRead(returnedObject object: User) {
-        readResult = .success(object)
-    }
-    
-    func write<T: LocalModelConvertable>(_ user: T) async throws {
-        messages.append(.write)
-        writeParameter = (user as! User)
+    func readAll<T: LocalModelConvertable>() async throws -> [T] {
+        messages.append(.readAll)
         
-        if let writeError = writeError {
-            throw writeError
+        if let result = readAllResult {
+            return try result.get() as! [T]
+        } else {
+            throw CompletionNotSet()
         }
     }
     
-    func setWrite(error: Error?) {
-        writeError = error
+    func write<T: LocalModelConvertable>(_ object: T) async throws {
+        messages.append(.write(object as! User))
+        
+        if let result = writeResult {
+            return try result.get()
+        }
     }
 }

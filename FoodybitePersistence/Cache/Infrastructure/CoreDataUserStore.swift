@@ -18,11 +18,19 @@ public class CoreDataUserStore: UserStore {
     }
     
     public func read<T: LocalModelConvertable>() async throws -> T {
+        if let firstObject: T = try await readAll().first {
+            return firstObject
+        }
+        
+        throw CacheMissError()
+    }
+    
+    public func readAll<T: LocalModelConvertable>() async throws -> [T] {
         try await context.perform {
-            let results = try self.context.fetch(T.LocalModel.fetchRequest())
+            let request = T.LocalModel.fetchRequest()
             
-            if let firstResult = results.first as? T.LocalModel {
-                return T(from: firstResult)
+            if let results = try self.context.fetch(request) as? [T.LocalModel] {
+                return results.map { T(from: $0) }
             } else {
                 throw CacheMissError()
             }
