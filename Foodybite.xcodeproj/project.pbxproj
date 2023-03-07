@@ -27,6 +27,7 @@
 		0F18976B29B786B00052094F /* LocalStoreWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976A29B786B00052094F /* LocalStoreWriter.swift */; };
 		0F18976E29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */; };
 		0F18977329B79D6C0052094F /* SearchNearbyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18977229B79D6C0052094F /* SearchNearbyCache.swift */; };
+		0F18977629B7A0C60052094F /* SearchNearbyServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18977529B7A0C60052094F /* SearchNearbyServiceCacheDecorator.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataLocalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */; };
 		0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */; };
@@ -547,6 +548,7 @@
 		0F18976A29B786B00052094F /* LocalStoreWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStoreWriter.swift; sourceTree = "<group>"; };
 		0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F18977229B79D6C0052094F /* SearchNearbyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyCache.swift; sourceTree = "<group>"; };
+		0F18977529B7A0C60052094F /* SearchNearbyServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyServiceCacheDecorator.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStore.swift; sourceTree = "<group>"; };
@@ -1086,6 +1088,15 @@
 				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
 			);
 			path = "Search Nearby";
+			sourceTree = "<group>";
+		};
+		0F18977429B7A0B20052094F /* Composition Root */ = {
+			isa = PBXGroup;
+			children = (
+				0FC73C5D29B611F5005879B8 /* NullUserStore.swift */,
+				0F18977529B7A0C60052094F /* SearchNearbyServiceCacheDecorator.swift */,
+			);
+			path = "Composition Root";
 			sourceTree = "<group>";
 		};
 		0F19B476291647DB00A8FC8F /* Domain */ = {
@@ -1791,7 +1802,7 @@
 				0FF7C67329B2028B00622E9C /* Foodybite.entitlements */,
 				0F423AAF29859FB8009EB345 /* Info.plist */,
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
-				0FC73C5D29B611F5005879B8 /* NullUserStore.swift */,
+				0F18977429B7A0B20052094F /* Composition Root */,
 				A2E64B9C2842145900FC41B7 /* Extension */,
 				A2C242482847A26700CB233B /* View Modifiers */,
 				A2032BA2284205B600F8D8C8 /* Components */,
@@ -3485,6 +3496,7 @@
 				A2C242202847516B00CB233B /* PhoneAndDirectionsView.swift in Sources */,
 				0FAFCA282842984E00778E45 /* TabBarIcon.swift in Sources */,
 				0FD41764298D5AFE00F2BF92 /* LocationProvider.swift in Sources */,
+				0F18977629B7A0C60052094F /* SearchNearbyServiceCacheDecorator.swift in Sources */,
 				A2C24222284755AE00CB233B /* Blur.swift in Sources */,
 				0F2B4CC028455007004D0EF7 /* OrangeButton.swift in Sources */,
 				0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */,
