@@ -7,5 +7,5 @@
 
 public protocol UserStore {
     func read<T: LocalModelConvertable>() async throws -> T
-    func write<T: LocalModelConvertable>(_ user: T) async throws
+    func write<T: LocalModelConvertable>(_ object: T) async throws
 }

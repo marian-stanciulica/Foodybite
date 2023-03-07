@@ -19,7 +19,7 @@ public class CoreDataUserStore: UserStore {
     
     public func read<T: LocalModelConvertable>() async throws -> T {
         try await context.perform {
-            let results = try self.context.fetch(ManagedUser.fetchRequest())
+            let results = try self.context.fetch(T.LocalModel.fetchRequest())
             
             if let firstResult = results.first as? T.LocalModel {
                 return T(from: firstResult)
@@ -29,18 +29,18 @@ public class CoreDataUserStore: UserStore {
         }
     }
     
-    public func write<T: LocalModelConvertable>(_ user: T) async throws {
+    public func write<T: LocalModelConvertable>(_ object: T) async throws {
         try await context.perform {
-            try self.deleteAll(context: self.context)
+            let request = T.LocalModel.fetchRequest()
             
-            self.context.insert(user.toLocalModel(context: self.context))
+            if let results = try self.context.fetch(request) as? [T.LocalModel] {
+                for object in results {
+                    self.context.delete(object)
+                }
+            }
+            
+            self.context.insert(object.toLocalModel(context: self.context))
             try self.context.save()
         }
     }
-    
-    private func deleteAll(context: NSManagedObjectContext) throws {
-        let results = try self.context.fetch(ManagedUser.fetchRequest())
-        results.forEach(self.context.delete)
-    }
-    
 }
