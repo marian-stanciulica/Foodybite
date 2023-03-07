@@ -34,6 +34,15 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         }
     }
     
+    func test_searchNearby_returnsNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async throws {
+        let (sut, serviceStub) = makeSUT()
+        let expectedNearbyPlaces = makeNearbyPlaces()
+        serviceStub.stub = .success(expectedNearbyPlaces)
+        
+        let receivedNearbyPlaces = try await searchNearby(on: sut)
+        XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: SearchNearbyServiceCacheDecorator, serviceStub: SearchNearbyServiceStub) {
@@ -52,6 +61,32 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     
     private func anyError() -> NSError {
         NSError(domain: "any error", code: 1)
+    }
+    
+    private func makeNearbyPlaces() -> [NearbyPlace] {
+        [
+            NearbyPlace(
+                placeID: "place #1",
+                placeName: "Place name 1",
+                isOpen: true,
+                rating: 3,
+                location: Location(latitude: 2, longitude: 5),
+                photo: nil),
+            NearbyPlace(
+                placeID: "place #2",
+                placeName: "Place name 2",
+                isOpen: false,
+                rating: 4,
+                location: Location(latitude: 43, longitude: 56),
+                photo: nil),
+            NearbyPlace(
+                placeID: "place #3",
+                placeName: "Place name 3",
+                isOpen: true,
+                rating: 5,
+                location: Location(latitude: 3, longitude: 6),
+                photo: nil)
+        ]
     }
     
     private class SearchNearbyServiceStub: SearchNearbyService {
