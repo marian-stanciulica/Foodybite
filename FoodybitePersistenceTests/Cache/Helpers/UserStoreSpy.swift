@@ -24,11 +24,11 @@ class UserStoreSpy: UserStore {
     private(set) var writeError: Error? = nil
     private(set) var writeParameter: User?
 
-    func read() async throws -> User {
+    func read<T: LocalModelConvertable>() async throws -> T {
         messages.append(.read)
         
         if let readCompletion = readResult {
-            return try readCompletion.get()
+            return try readCompletion.get() as! T
         } else {
             throw CompletionNotSet()
         }
@@ -42,9 +42,9 @@ class UserStoreSpy: UserStore {
         readResult = .success(object)
     }
     
-    func write(_ user: User) async throws {
+    func write<T: LocalModelConvertable>(_ user: T) async throws {
         messages.append(.write)
-        writeParameter = user
+        writeParameter = (user as! User)
         
         if let writeError = writeError {
             throw writeError
