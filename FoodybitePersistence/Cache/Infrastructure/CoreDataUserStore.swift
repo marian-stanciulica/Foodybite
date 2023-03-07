@@ -38,12 +38,6 @@ public class CoreDataUserStore<T: LocalModelConvertable>: UserStore {
         }
     }
     
-    public func delete() async throws {
-        try await context.perform {
-            try self.deleteAll(context: self.context)
-        }
-    }
-    
     private func deleteAll(context: NSManagedObjectContext) throws {
         let results = try self.context.fetch(ManagedUser.fetchRequest())
         results.forEach(self.context.delete)

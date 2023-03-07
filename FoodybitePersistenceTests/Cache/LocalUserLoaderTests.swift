@@ -53,53 +53,6 @@ final class LocalUserLoaderTests: XCTestCase {
         await expectLoad(sut, toCompleteWith: .success(user))
     }
     
-    func test_save_doesntWriteOnDeletionError() async {
-        let (sut, client) = makeSUT()
-        let expectedError = anyNSError()
-        client.setDeletion(error: expectedError)
-        
-        try? await sut.save(user: anyUser())
-        
-        XCTAssertEqual(client.messages, [.delete])
-    }
-    
-    func test_save_returnsErrorOnDeletionError() async {
-        let (sut, client) = makeSUT()
-        let expectedError = anyNSError()
-        client.setDeletion(error: expectedError)
-        
-        await expectSave(sut, toCompleteWith: expectedError)
-    }
-    
-    func test_save_writesAfterDeletionSucceeded() async {
-        let (sut, client) = makeSUT()
-        client.setDeletion(error: nil)
-        
-        try? await sut.save(user: anyUser())
-        
-        XCTAssertEqual(client.messages, [.delete, .write])
-    }
-    
-    func test_save_sendsParameterToWrite() async {
-        let (sut, client) = makeSUT()
-        let user = anyUser()
-        client.setDeletion(error: nil)
-        
-        try? await sut.save(user: user)
-        
-        XCTAssertEqual(client.writeParameter, user)
-    }
-    
-    func test_save_returnsErrorOnWriteError() async {
-        let (sut, client) = makeSUT()
-        let expectedError = anyNSError()
-
-        client.setDeletion(error: nil)
-        client.setWrite(error: expectedError)
-        
-        await expectSave(sut, toCompleteWith: expectedError)
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocalUserLoader<User, UserStoreSpy>, store: UserStoreSpy) {

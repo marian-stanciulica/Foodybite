@@ -77,56 +77,6 @@ final class CoreDataUserStoreTests: XCTestCase {
         XCTAssertEqual(receivedUser, anyUser)
     }
     
-    func test_delete_deliversNoErrorOnEmptyCache() async {
-        let sut = makeSUT()
-
-        do {
-            try await sut.delete()
-        } catch {
-            XCTFail("Delete should succeed on empty cache, got \(error) instead")
-        }
-    }
-    
-    func test_delete_hasNoSideEffectsOnEmptyCache() async throws {
-        let sut = makeSUT()
-
-        try await sut.delete()
-
-        do {
-            let result = try await sut.read()
-            XCTFail("Expected read to fail, got \(result) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
-    }
-    
-    func test_delete_deliversNoErrorOnNonEmptyCache() async throws {
-        let sut = makeSUT()
-
-        try await sut.write(anyUser())
-
-        do {
-            try await sut.delete()
-        } catch {
-            XCTFail("Delete should succeed on non empty cache, got \(error) instead")
-        }
-    }
-    
-    func test_delete_deletesPreviouslyWrittenResource() async throws {
-        let sut = makeSUT()
-
-        try await sut.write(anyUser())
-        try await sut.delete()
-
-        do {
-            let resource = try await sut.read()
-            XCTFail("Expected read to fail, got \(resource) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
-    }
-    
-    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> CoreDataUserStore<User> {

@@ -10,5 +10,4 @@ public protocol UserStore {
     
     func read() async throws -> LocalModel
     func write(_ user: LocalModel) async throws
-    func delete() async throws
 }

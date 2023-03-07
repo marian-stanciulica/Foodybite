@@ -19,7 +19,6 @@ public class LocalUserLoader<T: LocalModelConvertable, Store: UserStore> where S
     }
     
     public func save(user: T) async throws {
-        try await store.delete()
         try await store.write(user)
     }
 }

@@ -13,7 +13,6 @@ class UserStoreSpy: UserStore {
     enum Message {
         case read
         case write
-        case delete
     }
     
     struct CompletionNotSet: Error {}
@@ -25,8 +24,6 @@ class UserStoreSpy: UserStore {
     private(set) var writeError: Error? = nil
     private(set) var writeParameter: User?
 
-    private(set) var deleteError: Error? = nil
-    
     func read() async throws -> User {
         messages.append(.read)
         
@@ -56,17 +53,5 @@ class UserStoreSpy: UserStore {
     
     func setWrite(error: Error?) {
         writeError = error
-    }
-    
-    func delete() async throws {
-        messages.append(.delete)
-        
-        if let deleteError = deleteError {
-            throw deleteError
-        }
-    }
-    
-    func setDeletion(error: Error?) {
-        deleteError = error
     }
 }
