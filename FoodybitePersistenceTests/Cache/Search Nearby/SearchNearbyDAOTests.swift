@@ -35,6 +35,21 @@ final class SearchNearbyDAOTests: XCTestCase {
         XCTAssertEqual(receivedNearbyPlaces, [nearbyPlaces[0]] + [nearbyPlaces[2]])
     }
     
+    func test_save_sendsNearbyPlacesToStore() async throws {
+        let (sut, storeSpy, _) = makeSUT()
+        let expectedNearbyPlaces = makeNearbyPlaces()
+        
+        try await sut.save(nearbyPlaces: expectedNearbyPlaces)
+        
+        XCTAssertEqual(storeSpy.messages.count, 1)
+        
+        if case let .writeAll(receivedNearbyPlaces) = storeSpy.messages[0] {
+            XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces as! [NearbyPlace])
+        } else {
+            XCTFail("Expected .writeAll message, got \(storeSpy.messages[0]) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: LocalStoreSpy, distanceProviderStub: DistanceProviderStub) {

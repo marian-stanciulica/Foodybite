@@ -9,10 +9,12 @@ import Foundation
 import Domain
 import FoodybitePersistence
 
-class LocalStoreSpy: LocalStoreReader {
+class LocalStoreSpy: LocalStoreReader, LocalStoreWriter {
     enum Message {
         case read
         case readAll
+        case write(any LocalModelConvertable)
+        case writeAll([any LocalModelConvertable])
     }
     
     struct CompletionNotSet: Error {}
@@ -40,5 +42,13 @@ class LocalStoreSpy: LocalStoreReader {
         } else {
             throw CompletionNotSet()
         }
+    }
+    
+    func write<T: LocalModelConvertable>(_ object: T) async throws {
+        messages.append(.write(object))
+    }
+    
+    func writeAll<T: LocalModelConvertable>(_ objects: [T]) async throws {
+        messages.append(.writeAll(objects))
     }
 }
