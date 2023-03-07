@@ -47,7 +47,7 @@ final class AppViewModel {
         return UserPreferencesLocalStore()
     }
     
-    lazy var userStore: LocalStore = {
+    lazy var userStore: LocalStoreReader & LocalStoreWriter = {
         do {
             return try CoreDataLocalStore(
                 storeURL: NSPersistentContainer

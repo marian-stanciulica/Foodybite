@@ -8,7 +8,7 @@
 import Domain
 import FoodybitePersistence
 
-final class NullUserStore: LocalStore {
+final class NullUserStore: LocalStoreReader, LocalStoreWriter {
     private struct CacheMissError: Error {}
 
     func read<T: LocalModelConvertable>() async throws -> T {

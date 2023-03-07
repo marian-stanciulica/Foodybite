@@ -60,7 +60,7 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeUserLoader() -> LocalStore {
+    private func makeUserLoader() -> LocalStoreReader {
         let storeURL = testSpecificStoreURL()
         let sut = try! CoreDataLocalStore(storeURL: storeURL)
         return sut
