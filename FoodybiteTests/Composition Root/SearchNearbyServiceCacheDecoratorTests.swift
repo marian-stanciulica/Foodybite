@@ -10,20 +10,24 @@ import XCTest
 
 final class SearchNearbyServiceCacheDecorator: SearchNearbyService {
     private let searchNearbyService: SearchNearbyService
+    private let cache: SearchNearbyCache
     
-    init(searchNearbyService: SearchNearbyService) {
+    init(searchNearbyService: SearchNearbyService, cache: SearchNearbyCache) {
         self.searchNearbyService = searchNearbyService
+        self.cache = cache
     }
     
     func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
-        return try await searchNearbyService.searchNearby(location: location, radius: radius)
+        let nearbyPlaces = try await searchNearbyService.searchNearby(location: location, radius: radius)
+        try? await cache.save(nearbyPlaces: nearbyPlaces)
+        return nearbyPlaces
     }
 }
 
 final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     
     func test_searchNearby_throwsErrorWhenSearchNearbyServiceThrowsError() async {
-        let (sut, serviceStub) = makeSUT()
+        let (sut, serviceStub, _) = makeSUT()
         serviceStub.stub = .failure(anyError())
         
         do {
@@ -35,7 +39,7 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     }
     
     func test_searchNearby_returnsNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async throws {
-        let (sut, serviceStub) = makeSUT()
+        let (sut, serviceStub, _) = makeSUT()
         let expectedNearbyPlaces = makeNearbyPlaces()
         serviceStub.stub = .success(expectedNearbyPlaces)
         
@@ -43,12 +47,22 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
     }
     
+    func test_searchNearby_doesNotCacheWhenSearchNearbyServiceThrowsError() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        serviceStub.stub = .failure(anyError())
+        
+        _ = try? await searchNearby(on: sut)
+        
+        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyServiceCacheDecorator, serviceStub: SearchNearbyServiceStub) {
+    private func makeSUT() -> (sut: SearchNearbyServiceCacheDecorator, serviceStub: SearchNearbyServiceStub, cacheSpy: SearchNearbyCacheSpy) {
         let serviceStub = SearchNearbyServiceStub()
-        let sut = SearchNearbyServiceCacheDecorator(searchNearbyService: serviceStub)
-        return (sut, serviceStub)
+        let cacheSpy = SearchNearbyCacheSpy()
+        let sut = SearchNearbyServiceCacheDecorator(searchNearbyService: serviceStub, cache: cacheSpy)
+        return (sut, serviceStub, cacheSpy)
     }
     
     private func searchNearby(on sut: SearchNearbyServiceCacheDecorator, location: Location? = nil, radius: Int = 0) async throws -> [NearbyPlace] {
@@ -98,6 +112,14 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
             }
             
             return []
+        }
+    }
+    
+    private class SearchNearbyCacheSpy: SearchNearbyCache {
+        private(set) var capturedValues = [[NearbyPlace]]()
+        
+        func save(nearbyPlaces: [NearbyPlace]) async throws {
+            capturedValues.append(nearbyPlaces)
         }
     }
     
