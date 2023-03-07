@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedNearbyPlace" representedClassName="ManagedNearbyPlace" syncable="YES">
+        <attribute name="isOpen" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="placeID" attributeType="String"/>
+        <attribute name="placeName" attributeType="String"/>
+        <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="ManagedUser" representedClassName="ManagedUser" syncable="YES">
         <attribute name="email" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
