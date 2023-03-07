@@ -13,7 +13,6 @@ class LocalStoreSpy: LocalStoreReader {
     enum Message {
         case read
         case readAll
-        case write(User)
     }
     
     struct CompletionNotSet: Error {}
@@ -22,7 +21,6 @@ class LocalStoreSpy: LocalStoreReader {
     
     var readResult: Result<any LocalModelConvertable, Error>?
     var readAllResult: Result<[any LocalModelConvertable], Error>?
-    var writeResult: Result<Void, Error>?
 
     func read<T: LocalModelConvertable>() async throws -> T {
         messages.append(.read)
@@ -41,14 +39,6 @@ class LocalStoreSpy: LocalStoreReader {
             return try result.get() as! [T]
         } else {
             throw CompletionNotSet()
-        }
-    }
-    
-    func write<T: LocalModelConvertable>(_ object: T) async throws {
-        messages.append(.write(object as! User))
-        
-        if let result = writeResult {
-            return try result.get()
         }
     }
 }

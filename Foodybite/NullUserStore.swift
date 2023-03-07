@@ -20,4 +20,5 @@ final class NullUserStore: LocalStoreReader, LocalStoreWriter {
     }
     
     func write<T: LocalModelConvertable>(_ user: T) async throws {}
+    func writeAll<T: LocalModelConvertable>(_ objects: [T]) async throws {}
 }

@@ -51,4 +51,10 @@ public class CoreDataLocalStore: LocalStoreReader, LocalStoreWriter {
             try self.context.save()
         }
     }
+    
+    public func writeAll<T>(_ objects: [T]) async throws where T : LocalModelConvertable {
+        for object in objects {
+            try await write(object)
+        }
+    }
 }
