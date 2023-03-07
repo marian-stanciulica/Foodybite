@@ -37,8 +37,8 @@ final class SearchNearbyDAOTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: UserStoreSpy, distanceProviderStub: DistanceProviderStub) {
-        let storeSpy = UserStoreSpy()
+    private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: LocalStoreSpy, distanceProviderStub: DistanceProviderStub) {
+        let storeSpy = LocalStoreSpy()
         let distanceProviderStub = DistanceProviderStub()
         let sut = SearchNearbyDAO(store: storeSpy, getDistanceInKm: distanceProviderStub.getDistanceInKm)
         return (sut, storeSpy, distanceProviderStub)

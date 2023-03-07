@@ -1,5 +1,5 @@
 //
-//  ResourceStoreSpy.swift
+//  LocalStoreSpy.swift
 //  FoodybitePersistenceTests
 //
 //  Created by Marian Stanciulica on 03.11.2022.
@@ -9,7 +9,7 @@ import Foundation
 import Domain
 import FoodybitePersistence
 
-class UserStoreSpy: LocalStore {
+class LocalStoreSpy: LocalStore {
     enum Message {
         case read
         case readAll
