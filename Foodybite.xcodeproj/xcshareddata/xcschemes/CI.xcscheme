@@ -82,6 +82,17 @@
                ReferencedContainer = "container:Foodybite.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0FC73C5029B6097C005879B8"
+               BuildableName = "FoodybiteCacheIntegrationTests.xctest"
+               BlueprintName = "FoodybiteCacheIntegrationTests"
+               ReferencedContainer = "container:Foodybite.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
