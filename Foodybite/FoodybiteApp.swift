@@ -47,7 +47,7 @@ final class AppViewModel {
         return UserPreferencesLocalStore()
     }
     
-    private func makeUserStore() -> UserStore {
+    lazy var userStore: UserStore = {
         do {
             return try CoreDataUserStore(
                 storeURL: NSPersistentContainer
@@ -57,10 +57,6 @@ final class AppViewModel {
         } catch {
             return NullUserStore()
         }
-    }
-    
-    lazy var localUserLoader: LocalUserLoader = {
-        return LocalUserLoader(store: makeUserStore())
     }()
 }
 
@@ -87,13 +83,13 @@ struct FoodybiteApp: App {
                     AuthFlowView(flow: Flow<AuthRoute>(), apiService: appViewModel.makeApiService()) { user in
                         Task {
                             self.user = user
-                            try? await appViewModel.localUserLoader.save(user: user)
+                            try? await appViewModel.userStore.write(user)
                         }
                     }
                 }
             }
             .task {
-                self.user = try? await appViewModel.localUserLoader.load()
+                self.user = try? await appViewModel.userStore.read()
             }
         }
     }

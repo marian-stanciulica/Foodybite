@@ -11,10 +11,9 @@ import FoodybitePersistence
 final class NullUserStore: UserStore {
     private struct CacheMissError: Error {}
 
-    func read() async throws -> User {
+    func read<T: LocalModelConvertable>() async throws -> T {
         throw CacheMissError()
     }
     
-    func write(_ user: User) async throws {}
-    func delete() async throws {}
+    func write<T: LocalModelConvertable>(_ user: T) async throws {}
 }

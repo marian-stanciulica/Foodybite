@@ -6,8 +6,6 @@
 //
 
 public protocol UserStore {
-    associatedtype LocalModel
-    
-    func read() async throws -> LocalModel
-    func write(_ user: LocalModel) async throws
+    func read<T: LocalModelConvertable>() async throws -> T
+    func write<T: LocalModelConvertable>(_ user: T) async throws
 }
