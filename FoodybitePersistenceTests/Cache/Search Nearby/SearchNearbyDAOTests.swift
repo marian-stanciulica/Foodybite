@@ -11,17 +11,17 @@ import FoodybitePersistence
 
 final class SearchNearbyDAO {
     private let store: UserStore
-    private let distanceProvider: DistanceProvider
+    private let getDistanceInKm: (Location, Location) -> Double
     
-    init(store: UserStore, distanceProvider: DistanceProvider) {
+    init(store: UserStore, getDistanceInKm: @escaping (Location, Location) -> Double) {
         self.store = store
-        self.distanceProvider = distanceProvider
+        self.getDistanceInKm = getDistanceInKm
     }
     
     func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
         try await store.readAll()
             .filter {
-                let distance = distanceProvider.getDistanceInKm(from: location, to: $0.location)
+                let distance = getDistanceInKm(location, $0.location)
                 return Int(distance) < radius
             }
     }
@@ -58,7 +58,7 @@ final class SearchNearbyDAOTests: XCTestCase {
     private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: UserStoreSpy, distanceProviderStub: DistanceProviderStub) {
         let storeSpy = UserStoreSpy()
         let distanceProviderStub = DistanceProviderStub()
-        let sut = SearchNearbyDAO(store: storeSpy, distanceProvider: distanceProviderStub)
+        let sut = SearchNearbyDAO(store: storeSpy, getDistanceInKm: distanceProviderStub.getDistanceInKm)
         return (sut, storeSpy, distanceProviderStub)
     }
     
