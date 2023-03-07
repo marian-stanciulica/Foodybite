@@ -20,8 +20,8 @@ class UserStoreSpy: UserStore {
     
     private(set) var messages = [Message]()
     
-    var readResult: Result<User, Error>?
-    var readAllResult: Result<[User], Error>?
+    var readResult: Result<any LocalModelConvertable, Error>?
+    var readAllResult: Result<[any LocalModelConvertable], Error>?
     var writeResult: Result<Void, Error>?
 
     func read<T: LocalModelConvertable>() async throws -> T {

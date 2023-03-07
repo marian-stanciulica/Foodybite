@@ -11,20 +11,26 @@ import FoodybitePersistence
 
 final class SearchNearbyDAO {
     private let store: UserStore
+    private let distanceProvider: DistanceProvider
     
-    init(store: UserStore) {
+    init(store: UserStore, distanceProvider: DistanceProvider) {
         self.store = store
+        self.distanceProvider = distanceProvider
     }
     
     func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
         try await store.readAll()
+            .filter {
+                let distance = distanceProvider.getDistanceInKm(from: location, to: $0.location)
+                return Int(distance) < radius
+            }
     }
 }
 
 final class SearchNearbyDAOTests: XCTestCase {
     
     func test_searchNearby_throwsErrorWhenStoreThrowsError() async {
-        let (sut, storeSpy) = makeSUT()
+        let (sut, storeSpy, _) = makeSUT()
         storeSpy.readResult = .failure(anyError())
         
         do {
@@ -35,12 +41,25 @@ final class SearchNearbyDAOTests: XCTestCase {
         }
     }
     
+    func test_searchNearby_returnsFilteredNearbyPlacesWhenStoreReturnsSuccessfully() async throws {
+        let (sut, storeSpy, distanceSolverStub) = makeSUT()
+        let radius = 10
+        distanceSolverStub.stub = [9, 11, 8]
+        
+        let nearbyPlaces = makeNearbyPlaces()
+        storeSpy.readAllResult = .success(nearbyPlaces)
+        
+        let receivedNearbyPlaces = try await searchNearby(on: sut, radius: radius)
+        XCTAssertEqual(receivedNearbyPlaces, [nearbyPlaces[0]] + [nearbyPlaces[2]])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: UserStoreSpy) {
+    private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: UserStoreSpy, distanceProviderStub: DistanceProviderStub) {
         let storeSpy = UserStoreSpy()
-        let sut = SearchNearbyDAO(store: storeSpy)
-        return (sut, storeSpy)
+        let distanceProviderStub = DistanceProviderStub()
+        let sut = SearchNearbyDAO(store: storeSpy, distanceProvider: distanceProviderStub)
+        return (sut, storeSpy, distanceProviderStub)
     }
     
     private func anyError() -> NSError {
@@ -51,7 +70,44 @@ final class SearchNearbyDAOTests: XCTestCase {
         Location(latitude: 0, longitude: 0)
     }
     
+    private func makeNearbyPlaces() -> [NearbyPlace] {
+        [
+            NearbyPlace(
+                placeID: "place #1",
+                placeName: "Place name 1",
+                isOpen: true,
+                rating: 3,
+                location: Location(latitude: 2, longitude: 5),
+                photo: nil),
+            NearbyPlace(
+                placeID: "place #2",
+                placeName: "Place name 2",
+                isOpen: false,
+                rating: 4,
+                location: Location(latitude: 43, longitude: 56),
+                photo: nil),
+            NearbyPlace(
+                placeID: "place #3",
+                placeName: "Place name 3",
+                isOpen: true,
+                rating: 5,
+                location: Location(latitude: 3, longitude: 6),
+                photo: nil)
+        ]
+    }
+    
     private func searchNearby(on sut: SearchNearbyDAO, location: Location? = nil, radius: Int = 0) async throws -> [NearbyPlace] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
+    }
+    
+    private class DistanceProviderStub: DistanceProvider {
+        var stub = [Double]()
+        private var count = 0
+        
+        func getDistanceInKm(from source: Location, to destination: Location) -> Double {
+            let distance = stub[count]
+            count += 1
+            return distance
+        }
     }
 }
