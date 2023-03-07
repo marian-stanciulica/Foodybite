@@ -1,5 +1,5 @@
 //
-//  CoreDataUserStoreTests.swift
+//  CoreDataLocalStoreTests.swift
 //  FoodybitePersistenceTests
 //
 //  Created by Marian Stanciulica on 05.11.2022.
@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class CoreDataUserStoreTests: XCTestCase {
+final class CoreDataLocalStoreTests: XCTestCase {
     
     func test_read_deliversErrorOnCacheMiss() async {
         let sut = makeSUT()

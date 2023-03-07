@@ -25,7 +25,7 @@
 		0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976429B766000052094F /* ManagedNearbyPlace.swift */; };
 		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
-		0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */; };
+		0F19B4CE2916962800A8FC8F /* CoreDataLocalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */; };
 		0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */; };
 		0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */; };
 		0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D929169D6700A8FC8F /* ManagedUser.swift */; };
@@ -544,7 +544,7 @@
 		0F18976429B766000052094F /* ManagedNearbyPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedNearbyPlace.swift; sourceTree = "<group>"; };
 		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStoreTests.swift; sourceTree = "<group>"; };
+		0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStore.swift; sourceTree = "<group>"; };
 		0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store.xcdatamodel; sourceTree = "<group>"; };
 		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
@@ -1102,7 +1102,7 @@
 		0F19B4DD2916B01F00A8FC8F /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */,
+				0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -3550,7 +3550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */,
+				0F19B4CE2916962800A8FC8F /* CoreDataLocalStoreTests.swift in Sources */,
 				0F41D9B12913E82A00F0E4C2 /* LocalStoreSpy.swift in Sources */,
 				0FF7C68D29B228F200622E9C /* UserPreferencesStoreTests.swift in Sources */,
 				0F18976029B75F660052094F /* SearchNearbyDAOTests.swift in Sources */,
