@@ -49,7 +49,7 @@ final class AppViewModel {
     
     lazy var userStore: LocalStore = {
         do {
-            return try CoreDataUserStore(
+            return try CoreDataLocalStore(
                 storeURL: NSPersistentContainer
                     .defaultDirectoryURL()
                     .appendingPathComponent("foodybite-store.sqlite"))

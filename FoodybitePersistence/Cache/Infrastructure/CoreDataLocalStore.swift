@@ -1,5 +1,5 @@
 //
-//  CoreDataUserStore.swift
+//  CoreDataLocalStore.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 05.11.2022.
@@ -7,12 +7,12 @@
 
 import CoreData
 
-public class CoreDataUserStore: LocalStore {
+public class CoreDataLocalStore: LocalStore {
     private let context: NSManagedObjectContext
     
     private struct CacheMissError: Error {}
     
-    public init(storeURL: URL, bundle: Bundle = .init(for: CoreDataUserStore.self)) throws {
+    public init(storeURL: URL, bundle: Bundle = .init(for: CoreDataLocalStore.self)) throws {
         let container = try NSPersistentContainer.load(modelName: "Store", bundle: bundle, storeURL: storeURL)
         context = container.newBackgroundContext()
     }

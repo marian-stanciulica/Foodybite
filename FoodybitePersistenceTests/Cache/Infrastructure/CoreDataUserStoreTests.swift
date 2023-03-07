@@ -79,13 +79,13 @@ final class CoreDataUserStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(storeURL: URL? = nil) -> CoreDataUserStore {
-        let storeBundle = Bundle(for: CoreDataUserStore.self)
+    private func makeSUT(storeURL: URL? = nil) -> CoreDataLocalStore {
+        let storeBundle = Bundle(for: CoreDataLocalStore.self)
         let storeURL = URL(filePath: "/dev/null")
-        return try! CoreDataUserStore(storeURL: storeURL, bundle: storeBundle)
+        return try! CoreDataLocalStore(storeURL: storeURL, bundle: storeBundle)
     }
 
-    private func expectReadToFail(sut: CoreDataUserStore, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFail(sut: CoreDataLocalStore, file: StaticString = #file, line: UInt = #line) async {
         do {
             let _: User = try await sut.read()
             XCTFail("Read method expected to fail when cache miss", file: file, line: line)
@@ -94,12 +94,12 @@ final class CoreDataUserStoreTests: XCTestCase {
         }
     }
 
-    private func expectReadToFailTwice(sut: CoreDataUserStore, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFailTwice(sut: CoreDataLocalStore, file: StaticString = #file, line: UInt = #line) async {
         await expectReadToFail(sut: sut)
         await expectReadToFail(sut: sut)
     }
 
-    private func expectReadToSucceed(sut: CoreDataUserStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceed(sut: CoreDataLocalStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
         do {
             let receivedResource: User = try await sut.read()
             XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
@@ -108,7 +108,7 @@ final class CoreDataUserStoreTests: XCTestCase {
         }
     }
 
-    private func expectReadToSucceedTwice(sut: CoreDataUserStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToSucceedTwice(sut: CoreDataLocalStore, withExpected expectedUser: User, file: StaticString = #file, line: UInt = #line) async {
         await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
         await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
     }

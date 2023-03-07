@@ -26,7 +26,7 @@
 		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataUserStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */; };
-		0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */; };
+		0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */; };
 		0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */; };
 		0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D929169D6700A8FC8F /* ManagedUser.swift */; };
 		0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */; };
@@ -545,7 +545,7 @@
 		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataUserStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStoreTests.swift; sourceTree = "<group>"; };
-		0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserStore.swift; sourceTree = "<group>"; };
+		0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStore.swift; sourceTree = "<group>"; };
 		0F19B4D329169C9F00A8FC8F /* Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store.xcdatamodel; sourceTree = "<group>"; };
 		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
 		0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
@@ -1083,7 +1083,7 @@
 			isa = PBXGroup;
 			children = (
 				0F19B4BC291675D000A8FC8F /* Models */,
-				0F19B4D029169C1E00A8FC8F /* CoreDataUserStore.swift */,
+				0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */,
 				0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */,
 				0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */,
 			);
@@ -3536,7 +3536,7 @@
 				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
 				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
 				0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */,
-				0F19B4D129169C1E00A8FC8F /* CoreDataUserStore.swift in Sources */,
+				0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */,
 				0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */,
