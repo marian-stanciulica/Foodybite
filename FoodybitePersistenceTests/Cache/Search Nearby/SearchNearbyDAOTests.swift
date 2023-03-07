@@ -9,24 +9,6 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class SearchNearbyDAO {
-    private let store: UserStore
-    private let getDistanceInKm: (Location, Location) -> Double
-    
-    init(store: UserStore, getDistanceInKm: @escaping (Location, Location) -> Double) {
-        self.store = store
-        self.getDistanceInKm = getDistanceInKm
-    }
-    
-    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
-        try await store.readAll()
-            .filter {
-                let distance = getDistanceInKm(location, $0.location)
-                return Int(distance) < radius
-            }
-    }
-}
-
 final class SearchNearbyDAOTests: XCTestCase {
     
     func test_searchNearby_throwsErrorWhenStoreThrowsError() async {
@@ -100,7 +82,7 @@ final class SearchNearbyDAOTests: XCTestCase {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     
-    private class DistanceProviderStub: DistanceProvider {
+    private class DistanceProviderStub {
         var stub = [Double]()
         private var count = 0
         
