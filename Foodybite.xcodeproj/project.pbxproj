@@ -26,6 +26,7 @@
 		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
 		0F18976B29B786B00052094F /* LocalStoreWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976A29B786B00052094F /* LocalStoreWriter.swift */; };
 		0F18976E29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */; };
+		0F18977329B79D6C0052094F /* SearchNearbyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18977229B79D6C0052094F /* SearchNearbyCache.swift */; };
 		0F19B48A291647F300A8FC8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B46E291645F200A8FC8F /* User.swift */; };
 		0F19B4CE2916962800A8FC8F /* CoreDataLocalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */; };
 		0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */; };
@@ -545,6 +546,7 @@
 		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
 		0F18976A29B786B00052094F /* LocalStoreWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStoreWriter.swift; sourceTree = "<group>"; };
 		0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
+		0F18977229B79D6C0052094F /* SearchNearbyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyCache.swift; sourceTree = "<group>"; };
 		0F19B46E291645F200A8FC8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F19B4CD2916962800A8FC8F /* CoreDataLocalStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStoreTests.swift; sourceTree = "<group>"; };
 		0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocalStore.swift; sourceTree = "<group>"; };
@@ -1076,6 +1078,14 @@
 				0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */,
 			);
 			path = "Composition Root";
+			sourceTree = "<group>";
+		};
+		0F18977129B79D630052094F /* Search Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
+			);
+			path = "Search Nearby";
 			sourceTree = "<group>";
 		};
 		0F19B476291647DB00A8FC8F /* Domain */ = {
@@ -2077,6 +2087,7 @@
 		0FA6BE292994E829003E1912 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				0F18977129B79D630052094F /* Search Nearby */,
 				0FA6BE2A2994E87A003E1912 /* Networking Protocols */,
 				0F412EBA2962D13700FDDF41 /* Places Protocols */,
 				0FD4176B298D60E400F2BF92 /* Location Protocols */,
@@ -3374,6 +3385,7 @@
 				0FA6BE2B2994E8A0003E1912 /* AccountService.swift in Sources */,
 				0F423A8F29850D0D009EB345 /* Location.swift in Sources */,
 				0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */,
+				0F18977329B79D6C0052094F /* SearchNearbyCache.swift in Sources */,
 				0FA6BE312994E8AA003E1912 /* GetReviewsService.swift in Sources */,
 				0FA6BE2D2994E8A0003E1912 /* LogoutService.swift in Sources */,
 			);
