@@ -15,5 +15,9 @@ final class NullUserStore: UserStore {
         throw CacheMissError()
     }
     
+    func readAll<T: LocalModelConvertable>() async throws -> [T] {
+        throw CacheMissError()
+    }
+    
     func write<T: LocalModelConvertable>(_ user: T) async throws {}
 }
