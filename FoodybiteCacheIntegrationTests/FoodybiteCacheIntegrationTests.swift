@@ -28,7 +28,7 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
     func test_loadUser_deliversNilOnEmptyCache() async {
         let userLoader = makeUserLoader()
         
-        let user = try? await userLoader.load()
+        let user: User? = try? await userLoader.read()
         
         XCTAssertEqual(user, nil)
     }
@@ -38,9 +38,9 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         let userLoaderToPerformLoad = makeUserLoader()
         let user = makeUser()
         
-        try await userLoaderToPerformSave.save(user: user)
+        try await userLoaderToPerformSave.write(user)
         
-        let receivedUser = try await userLoaderToPerformLoad.load()
+        let receivedUser: User = try await userLoaderToPerformLoad.read()
         XCTAssertEqual(receivedUser, user)
     }
     
@@ -51,19 +51,18 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         let firstUser = makeUser()
         let secondUser = makeUser()
         
-        try await userLoaderToPerformFirstSave.save(user: firstUser)
-        try await userLoaderToPerformSecondSave.save(user: secondUser)
+        try await userLoaderToPerformFirstSave.write(firstUser)
+        try await userLoaderToPerformSecondSave.write(secondUser)
         
-        let receivedUser = try await userLoaderToPerformLoad.load()
+        let receivedUser: User = try await userLoaderToPerformLoad.read()
         XCTAssertEqual(receivedUser, secondUser)
     }
     
     // MARK: - Helpers
     
-    private func makeUserLoader() -> LocalUserLoader {
+    private func makeUserLoader() -> UserStore {
         let storeURL = testSpecificStoreURL()
-        let store = try! CoreDataUserStore(storeURL: storeURL)
-        let sut = LocalUserLoader(store: store)
+        let sut = try! CoreDataUserStore(storeURL: storeURL)
         return sut
     }
     
