@@ -10,20 +10,26 @@ import Domain
 
 final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService {
     private let primary: SearchNearbyService
+    private let secondary: SearchNearbyService
     
-    init(primary: SearchNearbyService) {
+    init(primary: SearchNearbyService, secondary: SearchNearbyService) {
         self.primary = primary
+        self.secondary = secondary
     }
     
     func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
-        try await primary.searchNearby(location: location, radius: radius)
+        do {
+            return try await primary.searchNearby(location: location, radius: radius)
+        } catch {
+            return try await secondary.searchNearby(location: location, radius: radius)
+        }
     }
 }
 
 final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
     
     func test_searchNearby_returnsNearbyPlacesWhenPrimaryReturnsSuccessfully() async throws {
-        let (sut, primaryStub) = makeSUT()
+        let (sut, primaryStub, _) = makeSUT()
         let expectedNearbyPlaces = makeNearbyPlaces()
         primaryStub.stub = .success(expectedNearbyPlaces)
         
@@ -32,12 +38,26 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
     }
     
+    func test_searchNearby_callsSecondaryWhenPrimaryFails() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedLocation = anyLocation()
+        let expectedRadius = 100
+        primaryStub.stub = .failure(anyError())
+        
+        _ = try await searchNearby(on: sut, location: expectedLocation, radius: expectedRadius)
+        
+        XCTAssertEqual(secondaryStub.capturedValues.count, 1)
+        XCTAssertEqual(secondaryStub.capturedValues[0].location, expectedLocation)
+        XCTAssertEqual(secondaryStub.capturedValues[0].radius, expectedRadius)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyServiceWithFallbackComposite, primaryStub: SearchNearbyServiceStub) {
+    private func makeSUT() -> (sut: SearchNearbyServiceWithFallbackComposite, primaryStub: SearchNearbyServiceStub, secondaryStub: SearchNearbyServiceStub) {
         let primaryStub = SearchNearbyServiceStub()
-        let sut = SearchNearbyServiceWithFallbackComposite(primary: primaryStub)
-        return (sut, primaryStub)
+        let secondaryStub = SearchNearbyServiceStub()
+        let sut = SearchNearbyServiceWithFallbackComposite(primary: primaryStub, secondary: secondaryStub)
+        return (sut, primaryStub, secondaryStub)
     }
     
     private func searchNearby(on sut: SearchNearbyServiceWithFallbackComposite, location: Location? = nil, radius: Int = 0) async throws -> [NearbyPlace] {
