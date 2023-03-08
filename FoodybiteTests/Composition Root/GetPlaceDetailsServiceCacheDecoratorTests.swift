@@ -38,6 +38,15 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         }
     }
     
+    func test_getPlaceDetails_returnsPlaceDetailsWhenPlaceDetailsServiceReturnsSuccessfully() async throws {
+        let (sut, serviceStub, _) = makeSUT()
+        let expectedPlaceDetails = makeExpectedPlaceDetails()
+        serviceStub.stub = .success(expectedPlaceDetails)
+        
+        let receivedPlaceDetails = try await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetPlaceDetailsServiceCacheDecorator, serviceStub: GetPlaceDetailsServiceStub, cacheSpy: PlaceDetailsCacheSpy) {

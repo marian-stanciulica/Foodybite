@@ -41,3 +41,15 @@ func makeNearbyPlaces() -> [NearbyPlace] {
             photo: nil)
     ]
 }
+
+func makeExpectedPlaceDetails() -> PlaceDetails {
+    PlaceDetails(placeID: "Expected place",
+                 phoneNumber: "",
+                 name: "",
+                 address: "",
+                 rating: 0,
+                 openingHoursDetails: nil,
+                 reviews: [],
+                 location: Location(latitude: 0, longitude: 0),
+                 photos: [])
+}
