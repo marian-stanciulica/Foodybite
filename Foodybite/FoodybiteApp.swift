@@ -64,7 +64,8 @@ final class AppViewModel {
 struct FoodybiteApp: App {
     private let appViewModel = AppViewModel()
     @State var user: User?
-    
+    @ObservedObject var authflow = Flow<AuthRoute>()
+
     var body: some Scene {
         WindowGroup {
             HStack {
@@ -85,7 +86,8 @@ struct FoodybiteApp: App {
                         )
                     }
                 } else {
-                    AuthFlowView(flow: Flow<AuthRoute>(), apiService: appViewModel.makeApiService()) { user in
+                    makeAuthFlowView(loginService: appViewModel.makeApiService(),
+                                     signUpService: appViewModel.makeApiService()) { user in
                         Task {
                             self.user = user
                             try? await appViewModel.userStore.write(user)
@@ -98,4 +100,31 @@ struct FoodybiteApp: App {
             }
         }
     }
+    
+    @ViewBuilder private func makeAuthFlowView(
+        loginService: LoginService,
+        signUpService: SignUpService,
+        goToMainTab: @escaping (User) -> Void)
+    -> some View {
+        NavigationStack(path: $authflow.path) {
+            AuthFlowView.makeLoginView(
+                flow: authflow,
+                loginService: loginService,
+                goToMainTab: goToMainTab
+            )
+            .navigationDestination(for: AuthRoute.self) { route in
+                switch route {
+                case .signUp:
+                    makeRegisterView(signUpService: signUpService)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder private func makeRegisterView(signUpService: SignUpService) -> some View {
+        RegisterView(viewModel: RegisterViewModel(signUpService: signUpService)) {
+            authflow.navigateBack()
+        }
+    }
+    
 }
