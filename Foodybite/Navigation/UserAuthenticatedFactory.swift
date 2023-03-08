@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 08.03.2023.
 //
 
+import CoreData
 import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence
@@ -32,8 +33,22 @@ final class UserAuthenticatedFactory: RootFactory {
     
     let userPreferencesStore = UserPreferencesLocalStore()
     
-    lazy var searchNearbyDAO = SearchNearbyDAO(store: userStore,
-                                               getDistanceInKm: DistanceSolver.getDistanceInKm)
+    let searchNearbyDAO: SearchNearbyDAO = {
+        let userStore: LocalStoreWriter & LocalStoreReader
+        
+        do {
+            userStore = try CoreDataLocalStore(
+                storeURL: NSPersistentContainer
+                    .defaultDirectoryURL()
+                    .appendingPathComponent("foodybite-store.sqlite"))
+            
+        } catch {
+            userStore = NullUserStore()
+        }
+        
+        return SearchNearbyDAO(store: userStore,
+                               getDistanceInKm: DistanceSolver.getDistanceInKm)
+    }()
     
     lazy var placeDetailsDAO = GetPlaceDetailsDAO(store: userStore)
 }
