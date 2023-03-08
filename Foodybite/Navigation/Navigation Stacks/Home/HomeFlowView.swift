@@ -89,15 +89,25 @@ struct HomeFlowView: View {
                 )
             },
             searchView: { searchText in
-                HomeSearchView(
-                    searchText: searchText,
-                    searchCriteriaView: SearchCriteriaView(
-                        viewModel: SearchCriteriaViewModel(
-                            userPreferences: userPreferencesLoader.load(),
-                            userPreferencesSaver: userPreferencesSaver)
-                    )
-                )
+                makeHomeSearchView(searchText: searchText,
+                                   userPreferences: userPreferencesLoader.load(),
+                                   userPreferencesSaver: userPreferencesSaver)
             }
+        )
+    }
+    
+    @ViewBuilder func makeHomeSearchView(
+        searchText: Binding<String>,
+        userPreferences: UserPreferences,
+        userPreferencesSaver: UserPreferencesSaver
+    ) -> some View {
+        HomeSearchView(
+            searchText: searchText,
+            searchCriteriaView: SearchCriteriaView(
+                viewModel: SearchCriteriaViewModel(
+                    userPreferences: userPreferences,
+                    userPreferencesSaver: userPreferencesSaver)
+            )
         )
     }
 }
