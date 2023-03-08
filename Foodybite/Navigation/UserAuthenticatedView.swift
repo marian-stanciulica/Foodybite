@@ -9,38 +9,171 @@ import Domain
 import SwiftUI
 
 struct UserAuthenticatedView: View {
-    private let userAuthenticatedFactory = UserAuthenticatedFactory()
+    @Binding var userLoggedIn: Bool
     let user: User
-    @StateObject var tabRouter = TabRouter()
     @ObservedObject var locationProvider: LocationProvider
+    @StateObject var viewModel: TabNavigationViewModel
 
+    private let userAuthenticatedFactory = UserAuthenticatedFactory()
+    @StateObject var tabRouter = TabRouter()
+    @StateObject var homeflow = Flow<HomeRoute>()
+    @StateObject var profileflow = Flow<ProfileRoute>()
+    
+    @State var plusButtonActive = false
+    
     var body: some View {
         if locationProvider.locationServicesEnabled {
-            makeTabNavigationView(user: user, locationProvider: locationProvider)
+            makeTabNavigationView(
+                user: user,
+                locationProvider: locationProvider
+            )
+            .task {
+                await viewModel.getCurrentLocation()
+            }
         } else {
             TurnOnLocationView()
         }
     }
     
     @ViewBuilder private func makeTabNavigationView(user: User, locationProvider: LocationProvider) -> some View {
-        TabNavigationView(
-            tabRouter: tabRouter,
-            apiService: userAuthenticatedFactory.authenticatedApiService,
-            placesService: userAuthenticatedFactory.placesService,
-            userPreferencesLoader: userAuthenticatedFactory.userPreferencesStore,
-            userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
-            viewModel: TabNavigationViewModel(locationProvider: locationProvider),
-            user: user,
-            searchNearbyDAO: userAuthenticatedFactory.searchNearbyDAO
-        )
+        switch viewModel.state {
+        case .isLoading:
+            ProgressView()
+            
+        case let .failure(error):
+            Text(error.rawValue)
+            
+        case let .success(location):
+            switch tabRouter.currentPage {
+            case .home:
+                makeHomeFlowView(currentLocation: location)
+            case .newReview:
+                makeNewReviewView(currentLocation: location)
+            case .account:
+                makeProfileFlowView(currentLocation: location)
+            }
+        }
+    }
+    
+    @ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
+        NavigationStack(path: $homeflow.path) {
+            TabBarPageView(page: $tabRouter.currentPage) {
+                HomeFlowView.makeHomeView(
+                    flow: homeflow,
+                    currentLocation: currentLocation,
+                    userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
+                    userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
+                    searchNearbyService: SearchNearbyServiceWithFallbackComposite(
+                        primary: SearchNearbyServiceCacheDecorator(
+                            searchNearbyService: userAuthenticatedFactory.placesService,
+                            cache: userAuthenticatedFactory.searchNearbyDAO),
+                        secondary: userAuthenticatedFactory.searchNearbyDAO
+                    ),
+                    fetchPhotoService: userAuthenticatedFactory.placesService
+                )
+            }
+            .navigationDestination(for: HomeRoute.self) { route in
+                switch route {
+                case let .placeDetails(placeID):
+                    HomeFlowView.makeRestaurantDetailsView(
+                        flow: homeflow,
+                        placeID: placeID,
+                        currentLocation: currentLocation,
+                        getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                        getReviewsService: userAuthenticatedFactory.apiService,
+                        fetchPhotoService: userAuthenticatedFactory.placesService
+                    )
+                case let .addReview(placeID):
+                    HomeFlowView.makeReviewView(
+                        flow: homeflow,
+                        placeID: placeID,
+                        addReviewService: userAuthenticatedFactory.apiService
+                    )
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder private func makeNewReviewView(currentLocation: Location) -> some View {
+        TabBarPageView(page: $tabRouter.currentPage) {
+            NewReviewView(
+                currentPage: $tabRouter.currentPage,
+                plusButtonActive: $plusButtonActive,
+                viewModel: NewReviewViewModel(
+                    autocompletePlacesService: userAuthenticatedFactory.placesService,
+                    getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                    addReviewService: userAuthenticatedFactory.apiService,
+                    location: currentLocation,
+                    userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
+                ),
+                selectedView: { placeDetails in
+                    SelectedRestaurantView(
+                        photoView: PhotoView(
+                            viewModel: PhotoViewModel(
+                                photoReference: placeDetails.photos.first?.photoReference,
+                                fetchPhotoService: userAuthenticatedFactory.placesService
+                            )
+                        ),
+                        placeDetails: placeDetails
+                    )
+                }
+            )
+        }
+    }
+    
+    @ViewBuilder private func makeProfileFlowView(currentLocation: Location) -> some View {
+        NavigationStack(path: $profileflow.path) {
+            TabBarPageView(page: $tabRouter.currentPage) {
+                ProfileFlowView.makeProfileView(
+                    flow: profileflow,
+                    user: user,
+                    accountService: userAuthenticatedFactory.apiService,
+                    getReviewsService: userAuthenticatedFactory.apiService,
+                    getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                    fetchPhotoService: userAuthenticatedFactory.placesService,
+                    goToLogin: { userLoggedIn = false }
+                )
+            }
+            .navigationDestination(for: ProfileRoute.self) { route in
+                switch route {
+                case .settings:
+                    ProfileFlowView.makeSettingsView(
+                        flow: profileflow,
+                        logoutService: userAuthenticatedFactory.apiService,
+                        goToLogin: { userLoggedIn = false }
+                    )
+                case .changePassword:
+                    ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.apiService)
+                case .editProfile:
+                    ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.apiService)
+                case let .placeDetails(placeDetails):
+                    ProfileFlowView.makeRestaurantDetailsView(
+                        flow: profileflow,
+                        placeDetails: placeDetails,
+                        currentLocation: currentLocation,
+                        getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                        getReviewsService: userAuthenticatedFactory.apiService,
+                        fetchPhotoService: userAuthenticatedFactory.placesService
+                    )
+                case let .addReview(placeID):
+                    ProfileFlowView.makeReviewView(
+                        flow: profileflow,
+                        placeID: placeID,
+                        addReviewService: userAuthenticatedFactory.apiService
+                    )
+                }
+            }
+        }
     }
 }
 
 struct AuthenticatedContainerView_Previews: PreviewProvider {
     static var previews: some View {
         UserAuthenticatedView(
+            userLoggedIn: .constant(true),
             user: User(id: UUID(), name: "User", email: "user@user.com", profileImage: nil),
-            locationProvider: LocationProvider()
+            locationProvider: LocationProvider(),
+            viewModel: TabNavigationViewModel(locationProvider: LocationProvider())
         )
     }
 }

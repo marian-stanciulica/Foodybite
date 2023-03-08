@@ -11,13 +11,19 @@ import Domain
 struct RootView: View {
     private let rootFactory = RootFactory()
     @State var user: User?
+    @AppStorage("userLoggedIn") var userLoggedIn = false
     @StateObject var authflow = Flow<AuthRoute>()
     @StateObject var locationProvider = LocationProvider()
     
     var body: some View {
         HStack {
             if let user = user {
-                UserAuthenticatedView(user: user, locationProvider: locationProvider)
+                UserAuthenticatedView(
+                    userLoggedIn: $userLoggedIn,
+                    user: user,
+                    locationProvider: locationProvider,
+                    viewModel: TabNavigationViewModel(locationProvider: locationProvider)
+                )
             } else {
                 makeAuthFlowView(loginService: rootFactory.apiService,
                                  signUpService: rootFactory.apiService) { user in
