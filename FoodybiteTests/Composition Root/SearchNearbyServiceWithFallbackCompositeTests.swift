@@ -51,6 +51,17 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0].radius, expectedRadius)
     }
     
+    func test_searchNearby_returnsNearbyPlacesWhenPrimaryFailsAndSecondaryReturnsSuccessfully() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedNearbyPlaces = makeNearbyPlaces()
+        primaryStub.stub = .failure(anyError())
+        secondaryStub.stub = .success(expectedNearbyPlaces)
+        
+        let receivedNearbyPlaces = try await searchNearby(on: sut)
+        
+        XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: SearchNearbyServiceWithFallbackComposite, primaryStub: SearchNearbyServiceStub, secondaryStub: SearchNearbyServiceStub) {
