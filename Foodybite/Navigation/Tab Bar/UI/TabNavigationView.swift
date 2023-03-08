@@ -38,32 +38,9 @@ struct TabNavigationView: View {
             case let .success(location):
                 switch tabRouter.currentPage {
                 case .home:
-                    makeHomeFlowView(location: location)
+                    makeHomeFlowView(currentLocation: location)
                 case .newReview:
-                    TabBarPageView(page: $tabRouter.currentPage) {
-                        NewReviewView(
-                            currentPage: $tabRouter.currentPage,
-                            plusButtonActive: $plusButtonActive,
-                            viewModel: NewReviewViewModel(
-                                autocompletePlacesService: placesService,
-                                getPlaceDetailsService: placesService,
-                                addReviewService: apiService,
-                                location: location,
-                                userPreferences: userPreferencesLoader.load()
-                            ),
-                            selectedView: { placeDetails in
-                                SelectedRestaurantView(
-                                    photoView: PhotoView(
-                                        viewModel: PhotoViewModel(
-                                            photoReference: placeDetails.photos.first?.photoReference,
-                                            fetchPhotoService: placesService
-                                        )
-                                    ),
-                                    placeDetails: placeDetails
-                                )
-                            }
-                        )
-                    }
+                    makeNewReviewView(currentLocation: location)
                 case .account:
                     makeProfileFlowView(currentLocation: location)
                 }
@@ -74,12 +51,12 @@ struct TabNavigationView: View {
         }
     }
     
-    @ViewBuilder private func makeHomeFlowView(location: Location) -> some View {
+    @ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
         NavigationStack(path: $homeflow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
                 HomeFlowView.makeHomeView(
                     flow: homeflow,
-                    currentLocation: location,
+                    currentLocation: currentLocation,
                     userPreferences: userPreferencesLoader.load(),
                     userPreferencesSaver: userPreferencesSaver,
                     searchNearbyService: SearchNearbyServiceWithFallbackComposite(
@@ -97,7 +74,7 @@ struct TabNavigationView: View {
                     HomeFlowView.makeRestaurantDetailsView(
                         flow: homeflow,
                         placeID: placeID,
-                        currentLocation: location,
+                        currentLocation: currentLocation,
                         getPlaceDetailsService: placesService,
                         getReviewsService: apiService,
                         fetchPhotoService: placesService
@@ -110,6 +87,33 @@ struct TabNavigationView: View {
                     )
                 }
             }
+        }
+    }
+    
+    @ViewBuilder private func makeNewReviewView(currentLocation: Location) -> some View {
+        TabBarPageView(page: $tabRouter.currentPage) {
+            NewReviewView(
+                currentPage: $tabRouter.currentPage,
+                plusButtonActive: $plusButtonActive,
+                viewModel: NewReviewViewModel(
+                    autocompletePlacesService: placesService,
+                    getPlaceDetailsService: placesService,
+                    addReviewService: apiService,
+                    location: currentLocation,
+                    userPreferences: userPreferencesLoader.load()
+                ),
+                selectedView: { placeDetails in
+                    SelectedRestaurantView(
+                        photoView: PhotoView(
+                            viewModel: PhotoViewModel(
+                                photoReference: placeDetails.photos.first?.photoReference,
+                                fetchPhotoService: placesService
+                            )
+                        ),
+                        placeDetails: placeDetails
+                    )
+                }
+            )
         }
     }
     
