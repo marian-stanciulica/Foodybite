@@ -22,34 +22,12 @@ struct ProfileFlowView: View {
     var body: some View {
         NavigationStack(path: $flow.path) {
             TabBarPageView(page: $page) {
-                ProfileView(
-                    viewModel: ProfileViewModel(
-                        accountService: apiService,
-                        getReviewsService: apiService,
-                        user: user,
-                        goToLogin: { userLoggedIn = false }
-                    ),
-                    cell: { review in
-                        RestaurantReviewCellView(
-                            viewModel: RestaurantReviewCellViewModel(
-                                review: review,
-                                getPlaceDetailsService: placesService
-                            ),
-                            makePhotoView: { photoReference in
-                                PhotoView(
-                                    viewModel: PhotoViewModel(
-                                        photoReference: photoReference,
-                                        fetchPhotoService: placesService
-                                    )
-                                )
-                            },
-                            showPlaceDetails: { placeDetails in
-                                flow.append(.placeDetails(placeDetails))
-                            }
-                        )
-                    },
-                    goToSettings: { flow.append(.settings) },
-                    goToEditProfile: { flow.append(.editProfile) }
+                makeProfileView(flow: flow,
+                                user: user,
+                                accountService: apiService,
+                                getReviewsService: apiService,
+                                getPlaceDetailsService: placesService,
+                                fetchPhotoService: placesService
                 )
             }
             .navigationDestination(for: ProfileRoute.self) { route in
@@ -91,5 +69,44 @@ struct ProfileFlowView: View {
                 }
             }
         }
+    }
+    
+    @ViewBuilder private func makeProfileView(
+        flow: Flow<ProfileRoute>,
+        user: User,
+        accountService: AccountService,
+        getReviewsService: GetReviewsService,
+        getPlaceDetailsService: GetPlaceDetailsService,
+        fetchPhotoService: FetchPlacePhotoService
+    ) -> some View {
+        ProfileView(
+            viewModel: ProfileViewModel(
+                accountService: accountService,
+                getReviewsService: getReviewsService,
+                user: user,
+                goToLogin: { userLoggedIn = false }
+            ),
+            cell: { review in
+                RestaurantReviewCellView(
+                    viewModel: RestaurantReviewCellViewModel(
+                        review: review,
+                        getPlaceDetailsService: getPlaceDetailsService
+                    ),
+                    makePhotoView: { photoReference in
+                        PhotoView(
+                            viewModel: PhotoViewModel(
+                                photoReference: photoReference,
+                                fetchPhotoService: fetchPhotoService
+                            )
+                        )
+                    },
+                    showPlaceDetails: { placeDetails in
+                        flow.append(.placeDetails(placeDetails))
+                    }
+                )
+            },
+            goToSettings: { flow.append(.settings) },
+            goToEditProfile: { flow.append(.editProfile) }
+        )
     }
 }
