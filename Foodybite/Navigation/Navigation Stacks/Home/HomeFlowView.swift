@@ -61,7 +61,7 @@ struct HomeFlowView: View {
         }
     }
     
-    @ViewBuilder func makeHomeView() -> some View {
+    @ViewBuilder private func makeHomeView() -> some View {
         HomeView(
             viewModel: HomeViewModel(
                 searchNearbyService: SearchNearbyServiceWithFallbackComposite(
@@ -75,18 +75,9 @@ struct HomeFlowView: View {
                 flow.append(.placeDetails(placeID))
             },
             cell: { nearbyPlace in
-                RestaurantCell(
-                    photoView: PhotoView(
-                        viewModel: PhotoViewModel(
-                            photoReference: nearbyPlace.photo?.photoReference,
-                            fetchPhotoService: placesService
-                        )
-                    ),
-                    viewModel: RestaurantCellViewModel(
-                        nearbyPlace: nearbyPlace,
-                        currentLocation: currentLocation
-                    )
-                )
+                makeRestaurantCell(nearbyPlace: nearbyPlace,
+                                   currentLocation: currentLocation,
+                                   fetchPhotoService: placesService)
             },
             searchView: { searchText in
                 makeHomeSearchView(searchText: searchText,
@@ -96,7 +87,26 @@ struct HomeFlowView: View {
         )
     }
     
-    @ViewBuilder func makeHomeSearchView(
+    @ViewBuilder private func makeRestaurantCell(
+        nearbyPlace: NearbyPlace,
+        currentLocation: Location,
+        fetchPhotoService: FetchPlacePhotoService
+    ) -> some View {
+        RestaurantCell(
+            photoView: PhotoView(
+                viewModel: PhotoViewModel(
+                    photoReference: nearbyPlace.photo?.photoReference,
+                    fetchPhotoService: fetchPhotoService
+                )
+            ),
+            viewModel: RestaurantCellViewModel(
+                nearbyPlace: nearbyPlace,
+                currentLocation: currentLocation
+            )
+        )
+    }
+    
+    @ViewBuilder private func makeHomeSearchView(
         searchText: Binding<String>,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver
