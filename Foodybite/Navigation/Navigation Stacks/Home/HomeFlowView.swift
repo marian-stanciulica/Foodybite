@@ -24,7 +24,11 @@ struct HomeFlowView: View {
     var body: some View {
         NavigationStack(path: $flow.path) {
             TabBarPageView(page: $page) {
-                makeHomeView()
+                makeHomeView(currentLocation: currentLocation,
+                             userPreferences: userPreferencesLoader.load(),
+                             userPreferencesSaver: userPreferencesSaver,
+                             searchNearbyService: placesService,
+                             fetchPhotoService: placesService)
             }
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
@@ -61,27 +65,33 @@ struct HomeFlowView: View {
         }
     }
     
-    @ViewBuilder private func makeHomeView() -> some View {
+    @ViewBuilder private func makeHomeView(
+        currentLocation: Location,
+        userPreferences: UserPreferences,
+        userPreferencesSaver: UserPreferencesSaver,
+        searchNearbyService: SearchNearbyService,
+        fetchPhotoService: FetchPlacePhotoService
+    ) -> some View {
         HomeView(
             viewModel: HomeViewModel(
                 searchNearbyService: SearchNearbyServiceWithFallbackComposite(
                     primary: SearchNearbyServiceCacheDecorator(
-                        searchNearbyService: placesService,
+                        searchNearbyService: searchNearbyService,
                         cache: searchNearbyDAO),
                     secondary: searchNearbyDAO),
                 currentLocation: currentLocation,
-                userPreferences: userPreferencesLoader.load()),
+                userPreferences: userPreferences),
             showPlaceDetails: { placeID in
                 flow.append(.placeDetails(placeID))
             },
             cell: { nearbyPlace in
                 makeRestaurantCell(nearbyPlace: nearbyPlace,
                                    currentLocation: currentLocation,
-                                   fetchPhotoService: placesService)
+                                   fetchPhotoService: fetchPhotoService)
             },
             searchView: { searchText in
                 makeHomeSearchView(searchText: searchText,
-                                   userPreferences: userPreferencesLoader.load(),
+                                   userPreferences: userPreferences,
                                    userPreferencesSaver: userPreferencesSaver)
             }
         )
