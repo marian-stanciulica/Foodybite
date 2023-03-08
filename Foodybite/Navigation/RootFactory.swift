@@ -10,7 +10,7 @@ import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence
 
-final class RootFactory {
+class RootFactory {
     let apiService: FoodybiteNetworking.APIService = {
         let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
         let tokenStore = KeychainTokenStore()
@@ -20,29 +20,7 @@ final class RootFactory {
                           sender: remoteResourceLoader,
                           tokenStore: tokenStore)
     }()
-    
-    let authenticatedApiService: FoodybiteNetworking.APIService = {
-        let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
-        let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
-        let tokenStore = KeychainTokenStore()
-                
-        let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
-        let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
-        let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
         
-        return APIService(loader: authenticatedRemoteResourceLoader,
-                          sender: authenticatedRemoteResourceLoader,
-                          tokenStore: tokenStore)
-    }()
-    
-    let placesService: FoodybitePlaces.APIService = {
-        let httpClient = FoodybitePlaces.URLSessionHTTPClient()
-        let loader = FoodybitePlaces.RemoteResourceLoader(client: httpClient)
-        return FoodybitePlaces.APIService(loader: loader)
-    }()
-    
-    let userPreferencesStore = UserPreferencesLocalStore()
-    
     let userStore: LocalStoreReader & LocalStoreWriter = {
         do {
             return try CoreDataLocalStore(
@@ -54,8 +32,4 @@ final class RootFactory {
             return NullUserStore()
         }
     }()
-    
-    lazy var searchNearbyDAO = SearchNearbyDAO(store: userStore,
-                                               getDistanceInKm: DistanceSolver.getDistanceInKm)
-    
 }

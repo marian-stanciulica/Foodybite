@@ -17,11 +17,7 @@ struct RootView: View {
     var body: some View {
         HStack {
             if let user = user {
-                if locationProvider.locationServicesEnabled {
-                    makeTabNavigationView(user: user, locationProvider: locationProvider)
-                } else {
-                    TurnOnLocationView()
-                }
+                UserAuthenticatedView(user: user, locationProvider: locationProvider)
             } else {
                 makeAuthFlowView(loginService: rootFactory.apiService,
                                  signUpService: rootFactory.apiService) { user in
@@ -35,19 +31,6 @@ struct RootView: View {
         .task {
             self.user = try? await rootFactory.userStore.read()
         }
-    }
-    
-    @ViewBuilder private func makeTabNavigationView(user: User, locationProvider: LocationProvider) -> some View {
-        TabNavigationView(
-            tabRouter: TabRouter(),
-            apiService: rootFactory.authenticatedApiService,
-            placesService: rootFactory.placesService,
-            userPreferencesLoader: rootFactory.userPreferencesStore,
-            userPreferencesSaver: rootFactory.userPreferencesStore,
-            viewModel: TabNavigationViewModel(locationProvider: locationProvider),
-            user: user,
-            searchNearbyDAO: rootFactory.searchNearbyDAO
-        )
     }
     
     @ViewBuilder private func makeAuthFlowView(

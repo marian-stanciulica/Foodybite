@@ -50,6 +50,8 @@
 		0F207BD129B86C390095E905 /* SearchNearbyServiceWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207BD029B86C390095E905 /* SearchNearbyServiceWithFallbackComposite.swift */; };
 		0F207C5129B897510095E905 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C5029B897510095E905 /* RootView.swift */; };
 		0F207C5329B897910095E905 /* RootFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C5229B897910095E905 /* RootFactory.swift */; };
+		0F207C5529B8B0AD0095E905 /* UserAuthenticatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C5429B8B0AD0095E905 /* UserAuthenticatedView.swift */; };
+		0F207C5729B8B0E30095E905 /* UserAuthenticatedFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C5629B8B0E30095E905 /* UserAuthenticatedFactory.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
@@ -576,6 +578,8 @@
 		0F207BD029B86C390095E905 /* SearchNearbyServiceWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyServiceWithFallbackComposite.swift; sourceTree = "<group>"; };
 		0F207C5029B897510095E905 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		0F207C5229B897910095E905 /* RootFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFactory.swift; sourceTree = "<group>"; };
+		0F207C5429B8B0AD0095E905 /* UserAuthenticatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticatedView.swift; sourceTree = "<group>"; };
+		0F207C5629B8B0E30095E905 /* UserAuthenticatedFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticatedFactory.swift; sourceTree = "<group>"; };
 		0F215CB4298265A0000F88F4 /* NearbyPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlace.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
@@ -2030,6 +2034,8 @@
 			children = (
 				0F207C5229B897910095E905 /* RootFactory.swift */,
 				0F207C5029B897510095E905 /* RootView.swift */,
+				0F207C5629B8B0E30095E905 /* UserAuthenticatedFactory.swift */,
+				0F207C5429B8B0AD0095E905 /* UserAuthenticatedView.swift */,
 				0F73EC83292F5F460025B237 /* Tab Bar */,
 				0F73EC81292F5F1D0025B237 /* Navigation Stacks */,
 			);
@@ -3518,6 +3524,7 @@
 				A2E64BCF2842456300FC41B7 /* HomeView.swift in Sources */,
 				A2C2421E28474D9700CB233B /* RestaurantImageView.swift in Sources */,
 				A2C2423528476E1300CB233B /* ReviewCell.swift in Sources */,
+				0F207C5729B8B0E30095E905 /* UserAuthenticatedFactory.swift in Sources */,
 				0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */,
 				0F4AE0E9284291CC0043F962 /* TabNavigationView.swift in Sources */,
 				0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */,
@@ -3555,6 +3562,7 @@
 				0F423A9C29853EF2009EB345 /* Flow.swift in Sources */,
 				0F207C5129B897510095E905 /* RootView.swift in Sources */,
 				0FD41766298D5B1E00F2BF92 /* LocationManager.swift in Sources */,
+				0F207C5529B8B0AD0095E905 /* UserAuthenticatedView.swift in Sources */,
 				0FA6BE3929952116003E1912 /* RestaurantReviewCellView.swift in Sources */,
 				0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */,
 				0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */,
