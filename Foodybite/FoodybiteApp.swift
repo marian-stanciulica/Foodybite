@@ -77,7 +77,12 @@ struct FoodybiteApp: App {
                             userPreferencesLoader: appViewModel.makeUserPreferencesStore(),
                             userPreferencesSaver: appViewModel.makeUserPreferencesStore(),
                             viewModel: TabNavigationViewModel(locationProvider: locationProvider),
-                            user: user)
+                            user: user,
+                            searchNearbyDAO: SearchNearbyDAO(
+                                store: appViewModel.userStore,
+                                getDistanceInKm: DistanceSolver.getDistanceInKm
+                            )
+                        )
                     }
                 } else {
                     AuthFlowView(flow: Flow<AuthRoute>(), apiService: appViewModel.makeApiService()) { user in

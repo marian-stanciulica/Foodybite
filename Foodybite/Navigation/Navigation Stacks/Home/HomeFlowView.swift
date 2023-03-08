@@ -9,6 +9,7 @@ import SwiftUI
 import Domain
 import FoodybiteNetworking
 import FoodybitePlaces
+import FoodybitePersistence
 
 struct HomeFlowView: View {
     @Binding var page: Page
@@ -18,43 +19,12 @@ struct HomeFlowView: View {
     let userPreferencesLoader: UserPreferencesLoader
     let userPreferencesSaver: UserPreferencesSaver
     let currentLocation: Location
+    let searchNearbyDAO: SearchNearbyDAO
     
     var body: some View {
         NavigationStack(path: $flow.path) {
             TabBarPageView(page: $page) {
-                HomeView(
-                    viewModel: HomeViewModel(
-                        searchNearbyService: placesService,
-                        currentLocation: currentLocation,
-                        userPreferences: userPreferencesLoader.load()),
-                    showPlaceDetails: { placeID in
-                        flow.append(.placeDetails(placeID))
-                    },
-                    cell: { nearbyPlace in
-                        RestaurantCell(
-                            photoView: PhotoView(
-                                viewModel: PhotoViewModel(
-                                    photoReference: nearbyPlace.photo?.photoReference,
-                                    fetchPhotoService: placesService
-                                )
-                            ),
-                            viewModel: RestaurantCellViewModel(
-                                nearbyPlace: nearbyPlace,
-                                currentLocation: currentLocation
-                            )
-                        )
-                    },
-                    searchView: { searchText in
-                        HomeSearchView(
-                            searchText: searchText,
-                            searchCriteriaView: SearchCriteriaView(
-                                viewModel: SearchCriteriaViewModel(
-                                    userPreferences: userPreferencesLoader.load(),
-                                    userPreferencesSaver: userPreferencesSaver)
-                            )
-                        )
-                    }
-                )
+                makeHomeView()
             }
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
@@ -89,5 +59,45 @@ struct HomeFlowView: View {
                 }
             }
         }
+    }
+    
+    @ViewBuilder func makeHomeView() -> some View {
+        HomeView(
+            viewModel: HomeViewModel(
+                searchNearbyService: SearchNearbyServiceWithFallbackComposite(
+                    primary: SearchNearbyServiceCacheDecorator(
+                        searchNearbyService: placesService,
+                        cache: searchNearbyDAO),
+                    secondary: searchNearbyDAO),
+                currentLocation: currentLocation,
+                userPreferences: userPreferencesLoader.load()),
+            showPlaceDetails: { placeID in
+                flow.append(.placeDetails(placeID))
+            },
+            cell: { nearbyPlace in
+                RestaurantCell(
+                    photoView: PhotoView(
+                        viewModel: PhotoViewModel(
+                            photoReference: nearbyPlace.photo?.photoReference,
+                            fetchPhotoService: placesService
+                        )
+                    ),
+                    viewModel: RestaurantCellViewModel(
+                        nearbyPlace: nearbyPlace,
+                        currentLocation: currentLocation
+                    )
+                )
+            },
+            searchView: { searchText in
+                HomeSearchView(
+                    searchText: searchText,
+                    searchCriteriaView: SearchCriteriaView(
+                        viewModel: SearchCriteriaViewModel(
+                            userPreferences: userPreferencesLoader.load(),
+                            userPreferencesSaver: userPreferencesSaver)
+                    )
+                )
+            }
+        )
     }
 }

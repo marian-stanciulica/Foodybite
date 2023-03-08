@@ -9,6 +9,7 @@ import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
 import Domain
+import FoodybitePersistence
 
 struct TabNavigationView: View {
     @StateObject var tabRouter: TabRouter
@@ -19,6 +20,7 @@ struct TabNavigationView: View {
     let userPreferencesSaver: UserPreferencesSaver
     @StateObject var viewModel: TabNavigationViewModel
     let user: User
+    let searchNearbyDAO: SearchNearbyDAO
     
     var body: some View {
         Group {
@@ -38,7 +40,8 @@ struct TabNavigationView: View {
                              placesService: placesService,
                              userPreferencesLoader: userPreferencesLoader,
                              userPreferencesSaver: userPreferencesSaver,
-                             currentLocation: location)
+                             currentLocation: location,
+                             searchNearbyDAO: searchNearbyDAO)
                 case .newReview:
                     TabBarPageView(page: $tabRouter.currentPage) {
                         NewReviewView(
