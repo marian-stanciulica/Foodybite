@@ -27,13 +27,16 @@ struct ProfileFlowView: View {
                                 accountService: apiService,
                                 getReviewsService: apiService,
                                 getPlaceDetailsService: placesService,
-                                fetchPhotoService: placesService
+                                fetchPhotoService: placesService,
+                                goToLogin: goToLogin
                 )
             }
             .navigationDestination(for: ProfileRoute.self) { route in
                 switch route {
                 case .settings:
-                    makeSettingsView(flow: flow, logoutService: apiService)
+                    makeSettingsView(flow: flow,
+                                     logoutService: apiService,
+                                     goToLogin: goToLogin)
                 case .changePassword:
                     makeChangePasswordView(changePasswordService: apiService)
                 case .editProfile:
@@ -60,7 +63,8 @@ struct ProfileFlowView: View {
         accountService: AccountService,
         getReviewsService: GetReviewsService,
         getPlaceDetailsService: GetPlaceDetailsService,
-        fetchPhotoService: FetchPlacePhotoService
+        fetchPhotoService: FetchPlacePhotoService,
+        goToLogin: @escaping () -> Void
     ) -> some View {
         ProfileView(
             viewModel: ProfileViewModel(
@@ -93,7 +97,11 @@ struct ProfileFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeSettingsView(flow: Flow<ProfileRoute>, logoutService: LogoutService) -> some View {
+    @ViewBuilder private func makeSettingsView(
+        flow: Flow<ProfileRoute>,
+        logoutService: LogoutService,
+        goToLogin: @escaping () -> Void
+    ) -> some View {
         SettingsView(
             viewModel: SettingsViewModel(
                 logoutService: logoutService,
