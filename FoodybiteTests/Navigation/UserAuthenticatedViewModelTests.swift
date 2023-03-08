@@ -1,5 +1,5 @@
 //
-//  TabNavigationViewModelTests.swift
+//  UserAuthenticatedViewModelTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 03.02.2023.
@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import Foodybite
 
-final class TabNavigationViewModelTests: XCTestCase {
+final class UserAuthenticatedViewModelTests: XCTestCase {
     
     func test_locationServicesEnabled_equalsToLocationProviderLocationServicesEnabled() {
         let (sut, locationProviderSpy) = makeSUT()
@@ -55,9 +55,9 @@ final class TabNavigationViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: TabNavigationViewModel, locationProviderSpy: LocationProvidingSpy) {
+    private func makeSUT() -> (sut: UserAuthenticatedViewModel, locationProviderSpy: LocationProvidingSpy) {
         let locationProviderSpy = LocationProvidingSpy()
-        let sut = TabNavigationViewModel(locationProvider: locationProviderSpy)
+        let sut = UserAuthenticatedViewModel(locationProvider: locationProviderSpy)
         return (sut, locationProviderSpy)
     }
     

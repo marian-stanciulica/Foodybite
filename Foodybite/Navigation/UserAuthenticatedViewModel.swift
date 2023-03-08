@@ -1,5 +1,5 @@
 //
-//  TabNavigationViewModel.swift
+//  UserAuthenticatedViewModel.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 03.02.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public final class TabNavigationViewModel: ObservableObject {
+public final class UserAuthenticatedViewModel: ObservableObject {
     public enum LocationLoadingError: String, Error {
         case unauthorized = "Location couldn't be fetched. Try again!"
     }

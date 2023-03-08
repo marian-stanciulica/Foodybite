@@ -22,7 +22,7 @@ struct RootView: View {
                     userLoggedIn: $userLoggedIn,
                     user: user,
                     locationProvider: locationProvider,
-                    viewModel: TabNavigationViewModel(locationProvider: locationProvider)
+                    viewModel: UserAuthenticatedViewModel(locationProvider: locationProvider)
                 )
             } else {
                 makeAuthFlowView(loginService: rootFactory.apiService,

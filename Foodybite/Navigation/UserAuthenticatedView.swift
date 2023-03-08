@@ -12,7 +12,7 @@ struct UserAuthenticatedView: View {
     @Binding var userLoggedIn: Bool
     let user: User
     @ObservedObject var locationProvider: LocationProvider
-    @StateObject var viewModel: TabNavigationViewModel
+    @StateObject var viewModel: UserAuthenticatedViewModel
 
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
     @StateObject var tabRouter = TabRouter()
@@ -173,7 +173,7 @@ struct AuthenticatedContainerView_Previews: PreviewProvider {
             userLoggedIn: .constant(true),
             user: User(id: UUID(), name: "User", email: "user@user.com", profileImage: nil),
             locationProvider: LocationProvider(),
-            viewModel: TabNavigationViewModel(locationProvider: LocationProvider())
+            viewModel: UserAuthenticatedViewModel(locationProvider: LocationProvider())
         )
     }
 }
