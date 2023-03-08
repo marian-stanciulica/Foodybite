@@ -47,6 +47,15 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
     }
     
+    func test_getPlaceDetails_doesNotCacheWhenPlaceDetailsServiceThrowsError() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        serviceStub.stub = .failure(anyError())
+        
+        _ = try? await sut.getPlaceDetails(placeID: "place id")
+        
+        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetPlaceDetailsServiceCacheDecorator, serviceStub: GetPlaceDetailsServiceStub, cacheSpy: PlaceDetailsCacheSpy) {
