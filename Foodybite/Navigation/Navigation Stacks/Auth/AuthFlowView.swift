@@ -16,14 +16,7 @@ struct AuthFlowView: View {
     
     var body: some View {
         NavigationStack(path: $flow.path) {
-            LoginView(
-                viewModel: LoginViewModel(
-                    loginService: apiService,
-                    goToMainTab: goToMainTab),
-                goToSignUp: {
-                    flow.append(.signUp)
-                }
-            )
+            makeLoginView(flow: flow, loginService: apiService, goToMainTab: goToMainTab)
             .navigationDestination(for: AuthRoute.self) { route in
                 switch route {
                 case .signUp:
@@ -33,5 +26,20 @@ struct AuthFlowView: View {
                 }
             }
         }
+    }
+    
+    @ViewBuilder private func makeLoginView(
+        flow: Flow<AuthRoute>,
+        loginService: LoginService,
+        goToMainTab: @escaping (User) -> Void
+    ) -> some View {
+        LoginView(
+            viewModel: LoginViewModel(
+                loginService: loginService,
+                goToMainTab: goToMainTab),
+            goToSignUp: {
+                flow.append(.signUp)
+            }
+        )
     }
 }
