@@ -9,26 +9,26 @@ import Domain
 import CoreData
 
 extension PlaceDetails: LocalModelConvertable {
-    public init(from managedNearbyPlace: ManagedPlaceDetails) {
+    public init(from managedPlaceDetails: ManagedPlaceDetails) {
         var openingHoursDetails: OpeningHoursDetails?
         
-        if let openingHoursDetailsModel = managedNearbyPlace.openingHoursDetails {
+        if let openingHoursDetailsModel = managedPlaceDetails.openingHoursDetails {
             if let weekdayTextArray = openingHoursDetailsModel.weekdayText?.allObjects as? [String] {
                 openingHoursDetails = OpeningHoursDetails(openNow: openingHoursDetailsModel.openNow,
                                                           weekdayText: weekdayTextArray)
             }
         }
         
-        self.init(placeID: managedNearbyPlace.placeID,
-                  phoneNumber: managedNearbyPlace.phoneNumber,
-                  name: managedNearbyPlace.name,
-                  address: managedNearbyPlace.address,
-                  rating: managedNearbyPlace.rating,
+        self.init(placeID: managedPlaceDetails.placeID,
+                  phoneNumber: managedPlaceDetails.phoneNumber,
+                  name: managedPlaceDetails.name,
+                  address: managedPlaceDetails.address,
+                  rating: managedPlaceDetails.rating,
                   openingHoursDetails: openingHoursDetails,
                   reviews: [],
                   location: Location(
-                    latitude: managedNearbyPlace.latitude,
-                    longitude: managedNearbyPlace.longitude),
+                    latitude: managedPlaceDetails.latitude,
+                    longitude: managedPlaceDetails.longitude),
                   photos: [])
     }
     

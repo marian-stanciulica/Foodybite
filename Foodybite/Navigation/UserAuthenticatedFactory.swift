@@ -34,4 +34,6 @@ final class UserAuthenticatedFactory: RootFactory {
     
     lazy var searchNearbyDAO = SearchNearbyDAO(store: userStore,
                                                getDistanceInKm: DistanceSolver.getDistanceInKm)
+    
+    lazy var placeDetailsDAO = GetPlaceDetailsDAO(store: userStore)
 }
