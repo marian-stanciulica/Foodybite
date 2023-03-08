@@ -64,6 +64,7 @@
 		0F207C7C29B8E2B10095E905 /* PlaceDetailsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */; };
 		0F207C7E29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */; };
 		0F207C8029B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */; };
+		0F207C8229B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
@@ -603,6 +604,7 @@
 		0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsCache.swift; sourceTree = "<group>"; };
 		0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceCacheDecorator.swift; sourceTree = "<group>"; };
+		0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsWithFallbackComposite.swift; sourceTree = "<group>"; };
 		0F215CB4298265A0000F88F4 /* NearbyPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlace.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 				0F18977529B7A0C60052094F /* SearchNearbyServiceCacheDecorator.swift */,
 				0F207BD029B86C390095E905 /* SearchNearbyServiceWithFallbackComposite.swift */,
 				0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */,
+				0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -3581,6 +3584,7 @@
 				0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */,
 				0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */,
 				0FA6BE3729952027003E1912 /* RestaurantReviewCellViewModel.swift in Sources */,
+				0F207C8229B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift in Sources */,
 				0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */,
 				0F207C5329B897910095E905 /* RootFactory.swift in Sources */,
 				0F423AAD29858F1F009EB345 /* DistanceSolver.swift in Sources */,

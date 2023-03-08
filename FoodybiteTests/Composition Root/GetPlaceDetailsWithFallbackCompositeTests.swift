@@ -9,24 +9,6 @@ import XCTest
 import Domain
 import Foodybite
 
-final class GetPlaceDetailsWithFallbackComposite: GetPlaceDetailsService {
-    private let primary: GetPlaceDetailsService
-    private let secondary: GetPlaceDetailsService
-    
-    init(primary: GetPlaceDetailsService, secondary: GetPlaceDetailsService) {
-        self.primary = primary
-        self.secondary = secondary
-    }
-    
-    func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-        do {
-            return try await primary.getPlaceDetails(placeID: placeID)
-        } catch {
-            return try await secondary.getPlaceDetails(placeID: placeID)
-        }
-    }
-}
-
 final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
     
     func test_getPlaceDetails_returnsPlaceDetailsWhenPrimaryReturnsSuccessfully() async throws {
