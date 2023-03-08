@@ -38,7 +38,7 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
     }
     
-    func test_searchNearby_callsSecondaryWhenPrimaryFails() async throws {
+    func test_searchNearby_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedLocation = anyLocation()
         let expectedRadius = 100
@@ -51,7 +51,7 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0].radius, expectedRadius)
     }
     
-    func test_searchNearby_returnsNearbyPlacesWhenPrimaryFailsAndSecondaryReturnsSuccessfully() async throws {
+    func test_searchNearby_returnsNearbyPlacesWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedNearbyPlaces = makeNearbyPlaces()
         primaryStub.stub = .failure(anyError())
@@ -60,6 +60,19 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         let receivedNearbyPlaces = try await searchNearby(on: sut)
         
         XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces)
+    }
+    
+    func test_searchNearby_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        primaryStub.stub = .failure(anyError())
+        secondaryStub.stub = .failure(anyError())
+        
+        do {
+            let nearbyPlaces = try await searchNearby(on: sut)
+            XCTFail("Expected to fail, got \(nearbyPlaces) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
     }
     
     // MARK: - Helpers
