@@ -7,24 +7,7 @@
 
 import XCTest
 import Domain
-
-final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService {
-    private let primary: SearchNearbyService
-    private let secondary: SearchNearbyService
-    
-    init(primary: SearchNearbyService, secondary: SearchNearbyService) {
-        self.primary = primary
-        self.secondary = secondary
-    }
-    
-    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
-        do {
-            return try await primary.searchNearby(location: location, radius: radius)
-        } catch {
-            return try await secondary.searchNearby(location: location, radius: radius)
-        }
-    }
-}
+import Foodybite
 
 final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
     
