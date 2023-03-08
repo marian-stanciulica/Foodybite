@@ -33,14 +33,7 @@ struct ProfileFlowView: View {
             .navigationDestination(for: ProfileRoute.self) { route in
                 switch route {
                 case .settings:
-                    SettingsView(
-                        viewModel: SettingsViewModel(
-                            logoutService: apiService,
-                            goToLogin: goToLogin
-                        )
-                    ) {
-                        flow.append(.changePassword)
-                    }
+                    makeSettingsView(flow: flow, logoutService: apiService)
                 case .changePassword:
                     ChangePasswordView(viewModel: ChangePasswordViewModel(changePasswordService: apiService))
                 case .editProfile:
@@ -108,5 +101,16 @@ struct ProfileFlowView: View {
             goToSettings: { flow.append(.settings) },
             goToEditProfile: { flow.append(.editProfile) }
         )
+    }
+    
+    @ViewBuilder private func makeSettingsView(flow: Flow<ProfileRoute>, logoutService: LogoutService) -> some View {
+        SettingsView(
+            viewModel: SettingsViewModel(
+                logoutService: logoutService,
+                goToLogin: goToLogin
+            )
+        ) {
+            flow.append(.changePassword)
+        }
     }
 }
