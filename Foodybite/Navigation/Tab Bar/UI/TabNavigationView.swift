@@ -21,6 +21,7 @@ struct TabNavigationView: View {
     @StateObject var viewModel: TabNavigationViewModel
     let user: User
     let searchNearbyDAO: SearchNearbyDAO
+    @AppStorage("userLoggedIn") var userLoggedIn = false
     
     @ObservedObject var homeflow = Flow<HomeRoute>()
     
@@ -63,7 +64,7 @@ struct TabNavigationView: View {
                         )
                     }
                 case .account:
-                    ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), apiService: apiService, placesService: placesService, user: user, currentLocation: location)
+                    ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), goToLogin: { userLoggedIn = false }, apiService: apiService, placesService: placesService, user: user, currentLocation: location)
                 }
             }
         }

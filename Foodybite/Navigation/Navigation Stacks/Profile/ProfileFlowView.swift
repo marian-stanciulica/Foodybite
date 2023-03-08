@@ -13,7 +13,7 @@ import FoodybitePlaces
 struct ProfileFlowView: View {
     @Binding var page: Page
     @ObservedObject var flow: Flow<ProfileRoute>
-    @AppStorage("userLoggedIn") var userLoggedIn = false
+    let goToLogin: () -> Void
     let apiService: FoodybiteNetworking.APIService
     let placesService: FoodybitePlaces.APIService
     let user: User
@@ -36,7 +36,7 @@ struct ProfileFlowView: View {
                     SettingsView(
                         viewModel: SettingsViewModel(
                             logoutService: apiService,
-                            goToLogin: { userLoggedIn = false }
+                            goToLogin: goToLogin
                         )
                     ) {
                         flow.append(.changePassword)
@@ -84,7 +84,7 @@ struct ProfileFlowView: View {
                 accountService: accountService,
                 getReviewsService: getReviewsService,
                 user: user,
-                goToLogin: { userLoggedIn = false }
+                goToLogin: goToLogin
             ),
             cell: { review in
                 RestaurantReviewCellView(
