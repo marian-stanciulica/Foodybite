@@ -9,22 +9,6 @@ import XCTest
 import Domain
 import Foodybite
 
-final class GetPlaceDetailsServiceCacheDecorator: GetPlaceDetailsService {
-    private let getPlaceDetailsService: GetPlaceDetailsService
-    private let cache: PlaceDetailsCache
-    
-    init(getPlaceDetailsService: GetPlaceDetailsService, cache: PlaceDetailsCache) {
-        self.getPlaceDetailsService = getPlaceDetailsService
-        self.cache = cache
-    }
-    
-    func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-        let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
-        try await cache.save(placeDetails: placeDetails)
-        return placeDetails
-    }
-}
-
 final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
     
     func test_getPlaceDetails_throwsErrorWhenPlaceDetailsServiceThrowsError() async {
