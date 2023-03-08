@@ -23,7 +23,8 @@ struct TabNavigationView: View {
     let searchNearbyDAO: SearchNearbyDAO
     @AppStorage("userLoggedIn") var userLoggedIn = false
     
-    @ObservedObject var homeflow = Flow<HomeRoute>()
+    @StateObject var homeflow = Flow<HomeRoute>()
+    @StateObject var profileflow = Flow<ProfileRoute>()
     
     var body: some View {
         Group {
@@ -64,7 +65,7 @@ struct TabNavigationView: View {
                         )
                     }
                 case .account:
-                    ProfileFlowView(page: $tabRouter.currentPage, flow: Flow<ProfileRoute>(), goToLogin: { userLoggedIn = false }, apiService: apiService, placesService: placesService, user: user, currentLocation: location)
+                    makeProfileFlowView(currentLocation: location)
                 }
             }
         }
@@ -111,4 +112,50 @@ struct TabNavigationView: View {
             }
         }
     }
+    
+    @ViewBuilder private func makeProfileFlowView(currentLocation: Location) -> some View {
+        NavigationStack(path: $profileflow.path) {
+            TabBarPageView(page: $tabRouter.currentPage) {
+                ProfileFlowView.makeProfileView(
+                    flow: profileflow,
+                    user: user,
+                    accountService: apiService,
+                    getReviewsService: apiService,
+                    getPlaceDetailsService: placesService,
+                    fetchPhotoService: placesService,
+                    goToLogin: { userLoggedIn = false }
+                )
+            }
+            .navigationDestination(for: ProfileRoute.self) { route in
+                switch route {
+                case .settings:
+                    ProfileFlowView.makeSettingsView(
+                        flow: profileflow,
+                        logoutService: apiService,
+                        goToLogin: { userLoggedIn = false }
+                    )
+                case .changePassword:
+                    ProfileFlowView.makeChangePasswordView(changePasswordService: apiService)
+                case .editProfile:
+                    ProfileFlowView.makeEditProfileView(accountService: apiService)
+                case let .placeDetails(placeDetails):
+                    ProfileFlowView.makeRestaurantDetailsView(
+                        flow: profileflow,
+                        placeDetails: placeDetails,
+                        currentLocation: currentLocation,
+                        getPlaceDetailsService: placesService,
+                        getReviewsService: apiService,
+                        fetchPhotoService: placesService
+                    )
+                case let .addReview(placeID):
+                    ProfileFlowView.makeReviewView(
+                        flow: profileflow,
+                        placeID: placeID,
+                        addReviewService: apiService
+                    )
+                }
+            }
+        }
+    }
+    
 }

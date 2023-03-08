@@ -10,54 +10,9 @@ import SwiftUI
 import FoodybiteNetworking
 import FoodybitePlaces
 
-struct ProfileFlowView: View {
-    @Binding var page: Page
-    @ObservedObject var flow: Flow<ProfileRoute>
-    let goToLogin: () -> Void
-    let apiService: FoodybiteNetworking.APIService
-    let placesService: FoodybitePlaces.APIService
-    let user: User
-    let currentLocation: Location
+enum ProfileFlowView {
     
-    var body: some View {
-        NavigationStack(path: $flow.path) {
-            TabBarPageView(page: $page) {
-                makeProfileView(flow: flow,
-                                user: user,
-                                accountService: apiService,
-                                getReviewsService: apiService,
-                                getPlaceDetailsService: placesService,
-                                fetchPhotoService: placesService,
-                                goToLogin: goToLogin
-                )
-            }
-            .navigationDestination(for: ProfileRoute.self) { route in
-                switch route {
-                case .settings:
-                    makeSettingsView(flow: flow,
-                                     logoutService: apiService,
-                                     goToLogin: goToLogin)
-                case .changePassword:
-                    makeChangePasswordView(changePasswordService: apiService)
-                case .editProfile:
-                    makeEditProfileView(accountService: apiService)
-                case let .placeDetails(placeDetails):
-                    makeRestaurantDetailsView(flow: flow,
-                                              placeDetails: placeDetails,
-                                              currentLocation: currentLocation,
-                                              getPlaceDetailsService: placesService,
-                                              getReviewsService: apiService,
-                                              fetchPhotoService: placesService)
-                case let .addReview(placeID):
-                    makeReviewView(flow: flow,
-                                   placeID: placeID,
-                                   addReviewService: apiService)
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder private func makeProfileView(
+    @ViewBuilder static func makeProfileView(
         flow: Flow<ProfileRoute>,
         user: User,
         accountService: AccountService,
@@ -97,7 +52,7 @@ struct ProfileFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeSettingsView(
+    @ViewBuilder static func makeSettingsView(
         flow: Flow<ProfileRoute>,
         logoutService: LogoutService,
         goToLogin: @escaping () -> Void
@@ -112,19 +67,19 @@ struct ProfileFlowView: View {
         }
     }
     
-    @ViewBuilder private func makeChangePasswordView(changePasswordService: ChangePasswordService) -> some View {
+    @ViewBuilder static func makeChangePasswordView(changePasswordService: ChangePasswordService) -> some View {
         ChangePasswordView(
             viewModel: ChangePasswordViewModel(changePasswordService: changePasswordService)
         )
     }
     
-    @ViewBuilder private func makeEditProfileView(accountService: AccountService) -> some View {
+    @ViewBuilder static func makeEditProfileView(accountService: AccountService) -> some View {
         EditProfileView(
             viewModel: EditProfileViewModel(accountService: accountService)
         )
     }
     
-    @ViewBuilder private func makeRestaurantDetailsView(
+    @ViewBuilder static func makeRestaurantDetailsView(
         flow: Flow<ProfileRoute>,
         placeDetails: PlaceDetails,
         currentLocation: Location,
@@ -151,7 +106,7 @@ struct ProfileFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeReviewView(
+    @ViewBuilder static func makeReviewView(
         flow: Flow<ProfileRoute>,
         placeID: String,
         addReviewService: AddReviewService
