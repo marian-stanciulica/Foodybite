@@ -58,6 +58,7 @@
 		0F207C6C29B8C1F10095E905 /* ManagedPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6629B8C1F10095E905 /* ManagedPlaceDetails.swift */; };
 		0F207C6E29B8C1F10095E905 /* ManagedOpeningHoursDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */; };
 		0F207C7329B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */; };
+		0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
@@ -591,6 +592,7 @@
 		0F207C6629B8C1F10095E905 /* ManagedPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaceDetails.swift; sourceTree = "<group>"; };
 		0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedOpeningHoursDetails.swift; sourceTree = "<group>"; };
 		0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaceDetails+LocalModelConvertable.swift"; sourceTree = "<group>"; };
+		0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsDAO.swift; sourceTree = "<group>"; };
 		0F215CB4298265A0000F88F4 /* NearbyPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlace.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
@@ -1211,6 +1213,7 @@
 		0F207C5829B8BB5C0095E905 /* Get Place Details */ = {
 			isa = PBXGroup;
 			children = (
+				0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */,
 			);
 			path = "Get Place Details";
 			sourceTree = "<group>";
@@ -3626,6 +3629,7 @@
 				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
 				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
 				0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */,
+				0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0F18976B29B786B00052094F /* LocalStoreWriter.swift in Sources */,

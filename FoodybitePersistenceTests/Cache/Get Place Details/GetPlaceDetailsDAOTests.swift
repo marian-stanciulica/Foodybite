@@ -9,26 +9,6 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-public final class GetPlaceDetailsDAO: GetPlaceDetailsService {
-    private let store: LocalStoreReader & LocalStoreWriter
-
-    private struct CacheMissError: Error {}
-
-    init(store: LocalStoreReader & LocalStoreWriter) {
-        self.store = store
-    }
-    
-    public func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-        let allPlaces: [PlaceDetails] = try await store.readAll()
-        
-        guard let foundPlace = allPlaces.first(where: { $0.placeID == placeID }) else {
-            throw CacheMissError()
-        }
-        
-        return foundPlace
-    }
-}
-
 final class GetPlaceDetailsDAOTests: XCTestCase {
     
     func test_getPlaceDetails_throwsErrorWhenStoreThrowsError() async {
