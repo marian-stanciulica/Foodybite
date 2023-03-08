@@ -59,6 +59,8 @@
 		0F207C6E29B8C1F10095E905 /* ManagedOpeningHoursDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */; };
 		0F207C7329B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */; };
 		0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */; };
+		0F207C7729B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */; };
+		0F207C7929B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
@@ -593,6 +595,8 @@
 		0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedOpeningHoursDetails.swift; sourceTree = "<group>"; };
 		0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaceDetails+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsDAO.swift; sourceTree = "<group>"; };
+		0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
+		0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceStub.swift; sourceTree = "<group>"; };
 		0F215CB4298265A0000F88F4 /* NearbyPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlace.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
@@ -1105,6 +1109,7 @@
 				0F207BCB29B8670C0095E905 /* Helpers */,
 				0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */,
 				0F207BC929B866750095E905 /* SearchNearbyServiceWithFallbackCompositeTests.swift */,
+				0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -1198,6 +1203,7 @@
 			children = (
 				0F207BCE29B867C70095E905 /* TestHelpers.swift */,
 				0F207BCC29B8671C0095E905 /* SearchNearbyServiceStub.swift */,
+				0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3406,8 +3412,10 @@
 				0F70C49D29866D3600C004DD /* RestaurantCellViewModelTests.swift in Sources */,
 				0FD5E74429AA71B700C5C984 /* LoginViewSnapshotTests.swift in Sources */,
 				0FB1D3E629ACF22D00304A94 /* SharedFactory.swift in Sources */,
+				0F207C7929B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift in Sources */,
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
+				0F207C7729B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
 				0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */,
