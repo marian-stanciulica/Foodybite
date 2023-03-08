@@ -33,24 +33,11 @@ struct HomeFlowView: View {
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
                 case let .placeDetails(placeID):
-                    RestaurantDetailsView(
-                        viewModel: RestaurantDetailsViewModel(
-                            input: .placeIdToFetch(placeID),
-                            currentLocation: currentLocation,
-                            getPlaceDetailsService: placesService,
-                            getReviewsService: apiService
-                        ),
-                        makePhotoView: { photoReference in
-                            PhotoView(
-                                viewModel: PhotoViewModel(
-                                    photoReference: photoReference,
-                                    fetchPhotoService: placesService
-                                )
-                            )
-                        }, showReviewView: {
-                            flow.append(.addReview(placeID))
-                        }
-                    )
+                    makeRestaurantDetailsView(placeID: placeID,
+                                              currentLocation: currentLocation,
+                                              getPlaceDetailsService: placesService,
+                                              getReviewsService: apiService,
+                                              fetchPhotoService: placesService)
                 case let .addReview(placeID):
                     ReviewView(
                         viewModel: ReviewViewModel(
@@ -128,6 +115,33 @@ struct HomeFlowView: View {
                     userPreferences: userPreferences,
                     userPreferencesSaver: userPreferencesSaver)
             )
+        )
+    }
+    
+    @ViewBuilder private func makeRestaurantDetailsView(
+        placeID: String,
+        currentLocation: Location,
+        getPlaceDetailsService: GetPlaceDetailsService,
+        getReviewsService: GetReviewsService,
+        fetchPhotoService: FetchPlacePhotoService
+    ) -> some View {
+        RestaurantDetailsView(
+            viewModel: RestaurantDetailsViewModel(
+                input: .placeIdToFetch(placeID),
+                currentLocation: currentLocation,
+                getPlaceDetailsService: getPlaceDetailsService,
+                getReviewsService: getReviewsService
+            ),
+            makePhotoView: { photoReference in
+                PhotoView(
+                    viewModel: PhotoViewModel(
+                        photoReference: photoReference,
+                        fetchPhotoService: fetchPhotoService
+                    )
+                )
+            }, showReviewView: {
+                flow.append(.addReview(placeID))
+            }
         )
     }
 }
