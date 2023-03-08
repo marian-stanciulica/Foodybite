@@ -59,10 +59,6 @@ final class SearchNearbyDAOTests: XCTestCase {
         return (sut, storeSpy, distanceProviderStub)
     }
     
-    private func anyError() -> NSError {
-        NSError(domain: "any error", code: 1)
-    }
-    
     private func anyLocation() -> Location {
         Location(latitude: 0, longitude: 0)
     }
