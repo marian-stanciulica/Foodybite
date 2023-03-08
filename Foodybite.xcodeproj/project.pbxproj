@@ -1184,6 +1184,34 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0F207C4D29B872580095E905 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0FD41775298D942200F2BF92 /* LocationCheckerView.swift */,
+				0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */,
+				0F5E4934298FD931004162E5 /* TabBarPageView.swift */,
+				0F75163528434D3300A05A92 /* TabBarView.swift */,
+				0FAFCA272842984E00778E45 /* TabBarIcon.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0F207C4E29B872790095E905 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				0FD41773298D778500F2BF92 /* TabNavigationViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		0F207C4F29B872F00095E905 /* Navigation Stacks */ = {
+			isa = PBXGroup;
+			children = (
+				0F7E23CF2920E374005196EA /* FlowTests.swift */,
+			);
+			path = "Navigation Stacks";
+			sourceTree = "<group>";
+		};
 		0F2A26AF2930D90000387A1C /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1844,15 +1872,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		0F73EC81292F5F1D0025B237 /* Hierarchical */ = {
+		0F73EC81292F5F1D0025B237 /* Navigation Stacks */ = {
 			isa = PBXGroup;
 			children = (
 				0F423A9B29853EF2009EB345 /* Flow.swift */,
-				0F73EC82292F5F3B0025B237 /* Auth */,
 				0F423A9D29854308009EB345 /* Home */,
+				0F73EC82292F5F3B0025B237 /* Auth */,
 				0F73EC84292F60650025B237 /* Profile */,
 			);
-			path = Hierarchical;
+			path = "Navigation Stacks";
 			sourceTree = "<group>";
 		};
 		0F73EC82292F5F3B0025B237 /* Auth */ = {
@@ -1864,12 +1892,14 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		0F73EC83292F5F460025B237 /* Flat */ = {
+		0F73EC83292F5F460025B237 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
 				0FAFCA29284298C700778E45 /* TabRouter.swift */,
+				0F207C4E29B872790095E905 /* Presentation */,
+				0F207C4D29B872580095E905 /* UI */,
 			);
-			path = Flat;
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		0F73EC84292F60650025B237 /* Profile */ = {
@@ -1901,7 +1931,6 @@
 			isa = PBXGroup;
 			children = (
 				0F73ECAD292FA26F0025B237 /* Helpers */,
-				0FD4176F298D66E700F2BF92 /* TabNavigationView */,
 				0F423A852984FFCB009EB345 /* Home */,
 				0F423A952985332B009EB345 /* Restaurant Details */,
 				0FF7C69929B2378100622E9C /* Search Criteria */,
@@ -1989,7 +2018,8 @@
 		0F7E23CE2920E329005196EA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0F7E23CF2920E374005196EA /* FlowTests.swift */,
+				0FD4176F298D66E700F2BF92 /* Tab Bar */,
+				0F207C4F29B872F00095E905 /* Navigation Stacks */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1997,8 +2027,8 @@
 		0F7E23D12920E837005196EA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0F73EC83292F5F460025B237 /* Flat */,
-				0F73EC81292F5F1D0025B237 /* Hierarchical */,
+				0F73EC83292F5F460025B237 /* Tab Bar */,
+				0F73EC81292F5F1D0025B237 /* Navigation Stacks */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -2167,22 +2197,9 @@
 			path = "New Review";
 			sourceTree = "<group>";
 		};
-		0FAFCA24284297CB00778E45 /* Tab Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				0FD41775298D942200F2BF92 /* LocationCheckerView.swift */,
-				0F4AE0E8284291CC0043F962 /* TabNavigationView.swift */,
-				0F5E4934298FD931004162E5 /* TabBarPageView.swift */,
-				0F75163528434D3300A05A92 /* TabBarView.swift */,
-				0FAFCA272842984E00778E45 /* TabBarIcon.swift */,
-			);
-			path = "Tab Navigation";
-			sourceTree = "<group>";
-		};
 		0FB0E111291F861E0058ABCB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				0FD41772298D777A00F2BF92 /* Tab Navigation */,
 				0F423A9029850F64009EB345 /* Home */,
 				0F423A9829853C8A009EB345 /* Restaurant Details */,
 				0FF7C69829B2372A00622E9C /* Search Criteria */,
@@ -2402,20 +2419,12 @@
 			path = "Location Protocols";
 			sourceTree = "<group>";
 		};
-		0FD4176F298D66E700F2BF92 /* TabNavigationView */ = {
+		0FD4176F298D66E700F2BF92 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
 				0FD41770298D66F600F2BF92 /* TabNavigationViewModelTests.swift */,
 			);
-			path = TabNavigationView;
-			sourceTree = "<group>";
-		};
-		0FD41772298D777A00F2BF92 /* Tab Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				0FD41773298D778500F2BF92 /* TabNavigationViewModel.swift */,
-			);
-			path = "Tab Navigation";
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */ = {
@@ -2643,7 +2652,6 @@
 		A2032BA0284204A700F8D8C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0FAFCA24284297CB00778E45 /* Tab Navigation */,
 				A2E64BCD2842455800FC41B7 /* Home */,
 				A2C2421828474C2500CB233B /* Restaurant Details */,
 				0F2B4CB728454D87004D0EF7 /* Search Criteria */,
