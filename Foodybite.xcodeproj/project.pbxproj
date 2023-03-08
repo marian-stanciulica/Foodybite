@@ -62,6 +62,7 @@
 		0F207C7729B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */; };
 		0F207C7929B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */; };
 		0F207C7C29B8E2B10095E905 /* PlaceDetailsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */; };
+		0F207C7E29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
@@ -599,6 +600,7 @@
 		0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceStub.swift; sourceTree = "<group>"; };
 		0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsCache.swift; sourceTree = "<group>"; };
+		0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F215CB4298265A0000F88F4 /* NearbyPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlace.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
@@ -1111,6 +1113,7 @@
 				0F207BCB29B8670C0095E905 /* Helpers */,
 				0F18976D29B78D3B0052094F /* SearchNearbyServiceCacheDecoratorTests.swift */,
 				0F207BC929B866750095E905 /* SearchNearbyServiceWithFallbackCompositeTests.swift */,
+				0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */,
 				0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */,
 			);
 			path = "Composition Root";
@@ -2207,8 +2210,8 @@
 		0FA6BE292994E829003E1912 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F207C7A29B8E2810095E905 /* Get Place Details */,
 				0F18977129B79D630052094F /* Search Nearby */,
+				0F207C7A29B8E2810095E905 /* Get Place Details */,
 				0FA6BE2A2994E87A003E1912 /* Networking Protocols */,
 				0F412EBA2962D13700FDDF41 /* Places Protocols */,
 				0FD4176B298D60E400F2BF92 /* Location Protocols */,
@@ -3427,6 +3430,7 @@
 				0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */,
 				0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */,
 				0F207C7729B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift in Sources */,
+				0F207C7E29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
 				0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */,
