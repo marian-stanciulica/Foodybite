@@ -61,6 +61,19 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails)
     }
     
+    func test_getPlaceDetails_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        primaryStub.stub = .failure(anyError())
+        secondaryStub.stub = .failure(anyError())
+        
+        do {
+            let placeDetails = try await sut.getPlaceDetails(placeID: "place id")
+            XCTFail("Expected to fail, got \(placeDetails) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetPlaceDetailsWithFallbackComposite, primaryStub: GetPlaceDetailsServiceStub, secondaryStub: GetPlaceDetailsServiceStub) {
