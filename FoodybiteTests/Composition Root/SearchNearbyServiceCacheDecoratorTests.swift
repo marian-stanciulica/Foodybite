@@ -64,52 +64,6 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     
-    private func anyLocation() -> Location {
-        Location(latitude: 0, longitude: 0)
-    }
-    
-    private func anyError() -> NSError {
-        NSError(domain: "any error", code: 1)
-    }
-    
-    private func makeNearbyPlaces() -> [NearbyPlace] {
-        [
-            NearbyPlace(
-                placeID: "place #1",
-                placeName: "Place name 1",
-                isOpen: true,
-                rating: 3,
-                location: Location(latitude: 2, longitude: 5),
-                photo: nil),
-            NearbyPlace(
-                placeID: "place #2",
-                placeName: "Place name 2",
-                isOpen: false,
-                rating: 4,
-                location: Location(latitude: 43, longitude: 56),
-                photo: nil),
-            NearbyPlace(
-                placeID: "place #3",
-                placeName: "Place name 3",
-                isOpen: true,
-                rating: 5,
-                location: Location(latitude: 3, longitude: 6),
-                photo: nil)
-        ]
-    }
-    
-    private class SearchNearbyServiceStub: SearchNearbyService {
-        var stub: Result<[NearbyPlace], Error>?
-        
-        func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
-            if let stub = stub {
-                return try stub.get()
-            }
-            
-            return []
-        }
-    }
-    
     private class SearchNearbyCacheSpy: SearchNearbyCache {
         private(set) var capturedValues = [[NearbyPlace]]()
         
