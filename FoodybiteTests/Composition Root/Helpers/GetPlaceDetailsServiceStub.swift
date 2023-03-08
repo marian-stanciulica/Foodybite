@@ -11,8 +11,6 @@ final class GetPlaceDetailsServiceStub: GetPlaceDetailsService {
     private(set) var capturedValues = [String]()
     var stub: Result<PlaceDetails, Error>?
     
-    private struct MissingStubError: Error {}
-    
     func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
         capturedValues.append(placeID)
         
@@ -20,6 +18,14 @@ final class GetPlaceDetailsServiceStub: GetPlaceDetailsService {
             return try stub.get()
         }
         
-        throw MissingStubError()
+        return PlaceDetails(placeID: "",
+                            phoneNumber: nil,
+                            name: "",
+                            address: "",
+                            rating: 0,
+                            openingHoursDetails: nil,
+                            reviews: [],
+                            location: Location(latitude: 0, longitude: 0),
+                            photos: [])
     }
 }

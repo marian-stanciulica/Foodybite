@@ -19,7 +19,11 @@ final class GetPlaceDetailsWithFallbackComposite: GetPlaceDetailsService {
     }
     
     func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-        try await primary.getPlaceDetails(placeID: placeID)
+        do {
+            return try await primary.getPlaceDetails(placeID: placeID)
+        } catch {
+            return try await secondary.getPlaceDetails(placeID: placeID)
+        }
     }
 }
 
@@ -33,6 +37,17 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         let receivedPlaceDetails = try await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
         
         XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
+    }
+    
+    func test_getPlaceDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedPlaceID = "place id"
+        primaryStub.stub = .failure(anyError())
+        
+        _ = try await sut.getPlaceDetails(placeID: expectedPlaceID)
+        
+        XCTAssertEqual(secondaryStub.capturedValues.count, 1)
+        XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
     }
     
     // MARK: - Helpers
