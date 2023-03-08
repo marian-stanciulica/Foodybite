@@ -39,14 +39,7 @@ struct HomeFlowView: View {
                                               getReviewsService: apiService,
                                               fetchPhotoService: placesService)
                 case let .addReview(placeID):
-                    ReviewView(
-                        viewModel: ReviewViewModel(
-                            placeID: placeID,
-                            reviewService: apiService
-                        ), dismissScreen: {
-                            flow.navigateBack()
-                        }
-                    )
+                    makeReviewView(placeID: placeID, addReviewService: apiService)
                 }
             }
         }
@@ -141,6 +134,17 @@ struct HomeFlowView: View {
                 )
             }, showReviewView: {
                 flow.append(.addReview(placeID))
+            }
+        )
+    }
+    
+    @ViewBuilder private func makeReviewView(placeID: String, addReviewService: AddReviewService) -> some View {
+        ReviewView(
+            viewModel: ReviewViewModel(
+                placeID: placeID,
+                reviewService: addReviewService
+            ), dismissScreen: {
+                flow.navigateBack()
             }
         )
     }
