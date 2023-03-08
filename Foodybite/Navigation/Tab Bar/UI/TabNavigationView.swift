@@ -22,6 +22,8 @@ struct TabNavigationView: View {
     let user: User
     let searchNearbyDAO: SearchNearbyDAO
     
+    @ObservedObject var homeflow = Flow<HomeRoute>()
+    
     var body: some View {
         Group {
             switch viewModel.state {
@@ -71,13 +73,41 @@ struct TabNavigationView: View {
     }
     
     @ViewBuilder private func makeHomeFlowView(location: Location) -> some View {
-        HomeFlowView(page: $tabRouter.currentPage,
-                     flow: Flow<HomeRoute>(),
-                     apiService: apiService,
-                     placesService: placesService,
-                     userPreferencesLoader: userPreferencesLoader,
-                     userPreferencesSaver: userPreferencesSaver,
-                     currentLocation: location,
-                     searchNearbyDAO: searchNearbyDAO)
+        NavigationStack(path: $homeflow.path) {
+            TabBarPageView(page: $tabRouter.currentPage) {
+                HomeFlowView.makeHomeView(
+                    flow: homeflow,
+                    currentLocation: location,
+                    userPreferences: userPreferencesLoader.load(),
+                    userPreferencesSaver: userPreferencesSaver,
+                    searchNearbyService: SearchNearbyServiceWithFallbackComposite(
+                        primary: SearchNearbyServiceCacheDecorator(
+                            searchNearbyService: placesService,
+                            cache: searchNearbyDAO),
+                        secondary: searchNearbyDAO
+                    ),
+                    fetchPhotoService: placesService
+                )
+            }
+            .navigationDestination(for: HomeRoute.self) { route in
+                switch route {
+                case let .placeDetails(placeID):
+                    HomeFlowView.makeRestaurantDetailsView(
+                        flow: homeflow,
+                        placeID: placeID,
+                        currentLocation: location,
+                        getPlaceDetailsService: placesService,
+                        getReviewsService: apiService,
+                        fetchPhotoService: placesService
+                    )
+                case let .addReview(placeID):
+                    HomeFlowView.makeReviewView(
+                        flow: homeflow,
+                        placeID: placeID,
+                        addReviewService: apiService
+                    )
+                }
+            }
+        }
     }
 }

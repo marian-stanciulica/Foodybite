@@ -11,41 +11,10 @@ import FoodybiteNetworking
 import FoodybitePlaces
 import FoodybitePersistence
 
-struct HomeFlowView: View {
-    @Binding var page: Page
-    @ObservedObject var flow: Flow<HomeRoute>
-    let apiService: FoodybiteNetworking.APIService
-    let placesService: FoodybitePlaces.APIService
-    let userPreferencesLoader: UserPreferencesLoader
-    let userPreferencesSaver: UserPreferencesSaver
-    let currentLocation: Location
-    let searchNearbyDAO: SearchNearbyDAO
+enum HomeFlowView {
     
-    var body: some View {
-        NavigationStack(path: $flow.path) {
-            TabBarPageView(page: $page) {
-                makeHomeView(currentLocation: currentLocation,
-                             userPreferences: userPreferencesLoader.load(),
-                             userPreferencesSaver: userPreferencesSaver,
-                             searchNearbyService: placesService,
-                             fetchPhotoService: placesService)
-            }
-            .navigationDestination(for: HomeRoute.self) { route in
-                switch route {
-                case let .placeDetails(placeID):
-                    makeRestaurantDetailsView(placeID: placeID,
-                                              currentLocation: currentLocation,
-                                              getPlaceDetailsService: placesService,
-                                              getReviewsService: apiService,
-                                              fetchPhotoService: placesService)
-                case let .addReview(placeID):
-                    makeReviewView(placeID: placeID, addReviewService: apiService)
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder private func makeHomeView(
+    @ViewBuilder static func makeHomeView(
+        flow: Flow<HomeRoute>,
         currentLocation: Location,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver,
@@ -54,11 +23,7 @@ struct HomeFlowView: View {
     ) -> some View {
         HomeView(
             viewModel: HomeViewModel(
-                searchNearbyService: SearchNearbyServiceWithFallbackComposite(
-                    primary: SearchNearbyServiceCacheDecorator(
-                        searchNearbyService: searchNearbyService,
-                        cache: searchNearbyDAO),
-                    secondary: searchNearbyDAO),
+                searchNearbyService: searchNearbyService,
                 currentLocation: currentLocation,
                 userPreferences: userPreferences),
             showPlaceDetails: { placeID in
@@ -77,7 +42,7 @@ struct HomeFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeRestaurantCell(
+    @ViewBuilder private static func makeRestaurantCell(
         nearbyPlace: NearbyPlace,
         currentLocation: Location,
         fetchPhotoService: FetchPlacePhotoService
@@ -96,7 +61,7 @@ struct HomeFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeHomeSearchView(
+    @ViewBuilder private static func makeHomeSearchView(
         searchText: Binding<String>,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver
@@ -111,7 +76,8 @@ struct HomeFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeRestaurantDetailsView(
+    @ViewBuilder static func makeRestaurantDetailsView(
+        flow: Flow<HomeRoute>,
         placeID: String,
         currentLocation: Location,
         getPlaceDetailsService: GetPlaceDetailsService,
@@ -138,7 +104,11 @@ struct HomeFlowView: View {
         )
     }
     
-    @ViewBuilder private func makeReviewView(placeID: String, addReviewService: AddReviewService) -> some View {
+    @ViewBuilder static func makeReviewView(
+        flow: Flow<HomeRoute>,
+        placeID: String,
+        addReviewService: AddReviewService
+    ) -> some View {
         ReviewView(
             viewModel: ReviewViewModel(
                 placeID: placeID,
