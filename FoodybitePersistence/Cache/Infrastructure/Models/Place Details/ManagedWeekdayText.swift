@@ -17,4 +17,10 @@ public class ManagedWeekdayText: NSManagedObject {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedWeekdayText> {
         return NSFetchRequest<ManagedWeekdayText>(entityName: "ManagedWeekdayText")
     }
+    
+    public convenience init(_ text: String, for context: NSManagedObjectContext) {
+        self.init(context: context)
+        
+        self.text = text
+    }
 }

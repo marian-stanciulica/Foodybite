@@ -9,7 +9,7 @@
         <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="ManagedOpeningHoursDetails" representedClassName="ManagedOpeningHoursDetails" syncable="YES">
-        <attribute name="openNow" optional="YES" attributeType="String"/>
+        <attribute name="openNow" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="placeDetails" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPlaceDetails" inverseName="openingHoursDetails" inverseEntity="ManagedPlaceDetails"/>
         <relationship name="weekdayText" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedWeekdayText" inverseName="openingHours" inverseEntity="ManagedWeekdayText"/>
     </entity>

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Domain
 
 @objc(ManagedPlaceDetails)
 public class ManagedPlaceDetails: NSManagedObject {
@@ -22,5 +23,21 @@ public class ManagedPlaceDetails: NSManagedObject {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedPlaceDetails> {
         return NSFetchRequest<ManagedPlaceDetails>(entityName: "ManagedPlaceDetails")
-    }    
+    }
+    
+    public convenience init(_ model: PlaceDetails, for context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        placeID = model.placeID
+        phoneNumber = model.phoneNumber
+        name = model.name
+        address = model.address
+        rating = model.rating
+        latitude = model.location.latitude
+        longitude = model.location.longitude
+        
+        if let openingHoursDetailsModel = model.openingHoursDetails {
+            openingHoursDetails = ManagedOpeningHoursDetails(openingHoursDetailsModel, for: context)
+        }
+    }
 }
