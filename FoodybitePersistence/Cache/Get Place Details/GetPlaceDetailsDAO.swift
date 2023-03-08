@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class GetPlaceDetailsDAO: GetPlaceDetailsService {
+public final class GetPlaceDetailsDAO: GetPlaceDetailsService, PlaceDetailsCache {
     private let store: LocalStoreReader & LocalStoreWriter
 
     private struct CacheMissError: Error {}
@@ -24,5 +24,9 @@ public final class GetPlaceDetailsDAO: GetPlaceDetailsService {
         }
         
         return foundPlace
+    }
+    
+    public func save(placeDetails: PlaceDetails) async throws {
+        try await store.write(placeDetails)
     }
 }

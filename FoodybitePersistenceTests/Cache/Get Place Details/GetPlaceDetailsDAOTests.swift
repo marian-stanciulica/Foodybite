@@ -32,6 +32,21 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
         XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
     }
     
+    func test_save_sendsPlaceDetailsToStore() async throws {
+        let (sut, storeSpy) = makeSUT()
+        let expectedPlaceDetails = makeExpectedPlaceDetails()
+        
+        try await sut.save(placeDetails: expectedPlaceDetails)
+        
+        XCTAssertEqual(storeSpy.messages.count, 1)
+        
+        if case let .write(receivedPlaceDetails) = storeSpy.messages[0] {
+            XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails as! PlaceDetails)
+        } else {
+            XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetPlaceDetailsDAO, storeSpy: LocalStoreSpy) {
