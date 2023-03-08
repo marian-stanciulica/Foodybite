@@ -37,7 +37,7 @@ struct ProfileFlowView: View {
                 case .changePassword:
                     makeChangePasswordView(changePasswordService: apiService)
                 case .editProfile:
-                    EditProfileView(viewModel: EditProfileViewModel(accountService: apiService))
+                    makeEditProfileView(accountService: apiService)
                 case let .placeDetails(placeDetails):
                     RestaurantDetailsView(
                         viewModel: RestaurantDetailsViewModel(
@@ -117,6 +117,12 @@ struct ProfileFlowView: View {
     @ViewBuilder private func makeChangePasswordView(changePasswordService: ChangePasswordService) -> some View {
         ChangePasswordView(
             viewModel: ChangePasswordViewModel(changePasswordService: changePasswordService)
+        )
+    }
+    
+    @ViewBuilder private func makeEditProfileView(accountService: AccountService) -> some View {
+        EditProfileView(
+            viewModel: EditProfileViewModel(accountService: accountService)
         )
     }
 }
