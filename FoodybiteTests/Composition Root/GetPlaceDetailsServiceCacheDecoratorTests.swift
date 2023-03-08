@@ -20,6 +20,7 @@ final class GetPlaceDetailsServiceCacheDecorator: GetPlaceDetailsService {
     
     func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
         let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+        try await cache.save(placeDetails: placeDetails)
         return placeDetails
     }
 }
@@ -54,6 +55,16 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         _ = try? await sut.getPlaceDetails(placeID: "place id")
         
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
+    func test_getPlaceDetails_cachesPlaceDetailsWhenPlaceDetailsServiceReturnsSuccessfully() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        let expectedPlaceDetails = makeExpectedPlaceDetails()
+        serviceStub.stub = .success(expectedPlaceDetails)
+        
+        _ = try? await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        
+        XCTAssertEqual(cacheSpy.capturedValues, [expectedPlaceDetails])
     }
     
     // MARK: - Helpers
