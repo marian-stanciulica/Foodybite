@@ -12,12 +12,15 @@ struct RootView: View {
     private let rootFactory = RootFactory()
     @State var user: User?
     @StateObject var authflow = Flow<AuthRoute>()
+    @StateObject var locationProvider = LocationProvider()
     
     var body: some View {
         HStack {
             if let user = user {
-                LocationCheckView { locationProvider in
+                if locationProvider.locationServicesEnabled {
                     makeTabNavigationView(user: user, locationProvider: locationProvider)
+                } else {
+                    TurnOnLocationView()
                 }
             } else {
                 makeAuthFlowView(loginService: rootFactory.apiService,
