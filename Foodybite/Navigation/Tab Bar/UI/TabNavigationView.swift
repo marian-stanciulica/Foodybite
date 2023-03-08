@@ -34,14 +34,7 @@ struct TabNavigationView: View {
             case let .success(location):
                 switch tabRouter.currentPage {
                 case .home:
-                HomeFlowView(page: $tabRouter.currentPage,
-                             flow: Flow<HomeRoute>(),
-                             apiService: apiService,
-                             placesService: placesService,
-                             userPreferencesLoader: userPreferencesLoader,
-                             userPreferencesSaver: userPreferencesSaver,
-                             currentLocation: location,
-                             searchNearbyDAO: searchNearbyDAO)
+                    makeHomeFlowView(location: location)
                 case .newReview:
                     TabBarPageView(page: $tabRouter.currentPage) {
                         NewReviewView(
@@ -75,5 +68,16 @@ struct TabNavigationView: View {
         .task {
             await viewModel.getCurrentLocation()
         }
+    }
+    
+    @ViewBuilder private func makeHomeFlowView(location: Location) -> some View {
+        HomeFlowView(page: $tabRouter.currentPage,
+                     flow: Flow<HomeRoute>(),
+                     apiService: apiService,
+                     placesService: placesService,
+                     userPreferencesLoader: userPreferencesLoader,
+                     userPreferencesSaver: userPreferencesSaver,
+                     currentLocation: location,
+                     searchNearbyDAO: searchNearbyDAO)
     }
 }
