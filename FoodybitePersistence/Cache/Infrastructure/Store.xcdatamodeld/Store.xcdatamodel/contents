@@ -8,10 +8,29 @@
         <attribute name="placeName" attributeType="String"/>
         <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="ManagedOpeningHoursDetails" representedClassName="ManagedOpeningHoursDetails" syncable="YES">
+        <attribute name="openNow" optional="YES" attributeType="String"/>
+        <relationship name="placeDetails" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPlaceDetails" inverseName="openingHoursDetails" inverseEntity="ManagedPlaceDetails"/>
+        <relationship name="weekdayText" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedWeekdayText" inverseName="openingHours" inverseEntity="ManagedWeekdayText"/>
+    </entity>
+    <entity name="ManagedPlaceDetails" representedClassName="ManagedPlaceDetails" syncable="YES">
+        <attribute name="address" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="placeID" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="openingHoursDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedOpeningHoursDetails" inverseName="placeDetails" inverseEntity="ManagedOpeningHoursDetails"/>
+    </entity>
     <entity name="ManagedUser" representedClassName="ManagedUser" syncable="YES">
         <attribute name="email" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="profileImage" optional="YES" attributeType="Binary"/>
+    </entity>
+    <entity name="ManagedWeekdayText" representedClassName="ManagedWeekdayText" syncable="YES">
+        <attribute name="text" attributeType="String"/>
+        <relationship name="openingHours" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedOpeningHoursDetails" inverseName="weekdayText" inverseEntity="ManagedOpeningHoursDetails"/>
     </entity>
 </model>
