@@ -10,12 +10,22 @@ import CoreData
 
 extension NearbyPlace: LocalModelConvertable {
     public init(from managedNearbyPlace: ManagedNearbyPlace) {
+        var photo: Photo? = nil
+        
+        if let managedPhoto = managedNearbyPlace.photo {
+            photo = Photo(
+                width: Int(managedPhoto.width),
+                height: Int(managedPhoto.height),
+                photoReference: managedPhoto.reference
+            )
+        }
+        
         self.init(placeID: managedNearbyPlace.placeID,
                   placeName: managedNearbyPlace.placeName,
                   isOpen: managedNearbyPlace.isOpen,
                   rating: managedNearbyPlace.rating,
                   location: Location(latitude: managedNearbyPlace.latitude, longitude: managedNearbyPlace.longitude),
-                  photo: nil)
+                  photo: photo)
     }
     
     public func toLocalModel(context: NSManagedObjectContext) -> ManagedNearbyPlace {

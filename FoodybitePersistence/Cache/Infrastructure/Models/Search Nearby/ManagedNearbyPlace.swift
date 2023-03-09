@@ -26,11 +26,15 @@ public class ManagedNearbyPlace: NSManagedObject {
     public convenience init(_ model: NearbyPlace, for context: NSManagedObjectContext) {
         self.init(context: context)
 
-        self.placeID = model.placeID
-        self.placeName = model.placeName
-        self.isOpen = model.isOpen
-        self.rating = model.rating
-        self.latitude = model.location.latitude
-        self.longitude = model.location.longitude
+        placeID = model.placeID
+        placeName = model.placeName
+        isOpen = model.isOpen
+        rating = model.rating
+        latitude = model.location.latitude
+        longitude = model.location.longitude
+        
+        if let photo = model.photo {
+            self.photo = ManagedPhoto(photo, for: context)
+        }
     }
 }

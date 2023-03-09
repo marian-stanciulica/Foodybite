@@ -16,7 +16,7 @@
     </entity>
     <entity name="ManagedPhoto" representedClassName="ManagedPhoto" syncable="YES">
         <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="reference" attributeType="String"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="nearbyPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNearbyPlace" inverseName="photo" inverseEntity="ManagedNearbyPlace"/>
         <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPlaceDetails" inverseName="photos" inverseEntity="ManagedPlaceDetails"/>
