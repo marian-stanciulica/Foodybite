@@ -17,6 +17,7 @@ public class ManagedNearbyPlace: NSManagedObject {
     @NSManaged public var rating: Double
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
+    @NSManaged public var photo: ManagedPhoto?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedNearbyPlace> {
         return NSFetchRequest<ManagedNearbyPlace>(entityName: "ManagedNearbyPlace")

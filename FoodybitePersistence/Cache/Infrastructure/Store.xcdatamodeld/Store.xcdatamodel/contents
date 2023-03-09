@@ -7,6 +7,7 @@
         <attribute name="placeID" attributeType="String"/>
         <attribute name="placeName" attributeType="String"/>
         <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPhoto" inverseName="nearbyPlace" inverseEntity="ManagedPhoto"/>
     </entity>
     <entity name="ManagedOpeningHoursDetails" representedClassName="ManagedOpeningHoursDetails" syncable="YES">
         <attribute name="openNow" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -17,6 +18,7 @@
         <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="reference" optional="YES" attributeType="String"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="nearbyPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNearbyPlace" inverseName="photo" inverseEntity="ManagedNearbyPlace"/>
         <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPlaceDetails" inverseName="photos" inverseEntity="ManagedPlaceDetails"/>
     </entity>
     <entity name="ManagedPlaceDetails" representedClassName="ManagedPlaceDetails" syncable="YES">
