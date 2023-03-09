@@ -33,22 +33,8 @@ final class UserAuthenticatedFactory: RootFactory {
     
     let userPreferencesStore = UserPreferencesLocalStore()
     
-    let searchNearbyDAO: SearchNearbyDAO = {
-        let userStore: LocalStoreWriter & LocalStoreReader
-        
-        do {
-            userStore = try CoreDataLocalStore(
-                storeURL: NSPersistentContainer
-                    .defaultDirectoryURL()
-                    .appendingPathComponent("foodybite-store.sqlite"))
-            
-        } catch {
-            userStore = NullUserStore()
-        }
-        
-        return SearchNearbyDAO(store: userStore,
-                               getDistanceInKm: DistanceSolver.getDistanceInKm)
-    }()
+    let searchNearbyDAO = SearchNearbyDAO(store: userStore,
+                                          getDistanceInKm: DistanceSolver.getDistanceInKm)
     
-    lazy var placeDetailsDAO = GetPlaceDetailsDAO(store: userStore)
+    let placeDetailsDAO = GetPlaceDetailsDAO(store: userStore)
 }

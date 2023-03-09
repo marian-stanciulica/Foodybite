@@ -66,7 +66,8 @@ struct UserAuthenticatedView: View {
                     searchNearbyService: SearchNearbyServiceWithFallbackComposite(
                         primary: SearchNearbyServiceCacheDecorator(
                             searchNearbyService: userAuthenticatedFactory.placesService,
-                            cache: userAuthenticatedFactory.searchNearbyDAO),
+                            cache: userAuthenticatedFactory.searchNearbyDAO
+                        ),
                         secondary: userAuthenticatedFactory.searchNearbyDAO
                     ),
                     fetchPhotoService: userAuthenticatedFactory.placesService
@@ -79,7 +80,13 @@ struct UserAuthenticatedView: View {
                         flow: homeflow,
                         placeID: placeID,
                         currentLocation: currentLocation,
-                        getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                        getPlaceDetailsService: GetPlaceDetailsWithFallbackComposite(
+                            primary: GetPlaceDetailsServiceCacheDecorator(
+                                getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                                cache: userAuthenticatedFactory.placeDetailsDAO
+                            ),
+                            secondary: userAuthenticatedFactory.placeDetailsDAO
+                        ),
                         getReviewsService: userAuthenticatedFactory.apiService,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )

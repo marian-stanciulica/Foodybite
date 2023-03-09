@@ -21,7 +21,7 @@ class RootFactory {
                           tokenStore: tokenStore)
     }()
         
-    var userStore: LocalStoreReader & LocalStoreWriter {
+    static let userStore: LocalStoreReader & LocalStoreWriter = {
         do {
             return try CoreDataLocalStore(
                 storeURL: NSPersistentContainer
@@ -31,5 +31,5 @@ class RootFactory {
         } catch {
             return NullUserStore()
         }
-    }
+    }()
 }
