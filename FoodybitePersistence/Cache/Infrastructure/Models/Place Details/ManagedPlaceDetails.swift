@@ -20,6 +20,7 @@ public class ManagedPlaceDetails: NSManagedObject {
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
     @NSManaged public var openingHoursDetails: ManagedOpeningHoursDetails?
+    @NSManaged public var photos: NSSet
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedPlaceDetails> {
         return NSFetchRequest<ManagedPlaceDetails>(entityName: "ManagedPlaceDetails")
