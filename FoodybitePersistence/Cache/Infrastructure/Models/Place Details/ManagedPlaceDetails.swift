@@ -40,5 +40,9 @@ public class ManagedPlaceDetails: NSManagedObject {
         if let openingHoursDetailsModel = model.openingHoursDetails {
             openingHoursDetails = ManagedOpeningHoursDetails(openingHoursDetailsModel, for: context)
         }
+        
+        model.photos.forEach {
+            photos.adding(ManagedPhoto($0, for: context))
+        }
     }
 }

@@ -19,6 +19,11 @@ extension PlaceDetails: LocalModelConvertable {
             }
         }
         
+        let managedPhotos = managedPlaceDetails.photos.allObjects as! [ManagedPhoto]
+        let photos = managedPhotos.map {
+            Photo(width: Int($0.width), height: Int($0.height), photoReference: $0.reference)
+        }
+        
         self.init(placeID: managedPlaceDetails.placeID,
                   phoneNumber: managedPlaceDetails.phoneNumber,
                   name: managedPlaceDetails.name,
@@ -29,7 +34,7 @@ extension PlaceDetails: LocalModelConvertable {
                   location: Location(
                     latitude: managedPlaceDetails.latitude,
                     longitude: managedPlaceDetails.longitude),
-                  photos: [])
+                  photos: photos)
     }
     
     public func toLocalModel(context: NSManagedObjectContext) -> ManagedPlaceDetails {
