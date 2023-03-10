@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 05.11.2022.
 //
 
+import Domain
 import CoreData
 
 public class CoreDataLocalStore: LocalStore {
@@ -59,9 +60,8 @@ public class CoreDataLocalStore: LocalStore {
     }
 }
 
-extension CoreDataLocalStore: LocalPhotoDataStore {
-    
-    public func read(photoReference: String) async throws -> Data {
+extension CoreDataLocalStore: FetchPlacePhotoService {
+    public func fetchPlacePhoto(photoReference: String) async throws -> Data {
         guard let foundPhoto = try ManagedPhoto.first(with: photoReference, in: context),
               let photoData = foundPhoto.photoData else {
             throw CacheMissError()
@@ -69,8 +69,10 @@ extension CoreDataLocalStore: LocalPhotoDataStore {
         
         return photoData
     }
-    
-    public func write(photoData: Data, for photoReference: String) async throws {
+}
+
+extension CoreDataLocalStore: PlacePhotoCache {
+    public func save(photoData: Data, for photoReference: String) async throws {
         guard let photo = try ManagedPhoto.first(with: photoReference, in: context) else {
             throw CacheMissError()
         }

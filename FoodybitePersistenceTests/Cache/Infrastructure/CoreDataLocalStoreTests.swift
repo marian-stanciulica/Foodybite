@@ -114,7 +114,7 @@ final class CoreDataLocalStoreTests: XCTestCase {
         let photoReference = "photo reference"
         let expectedPhotoData = "photo data".data(using: .utf8)!
         try await sut.write(Photo(width: 1, height: 1, photoReference: photoReference))
-        try await sut.write(photoData: expectedPhotoData, for: photoReference)
+        try await sut.save(photoData: expectedPhotoData, for: photoReference)
 
         await expectReadDataToSucceed(sut: sut, for: photoReference, withExpected: expectedPhotoData)
     }
@@ -169,7 +169,7 @@ final class CoreDataLocalStoreTests: XCTestCase {
     
     private func expectReadDataToFail(sut: CoreDataLocalStore, for photoReference: String, file: StaticString = #file, line: UInt = #line) async {
         do {
-            let _: Data = try await sut.read(photoReference: photoReference)
+            let _: Data = try await sut.fetchPlacePhoto(photoReference: photoReference)
             XCTFail("Read method expected to fail when cache miss", file: file, line: line)
         } catch {
             XCTAssertNotNil(error, file: file, line: line)
@@ -178,7 +178,7 @@ final class CoreDataLocalStoreTests: XCTestCase {
     
     private func expectReadDataToSucceed(sut: CoreDataLocalStore, for photoReference: String, withExpected expectedPhotoData: Data, file: StaticString = #file, line: UInt = #line) async {
         do {
-            let receivedPhotoData: Data = try await sut.read(photoReference: photoReference)
+            let receivedPhotoData: Data = try await sut.fetchPlacePhoto(photoReference: photoReference)
             XCTAssertEqual(receivedPhotoData, expectedPhotoData, file: file, line: line)
         } catch {
             XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
@@ -187,7 +187,7 @@ final class CoreDataLocalStoreTests: XCTestCase {
     
     private func expectWriteDataToFail(sut: CoreDataLocalStore, for photoReference: String, file: StaticString = #file, line: UInt = #line) async {
         do {
-            try await sut.write(photoData: "photo data".data(using: .utf8)!, for: photoReference)
+            try await sut.save(photoData: "photo data".data(using: .utf8)!, for: photoReference)
             XCTFail("Write method expected to fail when photo not found", file: file, line: line)
         } catch {
             XCTAssertNotNil(error, file: file, line: line)
