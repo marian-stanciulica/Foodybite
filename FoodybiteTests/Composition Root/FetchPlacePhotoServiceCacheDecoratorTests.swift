@@ -9,22 +9,6 @@ import XCTest
 import Domain
 import Foodybite
 
-final class FetchPlacePhotoServiceCacheDecorator: FetchPlacePhotoService {
-    private let fetchPlacePhotoService: FetchPlacePhotoService
-    private let cache: PlacePhotoCache
-    
-    init(fetchPlacePhotoService: FetchPlacePhotoService, cache: PlacePhotoCache) {
-        self.fetchPlacePhotoService = fetchPlacePhotoService
-        self.cache = cache
-    }
-    
-    func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photoReference)
-        try? await cache.save(photoData: photoData, for: photoReference)
-        return photoData
-    }
-}
-
 final class FetchPlacePhotoServiceCacheDecoratorTests: XCTestCase {
     
     func test_fetchPlacePhoto_throwsErrorWhenFetchPlacePhotoServiceThrowsError() async {
