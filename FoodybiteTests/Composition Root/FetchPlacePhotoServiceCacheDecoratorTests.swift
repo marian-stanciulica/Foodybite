@@ -19,7 +19,9 @@ final class FetchPlacePhotoServiceCacheDecorator: FetchPlacePhotoService {
     }
     
     func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photoReference)
+        let photoData = try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photoReference)
+        try? await cache.save(photoData: photoData, for: photoReference)
+        return photoData
     }
 }
 
@@ -53,6 +55,19 @@ final class FetchPlacePhotoServiceCacheDecoratorTests: XCTestCase {
         _ = try? await sut.fetchPlacePhoto(photoReference: "")
         
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
+    func test_fetchPlacePhoto_cachesPhotoDataWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        let expectedPhotoData = anyData()
+        let expectedReference = "expected reference"
+        serviceStub.stub = .success(expectedPhotoData)
+        
+        _ = try? await sut.fetchPlacePhoto(photoReference: expectedReference)
+        
+        XCTAssertEqual(cacheSpy.capturedValues.count, 1)
+        XCTAssertEqual(cacheSpy.capturedValues[0].photoReference, expectedReference)
+        XCTAssertEqual(cacheSpy.capturedValues[0].photoData, expectedPhotoData)
     }
     
     // MARK: - Helpers
