@@ -58,3 +58,15 @@ public class CoreDataLocalStore: LocalStore {
         }
     }
 }
+
+extension CoreDataLocalStore: LocalPhotoDataStore {
+    
+    public func read(photoReference: String) async throws -> Data {
+        throw CacheMissError()
+    }
+    
+    public func write(photoData: Data, for photoReference: String) async throws {
+        
+    }
+    
+}

@@ -8,6 +8,6 @@
 import Foundation
 
 protocol LocalPhotoDataStore {
-    func read(photoReference: String) async throws -> Data?
+    func read(photoReference: String) async throws -> Data
     func write(photoData: Data, for photoReference: String) async throws
 }

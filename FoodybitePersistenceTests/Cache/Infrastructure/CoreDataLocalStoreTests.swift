@@ -11,6 +11,8 @@ import FoodybitePersistence
 
 final class CoreDataLocalStoreTests: XCTestCase {
     
+    // MARK: - LocalStore Tests
+    
     func test_read_deliversErrorOnCacheMiss() async {
         let sut = makeSUT()
 
@@ -77,6 +79,14 @@ final class CoreDataLocalStoreTests: XCTestCase {
         XCTAssertEqual(receivedUser, anyUser)
     }
     
+    // MARK: - LocalPhotoDataStore Tests
+    
+    func test_readData_deliversErrorOnCacheMiss() async {
+        let sut = makeSUT()
+
+        await expectReadDataToFail(sut: sut)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> CoreDataLocalStore {
@@ -85,6 +95,8 @@ final class CoreDataLocalStoreTests: XCTestCase {
         return try! CoreDataLocalStore(storeURL: storeURL, bundle: storeBundle)
     }
 
+    // MARK: - LocalStore Helpers
+    
     private func expectReadToFail(sut: CoreDataLocalStore, file: StaticString = #file, line: UInt = #line) async {
         do {
             let _: User = try await sut.read()
@@ -119,6 +131,17 @@ final class CoreDataLocalStoreTests: XCTestCase {
 
     private func anotherUser() -> User {
         return User(id: UUID(), name: "another name", email: "another@email.com", profileImage: nil)
+    }
+    
+    // MARK: - LocalPhotoDataStore Helpers
+    
+    private func expectReadDataToFail(sut: CoreDataLocalStore, file: StaticString = #file, line: UInt = #line) async {
+        do {
+            let _: Data = try await sut.read(photoReference: "reference")
+            XCTFail("Read method expected to fail when cache miss", file: file, line: line)
+        } catch {
+            XCTAssertNotNil(error, file: file, line: line)
+        }
     }
 
 }
