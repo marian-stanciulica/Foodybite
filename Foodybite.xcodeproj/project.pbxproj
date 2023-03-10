@@ -140,6 +140,7 @@
 		0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */; };
 		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
 		0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */; };
+		0F4AB0E429BB0C97004D338F /* LocalPhotoDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0E329BB0C97004D338F /* LocalPhotoDataStore.swift */; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
 		0F4F6D7E29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */; };
 		0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
@@ -684,6 +685,7 @@
 		0F447CCE28FB1A020026C5DB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
+		0F4AB0E329BB0C97004D338F /* LocalPhotoDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoDataStore.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1160,6 +1162,7 @@
 			children = (
 				0F19B4BC291675D000A8FC8F /* Models */,
 				0F19B4D029169C1E00A8FC8F /* CoreDataLocalStore.swift */,
+				0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */,
 				0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */,
 				0F19B4D229169C9F00A8FC8F /* Store.xcdatamodeld */,
 			);
@@ -1862,8 +1865,8 @@
 			isa = PBXGroup;
 			children = (
 				0F19B49329164B1000A8FC8F /* Infrastructure */,
-				0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */,
 				0F41D9AD2913E7BE00F0E4C2 /* LocalStore.swift */,
+				0F4AB0E329BB0C97004D338F /* LocalPhotoDataStore.swift */,
 				0F18976129B764A10052094F /* Search Nearby */,
 				0F207C5829B8BB5C0095E905 /* Get Place Details */,
 			);
@@ -3660,6 +3663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
+				0F4AB0E429BB0C97004D338F /* LocalPhotoDataStore.swift in Sources */,
 				0F207C6C29B8C1F10095E905 /* ManagedPlaceDetails.swift in Sources */,
 				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
 				0F885ACA29BA073D00D63DCC /* Photo+LocalModelConvertable.swift in Sources */,
