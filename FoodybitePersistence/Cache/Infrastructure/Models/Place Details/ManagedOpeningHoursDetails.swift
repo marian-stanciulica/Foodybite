@@ -13,7 +13,7 @@ import Domain
 @objc(ManagedOpeningHoursDetails)
 public class ManagedOpeningHoursDetails: NSManagedObject {
     @NSManaged public var openNow: Bool
-    @NSManaged public var weekdayText: NSSet?
+    @NSManaged public var weekdayText: NSSet
     @NSManaged public var placeDetails: ManagedPlaceDetails?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedOpeningHoursDetails> {
@@ -25,7 +25,7 @@ public class ManagedOpeningHoursDetails: NSManagedObject {
 
         openNow = model.openNow
         model.weekdayText.forEach {
-            weekdayText?.adding(ManagedWeekdayText($0, for: context))
+            weekdayText.adding(ManagedWeekdayText($0, for: context))
         }
     }
 }

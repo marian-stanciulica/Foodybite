@@ -13,7 +13,7 @@ extension PlaceDetails: LocalModelConvertable {
         var openingHoursDetails: OpeningHoursDetails?
         
         if let openingHoursDetailsModel = managedPlaceDetails.openingHoursDetails {
-            if let weekdayTextArray = openingHoursDetailsModel.weekdayText?.allObjects as? [String] {
+            if let weekdayTextArray = openingHoursDetailsModel.weekdayText.allObjects as? [String] {
                 openingHoursDetails = OpeningHoursDetails(openNow: openingHoursDetailsModel.openNow,
                                                           weekdayText: weekdayTextArray)
             }
