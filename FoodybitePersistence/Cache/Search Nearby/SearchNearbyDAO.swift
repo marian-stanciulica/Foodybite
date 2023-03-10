@@ -8,10 +8,10 @@
 import Domain
 
 public final class SearchNearbyDAO: SearchNearbyService, SearchNearbyCache {
-    private let store: LocalStoreReader & LocalStoreWriter
+    private let store: LocalStore
     private let getDistanceInKm: (Location, Location) -> Double
     
-    public init(store: LocalStoreReader & LocalStoreWriter, getDistanceInKm: @escaping (Location, Location) -> Double) {
+    public init(store: LocalStore, getDistanceInKm: @escaping (Location, Location) -> Double) {
         self.store = store
         self.getDistanceInKm = getDistanceInKm
     }

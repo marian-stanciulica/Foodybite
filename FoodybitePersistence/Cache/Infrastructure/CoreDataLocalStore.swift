@@ -7,7 +7,7 @@
 
 import CoreData
 
-public class CoreDataLocalStore: LocalStoreReader, LocalStoreWriter {
+public class CoreDataLocalStore: LocalStore {
     private let context: NSManagedObjectContext
     
     private struct CacheMissError: Error {}

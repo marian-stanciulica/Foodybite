@@ -9,7 +9,7 @@ import Foundation
 import Domain
 import FoodybitePersistence
 
-class LocalStoreSpy: LocalStoreReader, LocalStoreWriter {
+class LocalStoreSpy: LocalStore {
     enum Message {
         case read
         case readAll

@@ -8,11 +8,11 @@
 import Domain
 
 public final class GetPlaceDetailsDAO: GetPlaceDetailsService, PlaceDetailsCache {
-    private let store: LocalStoreReader & LocalStoreWriter
+    private let store: LocalStore
 
     private struct CacheMissError: Error {}
 
-    public init(store: LocalStoreReader & LocalStoreWriter) {
+    public init(store: LocalStore) {
         self.store = store
     }
     
