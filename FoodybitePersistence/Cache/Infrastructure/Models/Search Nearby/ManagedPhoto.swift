@@ -30,4 +30,12 @@ public class ManagedPhoto: NSManagedObject {
         height = Int16(model.height)
         reference = model.photoReference
     }
+    
+    static func first(with reference: String, in context: NSManagedObjectContext) throws -> ManagedPhoto? {
+        let request = NSFetchRequest<ManagedPhoto>(entityName: entity().name!)
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedPhoto.reference), reference])
+        request.returnsObjectsAsFaults = false
+        request.fetchLimit = 1
+        return try context.fetch(request).first
+    }
 }

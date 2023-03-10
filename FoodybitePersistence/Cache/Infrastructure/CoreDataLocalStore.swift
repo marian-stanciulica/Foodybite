@@ -62,11 +62,18 @@ public class CoreDataLocalStore: LocalStore {
 extension CoreDataLocalStore: LocalPhotoDataStore {
     
     public func read(photoReference: String) async throws -> Data {
-        throw CacheMissError()
+        guard let foundPhoto = try ManagedPhoto.first(with: photoReference, in: context),
+              let photoData = foundPhoto.photoData else {
+            throw CacheMissError()
+        }
+        
+        return photoData
     }
     
     public func write(photoData: Data, for photoReference: String) async throws {
-        
+        try ManagedPhoto.first(with: photoReference, in: context)
+            .map { $0.photoData = photoData }
+            .map(context.save)
     }
     
 }

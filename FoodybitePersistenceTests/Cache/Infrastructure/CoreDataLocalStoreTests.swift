@@ -87,6 +87,16 @@ final class CoreDataLocalStoreTests: XCTestCase {
         await expectReadDataToFail(sut: sut)
     }
     
+    func test_readData_deliversPhotoDataOnCacheHit() async throws {
+        let sut = makeSUT()
+        let photoReference = "photo reference"
+        let expectedPhotoData = "photo data".data(using: .utf8)!
+        try await sut.write(Photo(width: 1, height: 1, photoReference: photoReference))
+        try await sut.write(photoData: expectedPhotoData, for: photoReference)
+
+        await expectReadDataToSucceed(sut: sut, for: photoReference, withExpected: expectedPhotoData)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> CoreDataLocalStore {
@@ -141,6 +151,15 @@ final class CoreDataLocalStoreTests: XCTestCase {
             XCTFail("Read method expected to fail when cache miss", file: file, line: line)
         } catch {
             XCTAssertNotNil(error, file: file, line: line)
+        }
+    }
+    
+    private func expectReadDataToSucceed(sut: CoreDataLocalStore, for photoReference: String, withExpected expectedPhotoData: Data, file: StaticString = #file, line: UInt = #line) async {
+        do {
+            let receivedPhotoData: Data = try await sut.read(photoReference: photoReference)
+            XCTAssertEqual(receivedPhotoData, expectedPhotoData, file: file, line: line)
+        } catch {
+            XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
         }
     }
 
