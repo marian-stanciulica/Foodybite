@@ -19,7 +19,7 @@ final class FetchPlacePhotoServiceCacheDecorator: FetchPlacePhotoService {
     }
     
     func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        throw NSError(domain: "", code: 1)
+        try await fetchPlacePhotoService.fetchPlacePhoto(photoReference: photoReference)
     }
 }
 
@@ -30,11 +30,20 @@ final class FetchPlacePhotoServiceCacheDecoratorTests: XCTestCase {
         serviceStub.stub = .failure(anyError())
         
         do {
-            let photoData = try await sut.fetchPlacePhoto(photoReference: "reference")
+            let photoData = try await sut.fetchPlacePhoto(photoReference: "")
             XCTFail("Expected to fail, received \(photoData) instead")
         } catch {
             XCTAssertNotNil(error)
         }
+    }
+    
+    func test_fetchPlacePhoto_returnsPhotoDataWhenFetchPlacePhotoServiceReturnsSuccessfully() async throws {
+        let (sut, serviceStub, _) = makeSUT()
+        let expectedPhotoData = anyData()
+        serviceStub.stub = .success(expectedPhotoData)
+        
+        let receivedPhotoData = try await sut.fetchPlacePhoto(photoReference: "")
+        XCTAssertEqual(receivedPhotoData, expectedPhotoData)
     }
     
     // MARK: - Helpers
@@ -44,6 +53,10 @@ final class FetchPlacePhotoServiceCacheDecoratorTests: XCTestCase {
         let cacheSpy = PlacePhotoCacheSpy()
         let sut = FetchPlacePhotoServiceCacheDecorator(fetchPlacePhotoService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)
+    }
+    
+    private func anyData() -> Data {
+        "any data".data(using: .utf8)!
     }
     
     private class PlacePhotoCacheSpy: PlacePhotoCache {
