@@ -19,7 +19,11 @@ final class FetchPlacePhotoWithFallbackComposite: FetchPlacePhotoService {
     }
     
     func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        try await primary.fetchPlacePhoto(photoReference: photoReference)
+        do {
+            return try await primary.fetchPlacePhoto(photoReference: photoReference)
+        } catch {
+            return try await secondary.fetchPlacePhoto(photoReference: photoReference)
+        }
     }
 }
 
@@ -33,6 +37,17 @@ final class FetchPlacePhotoWithFallbackCompositeTests: XCTestCase {
         let receivedPhotoData = try await sut.fetchPlacePhoto(photoReference: "")
         
         XCTAssertEqual(receivedPhotoData, expectedPhotoData)
+    }
+    
+    func test_fetchPlacePhoto_callsSecondaryWhenPrimaryThrowsError() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedPhotoReference = "photo reference"
+        primaryStub.stub = .failure(anyError())
+        
+        _ = try await sut.fetchPlacePhoto(photoReference: expectedPhotoReference)
+        
+        XCTAssertEqual(secondaryStub.capturedValues.count, 1)
+        XCTAssertEqual(secondaryStub.capturedValues[0], expectedPhotoReference)
     }
     
     // MARK: - Helpers
