@@ -94,6 +94,14 @@ final class CoreDataLocalStoreTests: XCTestCase {
         await expectReadDataToFail(sut: sut, for: "incorrect reference")
     }
     
+    func test_readData_deliversErrorOnEmptyPhotoData() async throws {
+        let sut = makeSUT()
+        let correctReference = "correct reference"
+        try await sut.write(Photo(width: 1, height: 1, photoReference: correctReference))
+        
+        await expectReadDataToFail(sut: sut, for: correctReference)
+    }
+    
     func test_readData_deliversPhotoDataOnCacheHit() async throws {
         let sut = makeSUT()
         let photoReference = "photo reference"
