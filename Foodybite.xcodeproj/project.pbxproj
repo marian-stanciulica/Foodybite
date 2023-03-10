@@ -141,6 +141,8 @@
 		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
 		0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */; };
 		0F4AB0ED29BB1E50004D338F /* PlacePhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0EC29BB1E50004D338F /* PlacePhotoCache.swift */; };
+		0F4AB0EF29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */; };
+		0F4AB0F129BB20B5004D338F /* FetchPlacePhotoServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
 		0F4F6D7E29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */; };
 		0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
@@ -686,6 +688,8 @@
 		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F4AB0EC29BB1E50004D338F /* PlacePhotoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePhotoCache.swift; sourceTree = "<group>"; };
+		0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
+		0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceStub.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1123,6 +1127,7 @@
 				0F207BC929B866750095E905 /* SearchNearbyServiceWithFallbackCompositeTests.swift */,
 				0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */,
 				0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */,
+				0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -1220,6 +1225,7 @@
 				0F207BCE29B867C70095E905 /* TestHelpers.swift */,
 				0F207BCC29B8671C0095E905 /* SearchNearbyServiceStub.swift */,
 				0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */,
+				0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3461,6 +3467,7 @@
 				0F207BCF29B867C70095E905 /* TestHelpers.swift in Sources */,
 				0F423A9729853342009EB345 /* RestaurantDetailsViewModelTests.swift in Sources */,
 				0FB0E119291FA61C0058ABCB /* RegisterValidatorTests.swift in Sources */,
+				0F4AB0F129BB20B5004D338F /* FetchPlacePhotoServiceStub.swift in Sources */,
 				0FD5E75C29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift in Sources */,
 				0FB1D3D929ACEC2700304A94 /* EmptyGetPlaceDetailsService.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
@@ -3472,6 +3479,7 @@
 				0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */,
 				0FB1D3F829ACF36A00304A94 /* EmptyFetchPlacePhotoService.swift in Sources */,
 				0F207BCD29B8671C0095E905 /* SearchNearbyServiceStub.swift in Sources */,
+				0F4AB0EF29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift in Sources */,
 				0FF7C69B29B237A800622E9C /* SearchFilteringViewModelTests.swift in Sources */,
 				0F62F2CD29AF7002008F1C19 /* RestaurantDetailsViewSnapshotTests.swift in Sources */,
 				0FD19A7429ACA3B900DF7326 /* ProfileViewSnapshotTests.swift in Sources */,
