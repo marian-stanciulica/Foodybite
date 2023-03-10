@@ -81,13 +81,20 @@ final class CoreDataLocalStoreTests: XCTestCase {
     
     // MARK: - LocalPhotoDataStore Tests
     
+    func test_writeData_deliversErrorWhenPhotoNotFound() async throws {
+        let sut = makeSUT()
+        try await sut.write(Photo(width: 1, height: 1, photoReference: "correct reference"))
+
+        await expectWriteDataToFail(sut: sut, for: "incorrect reference")
+    }
+    
     func test_readData_deliversErrorOnEmptyCache() async {
         let sut = makeSUT()
 
         await expectReadDataToFail(sut: sut, for: "reference")
     }
     
-    func test_readData_deliversErrorOnNonExistentPhoto() async throws {
+    func test_readData_deliversErrorWhenPhotoNotFound() async throws {
         let sut = makeSUT()
         try await sut.write(Photo(width: 1, height: 1, photoReference: "correct reference"))
         
@@ -175,6 +182,15 @@ final class CoreDataLocalStoreTests: XCTestCase {
             XCTAssertEqual(receivedPhotoData, expectedPhotoData, file: file, line: line)
         } catch {
             XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
+        }
+    }
+    
+    private func expectWriteDataToFail(sut: CoreDataLocalStore, for photoReference: String, file: StaticString = #file, line: UInt = #line) async {
+        do {
+            try await sut.write(photoData: "photo data".data(using: .utf8)!, for: photoReference)
+            XCTFail("Write method expected to fail when photo not found", file: file, line: line)
+        } catch {
+            XCTAssertNotNil(error, file: file, line: line)
         }
     }
 
