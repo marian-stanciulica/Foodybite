@@ -53,6 +53,8 @@ struct HomeView<Cell: View, SearchView: View>: View {
         }
         .padding(.horizontal)
         .task {
+            guard viewModel.searchNearbyState == .idle else { return }
+            
             await viewModel.searchNearby()
         }
     }
