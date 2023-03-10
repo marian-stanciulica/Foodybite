@@ -21,7 +21,7 @@ class RootFactory {
                           tokenStore: tokenStore)
     }()
         
-    static let userStore: LocalStore = {
+    static let localStore: LocalStore = {
         do {
             return try CoreDataLocalStore(
                 storeURL: NSPersistentContainer

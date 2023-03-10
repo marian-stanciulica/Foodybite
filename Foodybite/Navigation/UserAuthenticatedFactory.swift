@@ -33,8 +33,8 @@ final class UserAuthenticatedFactory: RootFactory {
     
     let userPreferencesStore = UserPreferencesLocalStore()
     
-    let searchNearbyDAO = SearchNearbyDAO(store: userStore,
+    let searchNearbyDAO = SearchNearbyDAO(store: localStore,
                                           getDistanceInKm: DistanceSolver.getDistanceInKm)
     
-    let placeDetailsDAO = GetPlaceDetailsDAO(store: userStore)
+    let placeDetailsDAO = GetPlaceDetailsDAO(store: localStore)
 }

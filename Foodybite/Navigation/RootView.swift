@@ -29,13 +29,13 @@ struct RootView: View {
                                  signUpService: rootFactory.apiService) { user in
                     Task {
                         self.user = user
-                        try? await RootFactory.userStore.write(user)
+                        try? await RootFactory.localStore.write(user)
                     }
                 }
             }
         }
         .task {
-            self.user = try? await RootFactory.userStore.read()
+            self.user = try? await RootFactory.localStore.read()
         }
     }
     
