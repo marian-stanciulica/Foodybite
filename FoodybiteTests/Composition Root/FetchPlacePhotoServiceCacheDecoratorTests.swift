@@ -46,6 +46,15 @@ final class FetchPlacePhotoServiceCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(receivedPhotoData, expectedPhotoData)
     }
     
+    func test_fetchPlacePhoto_doesNotCacheWhenFetchPlacePhotoServiceThrowsError() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        serviceStub.stub = .failure(anyError())
+        
+        _ = try? await sut.fetchPlacePhoto(photoReference: "")
+        
+        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: FetchPlacePhotoServiceCacheDecorator, serviceStub: FetchPlacePhotoServiceStub, cacheSpy: PlacePhotoCacheSpy) {
