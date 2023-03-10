@@ -1,5 +1,5 @@
 //
-//  NullUserStore.swift
+//  NullLocalStore.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 06.03.2023.
@@ -8,7 +8,7 @@
 import Domain
 import FoodybitePersistence
 
-final class NullUserStore: LocalStore {
+final class NullLocalStore: LocalStore {
     private struct CacheMissError: Error {}
 
     func read<T: LocalModelConvertable>() async throws -> T {

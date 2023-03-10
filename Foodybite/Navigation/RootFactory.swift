@@ -29,7 +29,7 @@ class RootFactory {
                     .appendingPathComponent("foodybite-store.sqlite"))
             
         } catch {
-            return NullUserStore()
+            return NullLocalStore()
         }
     }()
 }
