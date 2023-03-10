@@ -145,6 +145,7 @@
 		0F4AB0F129BB20B5004D338F /* FetchPlacePhotoServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */; };
 		0F4AB0F329BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */; };
 		0F4AB0F529BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */; };
+		0F4AB0F729BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
 		0F4F6D7E29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */; };
 		0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
@@ -694,6 +695,7 @@
 		0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceStub.swift; sourceTree = "<group>"; };
 		0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceCacheDecorator.swift; sourceTree = "<group>"; };
 		0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
+		0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoWithFallbackComposite.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1154,6 +1156,7 @@
 				0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */,
 				0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */,
 				0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */,
+				0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -3600,6 +3603,7 @@
 				0F2B4CC428455577004D0EF7 /* RadiusIndicatorView.swift in Sources */,
 				0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */,
 				0F4AB0F329BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift in Sources */,
+				0F4AB0F729BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift in Sources */,
 				0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */,
 				0F7516472843666900A05A92 /* WhiteButton.swift in Sources */,
 				0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */,

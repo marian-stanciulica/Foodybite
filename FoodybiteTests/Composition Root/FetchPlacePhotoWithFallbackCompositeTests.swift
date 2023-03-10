@@ -9,24 +9,6 @@ import XCTest
 import Domain
 import Foodybite
 
-final class FetchPlacePhotoWithFallbackComposite: FetchPlacePhotoService {
-    private let primary: FetchPlacePhotoService
-    private let secondary: FetchPlacePhotoService
-    
-    init(primary: FetchPlacePhotoService, secondary: FetchPlacePhotoService) {
-        self.primary = primary
-        self.secondary = secondary
-    }
-    
-    func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        do {
-            return try await primary.fetchPlacePhoto(photoReference: photoReference)
-        } catch {
-            return try await secondary.fetchPlacePhoto(photoReference: photoReference)
-        }
-    }
-}
-
 final class FetchPlacePhotoWithFallbackCompositeTests: XCTestCase {
     
     func test_fetchPlacePhoto_returnsPhotoDataWhenPrimaryReturnsSuccessfully() async throws {
