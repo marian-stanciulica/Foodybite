@@ -37,4 +37,14 @@ final class UserAuthenticatedFactory: RootFactory {
                                           getDistanceInKm: DistanceSolver.getDistanceInKm)
     
     let placeDetailsDAO = GetPlaceDetailsDAO(store: localStore)
+    
+    lazy var getPlaceDetailsWithFallbackComposite = GetPlaceDetailsWithFallbackComposite(
+        primary: GetPlaceDetailsServiceCacheDecorator(
+            getPlaceDetailsService: placesService,
+            cache: placeDetailsDAO
+        ),
+        secondary: placeDetailsDAO
+    )
+    
+    
 }

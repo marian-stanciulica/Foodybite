@@ -80,13 +80,7 @@ struct UserAuthenticatedView: View {
                         flow: homeflow,
                         placeID: placeID,
                         currentLocation: currentLocation,
-                        getPlaceDetailsService: GetPlaceDetailsWithFallbackComposite(
-                            primary: GetPlaceDetailsServiceCacheDecorator(
-                                getPlaceDetailsService: userAuthenticatedFactory.placesService,
-                                cache: userAuthenticatedFactory.placeDetailsDAO
-                            ),
-                            secondary: userAuthenticatedFactory.placeDetailsDAO
-                        ),
+                        getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.apiService,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
@@ -108,7 +102,7 @@ struct UserAuthenticatedView: View {
                 plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
                     autocompletePlacesService: userAuthenticatedFactory.placesService,
-                    getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                    getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                     addReviewService: userAuthenticatedFactory.apiService,
                     location: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
@@ -136,7 +130,7 @@ struct UserAuthenticatedView: View {
                     user: user,
                     accountService: userAuthenticatedFactory.apiService,
                     getReviewsService: userAuthenticatedFactory.apiService,
-                    getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                    getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService,
                     goToLogin: { userLoggedIn = false }
                 )
@@ -158,7 +152,7 @@ struct UserAuthenticatedView: View {
                         flow: profileflow,
                         placeDetails: placeDetails,
                         currentLocation: currentLocation,
-                        getPlaceDetailsService: userAuthenticatedFactory.placesService,
+                        getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.apiService,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
