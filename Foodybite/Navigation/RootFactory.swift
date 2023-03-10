@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 08.03.2023.
 //
 
+import Domain
 import CoreData
 import FoodybitePlaces
 import FoodybiteNetworking
@@ -21,7 +22,7 @@ class RootFactory {
                           tokenStore: tokenStore)
     }()
         
-    static let localStore: LocalStore = {
+    static let localStore: LocalStore & FetchPlacePhotoService & PlacePhotoCache = {
         do {
             return try CoreDataLocalStore(
                 storeURL: NSPersistentContainer
