@@ -50,6 +50,17 @@ final class FetchPlacePhotoWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0], expectedPhotoReference)
     }
     
+    func test_fetchPlacePhoto_returnsPhotoDataWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedPhotoData = anyData()
+        primaryStub.stub = .failure(anyError())
+        secondaryStub.stub = .success(expectedPhotoData)
+        
+        let receivedPhotoData = try await sut.fetchPlacePhoto(photoReference: "")
+        
+        XCTAssertEqual(expectedPhotoData, receivedPhotoData)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: FetchPlacePhotoWithFallbackComposite, primaryStub: FetchPlacePhotoServiceStub, secondaryStub: FetchPlacePhotoServiceStub) {
