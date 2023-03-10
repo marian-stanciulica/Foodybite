@@ -55,6 +55,8 @@ struct PhotoView: View {
             }
         }
         .task {
+            guard viewModel.fetchPhotoState == .isLoading else { return }
+            
             await viewModel.fetchPhoto()
         }
     }
