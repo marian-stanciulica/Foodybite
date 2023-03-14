@@ -23,9 +23,21 @@ final class UserDAO {
 
 final class UserDAOTests: XCTestCase {
     
-    func test_getUser_throwsErrorWhenUserNotFound() async {
+    func test_getUser_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readResult = .failure(anyError())
+        
+        do {
+            let user = try await sut.getUser(id: UUID())
+            XCTFail("Expected to fail, received user \(user) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    func test_getUser_throwsErrorWhenUserNotFound() async {
+        let (sut, storeSpy) = makeSUT()
+        storeSpy.readAllResult = .success([makeUser(), makeUser(), makeUser()])
         
         do {
             let user = try await sut.getUser(id: UUID())
@@ -41,6 +53,10 @@ final class UserDAOTests: XCTestCase {
         let storeSpy = LocalStoreSpy()
         let sut = UserDAO(store: storeSpy)
         return (sut, storeSpy)
+    }
+    
+    private func makeUser() -> User {
+        User(id: UUID(), name: "User", email: "user@user.com", profileImage: nil)
     }
     
 }
