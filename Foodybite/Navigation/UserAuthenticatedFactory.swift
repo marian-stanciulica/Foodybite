@@ -46,4 +46,11 @@ final class UserAuthenticatedFactory: RootFactory {
         secondary: placeDetailsDAO
     )
     
+    lazy var getReviewsWithFallbackComposite = GetReviewsServiceWithFallbackComposite(
+        primary: GetReviewsServiceCacheDecorator(
+            getReviewsService: apiService,
+            cache: RootFactory.localStore
+        ),
+        secondary: RootFactory.localStore
+    )
 }

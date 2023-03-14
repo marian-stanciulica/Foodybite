@@ -28,3 +28,13 @@ final class NullLocalStore: LocalStore {
         throw CacheMissError()
     }
 }
+
+extension NullLocalStore: GetReviewsService {
+    func getReviews(placeID: String?) async throws -> [Review] {
+        []
+    }
+}
+
+extension NullLocalStore: ReviewsCache {
+    func save(reviews: [Review]) async throws {}
+}

@@ -22,7 +22,7 @@ class RootFactory {
                           tokenStore: tokenStore)
     }()
         
-    static let localStore: LocalStore = {
+    static let localStore: LocalStore & GetReviewsService & ReviewsCache = {
         do {
             return try CoreDataLocalStore(
                 storeURL: NSPersistentContainer

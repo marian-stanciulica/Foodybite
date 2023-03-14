@@ -81,7 +81,7 @@ struct UserAuthenticatedView: View {
                         placeID: placeID,
                         currentLocation: currentLocation,
                         getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
-                        getReviewsService: userAuthenticatedFactory.apiService,
+                        getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
                 case let .addReview(placeID):
@@ -129,7 +129,7 @@ struct UserAuthenticatedView: View {
                     flow: profileflow,
                     user: user,
                     accountService: userAuthenticatedFactory.apiService,
-                    getReviewsService: userAuthenticatedFactory.apiService,
+                    getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                     getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService,
                     goToLogin: { loggedInUserID = nil }
@@ -153,7 +153,7 @@ struct UserAuthenticatedView: View {
                         placeDetails: placeDetails,
                         currentLocation: currentLocation,
                         getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
-                        getReviewsService: userAuthenticatedFactory.apiService,
+                        getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
                 case let .addReview(placeID):
