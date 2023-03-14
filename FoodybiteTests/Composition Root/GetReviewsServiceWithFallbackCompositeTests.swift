@@ -50,6 +50,17 @@ final class GetReviewsServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
     }
     
+    func test_getReviews_returnsReviewsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedReviews = makeReviews()
+        primaryStub.stub = .failure(anyError())
+        secondaryStub.stub = .success(expectedReviews)
+        
+        let receivedReviews = try await sut.getReviews()
+        
+        XCTAssertEqual(expectedReviews, receivedReviews)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetReviewsServiceWithFallbackComposite, primaryStub: GetReviewsServiceStub, secondaryStub: GetReviewsServiceStub) {
