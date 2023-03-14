@@ -19,7 +19,11 @@ final class GetReviewsServiceWithFallbackComposite: GetReviewsService {
     }
     
     func getReviews(placeID: String? = nil) async throws -> [Review] {
-        try await primary.getReviews(placeID: placeID)
+        do {
+            return try await primary.getReviews(placeID: placeID)
+        } catch {
+            return try await secondary.getReviews(placeID: placeID)
+        }
     }
 }
 
@@ -33,6 +37,17 @@ final class GetReviewsServiceWithFallbackCompositeTests: XCTestCase {
         let receivedReviews = try await sut.getReviews()
         
         XCTAssertEqual(receivedReviews, expectedReviews)
+    }
+    
+    func test_getReviews_callsSecondaryWhenPrimaryThrowsError() async throws {
+        let (sut, primaryStub, secondaryStub) = makeSUT()
+        let expectedPlaceID = "place id"
+        primaryStub.stub = .failure(anyError())
+        
+        _ = try await sut.getReviews(placeID: expectedPlaceID)
+        
+        XCTAssertEqual(secondaryStub.capturedValues.count, 1)
+        XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
     }
     
     // MARK: - Helpers

@@ -12,8 +12,6 @@ final class GetReviewsServiceStub: GetReviewsService {
     private(set) var capturedValues = [String?]()
     var stub: Result<[Review], Error>?
     
-    private struct StubNotSet: Error {}
-    
     func getReviews(placeID: String?) async throws -> [Review] {
         capturedValues.append(placeID)
         
@@ -21,6 +19,6 @@ final class GetReviewsServiceStub: GetReviewsService {
             return try stub.get()
         }
         
-        throw StubNotSet()
+        return []
     }
 }
