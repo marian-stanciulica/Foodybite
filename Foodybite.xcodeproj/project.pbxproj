@@ -152,8 +152,6 @@
 		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
 		0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */; };
 		0F4AB0F129BB20B5004D338F /* FetchPlacePhotoServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */; };
-		0F4AB0F529BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */; };
-		0F4AB0F729BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
 		0F4F6D7E29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */; };
 		0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
@@ -705,8 +703,6 @@
 		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceStub.swift; sourceTree = "<group>"; };
-		0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
-		0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoWithFallbackComposite.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1147,7 +1143,6 @@
 				0F207BC929B866750095E905 /* SearchNearbyServiceWithFallbackCompositeTests.swift */,
 				0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */,
 				0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */,
-				0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -1168,7 +1163,6 @@
 				0F207BD029B86C390095E905 /* SearchNearbyServiceWithFallbackComposite.swift */,
 				0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */,
 				0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */,
-				0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -3457,7 +3451,6 @@
 				0F207C7E29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift in Sources */,
 				0FB0E128291FBED90058ABCB /* LoginViewModelTests.swift in Sources */,
 				0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */,
-				0F4AB0F529BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift in Sources */,
 				0F412EDD29631FA700FDDF41 /* Helpers.swift in Sources */,
 				0F62F2AE29AF669C008F1C19 /* HomeViewSnapshotTests.swift in Sources */,
 				0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */,
@@ -3589,7 +3582,6 @@
 				0F415CD02843D481005B54DC /* RatingView.swift in Sources */,
 				0F2B4CC428455577004D0EF7 /* RadiusIndicatorView.swift in Sources */,
 				0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */,
-				0F4AB0F729BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift in Sources */,
 				0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */,
 				0F7516472843666900A05A92 /* WhiteButton.swift in Sources */,
 				0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */,
