@@ -56,6 +56,12 @@ public class CoreDataLocalStore: LocalStore {
 
 extension CoreDataLocalStore: GetReviewsService {
     public func getReviews(placeID: String? = nil) async throws -> [Review] {
-       []
+       try await readAll()
+    }
+}
+
+extension CoreDataLocalStore: ReviewsCache {
+    public func save(reviews: [Review]) async throws {
+        try await writeAll(reviews)
     }
 }

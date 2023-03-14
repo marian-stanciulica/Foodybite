@@ -33,7 +33,7 @@ public class ManagedReview: NSManagedObject {
         profileImageURL = model.profileImageURL
         profileImageData = model.profileImageData
         authorName = model.authorName
-        reviewText = model.authorName
+        reviewText = model.reviewText
         rating = Int16(model.rating)
         relativeTime = model.relativeTime
     }

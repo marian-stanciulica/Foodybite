@@ -85,6 +85,16 @@ final class CoreDataLocalStoreTests: XCTestCase {
         XCTAssertTrue(receivedReviews.isEmpty)
     }
     
+    func test_getReviews_deliversReviewsOnCacheHit() async throws {
+        let sut = makeSUT()
+        let expectedReviews = makeReviews()
+        try await sut.save(reviews: expectedReviews)
+        
+        let receivedReviews = try await sut.getReviews()
+        
+        XCTAssertEqual(receivedReviews, expectedReviews)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> CoreDataLocalStore {
@@ -127,6 +137,14 @@ final class CoreDataLocalStoreTests: XCTestCase {
     
     private func anotherUser(id: UUID = UUID()) -> User {
         return User(id: id, name: "another name", email: "another@email.com", profileImage: nil)
+    }
+
+    private func makeReviews() -> [Review] {
+        [
+            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
+            Review(placeID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
+            Review(placeID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
+        ]
     }
 
 }
