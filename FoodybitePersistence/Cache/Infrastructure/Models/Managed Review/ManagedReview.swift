@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Domain
 
 @objc(ManagedReview)
 public class ManagedReview: NSManagedObject {
@@ -22,5 +23,18 @@ public class ManagedReview: NSManagedObject {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedReview> {
         return NSFetchRequest<ManagedReview>(entityName: "ManagedReview")
+    }
+    
+    public convenience init(_ model: Review, for context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        id = model.id
+        placeID = model.placeID
+        profileImageURL = model.profileImageURL
+        profileImageData = model.profileImageData
+        authorName = model.authorName
+        reviewText = model.authorName
+        rating = Int16(model.rating)
+        relativeTime = model.relativeTime
     }
 }
