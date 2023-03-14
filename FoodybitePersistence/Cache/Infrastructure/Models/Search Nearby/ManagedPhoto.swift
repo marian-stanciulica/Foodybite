@@ -15,7 +15,6 @@ public class ManagedPhoto: NSManagedObject {
     @NSManaged public var width: Int16
     @NSManaged public var height: Int16
     @NSManaged public var reference: String
-    @NSManaged public var photoData: Data?
     @NSManaged public var placeDetails: ManagedPlaceDetails?
     @NSManaged public var nearbyPlace: ManagedNearbyPlace?
     

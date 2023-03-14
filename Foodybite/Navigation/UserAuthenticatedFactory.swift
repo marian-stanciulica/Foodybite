@@ -46,11 +46,4 @@ final class UserAuthenticatedFactory: RootFactory {
         secondary: placeDetailsDAO
     )
     
-    lazy var fetchPlacePhotoWithFallbackComposite = FetchPlacePhotoWithFallbackComposite(
-        primary: Self.localStore,
-        secondary: FetchPlacePhotoServiceCacheDecorator(
-            fetchPlacePhotoService: placesService,
-            cache: Self.localStore
-        )
-    )
 }

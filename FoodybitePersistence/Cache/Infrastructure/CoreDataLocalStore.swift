@@ -53,26 +53,3 @@ public class CoreDataLocalStore: LocalStore {
         }
     }
 }
-
-extension CoreDataLocalStore: FetchPlacePhotoService {
-    public func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        guard let foundPhoto = try ManagedPhoto.first(with: photoReference, in: context),
-              let photoData = foundPhoto.photoData else {
-            throw CacheMissError()
-        }
-        
-        return photoData
-    }
-}
-
-extension CoreDataLocalStore: PlacePhotoCache {
-    public func save(photoData: Data, for photoReference: String) async throws {
-        guard let photo = try ManagedPhoto.first(with: photoReference, in: context) else {
-            throw CacheMissError()
-        }
-        
-        photo.photoData = photoData
-        try context.save()
-    }
-    
-}

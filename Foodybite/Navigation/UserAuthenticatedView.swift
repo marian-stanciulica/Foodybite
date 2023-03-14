@@ -70,7 +70,7 @@ struct UserAuthenticatedView: View {
                         ),
                         secondary: userAuthenticatedFactory.searchNearbyDAO
                     ),
-                    fetchPhotoService: userAuthenticatedFactory.fetchPlacePhotoWithFallbackComposite
+                    fetchPhotoService: userAuthenticatedFactory.placesService
                 )
             }
             .navigationDestination(for: HomeRoute.self) { route in
@@ -82,7 +82,7 @@ struct UserAuthenticatedView: View {
                         currentLocation: currentLocation,
                         getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.apiService,
-                        fetchPhotoService: userAuthenticatedFactory.fetchPlacePhotoWithFallbackComposite
+                        fetchPhotoService: userAuthenticatedFactory.placesService
                     )
                 case let .addReview(placeID):
                     HomeFlowView.makeReviewView(
@@ -112,7 +112,7 @@ struct UserAuthenticatedView: View {
                         photoView: PhotoView(
                             viewModel: PhotoViewModel(
                                 photoReference: placeDetails.photos.first?.photoReference,
-                                fetchPhotoService: userAuthenticatedFactory.fetchPlacePhotoWithFallbackComposite
+                                fetchPhotoService: userAuthenticatedFactory.placesService
                             )
                         ),
                         placeDetails: placeDetails
@@ -131,7 +131,7 @@ struct UserAuthenticatedView: View {
                     accountService: userAuthenticatedFactory.apiService,
                     getReviewsService: userAuthenticatedFactory.apiService,
                     getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
-                    fetchPhotoService: userAuthenticatedFactory.fetchPlacePhotoWithFallbackComposite,
+                    fetchPhotoService: userAuthenticatedFactory.placesService,
                     goToLogin: { loggedInUserID = nil }
                 )
             }
@@ -154,7 +154,7 @@ struct UserAuthenticatedView: View {
                         currentLocation: currentLocation,
                         getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.apiService,
-                        fetchPhotoService: userAuthenticatedFactory.fetchPlacePhotoWithFallbackComposite
+                        fetchPhotoService: userAuthenticatedFactory.placesService
                     )
                 case let .addReview(placeID):
                     ProfileFlowView.makeReviewView(

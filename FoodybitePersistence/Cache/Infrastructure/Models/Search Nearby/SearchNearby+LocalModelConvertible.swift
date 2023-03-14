@@ -13,7 +13,11 @@ extension NearbyPlace: LocalModelConvertable {
         var photo: Photo? = nil
         
         if let managedPhoto = managedNearbyPlace.photo {
-            photo = Photo(from: managedPhoto)
+            photo = Photo(
+                width: Int(managedPhoto.width),
+                height: Int(managedPhoto.height),
+                photoReference: managedPhoto.reference
+            )
         }
         
         self.init(placeID: managedNearbyPlace.placeID,

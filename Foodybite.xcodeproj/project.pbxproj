@@ -151,7 +151,6 @@
 		0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */; };
 		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
 		0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */; };
-		0F4AB0ED29BB1E50004D338F /* PlacePhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0EC29BB1E50004D338F /* PlacePhotoCache.swift */; };
 		0F4AB0EF29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */; };
 		0F4AB0F129BB20B5004D338F /* FetchPlacePhotoServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */; };
 		0F4AB0F329BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */; };
@@ -223,7 +222,6 @@
 		0F7E23D32920E861005196EA /* AuthRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D22920E861005196EA /* AuthRoute.swift */; };
 		0F7E23D52920E965005196EA /* AuthFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7E23D42920E965005196EA /* AuthFlowView.swift */; };
 		0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F885AC529BA01B300D63DCC /* ManagedPhoto.swift */; };
-		0F885ACA29BA073D00D63DCC /* Photo+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F885AC929BA073D00D63DCC /* Photo+LocalModelConvertable.swift */; };
 		0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F89618F2928C01E00FFDC48 /* RemoteUser.swift */; };
 		0F9A19D429AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A19CE29AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png */; };
 		0F9A19D529AB4FE7007B2E9B /* test_reviewViewIsLoadingState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A19CF29AB4FE7007B2E9B /* test_reviewViewIsLoadingState.light.png */; };
@@ -708,7 +706,6 @@
 		0F447CCE28FB1A020026C5DB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
-		0F4AB0EC29BB1E50004D338F /* PlacePhotoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePhotoCache.swift; sourceTree = "<group>"; };
 		0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceStub.swift; sourceTree = "<group>"; };
 		0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceCacheDecorator.swift; sourceTree = "<group>"; };
@@ -793,7 +790,6 @@
 		0F7E23D22920E861005196EA /* AuthRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRoute.swift; sourceTree = "<group>"; };
 		0F7E23D42920E965005196EA /* AuthFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowView.swift; sourceTree = "<group>"; };
 		0F885AC529BA01B300D63DCC /* ManagedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPhoto.swift; sourceTree = "<group>"; };
-		0F885AC929BA073D00D63DCC /* Photo+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F89618F2928C01E00FFDC48 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		0F9A19CE29AB4FE7007B2E9B /* test_reviewViewIdleState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_reviewViewIdleState.dark.png; sourceTree = "<group>"; };
 		0F9A19CF29AB4FE7007B2E9B /* test_reviewViewIsLoadingState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_reviewViewIsLoadingState.light.png; sourceTree = "<group>"; };
@@ -1275,7 +1271,6 @@
 				0F18976429B766000052094F /* ManagedNearbyPlace.swift */,
 				0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */,
 				0F885AC529BA01B300D63DCC /* ManagedPhoto.swift */,
-				0F885AC929BA073D00D63DCC /* Photo+LocalModelConvertable.swift */,
 			);
 			path = "Search Nearby";
 			sourceTree = "<group>";
@@ -1788,14 +1783,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		0F4AB0EB29BB1E36004D338F /* Place Photo */ = {
-			isa = PBXGroup;
-			children = (
-				0F4AB0EC29BB1E50004D338F /* PlacePhotoCache.swift */,
-			);
-			path = "Place Photo";
-			sourceTree = "<group>";
-		};
 		0F53B86B29AB4CE500DE5E13 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2253,7 +2240,6 @@
 		0FA6BE292994E829003E1912 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F4AB0EB29BB1E36004D338F /* Place Photo */,
 				0F18977129B79D630052094F /* Search Nearby */,
 				0F207C7A29B8E2810095E905 /* Get Place Details */,
 				0FA6BE2A2994E87A003E1912 /* Networking Protocols */,
@@ -3520,7 +3506,6 @@
 				0FA6BE3D29957463003E1912 /* AutocompletePlacesService.swift in Sources */,
 				0FA6BE2C2994E8A0003E1912 /* SignUpService.swift in Sources */,
 				0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */,
-				0F4AB0ED29BB1E50004D338F /* PlacePhotoCache.swift in Sources */,
 				0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */,
 				0F70C4A329869C8C00C004DD /* Photo.swift in Sources */,
 				0FF7C69729B2356200622E9C /* UserPreferencesSaver.swift in Sources */,
@@ -3704,7 +3689,6 @@
 				0F207C6C29B8C1F10095E905 /* ManagedPlaceDetails.swift in Sources */,
 				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
 				0F04032D29C0709900122E60 /* UserDAO.swift in Sources */,
-				0F885ACA29BA073D00D63DCC /* Photo+LocalModelConvertable.swift in Sources */,
 				0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */,
 				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
 				0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */,
