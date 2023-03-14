@@ -1210,7 +1210,7 @@
 			children = (
 				0F04032529C06BB200122E60 /* Managed User */,
 				0F207C7029B8C3390095E905 /* Managed Nearby Place */,
-				0F207C7129B8C3480095E905 /* Place Details */,
+				0F207C7129B8C3480095E905 /* Managed Place Details */,
 				0F61266329C0FC8400658A4D /* Managed Review */,
 			);
 			path = Models;
@@ -1280,7 +1280,7 @@
 			path = "Managed Nearby Place";
 			sourceTree = "<group>";
 		};
-		0F207C7129B8C3480095E905 /* Place Details */ = {
+		0F207C7129B8C3480095E905 /* Managed Place Details */ = {
 			isa = PBXGroup;
 			children = (
 				0F207C6629B8C1F10095E905 /* ManagedPlaceDetails.swift */,
@@ -1288,7 +1288,7 @@
 				0F207C6429B8C1F10095E905 /* ManagedWeekdayText.swift */,
 				0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */,
 			);
-			path = "Place Details";
+			path = "Managed Place Details";
 			sourceTree = "<group>";
 		};
 		0F207C7A29B8E2810095E905 /* Get Place Details */ = {
