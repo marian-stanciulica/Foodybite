@@ -88,7 +88,7 @@ struct UserAuthenticatedView: View {
                     HomeFlowView.makeReviewView(
                         flow: homeflow,
                         placeID: placeID,
-                        addReviewService: userAuthenticatedFactory.apiService
+                        addReviewService: userAuthenticatedFactory.authenticatedApiService
                     )
                 }
             }
@@ -103,7 +103,7 @@ struct UserAuthenticatedView: View {
                 viewModel: NewReviewViewModel(
                     autocompletePlacesService: userAuthenticatedFactory.placesService,
                     getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
-                    addReviewService: userAuthenticatedFactory.apiService,
+                    addReviewService: userAuthenticatedFactory.authenticatedApiService,
                     location: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
                 ),
@@ -128,7 +128,7 @@ struct UserAuthenticatedView: View {
                 ProfileFlowView.makeProfileView(
                     flow: profileflow,
                     user: user,
-                    accountService: userAuthenticatedFactory.apiService,
+                    accountService: userAuthenticatedFactory.authenticatedApiService,
                     getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                     getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService,
@@ -140,13 +140,13 @@ struct UserAuthenticatedView: View {
                 case .settings:
                     ProfileFlowView.makeSettingsView(
                         flow: profileflow,
-                        logoutService: userAuthenticatedFactory.apiService,
+                        logoutService: userAuthenticatedFactory.authenticatedApiService,
                         goToLogin: { loggedInUserID = nil }
                     )
                 case .changePassword:
-                    ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.apiService)
+                    ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.authenticatedApiService)
                 case .editProfile:
-                    ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.apiService)
+                    ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.authenticatedApiService)
                 case let .placeDetails(placeDetails):
                     ProfileFlowView.makeRestaurantDetailsView(
                         flow: profileflow,
@@ -160,7 +160,7 @@ struct UserAuthenticatedView: View {
                     ProfileFlowView.makeReviewView(
                         flow: profileflow,
                         placeID: placeID,
-                        addReviewService: userAuthenticatedFactory.apiService
+                        addReviewService: userAuthenticatedFactory.authenticatedApiService
                     )
                 }
             }

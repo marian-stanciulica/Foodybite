@@ -10,7 +10,7 @@ import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence
 
-final class UserAuthenticatedFactory: RootFactory {
+final class UserAuthenticatedFactory {
     let authenticatedApiService: FoodybiteNetworking.APIService = {
         let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
         let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
@@ -33,10 +33,10 @@ final class UserAuthenticatedFactory: RootFactory {
     
     let userPreferencesStore = UserPreferencesLocalStore()
     
-    let searchNearbyDAO = SearchNearbyDAO(store: localStore,
+    let searchNearbyDAO = SearchNearbyDAO(store: RootFactory.localStore,
                                           getDistanceInKm: DistanceSolver.getDistanceInKm)
     
-    let placeDetailsDAO = GetPlaceDetailsDAO(store: localStore)
+    let placeDetailsDAO = GetPlaceDetailsDAO(store: RootFactory.localStore)
     
     lazy var getPlaceDetailsWithFallbackComposite = GetPlaceDetailsWithFallbackComposite(
         primary: GetPlaceDetailsServiceCacheDecorator(
@@ -48,7 +48,7 @@ final class UserAuthenticatedFactory: RootFactory {
     
     lazy var getReviewsWithFallbackComposite = GetReviewsServiceWithFallbackComposite(
         primary: GetReviewsServiceCacheDecorator(
-            getReviewsService: apiService,
+            getReviewsService: authenticatedApiService,
             cache: RootFactory.localStore
         ),
         secondary: RootFactory.localStore
