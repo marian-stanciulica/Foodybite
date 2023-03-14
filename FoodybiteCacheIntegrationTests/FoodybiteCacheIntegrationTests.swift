@@ -44,12 +44,13 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         XCTAssertEqual(receivedUser, user)
     }
     
-    func test_saveUser_overridesUserSavedOnASeparateInstance() async throws {
+    func test_saveUser_updatesUserSavedOnASeparateInstance() async throws {
         let userLoaderToPerformFirstSave = makeUserLoader()
         let userLoaderToPerformSecondSave = makeUserLoader()
         let userLoaderToPerformLoad = makeUserLoader()
-        let firstUser = makeUser()
-        let secondUser = makeUser()
+        let userID = UUID()
+        let firstUser = makeUser(id: userID)
+        let secondUser = makeUser(id: userID)
         
         try await userLoaderToPerformFirstSave.write(firstUser)
         try await userLoaderToPerformSecondSave.write(secondUser)
@@ -66,8 +67,8 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         return sut
     }
     
-    private func makeUser() -> User {
-        User(id: UUID(), name: "User #1", email: "testing@testing.com", profileImage: nil)
+    private func makeUser(id: UUID = UUID()) -> User {
+        User(id: id, name: "User #1", email: "testing@testing.com", profileImage: nil)
     }
     
     private func testSpecificStoreURL() -> URL {
