@@ -28,15 +28,3 @@ final class NullLocalStore: LocalStore {
         throw CacheMissError()
     }
 }
-
-extension NullLocalStore: FetchPlacePhotoService {
-    func fetchPlacePhoto(photoReference: String) async throws -> Data {
-        throw CacheMissError()
-    }
-}
-
-extension NullLocalStore: PlacePhotoCache {
-    func save(photoData: Data, for photoReference: String) async throws {
-        throw CacheMissError()
-    }
-}

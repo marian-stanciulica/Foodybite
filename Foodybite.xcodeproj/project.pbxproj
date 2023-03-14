@@ -151,9 +151,7 @@
 		0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCC28FB19DF0026C5DB /* LoginResponse.swift */; };
 		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
 		0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */; };
-		0F4AB0EF29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */; };
 		0F4AB0F129BB20B5004D338F /* FetchPlacePhotoServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */; };
-		0F4AB0F329BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */; };
 		0F4AB0F529BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */; };
 		0F4AB0F729BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
@@ -706,9 +704,7 @@
 		0F447CCE28FB1A020026C5DB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
-		0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F4AB0F029BB20B5004D338F /* FetchPlacePhotoServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceStub.swift; sourceTree = "<group>"; };
-		0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoServiceCacheDecorator.swift; sourceTree = "<group>"; };
 		0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoWithFallbackComposite.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
@@ -1151,7 +1147,6 @@
 				0F207BC929B866750095E905 /* SearchNearbyServiceWithFallbackCompositeTests.swift */,
 				0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */,
 				0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */,
-				0F4AB0EE29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift */,
 				0F4AB0F429BB2565004D338F /* FetchPlacePhotoWithFallbackCompositeTests.swift */,
 			);
 			path = "Composition Root";
@@ -1173,7 +1168,6 @@
 				0F207BD029B86C390095E905 /* SearchNearbyServiceWithFallbackComposite.swift */,
 				0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */,
 				0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */,
-				0F4AB0F229BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift */,
 				0F4AB0F629BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift */,
 			);
 			path = "Composition Root";
@@ -3484,7 +3478,6 @@
 				0FA6BE3529950892003E1912 /* RestaurantReviewCellViewModelTests.swift in Sources */,
 				0FB1D3F829ACF36A00304A94 /* EmptyFetchPlacePhotoService.swift in Sources */,
 				0F207BCD29B8671C0095E905 /* SearchNearbyServiceStub.swift in Sources */,
-				0F4AB0EF29BB2081004D338F /* FetchPlacePhotoServiceCacheDecoratorTests.swift in Sources */,
 				0FF7C69B29B237A800622E9C /* SearchFilteringViewModelTests.swift in Sources */,
 				0F62F2CD29AF7002008F1C19 /* RestaurantDetailsViewSnapshotTests.swift in Sources */,
 				0FD19A7429ACA3B900DF7326 /* ProfileViewSnapshotTests.swift in Sources */,
@@ -3596,7 +3589,6 @@
 				0F415CD02843D481005B54DC /* RatingView.swift in Sources */,
 				0F2B4CC428455577004D0EF7 /* RadiusIndicatorView.swift in Sources */,
 				0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */,
-				0F4AB0F329BB2502004D338F /* FetchPlacePhotoServiceCacheDecorator.swift in Sources */,
 				0F4AB0F729BB27DA004D338F /* FetchPlacePhotoWithFallbackComposite.swift in Sources */,
 				0FAFCA2A284298C700778E45 /* TabRouter.swift in Sources */,
 				0F7516472843666900A05A92 /* WhiteButton.swift in Sources */,
