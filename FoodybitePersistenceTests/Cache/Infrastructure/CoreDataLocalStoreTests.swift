@@ -65,11 +65,11 @@ final class CoreDataLocalStoreTests: XCTestCase {
         }
     }
     
-    func test_write_overridesPreviouslyInsertedResource() async throws {
+    func test_write_updatesPreviouslyInsertedResource() async throws {
         let sut = makeSUT()
-
-        let anyUser = anyUser()
-        let anotherUser = anotherUser()
+        let userID = UUID()
+        let anyUser = anyUser(id: userID)
+        let anotherUser = anotherUser(id: userID)
 
         try await sut.write(anotherUser)
 
@@ -157,12 +157,12 @@ final class CoreDataLocalStoreTests: XCTestCase {
         await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
     }
 
-    private func anyUser() -> User {
-        return User(id: UUID(), name: "any name", email: "any@email.com", profileImage: nil)
+    private func anyUser(id: UUID = UUID()) -> User {
+        return User(id: id, name: "any name", email: "any@email.com", profileImage: nil)
     }
-
-    private func anotherUser() -> User {
-        return User(id: UUID(), name: "another name", email: "another@email.com", profileImage: nil)
+    
+    private func anotherUser(id: UUID = UUID()) -> User {
+        return User(id: id, name: "another name", email: "another@email.com", profileImage: nil)
     }
     
     // MARK: - LocalPhotoDataStore Helpers
