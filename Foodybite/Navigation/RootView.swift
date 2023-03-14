@@ -17,7 +17,7 @@ struct RootView: View {
     
     var body: some View {
         HStack {
-            if let user = user {
+            if let user = user, loggedInUserID != nil {
                 UserAuthenticatedView(
                     loggedInUserID: $loggedInUserID,
                     user: user,
