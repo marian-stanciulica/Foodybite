@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F0280FD29262FE7006B219F /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FC29262FE7006B219F /* SignUpRequest.swift */; };
 		0F028100292630D5006B219F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequest.swift */; };
+		0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */; };
 		0F0620492997F33F00D47857 /* SelectedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
@@ -556,6 +557,7 @@
 /* Begin PBXFileReference section */
 		0F0280FC29262FE7006B219F /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		0F0280FF292630D5006B219F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantView.swift; sourceTree = "<group>"; };
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -1060,6 +1062,15 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		0F04032529C06BB200122E60 /* Managed User */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
+				0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */,
+			);
+			path = "Managed User";
+			sourceTree = "<group>";
+		};
 		0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1186,7 +1197,7 @@
 		0F19B4BC291675D000A8FC8F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0F19B4D929169D6700A8FC8F /* ManagedUser.swift */,
+				0F04032529C06BB200122E60 /* Managed User */,
 				0F207C7029B8C3390095E905 /* Search Nearby */,
 				0F207C7129B8C3480095E905 /* Place Details */,
 			);
@@ -3697,6 +3708,7 @@
 				0F885ACA29BA073D00D63DCC /* Photo+LocalModelConvertable.swift in Sources */,
 				0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */,
 				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
+				0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */,
 				0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */,
 				0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */,
