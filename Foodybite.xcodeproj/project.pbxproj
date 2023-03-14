@@ -1120,22 +1120,6 @@
 			path = FoodybiteTests;
 			sourceTree = "<group>";
 		};
-		0F18975E29B75EF60052094F /* Search Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */,
-			);
-			path = "Search Nearby";
-			sourceTree = "<group>";
-		};
-		0F18976129B764A10052094F /* Search Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				0F18976829B785020052094F /* SearchNearbyDAO.swift */,
-			);
-			path = "Search Nearby";
-			sourceTree = "<group>";
-		};
 		0F18976C29B78CF70052094F /* Composition Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -1256,22 +1240,6 @@
 				0F7E23CF2920E374005196EA /* FlowTests.swift */,
 			);
 			path = "Navigation Stacks";
-			sourceTree = "<group>";
-		};
-		0F207C5829B8BB5C0095E905 /* Get Place Details */ = {
-			isa = PBXGroup;
-			children = (
-				0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */,
-			);
-			path = "Get Place Details";
-			sourceTree = "<group>";
-		};
-		0F207C5929B8BBDD0095E905 /* Get Place Details */ = {
-			isa = PBXGroup;
-			children = (
-				0F207C5A29B8BC3B0095E905 /* GetPlaceDetailsDAOTests.swift */,
-			);
-			path = "Get Place Details";
 			sourceTree = "<group>";
 		};
 		0F207C7029B8C3390095E905 /* Search Nearby */ = {
@@ -1900,8 +1868,8 @@
 			children = (
 				0F19B49329164B1000A8FC8F /* Infrastructure */,
 				0F41D9AD2913E7BE00F0E4C2 /* LocalStore.swift */,
-				0F18976129B764A10052094F /* Search Nearby */,
-				0F207C5829B8BB5C0095E905 /* Get Place Details */,
+				0F18976829B785020052094F /* SearchNearbyDAO.swift */,
+				0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -1911,8 +1879,8 @@
 			children = (
 				0F41D9AF2913E81B00F0E4C2 /* Helpers */,
 				0F19B4DD2916B01F00A8FC8F /* Infrastructure */,
-				0F18975E29B75EF60052094F /* Search Nearby */,
-				0F207C5929B8BBDD0095E905 /* Get Place Details */,
+				0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */,
+				0F207C5A29B8BC3B0095E905 /* GetPlaceDetailsDAOTests.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
