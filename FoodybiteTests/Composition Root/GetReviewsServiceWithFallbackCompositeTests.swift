@@ -9,24 +9,6 @@ import XCTest
 import Domain
 import Foodybite
 
-final class GetReviewsServiceWithFallbackComposite: GetReviewsService {
-    private let primary: GetReviewsService
-    private let secondary: GetReviewsService
-    
-    init(primary: GetReviewsService, secondary: GetReviewsService) {
-        self.primary = primary
-        self.secondary = secondary
-    }
-    
-    func getReviews(placeID: String? = nil) async throws -> [Review] {
-        do {
-            return try await primary.getReviews(placeID: placeID)
-        } catch {
-            return try await secondary.getReviews(placeID: placeID)
-        }
-    }
-}
-
 final class GetReviewsServiceWithFallbackCompositeTests: XCTestCase {
     
     func test_getReviews_returnsReviewsWhenPrimaryReturnsSuccessfully() async throws {
