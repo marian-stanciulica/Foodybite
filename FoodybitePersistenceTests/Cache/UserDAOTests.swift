@@ -9,26 +9,6 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class UserDAO {
-    private let store: LocalStore
-    
-    private struct UserNotFound: Error {}
-    
-    init(store: LocalStore) {
-        self.store = store
-    }
-    
-    func getUser(id: UUID) async throws -> User {
-        let users: [User] = try await store.readAll()
-        
-        guard let foundUser = users.first(where: { $0.id == id }) else {
-            throw UserNotFound()
-        }
-        
-        return foundUser
-    }
-}
-
 final class UserDAOTests: XCTestCase {
     
     func test_getUser_throwsErrorWhenStoreThrowsError() async {

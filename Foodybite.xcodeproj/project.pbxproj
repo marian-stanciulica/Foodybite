@@ -11,6 +11,7 @@
 		0F028100292630D5006B219F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequest.swift */; };
 		0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */; };
 		0F04032B29C06D9700122E60 /* UserDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032A29C06D9700122E60 /* UserDAOTests.swift */; };
+		0F04032D29C0709900122E60 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032C29C0709900122E60 /* UserDAO.swift */; };
 		0F0620492997F33F00D47857 /* SelectedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
@@ -560,6 +561,7 @@
 		0F0280FF292630D5006B219F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F04032A29C06D9700122E60 /* UserDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAOTests.swift; sourceTree = "<group>"; };
+		0F04032C29C0709900122E60 /* UserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRestaurantView.swift; sourceTree = "<group>"; };
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -1872,6 +1874,7 @@
 				0F41D9AD2913E7BE00F0E4C2 /* LocalStore.swift */,
 				0F18976829B785020052094F /* SearchNearbyDAO.swift */,
 				0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */,
+				0F04032C29C0709900122E60 /* UserDAO.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -3676,6 +3679,7 @@
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
 				0F207C6C29B8C1F10095E905 /* ManagedPlaceDetails.swift in Sources */,
 				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
+				0F04032D29C0709900122E60 /* UserDAO.swift in Sources */,
 				0F885ACA29BA073D00D63DCC /* Photo+LocalModelConvertable.swift in Sources */,
 				0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */,
 				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
