@@ -12,12 +12,20 @@ import FoodybitePersistence
 final class UserDAO {
     private let store: LocalStore
     
+    private struct UserNotFound: Error {}
+    
     init(store: LocalStore) {
         self.store = store
     }
     
     func getUser(id: UUID) async throws -> User {
-        throw NSError(domain: "", code: 1)
+        let users: [User] = try await store.readAll()
+        
+        guard let foundUser = users.first(where: { $0.id == id }) else {
+            throw UserNotFound()
+        }
+        
+        return foundUser
     }
 }
 
@@ -45,6 +53,15 @@ final class UserDAOTests: XCTestCase {
         } catch {
             XCTAssertNotNil(error)
         }
+    }
+    
+    func test_getUser_returnsFoundUserWhenFoundInStore() async throws {
+        let (sut, storeSpy) = makeSUT()
+        let expectedUser = makeUser()
+        storeSpy.readAllResult = .success([makeUser(), makeUser()] + [expectedUser])
+        
+        let receivedUser = try await sut.getUser(id: expectedUser.id)
+        XCTAssertEqual(expectedUser, receivedUser)
     }
     
     // MARK: - Helpers
