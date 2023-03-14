@@ -50,6 +50,15 @@ final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(receivedReviews, expectedReviews)
     }
     
+    func test_getReviews_doesNotCacheWhenGetReviewsServiceThrowsError() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        serviceStub.stub = .failure(anyError())
+        
+        _ = try? await sut.getReviews()
+        
+        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetReviewsServiceCacheDecorator, serviceStub: GetReviewsServiceStub, cacheSpy: ReviewsCacheSpy) {
