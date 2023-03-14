@@ -9,10 +9,6 @@ import XCTest
 import Domain
 import Foodybite
 
-public protocol ReviewsCache {
-    func save(reviews: [Review]) async throws
-}
-
 final class GetReviewsServiceCacheDecorator: GetReviewsService {
     private let getReviewsService: GetReviewsService
     private let cache: ReviewsCache
