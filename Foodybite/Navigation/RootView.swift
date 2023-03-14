@@ -11,7 +11,7 @@ import Domain
 struct RootView: View {
     private let rootFactory = RootFactory()
     @State var user: User?
-    @AppStorage("userLoggedIn") var userLoggedIn = false
+    @AppStorage("loggedInUserID") var loggedInUserID: String?
     @StateObject var authflow = Flow<AuthRoute>()
     @StateObject var locationProvider = LocationProvider()
     
@@ -19,7 +19,7 @@ struct RootView: View {
         HStack {
             if let user = user {
                 UserAuthenticatedView(
-                    userLoggedIn: $userLoggedIn,
+                    loggedInUserID: $loggedInUserID,
                     user: user,
                     locationProvider: locationProvider,
                     viewModel: UserAuthenticatedViewModel(locationProvider: locationProvider)
@@ -29,13 +29,16 @@ struct RootView: View {
                                  signUpService: rootFactory.apiService) { user in
                     Task {
                         self.user = user
+                        self.loggedInUserID = user.id.uuidString
                         try? await RootFactory.localStore.write(user)
                     }
                 }
             }
         }
         .task {
-            self.user = try? await RootFactory.localStore.read()
+            if let loggedInUserID = loggedInUserID, let userID = UUID(uuidString: loggedInUserID) {
+                user = try? await rootFactory.userDAO.getUser(id: userID)
+            }
         }
     }
     

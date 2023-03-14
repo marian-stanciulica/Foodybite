@@ -33,4 +33,6 @@ class RootFactory {
             return NullLocalStore()
         }
     }()
+    
+    let userDAO = UserDAO(store: localStore)
 }

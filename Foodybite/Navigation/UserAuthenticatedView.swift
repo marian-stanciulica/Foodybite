@@ -9,7 +9,7 @@ import Domain
 import SwiftUI
 
 struct UserAuthenticatedView: View {
-    @Binding var userLoggedIn: Bool
+    @Binding var loggedInUserID: String?
     let user: User
     @ObservedObject var locationProvider: LocationProvider
     @StateObject var viewModel: UserAuthenticatedViewModel
@@ -132,7 +132,7 @@ struct UserAuthenticatedView: View {
                     getReviewsService: userAuthenticatedFactory.apiService,
                     getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.fetchPlacePhotoWithFallbackComposite,
-                    goToLogin: { userLoggedIn = false }
+                    goToLogin: { loggedInUserID = nil }
                 )
             }
             .navigationDestination(for: ProfileRoute.self) { route in
@@ -141,7 +141,7 @@ struct UserAuthenticatedView: View {
                     ProfileFlowView.makeSettingsView(
                         flow: profileflow,
                         logoutService: userAuthenticatedFactory.apiService,
-                        goToLogin: { userLoggedIn = false }
+                        goToLogin: { loggedInUserID = nil }
                     )
                 case .changePassword:
                     ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.apiService)
@@ -171,7 +171,7 @@ struct UserAuthenticatedView: View {
 struct AuthenticatedContainerView_Previews: PreviewProvider {
     static var previews: some View {
         UserAuthenticatedView(
-            userLoggedIn: .constant(true),
+            loggedInUserID: .constant(nil),
             user: User(id: UUID(), name: "User", email: "user@user.com", profileImage: nil),
             locationProvider: LocationProvider(),
             viewModel: UserAuthenticatedViewModel(locationProvider: LocationProvider())
