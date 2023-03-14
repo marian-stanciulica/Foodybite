@@ -23,7 +23,7 @@ final class GetReviewsServiceCacheDecorator: GetReviewsService {
     }
     
     func getReviews(placeID: String? = nil) async throws -> [Review] {
-        throw NSError(domain: "", code: 1)
+        try await getReviewsService.getReviews(placeID: placeID)
     }
 }
 
@@ -41,6 +41,15 @@ final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
         }
     }
     
+    func test_getReviews_returnsReviewsWhenGetReviewsServiceReturnsSuccessfully() async throws {
+        let (sut, serviceStub, _) = makeSUT()
+        let expectedReviews = makeReviews()
+        serviceStub.stub = .success(expectedReviews)
+        
+        let receivedReviews = try await sut.getReviews()
+        XCTAssertEqual(receivedReviews, expectedReviews)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GetReviewsServiceCacheDecorator, serviceStub: GetReviewsServiceStub, cacheSpy: ReviewsCacheSpy) {
@@ -48,6 +57,14 @@ final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
         let cacheSpy = ReviewsCacheSpy()
         let sut = GetReviewsServiceCacheDecorator(getReviewsService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)
+    }
+    
+    private func makeReviews() -> [Review] {
+        [
+            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
+            Review(placeID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
+            Review(placeID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
+        ]
     }
     
     private class ReviewsCacheSpy: ReviewsCache {
