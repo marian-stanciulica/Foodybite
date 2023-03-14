@@ -12,6 +12,14 @@
 		0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */; };
 		0F04032B29C06D9700122E60 /* UserDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032A29C06D9700122E60 /* UserDAOTests.swift */; };
 		0F04032D29C0709900122E60 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032C29C0709900122E60 /* UserDAO.swift */; };
+		0F04032F29C0753F00122E60 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD4F29B5F68E008CDA48 /* Domain.framework */; };
+		0F04033029C0753F00122E60 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD4F29B5F68E008CDA48 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F04033329C0755200122E60 /* FoodybiteNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5029B5F68E008CDA48 /* FoodybiteNetworking.framework */; };
+		0F04033429C0755200122E60 /* FoodybiteNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5029B5F68E008CDA48 /* FoodybiteNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F04033729C0755600122E60 /* FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5229B5F68E008CDA48 /* FoodybitePersistence.framework */; };
+		0F04033829C0755600122E60 /* FoodybitePersistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5229B5F68E008CDA48 /* FoodybitePersistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F04033B29C0755900122E60 /* FoodybitePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5129B5F68E008CDA48 /* FoodybitePlaces.framework */; };
+		0F04033C29C0755900122E60 /* FoodybitePlaces.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5129B5F68E008CDA48 /* FoodybitePlaces.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F0620492997F33F00D47857 /* SelectedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */; };
 		0F0BDA2F28F8407A00E91FD0 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
@@ -399,6 +407,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0F04033129C0753F00122E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
+			remoteInfo = Domain;
+		};
+		0F04033529C0755300122E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F0BDA1828F83FD500E91FD0;
+			remoteInfo = FoodybiteNetworking;
+		};
+		0F04033929C0755600122E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F95A875290D024400806AE9;
+			remoteInfo = FoodybitePersistence;
+		};
+		0F04033D29C0755900122E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
+			remoteInfo = FoodybitePlaces;
+		};
 		0F0BDA2228F83FD500E91FD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -455,33 +491,12 @@
 			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
 			remoteInfo = FoodybitePlaces;
 		};
-		0F412ECF2962F9E300FDDF41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
-			remoteInfo = FoodybitePlaces;
-		};
-		0F423AB22985A7B2009EB345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F19B474291647DB00A8FC8F;
-			remoteInfo = DomainModels;
-		};
 		0F95A87F290D024500806AE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0F95A875290D024400806AE9;
 			remoteInfo = FoodybitePersistence;
-		};
-		0FB0E10F291F7FB80058ABCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F0BDA1828F83FD500E91FD0;
-			remoteInfo = FoodybiteNetworking;
 		};
 		0FC73C5629B6097C005879B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -503,13 +518,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0F7137B62841F8340058757A;
 			remoteInfo = Foodybite;
-		};
-		0FF7C6A029B24FF300622E9C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0F95A875290D024400806AE9;
-			remoteInfo = FoodybitePersistence;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -550,6 +558,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0F04033429C0755200122E60 /* FoodybiteNetworking.framework in Embed Frameworks */,
+				0F04033029C0753F00122E60 /* Domain.framework in Embed Frameworks */,
+				0F04033C29C0755900122E60 /* FoodybitePlaces.framework in Embed Frameworks */,
+				0F04033829C0755600122E60 /* FoodybitePersistence.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1015,6 +1027,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F04033329C0755200122E60 /* FoodybiteNetworking.framework in Frameworks */,
+				0F04032F29C0753F00122E60 /* Domain.framework in Frameworks */,
+				0F04033B29C0755900122E60 /* FoodybitePlaces.framework in Frameworks */,
+				0F04033729C0755600122E60 /* FoodybitePersistence.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1073,6 +1089,13 @@
 				0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */,
 			);
 			path = "Managed User";
+			sourceTree = "<group>";
+		};
+		0F04032E29C0753F00122E60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		0F0BDA1A28F83FD500E91FD0 /* FoodybiteNetworking */ = {
@@ -1916,6 +1939,7 @@
 				0F6BFD5629B5F68E008CDA48 /* FoodybitePlacesTests.xctest */,
 				0F6BFD5729B5F68E008CDA48 /* FoodybiteAPIEndToEndTests.xctest */,
 				0FC73C5129B6097C005879B8 /* FoodybiteCacheIntegrationTests.xctest */,
+				0F04032E29C0753F00122E60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3024,10 +3048,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				0F423AB32985A7B2009EB345 /* PBXTargetDependency */,
-				0FB0E110291F7FB80058ABCB /* PBXTargetDependency */,
-				0F412ED02962F9E300FDDF41 /* PBXTargetDependency */,
-				0FF7C6A129B24FF300622E9C /* PBXTargetDependency */,
+				0F04033229C0753F00122E60 /* PBXTargetDependency */,
+				0F04033629C0755300122E60 /* PBXTargetDependency */,
+				0F04033A29C0755600122E60 /* PBXTargetDependency */,
+				0F04033E29C0755900122E60 /* PBXTargetDependency */,
 			);
 			name = Foodybite;
 			productName = Foodybite;
@@ -3724,6 +3748,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0F04033229C0753F00122E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F19B474291647DB00A8FC8F /* Domain */;
+			targetProxy = 0F04033129C0753F00122E60 /* PBXContainerItemProxy */;
+		};
+		0F04033629C0755300122E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
+			targetProxy = 0F04033529C0755300122E60 /* PBXContainerItemProxy */;
+		};
+		0F04033A29C0755600122E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
+			targetProxy = 0F04033929C0755600122E60 /* PBXContainerItemProxy */;
+		};
+		0F04033E29C0755900122E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
+			targetProxy = 0F04033D29C0755900122E60 /* PBXContainerItemProxy */;
+		};
 		0F0BDA2328F83FD500E91FD0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
@@ -3764,25 +3808,10 @@
 			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
 			targetProxy = 0F412E7F2962C78E00FDDF41 /* PBXContainerItemProxy */;
 		};
-		0F412ED02962F9E300FDDF41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
-			targetProxy = 0F412ECF2962F9E300FDDF41 /* PBXContainerItemProxy */;
-		};
-		0F423AB32985A7B2009EB345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F19B474291647DB00A8FC8F /* Domain */;
-			targetProxy = 0F423AB22985A7B2009EB345 /* PBXContainerItemProxy */;
-		};
 		0F95A880290D024500806AE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
 			targetProxy = 0F95A87F290D024500806AE9 /* PBXContainerItemProxy */;
-		};
-		0FB0E110291F7FB80058ABCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
-			targetProxy = 0FB0E10F291F7FB80058ABCB /* PBXContainerItemProxy */;
 		};
 		0FC73C5729B6097C005879B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3798,11 +3827,6 @@
 			isa = PBXTargetDependency;
 			target = 0F7137B62841F8340058757A /* Foodybite */;
 			targetProxy = 0FF7C67429B2070F00622E9C /* PBXContainerItemProxy */;
-		};
-		0FF7C6A129B24FF300622E9C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
-			targetProxy = 0FF7C6A029B24FF300622E9C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
