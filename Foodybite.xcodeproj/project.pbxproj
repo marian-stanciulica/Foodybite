@@ -1209,7 +1209,7 @@
 			isa = PBXGroup;
 			children = (
 				0F04032529C06BB200122E60 /* Managed User */,
-				0F207C7029B8C3390095E905 /* Search Nearby */,
+				0F207C7029B8C3390095E905 /* Managed Nearby Place */,
 				0F207C7129B8C3480095E905 /* Place Details */,
 				0F61266329C0FC8400658A4D /* Managed Review */,
 			);
@@ -1270,14 +1270,14 @@
 			path = "Navigation Stacks";
 			sourceTree = "<group>";
 		};
-		0F207C7029B8C3390095E905 /* Search Nearby */ = {
+		0F207C7029B8C3390095E905 /* Managed Nearby Place */ = {
 			isa = PBXGroup;
 			children = (
 				0F18976429B766000052094F /* ManagedNearbyPlace.swift */,
 				0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */,
 				0F885AC529BA01B300D63DCC /* ManagedPhoto.swift */,
 			);
-			path = "Search Nearby";
+			path = "Managed Nearby Place";
 			sourceTree = "<group>";
 		};
 		0F207C7129B8C3480095E905 /* Place Details */ = {
