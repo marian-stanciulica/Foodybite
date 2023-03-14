@@ -53,3 +53,9 @@ public class CoreDataLocalStore: LocalStore {
         }
     }
 }
+
+extension CoreDataLocalStore: GetReviewsService {
+    public func getReviews(placeID: String? = nil) async throws -> [Review] {
+       []
+    }
+}

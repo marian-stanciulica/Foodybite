@@ -77,6 +77,14 @@ final class CoreDataLocalStoreTests: XCTestCase {
         XCTAssertEqual(receivedUser, anyUser)
     }
     
+    func test_getReviews_deliversEmptyArrayOnCacheMiss() async throws {
+        let sut = makeSUT()
+        
+        let receivedReviews = try await sut.getReviews()
+        
+        XCTAssertTrue(receivedReviews.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> CoreDataLocalStore {
