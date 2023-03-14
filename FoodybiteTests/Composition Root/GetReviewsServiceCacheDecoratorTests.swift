@@ -23,7 +23,9 @@ final class GetReviewsServiceCacheDecorator: GetReviewsService {
     }
     
     func getReviews(placeID: String? = nil) async throws -> [Review] {
-        try await getReviewsService.getReviews(placeID: placeID)
+        let reviews = try await getReviewsService.getReviews(placeID: placeID)
+        try? await cache.save(reviews: reviews)
+        return reviews
     }
 }
 
@@ -57,6 +59,16 @@ final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
         _ = try? await sut.getReviews()
         
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+    }
+    
+    func test_getReviews_cachesReviewsWhenGetReviewsServiceReturnsSuccessfully() async {
+        let (sut, serviceStub, cacheSpy) = makeSUT()
+        let expectedReviews = makeReviews()
+        serviceStub.stub = .success(expectedReviews)
+        
+        _ = try? await sut.getReviews()
+        
+        XCTAssertEqual(cacheSpy.capturedValues, [expectedReviews])
     }
     
     // MARK: - Helpers
