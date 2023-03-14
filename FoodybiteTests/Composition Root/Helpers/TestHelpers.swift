@@ -53,3 +53,11 @@ func makeExpectedPlaceDetails() -> PlaceDetails {
                  location: Location(latitude: 0, longitude: 0),
                  photos: [])
 }
+
+func makeReviews() -> [Review] {
+    [
+        Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
+        Review(placeID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
+        Review(placeID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
+    ]
+}

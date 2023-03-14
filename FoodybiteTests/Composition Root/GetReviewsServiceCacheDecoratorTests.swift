@@ -60,14 +60,6 @@ final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
         return (sut, serviceStub, cacheSpy)
     }
     
-    private func makeReviews() -> [Review] {
-        [
-            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
-            Review(placeID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
-            Review(placeID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
-        ]
-    }
-    
     private class ReviewsCacheSpy: ReviewsCache {
         private(set) var capturedValues = [[Review]]()
         
