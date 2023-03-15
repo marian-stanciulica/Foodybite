@@ -7,16 +7,17 @@
 
 import Domain
 import CoreData
+import SharedAPI
 import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence
 
 class RootFactory {
     let apiService: FoodybiteNetworking.APIService = {
-        let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
+        let httpClient = SharedAPI.URLSessionHTTPClient()
         let tokenStore = KeychainTokenStore()
         
-        let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
+        let remoteResourceLoader = FoodybiteNetworking.RemoteResourceLoader(client: httpClient)
         return APIService(loader: remoteResourceLoader,
                           sender: remoteResourceLoader,
                           tokenStore: tokenStore)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 public class AuthenticatedURLSessionHTTPClient: HTTPClient {
     private let decoratee: HTTPClient

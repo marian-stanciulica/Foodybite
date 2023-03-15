@@ -7,6 +7,7 @@
 
 @testable import FoodybiteNetworking
 import XCTest
+import SharedAPI
 
 final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
 

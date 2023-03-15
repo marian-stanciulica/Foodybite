@@ -7,6 +7,7 @@
 
 import XCTest
 import Domain
+import SharedAPI
 import FoodybitePlaces
 
 final class FoodybitePlacesAPIEndToEndTests: XCTestCase {

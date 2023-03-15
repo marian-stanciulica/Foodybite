@@ -6,19 +6,20 @@
 //
 
 import CoreData
+import SharedAPI
 import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence
 
 final class UserAuthenticatedFactory {
     let authenticatedApiService: APIService = {
-        let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
-        let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
+        let httpClient = URLSessionHTTPClient()
+        let refreshTokenLoader = FoodybiteNetworking.RemoteResourceLoader(client: httpClient)
         let tokenStore = KeychainTokenStore()
         
         let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
         let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
-        let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
+        let authenticatedRemoteResourceLoader = FoodybiteNetworking.RemoteResourceLoader(client: authenticatedHTTPClient)
         
         return APIService(loader: authenticatedRemoteResourceLoader,
                           sender: authenticatedRemoteResourceLoader,
@@ -26,7 +27,7 @@ final class UserAuthenticatedFactory {
     }()
     
     let placesService: PlacesService = {
-        let httpClient = FoodybitePlaces.URLSessionHTTPClient()
+        let httpClient = URLSessionHTTPClient()
         let loader = FoodybitePlaces.RemoteResourceLoader(client: httpClient)
         return PlacesService(loader: loader)
     }()

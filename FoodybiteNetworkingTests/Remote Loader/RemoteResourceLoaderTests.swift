@@ -134,7 +134,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
     
     private func makeSUT() -> (sut: RemoteResourceLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteResourceLoader(client: client)
+        let sut = FoodybiteNetworking.RemoteResourceLoader(client: client)
         
         return (sut, client)
     }
