@@ -19,18 +19,17 @@ final class PlacesServiceTests: XCTestCase {
     }
     
     func test_searchNearby_searchNearbyParamsUsedToCreateEndpoint() async throws {
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
-        
+        let location = Location(latitude: -33.8, longitude: 15.1)
+        let radius = 15
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
         let searchNearbyEndpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let urlRequest = try searchNearbyEndpoint.createURLRequest()
 
         _ = try await searchNearby(on: sut, location: location, radius: radius)
 
-        let firstRequest = loader.getRequests.first
-        let urlComponents = URLComponents(url: firstRequest!.url!, resolvingAgainstBaseURL: true)
+        XCTAssertEqual(loader.getRequests.count, 1)
         
+        let urlComponents = URLComponents(url: loader.getRequests[0].url!, resolvingAgainstBaseURL: true)
         let expectedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "key", value: searchNearbyEndpoint.apiKey),
             URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),
