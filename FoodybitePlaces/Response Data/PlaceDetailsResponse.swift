@@ -34,7 +34,7 @@ struct Details: Decodable {
     let internationalPhoneNumber: String?
     let name: String
     let openingHours: OpeningHoursDetails?
-    let photos: [Photo]
+    let photos: [RemotePhoto]
     let placeID: String
     let plusCode: PlusCode
     let rating: Double

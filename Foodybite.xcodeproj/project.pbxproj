@@ -82,7 +82,7 @@
 		0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAA29829212006D4A7F /* Geometry.swift */; };
 		0F2BACAE2982922F006D4A7F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAD2982922F006D4A7F /* Location.swift */; };
 		0F2BACB029829243006D4A7F /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAF29829243006D4A7F /* Viewport.swift */; };
-		0F2BACB2298292C0006D4A7F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB1298292C0006D4A7F /* Photo.swift */; };
+		0F2BACB2298292C0006D4A7F /* RemotePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB1298292C0006D4A7F /* RemotePhoto.swift */; };
 		0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB3298292FA006D4A7F /* PlusCode.swift */; };
 		0F2BACBC29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */; };
 		0F2BACC42982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */; };
@@ -662,7 +662,7 @@
 		0F2BACAA29829212006D4A7F /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		0F2BACAD2982922F006D4A7F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0F2BACAF29829243006D4A7F /* Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewport.swift; sourceTree = "<group>"; };
-		0F2BACB1298292C0006D4A7F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		0F2BACB1298292C0006D4A7F /* RemotePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePhoto.swift; sourceTree = "<group>"; };
 		0F2BACB3298292FA006D4A7F /* PlusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusCode.swift; sourceTree = "<group>"; };
 		0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybitePlacesAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteNetworkingAPIEndToEndTests.swift; sourceTree = "<group>"; };
@@ -1360,7 +1360,7 @@
 				0F2BACAA29829212006D4A7F /* Geometry.swift */,
 				0F2BACAD2982922F006D4A7F /* Location.swift */,
 				0F2BACAF29829243006D4A7F /* Viewport.swift */,
-				0F2BACB1298292C0006D4A7F /* Photo.swift */,
+				0F2BACB1298292C0006D4A7F /* RemotePhoto.swift */,
 				0F2BACB3298292FA006D4A7F /* PlusCode.swift */,
 			);
 			path = Helpers;
@@ -3621,7 +3621,7 @@
 				0F412EA72962CB9000FDDF41 /* RemoteLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
 				0FABD52129962DD000918251 /* AutocompleteResponse.swift in Sources */,
-				0F2BACB2298292C0006D4A7F /* Photo.swift in Sources */,
+				0F2BACB2298292C0006D4A7F /* RemotePhoto.swift in Sources */,
 				0F412EC32962D3D100FDDF41 /* PlacesService.swift in Sources */,
 				0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */,
 				0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */,

@@ -29,10 +29,10 @@ extension PlacesService: SearchNearbyService {
         }
         
         return response.results.map {
-            var photo: Domain.Photo?
+            var photo: Photo?
             
             if let firstPhoto = $0.photos?.first {
-                photo = Domain.Photo(width: firstPhoto.width, height: firstPhoto.height, photoReference: firstPhoto.photoReference)
+                photo = Photo(width: firstPhoto.width, height: firstPhoto.height, photoReference: firstPhoto.photoReference)
             }
             
             return NearbyPlace(
@@ -89,7 +89,7 @@ extension PlacesService: GetPlaceDetailsService {
                 longitude: response.result.geometry.location.lng
             ),
             photos: response.result.photos.map {
-                Domain.Photo(width: $0.width, height: $0.height, photoReference: $0.photoReference)
+                Photo(width: $0.width, height: $0.height, photoReference: $0.photoReference)
             }
         )
     }

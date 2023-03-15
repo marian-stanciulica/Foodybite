@@ -27,7 +27,7 @@ struct SearchNearbyResult: Decodable {
     let iconMaskBaseURI: String
     let name: String
     let openingHours: OpeningHours?
-    let photos: [Photo]?
+    let photos: [RemotePhoto]?
     let placeID: String
     let plusCode: PlusCode?
     let priceLevel: Int?

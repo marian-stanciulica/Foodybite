@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Photo: Decodable {
+struct RemotePhoto: Decodable {
     let height: Int
     let photoReference: String
     let width: Int
