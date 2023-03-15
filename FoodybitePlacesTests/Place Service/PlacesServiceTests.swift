@@ -101,6 +101,18 @@ final class PlacesServiceTests: XCTestCase {
         XCTAssertEqual(loader.getRequests, [urlRequest])
     }
     
+    func test_getPlaceDetails_throwsErrorWhenStatusIsNotOK() async {
+        let placeDetails = anyPlaceDetails(status: .notFound)
+        let (sut, _) = makeSUT(response: placeDetails)
+        
+        do {
+            let placeDetails = try await sut.getPlaceDetails(placeID: placeDetails.result.placeID)
+            XCTFail("Expected to fail, got \(placeDetails) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     func test_getPlaceDetails_receiveExpectedPlaceDetailsResponse() async throws {
         let expectedResponse = anyPlaceDetails()
         
@@ -274,7 +286,7 @@ final class PlacesServiceTests: XCTestCase {
         ], status: "OK")
     }
     
-    private func anyPlaceDetails() -> PlaceDetailsResponse {
+    private func anyPlaceDetails(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
         PlaceDetailsResponse(
             result: Details(
                 addressComponents: [],
@@ -303,7 +315,7 @@ final class PlacesServiceTests: XCTestCase {
                 utcOffset: 0,
                 vicinity: "",
                 website: ""),
-            status: .ok
+            status: status
         )
     }
 }

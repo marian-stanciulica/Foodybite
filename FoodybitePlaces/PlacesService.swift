@@ -11,6 +11,7 @@ import SharedAPI
 
 public class PlacesService {
     private let loader: ResourceLoader & DataLoader
+    private struct StatusError: Error {}
     
     public init(loader: ResourceLoader & DataLoader) {
         self.loader = loader
@@ -50,6 +51,10 @@ extension PlacesService: GetPlaceDetailsService {
         let endpoint = GetPlaceDetailsEndpoint(placeID: placeID)
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
+        
+        guard response.status == .ok else {
+            throw StatusError()
+        }
         
         var openingHours: Domain.OpeningHoursDetails?
         
