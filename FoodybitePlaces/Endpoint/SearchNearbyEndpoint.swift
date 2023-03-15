@@ -10,10 +10,10 @@ import Domain
 import SharedAPI
 
 struct SearchNearbyEndpoint: Endpoint {
-    private let location: Domain.Location
+    private let location: Location
     private let radius: Int
     
-    init(location: Domain.Location, radius: Int) {
+    init(location: Location, radius: Int) {
         self.location = location
         self.radius = radius
     }

@@ -17,7 +17,7 @@ final class AutocompleteEndpointTests: XCTestCase {
     
     func test_autocomplete_queryItems() throws {
         let input = "Paris"
-        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
         let sut = makeSUT(input: input, location: location, radius: radius)
         let urlRequest = try sut.createURLRequest()
@@ -34,7 +34,7 @@ final class AutocompleteEndpointTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(input: String = "", location: Domain.Location = Domain.Location(latitude: 0, longitude: 0), radius: Int = 0) -> AutocompleteEndpoint {
+    private func makeSUT(input: String = "", location: Location = Location(latitude: 0, longitude: 0), radius: Int = 0) -> AutocompleteEndpoint {
         return AutocompleteEndpoint(input: input, location: location, radius: radius)
     }
 }
