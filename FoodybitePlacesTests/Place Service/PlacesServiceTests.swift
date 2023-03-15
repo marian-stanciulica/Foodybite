@@ -26,7 +26,7 @@ final class PlacesServiceTests: XCTestCase {
         let searchNearbyEndpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let urlRequest = try searchNearbyEndpoint.createURLRequest()
 
-        _ = try await sut.searchNearby(location: location, radius: radius)
+        _ = try await searchNearby(on: sut, location: location, radius: radius)
 
         let firstRequest = loader.getRequests.first
         let urlComponents = URLComponents(url: firstRequest!.url!, resolvingAgainstBaseURL: true)
@@ -47,27 +47,12 @@ final class PlacesServiceTests: XCTestCase {
         XCTAssertNil(urlRequest.httpBody)
     }
     
-    func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
-        
-        let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
-        let searchNearbyEndpoint = SearchNearbyEndpoint(location: location, radius: radius)
-        let urlRequest = try searchNearbyEndpoint.createURLRequest()
-
-        _ = try await sut.searchNearby(location: location, radius: radius)
-
-        XCTAssertEqual(loader.getRequests, [urlRequest])
-    }
-    
     func test_searchNearby_throwsErrorWhenStatusIsNotOK() async {
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
         let nearbyPlaces = anySearchNearbyResponse(status: .overQueryLimit)
         let (sut, _) = makeSUT(response: nearbyPlaces)
         
         do {
-            let nearbyPlaces = try await sut.searchNearby(location: location, radius: radius)
+            let nearbyPlaces = try await searchNearby(on: sut)
             XCTFail("Expected to fail, got \(nearbyPlaces) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -75,26 +60,11 @@ final class PlacesServiceTests: XCTestCase {
     }
     
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
-        
         let expectedResponse = anySearchNearbyResponse()
-        let expected = expectedResponse.results.map {
-            NearbyPlace(
-                placeID: $0.placeID,
-                placeName: $0.name,
-                isOpen: $0.openingHours?.openNow ?? false,
-                rating: $0.rating ?? 0,
-                location: Location(
-                    latitude: $0.geometry.location.lat,
-                    longitude: $0.geometry.location.lng
-                ),
-                photo: nil
-            )
-        }
+        let expected = expectedResponse.nearbyPlaces
         let (sut, _) = makeSUT(response: expectedResponse)
         
-        let receivedResponse = try await sut.searchNearby(location: location, radius: radius)
+        let receivedResponse = try await searchNearby(on: sut)
         XCTAssertEqual(expected, receivedResponse)
     }
     
@@ -286,6 +256,13 @@ final class PlacesServiceTests: XCTestCase {
         let loader = ResourceLoaderSpy(response: response)
         let sut = PlacesService(loader: loader)
         return (sut, loader)
+    }
+    
+    private func searchNearby(on sut: PlacesService, location: Location? = nil, radius: Int? = nil) async throws -> [NearbyPlace] {
+        let defaultLocation = Location(latitude: -33.8, longitude: 15.1)
+        let defaultRadius = 15
+        
+        return try await sut.searchNearby(location: location ?? defaultLocation, radius: radius ?? defaultRadius)
     }
     
     private func anyData() -> Data {
