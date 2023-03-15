@@ -108,6 +108,11 @@ extension PlacesService: AutocompletePlacesService {
         let endpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: AutocompleteResponse = try await loader.get(for: request)
+        
+        guard response.status == .ok else {
+            throw StatusError()
+        }
+        
         return response.predictions.map {
             AutocompletePrediction(placePrediction: $0.description, placeID: $0.placeID)
         }

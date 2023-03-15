@@ -234,6 +234,21 @@ final class PlacesServiceTests: XCTestCase {
         XCTAssertEqual(loader.getRequests, [urlRequest])
     }
     
+    func test_autocomplete_throwsErrorWhenStatusIsNotOK() async {
+        let input = "input"
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let radius = 1500
+        let autocompleteResponse = anyAutocompleteResponse(status: .overQueryLimit)
+        let (sut, _) = makeSUT(response: autocompleteResponse)
+        
+        do {
+            let autocompletePredictions = try await sut.autocomplete(input: input, location: location, radius: radius)
+            XCTFail("Expected to fail, got \(autocompletePredictions) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     func test_autocomplete_receiveExpectedAutocompleteResponse() async throws {
         let input = "input"
         let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
