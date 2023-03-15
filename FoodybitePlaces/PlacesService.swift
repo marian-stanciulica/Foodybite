@@ -42,38 +42,7 @@ extension PlacesService: GetPlaceDetailsService {
             throw StatusError()
         }
         
-        var openingHours: OpeningHoursDetails?
-        
-        if let hours = response.result.openingHours {
-            openingHours = OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
-        }
-        
-        return PlaceDetails(
-            placeID: response.result.placeID,
-            phoneNumber: response.result.internationalPhoneNumber,
-            name: response.result.name,
-            address: response.result.formattedAddress,
-            rating: response.result.rating,
-            openingHoursDetails: openingHours,
-            reviews: response.result.reviews.map {
-                Review(
-                    placeID: placeID,
-                    profileImageURL: $0.profilePhotoURL,
-                    profileImageData: nil,
-                    authorName: $0.authorName,
-                    reviewText: $0.text,
-                    rating: $0.rating,
-                    relativeTime: $0.relativeTimeDescription
-                )
-            },
-            location: Location(
-                latitude: response.result.geometry.location.lat,
-                longitude: response.result.geometry.location.lng
-            ),
-            photos: response.result.photos.map {
-                Photo(width: $0.width, height: $0.height, photoReference: $0.photoReference)
-            }
-        )
+        return response.placeDetails
     }
 }
 
