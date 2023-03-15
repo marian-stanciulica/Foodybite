@@ -5,6 +5,8 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
+import SharedAPI
+
 enum LoginEndpoint: Endpoint {
     case post(LoginRequest)
 

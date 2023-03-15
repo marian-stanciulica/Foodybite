@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 public struct GetPlaceDetailsEndpoint: Endpoint {
     private let placeID: String
@@ -14,11 +15,11 @@ public struct GetPlaceDetailsEndpoint: Endpoint {
         self.placeID = placeID
     }
     
-    var path: String {
+    public var path: String {
         "/maps/api/place/details/json"
     }
     
-    var queryItems: [URLQueryItem]? {
+    public var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "place_id", value: placeID)

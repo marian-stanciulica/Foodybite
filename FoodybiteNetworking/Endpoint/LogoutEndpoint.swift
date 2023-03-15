@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 enum LogoutEndpoint: Endpoint {
     case post

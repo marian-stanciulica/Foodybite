@@ -7,6 +7,7 @@
 
 import Foundation
 import Domain
+import SharedAPI
 
 public struct SearchNearbyEndpoint: Endpoint {
     private let location: Domain.Location
@@ -17,11 +18,11 @@ public struct SearchNearbyEndpoint: Endpoint {
         self.radius = radius
     }
     
-    var path: String {
+    public var path: String {
         "/maps/api/place/nearbysearch/json"
     }
     
-    var queryItems: [URLQueryItem]? {
+    public var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),

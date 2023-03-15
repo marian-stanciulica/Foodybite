@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 enum SignUpEndpoint: Endpoint {
     case post(SignUpRequest)

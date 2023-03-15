@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 enum ChangePasswordEndpoint: Endpoint {
     case post(ChangePasswordRequest)

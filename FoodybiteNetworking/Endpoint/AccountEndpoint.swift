@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 enum AccountEndpoint: Endpoint {
     case post(UpdateAccountRequest)

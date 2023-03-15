@@ -5,7 +5,9 @@
 //  Created by Marian Stanciulica on 04.02.2023.
 //
 
-public enum ReviewEndpoint: Endpoint {
+import SharedAPI
+
+enum ReviewEndpoint: Endpoint {
     case post(AddReviewRequest)
     case get(String?)
     

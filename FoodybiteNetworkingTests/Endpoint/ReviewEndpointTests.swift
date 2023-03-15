@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import FoodybiteNetworking
+@testable import FoodybiteNetworking
 
 final class ReviewEndpointTests: XCTestCase {
     

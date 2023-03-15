@@ -7,6 +7,7 @@
 
 import Foundation
 @testable import FoodybitePlaces
+import SharedAPI
 
 enum EndpointStub: Endpoint {
     case invalidPath

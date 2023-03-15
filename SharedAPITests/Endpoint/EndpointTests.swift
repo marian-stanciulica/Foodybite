@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import FoodybiteNetworking
+@testable import SharedAPI
 
 final class EndpointTests: XCTestCase {
 
@@ -17,7 +17,7 @@ final class EndpointTests: XCTestCase {
     
     func test_createURLRequest_returnsURLRequestWithValidURL() throws {
         let endpoint = EndpointStub.validPath
-        let expectedURLString = "http://" + endpoint.host + ":8080" + endpoint.path
+        let expectedURLString = "https://" + endpoint.host + endpoint.path
         
         let urlRequest = try endpoint.createURLRequest()
         

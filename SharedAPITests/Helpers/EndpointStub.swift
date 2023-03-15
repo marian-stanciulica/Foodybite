@@ -9,25 +9,54 @@ import Foundation
 @testable import SharedAPI
 
 enum EndpointStub: Endpoint {
-    case invalidPath
     case stub
+    case invalidPath
+    case validPath
+    case postMethod(method: RequestMethod)
+    case headers(headers: [String : String])
+    case body(body: Codable)
+    
+    var host: String {
+        "localhost"
+    }
     
     var path: String {
         switch self {
         case .invalidPath:
             return "invalid path"
-        case .stub:
-            return "/valid/path"
+        default:
+            return "/auth/login"
+        }
+    }
+    
+    var method: RequestMethod {
+        switch self {
+        case let .postMethod(method):
+            return method
+        default:
+            return .get
+        }
+    }
+    
+    var headers: [String : String] {
+        switch self {
+        case let .headers(headers):
+            return headers
+        default:
+            return [:]
+        }
+    }
+    
+    var body: Codable? {
+        switch self {
+        case let .body(body):
+            return body
+        default:
+            return nil
         }
     }
     
     var queryItems: [URLQueryItem]? {
         nil
     }
-    
-    var method: RequestMethod {
-        .get
-    }
-    
-    var body: Codable? { nil }
 }

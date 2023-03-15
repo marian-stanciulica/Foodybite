@@ -6,19 +6,27 @@
 //
 
 import Foundation
+import SharedAPI
 
-protocol Endpoint {
-    var path: String { get }
-    var queryItems: [URLQueryItem]? { get }
-}
-
-extension Endpoint {
+public extension Endpoint {
+    var scheme: String {
+        "https"
+    }
+    
+    var port: Int? {
+        nil
+    }
+    
     var host: String {
         "maps.googleapis.com"
     }
     
-    private var method: RequestMethod {
+    var method: RequestMethod {
         .get
+    }
+    
+    var body: Codable? {
+        nil
     }
     
     var apiKey: String {
@@ -34,20 +42,5 @@ extension Endpoint {
         }
         
         return value
-    }
-    
-    func createURLRequest() throws -> URLRequest {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = host
-        components.path = path
-        components.queryItems = queryItems
-
-        guard let url = components.url else { throw  NetworkError.invalidURL }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
-        
-        return urlRequest
     }
 }
