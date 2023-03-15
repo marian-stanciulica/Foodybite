@@ -42,10 +42,10 @@ extension PlacesService: GetPlaceDetailsService {
             throw StatusError()
         }
         
-        var openingHours: Domain.OpeningHoursDetails?
+        var openingHours: OpeningHoursDetails?
         
         if let hours = response.result.openingHours {
-            openingHours = Domain.OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
+            openingHours = OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
         }
         
         return PlaceDetails(
@@ -56,7 +56,7 @@ extension PlacesService: GetPlaceDetailsService {
             rating: response.result.rating,
             openingHoursDetails: openingHours,
             reviews: response.result.reviews.map {
-                Domain.Review(
+                Review(
                     placeID: placeID,
                     profileImageURL: $0.profilePhotoURL,
                     profileImageData: nil,

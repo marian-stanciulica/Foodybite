@@ -33,7 +33,7 @@ struct Details: Decodable {
     let iconMaskBaseURI: String
     let internationalPhoneNumber: String?
     let name: String
-    let openingHours: OpeningHoursDetails?
+    let openingHours: RemoteOpeningHoursDetails?
     let photos: [RemotePhoto]
     let placeID: String
     let plusCode: PlusCode
@@ -79,7 +79,7 @@ struct AddressComponent: Decodable {
     }
 }
 
-struct OpeningHoursDetails: Decodable {
+struct RemoteOpeningHoursDetails: Decodable {
     let openNow: Bool
     let periods: [Period]
     let weekdayText: [String]

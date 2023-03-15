@@ -331,7 +331,7 @@ final class PlacesServiceTests: XCTestCase {
                 iconMaskBaseURI: "",
                 internationalPhoneNumber: "",
                 name: "place 1",
-                openingHours: OpeningHoursDetails(openNow: false, periods: [], weekdayText: []),
+                openingHours: RemoteOpeningHoursDetails(openNow: false, periods: [], weekdayText: []),
                 photos: [],
                 placeID: "",
                 plusCode: PlusCode(compoundCode: "", globalCode: ""),
