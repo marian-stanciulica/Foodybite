@@ -90,6 +90,9 @@
 		0F39172C29C1CD5600EE0201 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */; };
 		0F39172D29C1CD5A00EE0201 /* ResourceSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB0E12B291FD3AF0058ABCB /* ResourceSender.swift */; };
 		0F39172E29C1CD5E00EE0201 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39172929C1CCEC00EE0201 /* DataLoader.swift */; };
+		0F39173129C1EDE800EE0201 /* SearchNearbyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */; };
+		0F39173329C1EDFC00EE0201 /* SearchNearbyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */; };
+		0F39173529C1EE1500EE0201 /* OpeningHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173429C1EE1500EE0201 /* OpeningHours.swift */; };
 		0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */; };
 		0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
@@ -668,6 +671,9 @@
 		0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteNetworkingAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		0F39172329C1C58A00EE0201 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F39172929C1CCEC00EE0201 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyStatus.swift; sourceTree = "<group>"; };
+		0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyResult.swift; sourceTree = "<group>"; };
+		0F39173429C1EE1500EE0201 /* OpeningHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningHours.swift; sourceTree = "<group>"; };
 		0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
 		0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
@@ -1375,6 +1381,17 @@
 			path = FoodybiteAPIEndToEndTests;
 			sourceTree = "<group>";
 		};
+		0F39172F29C1EDD200EE0201 /* Search Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */,
+				0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */,
+				0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */,
+				0F39173429C1EE1500EE0201 /* OpeningHours.swift */,
+			);
+			path = "Search Nearby";
+			sourceTree = "<group>";
+		};
 		0F3F73F528467BE100A5D2BF /* New Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -1490,7 +1507,7 @@
 			isa = PBXGroup;
 			children = (
 				0F2BACA9298291DB006D4A7F /* Helpers */,
-				0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */,
+				0F39172F29C1EDD200EE0201 /* Search Nearby */,
 				0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */,
 				0FABD52029962DD000918251 /* AutocompleteResponse.swift */,
 			);
@@ -3612,6 +3629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F39173329C1EDFC00EE0201 /* SearchNearbyResult.swift in Sources */,
 				0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */,
 				0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* AutocompleteEndpoint.swift in Sources */,
@@ -3626,6 +3644,8 @@
 				0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */,
 				0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */,
 				0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */,
+				0F39173129C1EDE800EE0201 /* SearchNearbyStatus.swift in Sources */,
+				0F39173529C1EE1500EE0201 /* OpeningHours.swift in Sources */,
 				0F2BACB029829243006D4A7F /* Viewport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
