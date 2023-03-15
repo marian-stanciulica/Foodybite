@@ -1,5 +1,5 @@
 //
-//  APIServiceTests.swift
+//  PlacesServiceTests.swift
 //  FoodybitePlacesTests
 //
 //  Created by Marian Stanciulica on 02.01.2023.
@@ -9,7 +9,7 @@ import XCTest
 @testable import FoodybitePlaces
 import Domain
 
-final class APIServiceTests: XCTestCase {
+final class PlacesServiceTests: XCTestCase {
     
     // MARK: - SearchNearbyService Tests
     

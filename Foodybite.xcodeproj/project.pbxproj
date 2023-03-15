@@ -102,7 +102,7 @@
 		0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */; };
 		0F412EB52962CD9800FDDF41 /* AutocompleteEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */; };
 		0F412EB72962CE8000FDDF41 /* AutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB62962CE8000FDDF41 /* AutocompleteEndpoint.swift */; };
-		0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC02962D24400FDDF41 /* APIServiceTests.swift */; };
+		0F412EC12962D24400FDDF41 /* PlacesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */; };
 		0F412EC32962D3D100FDDF41 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* PlacesService.swift */; };
 		0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */; };
 		0F412ECA2962EEB200FDDF41 /* GooglePlaces-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */; };
@@ -681,7 +681,7 @@
 		0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpointTests.swift; sourceTree = "<group>"; };
 		0F412EB62962CE8000FDDF41 /* AutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpoint.swift; sourceTree = "<group>"; };
 		0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyService.swift; sourceTree = "<group>"; };
-		0F412EC02962D24400FDDF41 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesServiceTests.swift; sourceTree = "<group>"; };
 		0F412EC22962D3D100FDDF41 /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
 		0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GooglePlaces-Info.plist"; sourceTree = "<group>"; };
@@ -1403,7 +1403,7 @@
 				0F412E8F2962C8F000FDDF41 /* Helpers */,
 				0F412EB32962CD7A00FDDF41 /* Endpoint */,
 				0F412EA22962CB3500FDDF41 /* Remote Loader */,
-				0F412EB82962D0A300FDDF41 /* API Service */,
+				0F412EB82962D0A300FDDF41 /* Place Service */,
 			);
 			path = FoodybitePlacesTests;
 			sourceTree = "<group>";
@@ -1458,13 +1458,13 @@
 			path = Endpoint;
 			sourceTree = "<group>";
 		};
-		0F412EB82962D0A300FDDF41 /* API Service */ = {
+		0F412EB82962D0A300FDDF41 /* Place Service */ = {
 			isa = PBXGroup;
 			children = (
 				0F412EC42962D40800FDDF41 /* Helpers */,
-				0F412EC02962D24400FDDF41 /* APIServiceTests.swift */,
+				0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */,
 			);
-			path = "API Service";
+			path = "Place Service";
 			sourceTree = "<group>";
 		};
 		0F412EBA2962D13700FDDF41 /* Places Protocols */ = {
@@ -3641,7 +3641,7 @@
 				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
 				0FF7C66E29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift in Sources */,
 				0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */,
-				0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */,
+				0F412EC12962D24400FDDF41 /* PlacesServiceTests.swift in Sources */,
 				0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */,
 				0FF7C66629B1F1E300622E9C /* SearchNearbyEndpointTests.swift in Sources */,
 				0F412E932962C97300FDDF41 /* Helpers.swift in Sources */,
