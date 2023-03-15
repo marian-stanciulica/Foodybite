@@ -8,7 +8,7 @@
 import Foundation
 import SharedAPI
 
-public class RemoteResourceLoader: ResourceLoader {
+public class RemoteResourceLoader: ResourceLoader, DataLoader {
     private let client: HTTPClient
     private let codableDataParser = CodableDataParser()
     

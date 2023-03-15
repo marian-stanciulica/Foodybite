@@ -9,9 +9,9 @@ import Foundation
 import Domain
 
 public class PlacesService {
-    private let loader: ResourceLoader
+    private let loader: ResourceLoader & DataLoader
     
-    public init(loader: ResourceLoader) {
+    public init(loader: ResourceLoader & DataLoader) {
         self.loader = loader
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 @testable import FoodybitePlaces
 
-class ResourceLoaderSpy: ResourceLoader {
+class ResourceLoaderSpy: ResourceLoader, DataLoader {
     private let response: Decodable
     var data: Data?
     var getRequests = [URLRequest]()
