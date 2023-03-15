@@ -93,6 +93,12 @@
 		0F39173129C1EDE800EE0201 /* SearchNearbyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */; };
 		0F39173329C1EDFC00EE0201 /* SearchNearbyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */; };
 		0F39173529C1EE1500EE0201 /* OpeningHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173429C1EE1500EE0201 /* OpeningHours.swift */; };
+		0F39173829C1EE6A00EE0201 /* PlaceDetailsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173729C1EE6A00EE0201 /* PlaceDetailsStatus.swift */; };
+		0F39173A29C1EE7B00EE0201 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173929C1EE7B00EE0201 /* Details.swift */; };
+		0F39173C29C1EE9200EE0201 /* AddressComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173B29C1EE9200EE0201 /* AddressComponent.swift */; };
+		0F39173E29C1EEA200EE0201 /* RemoteOpeningHoursDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173D29C1EEA200EE0201 /* RemoteOpeningHoursDetails.swift */; };
+		0F39174029C1EEBB00EE0201 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173F29C1EEBB00EE0201 /* Period.swift */; };
+		0F39174429C1EEE600EE0201 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39174329C1EEE600EE0201 /* RemoteReview.swift */; };
 		0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */; };
 		0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
@@ -674,6 +680,12 @@
 		0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyStatus.swift; sourceTree = "<group>"; };
 		0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyResult.swift; sourceTree = "<group>"; };
 		0F39173429C1EE1500EE0201 /* OpeningHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningHours.swift; sourceTree = "<group>"; };
+		0F39173729C1EE6A00EE0201 /* PlaceDetailsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsStatus.swift; sourceTree = "<group>"; };
+		0F39173929C1EE7B00EE0201 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		0F39173B29C1EE9200EE0201 /* AddressComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressComponent.swift; sourceTree = "<group>"; };
+		0F39173D29C1EEA200EE0201 /* RemoteOpeningHoursDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteOpeningHoursDetails.swift; sourceTree = "<group>"; };
+		0F39173F29C1EEBB00EE0201 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		0F39174329C1EEE600EE0201 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
 		0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
 		0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
@@ -1392,6 +1404,20 @@
 			path = "Search Nearby";
 			sourceTree = "<group>";
 		};
+		0F39173629C1EE5400EE0201 /* Place Details */ = {
+			isa = PBXGroup;
+			children = (
+				0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */,
+				0F39173729C1EE6A00EE0201 /* PlaceDetailsStatus.swift */,
+				0F39173929C1EE7B00EE0201 /* Details.swift */,
+				0F39173B29C1EE9200EE0201 /* AddressComponent.swift */,
+				0F39173D29C1EEA200EE0201 /* RemoteOpeningHoursDetails.swift */,
+				0F39173F29C1EEBB00EE0201 /* Period.swift */,
+				0F39174329C1EEE600EE0201 /* RemoteReview.swift */,
+			);
+			path = "Place Details";
+			sourceTree = "<group>";
+		};
 		0F3F73F528467BE100A5D2BF /* New Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -1508,7 +1534,7 @@
 			children = (
 				0F2BACA9298291DB006D4A7F /* Helpers */,
 				0F39172F29C1EDD200EE0201 /* Search Nearby */,
-				0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */,
+				0F39173629C1EE5400EE0201 /* Place Details */,
 				0FABD52029962DD000918251 /* AutocompleteResponse.swift */,
 			);
 			path = "Response Data";
@@ -3630,19 +3656,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F39173329C1EDFC00EE0201 /* SearchNearbyResult.swift in Sources */,
+				0F39173C29C1EE9200EE0201 /* AddressComponent.swift in Sources */,
 				0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */,
 				0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */,
+				0F39174029C1EEBB00EE0201 /* Period.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* AutocompleteEndpoint.swift in Sources */,
 				0F2BACAE2982922F006D4A7F /* RemoteLocation.swift in Sources */,
 				0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */,
+				0F39173A29C1EE7B00EE0201 /* Details.swift in Sources */,
 				0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */,
+				0F39173829C1EE6A00EE0201 /* PlaceDetailsStatus.swift in Sources */,
 				0F412EA72962CB9000FDDF41 /* RemoteLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
 				0FABD52129962DD000918251 /* AutocompleteResponse.swift in Sources */,
 				0F2BACB2298292C0006D4A7F /* RemotePhoto.swift in Sources */,
 				0F412EC32962D3D100FDDF41 /* PlacesService.swift in Sources */,
+				0F39173E29C1EEA200EE0201 /* RemoteOpeningHoursDetails.swift in Sources */,
 				0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */,
 				0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */,
+				0F39174429C1EEE600EE0201 /* RemoteReview.swift in Sources */,
 				0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */,
 				0F39173129C1EDE800EE0201 /* SearchNearbyStatus.swift in Sources */,
 				0F39173529C1EE1500EE0201 /* OpeningHours.swift in Sources */,
