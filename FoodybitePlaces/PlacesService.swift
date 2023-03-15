@@ -64,8 +64,6 @@ extension PlacesService: AutocompletePlacesService {
             throw StatusError()
         }
         
-        return response.predictions.map {
-            AutocompletePrediction(placePrediction: $0.description, placeID: $0.placeID)
-        }
+        return response.autocompletePredictions
     }
 }
