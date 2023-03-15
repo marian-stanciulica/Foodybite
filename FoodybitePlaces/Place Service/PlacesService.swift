@@ -7,6 +7,7 @@
 
 import Foundation
 import Domain
+import SharedAPI
 
 public class PlacesService {
     private let loader: ResourceLoader & DataLoader

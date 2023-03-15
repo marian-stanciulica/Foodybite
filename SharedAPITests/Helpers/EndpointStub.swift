@@ -16,6 +16,14 @@ enum EndpointStub: Endpoint {
     case headers(headers: [String : String])
     case body(body: Codable)
     
+    var scheme: String {
+        "http"
+    }
+    
+    var port: Int? {
+        8080
+    }
+    
     var host: String {
         "localhost"
     }

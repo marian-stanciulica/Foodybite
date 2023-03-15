@@ -6,7 +6,8 @@
 //
 
 import Foundation
-@testable import FoodybiteNetworking
+import SharedAPI
+import FoodybiteNetworking
 
 class TokenRefreshLoaderSpy: ResourceLoader {
     private let response: AuthToken
