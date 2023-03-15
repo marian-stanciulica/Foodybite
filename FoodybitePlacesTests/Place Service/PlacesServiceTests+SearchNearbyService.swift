@@ -16,7 +16,7 @@ extension PlacesServiceTests {
         XCTAssertNotNil(sut as SearchNearbyService)
     }
     
-    func test_searchNearby_searchNearbyParamsUsedToCreateEndpoint() async throws {
+    func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
         let location = Location(latitude: -33.8, longitude: 15.1)
         let radius = 15
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())

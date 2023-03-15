@@ -16,29 +16,19 @@ extension PlacesServiceTests {
         XCTAssertNotNil(sut as GetPlaceDetailsService)
     }
     
-    func test_getPlaceDetails_getPlaceDetailsParamsUsedToCreateEndpoint() async throws {
-        let placeID = randomString()
-        
-        let (sut, loader) = makeSUT(response: anyPlaceDetailsResponse())
-        let getPlaceDetailsEndpoint = GetPlaceDetailsEndpoint(placeID: placeID)
-        let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
-        
-        _ = try await sut.getPlaceDetails(placeID: placeID)
-        
-        let firstRequest = loader.getRequests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
-    }
-    
     func test_getPlaceDetails_usesGetPlaceDetailsEndpointToCreateURLRequest() async throws {
         let placeID = randomString()
-
         let (sut, loader) = makeSUT(response: anyPlaceDetailsResponse())
-        let getPlaceDetailsEndpoint = GetPlaceDetailsEndpoint(placeID: placeID)
-        let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
+        let endpoint = GetPlaceDetailsEndpoint(placeID: placeID)
         
         _ = try await sut.getPlaceDetails(placeID: placeID)
         
-        XCTAssertEqual(loader.getRequests, [urlRequest])
+        XCTAssertEqual(loader.getRequests.count, 1)
+        assertURLComponents(
+            urlRequest: loader.getRequests[0],
+            placeID: placeID,
+            apiKey: endpoint.apiKey
+        )
     }
     
     func test_getPlaceDetails_throwsErrorWhenStatusIsNotOK() async {
@@ -63,6 +53,29 @@ extension PlacesServiceTests {
     }
     
     // MARK: - Helpers
+    
+    private func assertURLComponents(
+        urlRequest: URLRequest,
+        placeID: String,
+        apiKey: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
+        
+        let expectedQueryItems: [URLQueryItem] = [
+            URLQueryItem(name: "key", value: apiKey),
+            URLQueryItem(name: "place_id", value: placeID)
+        ]
+        
+        XCTAssertEqual(urlComponents?.scheme, "https", file: file, line: line)
+        XCTAssertNil(urlComponents?.port, file: file, line: line)
+        XCTAssertEqual(urlComponents?.host, "maps.googleapis.com", file: file, line: line)
+        XCTAssertEqual(urlComponents?.path, "/maps/api/place/details/json", file: file, line: line)
+        XCTAssertEqual(urlComponents?.queryItems, expectedQueryItems, file: file, line: line)
+        XCTAssertEqual(urlRequest.httpMethod, "GET", file: file, line: line)
+        XCTAssertNil(urlRequest.httpBody, file: file, line: line)
+    }
     
     private func anyPlaceDetailsResponse(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
         PlaceDetailsResponse(
