@@ -24,6 +24,10 @@ extension PlacesService: SearchNearbyService {
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
         
+        guard response.status == .ok else {
+            throw StatusError()
+        }
+        
         return response.results.map {
             var photo: Domain.Photo?
             

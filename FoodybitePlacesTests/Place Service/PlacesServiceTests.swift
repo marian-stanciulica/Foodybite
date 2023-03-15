@@ -45,6 +45,20 @@ final class PlacesServiceTests: XCTestCase {
         XCTAssertEqual(loader.getRequests, [urlRequest])
     }
     
+    func test_searchNearby_throwsErrorWhenStatusIsNotOK() async {
+        let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
+        let radius = 1500
+        let nearbyPlaces = anySearchNearbyResponse(status: .overQueryLimit)
+        let (sut, _) = makeSUT(response: nearbyPlaces)
+        
+        do {
+            let nearbyPlaces = try await sut.searchNearby(location: location, radius: radius)
+            XCTFail("Expected to fail, got \(nearbyPlaces) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
         let location = Domain.Location(latitude: -33.8670522, longitude: 151.1957362)
         let radius = 1500
