@@ -1391,8 +1391,8 @@
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
 				0F412ECE2962F85800FDDF41 /* Response Data */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
-				0F412EA52962CB7B00FDDF41 /* Remote Loader */,
-				0F412EB92962D0CA00FDDF41 /* Place Service */,
+				0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */,
+				0F412EC22962D3D100FDDF41 /* PlacesService.swift */,
 			);
 			path = FoodybitePlaces;
 			sourceTree = "<group>";
@@ -1438,14 +1438,6 @@
 			path = "Remote Loader";
 			sourceTree = "<group>";
 		};
-		0F412EA52962CB7B00FDDF41 /* Remote Loader */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */,
-			);
-			path = "Remote Loader";
-			sourceTree = "<group>";
-		};
 		0F412EAD2962CC1B00FDDF41 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1473,14 +1465,6 @@
 				0F412EC02962D24400FDDF41 /* APIServiceTests.swift */,
 			);
 			path = "API Service";
-			sourceTree = "<group>";
-		};
-		0F412EB92962D0CA00FDDF41 /* Place Service */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EC22962D3D100FDDF41 /* PlacesService.swift */,
-			);
-			path = "Place Service";
 			sourceTree = "<group>";
 		};
 		0F412EBA2962D13700FDDF41 /* Places Protocols */ = {
