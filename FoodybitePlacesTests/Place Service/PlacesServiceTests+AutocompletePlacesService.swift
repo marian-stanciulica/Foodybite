@@ -22,12 +22,18 @@ extension PlacesServiceTests {
         let radius = 1500
         
         let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
-        let autocompleteEndpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
-        let urlRequest = try autocompleteEndpoint.createURLRequest()
+        let endpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
         
         _ = try await sut.autocomplete(input: input, location: location, radius: radius)
         
-        XCTAssertEqual(loader.getRequests, [urlRequest])
+        XCTAssertEqual(loader.getRequests.count, 1)
+        assertURLComponents(
+            urlRequest: loader.getRequests[0],
+            input: input,
+            location: location,
+            radius: radius,
+            apiKey: endpoint.apiKey
+        )
     }
     
     func test_autocomplete_throwsErrorWhenStatusIsNotOK() async {
@@ -61,6 +67,34 @@ extension PlacesServiceTests {
     }
     
     // MARK: - Helpers
+    
+    private func assertURLComponents(
+        urlRequest: URLRequest,
+        input: String,
+        location: Location,
+        radius: Int,
+        apiKey: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
+        
+        let expectedQueryItems: [URLQueryItem] = [
+            URLQueryItem(name: "input", value: input),
+            URLQueryItem(name: "key", value: apiKey),
+            URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),
+            URLQueryItem(name: "radius", value: "\(radius)"),
+            URLQueryItem(name: "type", value: "restaurant")
+        ]
+        
+        XCTAssertEqual(urlComponents?.scheme, "https", file: file, line: line)
+        XCTAssertNil(urlComponents?.port, file: file, line: line)
+        XCTAssertEqual(urlComponents?.host, "maps.googleapis.com", file: file, line: line)
+        XCTAssertEqual(urlComponents?.path, "/maps/api/place/autocomplete/json", file: file, line: line)
+        XCTAssertEqual(urlComponents?.queryItems, expectedQueryItems, file: file, line: line)
+        XCTAssertEqual(urlRequest.httpMethod, "GET", file: file, line: line)
+        XCTAssertNil(urlRequest.httpBody, file: file, line: line)
+    }
     
     private func anyAutocompleteResponse(status: AutocompleteStatus = .ok) -> AutocompleteResponse {
         AutocompleteResponse(

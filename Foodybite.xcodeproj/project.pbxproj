@@ -118,7 +118,6 @@
 		0F412EA72962CB9000FDDF41 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA62962CB9000FDDF41 /* RemoteLoader.swift */; };
 		0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EAF2962CC3400FDDF41 /* CodableMock.swift */; };
 		0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */; };
-		0F412EB52962CD9800FDDF41 /* AutocompleteEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */; };
 		0F412EB72962CE8000FDDF41 /* AutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB62962CE8000FDDF41 /* AutocompleteEndpoint.swift */; };
 		0F412EC12962D24400FDDF41 /* PlacesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */; };
 		0F412EC32962D3D100FDDF41 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* PlacesService.swift */; };
@@ -711,7 +710,6 @@
 		0F412EA62962CB9000FDDF41 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		0F412EAF2962CC3400FDDF41 /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
-		0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpointTests.swift; sourceTree = "<group>"; };
 		0F412EB62962CE8000FDDF41 /* AutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpoint.swift; sourceTree = "<group>"; };
 		0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyService.swift; sourceTree = "<group>"; };
 		0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesServiceTests.swift; sourceTree = "<group>"; };
@@ -1469,7 +1467,6 @@
 			isa = PBXGroup;
 			children = (
 				0F412E8F2962C8F000FDDF41 /* Helpers */,
-				0F412EB32962CD7A00FDDF41 /* Endpoint */,
 				0F412EA22962CB3500FDDF41 /* Remote Loader */,
 				0F412EB82962D0A300FDDF41 /* Place Service */,
 			);
@@ -1513,14 +1510,6 @@
 				0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		0F412EB32962CD7A00FDDF41 /* Endpoint */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */,
-			);
-			path = Endpoint;
 			sourceTree = "<group>";
 		};
 		0F412EB82962D0A300FDDF41 /* Place Service */ = {
@@ -3717,7 +3706,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F412EB52962CD9800FDDF41 /* AutocompleteEndpointTests.swift in Sources */,
 				0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */,
 				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
 				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
