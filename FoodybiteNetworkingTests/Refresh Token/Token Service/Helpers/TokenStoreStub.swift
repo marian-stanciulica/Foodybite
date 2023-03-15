@@ -5,8 +5,8 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
-@testable import FoodybiteNetworking
 import Foundation
+import FoodybiteNetworking
 
 class TokenStoreStub: TokenStore {
     private var stub: AuthToken?

@@ -12,7 +12,7 @@ public class RemoteStore: ResourceLoader, ResourceSender {
     private let client: HTTPClient
     private let codableDataParser = CodableDataParser()
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case connectivity
         case invalidRequest
         case invalidData

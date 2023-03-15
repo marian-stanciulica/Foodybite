@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
-@testable import FoodybiteNetworking
+import FoodybiteNetworking
 
 class TokenRefresherFake: TokenRefresher {
     private let remoteToken = AuthToken(accessToken: "remote access token", refreshToken: "remote refresh token")

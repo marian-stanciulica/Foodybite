@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import FoodybiteNetworking
+import FoodybiteNetworking
 
 final class KeychainTokenStoreTests: XCTestCase {
    
