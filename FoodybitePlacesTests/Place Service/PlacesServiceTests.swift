@@ -11,49 +11,6 @@ import Domain
 
 final class PlacesServiceTests: XCTestCase {
     
-    // MARK: - FetchPlacePhotoService Tests
-    
-    func test_conformsToFetchPlacePhotoService() {
-        let (sut, _) = makeSUT(response: anyData())
-        XCTAssertNotNil(sut as FetchPlacePhotoService)
-    }
-    
-    func test_fetchPlacePhoto_usesParamsToCreateEndpoint() async throws {
-        let photoReference = randomString()
-        
-        let (sut, loader) = makeSUT(response: anyData())
-        let getPlacePhotoEndpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
-        let urlRequest = try getPlacePhotoEndpoint.createURLRequest()
-        
-        _ = try await sut.fetchPlacePhoto(photoReference: photoReference)
-        
-        let firstRequest = loader.getDataRequests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
-    }
-    
-    func test_fetchPlacePhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
-        let photoReference = randomString()
-
-        let (sut, loader) = makeSUT(response: anyData())
-        let getPlacePhotoEndpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
-        let urlRequest = try getPlacePhotoEndpoint.createURLRequest()
-        
-        _ = try await sut.fetchPlacePhoto(photoReference: photoReference)
-        
-        XCTAssertEqual(loader.getDataRequests, [urlRequest])
-    }
-    
-    func test_fetchPlacePhoto_receivesExpectedPlacePhotoResponse() async throws {
-        let response = anyData()
-        let expectedData = anyData()
-        let (sut, loader) = makeSUT(response: response)
-        loader.data = expectedData
-        
-        let receivedResponse = try await sut.fetchPlacePhoto(photoReference: randomString())
-        
-        XCTAssertEqual(expectedData, receivedResponse)
-    }
-    
     // MARK: - AutocompletePlacesService
     
     func test_conformsToAutocompletePlacesService() {
@@ -112,10 +69,6 @@ final class PlacesServiceTests: XCTestCase {
         let loader = ResourceLoaderSpy(response: response)
         let sut = PlacesService(loader: loader)
         return (sut, loader)
-    }
-    
-    private func anyData() -> Data {
-        "any data".data(using: .utf8)!
     }
     
     private func anyAutocompleteResponse(status: AutocompleteStatus = .ok) -> AutocompleteResponse {

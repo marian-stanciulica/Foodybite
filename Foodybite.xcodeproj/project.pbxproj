@@ -106,6 +106,7 @@
 		0F39174F29C1EFAD00EE0201 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39174E29C1EFAD00EE0201 /* Term.swift */; };
 		0F39175129C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175029C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift */; };
 		0F39175329C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175229C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift */; };
+		0F39175529C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175429C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift */; };
 		0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */; };
 		0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
@@ -382,7 +383,6 @@
 		0FF7C66029B1E5B800622E9C /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */; };
 		0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */; };
 		0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */; };
-		0FF7C66E29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66D29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift */; };
 		0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66F29B1F63E00622E9C /* GetPlacePhotoEndpoint.swift */; };
 		0FF7C68A29B2281300622E9C /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68929B2281300622E9C /* UserPreferences.swift */; };
 		0FF7C68D29B228F200622E9C /* UserPreferencesStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C68C29B228F200622E9C /* UserPreferencesStoreTests.swift */; };
@@ -698,6 +698,7 @@
 		0F39174E29C1EFAD00EE0201 /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		0F39175029C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+SearchNearbyService.swift"; sourceTree = "<group>"; };
 		0F39175229C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+GetPlaceDetails.swift"; sourceTree = "<group>"; };
+		0F39175429C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+FetchPlacePhotoService.swift"; sourceTree = "<group>"; };
 		0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
 		0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
@@ -980,7 +981,6 @@
 		0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsEndpoint.swift; sourceTree = "<group>"; };
-		0FF7C66D29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacePhotoEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C66F29B1F63E00622E9C /* GetPlacePhotoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacePhotoEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C67329B2028B00622E9C /* Foodybite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Foodybite.entitlements; sourceTree = "<group>"; };
 		0FF7C68929B2281300622E9C /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -1516,7 +1516,6 @@
 		0F412EB32962CD7A00FDDF41 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
-				0FF7C66D29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift */,
 				0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */,
 			);
 			path = Endpoint;
@@ -1529,6 +1528,7 @@
 				0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */,
 				0F39175029C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift */,
 				0F39175229C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift */,
+				0F39175429C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift */,
 			);
 			path = "Place Service";
 			sourceTree = "<group>";
@@ -3719,8 +3719,8 @@
 				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
 				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
 				0F39175329C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift in Sources */,
-				0FF7C66E29B1F5E100622E9C /* GetPlacePhotoEndpointTests.swift in Sources */,
 				0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */,
+				0F39175529C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift in Sources */,
 				0F412EC12962D24400FDDF41 /* PlacesServiceTests.swift in Sources */,
 				0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */,
 				0F39175129C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift in Sources */,
