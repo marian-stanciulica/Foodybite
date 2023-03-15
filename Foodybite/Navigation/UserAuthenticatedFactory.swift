@@ -14,12 +14,18 @@ import FoodybitePersistence
 final class UserAuthenticatedFactory {
     let authenticatedApiService: APIService = {
         let httpClient = URLSessionHTTPClient()
-        let refreshTokenLoader = FoodybiteNetworking.RemoteResourceLoader(client: httpClient)
+        let refreshTokenLoader = RemoteStore(client: httpClient)
         let tokenStore = KeychainTokenStore()
         
-        let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
-        let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
-        let authenticatedRemoteResourceLoader = FoodybiteNetworking.RemoteResourceLoader(client: authenticatedHTTPClient)
+        let tokenRefresher = RefreshTokenService(
+            loader: refreshTokenLoader,
+            tokenStore: tokenStore
+        )
+        let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(
+            decoratee: httpClient,
+            tokenRefresher: tokenRefresher
+        )
+        let authenticatedRemoteResourceLoader = RemoteStore(client: authenticatedHTTPClient)
         
         return APIService(loader: authenticatedRemoteResourceLoader,
                           sender: authenticatedRemoteResourceLoader,

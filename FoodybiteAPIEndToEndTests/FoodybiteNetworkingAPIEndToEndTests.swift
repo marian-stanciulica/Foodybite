@@ -86,7 +86,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         let httpClient = URLSessionHTTPClient()
         let tokenStore = KeychainTokenStore()
         
-        let remoteResourceLoader = RemoteResourceLoader(client: httpClient)
+        let remoteResourceLoader = RemoteStore(client: httpClient)
         return APIService(loader: remoteResourceLoader,
                           sender: remoteResourceLoader,
                           tokenStore: tokenStore)
@@ -94,12 +94,12 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     
     private func makeAuthenticatedSUT() -> APIService {
         let httpClient = URLSessionHTTPClient()
-        let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
+        let refreshTokenLoader = RemoteStore(client: httpClient)
         let tokenStore = KeychainTokenStore()
         
         let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
         let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
-        let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
+        let authenticatedRemoteResourceLoader = RemoteStore(client: authenticatedHTTPClient)
         
         return APIService(loader: authenticatedRemoteResourceLoader,
                           sender: authenticatedRemoteResourceLoader,

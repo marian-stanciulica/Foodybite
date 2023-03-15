@@ -17,7 +17,7 @@ class RootFactory {
         let httpClient = SharedAPI.URLSessionHTTPClient()
         let tokenStore = KeychainTokenStore()
         
-        let remoteResourceLoader = FoodybiteNetworking.RemoteResourceLoader(client: httpClient)
+        let remoteResourceLoader = RemoteStore(client: httpClient)
         return APIService(loader: remoteResourceLoader,
                           sender: remoteResourceLoader,
                           tokenStore: tokenStore)

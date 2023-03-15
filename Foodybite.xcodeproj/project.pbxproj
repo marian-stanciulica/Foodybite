@@ -128,7 +128,7 @@
 		0F423AAB29858BA9009EB345 /* DistanceSolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AAA29858BA9009EB345 /* DistanceSolverTests.swift */; };
 		0F423AAD29858F1F009EB345 /* DistanceSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AAC29858F1F009EB345 /* DistanceSolver.swift */; };
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
-		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
+		0F447CAC28FAC1580026C5DB /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteStore.swift */; };
 		0F447CB228FAC21C0026C5DB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */; };
 		0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CBC28FB03740026C5DB /* Helpers.swift */; };
 		0F447CC928FB0AB60026C5DB /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CC828FB0AB60026C5DB /* APIServiceTests.swift */; };
@@ -707,7 +707,7 @@
 		0F423AAC29858F1F009EB345 /* DistanceSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSolver.swift; sourceTree = "<group>"; };
 		0F423AAF29859FB8009EB345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0F447CA928FAA7EE0026C5DB /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
-		0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
+		0F447CAB28FAC1580026C5DB /* RemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
 		0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
 		0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		0F447CBC28FB03740026C5DB /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -1135,7 +1135,7 @@
 				0F447CCB28FB19C20026C5DB /* Data */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
 				0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */,
-				0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */,
+				0F447CAB28FAC1580026C5DB /* RemoteStore.swift */,
 				0F447CCE28FB1A020026C5DB /* APIService.swift */,
 			);
 			path = FoodybiteNetworking;
@@ -3463,7 +3463,7 @@
 				0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */,
 				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,
 				0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */,
-				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
+				0F447CAC28FAC1580026C5DB /* RemoteStore.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
 				0F028100292630D5006B219F /* LoginRequest.swift in Sources */,
 				0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */,

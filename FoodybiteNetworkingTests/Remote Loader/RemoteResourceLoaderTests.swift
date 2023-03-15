@@ -132,15 +132,15 @@ final class RemoteResourceLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RemoteResourceLoader, client: HTTPClientSpy) {
+    private func makeSUT() -> (sut: RemoteStore, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = FoodybiteNetworking.RemoteResourceLoader(client: client)
+        let sut = FoodybiteNetworking.RemoteStore(client: client)
         
         return (sut, client)
     }
     
     private func expectGet(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
-                           expected: Result<[CodableMock], RemoteResourceLoader.Error>,
+                           expected: Result<[CodableMock], RemoteStore.Error>,
                            file: StaticString = #filePath,
                            line: UInt = #line) async {
         let (sut, client) = makeSUT()
@@ -165,7 +165,7 @@ final class RemoteResourceLoaderTests: XCTestCase {
     }
     
     private func expectPost(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
-                            expectedError:  RemoteResourceLoader.Error?,
+                            expectedError:  RemoteStore.Error?,
                             file: StaticString = #filePath,
                             line: UInt = #line) async {
         let (sut, client) = makeSUT()
