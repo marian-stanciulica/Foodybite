@@ -6,6 +6,6 @@
 //
 
 struct LoginResponse: Decodable {
-    let user: RemoteUser
+    let remoteUser: RemoteUser
     let token: AuthToken
 }

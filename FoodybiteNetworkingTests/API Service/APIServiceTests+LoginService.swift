@@ -19,7 +19,7 @@ extension APIServiceTests {
     func test_login_usesLoginEndpointToCreateURLRequest() async throws {
         let email = anyEmail()
         let password = anyPassword()
-        let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
+        let (sut, loader, _, _) = makeSUT(response: anyLoginResponse())
         
         _ = try await sut.login(email: email, password: password)
         
@@ -32,16 +32,16 @@ extension APIServiceTests {
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
-        let (response, expectedModel) = anyLoginResponse()
-        let (sut, _, _, _) = makeSUT(response: response)
+        let expectedModel = anyLoginResponse()
+        let (sut, _, _, _) = makeSUT(response: expectedModel)
         
-        let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
+        let receivedUser = try await sut.login(email: anyEmail(), password: anyPassword())
         
-        XCTAssertEqual(expectedModel, receivedResponse)
+        XCTAssertEqual(expectedModel.remoteUser.model, receivedUser)
     }
     
     func test_login_storesAuthTokenInKeychain() async throws {
-        let (sut, _, _, tokenStoreStub) = makeSUT(response: anyLoginResponse().response)
+        let (sut, _, _, tokenStoreStub) = makeSUT(response: anyLoginResponse())
         
         _ = try await sut.login(email: anyEmail(), password: anyPassword())
         let receivedToken = try tokenStoreStub.read()
@@ -51,18 +51,16 @@ extension APIServiceTests {
     
     // MARK: - Helpers
     
-    private func anyLoginResponse() -> (response: LoginResponse, model: User) {
-        let id = UUID()
-        let response = LoginResponse(
-            user: RemoteUser(id: id,
-                             name: "any name",
-                             email: "any@email.com",
-                             profileImage: nil),
+    private func anyLoginResponse() -> LoginResponse {
+        LoginResponse(
+            remoteUser: RemoteUser(
+                id: UUID(),
+                name: "any name",
+                email: "any@email.com",
+                profileImage: nil
+            ),
             token: anyAuthToken()
         )
-        
-        let model = User(id: id, name: "any name", email: "any@email.com", profileImage: nil)
-        return (response, model)
     }
     
     private func anyAuthToken() -> AuthToken {

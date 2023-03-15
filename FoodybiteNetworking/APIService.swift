@@ -29,8 +29,7 @@ extension APIService: LoginService {
         
         try tokenStore.write(loginResponse.token)
         
-        let remoteUser = loginResponse.user
-        return User(id: remoteUser.id, name: remoteUser.name, email: remoteUser.email, profileImage: remoteUser.profileImage)
+        return loginResponse.remoteUser.model
     }
 }
 
