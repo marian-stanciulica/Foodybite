@@ -1133,10 +1133,10 @@
 			children = (
 				0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */,
 				0F447CCB28FB19C20026C5DB /* Models */,
-				0F447CCA28FB19990026C5DB /* API Service */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
-				0F447CB528FAC2D50026C5DB /* HTTP Client */,
+				0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */,
 				0F447CB428FAC2CB0026C5DB /* Remote Loader */,
+				0F447CCE28FB1A020026C5DB /* APIService.swift */,
 			);
 			path = FoodybiteNetworking;
 			sourceTree = "<group>";
@@ -1659,14 +1659,6 @@
 			path = "Remote Loader";
 			sourceTree = "<group>";
 		};
-		0F447CB528FAC2D50026C5DB /* HTTP Client */ = {
-			isa = PBXGroup;
-			children = (
-				0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */,
-			);
-			path = "HTTP Client";
-			sourceTree = "<group>";
-		};
 		0F447CB628FAC2E10026C5DB /* Data Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1729,14 +1721,6 @@
 			children = (
 				0F447CD328FB1A650026C5DB /* Helpers */,
 				0F447CC828FB0AB60026C5DB /* APIServiceTests.swift */,
-			);
-			path = "API Service";
-			sourceTree = "<group>";
-		};
-		0F447CCA28FB19990026C5DB /* API Service */ = {
-			isa = PBXGroup;
-			children = (
-				0F447CCE28FB1A020026C5DB /* APIService.swift */,
 			);
 			path = "API Service";
 			sourceTree = "<group>";
