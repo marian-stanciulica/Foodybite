@@ -14,14 +14,14 @@ final class PlacesServiceTests: XCTestCase {
     // MARK: - GetPlaceDetails Tests
     
     func test_conformsToGetPlaceDetailsService() {
-        let (sut, _) = makeSUT(response: anyPlaceDetails())
+        let (sut, _) = makeSUT(response: anyPlaceDetailsResponse())
         XCTAssertNotNil(sut as GetPlaceDetailsService)
     }
     
     func test_getPlaceDetails_getPlaceDetailsParamsUsedToCreateEndpoint() async throws {
         let placeID = randomString()
         
-        let (sut, loader) = makeSUT(response: anyPlaceDetails())
+        let (sut, loader) = makeSUT(response: anyPlaceDetailsResponse())
         let getPlaceDetailsEndpoint = GetPlaceDetailsEndpoint(placeID: placeID)
         let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
         
@@ -34,7 +34,7 @@ final class PlacesServiceTests: XCTestCase {
     func test_getPlaceDetails_usesGetPlaceDetailsEndpointToCreateURLRequest() async throws {
         let placeID = randomString()
 
-        let (sut, loader) = makeSUT(response: anyPlaceDetails())
+        let (sut, loader) = makeSUT(response: anyPlaceDetailsResponse())
         let getPlaceDetailsEndpoint = GetPlaceDetailsEndpoint(placeID: placeID)
         let urlRequest = try getPlaceDetailsEndpoint.createURLRequest()
         
@@ -44,7 +44,7 @@ final class PlacesServiceTests: XCTestCase {
     }
     
     func test_getPlaceDetails_throwsErrorWhenStatusIsNotOK() async {
-        let placeDetails = anyPlaceDetails(status: .notFound)
+        let placeDetails = anyPlaceDetailsResponse(status: .notFound)
         let (sut, _) = makeSUT(response: placeDetails)
         
         do {
@@ -56,46 +56,12 @@ final class PlacesServiceTests: XCTestCase {
     }
     
     func test_getPlaceDetails_receiveExpectedPlaceDetailsResponse() async throws {
-        let expectedResponse = anyPlaceDetails()
-        
-        var openingHours: OpeningHoursDetails?
-        
-        if let hours = expectedResponse.result.openingHours {
-            openingHours = OpeningHoursDetails(openNow: hours.openNow, weekdayText: hours.weekdayText)
-        }
-        
-        let placeID = expectedResponse.result.placeID
-        
-        let expected = PlaceDetails(
-            placeID: placeID,
-            phoneNumber: expectedResponse.result.internationalPhoneNumber,
-            name: expectedResponse.result.name,
-            address: expectedResponse.result.formattedAddress,
-            rating: expectedResponse.result.rating,
-            openingHoursDetails: openingHours,
-            reviews: expectedResponse.result.reviews.map {
-                Review(
-                    placeID: placeID,
-                    profileImageURL: $0.profilePhotoURL,
-                    profileImageData: nil,
-                    authorName: $0.authorName,
-                    reviewText: $0.text,
-                    rating: $0.rating,
-                    relativeTime: $0.relativeTimeDescription
-                )
-            },
-            location: Location(
-                latitude: expectedResponse.result.geometry.location.lat,
-                longitude: expectedResponse.result.geometry.location.lng
-            ),
-            photos: []
-        )
-        
-        let (sut, _) = makeSUT(response: expectedResponse)
+        let placeDetailsResponse = anyPlaceDetailsResponse()
+        let (sut, _) = makeSUT(response: placeDetailsResponse)
         
         let receivedResponse = try await sut.getPlaceDetails(placeID: randomString())
         
-        XCTAssertEqual(expected, receivedResponse)
+        XCTAssertEqual(placeDetailsResponse.placeDetails, receivedResponse)
     }
     
     // MARK: - FetchPlacePhotoService Tests
@@ -215,7 +181,7 @@ final class PlacesServiceTests: XCTestCase {
         )
     }
     
-    private func anyPlaceDetails(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
+    private func anyPlaceDetailsResponse(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
         PlaceDetailsResponse(
             result: Details(
                 addressComponents: [],
