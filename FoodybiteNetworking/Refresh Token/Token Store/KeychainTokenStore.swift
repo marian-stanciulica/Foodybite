@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedAPI
 
 public class KeychainTokenStore: TokenStore {
     private let service: String

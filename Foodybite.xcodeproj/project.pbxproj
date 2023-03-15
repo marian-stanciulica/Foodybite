@@ -107,7 +107,6 @@
 		0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA32962CB5300FDDF41 /* RemoteResourceLoaderTests.swift */; };
 		0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */; };
 		0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA82962CBBD00FDDF41 /* ResourceLoader.swift */; };
-		0F412EAC2962CBEB00FDDF41 /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EAB2962CBEB00FDDF41 /* CodableDataParser.swift */; };
 		0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EAF2962CC3400FDDF41 /* CodableMock.swift */; };
 		0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */; };
 		0F412EB52962CD9800FDDF41 /* AutocompleteEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */; };
@@ -140,7 +139,6 @@
 		0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CA928FAA7EE0026C5DB /* CodableMock.swift */; };
 		0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAB28FAC1580026C5DB /* RemoteResourceLoader.swift */; };
 		0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAD28FAC1810026C5DB /* HTTPClient.swift */; };
-		0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */; };
 		0F447CB228FAC21C0026C5DB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CB128FAC21C0026C5DB /* HTTPClientSpy.swift */; };
 		0F447CBB28FAC5010026C5DB /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CBA28FAC5010026C5DB /* URLSessionHTTPClientTests.swift */; };
 		0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CBC28FB03740026C5DB /* Helpers.swift */; };
@@ -353,6 +351,11 @@
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FE1E2CB29C1B01400B33CF5 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */; };
+		0FE1E2D929C1B08B00B33CF5 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */; };
+		0FE1E2DA29C1B08B00B33CF5 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0FE1E2DD29C1B0B300B33CF5 /* SharedAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */; };
+		0FE1E2DE29C1B0B300B33CF5 /* SharedAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0FE1E2E129C1B12500B33CF5 /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CAF28FAC1AC0026C5DB /* CodableDataParser.swift */; };
 		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
 		0FF467602930C6AD0094528E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4675F2930C6AD0094528E /* EditProfileView.swift */; };
 		0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */; };
@@ -514,6 +517,20 @@
 			remoteGlobalIDString = 0FE1E2C229C1B01400B33CF5;
 			remoteInfo = SharedAPI;
 		};
+		0FE1E2DB29C1B08B00B33CF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FE1E2C229C1B01400B33CF5;
+			remoteInfo = SharedAPI;
+		};
+		0FE1E2DF29C1B0B400B33CF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FE1E2C229C1B01400B33CF5;
+			remoteInfo = SharedAPI;
+		};
 		0FF7C67129B1FF0E00622E9C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -547,6 +564,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0FE1E2DE29C1B0B300B33CF5 /* SharedAPI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +575,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0FE1E2DA29C1B08B00B33CF5 /* SharedAPI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,7 +690,6 @@
 		0F412EA32962CB5300FDDF41 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
 		0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
 		0F412EA82962CBBD00FDDF41 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
-		0F412EAB2962CBEB00FDDF41 /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
 		0F412EAF2962CC3400FDDF41 /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpointTests.swift; sourceTree = "<group>"; };
@@ -989,6 +1007,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE1E2D929C1B08B00B33CF5 /* SharedAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,6 +1044,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE1E2DD29C1B0B300B33CF5 /* SharedAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,7 +1144,6 @@
 				0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */,
 				0F447CCB28FB19C20026C5DB /* Models */,
 				0F447CCA28FB19990026C5DB /* API Service */,
-				0F447CB628FAC2E10026C5DB /* Data Parser */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
 				0F447CB528FAC2D50026C5DB /* HTTP Client */,
 				0F447CB428FAC2CB0026C5DB /* Remote Loader */,
@@ -1382,7 +1401,6 @@
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
 				0F412ECE2962F85800FDDF41 /* Response Models */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
-				0F412EAA2962CBD500FDDF41 /* Data Parser */,
 				0F412E942962C9CA00FDDF41 /* HTTP Client */,
 				0F412EA52962CB7B00FDDF41 /* Remote Loader */,
 				0F412EB92962D0CA00FDDF41 /* Place Service */,
@@ -1467,14 +1485,6 @@
 				0F412EA82962CBBD00FDDF41 /* ResourceLoader.swift */,
 			);
 			path = "Remote Loader";
-			sourceTree = "<group>";
-		};
-		0F412EAA2962CBD500FDDF41 /* Data Parser */ = {
-			isa = PBXGroup;
-			children = (
-				0F412EAB2962CBEB00FDDF41 /* CodableDataParser.swift */,
-			);
-			path = "Data Parser";
 			sourceTree = "<group>";
 		};
 		0F412EAD2962CC1B00FDDF41 /* Helpers */ = {
@@ -1972,6 +1982,7 @@
 				0FC73C5129B6097C005879B8 /* FoodybiteCacheIntegrationTests.xctest */,
 				0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */,
 				0FE1E2CA29C1B01400B33CF5 /* SharedAPITests.xctest */,
+				0FE1E2D829C1B08B00B33CF5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2705,6 +2716,7 @@
 		0FE1E2C429C1B01400B33CF5 /* SharedAPI */ = {
 			isa = PBXGroup;
 			children = (
+				0F447CB628FAC2E10026C5DB /* Data Parser */,
 			);
 			path = SharedAPI;
 			sourceTree = "<group>";
@@ -2714,6 +2726,13 @@
 			children = (
 			);
 			path = SharedAPITests;
+			sourceTree = "<group>";
+		};
+		0FE1E2D829C1B08B00B33CF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		0FF4675C2930C6830094528E /* Edit Profile */ = {
@@ -2967,6 +2986,7 @@
 			);
 			dependencies = (
 				0F2BACCD2982BBAB006D4A7F /* PBXTargetDependency */,
+				0FE1E2DC29C1B08B00B33CF5 /* PBXTargetDependency */,
 			);
 			name = FoodybiteNetworking;
 			productName = FoodybiteNetworking;
@@ -3065,6 +3085,7 @@
 			);
 			dependencies = (
 				0F215CBD29826D24000F88F4 /* PBXTargetDependency */,
+				0FE1E2E029C1B0B400B33CF5 /* PBXTargetDependency */,
 			);
 			name = FoodybitePlaces;
 			productName = FoodybitePlaces;
@@ -3281,18 +3302,18 @@
 			projectRoot = "";
 			targets = (
 				0F7137B62841F8340058757A /* Foodybite */,
-				0F108806291E2397007A28FA /* FoodybiteTests */,
-				0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */,
-				0F0BDA1F28F83FD500E91FD0 /* FoodybiteNetworkingTests */,
-				0F95A875290D024400806AE9 /* FoodybitePersistence */,
-				0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */,
 				0F19B474291647DB00A8FC8F /* Domain */,
-				0F412E752962C78D00FDDF41 /* FoodybitePlaces */,
-				0F412E7C2962C78E00FDDF41 /* FoodybitePlacesTests */,
-				0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
-				0FC73C5029B6097C005879B8 /* FoodybiteCacheIntegrationTests */,
+				0F108806291E2397007A28FA /* FoodybiteTests */,
 				0FE1E2C229C1B01400B33CF5 /* SharedAPI */,
 				0FE1E2C929C1B01400B33CF5 /* SharedAPITests */,
+				0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */,
+				0F0BDA1F28F83FD500E91FD0 /* FoodybiteNetworkingTests */,
+				0F412E752962C78D00FDDF41 /* FoodybitePlaces */,
+				0F412E7C2962C78E00FDDF41 /* FoodybitePlacesTests */,
+				0F95A875290D024400806AE9 /* FoodybitePersistence */,
+				0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */,
+				0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
+				0FC73C5029B6097C005879B8 /* FoodybiteCacheIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3510,7 +3531,6 @@
 				0F447CAC28FAC1580026C5DB /* RemoteResourceLoader.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
 				0F028100292630D5006B219F /* LoginRequest.swift in Sources */,
-				0F447CB028FAC1AC0026C5DB /* CodableDataParser.swift in Sources */,
 				0F447CAE28FAC1810026C5DB /* HTTPClient.swift in Sources */,
 				0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */,
 				0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */,
@@ -3674,7 +3694,6 @@
 				0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */,
 				0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
-				0F412EAC2962CBEB00FDDF41 /* CodableDataParser.swift in Sources */,
 				0F412EA12962CA9100FDDF41 /* NetworkError.swift in Sources */,
 				0FABD52129962DD000918251 /* AutocompleteResponse.swift in Sources */,
 				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
@@ -3861,6 +3880,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE1E2E129C1B12500B33CF5 /* CodableDataParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3948,6 +3968,16 @@
 			isa = PBXTargetDependency;
 			target = 0FE1E2C229C1B01400B33CF5 /* SharedAPI */;
 			targetProxy = 0FE1E2CC29C1B01400B33CF5 /* PBXContainerItemProxy */;
+		};
+		0FE1E2DC29C1B08B00B33CF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FE1E2C229C1B01400B33CF5 /* SharedAPI */;
+			targetProxy = 0FE1E2DB29C1B08B00B33CF5 /* PBXContainerItemProxy */;
+		};
+		0FE1E2E029C1B0B400B33CF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FE1E2C229C1B01400B33CF5 /* SharedAPI */;
+			targetProxy = 0FE1E2DF29C1B0B400B33CF5 /* PBXContainerItemProxy */;
 		};
 		0FF7C67229B1FF0E00622E9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4870,6 +4900,7 @@
 		0FE1E2D629C1B01400B33CF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -4893,6 +4924,7 @@
 		0FE1E2D729C1B01400B33CF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
