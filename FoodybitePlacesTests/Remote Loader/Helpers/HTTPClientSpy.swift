@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import FoodybitePlaces
+@testable import SharedAPI
 
 class HTTPClientSpy: HTTPClient {
     var urlRequests = [URLRequest]()
