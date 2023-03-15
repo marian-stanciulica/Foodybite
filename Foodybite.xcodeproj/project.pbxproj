@@ -380,7 +380,6 @@
 		0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */; };
 		0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */; };
 		0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */; };
-		0FF7C65E29B1E54E00622E9C /* LoginEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65D29B1E54E00622E9C /* LoginEndpointTests.swift */; };
 		0FF7C66029B1E5B800622E9C /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */; };
 		0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */; };
 		0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */; };
@@ -979,7 +978,6 @@
 		0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpoint.swift; sourceTree = "<group>"; };
-		0FF7C65D29B1E54E00622E9C /* LoginEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C66729B1F26600622E9C /* SearchNearbyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C66B29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsEndpoint.swift; sourceTree = "<group>"; };
@@ -1693,7 +1691,6 @@
 				0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */,
 				0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */,
 				0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */,
-				0FF7C65D29B1E54E00622E9C /* LoginEndpointTests.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -3551,7 +3548,6 @@
 			files = (
 				0F39172429C1C58A00EE0201 /* EndpointStub.swift in Sources */,
 				0FF7C65229B1E0A500622E9C /* LogoutEndpointTests.swift in Sources */,
-				0FF7C65E29B1E54E00622E9C /* LoginEndpointTests.swift in Sources */,
 				0F1FDE46290161E000E12B09 /* TokenStoreStub.swift in Sources */,
 				0F39175929C23B5B00EE0201 /* APIServiceTests+LoginService.swift in Sources */,
 				0F1FDE4D2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift in Sources */,
