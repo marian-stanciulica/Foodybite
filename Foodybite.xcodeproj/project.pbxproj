@@ -112,6 +112,7 @@
 		0F39175D29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175C29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift */; };
 		0F39175F29C24BF000EE0201 /* APIServiceTests+LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175E29C24BF000EE0201 /* APIServiceTests+LogoutService.swift */; };
 		0F39176129C24DDA00EE0201 /* APIServiceTests+AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39176029C24DDA00EE0201 /* APIServiceTests+AccountService.swift */; };
+		0F39176329C251A100EE0201 /* APIServiceTests+ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39176229C251A100EE0201 /* APIServiceTests+ReviewService.swift */; };
 		0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */; };
 		0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
@@ -308,7 +309,6 @@
 		0FC73C5529B6097C005879B8 /* FoodybitePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6BFD5229B5F68E008CDA48 /* FoodybitePersistence.framework */; };
 		0FC73C5E29B611F5005879B8 /* NullLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5D29B611F5005879B8 /* NullLocalStore.swift */; };
 		0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */; };
-		0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F6298E60500024016B /* ReviewEndpointTests.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
 		0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86400298E799D0024016B /* ReviewViewModelTests.swift */; };
@@ -704,6 +704,7 @@
 		0F39175C29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+ChangePasswordService.swift"; sourceTree = "<group>"; };
 		0F39175E29C24BF000EE0201 /* APIServiceTests+LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+LogoutService.swift"; sourceTree = "<group>"; };
 		0F39176029C24DDA00EE0201 /* APIServiceTests+AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+AccountService.swift"; sourceTree = "<group>"; };
+		0F39176229C251A100EE0201 /* APIServiceTests+ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+ReviewService.swift"; sourceTree = "<group>"; };
 		0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
 		0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
@@ -911,7 +912,6 @@
 		0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		0FC73C5D29B611F5005879B8 /* NullLocalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullLocalStore.swift; sourceTree = "<group>"; };
 		0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelConvertable.swift; sourceTree = "<group>"; };
-		0FC863F6298E60500024016B /* ReviewEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpointTests.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
 		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
 		0FC863FD298E72F20024016B /* AddReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewService.swift; sourceTree = "<group>"; };
@@ -1685,7 +1685,6 @@
 		0F447CB728FAC3000026C5DB /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
-				0FC863F6298E60500024016B /* ReviewEndpointTests.swift */,
 				0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */,
 			);
 			path = Endpoint;
@@ -1736,6 +1735,7 @@
 				0F39175C29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift */,
 				0F39175E29C24BF000EE0201 /* APIServiceTests+LogoutService.swift */,
 				0F39176029C24DDA00EE0201 /* APIServiceTests+AccountService.swift */,
+				0F39176229C251A100EE0201 /* APIServiceTests+ReviewService.swift */,
 			);
 			path = "API Service";
 			sourceTree = "<group>";
@@ -3561,11 +3561,11 @@
 				0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */,
 				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
 				0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */,
-				0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */,
 				0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */,
 				0F39175D29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift in Sources */,
 				0F39175B29C247BD00EE0201 /* APIServiceTests+SignUpService.swift in Sources */,
 				0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */,
+				0F39176329C251A100EE0201 /* APIServiceTests+ReviewService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
