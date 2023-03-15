@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import FoodybitePlaces
+import FoodybitePlaces
 import SharedAPI
 
 enum EndpointStub: Endpoint {

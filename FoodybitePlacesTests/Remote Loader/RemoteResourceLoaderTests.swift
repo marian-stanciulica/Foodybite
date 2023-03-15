@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import FoodybitePlaces
+import FoodybitePlaces
 
 final class RemoteResourceLoaderTests: XCTestCase {
 

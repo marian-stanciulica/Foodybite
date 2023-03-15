@@ -13,8 +13,8 @@ import FoodybiteNetworking
 import FoodybitePersistence
 
 class RootFactory {
-    let apiService: FoodybiteNetworking.APIService = {
-        let httpClient = SharedAPI.URLSessionHTTPClient()
+    let apiService: APIService = {
+        let httpClient = URLSessionHTTPClient()
         let tokenStore = KeychainTokenStore()
         
         let remoteResourceLoader = RemoteStore(client: httpClient)

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import SharedAPI
+import SharedAPI
 
 class HTTPClientSpy: HTTPClient {
     var urlRequests = [URLRequest]()
