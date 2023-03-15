@@ -11,62 +11,6 @@ import Domain
 
 final class PlacesServiceTests: XCTestCase {
     
-    // MARK: - SearchNearbyService Tests
-    
-    func test_conformsToSearchNearbyService() {
-        let (sut, _) = makeSUT(response: anySearchNearbyResponse())
-        XCTAssertNotNil(sut as SearchNearbyService)
-    }
-    
-    func test_searchNearby_searchNearbyParamsUsedToCreateEndpoint() async throws {
-        let location = Location(latitude: -33.8, longitude: 15.1)
-        let radius = 15
-        let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
-        let searchNearbyEndpoint = SearchNearbyEndpoint(location: location, radius: radius)
-        let urlRequest = try searchNearbyEndpoint.createURLRequest()
-
-        _ = try await searchNearby(on: sut, location: location, radius: radius)
-
-        XCTAssertEqual(loader.getRequests.count, 1)
-        
-        let urlComponents = URLComponents(url: loader.getRequests[0].url!, resolvingAgainstBaseURL: true)
-        let expectedQueryItems: [URLQueryItem] = [
-            URLQueryItem(name: "key", value: searchNearbyEndpoint.apiKey),
-            URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),
-            URLQueryItem(name: "radius", value: "\(radius)"),
-            URLQueryItem(name: "type", value: "restaurant")
-        ]
-        
-        XCTAssertEqual(urlComponents?.scheme, "https")
-        XCTAssertNil(urlComponents?.port)
-        XCTAssertEqual(urlComponents?.host, "maps.googleapis.com")
-        XCTAssertEqual(urlComponents?.path, "/maps/api/place/nearbysearch/json")
-        XCTAssertEqual(urlComponents?.queryItems, expectedQueryItems)
-        XCTAssertEqual(urlRequest.httpMethod, "GET")
-        XCTAssertNil(urlRequest.httpBody)
-    }
-    
-    func test_searchNearby_throwsErrorWhenStatusIsNotOK() async {
-        let nearbyPlaces = anySearchNearbyResponse(status: .overQueryLimit)
-        let (sut, _) = makeSUT(response: nearbyPlaces)
-        
-        do {
-            let nearbyPlaces = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, got \(nearbyPlaces) instead")
-        } catch {
-            XCTAssertNotNil(error)
-        }
-    }
-    
-    func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
-        let expectedResponse = anySearchNearbyResponse()
-        let expected = expectedResponse.nearbyPlaces
-        let (sut, _) = makeSUT(response: expectedResponse)
-        
-        let receivedResponse = try await searchNearby(on: sut)
-        XCTAssertEqual(expected, receivedResponse)
-    }
-    
     // MARK: - GetPlaceDetails Tests
     
     func test_conformsToGetPlaceDetailsService() {
@@ -251,17 +195,10 @@ final class PlacesServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(response: Decodable) -> (sut: PlacesService, loader: ResourceLoaderSpy) {
+    func makeSUT(response: Decodable) -> (sut: PlacesService, loader: ResourceLoaderSpy) {
         let loader = ResourceLoaderSpy(response: response)
         let sut = PlacesService(loader: loader)
         return (sut, loader)
-    }
-    
-    private func searchNearby(on sut: PlacesService, location: Location? = nil, radius: Int? = nil) async throws -> [NearbyPlace] {
-        let defaultLocation = Location(latitude: -33.8, longitude: 15.1)
-        let defaultRadius = 15
-        
-        return try await sut.searchNearby(location: location ?? defaultLocation, radius: radius ?? defaultRadius)
     }
     
     private func anyData() -> Data {
@@ -276,34 +213,6 @@ final class PlacesServiceTests: XCTestCase {
             ],
             status: status
         )
-    }
-    
-    private func anySearchNearbyResponse(status: SearchNearbyStatus = .ok) -> SearchNearbyResponse {
-        SearchNearbyResponse(results: [
-            SearchNearbyResult(
-                businessStatus: "",
-                geometry: Geometry(
-                    location: RemoteLocation(lat: 0, lng: 0),
-                    viewport: Viewport(
-                        northeast: RemoteLocation(lat: 0, lng: 0),
-                        southwest: RemoteLocation(lat: 0, lng: 0))),
-                icon: "",
-                iconBackgroundColor: "",
-                iconMaskBaseURI: "",
-                name: "a place",
-                openingHours: OpeningHours(openNow: true),
-                photos: [],
-                placeID: "#1",
-                plusCode: PlusCode(compoundCode: "", globalCode: ""),
-                priceLevel: 0,
-                rating: 0,
-                reference: "",
-                scope: "",
-                types: [],
-                userRatingsTotal: 0,
-                vicinity: ""
-            )
-        ], status: status)
     }
     
     private func anyPlaceDetails(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
