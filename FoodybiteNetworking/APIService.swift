@@ -35,7 +35,14 @@ extension APIService: LoginService {
 
 extension APIService: SignUpService {
     public func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
-        let endpoint = SignUpEndpoint.post(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
+        let body = SignUpRequest(
+            name: name,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            profileImage: profileImage
+        )
+        let endpoint = SignUpEndpoint.post(body)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }

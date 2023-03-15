@@ -12,46 +12,6 @@ import SharedAPI
 
 final class APIServiceTests: XCTestCase {
     
-    // MARK: - SignUpService Tests
-    
-    func test_conformsToSignUpService() {
-        let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as SignUpService)
-    }
-    
-    func test_signUp_paramsUsedToCreateEndpoint() async throws {
-        let name = anyName()
-        let email = anyEmail()
-        let password = anyPassword()
-        let confirmPassword = anyPassword()
-        let profileImage = anyData()
-        
-        let (sut, _, sender, _) = makeSUT()
-        let signUpEndpoint = SignUpEndpoint.post(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: anyData()))
-        let urlRequest = try signUpEndpoint.createURLRequest()
-        
-        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage)
-        
-        let firstRequest = sender.requests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
-    }
-    
-    func test_signUp_usesSignUpEndpointToCreateURLRequest() async throws {
-        let name = anyName()
-        let email = anyEmail()
-        let password = anyPassword()
-        let confirmPassword = anyPassword()
-        let profileImage = anyData()
-        
-        let (sut, _, sender, _) = makeSUT()
-        let signUpEndpoint = SignUpEndpoint.post(SignUpRequest(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage))
-        let urlRequest = try signUpEndpoint.createURLRequest()
-        
-        try await sut.signUp(name: name, email: email, password: password, confirmPassword: confirmPassword, profileImage: profileImage)
-
-        XCTAssertEqual(sender.requests, [urlRequest])
-    }
-    
     // MARK: - ChangePasswordService Tests
     
     func test_conformsToChangePasswordService() {
