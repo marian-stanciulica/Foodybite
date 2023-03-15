@@ -19,10 +19,8 @@ extension PlacesServiceTests {
     func test_searchNearby_searchNearbyParamsUsedToCreateEndpoint() async throws {
         let location = Location(latitude: -33.8, longitude: 15.1)
         let radius = 15
-        
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
         let endpoint = SearchNearbyEndpoint(location: location, radius: radius)
-        let urlRequest = try endpoint.createURLRequest()
 
         _ = try await searchNearby(on: sut, location: location, radius: radius)
 
