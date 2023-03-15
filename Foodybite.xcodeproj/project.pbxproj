@@ -1132,7 +1132,7 @@
 			isa = PBXGroup;
 			children = (
 				0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */,
-				0F447CCB28FB19C20026C5DB /* Models */,
+				0F447CCB28FB19C20026C5DB /* Data */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
 				0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */,
 				0F447CB428FAC2CB0026C5DB /* Remote Loader */,
@@ -1709,13 +1709,13 @@
 			path = "API Service";
 			sourceTree = "<group>";
 		};
-		0F447CCB28FB19C20026C5DB /* Models */ = {
+		0F447CCB28FB19C20026C5DB /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				0F0280FB29262FD9006B219F /* Requests */,
 				0F0280F829262B11006B219F /* Responses */,
 			);
-			path = Models;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		0F447CD028FB1A190026C5DB /* Auth Protocols */ = {
