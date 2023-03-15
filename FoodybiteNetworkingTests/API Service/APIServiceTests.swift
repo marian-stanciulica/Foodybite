@@ -12,23 +12,6 @@ import SharedAPI
 
 final class APIServiceTests: XCTestCase {
     
-    // MARK: - LogoutService Tests
-    
-    func test_conformsToLogoutService() {
-        let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as LogoutService)
-    }
-    
-    func test_logout_usesLogoutEndpointToCreateURLRequest() async throws {
-        let (sut, _, sender, _) = makeSUT()
-        let logoutEndpoint = LogoutEndpoint.post
-        let urlRequest = try logoutEndpoint.createURLRequest()
-        
-        try await sut.logout()
-
-        XCTAssertEqual(sender.requests, [urlRequest])
-    }
-    
     // MARK: - AccountService Tests
     
     func test_conformsToUpdateAccountService() {
@@ -146,7 +129,7 @@ final class APIServiceTests: XCTestCase {
         urlRequest: URLRequest,
         path: String,
         method: RequestMethod,
-        body: Encodable,
+        body: Encodable? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
@@ -159,9 +142,13 @@ final class APIServiceTests: XCTestCase {
         XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
         XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
         
-        let encoder = JSONEncoder()
-        let bodyData = try! encoder.encode(body)
-        XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
+        if let body = body {
+            let encoder = JSONEncoder()
+            let bodyData = try! encoder.encode(body)
+            XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
+        } else if let httpBody = urlRequest.httpBody {
+            XCTFail("Body expected to be nil, got \(httpBody) instead")
+        }
     }
     
     func anyName() -> String {
