@@ -39,7 +39,7 @@ struct Details: Decodable {
     let plusCode: PlusCode
     let rating: Double
     let reference: String
-    let reviews: [Review]
+    let reviews: [RemoteReview]
     let types: [String]
     let url: String
     let userRatingsTotal, utcOffset: Int
@@ -106,7 +106,7 @@ struct Close: Decodable {
     let time: String
 }
 
-struct Review: Decodable {
+struct RemoteReview: Decodable {
     let authorName: String
     let authorURL: URL
     let language: String
