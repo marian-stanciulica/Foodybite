@@ -29,7 +29,22 @@ final class PlacesServiceTests: XCTestCase {
         _ = try await sut.searchNearby(location: location, radius: radius)
 
         let firstRequest = loader.getRequests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
+        let urlComponents = URLComponents(url: firstRequest!.url!, resolvingAgainstBaseURL: true)
+        
+        let expectedQueryItems: [URLQueryItem] = [
+            URLQueryItem(name: "key", value: searchNearbyEndpoint.apiKey),
+            URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),
+            URLQueryItem(name: "radius", value: "\(radius)"),
+            URLQueryItem(name: "type", value: "restaurant")
+        ]
+        
+        XCTAssertEqual(urlComponents?.scheme, "https")
+        XCTAssertNil(urlComponents?.port)
+        XCTAssertEqual(urlComponents?.host, "maps.googleapis.com")
+        XCTAssertEqual(urlComponents?.path, "/maps/api/place/nearbysearch/json")
+        XCTAssertEqual(urlComponents?.queryItems, expectedQueryItems)
+        XCTAssertEqual(urlRequest.httpMethod, "GET")
+        XCTAssertNil(urlRequest.httpBody)
     }
     
     func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
