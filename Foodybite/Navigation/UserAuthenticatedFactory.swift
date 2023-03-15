@@ -11,11 +11,11 @@ import FoodybiteNetworking
 import FoodybitePersistence
 
 final class UserAuthenticatedFactory {
-    let authenticatedApiService: FoodybiteNetworking.APIService = {
+    let authenticatedApiService: APIService = {
         let httpClient = FoodybiteNetworking.URLSessionHTTPClient()
         let refreshTokenLoader = RemoteResourceLoader(client: httpClient)
         let tokenStore = KeychainTokenStore()
-                
+        
         let tokenRefresher = RefreshTokenService(loader: refreshTokenLoader, tokenStore: tokenStore)
         let authenticatedHTTPClient = AuthenticatedURLSessionHTTPClient(decoratee: httpClient, tokenRefresher: tokenRefresher)
         let authenticatedRemoteResourceLoader = RemoteResourceLoader(client: authenticatedHTTPClient)
@@ -25,10 +25,10 @@ final class UserAuthenticatedFactory {
                           tokenStore: tokenStore)
     }()
     
-    let placesService: FoodybitePlaces.APIService = {
+    let placesService: PlacesService = {
         let httpClient = FoodybitePlaces.URLSessionHTTPClient()
         let loader = FoodybitePlaces.RemoteResourceLoader(client: httpClient)
-        return FoodybitePlaces.APIService(loader: loader)
+        return PlacesService(loader: loader)
     }()
     
     let userPreferencesStore = UserPreferencesLocalStore()

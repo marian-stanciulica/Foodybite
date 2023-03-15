@@ -40,10 +40,10 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIService {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> PlacesService {
         let httpClient = URLSessionHTTPClient()
         let loader = RemoteResourceLoader(client: httpClient)
-        return APIService(loader: loader)
+        return PlacesService(loader: loader)
     }
     
     private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> PlaceDetails {

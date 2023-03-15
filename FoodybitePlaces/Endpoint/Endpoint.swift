@@ -22,7 +22,7 @@ extension Endpoint {
     }
     
     var apiKey: String {
-        let bundle = Bundle(for: APIService.self)
+        let bundle = Bundle(for: PlacesService.self)
         guard let filePath = bundle.path(forResource: "GooglePlaces-Info", ofType: "plist") else {
             fatalError("Couldn't find file 'GooglePlaces-Info.plist' containing 'Places API Key'.")
         }

@@ -113,7 +113,7 @@
 		0F412EB52962CD9800FDDF41 /* AutocompleteEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */; };
 		0F412EB72962CE8000FDDF41 /* AutocompleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB62962CE8000FDDF41 /* AutocompleteEndpoint.swift */; };
 		0F412EC12962D24400FDDF41 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC02962D24400FDDF41 /* APIServiceTests.swift */; };
-		0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* APIService.swift */; };
+		0F412EC32962D3D100FDDF41 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC22962D3D100FDDF41 /* PlacesService.swift */; };
 		0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */; };
 		0F412ECA2962EEB200FDDF41 /* GooglePlaces-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */; };
 		0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */; };
@@ -670,7 +670,7 @@
 		0F412EB62962CE8000FDDF41 /* AutocompleteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpoint.swift; sourceTree = "<group>"; };
 		0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyService.swift; sourceTree = "<group>"; };
 		0F412EC02962D24400FDDF41 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
-		0F412EC22962D3D100FDDF41 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0F412EC22962D3D100FDDF41 /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
 		0F412EC52962D41A00FDDF41 /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GooglePlaces-Info.plist"; sourceTree = "<group>"; };
 		0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyResponse.swift; sourceTree = "<group>"; };
@@ -1367,7 +1367,7 @@
 				0F412EAA2962CBD500FDDF41 /* Data Parser */,
 				0F412E942962C9CA00FDDF41 /* HTTP Client */,
 				0F412EA52962CB7B00FDDF41 /* Remote Loader */,
-				0F412EB92962D0CA00FDDF41 /* API Service */,
+				0F412EB92962D0CA00FDDF41 /* Place Service */,
 			);
 			path = FoodybitePlaces;
 			sourceTree = "<group>";
@@ -1489,12 +1489,12 @@
 			path = "API Service";
 			sourceTree = "<group>";
 		};
-		0F412EB92962D0CA00FDDF41 /* API Service */ = {
+		0F412EB92962D0CA00FDDF41 /* Place Service */ = {
 			isa = PBXGroup;
 			children = (
-				0F412EC22962D3D100FDDF41 /* APIService.swift */,
+				0F412EC22962D3D100FDDF41 /* PlacesService.swift */,
 			);
-			path = "API Service";
+			path = "Place Service";
 			sourceTree = "<group>";
 		};
 		0F412EBA2962D13700FDDF41 /* Places Protocols */ = {
@@ -3579,7 +3579,7 @@
 				0FABD52129962DD000918251 /* AutocompleteResponse.swift in Sources */,
 				0F412E9F2962CA6F00FDDF41 /* RequestMethod.swift in Sources */,
 				0F2BACB2298292C0006D4A7F /* Photo.swift in Sources */,
-				0F412EC32962D3D100FDDF41 /* APIService.swift in Sources */,
+				0F412EC32962D3D100FDDF41 /* PlacesService.swift in Sources */,
 				0F412ECD2962F81C00FDDF41 /* SearchNearbyResponse.swift in Sources */,
 				0F412EA92962CBBD00FDDF41 /* ResourceLoader.swift in Sources */,
 				0FF7C67029B1F63E00622E9C /* GetPlacePhotoEndpoint.swift in Sources */,

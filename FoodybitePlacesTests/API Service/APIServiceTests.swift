@@ -226,9 +226,9 @@ final class APIServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(response: Decodable) -> (sut: APIService, loader: ResourceLoaderSpy) {
+    private func makeSUT(response: Decodable) -> (sut: PlacesService, loader: ResourceLoaderSpy) {
         let loader = ResourceLoaderSpy(response: response)
-        let sut = APIService(loader: loader)
+        let sut = PlacesService(loader: loader)
         return (sut, loader)
     }
     

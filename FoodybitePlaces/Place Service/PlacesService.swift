@@ -1,5 +1,5 @@
 //
-//  APIService.swift
+//  PlacesService.swift
 //  FoodybitePlaces
 //
 //  Created by Marian Stanciulica on 02.01.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public class APIService {
+public class PlacesService {
     private let loader: ResourceLoader
     
     public init(loader: ResourceLoader) {
@@ -16,7 +16,7 @@ public class APIService {
     }
 }
 
-extension APIService: SearchNearbyService {
+extension PlacesService: SearchNearbyService {
     public func searchNearby(location: Domain.Location, radius: Int) async throws -> [NearbyPlace] {
         let endpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
@@ -44,7 +44,7 @@ extension APIService: SearchNearbyService {
     }
 }
 
-extension APIService: GetPlaceDetailsService {
+extension PlacesService: GetPlaceDetailsService {
     public func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
         let endpoint = GetPlaceDetailsEndpoint(placeID: placeID)
         let request = try endpoint.createURLRequest()
@@ -85,7 +85,7 @@ extension APIService: GetPlaceDetailsService {
     }
 }
 
-extension APIService: FetchPlacePhotoService {
+extension PlacesService: FetchPlacePhotoService {
     public func fetchPlacePhoto(photoReference: String) async throws -> Data {
         let endpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
         let request = try endpoint.createURLRequest()
@@ -93,7 +93,7 @@ extension APIService: FetchPlacePhotoService {
     }
 }
 
-extension APIService: AutocompletePlacesService {
+extension PlacesService: AutocompletePlacesService {
     public func autocomplete(input: String, location: Domain.Location, radius: Int) async throws -> [AutocompletePrediction] {
         let endpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
         let request = try endpoint.createURLRequest()
