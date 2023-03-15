@@ -258,7 +258,7 @@ final class PlacesServiceTests: XCTestCase {
         )
     }
     
-    private func anySearchNearbyResponse() -> SearchNearbyResponse {
+    private func anySearchNearbyResponse(status: SearchNearbyStatus = .ok) -> SearchNearbyResponse {
         SearchNearbyResponse(results: [
             SearchNearbyResult(
                 businessStatus: "",
@@ -283,7 +283,7 @@ final class PlacesServiceTests: XCTestCase {
                 userRatingsTotal: 0,
                 vicinity: ""
             )
-        ], status: "OK")
+        ], status: status)
     }
     
     private func anyPlaceDetails(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {

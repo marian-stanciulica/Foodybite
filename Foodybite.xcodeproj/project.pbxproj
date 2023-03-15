@@ -1490,8 +1490,8 @@
 			isa = PBXGroup;
 			children = (
 				0F2BACA9298291DB006D4A7F /* Helpers */,
-				0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */,
 				0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */,
+				0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */,
 				0FABD52029962DD000918251 /* AutocompleteResponse.swift */,
 			);
 			path = "Response Data";

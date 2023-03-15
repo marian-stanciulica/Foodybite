@@ -10,11 +10,6 @@ import Foundation
 struct PlaceDetailsResponse: Decodable {
     let result: Details
     let status: PlaceDetailsStatus
-
-    enum CodingKeys: String, CodingKey {
-        case result
-        case status
-    }
 }
 
 enum PlaceDetailsStatus: String, Decodable {
