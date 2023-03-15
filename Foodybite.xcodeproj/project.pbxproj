@@ -1389,7 +1389,7 @@
 			isa = PBXGroup;
 			children = (
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
-				0F412ECE2962F85800FDDF41 /* Response Models */,
+				0F412ECE2962F85800FDDF41 /* Response Data */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
 				0F412EA52962CB7B00FDDF41 /* Remote Loader */,
 				0F412EB92962D0CA00FDDF41 /* Place Service */,
@@ -1503,31 +1503,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		0F412ECB2962F7A600FDDF41 /* Search Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */,
-			);
-			path = "Search Nearby";
-			sourceTree = "<group>";
-		};
-		0F412ECE2962F85800FDDF41 /* Response Models */ = {
+		0F412ECE2962F85800FDDF41 /* Response Data */ = {
 			isa = PBXGroup;
 			children = (
 				0F2BACA9298291DB006D4A7F /* Helpers */,
-				0F412ED5296319CB00FDDF41 /* Place Details */,
-				0F412ECB2962F7A600FDDF41 /* Search Nearby */,
-				0FABD51F29962DAF00918251 /* Autocomplete */,
-			);
-			path = "Response Models";
-			sourceTree = "<group>";
-		};
-		0F412ED5296319CB00FDDF41 /* Place Details */ = {
-			isa = PBXGroup;
-			children = (
 				0F412ED6296319DD00FDDF41 /* PlaceDetailsResponse.swift */,
+				0F412ECC2962F81C00FDDF41 /* SearchNearbyResponse.swift */,
+				0FABD52029962DD000918251 /* AutocompleteResponse.swift */,
 			);
-			path = "Place Details";
+			path = "Response Data";
 			sourceTree = "<group>";
 		};
 		0F415CCC2843CDDA005B54DC /* Review & Ratings */ = {
@@ -2257,14 +2241,6 @@
 				0FABA446298BF80A00EACFE5 /* LocationProviderTests.swift */,
 			);
 			path = Location;
-			sourceTree = "<group>";
-		};
-		0FABD51F29962DAF00918251 /* Autocomplete */ = {
-			isa = PBXGroup;
-			children = (
-				0FABD52029962DD000918251 /* AutocompleteResponse.swift */,
-			);
-			path = Autocomplete;
 			sourceTree = "<group>";
 		};
 		0FABD522299632B800918251 /* Autocomplete Places */ = {
