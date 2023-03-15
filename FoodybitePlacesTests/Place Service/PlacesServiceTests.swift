@@ -303,7 +303,7 @@ final class PlacesServiceTests: XCTestCase {
                 utcOffset: 0,
                 vicinity: "",
                 website: ""),
-            status: ""
+            status: .ok
         )
     }
 }

@@ -9,12 +9,22 @@ import Foundation
 
 struct PlaceDetailsResponse: Decodable {
     let result: Details
-    let status: String
+    let status: PlaceDetailsStatus
 
     enum CodingKeys: String, CodingKey {
         case result
         case status
     }
+}
+
+enum PlaceDetailsStatus: String, Decodable {
+    case ok = "OK"
+    case zeroResults = "ZERO_RESULTS"
+    case notFound = "NOT_FOUND"
+    case invalidRequest = "INVALID_REQUEST"
+    case overQueryLimit = "OVER_QUERY_LIMIT"
+    case requestDenied = "REQUEST_DENIED"
+    case unknownError = "UNKNOWN_ERROR"
 }
 
 struct Details: Decodable {
