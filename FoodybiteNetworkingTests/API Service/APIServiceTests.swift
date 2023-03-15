@@ -11,58 +11,6 @@ import Domain
 
 final class APIServiceTests: XCTestCase {
     
-    // MARK: - LoginService Tests
-    
-    func test_conformsToLoginService() {
-        let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as LoginService)
-    }
-    
-    func test_login_loginParamsUsedToCreateEndpoint() async throws {
-        let email = anyEmail()
-        let password = anyPassword()
-        
-        let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
-        let loginEndpoint = LoginEndpoint.post(LoginRequest(email: email, password: password))
-        let urlRequest = try loginEndpoint.createURLRequest()
-        
-        _ = try await sut.login(email: email, password: password)
-        
-        let firstRequest = loader.requests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
-    }
-    
-    func test_login_usesLoginEndpointToCreateURLRequest() async throws {
-        let email = anyEmail()
-        let password = anyPassword()
-        
-        let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
-        let loginEndpoint = LoginEndpoint.post(LoginRequest(email: email, password: password))
-        let urlRequest = try loginEndpoint.createURLRequest()
-        
-        _ = try await sut.login(email: email, password: password)
-        
-        XCTAssertEqual(loader.requests, [urlRequest])
-    }
-    
-    func test_login_receiveExpectedLoginResponse() async throws {
-        let (response, expectedModel) = anyLoginResponse()
-        let (sut, _, _, _) = makeSUT(response: response)
-        
-        let receivedResponse = try await sut.login(email: anyEmail(), password: anyPassword())
-        
-        XCTAssertEqual(expectedModel, receivedResponse)
-    }
-    
-    func test_login_storesAuthTokenInKeychain() async throws {
-        let (sut, _, _, tokenStoreStub) = makeSUT(response: anyLoginResponse().response)
-        
-        _ = try await sut.login(email: anyEmail(), password: anyPassword())
-        let receivedToken = try tokenStoreStub.read()
-        
-        XCTAssertEqual(receivedToken, anyAuthToken())
-    }
-    
     // MARK: - SignUpService Tests
     
     func test_conformsToSignUpService() {
@@ -261,7 +209,7 @@ final class APIServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(response: Decodable? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
+    func makeSUT(response: Decodable? = nil) -> (sut: APIService, loader: ResourceLoaderSpy, sender: ResourceSenderSpy, tokenStoreStub: TokenStoreStub) {
         let tokenStoreStub = TokenStoreStub()
         let loader = ResourceLoaderSpy(response: response ?? "any decodable")
         let sender = ResourceSenderSpy()
@@ -269,15 +217,15 @@ final class APIServiceTests: XCTestCase {
         return (sut, loader, sender, tokenStoreStub)
     }
     
-    private func anyName() -> String {
+    func anyName() -> String {
         "any name"
     }
     
-    private func anyEmail() -> String {
+    func anyEmail() -> String {
         "test@test.com"
     }
     
-    private func anyPassword() -> String {
+    func anyPassword() -> String {
         "123@password$321"
     }
     
@@ -295,20 +243,6 @@ final class APIServiceTests: XCTestCase {
     
     private func anyStarsNumber() -> Int {
         3
-    }
-    
-    private func anyLoginResponse() -> (response: LoginResponse, model: User) {
-        let id = UUID()
-        let response = LoginResponse(
-            user: RemoteUser(id: id,
-                             name: "any name",
-                             email: "any@email.com",
-                             profileImage: nil),
-            token: anyAuthToken()
-        )
-        
-        let model = User(id: id, name: "any name", email: "any@email.com", profileImage: nil)
-        return (response, model)
     }
     
     private func anyGetReviews() -> (response: [RemoteReview], model: [Review]) {
@@ -332,11 +266,6 @@ final class APIServiceTests: XCTestCase {
         }
         
         return (response, model)
-    }
-    
-    private func anyAuthToken() -> AuthToken {
-        AuthToken(accessToken: "any access token",
-                         refreshToken: "any refresh token")
     }
 
 }
