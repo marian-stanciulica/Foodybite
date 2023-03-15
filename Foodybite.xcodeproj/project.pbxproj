@@ -23,7 +23,6 @@
 		0F0620492997F33F00D47857 /* SelectedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */; };
 		0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3028F8411900E91FD0 /* Endpoint.swift */; };
 		0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */; };
-		0F0BDA3728F8546800E91FD0 /* SignUpEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3628F8546800E91FD0 /* SignUpEndpointTests.swift */; };
 		0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */; };
 		0F10880A291E2397007A28FA /* RegisterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F108809291E2397007A28FA /* RegisterViewModelTests.swift */; };
 		0F18976029B75F660052094F /* SearchNearbyDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */; };
@@ -110,6 +109,7 @@
 		0F39175729C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175629C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift */; };
 		0F39175929C23B5B00EE0201 /* APIServiceTests+LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175829C23B5B00EE0201 /* APIServiceTests+LoginService.swift */; };
 		0F39175B29C247BD00EE0201 /* APIServiceTests+SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175A29C247BD00EE0201 /* APIServiceTests+SignUpService.swift */; };
+		0F39175D29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175C29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift */; };
 		0F39B2BB29AFA9CA0098F1EA /* HomeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */; };
 		0F39B2BD29AFAB8E0098F1EA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */; };
 		0F3F73F728467BF100A5D2BF /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F73F628467BF100A5D2BF /* NewReviewView.swift */; };
@@ -377,7 +377,6 @@
 		0FF7C65029B1DC2900622E9C /* AccountEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */; };
 		0FF7C65229B1E0A500622E9C /* LogoutEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */; };
 		0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */; };
-		0FF7C65629B1E23A00622E9C /* ChangePasswordEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */; };
 		0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */; };
 		0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */; };
 		0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */; };
@@ -616,7 +615,6 @@
 		0F0BDA2E28F8407A00E91FD0 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F0BDA3028F8411900E91FD0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3228F8425300E91FD0 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
-		0F0BDA3628F8546800E91FD0 /* SignUpEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndpointTests.swift; sourceTree = "<group>"; };
 		0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndpoint.swift; sourceTree = "<group>"; };
 		0F0BDA3A28F86A6C00E91FD0 /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		0F108809291E2397007A28FA /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
@@ -703,6 +701,7 @@
 		0F39175629C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+AutocompletePlacesService.swift"; sourceTree = "<group>"; };
 		0F39175829C23B5B00EE0201 /* APIServiceTests+LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+LoginService.swift"; sourceTree = "<group>"; };
 		0F39175A29C247BD00EE0201 /* APIServiceTests+SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+SignUpService.swift"; sourceTree = "<group>"; };
+		0F39175C29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+ChangePasswordService.swift"; sourceTree = "<group>"; };
 		0F39B2BA29AFA9CA0098F1EA /* HomeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchView.swift; sourceTree = "<group>"; };
 		0F39B2BC29AFAB8E0098F1EA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
@@ -976,7 +975,6 @@
 		0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEndpoint.swift; sourceTree = "<group>"; };
-		0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65729B1E2B300622E9C /* ChangePasswordEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEndpoint.swift; sourceTree = "<group>"; };
 		0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpointTests.swift; sourceTree = "<group>"; };
 		0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndpoint.swift; sourceTree = "<group>"; };
@@ -1687,11 +1685,9 @@
 		0F447CB728FAC3000026C5DB /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
-				0F0BDA3628F8546800E91FD0 /* SignUpEndpointTests.swift */,
 				0FC863F6298E60500024016B /* ReviewEndpointTests.swift */,
 				0FF7C64F29B1DC2900622E9C /* AccountEndpointTests.swift */,
 				0FF7C65129B1E0A500622E9C /* LogoutEndpointTests.swift */,
-				0FF7C65529B1E23A00622E9C /* ChangePasswordEndpointTests.swift */,
 				0FF7C65929B1E40800622E9C /* RefreshTokenEndpointTests.swift */,
 			);
 			path = Endpoint;
@@ -1739,6 +1735,7 @@
 				0F447CC828FB0AB60026C5DB /* APIServiceTests.swift */,
 				0F39175829C23B5B00EE0201 /* APIServiceTests+LoginService.swift */,
 				0F39175A29C247BD00EE0201 /* APIServiceTests+SignUpService.swift */,
+				0F39175C29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift */,
 			);
 			path = "API Service";
 			sourceTree = "<group>";
@@ -3559,15 +3556,14 @@
 				0FF7C65029B1DC2900622E9C /* AccountEndpointTests.swift in Sources */,
 				0F1FDE442901607000E12B09 /* TokenRefreshLoaderSpy.swift in Sources */,
 				0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */,
-				0FF7C65629B1E23A00622E9C /* ChangePasswordEndpointTests.swift in Sources */,
 				0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */,
 				0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */,
 				0F447CBD28FB03740026C5DB /* Helpers.swift in Sources */,
 				0F0BDA3328F8425300E91FD0 /* RemoteResourceLoaderTests.swift in Sources */,
-				0F0BDA3728F8546800E91FD0 /* SignUpEndpointTests.swift in Sources */,
 				0F1FDE4F29017E4200E12B09 /* TokenRefresherFake.swift in Sources */,
 				0FC863F7298E60500024016B /* ReviewEndpointTests.swift in Sources */,
 				0FF7C65A29B1E40800622E9C /* RefreshTokenEndpointTests.swift in Sources */,
+				0F39175D29C249EC00EE0201 /* APIServiceTests+ChangePasswordService.swift in Sources */,
 				0F39175B29C247BD00EE0201 /* APIServiceTests+SignUpService.swift in Sources */,
 				0F447CAA28FAA7EE0026C5DB /* CodableMock.swift in Sources */,
 			);

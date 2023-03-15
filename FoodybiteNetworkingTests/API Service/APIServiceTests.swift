@@ -12,42 +12,6 @@ import SharedAPI
 
 final class APIServiceTests: XCTestCase {
     
-    // MARK: - ChangePasswordService Tests
-    
-    func test_conformsToChangePasswordService() {
-        let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as ChangePasswordService)
-    }
-    
-    func test_changePassword_paramsUsedToCreateEndpoint() async throws {
-        let currentPassword = anyPassword()
-        let newPassword = anyPassword()
-        let confirmPassword = newPassword
-        
-        let (sut, _, sender, _) = makeSUT()
-        let changePasswordEndpoint = ChangePasswordEndpoint.post(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
-        let urlRequest = try changePasswordEndpoint.createURLRequest()
-        
-        try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
-        
-        let firstRequest = sender.requests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
-    }
-    
-    func test_changePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
-        let currentPassword = anyPassword()
-        let newPassword = anyPassword()
-        let confirmPassword = newPassword
-        
-        let (sut, _, sender, _) = makeSUT()
-        let changePasswordEndpoint = ChangePasswordEndpoint.post(ChangePasswordRequest(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword))
-        let urlRequest = try changePasswordEndpoint.createURLRequest()
-        
-        try await sut.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
-
-        XCTAssertEqual(sender.requests, [urlRequest])
-    }
-    
     // MARK: - LogoutService Tests
     
     func test_conformsToLogoutService() {
