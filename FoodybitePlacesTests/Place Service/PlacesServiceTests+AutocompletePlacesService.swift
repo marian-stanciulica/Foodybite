@@ -18,8 +18,8 @@ extension PlacesServiceTests {
     
     func test_autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {
         let input = "input"
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
+        let location = Location(latitude: -33.8, longitude: 15.1)
+        let radius = 15
         
         let (sut, loader) = makeSUT(response: anyAutocompleteResponse())
         let endpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
@@ -37,14 +37,11 @@ extension PlacesServiceTests {
     }
     
     func test_autocomplete_throwsErrorWhenStatusIsNotOK() async {
-        let input = "input"
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
         let autocompleteResponse = anyAutocompleteResponse(status: .overQueryLimit)
         let (sut, _) = makeSUT(response: autocompleteResponse)
         
         do {
-            let autocompletePredictions = try await sut.autocomplete(input: input, location: location, radius: radius)
+            let autocompletePredictions = try await autocomplete(on: sut)
             XCTFail("Expected to fail, got \(autocompletePredictions) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -52,18 +49,12 @@ extension PlacesServiceTests {
     }
     
     func test_autocomplete_receiveExpectedAutocompleteResponse() async throws {
-        let input = "input"
-        let location = Location(latitude: -33.8670522, longitude: 151.1957362)
-        let radius = 1500
+        let expectedAutocompleteResponse = anyAutocompleteResponse()
+        let (sut, _) = makeSUT(response: expectedAutocompleteResponse)
         
-        let expectedResponse = anyAutocompleteResponse()
-        let expected = expectedResponse.predictions.map {
-            AutocompletePrediction(placePrediction: $0.description, placeID: $0.placeID)
-        }
-        let (sut, _) = makeSUT(response: expectedResponse)
+        let receivedAutocompletePredictions = try await autocomplete(on: sut)
         
-        let receivedResponse = try await sut.autocomplete(input: input, location: location, radius: radius)
-        XCTAssertEqual(expected, receivedResponse)
+        XCTAssertEqual(expectedAutocompleteResponse.autocompletePredictions, receivedAutocompletePredictions)
     }
     
     // MARK: - Helpers
@@ -94,6 +85,18 @@ extension PlacesServiceTests {
         XCTAssertEqual(urlComponents?.queryItems, expectedQueryItems, file: file, line: line)
         XCTAssertEqual(urlRequest.httpMethod, "GET", file: file, line: line)
         XCTAssertNil(urlRequest.httpBody, file: file, line: line)
+    }
+    
+    private func autocomplete(on sut: PlacesService, input: String? = nil, location: Location? = nil, radius: Int? = nil) async throws -> [AutocompletePrediction] {
+        let defaultInput = "input"
+        let defaultLocation = Location(latitude: -33.8, longitude: 15.1)
+        let defaultRadius = 15
+        
+        return try await sut.autocomplete(
+            input: input ?? defaultInput,
+            location: location ?? defaultLocation,
+            radius: radius ?? defaultRadius
+        )
     }
     
     private func anyAutocompleteResponse(status: AutocompleteStatus = .ok) -> AutocompleteResponse {
