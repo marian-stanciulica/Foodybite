@@ -8,18 +8,18 @@
 import Foundation
 import SharedAPI
 
-public struct GetPlacePhotoEndpoint: Endpoint {
+struct GetPlacePhotoEndpoint: Endpoint {
     private let photoReference: String
     
     init(photoReference: String) {
         self.photoReference = photoReference
     }
     
-    public var path: String {
+    var path: String {
         "/maps/api/place/photo"
     }
     
-    public var queryItems: [URLQueryItem]? {
+    var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "photo_reference", value: photoReference),

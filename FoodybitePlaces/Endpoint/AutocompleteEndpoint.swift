@@ -9,7 +9,7 @@ import Foundation
 import Domain
 import SharedAPI
 
-public struct AutocompleteEndpoint: Endpoint {
+struct AutocompleteEndpoint: Endpoint {
     private let input: String
     private let location: Domain.Location
     private let radius: Int
@@ -20,11 +20,11 @@ public struct AutocompleteEndpoint: Endpoint {
         self.radius = radius
     }
     
-    public var path: String {
+    var path: String {
         "/maps/api/place/autocomplete/json"
     }
     
-    public var queryItems: [URLQueryItem]? {
+    var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "input", value: input),
             URLQueryItem(name: "key", value: apiKey),
