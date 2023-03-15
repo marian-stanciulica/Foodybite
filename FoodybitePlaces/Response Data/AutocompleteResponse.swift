@@ -7,9 +7,18 @@
 
 import Foundation
 
-struct AutocompleteResponse: Codable {
+struct AutocompleteResponse: Decodable {
     let predictions: [Prediction]
-    let status: String
+    let status: AutocompleteStatus
+}
+
+enum AutocompleteStatus: String, Decodable {
+    case ok = "OK"
+    case zeroResults = "ZERO_RESULTS"
+    case invalidRequest = "INVALID_REQUEST"
+    case overQueryLimit = "OVER_QUERY_LIMIT"
+    case requestDenied = "REQUEST_DENIED"
+    case unknownError = "UNKNOWN_ERROR"
 }
 
 struct Prediction: Codable {

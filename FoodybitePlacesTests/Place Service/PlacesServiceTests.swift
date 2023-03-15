@@ -262,13 +262,13 @@ final class PlacesServiceTests: XCTestCase {
         "any data".data(using: .utf8)!
     }
     
-    private func anyAutocompleteResponse() -> AutocompleteResponse {
+    private func anyAutocompleteResponse(status: AutocompleteStatus = .ok) -> AutocompleteResponse {
         AutocompleteResponse(
             predictions: [
                 Prediction(description: "a description", matchedSubstrings: [], placeID: "place #1", reference: "", structuredFormatting: StructuredFormatting(mainText: "", mainTextMatchedSubstrings: [], secondaryText: ""), terms: [], types: []),
                 Prediction(description: "another description", matchedSubstrings: [], placeID: "place #2", reference: "", structuredFormatting: StructuredFormatting(mainText: "", mainTextMatchedSubstrings: [], secondaryText: ""), terms: [], types: [])
             ],
-            status: "OK"
+            status: status
         )
     }
     
