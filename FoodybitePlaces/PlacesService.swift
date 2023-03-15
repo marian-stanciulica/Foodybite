@@ -19,7 +19,7 @@ public class PlacesService {
 }
 
 extension PlacesService: SearchNearbyService {
-    public func searchNearby(location: Domain.Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
         let endpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
@@ -40,7 +40,7 @@ extension PlacesService: SearchNearbyService {
                 placeName: $0.name,
                 isOpen: $0.openingHours?.openNow ?? false,
                 rating: $0.rating ?? 0,
-                location: Domain.Location(
+                location: Location(
                     latitude: $0.geometry.location.lat,
                     longitude: $0.geometry.location.lng
                 ),
@@ -84,7 +84,7 @@ extension PlacesService: GetPlaceDetailsService {
                     relativeTime: $0.relativeTimeDescription
                 )
             },
-            location: Domain.Location(
+            location: Location(
                 latitude: response.result.geometry.location.lat,
                 longitude: response.result.geometry.location.lng
             ),
@@ -104,7 +104,7 @@ extension PlacesService: FetchPlacePhotoService {
 }
 
 extension PlacesService: AutocompletePlacesService {
-    public func autocomplete(input: String, location: Domain.Location, radius: Int) async throws -> [AutocompletePrediction] {
+    public func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
         let endpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: AutocompleteResponse = try await loader.get(for: request)

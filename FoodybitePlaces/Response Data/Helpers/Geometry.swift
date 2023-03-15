@@ -8,6 +8,6 @@
 import Foundation
 
 struct Geometry: Decodable {
-    let location: Location
+    let location: RemoteLocation
     let viewport: Viewport
 }

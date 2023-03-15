@@ -292,10 +292,10 @@ final class PlacesServiceTests: XCTestCase {
             SearchNearbyResult(
                 businessStatus: "",
                 geometry: Geometry(
-                    location: Location(lat: 0, lng: 0),
+                    location: RemoteLocation(lat: 0, lng: 0),
                     viewport: Viewport(
-                        northeast: Location(lat: 0, lng: 0),
-                        southwest: Location(lat: 0, lng: 0))),
+                        northeast: RemoteLocation(lat: 0, lng: 0),
+                        southwest: RemoteLocation(lat: 0, lng: 0))),
                 icon: "",
                 iconBackgroundColor: "",
                 iconMaskBaseURI: "",
@@ -323,9 +323,9 @@ final class PlacesServiceTests: XCTestCase {
                 formattedAddress: "",
                 formattedPhoneNumber: "",
                 geometry: Geometry(
-                    location: Location(lat: 0, lng: 0),
-                    viewport: Viewport(northeast: Location(lat: 0, lng: 0),
-                                       southwest: Location(lat: 0, lng: 0))),
+                    location: RemoteLocation(lat: 0, lng: 0),
+                    viewport: Viewport(northeast: RemoteLocation(lat: 0, lng: 0),
+                                       southwest: RemoteLocation(lat: 0, lng: 0))),
                 icon: "",
                 iconBackgroundColor: "",
                 iconMaskBaseURI: "",

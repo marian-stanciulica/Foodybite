@@ -1,5 +1,5 @@
 //
-//  Photo.swift
+//  RemotePhoto.swift
 //  FoodybitePlaces
 //
 //  Created by Marian Stanciulica on 26.01.2023.

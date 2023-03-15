@@ -8,6 +8,6 @@
 import Foundation
 
 struct Viewport: Decodable {
-    let northeast: Location
-    let southwest: Location
+    let northeast: RemoteLocation
+    let southwest: RemoteLocation
 }

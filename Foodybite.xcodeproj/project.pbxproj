@@ -80,7 +80,7 @@
 		0F2B4CC228455201004D0EF7 /* SelectRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CC128455201004D0EF7 /* SelectRadiusView.swift */; };
 		0F2B4CC428455577004D0EF7 /* RadiusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CC328455577004D0EF7 /* RadiusIndicatorView.swift */; };
 		0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAA29829212006D4A7F /* Geometry.swift */; };
-		0F2BACAE2982922F006D4A7F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAD2982922F006D4A7F /* Location.swift */; };
+		0F2BACAE2982922F006D4A7F /* RemoteLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAD2982922F006D4A7F /* RemoteLocation.swift */; };
 		0F2BACB029829243006D4A7F /* Viewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAF29829243006D4A7F /* Viewport.swift */; };
 		0F2BACB2298292C0006D4A7F /* RemotePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB1298292C0006D4A7F /* RemotePhoto.swift */; };
 		0F2BACB4298292FA006D4A7F /* PlusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACB3298292FA006D4A7F /* PlusCode.swift */; };
@@ -660,7 +660,7 @@
 		0F2B4CC128455201004D0EF7 /* SelectRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadiusView.swift; sourceTree = "<group>"; };
 		0F2B4CC328455577004D0EF7 /* RadiusIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusIndicatorView.swift; sourceTree = "<group>"; };
 		0F2BACAA29829212006D4A7F /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
-		0F2BACAD2982922F006D4A7F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		0F2BACAD2982922F006D4A7F /* RemoteLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLocation.swift; sourceTree = "<group>"; };
 		0F2BACAF29829243006D4A7F /* Viewport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewport.swift; sourceTree = "<group>"; };
 		0F2BACB1298292C0006D4A7F /* RemotePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePhoto.swift; sourceTree = "<group>"; };
 		0F2BACB3298292FA006D4A7F /* PlusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusCode.swift; sourceTree = "<group>"; };
@@ -1358,7 +1358,7 @@
 			isa = PBXGroup;
 			children = (
 				0F2BACAA29829212006D4A7F /* Geometry.swift */,
-				0F2BACAD2982922F006D4A7F /* Location.swift */,
+				0F2BACAD2982922F006D4A7F /* RemoteLocation.swift */,
 				0F2BACAF29829243006D4A7F /* Viewport.swift */,
 				0F2BACB1298292C0006D4A7F /* RemotePhoto.swift */,
 				0F2BACB3298292FA006D4A7F /* PlusCode.swift */,
@@ -3615,7 +3615,7 @@
 				0F412ED7296319DD00FDDF41 /* PlaceDetailsResponse.swift in Sources */,
 				0FF7C66C29B1F4E700622E9C /* GetPlaceDetailsEndpoint.swift in Sources */,
 				0F412EB72962CE8000FDDF41 /* AutocompleteEndpoint.swift in Sources */,
-				0F2BACAE2982922F006D4A7F /* Location.swift in Sources */,
+				0F2BACAE2982922F006D4A7F /* RemoteLocation.swift in Sources */,
 				0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */,
 				0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */,
 				0F412EA72962CB9000FDDF41 /* RemoteLoader.swift in Sources */,
