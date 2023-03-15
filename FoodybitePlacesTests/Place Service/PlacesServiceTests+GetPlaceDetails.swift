@@ -61,20 +61,17 @@ extension PlacesServiceTests {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
-        
         let expectedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "place_id", value: placeID)
         ]
         
-        XCTAssertEqual(urlComponents?.scheme, "https", file: file, line: line)
-        XCTAssertNil(urlComponents?.port, file: file, line: line)
-        XCTAssertEqual(urlComponents?.host, "maps.googleapis.com", file: file, line: line)
-        XCTAssertEqual(urlComponents?.path, "/maps/api/place/details/json", file: file, line: line)
-        XCTAssertEqual(urlComponents?.queryItems, expectedQueryItems, file: file, line: line)
-        XCTAssertEqual(urlRequest.httpMethod, "GET", file: file, line: line)
-        XCTAssertNil(urlRequest.httpBody, file: file, line: line)
+        assertURLComponents(
+            urlRequest: urlRequest,
+            path: "/maps/api/place/details/json",
+            expectedQueryItems: expectedQueryItems,
+            file: file,
+            line: line)
     }
     
     private func anyPlaceDetailsResponse(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
