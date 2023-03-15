@@ -97,7 +97,7 @@
 		0F412E932962C97300FDDF41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E922962C97300FDDF41 /* Helpers.swift */; };
 		0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E9C2962CA4900FDDF41 /* Endpoint.swift */; };
 		0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA32962CB5300FDDF41 /* RemoteResourceLoaderTests.swift */; };
-		0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */; };
+		0F412EA72962CB9000FDDF41 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA62962CB9000FDDF41 /* RemoteLoader.swift */; };
 		0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EAF2962CC3400FDDF41 /* CodableMock.swift */; };
 		0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */; };
 		0F412EB52962CD9800FDDF41 /* AutocompleteEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */; };
@@ -675,7 +675,7 @@
 		0F412E922962C97300FDDF41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0F412E9C2962CA4900FDDF41 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F412EA32962CB5300FDDF41 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
-		0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoader.swift; sourceTree = "<group>"; };
+		0F412EA62962CB9000FDDF41 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		0F412EAF2962CC3400FDDF41 /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
 		0F412EB12962CC4A00FDDF41 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		0F412EB42962CD9800FDDF41 /* AutocompleteEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteEndpointTests.swift; sourceTree = "<group>"; };
@@ -1391,7 +1391,7 @@
 				0F412EC82962EBAD00FDDF41 /* GooglePlaces-Info.plist */,
 				0F412ECE2962F85800FDDF41 /* Response Data */,
 				0F412E9B2962CA3700FDDF41 /* Endpoint */,
-				0F412EA62962CB9000FDDF41 /* RemoteResourceLoader.swift */,
+				0F412EA62962CB9000FDDF41 /* RemoteLoader.swift */,
 				0F412EC22962D3D100FDDF41 /* PlacesService.swift */,
 			);
 			path = FoodybitePlaces;
@@ -3618,7 +3618,7 @@
 				0F2BACAE2982922F006D4A7F /* Location.swift in Sources */,
 				0FF7C66829B1F26600622E9C /* SearchNearbyEndpoint.swift in Sources */,
 				0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */,
-				0F412EA72962CB9000FDDF41 /* RemoteResourceLoader.swift in Sources */,
+				0F412EA72962CB9000FDDF41 /* RemoteLoader.swift in Sources */,
 				0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */,
 				0FABD52129962DD000918251 /* AutocompleteResponse.swift in Sources */,
 				0F2BACB2298292C0006D4A7F /* Photo.swift in Sources */,

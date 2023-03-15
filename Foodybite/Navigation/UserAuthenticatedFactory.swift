@@ -28,7 +28,7 @@ final class UserAuthenticatedFactory {
     
     let placesService: PlacesService = {
         let httpClient = URLSessionHTTPClient()
-        let loader = FoodybitePlaces.RemoteResourceLoader(client: httpClient)
+        let loader = RemoteLoader(client: httpClient)
         return PlacesService(loader: loader)
     }()
     
