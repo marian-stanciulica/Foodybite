@@ -8,6 +8,7 @@
 import XCTest
 import Domain
 @testable import FoodybiteNetworking
+import SharedAPI
 
 final class APIServiceTests: XCTestCase {
     
@@ -215,6 +216,28 @@ final class APIServiceTests: XCTestCase {
         let sender = ResourceSenderSpy()
         let sut = APIService(loader: loader, sender: sender, tokenStore: tokenStoreStub)
         return (sut, loader, sender, tokenStoreStub)
+    }
+    
+    func assertURLComponents(
+        urlRequest: URLRequest,
+        path: String,
+        method: RequestMethod,
+        body: Encodable,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
+
+        XCTAssertEqual(urlComponents?.scheme, "http", file: file, line: line)
+        XCTAssertEqual(urlComponents?.port, 8080, file: file, line: line)
+        XCTAssertEqual(urlComponents?.host, "localhost", file: file, line: line)
+        XCTAssertEqual(urlComponents?.path, path, file: file, line: line)
+        XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
+        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
+        
+        let encoder = JSONEncoder()
+        let bodyData = try! encoder.encode(body)
+        XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
     }
     
     func anyName() -> String {

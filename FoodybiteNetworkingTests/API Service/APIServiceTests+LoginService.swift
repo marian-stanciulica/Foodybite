@@ -8,7 +8,6 @@
 import XCTest
 @testable import FoodybiteNetworking
 import Domain
-import SharedAPI
 
 extension APIServiceTests {
     
@@ -20,9 +19,7 @@ extension APIServiceTests {
     func test_login_usesLoginEndpointToCreateURLRequest() async throws {
         let email = anyEmail()
         let password = anyPassword()
-        
         let (sut, loader, _, _) = makeSUT(response: anyLoginResponse().response)
-        let body = LoginRequest(email: email, password: password)
         
         _ = try await sut.login(email: email, password: password)
         
@@ -31,7 +28,7 @@ extension APIServiceTests {
             urlRequest: loader.requests[0],
             path: "/auth/login",
             method: .post,
-            body: body)
+            body: LoginRequest(email: email, password: password))
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
@@ -53,28 +50,6 @@ extension APIServiceTests {
     }
     
     // MARK: - Helpers
-    
-    private func assertURLComponents(
-        urlRequest: URLRequest,
-        path: String,
-        method: RequestMethod,
-        body: Encodable,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
-
-        XCTAssertEqual(urlComponents?.scheme, "http", file: file, line: line)
-        XCTAssertEqual(urlComponents?.port, 8080, file: file, line: line)
-        XCTAssertEqual(urlComponents?.host, "localhost", file: file, line: line)
-        XCTAssertEqual(urlComponents?.path, path, file: file, line: line)
-        XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
-        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
-        
-        let encoder = JSONEncoder()
-        let bodyData = try! encoder.encode(body)
-        XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
-    }
     
     private func anyLoginResponse() -> (response: LoginResponse, model: User) {
         let id = UUID()
