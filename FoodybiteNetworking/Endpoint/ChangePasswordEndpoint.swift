@@ -8,8 +8,12 @@
 import Foundation
 import SharedAPI
 
-enum ChangePasswordEndpoint: Endpoint {
-    case post(ChangePasswordRequestBody)
+struct ChangePasswordEndpoint: Endpoint {
+    private let requestBody: ChangePasswordRequestBody
+    
+    init(requestBody: ChangePasswordRequestBody) {
+        self.requestBody = requestBody
+    }
     
     var path: String {
         "/auth/changePassword"
@@ -20,9 +24,6 @@ enum ChangePasswordEndpoint: Endpoint {
     }
     
     var body: Encodable? {
-        switch self {
-        case let .post(changePasswordBody):
-            return changePasswordBody
-        }
+        requestBody
     }
 }
