@@ -219,7 +219,7 @@
 		0F73ECAC292FA1EE0025B237 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECAB292FA1EE0025B237 /* ChangePasswordViewModel.swift */; };
 		0F73ECAF292FA2810025B237 /* PublisherSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECAE292FA2810025B237 /* PublisherSpy.swift */; };
 		0F73ECB1292FAEA00025B237 /* ChangePasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECB0292FAEA00025B237 /* ChangePasswordValidator.swift */; };
-		0F73ECB3292FC8E60025B237 /* RefreshTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECB2292FC8E60025B237 /* RefreshTokenRequest.swift */; };
+		0F73ECB3292FC8E60025B237 /* RefreshTokenRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECB2292FC8E60025B237 /* RefreshTokenRequestBody.swift */; };
 		0F73ECBA292FDAA00025B237 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECB9292FDAA00025B237 /* SettingsViewModel.swift */; };
 		0F73ECBE292FEE6E0025B237 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECBD292FEE6E0025B237 /* SettingsViewModelTests.swift */; };
 		0F75163628434D3300A05A92 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F75163528434D3300A05A92 /* TabBarView.swift */; };
@@ -832,7 +832,7 @@
 		0F73ECAB292FA1EE0025B237 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		0F73ECAE292FA2810025B237 /* PublisherSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherSpy.swift; sourceTree = "<group>"; };
 		0F73ECB0292FAEA00025B237 /* ChangePasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordValidator.swift; sourceTree = "<group>"; };
-		0F73ECB2292FC8E60025B237 /* RefreshTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequest.swift; sourceTree = "<group>"; };
+		0F73ECB2292FC8E60025B237 /* RefreshTokenRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenRequestBody.swift; sourceTree = "<group>"; };
 		0F73ECB4292FD9150025B237 /* LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutService.swift; sourceTree = "<group>"; };
 		0F73ECB9292FDAA00025B237 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0F73ECBD292FEE6E0025B237 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
@@ -1145,7 +1145,7 @@
 				0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */,
 				0F0280FF292630D5006B219F /* LoginRequestBody.swift */,
 				0F73EC89292F73540025B237 /* ChangePasswordRequestBody.swift */,
-				0F73ECB2292FC8E60025B237 /* RefreshTokenRequest.swift */,
+				0F73ECB2292FC8E60025B237 /* RefreshTokenRequestBody.swift */,
 				0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */,
 				0FC863FA298E6FD50024016B /* AddReviewRequest.swift */,
 			);
@@ -3525,7 +3525,7 @@
 				0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */,
 				0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */,
 				0F1FDE4929016AF500E12B09 /* RefreshTokenService.swift in Sources */,
-				0F73ECB3292FC8E60025B237 /* RefreshTokenRequest.swift in Sources */,
+				0F73ECB3292FC8E60025B237 /* RefreshTokenRequestBody.swift in Sources */,
 				0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */,
 				0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */,
 				0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */,

@@ -8,7 +8,7 @@
 import SharedAPI
 
 enum RefreshTokenEndpoint: Endpoint {
-    case post(RefreshTokenRequest)
+    case post(RefreshTokenRequestBody)
 
     var path: String {
         "/auth/accessToken"

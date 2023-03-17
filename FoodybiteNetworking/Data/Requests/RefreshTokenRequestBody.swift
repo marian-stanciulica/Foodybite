@@ -1,10 +1,10 @@
 //
-//  RefreshTokenRequest.swift
+//  RefreshTokenRequestBody.swift
 //  FoodybiteNetworking
 //
 //  Created by Marian Stanciulica on 24.11.2022.
 //
 
-struct RefreshTokenRequest: Codable, Equatable {
+struct RefreshTokenRequestBody: Codable, Equatable {
     let refreshToken: String
 }

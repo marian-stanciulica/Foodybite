@@ -37,7 +37,7 @@ final class RefreshTokenServiceTests: XCTestCase {
             urlRequest: loaderSpy.requests[0],
             path: "/auth/accessToken",
             method: .post,
-            body: RefreshTokenRequest(refreshToken: authToken.refreshToken))
+            body: RefreshTokenRequestBody(refreshToken: authToken.refreshToken))
     }
 
     func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
