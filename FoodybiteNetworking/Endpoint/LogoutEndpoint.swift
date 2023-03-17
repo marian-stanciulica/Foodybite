@@ -11,15 +11,15 @@ import SharedAPI
 enum LogoutEndpoint: Endpoint {
     case post
     
-    public var path: String {
+    var path: String {
         "/auth/logout"
     }
     
-    public var method: RequestMethod {
+    var method: RequestMethod {
         .post
     }
     
-    public var body: Codable? {
+    var body: Codable? {
         nil
     }
 }

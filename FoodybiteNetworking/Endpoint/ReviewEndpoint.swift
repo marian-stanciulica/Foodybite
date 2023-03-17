@@ -11,7 +11,7 @@ enum ReviewEndpoint: Endpoint {
     case post(AddReviewRequest)
     case get(String?)
     
-    public var path: String {
+    var path: String {
         switch self {
         case .post:
             return "/review"
@@ -24,7 +24,7 @@ enum ReviewEndpoint: Endpoint {
         }
     }
     
-    public var method: RequestMethod {
+    var method: RequestMethod {
         switch self {
         case .post:
             return .post
@@ -33,7 +33,7 @@ enum ReviewEndpoint: Endpoint {
         }
     }
     
-    public var body: Codable? {
+    var body: Codable? {
         switch self {
         case let .post(body):
             return body

@@ -10,15 +10,15 @@ import SharedAPI
 enum LoginEndpoint: Endpoint {
     case post(LoginRequest)
 
-    public var path: String {
+    var path: String {
         "/auth/login"
     }
     
-    public var method: RequestMethod {
+    var method: RequestMethod {
         .post
     }
     
-    public var body: Codable? {
+    var body: Codable? {
         switch self {
         case let .post(body):
             return body

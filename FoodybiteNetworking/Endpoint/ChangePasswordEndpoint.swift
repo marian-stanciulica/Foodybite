@@ -11,15 +11,15 @@ import SharedAPI
 enum ChangePasswordEndpoint: Endpoint {
     case post(ChangePasswordRequest)
     
-    public var path: String {
+    var path: String {
         "/auth/changePassword"
     }
     
-    public var method: RequestMethod {
+    var method: RequestMethod {
         .post
     }
     
-    public var body: Codable? {
+    var body: Codable? {
         switch self {
         case let .post(changePasswordBody):
             return changePasswordBody

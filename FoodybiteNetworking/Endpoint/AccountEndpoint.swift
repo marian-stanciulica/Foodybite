@@ -12,11 +12,11 @@ enum AccountEndpoint: Endpoint {
     case post(UpdateAccountRequest)
     case delete
     
-    public var path: String {
+    var path: String {
         "/auth/account"
     }
     
-    public var method: RequestMethod {
+    var method: RequestMethod {
         switch self {
         case .delete:
             return .delete
@@ -25,7 +25,7 @@ enum AccountEndpoint: Endpoint {
         }
     }
     
-    public var body: Codable? {
+    var body: Codable? {
         switch self {
         case let .post(updateAccountBody):
             return updateAccountBody
