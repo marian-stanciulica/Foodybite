@@ -15,7 +15,7 @@ final class RefreshTokenServiceTests: XCTestCase {
         XCTAssertNotNil(sut as TokenRefresher)
     }
 
-    func test_fetchLocallyRemoteToken_returnsAuthTokenFromTokenStore() throws {
+    func test_getLocalToken_returnsAuthTokenFromTokenStore() throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
         let receivedToken = try tokenStoreStub.read()
