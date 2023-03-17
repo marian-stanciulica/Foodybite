@@ -8,7 +8,7 @@
 import SharedAPI
 
 enum LoginEndpoint: Endpoint {
-    case post(LoginRequest)
+    case post(LoginRequestBody)
 
     var path: String {
         "/auth/login"

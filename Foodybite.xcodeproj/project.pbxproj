@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F0280FD29262FE7006B219F /* SignUpRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */; };
-		0F028100292630D5006B219F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequest.swift */; };
+		0F028100292630D5006B219F /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequestBody.swift */; };
 		0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */; };
 		0F04032B29C06D9700122E60 /* UserDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032A29C06D9700122E60 /* UserDAOTests.swift */; };
 		0F04032D29C0709900122E60 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032C29C0709900122E60 /* UserDAO.swift */; };
@@ -613,7 +613,7 @@
 
 /* Begin PBXFileReference section */
 		0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestBody.swift; sourceTree = "<group>"; };
-		0F0280FF292630D5006B219F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		0F0280FF292630D5006B219F /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
 		0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F04032A29C06D9700122E60 /* UserDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAOTests.swift; sourceTree = "<group>"; };
 		0F04032C29C0709900122E60 /* UserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
@@ -1143,7 +1143,7 @@
 			isa = PBXGroup;
 			children = (
 				0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */,
-				0F0280FF292630D5006B219F /* LoginRequest.swift */,
+				0F0280FF292630D5006B219F /* LoginRequestBody.swift */,
 				0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */,
 				0F73ECB2292FC8E60025B237 /* RefreshTokenRequest.swift */,
 				0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */,
@@ -3521,7 +3521,7 @@
 				0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteStore.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
-				0F028100292630D5006B219F /* LoginRequest.swift in Sources */,
+				0F028100292630D5006B219F /* LoginRequestBody.swift in Sources */,
 				0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */,
 				0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */,
 				0F1FDE4929016AF500E12B09 /* RefreshTokenService.swift in Sources */,

@@ -28,7 +28,7 @@ extension APIServiceTests {
             urlRequest: loader.requests[0],
             path: "/auth/login",
             method: .post,
-            body: LoginRequest(email: email, password: password))
+            body: LoginRequestBody(email: email, password: password))
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
