@@ -1929,7 +1929,6 @@
 				0FC73C5129B6097C005879B8 /* FoodybiteCacheIntegrationTests.xctest */,
 				0FE1E2C329C1B01400B33CF5 /* SharedAPI.framework */,
 				0FE1E2CA29C1B01400B33CF5 /* SharedAPITests.xctest */,
-				0FE1E2D829C1B08B00B33CF5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2663,13 +2662,6 @@
 				0F39172929C1CCEC00EE0201 /* DataLoader.swift */,
 			);
 			path = SharedAPI;
-			sourceTree = "<group>";
-		};
-		0FE1E2D829C1B08B00B33CF5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		0FE1E2E729C1B2B000B33CF5 /* SharedAPITests */ = {

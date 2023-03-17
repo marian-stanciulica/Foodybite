@@ -55,7 +55,7 @@ enum EndpointStub: Endpoint {
         }
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         switch self {
         case let .body(body):
             return body
