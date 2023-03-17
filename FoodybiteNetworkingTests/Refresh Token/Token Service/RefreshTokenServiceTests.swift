@@ -41,15 +41,14 @@ final class RefreshTokenServiceTests: XCTestCase {
     }
 
     func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
-        let expectedAccessToken = "expected access token"
-        let expectedRefreshToken = "expected refresh token"
-        let (sut, _, _) = makeSUT(accessToken: expectedAccessToken, refreshToken: expectedRefreshToken)
+        let expectedAuthToken = makeRemoteAuthToken()
+        let (sut, _, _) = makeSUT(authToken: expectedAuthToken)
 
         try await sut.fetchLocallyRemoteToken()
         let receivedResponse = try sut.getLocalToken()
 
-        XCTAssertEqual(expectedAccessToken, receivedResponse.accessToken)
-        XCTAssertEqual(expectedRefreshToken, receivedResponse.refreshToken)
+        XCTAssertEqual(expectedAuthToken.accessToken, receivedResponse.accessToken)
+        XCTAssertEqual(expectedAuthToken.refreshToken, receivedResponse.refreshToken)
     }
     
     func test_fetchLocallyRemoteToken_storesAuthTokenInTokenStore() async throws {
@@ -65,17 +64,17 @@ final class RefreshTokenServiceTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(accessToken: String = "remote access token",
-                         refreshToken: String = "remote refresh token") -> (sut: RefreshTokenService,
-                                                                   loader: TokenRefreshLoaderSpy,
-                                                                   tokenStore: TokenStoreStub) {
-        let loaderSpy = TokenRefreshLoaderSpy(response: AuthToken(accessToken: accessToken, refreshToken: refreshToken))
-        let tokenStoreStub = TokenStoreStub(AuthToken(accessToken: "stored access token", refreshToken: "stored refresh token"))
+    private func makeSUT(authToken: AuthToken? = nil) -> (sut: RefreshTokenService,
+                                                          loader: TokenRefreshLoaderSpy,
+                                                          tokenStore: TokenStoreStub) {
+        let defaultAuthToken = makeRemoteAuthToken()
+        let loaderSpy = TokenRefreshLoaderSpy(response: authToken ?? defaultAuthToken)
+        let tokenStoreStub = TokenStoreStub(makeRemoteAuthToken())
         let sut = RefreshTokenService(loader: loaderSpy, tokenStore: tokenStoreStub)
         return (sut, loaderSpy, tokenStoreStub)
     }
     
-    func assertURLComponents(
+    private func assertURLComponents(
         urlRequest: URLRequest,
         path: String,
         method: RequestMethod,
@@ -102,9 +101,12 @@ final class RefreshTokenServiceTests: XCTestCase {
         }
     }
     
-    private func randomString(size: Int) -> String {
-        let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-        return String(Array(0..<size).map { _ in chars.randomElement()! })
+    private func makeRemoteAuthToken() -> AuthToken {
+        AuthToken(accessToken: "remote access token", refreshToken: "remote refresh token")
+    }
+    
+    private func makeStoredAuthToken() -> AuthToken {
+        AuthToken(accessToken: "stored access token", refreshToken: "stored refresh token")
     }
 
 }
