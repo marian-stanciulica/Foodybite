@@ -96,18 +96,6 @@ extension APIService: GetReviewsService {
         let endpoint = ReviewEndpoint.get(placeID)
         let urlRequest = try endpoint.createURLRequest()
         let response: [RemoteReview] = try await loader.get(for: urlRequest)
-        
-        let formatter = RelativeDateTimeFormatter()
-        return response.map {
-            Review(id: $0.id,
-                   placeID: $0.placeID,
-                   profileImageURL: nil,
-                   profileImageData: $0.profileImageData,
-                   authorName: $0.authorName,
-                   reviewText: $0.reviewText,
-                   rating: $0.rating,
-                   relativeTime: formatter.localizedString(for: $0.createdAt, relativeTo: Date())
-            )
-        }
+        return response.map { $0.review }
     }
 }

@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Domain
 
-struct RemoteReview: Codable {
+struct RemoteReview: Decodable {
     let id = UUID()
     let placeID: String
     let profileImageData: Data?
@@ -23,5 +24,20 @@ struct RemoteReview: Codable {
         case reviewText
         case rating
         case createdAt
+    }
+    
+    var review: Review {
+        let formatter = RelativeDateTimeFormatter()
+
+        return Review(
+            id: id,
+            placeID: placeID,
+            profileImageURL: nil,
+            profileImageData: profileImageData,
+            authorName: authorName,
+            reviewText: reviewText,
+            rating: rating,
+            relativeTime: formatter.localizedString(for: createdAt, relativeTo: Date())
+        )
     }
 }
