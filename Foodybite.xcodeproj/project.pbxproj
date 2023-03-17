@@ -511,6 +511,13 @@
 			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
 			remoteInfo = FoodybitePlaces;
 		};
+		0F6B296329C454E200F8E0F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F7137B62841F8340058757A;
+			remoteInfo = Foodybite;
+		};
 		0F95A87F290D024500806AE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -2989,6 +2996,7 @@
 			);
 			dependencies = (
 				0F0BDA2328F83FD500E91FD0 /* PBXTargetDependency */,
+				0F6B296429C454E200F8E0F6 /* PBXTargetDependency */,
 			);
 			name = FoodybiteNetworkingTests;
 			productName = FoodybiteNetworkingTests;
@@ -3227,6 +3235,7 @@
 					0F0BDA1F28F83FD500E91FD0 = {
 						CreatedOnToolsVersion = 14.0.1;
 						LastSwiftMigration = 1400;
+						TestTargetID = 0F7137B62841F8340058757A;
 					};
 					0F108806291E2397007A28FA = {
 						CreatedOnToolsVersion = 14.1;
@@ -3952,6 +3961,11 @@
 			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
 			targetProxy = 0F412E7F2962C78E00FDDF41 /* PBXContainerItemProxy */;
 		};
+		0F6B296429C454E200F8E0F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F7137B62841F8340058757A /* Foodybite */;
+			targetProxy = 0F6B296329C454E200F8E0F6 /* PBXContainerItemProxy */;
+		};
 		0F95A880290D024500806AE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0F95A875290D024400806AE9 /* FoodybitePersistence */;
@@ -4098,6 +4112,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodybite.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Foodybite";
 			};
 			name = Debug;
 		};
@@ -4130,6 +4145,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodybite.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Foodybite";
 			};
 			name = Release;
 		};
