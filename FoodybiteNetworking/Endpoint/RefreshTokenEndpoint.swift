@@ -7,8 +7,12 @@
 
 import SharedAPI
 
-enum RefreshTokenEndpoint: Endpoint {
-    case post(RefreshTokenRequestBody)
+struct RefreshTokenEndpoint: Endpoint {
+    private let requestBody: RefreshTokenRequestBody
+    
+    init(requestBody: RefreshTokenRequestBody) {
+        self.requestBody = requestBody
+    }
 
     var path: String {
         "/auth/accessToken"
@@ -19,9 +23,6 @@ enum RefreshTokenEndpoint: Endpoint {
     }
     
     var body: Encodable? {
-        switch self {
-        case let .post(body):
-            return body
-        }
+        requestBody
     }
 }
