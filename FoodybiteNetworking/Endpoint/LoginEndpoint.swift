@@ -7,8 +7,12 @@
 
 import SharedAPI
 
-enum LoginEndpoint: Endpoint {
-    case post(LoginRequestBody)
+struct LoginEndpoint: Endpoint {
+    private let requestBody: LoginRequestBody
+    
+    init(requestBody: LoginRequestBody) {
+        self.requestBody = requestBody
+    }
 
     var path: String {
         "/auth/login"
@@ -19,9 +23,6 @@ enum LoginEndpoint: Endpoint {
     }
     
     var body: Encodable? {
-        switch self {
-        case let .post(body):
-            return body
-        }
+        requestBody
     }
 }

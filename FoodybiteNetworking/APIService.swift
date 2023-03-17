@@ -23,7 +23,8 @@ public class APIService {
 
 extension APIService: LoginService {
     public func login(email: String, password: String) async throws -> User {
-        let endpoint = LoginEndpoint.post(LoginRequestBody(email: email, password: password))
+        let body = LoginRequestBody(email: email, password: password)
+        let endpoint = LoginEndpoint(requestBody: body)
         let urlRequest = try endpoint.createURLRequest()
         let loginResponse: LoginResponse = try await loader.get(for: urlRequest)
         
