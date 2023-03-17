@@ -8,9 +8,7 @@
 import Foundation
 import SharedAPI
 
-enum LogoutEndpoint: Endpoint {
-    case post
-    
+struct LogoutEndpoint: Endpoint {
     var path: String {
         "/auth/logout"
     }

@@ -61,7 +61,7 @@ extension APIService: ChangePasswordService {
 
 extension APIService: LogoutService {
     public func logout() async throws {
-        let endpoint = LogoutEndpoint.post
+        let endpoint = LogoutEndpoint()
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
