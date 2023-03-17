@@ -8,8 +8,12 @@
 import Foundation
 import SharedAPI
 
-enum SignUpEndpoint: Endpoint {
-    case post(SignUpRequestBody)
+struct SignUpEndpoint: Endpoint {
+    private let requestBody: SignUpRequestBody
+    
+    init(requestBody: SignUpRequestBody) {
+        self.requestBody = requestBody
+    }
     
     var path: String {
         "/auth/signup"
@@ -20,9 +24,6 @@ enum SignUpEndpoint: Endpoint {
     }
     
     var body: Encodable? {
-        switch self {
-        case let .post(signUpRequestBody):
-            return signUpRequestBody
-        }
+        requestBody
     }
 }

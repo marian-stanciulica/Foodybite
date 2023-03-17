@@ -42,7 +42,7 @@ extension APIService: SignUpService {
             confirmPassword: confirmPassword,
             profileImage: profileImage
         )
-        let endpoint = SignUpEndpoint.post(body)
+        let endpoint = SignUpEndpoint(requestBody: body)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
