@@ -48,8 +48,8 @@ extension APIServiceTests {
     
     // MARK: - Helpers
     
-    private func makeUpdateAccountRequestBody() -> UpdateAccountRequest {
-        UpdateAccountRequest(name: anyName(), email: anyEmail(), profileImage: anyData())
+    private func makeUpdateAccountRequestBody() -> UpdateAccountRequestBody {
+        UpdateAccountRequestBody(name: anyName(), email: anyEmail(), profileImage: anyData())
     }
     
 }

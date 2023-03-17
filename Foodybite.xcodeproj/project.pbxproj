@@ -71,7 +71,7 @@
 		0F207C8229B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */; };
 		0F215CB829826CF8000F88F4 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* PlaceDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyPlace.swift */; };
-		0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */; };
+		0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */; };
 		0F2A26B12930D91800387A1C /* EditProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */; };
 		0F2A26B42930D9FE00387A1C /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */; };
 		0F2B4CB928454DD6004D0EF7 /* SearchCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B4CB828454DD6004D0EF7 /* SearchCriteriaView.swift */; };
@@ -670,7 +670,7 @@
 		0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsWithFallbackComposite.swift; sourceTree = "<group>"; };
 		0F215CB4298265A0000F88F4 /* NearbyPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyPlace.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* PlaceDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
-		0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequest.swift; sourceTree = "<group>"; };
+		0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequestBody.swift; sourceTree = "<group>"; };
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
 		0F2A26B32930D9FE00387A1C /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -1146,7 +1146,7 @@
 				0F0280FF292630D5006B219F /* LoginRequestBody.swift */,
 				0F73EC89292F73540025B237 /* ChangePasswordRequestBody.swift */,
 				0F73ECB2292FC8E60025B237 /* RefreshTokenRequestBody.swift */,
-				0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */,
+				0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */,
 				0FC863FA298E6FD50024016B /* AddReviewRequest.swift */,
 			);
 			path = Requests;
@@ -3533,7 +3533,7 @@
 				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
 				0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */,
 				0FF7C66029B1E5B800622E9C /* LoginEndpoint.swift in Sources */,
-				0F2A26AB2930D16000387A1C /* UpdateAccountRequest.swift in Sources */,
+				0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */,
 				0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */,
 				0F0280FD29262FE7006B219F /* SignUpRequestBody.swift in Sources */,
 				0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */,

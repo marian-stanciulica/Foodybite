@@ -9,7 +9,7 @@ import Foundation
 import SharedAPI
 
 enum AccountEndpoint: Endpoint {
-    case post(UpdateAccountRequest)
+    case post(UpdateAccountRequestBody)
     case delete
     
     var path: String {
