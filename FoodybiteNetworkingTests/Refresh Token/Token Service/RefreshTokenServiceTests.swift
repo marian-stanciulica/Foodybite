@@ -5,8 +5,9 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
-@testable import FoodybiteNetworking
 import XCTest
+@testable import FoodybiteNetworking
+import SharedAPI
 
 final class RefreshTokenServiceTests: XCTestCase {
 
@@ -25,27 +26,18 @@ final class RefreshTokenServiceTests: XCTestCase {
         XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
     }
     
-    func test_fetchLocallyRemoteToken_refreshTokenFromStoreUsedToCreateEndpoint() async throws {
+    func test_fetchLocallyRemoteToken_usesRefreshTokenEndpointToCreateURLRequest() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
-        let refreshTokenEndpoint = RefreshTokenEndpoint.post(RefreshTokenRequest(refreshToken: authToken.refreshToken))
-        let urlRequest = try refreshTokenEndpoint.createURLRequest()
 
         try await sut.fetchLocallyRemoteToken()
 
-        let firstRequest = loaderSpy.requests.first
-        XCTAssertEqual(firstRequest?.httpBody, urlRequest.httpBody)
-    }
-    
-    func test_fetchLocallyRemoteToken_useRefreshTokenEndpointToCreateURLRequest() async throws {
-        let (sut, loaderSpy, tokenStoreStub) = makeSUT()
-        let authToken = try tokenStoreStub.read()
-        let refreshTokenEndpoint = RefreshTokenEndpoint.post(RefreshTokenRequest(refreshToken: authToken.refreshToken))
-        let urlRequest = try refreshTokenEndpoint.createURLRequest()
-
-        try await sut.fetchLocallyRemoteToken()
-
-        XCTAssertEqual(loaderSpy.requests, [urlRequest])
+        XCTAssertEqual(loaderSpy.requests.count, 1)
+        assertURLComponents(
+            urlRequest: loaderSpy.requests[0],
+            path: "/auth/accessToken",
+            method: .post,
+            body: RefreshTokenRequest(refreshToken: authToken.refreshToken))
     }
 
     func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
@@ -81,6 +73,33 @@ final class RefreshTokenServiceTests: XCTestCase {
         let tokenStoreStub = TokenStoreStub(AuthToken(accessToken: "stored access token", refreshToken: "stored refresh token"))
         let sut = RefreshTokenService(loader: loaderSpy, tokenStore: tokenStoreStub)
         return (sut, loaderSpy, tokenStoreStub)
+    }
+    
+    func assertURLComponents(
+        urlRequest: URLRequest,
+        path: String,
+        method: RequestMethod,
+        body: Encodable? = nil,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
+
+        XCTAssertEqual(urlComponents?.scheme, "http", file: file, line: line)
+        XCTAssertEqual(urlComponents?.port, 8080, file: file, line: line)
+        XCTAssertEqual(urlComponents?.host, "localhost", file: file, line: line)
+        XCTAssertEqual(urlComponents?.path, path, file: file, line: line)
+        XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
+        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
+        
+        if let body = body {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            let bodyData = try! encoder.encode(body)
+            XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
+        } else if let httpBody = urlRequest.httpBody {
+            XCTFail("Body expected to be nil, got \(httpBody) instead")
+        }
     }
     
     private func randomString(size: Int) -> String {
