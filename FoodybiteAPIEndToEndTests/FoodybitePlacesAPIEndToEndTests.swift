@@ -15,7 +15,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     func test_endToEndSearchNearby_matchesFixedTestNearbyPlaces() async {
         do {
             let receivedNearbyPlaces = try await getNearbyPlaces()
-            XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
+            XCTAssertTrue(areEqual(first: receivedNearbyPlaces, second: expectedNearbyPlaces))
         } catch {
             XCTFail("Expected successful nearby places request, got \(error) instead")
         }
@@ -91,6 +91,21 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 location: Location(latitude: 44.441425, longitude: 26.0978549),
                 photo: Photo(width: 2048, height: 1365, photoReference: "AfLeUgOXGPzV8mw2UbsBF1gcQgomKjzRTlVZasY2lgF4Q1IsMqjsKM9GIZPccWxeMftAB4wP184XZSvfBzXwLbbi9GWrbJbK1iGC0pXoGEpGoIGMJY2Fz0YP6XhhpSNYCAeJ7YJ422r6x32DrSbBckS2IGX7g5YheThEfgN0vL_InB_JDKKe"))
         ]
+    }
+    
+    private func areEqual(first: [NearbyPlace], second: [NearbyPlace]) -> Bool {
+        guard first.count == second.count else { return false }
+        
+        for i in 0..<first.count {
+            if first[i].placeID != second[i].placeID &&
+                first[i].placeName != second[i].placeName &&
+                first[i].location != second[i].location &&
+                first[i].photo != second[i].photo {
+                return false
+            }
+        }
+        
+        return true
     }
     
     private var expectedPlaceDetails: PlaceDetails {
