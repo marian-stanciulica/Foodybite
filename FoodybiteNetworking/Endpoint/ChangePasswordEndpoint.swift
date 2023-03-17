@@ -9,7 +9,7 @@ import Foundation
 import SharedAPI
 
 enum ChangePasswordEndpoint: Endpoint {
-    case post(ChangePasswordRequest)
+    case post(ChangePasswordRequestBody)
     
     var path: String {
         "/auth/changePassword"

@@ -212,7 +212,7 @@
 		0F7137C22841F8370058757A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7137C12841F8370058757A /* Preview Assets.xcassets */; };
 		0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC85292F608E0025B237 /* ProfileRoute.swift */; };
 		0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC87292F609B0025B237 /* ProfileFlowView.swift */; };
-		0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */; };
+		0F73EC8A292F73540025B237 /* ChangePasswordRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC89292F73540025B237 /* ChangePasswordRequestBody.swift */; };
 		0F73ECA1292F98C20025B237 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA0292F98C20025B237 /* PasswordValidator.swift */; };
 		0F73ECA4292F9D8C0025B237 /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */; };
 		0F73ECA9292FA0F20025B237 /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73ECA8292FA0F20025B237 /* ChangePasswordViewModelTests.swift */; };
@@ -824,7 +824,7 @@
 		0F7137C12841F8370058757A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F73EC85292F608E0025B237 /* ProfileRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRoute.swift; sourceTree = "<group>"; };
 		0F73EC87292F609B0025B237 /* ProfileFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowView.swift; sourceTree = "<group>"; };
-		0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
+		0F73EC89292F73540025B237 /* ChangePasswordRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequestBody.swift; sourceTree = "<group>"; };
 		0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordService.swift; sourceTree = "<group>"; };
 		0F73ECA0292F98C20025B237 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
@@ -1144,7 +1144,7 @@
 			children = (
 				0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */,
 				0F0280FF292630D5006B219F /* LoginRequestBody.swift */,
-				0F73EC89292F73540025B237 /* ChangePasswordRequest.swift */,
+				0F73EC89292F73540025B237 /* ChangePasswordRequestBody.swift */,
 				0F73ECB2292FC8E60025B237 /* RefreshTokenRequest.swift */,
 				0F2A26AA2930D16000387A1C /* UpdateAccountRequest.swift */,
 				0FC863FA298E6FD50024016B /* AddReviewRequest.swift */,
@@ -3518,7 +3518,7 @@
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */,
 				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,
-				0F73EC8A292F73540025B237 /* ChangePasswordRequest.swift in Sources */,
+				0F73EC8A292F73540025B237 /* ChangePasswordRequestBody.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteStore.swift in Sources */,
 				0F1FDE4B29016B1E00E12B09 /* TokenRefresher.swift in Sources */,
 				0F028100292630D5006B219F /* LoginRequestBody.swift in Sources */,

@@ -37,8 +37,8 @@ extension APIServiceTests {
     
     // MARK: - Helpers
     
-    private func makeChangePasswordRequestBody(currentPassword: String, newPassword: String) -> ChangePasswordRequest {
-        ChangePasswordRequest(
+    private func makeChangePasswordRequestBody(currentPassword: String, newPassword: String) -> ChangePasswordRequestBody {
+        ChangePasswordRequestBody(
             currentPassword: currentPassword,
             newPassword: newPassword,
             confirmPassword: newPassword
