@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 24.11.2022.
 //
 
-struct ChangePasswordRequestBody: Codable, Equatable {
+struct ChangePasswordRequestBody: Encodable, Equatable {
     let currentPassword: String
     let newPassword: String
     let confirmPassword: String

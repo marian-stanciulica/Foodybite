@@ -19,7 +19,7 @@ enum ChangePasswordEndpoint: Endpoint {
         .post
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         switch self {
         case let .post(changePasswordBody):
             return changePasswordBody

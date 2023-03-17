@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpdateAccountRequestBody: Codable, Equatable {
+struct UpdateAccountRequestBody: Encodable, Equatable {
     let name: String
     let email: String
     let profileImage: Data?

@@ -18,7 +18,7 @@ enum RefreshTokenEndpoint: Endpoint {
         .post
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         switch self {
         case let .post(body):
             return body

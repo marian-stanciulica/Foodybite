@@ -19,7 +19,7 @@ enum LogoutEndpoint: Endpoint {
         .post
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         nil
     }
 }

@@ -25,7 +25,7 @@ public extension Endpoint {
         .get
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         nil
     }
     

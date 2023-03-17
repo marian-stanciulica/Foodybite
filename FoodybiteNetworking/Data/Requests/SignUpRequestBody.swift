@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignUpRequestBody: Codable, Equatable {
+struct SignUpRequestBody: Encodable, Equatable {
     let name: String
     let email: String
     let password: String

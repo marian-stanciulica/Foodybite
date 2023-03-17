@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 17.11.2022.
 //
 
-struct LoginRequestBody: Codable, Equatable {
+struct LoginRequestBody: Encodable, Equatable {
     let email: String
     let password: String
 }

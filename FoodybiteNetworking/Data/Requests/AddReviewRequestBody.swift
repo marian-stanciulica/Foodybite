@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AddReviewRequestBody: Codable, Equatable {
+struct AddReviewRequestBody: Encodable, Equatable {
     let placeID: String
     let text: String
     let stars: Int

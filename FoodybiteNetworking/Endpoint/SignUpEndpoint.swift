@@ -19,7 +19,7 @@ enum SignUpEndpoint: Endpoint {
         .post
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         switch self {
         case let .post(signUpRequestBody):
             return signUpRequestBody

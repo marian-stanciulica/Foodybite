@@ -35,7 +35,7 @@ enum EndpointStub: Endpoint {
         [:]
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         nil
     }
     

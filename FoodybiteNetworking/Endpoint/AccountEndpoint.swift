@@ -25,7 +25,7 @@ enum AccountEndpoint: Endpoint {
         }
     }
     
-    var body: Codable? {
+    var body: Encodable? {
         switch self {
         case let .post(updateAccountBody):
             return updateAccountBody
