@@ -9,7 +9,7 @@ import Foundation
 import SharedAPI
 
 enum SignUpEndpoint: Endpoint {
-    case post(SignUpRequest)
+    case post(SignUpRequestBody)
     
     var path: String {
         "/auth/signup"
@@ -21,8 +21,8 @@ enum SignUpEndpoint: Endpoint {
     
     var body: Codable? {
         switch self {
-        case let .post(signUpRequest):
-            return signUpRequest
+        case let .post(signUpRequestBody):
+            return signUpRequestBody
         }
     }
 }

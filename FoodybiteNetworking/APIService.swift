@@ -35,7 +35,7 @@ extension APIService: LoginService {
 
 extension APIService: SignUpService {
     public func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
-        let body = SignUpRequest(
+        let body = SignUpRequestBody(
             name: name,
             email: email,
             password: password,

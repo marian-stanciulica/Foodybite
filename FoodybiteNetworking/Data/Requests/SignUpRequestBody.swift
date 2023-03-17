@@ -1,5 +1,5 @@
 //
-//  SignUpRequest.swift
+//  SignUpRequestBody.swift
 //  FoodybiteNetworking
 //
 //  Created by Marian Stanciulica on 17.11.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignUpRequest: Codable, Equatable {
+struct SignUpRequestBody: Codable, Equatable {
     let name: String
     let email: String
     let password: String

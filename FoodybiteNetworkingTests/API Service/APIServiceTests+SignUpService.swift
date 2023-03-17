@@ -37,8 +37,8 @@ extension APIServiceTests {
     
     // MARK: - Helpers
     
-    private func makeSignUpRequestBody() -> SignUpRequest {
-        SignUpRequest(
+    private func makeSignUpRequestBody() -> SignUpRequestBody {
+        SignUpRequestBody(
             name: anyName(),
             email: anyEmail(),
             password: anyPassword(),
