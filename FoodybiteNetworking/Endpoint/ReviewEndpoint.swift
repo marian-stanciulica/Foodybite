@@ -8,7 +8,7 @@
 import SharedAPI
 
 enum ReviewEndpoint: Endpoint {
-    case post(AddReviewRequest)
+    case post(AddReviewRequestBody)
     case get(String?)
     
     var path: String {

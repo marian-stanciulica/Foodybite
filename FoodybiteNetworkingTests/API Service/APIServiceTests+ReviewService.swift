@@ -35,7 +35,7 @@ extension APIServiceTests {
             urlRequest: sender.requests[0],
             path: "/review",
             method: .post,
-            body: AddReviewRequest(
+            body: AddReviewRequestBody(
                 placeID: placeID,
                 text: reviewText,
                 stars: starsNumber,

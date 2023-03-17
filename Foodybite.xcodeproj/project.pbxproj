@@ -310,7 +310,7 @@
 		0FC73C5E29B611F5005879B8 /* NullLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5D29B611F5005879B8 /* NullLocalStore.swift */; };
 		0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
-		0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequest.swift */; };
+		0FC863FB298E6FD50024016B /* AddReviewRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequestBody.swift */; };
 		0FC86401298E799D0024016B /* ReviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86400298E799D0024016B /* ReviewViewModelTests.swift */; };
 		0FC86404298E87D30024016B /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC86403298E87D30024016B /* ReviewViewModel.swift */; };
 		0FD19A4B29AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD19A4929AC970300DF7326 /* test_changePasswordViewIsLoadingState.dark.png */; };
@@ -919,7 +919,7 @@
 		0FC73C5D29B611F5005879B8 /* NullLocalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullLocalStore.swift; sourceTree = "<group>"; };
 		0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelConvertable.swift; sourceTree = "<group>"; };
 		0FC863F8298E614C0024016B /* ReviewEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndpoint.swift; sourceTree = "<group>"; };
-		0FC863FA298E6FD50024016B /* AddReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequest.swift; sourceTree = "<group>"; };
+		0FC863FA298E6FD50024016B /* AddReviewRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewRequestBody.swift; sourceTree = "<group>"; };
 		0FC863FD298E72F20024016B /* AddReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewService.swift; sourceTree = "<group>"; };
 		0FC86400298E799D0024016B /* ReviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModelTests.swift; sourceTree = "<group>"; };
 		0FC86403298E87D30024016B /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
@@ -1147,7 +1147,7 @@
 				0F73EC89292F73540025B237 /* ChangePasswordRequestBody.swift */,
 				0F73ECB2292FC8E60025B237 /* RefreshTokenRequestBody.swift */,
 				0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */,
-				0FC863FA298E6FD50024016B /* AddReviewRequest.swift */,
+				0FC863FA298E6FD50024016B /* AddReviewRequestBody.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -3527,7 +3527,7 @@
 				0F1FDE4929016AF500E12B09 /* RefreshTokenService.swift in Sources */,
 				0F73ECB3292FC8E60025B237 /* RefreshTokenRequestBody.swift in Sources */,
 				0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */,
-				0FC863FB298E6FD50024016B /* AddReviewRequest.swift in Sources */,
+				0FC863FB298E6FD50024016B /* AddReviewRequestBody.swift in Sources */,
 				0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */,
 				0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */,
 				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
