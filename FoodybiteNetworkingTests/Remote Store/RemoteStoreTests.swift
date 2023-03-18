@@ -1,5 +1,5 @@
 //
-//  RemoteResourceLoaderTests.swift
+//  RemoteStoreTests.swift
 //  FoodybiteNetworkingTests
 //
 //  Created by Marian Stanciulica on 13.10.2022.
@@ -8,7 +8,7 @@
 import XCTest
 import FoodybiteNetworking
 
-final class RemoteResourceLoaderTests: XCTestCase {
+final class RemoteStoreTests: XCTestCase {
 
     func test_init_noRequestTriggered() {
         let (_, client) = makeSUT()
