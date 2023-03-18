@@ -20,7 +20,7 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         let urlRequest = try EndpointStub.stub.createURLRequest()
         let (sut, httpClientSpy, tokenRefresherFake) = makeSUT()
         
-        _ = try await sut.send(urlRequest)
+        _ = try? await sut.send(urlRequest)
         
         let authRequest = try authorizeRequest(request: urlRequest, tokenRefresher: tokenRefresherFake)
         XCTAssertEqual(httpClientSpy.urlRequests, [authRequest])

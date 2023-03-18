@@ -20,11 +20,7 @@ final class RemoteStoreTests: XCTestCase {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
-        do {
-            let _: [CodableMock] = try await sut.get(for: urlRequest)
-        } catch {
-            XCTFail("Decoding failed")
-        }
+        let _: [CodableMock]? = try? await sut.get(for: urlRequest)
             
         XCTAssertEqual(client.urlRequests, [urlRequest])
     }
@@ -33,12 +29,8 @@ final class RemoteStoreTests: XCTestCase {
         let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
-        do {
-            let _: [CodableMock] = try await sut.get(for: urlRequest)
-            let _: [CodableMock] = try await sut.get(for: urlRequest)
-        } catch {
-            XCTFail("Decoding failed")
-        }
+        let _: [CodableMock]? = try? await sut.get(for: urlRequest)
+        let _: [CodableMock]? = try? await sut.get(for: urlRequest)
         
         XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
     }
@@ -82,29 +74,21 @@ final class RemoteStoreTests: XCTestCase {
                expected: .success(anyMocks.container.mocks))
     }
     
-    func test_post_requestDataForEndpoint() async throws {
-        let urlRequest = try EndpointStub.stub.createURLRequest()
+    func test_post_requestDataForEndpoint() async {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
-        do {
-            try await sut.post(to: urlRequest)
-        } catch {
-            XCTFail("Decoding failed")
-        }
+        try? await sut.post(to: urlRequest)
             
         XCTAssertEqual(client.urlRequests, [urlRequest])
     }
     
-    func test_post_requestsDataForEndpointTwice() async throws {
-        let urlRequest = try EndpointStub.stub.createURLRequest()
+    func test_post_requestsDataForEndpointTwice() async {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
         let (sut, client) = makeSUT()
         
-        do {
-            try await sut.post(to: urlRequest)
-            try await sut.post(to: urlRequest)
-        } catch {
-            XCTFail("Invalid data")
-        }
+        try? await sut.post(to: urlRequest)
+        try? await sut.post(to: urlRequest)
         
         XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
     }
@@ -134,7 +118,7 @@ final class RemoteStoreTests: XCTestCase {
     
     private func makeSUT() -> (sut: RemoteStore, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = FoodybiteNetworking.RemoteStore(client: client)
+        let sut = RemoteStore(client: client)
         
         return (sut, client)
     }

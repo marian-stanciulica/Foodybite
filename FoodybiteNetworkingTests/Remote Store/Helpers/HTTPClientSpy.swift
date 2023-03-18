@@ -9,7 +9,7 @@ import Foundation
 import SharedAPI
 
 class HTTPClientSpy: HTTPClient {
-    var urlRequests = [URLRequest]()
+    private(set) var urlRequests = [URLRequest]()
     var result: Result<(Data, HTTPURLResponse), NSError>?
     
     func send(_ urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse) {
@@ -24,14 +24,6 @@ class HTTPClientSpy: HTTPClient {
             }
         }
         
-        return (anyLoginMocksData(), anyHttpUrlResponse())
-    }
-    
-    private func anyLoginMocksData() -> Data {
-        let loginMocks = [
-            CodableMock(name: "name 1", password: "password 1"),
-            CodableMock(name: "name 2", password: "password 2")
-        ]
-        return try! JSONEncoder().encode(loginMocks)
+        throw NSError(domain: "error", code: 1)
     }
 }
