@@ -22,7 +22,7 @@ The following diagram represents the networking layer talking with my backend ap
 
 ## 1. Refresh Token Strategy
 
-![Refresh Token State Machine](.Diagrams/Refresh_Token_State_Machine.svg)
+![Refresh Token State Machine](./Diagrams/Refresh_Token_State_Machine.svg)
 
 ## 2. Network Request Flow
 
