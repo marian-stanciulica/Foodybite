@@ -1,7 +1,21 @@
 # Foodybite
 
 # Networking
+The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram:
+1. Refresh Token Strategy
+2. Network Request Flow
+3. Endpoint Creation
+
 ![Networking Diagram](./Diagrams/Networking.svg)
+
+| Component | Responsibility |
+|------|------|
+| KeychainTokenStore | Performs read/write operations from/to Keychain on AuthToken |
+| RefreshTokenService | Fetches new **AuthToken** from server and stores it in **TokenStore** |
+| RefreshTokenEndpoint | Defines the path, method and body for the refresh token endpoint |
+| AuthToken | Struct containing accessToken and refreshToken |
+| RemoteStore | Validates the response from **HTTPClient** and parses the data |
+| APIService | Creates the endpoints and sends them to the **ResourceLoader** or **ResourceSender** |
 
 ## Mock Network Requests
 While testing the **URLSessionHTTPClient** I prefer not to hit the network for each test. In my experience, there are 3 ways to mock a network request which uses **URLSession**:
