@@ -1,6 +1,7 @@
 # Foodybite
 
 # Networking
+![Networking Diagram](./Diagrams/Networking.svg)
 
 ## Mock Network Requests
 While testing the **URLSessionHTTPClient** I prefer not to hit the network for each test. In my experience, there are 3 ways to mock a network request which uses **URLSession**:
