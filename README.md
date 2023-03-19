@@ -6,7 +6,7 @@ The following diagram represents the networking layer talking with my backend ap
 2. Network Request Flow
 3. [Endpoint Creation](#3-endpoint-creation)
 4. [Mock Network Requests](#4-mock-network-requests)
-5. [Testing Data -> Decodable Mapping](#5-testing-data-->-decodable-mapping)
+5. [Testing **Data** to **Decodable** Mapping](#5-testing-data-to-decodable-mapping)
 
 ![Networking Diagram](./Diagrams/Networking.svg)
 
@@ -108,7 +108,7 @@ extension URLSession: URLSessionProtocol {}
 
 Currently, I went with the second option as I'm still unable to make it work by subclassing URLProtocol and async/await.
 
-## 5. Testing Data -> Decodable Mapping
+## 5. Testing **Data** to **Decodable** Mapping
 
 For testing the mapping from **Data** to **Decodable** I chose to test it directly in the **RemoteStore**, hiding the knowledge of a collaborator (in this case **CodableDataParser**). While I could do this using a stubbed collaborator (e.g. a protocol **DataParser**), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
 
