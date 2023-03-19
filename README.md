@@ -90,6 +90,9 @@ struct LoginEndpoint: Endpoint {
 ```
 Currently, when the need to add another endpoint arises, I can create another struct which conforms to **Endpoint** or edit a file containing related endpoints to the one I want to add (this case still violates the principle, but considering the relatedness of the endpoints I think it's a good trade-off for now).
 
+## Testing Data -> Decodable Mapping
+
+For testing the mapping from **Data** to **Decodable** I chose to test it directly in the **RemoteStore**, hiding the knowledge of a collaborator (in this case **CodableDataParser**). While I could do this using a stubbed collaborator (e.g. a protocol **DataParser**), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
 
 
 
