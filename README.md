@@ -2,8 +2,8 @@
 
 # Networking
 The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram and decisions made during testing (all components were tested using TDD):
-1. Refresh Token Strategy
-2. Network Request Flow
+1. [Refresh Token Strategy](#1-refresh-token-strategy)
+2. [Network Request Flow](#2-network-request-flow)
 3. [Endpoint Creation](#3-endpoint-creation)
 4. [Mock Network Requests](#4-mock-network-requests)
 5. [Testing **Data** to **Decodable** Mapping](#5-testing-data-to-decodable-mapping)
@@ -16,8 +16,21 @@ The following diagram represents the networking layer talking with my backend ap
 | RefreshTokenService | Fetches new **AuthToken** from server and stores it in **TokenStore** |
 | RefreshTokenEndpoint | Defines the path, method and body for the refresh token endpoint |
 | AuthToken | Struct containing accessToken and refreshToken |
+| AuthenticatedURLSessionHTTPClient | Decorator over **HTTPClient** that adds authentication capabilities to the client |
 | RemoteStore | Validates the response from **HTTPClient** and parses the data |
 | APIService | Creates the endpoints and sends them to the **ResourceLoader** or **ResourceSender** |
+
+## 1. Refresh Token Strategy
+
+
+## 2. Network Request Flow
+
+This flow is composed by 3 classes: 
+- **APIService** which implements domain protocols and creates **URLRequest** objects from endpoints and sends them to the remote store.
+- **RemoteStore** which implements **ResourceLoader** and **ResourceSender**, validates the status code returned by the client and parses expected data.
+- **AuthenticatedURLSessionHTTPClient** which implements **HTTPClient** and sign each request using the access token fetch using an **TokenRefresher** collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the **Composition Root** this class is used only for requests that requires authentication, otherwise an instance of **URLSessionHTTPClient** from the **SharedAPI** module is used.
+
+![AuthenticatedURLSessionHTTPClient](./Diagrams/AuthenticatedURLSessionHTTPClient.svg)
 
 ## 3. Endpoint Creation
 
