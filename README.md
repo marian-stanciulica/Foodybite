@@ -5,14 +5,16 @@
 ## Architecture
 
 Layers:
-    - Shared API
-    - [Networking](#networking)
-    - Places
-    - Persistence
-    - Location
-    - Domain
-    - Presentation
-    - UI
+- [Shared API](#shared-api)
+- [Networking](#networking)
+- [Places](#places)
+- [Persistence](#persistence)
+- [Location](#location)
+- [Domain](#domain)
+- [Presentation](#presentation)
+- [UI](#ui)
+
+### Shared API
 
 ### Networking
 The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram and decisions made during testing (all components were tested using TDD):
@@ -141,3 +143,21 @@ Currently, I went with the second option as I'm still unable to make it work by 
 #### 5. Testing **Data** to **Decodable** Mapping
 
 For testing the mapping from **Data** to **Decodable** I chose to test it directly in the **RemoteStore**, hiding the knowledge of a collaborator (in this case **CodableDataParser**). While I could do this using a stubbed collaborator (e.g. a protocol **DataParser**), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
+
+### Places
+
+### Persistence
+
+### Location
+
+### Domain
+
+### Presentation
+
+### UI
+
+## Testing Pyramid
+
+1. Unit testing
+2. Snapshots Testing
+3. End-to-End Testing
