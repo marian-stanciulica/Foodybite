@@ -4,6 +4,8 @@
 
 ## Architecture
 
+![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
+
 Layers:
 - [Shared API](#shared-api)
 - [Networking](#networking)
@@ -15,6 +17,8 @@ Layers:
 - [UI](#ui)
 
 ### Shared API
+
+![Shared API](./Diagrams/Shared_API.svg)
 
 ### Networking
 The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram and decisions made during testing (all components were tested using TDD):
@@ -146,15 +150,21 @@ For testing the mapping from **Data** to **Decodable** I chose to test it direct
 
 ### Places
 
+![Places](./Diagrams/Places.svg)
+
 ### Persistence
 
 ### Location
+
+![Location](./Diagrams/Location.svg)
 
 ### Domain
 
 ### Presentation
 
 ### UI
+
+![Screen Hierarchy](./Diagrams/Screen_Hierarchy.svg)
 
 ## Testing Pyramid
 
