@@ -89,7 +89,7 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: AuthenticatedURLSessionHTTPClient, httClientSpy: HTTPClientSpy, tokenRefresherFake: TokenRefresherFake) {
+    private func makeSUT() -> (sut: HTTPClient, httClientSpy: HTTPClientSpy, tokenRefresherFake: TokenRefresherFake) {
         let httpClientSpy = HTTPClientSpy()
         let tokenRefresherFake = TokenRefresherFake()
         let sut = AuthenticatedURLSessionHTTPClient(decoratee: httpClientSpy, tokenRefresher: tokenRefresherFake)
