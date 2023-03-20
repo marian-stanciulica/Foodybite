@@ -10,47 +10,56 @@ import XCTest
 
 final class URLSessionHTTPClientTests: XCTestCase {
     
-    func test_send_performURLRequest() async throws {
-        let urlRequest = try EndpointStub.stub.createURLRequest()
-        let session = URLSessionSpy()
-        let sut = URLSessionHTTPClient(urlSession: session)
+    override func tearDown() {
+        super.tearDown()
+        
+        URLProtocolStub.removeStub()
+    }
+    
+    func test_send_performURLRequest() async {
+        let sut = makeSUT()
+        let urlRequest = anyURLRequest()
+        URLProtocolStub.stub(data: nil, response: nil, error: anyError())
         
         _ = try? await sut.send(urlRequest)
         
-        XCTAssertEqual(session.requests, [urlRequest])
+        XCTAssertEqual(URLProtocolStub.capturedRequests, [urlRequest])
     }
     
     func test_send_throwsErrorOnRequestError() async {
-        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let sut = makeSUT()
+        let urlRequest = anyURLRequest()
         let expectedError = anyError()
-        let session = URLSessionSpy(result: .failure(expectedError))
-        let sut = URLSessionHTTPClient(urlSession: session)
+        URLProtocolStub.stub(data: nil, response: nil, error: expectedError)
         
         do {
-            _ = try await sut.send(urlRequest)
-            XCTFail("SUT should throw error on request error")
-        } catch {
-            XCTAssertEqual(expectedError, error as NSError)
+            let result = try await sut.send(urlRequest)
+            XCTFail("Expected to throw error on request error, got \(result) instead")
+        } catch let error as NSError {
+            XCTAssertEqual(expectedError.domain, error.domain)
+            XCTAssertEqual(expectedError.code, error.code)
         }
     }
     
     func test_send_throwErrorOnInvalidCases() async {
-        let urlRequest = try! EndpointStub.stub.createURLRequest()
-        let session = URLSessionSpy(result: .success((anyData(), anyUrlResponse())))
-        let sut = URLSessionHTTPClient(urlSession: session)
+        let sut = makeSUT()
+        let urlRequest = anyURLRequest()
+        URLProtocolStub.stub(data: anyData(), response: anyUrlResponse(), error: nil)
         
         do {
-            _ = try await sut.send(urlRequest)
-            XCTFail("SUT should throw error if response is URLResponse")
-        } catch {}
+            let result = try await sut.send(urlRequest)
+            XCTFail("Expected to throw error when response is URLResponse, got \(result) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
     }
     
     func test_send_succeedsOnHTTPUrlResponseWithData() async {
-        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let sut = makeSUT()
+        let urlRequest = anyURLRequest()
         let anyData = anyData()
         let anyHttpUrlResponse = anyHttpUrlResponse()
-        let session = URLSessionSpy(result: .success((anyData, anyHttpUrlResponse)))
-        let sut = URLSessionHTTPClient(urlSession: session)
+        URLProtocolStub.stub(data: anyData, response: anyHttpUrlResponse, error: nil)
         
         do {
             let (receivedData, receivedResponse) = try await sut.send(urlRequest)
@@ -60,6 +69,20 @@ final class URLSessionHTTPClientTests: XCTestCase {
         } catch {
             XCTFail("Should receive data and response, got \(error) instead")
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> URLSessionHTTPClient {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [URLProtocolStub.self]
+        let session = URLSession(configuration: configuration)
+        let sut = URLSessionHTTPClient(session: session)
+        return sut
+    }
+    
+    private func anyURLRequest() -> URLRequest {
+        URLRequest(url: URL(string: "http://any-url.com")!)
     }
     
 }
