@@ -157,7 +157,7 @@ For testing the mapping from **Data** to **Decodable** I chose to test it direct
 
 The following diagram presents the **Location** module and how it interacts with the **CoreLocation**.
 
-In this module, I chose to switch from the classic delegation pattern of getting the current location to the **async/await** approach using a continuation (You can find more details about it here: [From delegation to async/await](#from-delegation-to-async/await)).
+In this module, I chose to switch from the classic delegation pattern of getting the current location to the **async/await** approach using a continuation (You can find more details about it here: [From delegation to async/await](#from-delegation-to-asyncawait)).
 
 Another interesting topic related to this module is how I was able to use TDD to get the current location using **CLLocationManager** and **CLLocationManagerDelegate**. (More details here: [Get current location using TDD](#get-current-location-using-tdd))
 
