@@ -211,11 +211,11 @@ public func locationManager(manager: LocationManager, didUpdateLocations locatio
 
 #### Get current location using TDD
 
-To effectively test the behaviour of the **LocationProvider** in isolation I needed to decouple it from **CoreLocation**. I had quickly written an experimental class (without commiting it) to see what location features I needed and how the component would interact with **CoreLocation** before I deleted and started the TDD process.
+To effectively test the behaviour of the **LocationProvider** in isolation I needed to decouple it from **CoreLocation**. I had quickly written an experimental class (without commiting it) to see what location features I needed and how the component would interact with **CoreLocation** before I deleted it and started the TDD process.
 
-During the experimentation, I realised that I needed a way to mock the behaviour of the **CLLocationManager** class in order to spy certain behaviours (e.g. **requestLocation()**) or stub properties (e.g. **authorizationStatus**). Another reason for this is that **CoreLocation** requires user authorization which can trigger a permission dialog on the device if it wasn't granted before, making the tests relying on device state and causing them to be less maintanable and more likely to fail.
+During the experimentation, I realised that I needed a way to mock the behaviour of the **CLLocationManager** class in order to spy certain behaviours (e.g. **requestLocation()**) or stub properties (e.g. **authorizationStatus**). Another reason for this is that **CoreLocation** requires user authorization which can trigger a permission dialog on the device if it wasn't granted before, making the tests relying on device state and causing them to be less maintainable and more likely to fail.
 
-A common practice in this case is to extract a protocol with properties and methods from the target class, in this case **CLLocationManager**, that we are interested in mocking during testing. You can see below the minimal protocol for requesting the authorization from user and requesting a location.
+A common practice in this case is to extract a protocol with properties and methods from the target class, in this case **CLLocationManager**, that I was interested in mocking during testing. You can see below the minimal protocol for requesting the user's authorization and the current location.
 
 ```swift
 public protocol LocationManager {
@@ -227,13 +227,13 @@ public protocol LocationManager {
 }
 
 ```
-Thanks to a very cool Swift feature we can use an extension to make **CLLocationManager** conform to this protocol and use in production the protocol for the type of the location manager.
+Next, I used an extension to make **CLLocationManager** conform to this protocol, allowing me to use the protocol instead of the concrete implementation of the location manager in production.
 
 ```swift
 extension CLLocationManager: LocationManager {}
 ```
 
-On the other hand, during testing we can create a spy for this collaborator to test how it interacts with the SUT by spying methods or stubbing properties.
+On the other hand, I could use it to create a spy for this collaborator to test how it interacts with the SUT by spying methods or stubbing properties.
 
 ```swift
 private class LocationManagerSpy: LocationManager {
@@ -253,7 +253,7 @@ private class LocationManagerSpy: LocationManager {
 }
 ```
 
-Now, we need to decouple our code from the other dependency we don't own, **CLLocationManagerDelegate**,  by creating a protocol that mimicks it, but uses our protocol for the manager defined above.
+I needed to decouple the code from the other external dependency, **CLLocationManagerDelegate**,  by creating a protocol that mimicks it, but uses the protocol for the manager defined above.
 
 ```swift
 public protocol LocationManagerDelegate: AnyObject {
@@ -263,7 +263,7 @@ public protocol LocationManagerDelegate: AnyObject {
 }
 ```
 
-We need to conform to this new protocol and implement the logic required for fetching the current location. Additionally, we still need to conform to **CLLocationManagerDelegate** because the concrete implementation, **CLLocationManager**, doesn't know about our protocol, but those methods only need to call their equivalent methods from our protocol.
+**LocationProvider** needs to conform to this new protocol and implement the logic required for fetching the current location. Additionally, it still needs to conform to **CLLocationManagerDelegate** because the concrete implementation, **CLLocationManager**, is not aware of the **LocationManagerDelegate** existence, but those methods only need to call their equivalent method.
 
 ```swift
 extension LocationProvider: LocationManagerDelegate  {
