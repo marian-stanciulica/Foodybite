@@ -155,7 +155,7 @@ For testing the mapping from **Data** to **Decodable** I chose to test it direct
 
 ### Location
 
-The following diagram presents the **Location** module and how it interacts with the **CoreLocation**.
+The following diagram presents the **Location** module and how it interacts with **CoreLocation**.
 
 In this module, I chose to switch from the classic delegation pattern of getting the current location to the **async/await** approach using a continuation (You can find more details about it here: [From delegation to async/await](#from-delegation-to-asyncawait)).
 
@@ -169,6 +169,46 @@ Another interesting topic related to this module is how I was able to use TDD to
 | DistanceSolver | Computes distance between two locations |
 
 #### From delegation to async/await
+
+Since all modules use the **async/await** concurrency module I needed to switch from the usual delegation pattern that **CoreLocation** uses to advertise the current location.
+
+I was able to do it by using a continuation which I capture in the **requestLocation** method in **LocationProvider** only if the user previously authorized the use of location. Afterwards, I make the request for a single location to the location manager.
+
+```swift
+public func requestLocation() async throws -> Location {
+    guard locationServicesEnabled else {
+        throw LocationError.locationServicesDisabled
+    }
+    
+    return try await withCheckedThrowingContinuation { continuation in
+        self.continuation = continuation
+        locationManager.requestLocation()
+    }
+}
+```
+
+At this moment, we need to wait a delegate method to be triggered to resume the continuation either with an error or with a location.
+
+```swift
+public func locationManager(manager: LocationManager, didFailWithError error: Error) {
+    continuation?.resume(throwing: error)
+    continuation = nil
+}
+
+public func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation]) {
+    if let firstLocation = locations.first {
+        let location = Location(
+            latitude: firstLocation.coordinate.latitude,
+            longitude: firstLocation.coordinate.longitude
+        )
+        continuation?.resume(returning: location)
+        continuation = nil
+    }
+}
+```
+
+> ❗️ Important
+> Resuming a continuation must be made exactly once. Otherwise, it results in undefined behaviour, that's why I set it to nil after each resume call, to prevent calling it on the same instance again. Not calling it leaves the task in a suspended state indefinitely. (Apple docs: [CheckedContinuation](https://developer.apple.com/documentation/swift/checkedcontinuation))
 
 #### Get current location using TDD
 
