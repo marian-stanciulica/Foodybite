@@ -36,11 +36,17 @@ The following diagram represents the networking layer talking with my backend ap
 |------|------|
 | KeychainTokenStore | Performs read/write operations from/to Keychain on AuthToken |
 | RefreshTokenService | Fetches new `AuthToken` from server and stores it in `TokenStore` |
-| RefreshTokenEndpoint | Defines the path, method and body for the refresh token endpoint |
+| RefreshTokenEndpoint | Creates `URLRequest` for generating new access and refresh tokens |
 | AuthToken | Struct containing accessToken and refreshToken |
 | AuthenticatedURLSessionHTTPClient | Decorator over `HTTPClient` that adds authentication capabilities to the client |
 | RemoteStore | Validates the response from `HTTPClient` and parses the data |
 | APIService | Creates the endpoints and sends them to the `ResourceLoader` or `ResourceSender` |
+| LoginEndpoint | Creates `URLRequest` for authentication |
+| SignUpEndpoint | Creates `URLRequest` for creating an account |
+| AccountEndpoint | Creates `URLRequest` for updating the current account or delete it |
+| LogoutEndpoint | Creates `URLRequest` for ending the current session |
+| ChangePasswordEndpoint | Creates `URLRequest` for changing the password |
+| ReviewEndpoint | Creates `URLRequest` for adding a review or getting all reviews for a particular restaurant |
 
 #### 1. Refresh Token Strategy
 
@@ -157,8 +163,8 @@ The following diagram presents the `Places` module which has as a dependency `Sh
 |------|------|
 | RemoteLoader | Validates the response from `HTTPClient` and parses the data or returns it directly |
 | PlacesService | Creates the endpoints and sends them to the `ResourceLoader` or `DataLoader` |
-| SearchNearbyEndpoint | Creates `URLRequest` for searching nearby places |
-| GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular place |
+| SearchNearbyEndpoint | Creates `URLRequest` for searching nearby restaurants |
+| GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
 | GetPlacePhotoEndpoint | Creates `URLRequest` for fetching image data using a photo reference |
 | AutocompleteEndpoint | Creates `URLRequest` for searching restaurants given an input, location and radius |
 
