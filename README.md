@@ -211,6 +211,90 @@ public func locationManager(manager: LocationManager, didUpdateLocations locatio
 
 #### Get current location using TDD
 
+To effectively test the behaviour of the **LocationProvider** in isolation I needed to decouple it from **CoreLocation**. I had quickly written an experimental class (without commiting it) to see what location features I needed and how the component would interact with **CoreLocation** before I deleted and started the TDD process.
+
+During the experimentation, I realised that I needed a way to mock the behaviour of the **CLLocationManager** class in order to spy certain behaviours (e.g. **requestLocation()**) or stub properties (e.g. **authorizationStatus**). Another reason for this is that **CoreLocation** requires user authorization which can trigger a permission dialog on the device if it wasn't granted before, making the tests relying on device state and causing them to be less maintanable and more likely to fail.
+
+A common practice in this case is to extract a protocol with properties and methods from the target class, in this case **CLLocationManager**, that we are interested in mocking during testing. You can see below the minimal protocol for requesting the authorization from user and requesting a location.
+
+```swift
+public protocol LocationManager {
+    var locationDelegate: LocationManagerDelegate? { get set }
+    var authorizationStatus: CLAuthorizationStatus { get }
+
+    func requestWhenInUseAuthorization()
+    func requestLocation()
+}
+
+```
+Thanks to a very cool Swift feature we can use an extension to make **CLLocationManager** conform to this protocol and use in production the protocol for the type of the location manager.
+
+```swift
+extension CLLocationManager: LocationManager {}
+```
+
+On the other hand, during testing we can create a spy for this collaborator to test how it interacts with the SUT by spying methods or stubbing properties.
+
+```swift
+private class LocationManagerSpy: LocationManager {
+    var delegate: CLLocationManagerDelegate?
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    
+    var requestWhenInUseAuthorizationCallCount = 0
+    var requestLocationCallCount = 0
+    
+    func requestWhenInUseAuthorization() {
+        requestWhenInUseAuthorizationCallCount += 1
+    }
+    
+    func requestLocation() {
+        requestLocationCallCount += 1
+    }
+}
+```
+
+Now, we need to decouple our code from the other dependency we don't own, **CLLocationManagerDelegate**,  by creating a protocol that mimicks it, but uses our protocol for the manager defined above.
+
+```swift
+public protocol LocationManagerDelegate: AnyObject {
+    func locationManagerDidChangeAuthorization(manager: LocationManager)
+    func locationManager(manager: LocationManager, didFailWithError error: Error)
+    func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation])
+}
+```
+
+We need to conform to this new protocol and implement the logic required for fetching the current location. Additionally, we still need to conform to **CLLocationManagerDelegate** because the concrete implementation, **CLLocationManager**, doesn't know about our protocol, but those methods only need to call their equivalent methods from our protocol.
+
+```swift
+extension LocationProvider: LocationManagerDelegate  {
+    public func locationManagerDidChangeAuthorization(manager: LocationManager) {
+        // some more code
+    }
+    
+    public func locationManager(manager: LocationManager, didFailWithError error: Error) {
+        // some more code
+    }
+    
+    public func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation]) {
+        // some more code
+    }
+}
+
+extension LocationProvider: CLLocationManagerDelegate {
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        locationManagerDidChangeAuthorization(manager: manager)
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager(manager: manager, didFailWithError: error)
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager(manager: manager, didUpdateLocations: locations)
+    }
+}
+```
+
 ### Domain
 
 ### Presentation
