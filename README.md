@@ -149,7 +149,18 @@ For testing the mapping from **Data** to **Decodable** I chose to test it direct
 
 ### Places
 
+The following diagram presents the **Places** module which has as a dependency **Shared API** because it shares the need to fetch resources over the network with the **Networking** module. This module calls [**Google Places APIs**](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the **Single Responsibility Principle** by isolating the requests to my server from the ones to **Google Places**.
+
 ![Places](./Diagrams/Places.svg)
+
+| Component | Responsibility |
+|------|------|
+| RemoteLoader | Validates the response from **HTTPClient** and parses the data or returns it directly |
+| PlacesService | Creates the endpoints and sends them to the **ResourceLoader** or **DataLoader** |
+| SearchNearbyEndpoint | Creates **URLRequest** for searching nearby places |
+| GetPlaceDetailsEndpoint | Creates **URLRequest** for getting detailed information about a particular place |
+| GetPlacePhotoEndpoint | Creates **URLRequest** for fetching image data using a photo reference |
+| AutocompleteEndpoint | Creates **URLRequest** for searching restaurants given an input, location and radius |
 
 ### Persistence
 
