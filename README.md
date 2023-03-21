@@ -141,7 +141,7 @@ extension URLSession: URLSessionProtocol {}
 
 3. By subclassing **URLProtocol** and overriding a couple of methods to intercept the requests. Also, the stub should be registered by calling **URLProtocol.registerClass(URLProtocolStub.self)** to be used by the **URL Loading System**.
 
-For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side.
+✅ For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side.
 
 #### 5. Testing **Data** to **Decodable** Mapping
 
@@ -155,7 +155,22 @@ For testing the mapping from **Data** to **Decodable** I chose to test it direct
 
 ### Location
 
+The following diagram presents the **Location** module and how it interacts with the **CoreLocation**.
+
+In this module, I chose to switch from the classic delegation pattern of getting the current location to the **async/await** approach using a continuation (You can find more details about it here: [From delegation to async/await](#from-delegation-to-async/await)).
+
+Another interesting topic related to this module is how I was able to use TDD to get the current location using **CLLocationManager** and **CLLocationManagerDelegate**. (More details here: [Get current location using TDD](#get-current-location-using-tdd))
+
 ![Location](./Diagrams/Location.svg)
+
+| Component | Responsibility |
+|------|------|
+| LocationProvider | Fetches user's current location |
+| DistanceSolver | Computes distance between two locations |
+
+#### From delegation to async/await
+
+#### Get current location using TDD
 
 ### Domain
 
