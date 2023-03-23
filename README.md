@@ -168,7 +168,25 @@ The following diagram presents the `Places` module which has as a dependency `Sh
 
 ### Persistence
 
+The following diagram presents the `Persistence` module, highlights the [infrastructure](#infrastructure) to [cache domain models](#cache-domain-models) in `CoreData`. Additionaly, it has the capability to [store `UserPreferences`](#store-user-preferences) locally in `UserDefaults`. 
+
 ![Persistence](./Diagrams/Persistence.svg)
+
+| Component | Responsibility |
+|------|------|
+| LocalUserPreferences | Local representation of `UserPreferences` |
+| UserPreferencesLocalStore | Uses `UserDefaults` to store and retrieve `UserPreferences` models |
+| UserDAO | Uses `LocalStore` to save or retrieve a user |
+| SearchNearbyDAO | Uses `LocalStore` to save or retrieve nearby places |
+| GetPlaceDetailsDAO | Uses `LocalStore` to save or retrieve place details |
+| CoreDataLocalStore | CoreData implementation of `LocalStore` that writes or reads objects which conforms to `LocalModelConvertable` |
+| LocalModelConvertable | Generic protocol that creates a one-to-one relationship between a domain model and a managed model (local) |
+
+#### Cache Domain Models
+
+#### Infrastructure
+
+#### Store User Preferences
 
 ### Location
 
