@@ -95,6 +95,17 @@ final class CoreDataLocalStoreTests: XCTestCase {
         XCTAssertEqual(receivedReviews, expectedReviews)
     }
     
+    func test_getReviews_deliversReviewsForPlaceID() async  throws {
+        let sut = makeSUT()
+        let allReviews = makeReviews()
+        let expectedReviews = [allReviews[1]]
+        try await sut.save(reviews: allReviews)
+        
+        let receivedReviews = try await sut.getReviews(placeID: expectedReviews.first?.placeID)
+        
+        XCTAssertEqual(receivedReviews, expectedReviews)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil) -> CoreDataLocalStore {
