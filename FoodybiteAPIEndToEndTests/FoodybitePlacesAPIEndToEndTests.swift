@@ -42,7 +42,8 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> PlacesService {
-        let httpClient = URLSessionHTTPClient()
+        let session = URLSession(configuration: .ephemeral)
+        let httpClient = URLSessionHTTPClient(session: session)
         let loader = RemoteLoader(client: httpClient)
         return PlacesService(loader: loader)
     }
