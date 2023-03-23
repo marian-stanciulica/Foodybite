@@ -170,6 +170,8 @@ The following diagram presents the `Places` module which has as a dependency `Sh
 
 ### Persistence
 
+![Persistence](./Diagrams/Persistence.svg)
+
 ### Location
 
 The following diagram presents the `Location` module and how it interacts with `CoreLocation`.
