@@ -184,9 +184,24 @@ The following diagram presents the `Persistence` module, highlights the [infrast
 
 #### Cache Domain Models
 
+To increase the maintainability of the system, I decoupled the use cases from the implementation details by using the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the requirements of the use cases (in this case, all the `DAO` classes). This helps to achieve a better separation of concerns and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need in the future to replace `CoreData` with other caching framework like `Realm` or have just an in-memory cache, it would be fairly simple. Additionally, in case of new requirements coming in, I'm not concerning myself with how the actual store works inside as long as the `LocalStore` protocol satisfy my needs for the requirements.
+
+For my current use cases, I only need to write/read one object or more from the local store.
+
+```swift
+public protocol LocalStore {
+    func read<T: LocalModelConvertable>() async throws -> T
+    func readAll<T: LocalModelConvertable>() async throws -> [T]
+    func write<T: LocalModelConvertable>(_ object: T) async throws
+    func writeAll<T: LocalModelConvertable>(_ objects: [T]) async throws
+}
+```
+
 #### Infrastructure
 
 #### Store User Preferences
+
+I chose to create a local representation of the user preferences locally to hide the `Codable` dependency from the domain model and hide all the complexity that can come with it. 
 
 ### Location
 
