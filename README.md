@@ -28,8 +28,6 @@ The following diagram represents the networking layer talking with my backend ap
 4. [Mock Network Requests](#4-mock-network-requests)
 5. [Testing `Data` to `Decodable` Mapping](#5-testing-data-to-decodable-mapping)
 
-> ❗ I excluded the legend from the diagram to have more space. You can find it [here](./Diagrams/Legend.svg).
-
 ![Networking Diagram](./Diagrams/Networking.svg)
 
 | Component | Responsibility |
