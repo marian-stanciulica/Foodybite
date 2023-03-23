@@ -60,7 +60,7 @@ final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
         return (sut, serviceStub, cacheSpy)
     }
     
-    private class ReviewsCacheSpy: ReviewsCache {
+    private class ReviewsCacheSpy: ReviewCache {
         private(set) var capturedValues = [[Review]]()
         
         func save(reviews: [Review]) async throws {

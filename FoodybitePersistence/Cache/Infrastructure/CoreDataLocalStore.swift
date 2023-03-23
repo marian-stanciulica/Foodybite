@@ -66,7 +66,7 @@ extension CoreDataLocalStore: GetReviewsService {
     }
 }
 
-extension CoreDataLocalStore: ReviewsCache {
+extension CoreDataLocalStore: ReviewCache {
     public func save(reviews: [Review]) async throws {
         try await writeAll(reviews)
     }

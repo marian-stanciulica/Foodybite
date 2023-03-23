@@ -9,9 +9,9 @@ import Domain
 
 public final class GetReviewsServiceCacheDecorator: GetReviewsService {
     private let getReviewsService: GetReviewsService
-    private let cache: ReviewsCache
+    private let cache: ReviewCache
     
-    public init(getReviewsService: GetReviewsService, cache: ReviewsCache) {
+    public init(getReviewsService: GetReviewsService, cache: ReviewCache) {
         self.getReviewsService = getReviewsService
         self.cache = cache
     }

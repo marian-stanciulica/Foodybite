@@ -35,6 +35,6 @@ extension NullLocalStore: GetReviewsService {
     }
 }
 
-extension NullLocalStore: ReviewsCache {
+extension NullLocalStore: ReviewCache {
     func save(reviews: [Review]) async throws {}
 }

@@ -5,6 +5,6 @@
 //  Created by Marian Stanciulica on 14.03.2023.
 //
 
-public protocol ReviewsCache {
+public protocol ReviewCache {
     func save(reviews: [Review]) async throws
 }

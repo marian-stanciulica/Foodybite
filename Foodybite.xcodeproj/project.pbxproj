@@ -158,7 +158,7 @@
 		0F591258299697E600D67B21 /* NewReviewSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F591257299697E600D67B21 /* NewReviewSearchView.swift */; };
 		0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4934298FD931004162E5 /* TabBarPageView.swift */; };
 		0F61265329C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */; };
-		0F61265629C0F75700658A4D /* ReviewsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265529C0F75700658A4D /* ReviewsCache.swift */; };
+		0F61265629C0F75700658A4D /* ReviewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265529C0F75700658A4D /* ReviewCache.swift */; };
 		0F61265829C0F7A600658A4D /* GetReviewsServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265729C0F7A600658A4D /* GetReviewsServiceCacheDecorator.swift */; };
 		0F61265A29C0F81A00658A4D /* GetReviewsServiceWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265929C0F81A00658A4D /* GetReviewsServiceWithFallbackCompositeTests.swift */; };
 		0F61265C29C0FAEA00658A4D /* GetReviewsServiceWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265B29C0FAEA00658A4D /* GetReviewsServiceWithFallbackComposite.swift */; };
@@ -747,7 +747,7 @@
 		0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsService.swift; sourceTree = "<group>"; };
 		0F5E4934298FD931004162E5 /* TabBarPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageView.swift; sourceTree = "<group>"; };
 		0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
-		0F61265529C0F75700658A4D /* ReviewsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCache.swift; sourceTree = "<group>"; };
+		0F61265529C0F75700658A4D /* ReviewCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCache.swift; sourceTree = "<group>"; };
 		0F61265729C0F7A600658A4D /* GetReviewsServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsServiceCacheDecorator.swift; sourceTree = "<group>"; };
 		0F61265929C0F81A00658A4D /* GetReviewsServiceWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsServiceWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		0F61265B29C0FAEA00658A4D /* GetReviewsServiceWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsServiceWithFallbackComposite.swift; sourceTree = "<group>"; };
@@ -1758,7 +1758,7 @@
 		0F61265429C0F74B00658A4D /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				0F61265529C0F75700658A4D /* ReviewsCache.swift */,
+				0F61265529C0F75700658A4D /* ReviewCache.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -3594,7 +3594,7 @@
 				0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */,
 				0FA6BE3D29957463003E1912 /* AutocompletePlacesService.swift in Sources */,
 				0FA6BE2C2994E8A0003E1912 /* SignUpService.swift in Sources */,
-				0F61265629C0F75700658A4D /* ReviewsCache.swift in Sources */,
+				0F61265629C0F75700658A4D /* ReviewCache.swift in Sources */,
 				0F423A8B29850CE3009EB345 /* SearchNearbyService.swift in Sources */,
 				0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */,
 				0F70C4A329869C8C00C004DD /* Photo.swift in Sources */,
