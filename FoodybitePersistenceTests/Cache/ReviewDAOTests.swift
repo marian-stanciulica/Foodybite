@@ -17,18 +17,32 @@ final class ReviewDAO: GetReviewsService {
     }
     
     func getReviews(placeID: String? = nil) async throws -> [Review] {
-        []
+        try await store.readAll()
     }
 }
 
 final class ReviewDAOTests: XCTestCase {
 
-    func test_getReviews_deliversEmptyArrayOnCacheMiss() async throws {
-        let (sut, _) = makeSUT()
+    func test_getReviews_throwsErrorWhenStoreThrowsError() async {
+        let (sut, storeSpy) = makeSUT()
+        storeSpy.readResult = .failure(anyError())
+        
+        do {
+            let reviews = try await sut.getReviews()
+            XCTFail("Expected to fail, received nearby places \(reviews) instead")
+        } catch {
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    func test_getReviews_returnsAllReviewsWhenStoreContainsReviews() async throws {
+        let (sut, storeSpy) = makeSUT()
+        let expectedReviews = makeReviews()
+        storeSpy.readAllResult = .success(expectedReviews)
         
         let receivedReviews = try await sut.getReviews()
         
-        XCTAssertTrue(receivedReviews.isEmpty)
+        XCTAssertEqual(receivedReviews, expectedReviews)
     }
     
     // MARK: - Helpers
@@ -37,6 +51,14 @@ final class ReviewDAOTests: XCTestCase {
         let storeSpy = LocalStoreSpy()
         let sut = ReviewDAO(store: storeSpy)
         return (sut, storeSpy)
+    }
+    
+    private func makeReviews() -> [Review] {
+        [
+            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
+            Review(placeID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
+            Review(placeID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
+        ]
     }
     
 }
