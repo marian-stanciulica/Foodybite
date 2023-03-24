@@ -6,7 +6,7 @@
 
 ![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
 
-Layers:
+Modules:
 - [Shared API](#shared-api)
 - [Networking](#networking)
 - [Places](#places)
@@ -15,6 +15,7 @@ Layers:
 - [Domain](#domain)
 - [Presentation](#presentation)
 - [UI](#ui)
+- [Main](#main)
 
 ### Shared API
 
@@ -400,8 +401,21 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 ![Screen Hierarchy](./Diagrams/Screen_Hierarchy.svg)
 
-## Testing Pyramid
+### Main
 
-1. Unit testing
-2. Snapshots Testing
-3. End-to-End Testing
+## Testing
+
+During the entire project I've used TDD as the development process (excluding the UI layer) by following the feedback loop.
+
+![TDD Feedback Loop](./Diagrams/TDD_Feedback_Loop.png)
+
+I've been using TDD for over a year now and I really like it because it helps me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using TDD. Additionally, it helped me understand better what I was trying to build before writing code while increasing my confidence in the correctness of the system afterwards.
+
+1. Unit Tests
+2. Snapshots Tests
+3. Integration Tests
+    1. End-to-End Tests
+    2. Cache Integration Tests
+
+## Metrics
+
