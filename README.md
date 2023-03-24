@@ -184,7 +184,7 @@ The following diagram presents the `Persistence` module, highlights the [infrast
 
 #### Cache Domain Models
 
-To increase the maintainability of the system, I decoupled the use cases from the implementation details by using the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the requirements of the use cases (in this case, all the `DAO` classes). This helps to achieve a better separation of concerns and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need in the future to replace `CoreData` with other caching framework like `Realm` or have just an in-memory cache, it would be fairly simple. Additionally, in case of new requirements coming in, I'm not concerning myself with how the actual store works inside as long as the `LocalStore` protocol satisfy my needs for the requirements.
+To increase the maintainability of the system, I decoupled the use cases from the implementation details by using the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the use cases requirements (all the `DAO` classes). This helps to achieve a better separation of concerns (not exposing managed object contexts or entities as parameters) and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need in the future to replace `CoreData` with other caching framework like `Realm` or have just an in-memory cache, it would be fairly simple. Additionally, in case of new requirements coming in, I'm not concerning myself with how the actual store works inside as long as the `LocalStore` protocol satisfy my needs for the requirements.
 
 For my current use cases, I only need to write/read one object or more from the local store.
 
@@ -198,6 +198,23 @@ public protocol LocalStore {
 ```
 
 #### Infrastructure
+
+Initially, I needed to cache only the `User` model for the autologin feature. In order to save users in the `CoreData` store an `NSManagedObject` is required. So, I had two option:
+1. Make the domain model inherit `NSManagedObject`
+
+| Advantages | Disadvantages |
+|------|------|
+| It's really convenient to convert the `User` domain model in a `NSManagedObject` | All modules that depend on `Domain` would depend on an implementation detail of the `Persistence` module, thus coupling the business logic with a specific framework (leaking framework details) |
+| | It increases the number of components that depends on the domain model making an eventual change to it expensive, as it can potentially break many modules |
+| | All the following decisions would be made by trying to accomodate the coupling with CoreData |
+
+2. Create a distinct representation of an user model specific for CoreData
+| Advantages | Disadvantages |
+|------|------|
+| Increase modularity by hiding the implementation details for the `CoreData` store | Requires creating another model and mapping back and forth from the domain model |
+| Not forcing the domain model to properties relevant only for persistence (e.g. relationships) | |
+| Working with structs (immutable data) can be easier to comprehend that with classes (mutable references) | |
+
 
 #### Store User Preferences
 
