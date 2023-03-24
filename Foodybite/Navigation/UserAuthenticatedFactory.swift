@@ -45,6 +45,8 @@ final class UserAuthenticatedFactory {
     
     let placeDetailsDAO = GetPlaceDetailsDAO(store: RootFactory.localStore)
     
+    let reviewDAO = ReviewDAO(store: RootFactory.localStore)
+    
     lazy var getPlaceDetailsWithFallbackComposite = GetPlaceDetailsWithFallbackComposite(
         primary: GetPlaceDetailsServiceCacheDecorator(
             getPlaceDetailsService: placesService,
@@ -56,8 +58,8 @@ final class UserAuthenticatedFactory {
     lazy var getReviewsWithFallbackComposite = GetReviewsServiceWithFallbackComposite(
         primary: GetReviewsServiceCacheDecorator(
             getReviewsService: authenticatedApiService,
-            cache: RootFactory.localStore
+            cache: reviewDAO
         ),
-        secondary: RootFactory.localStore
+        secondary: reviewDAO
     )
 }

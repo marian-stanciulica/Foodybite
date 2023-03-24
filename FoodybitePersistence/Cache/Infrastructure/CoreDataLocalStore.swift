@@ -53,21 +53,3 @@ public class CoreDataLocalStore: LocalStore {
         }
     }
 }
-
-extension CoreDataLocalStore: GetReviewsService {
-    public func getReviews(placeID: String? = nil) async throws -> [Review] {
-        let reviews: [Review] = try await readAll()
-        
-        if let placeID = placeID {
-            return reviews.filter { $0.placeID == placeID }
-        }
-        
-        return reviews
-    }
-}
-
-extension CoreDataLocalStore: ReviewCache {
-    public func save(reviews: [Review]) async throws {
-        try await writeAll(reviews)
-    }
-}
