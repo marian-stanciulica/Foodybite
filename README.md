@@ -407,15 +407,27 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 During the entire project I've used TDD as the development process (excluding the UI layer) by following the feedback loop.
 
-![TDD Feedback Loop](./Diagrams/TDD_Feedback_Loop.png)
-
 I've been using TDD for over a year now and I really like it because it helps me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using TDD. Additionally, it helped me understand better what I was trying to build before writing code while increasing my confidence in the correctness of the system afterwards.
 
-1. Unit Tests
-2. Snapshots Tests
-3. Integration Tests
-    1. End-to-End Tests
-    2. Cache Integration Tests
+![TDD Feedback Loop](./Diagrams/TDD_Feedback_Loop.png)
+
+### Unit Tests
+
+I used unit tests as the foundation for my testing pyramid because they are the most reliable and cheap to write. Also, I can easily test each component in isolation by mocking collaborators without making any assumptions about the rest of the system.
+
+### Snapshots Tests
+
+### Integration Tests
+
+Furthermore, I used end-to-end tests to check the connection with the backend APIs (my backend and Google Places API) to validate actual communication between the backends and the app. On top of that, I used cache integration tests to validate that the local storage works as expected given multiple instances.
+
+#### End-to-End Tests
+
+I used an `URLSession` with ephemeral configuration for both my own server and `Google Places API` not to cache the successful requests as the default behaviour of the `URLSession` is to cache the requests using `URLCache`. By disabling caching, I avoid the posibility of passing the tests while the network is not reachable because the cached request was returned. This way, I reduce the risk of flaky and unreliable.
+
+#### Cache Integration Tests
+
+An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I chose to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
 
 ## Metrics
 
