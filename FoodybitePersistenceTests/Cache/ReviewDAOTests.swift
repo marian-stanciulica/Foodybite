@@ -17,7 +17,13 @@ final class ReviewDAO: GetReviewsService {
     }
     
     func getReviews(placeID: String? = nil) async throws -> [Review] {
-        try await store.readAll()
+        let reviews: [Review] = try await store.readAll()
+        
+        if let placeID = placeID {
+            return reviews.filter { $0.placeID == placeID }
+        }
+        
+        return reviews
     }
 }
 
@@ -41,6 +47,17 @@ final class ReviewDAOTests: XCTestCase {
         storeSpy.readAllResult = .success(expectedReviews)
         
         let receivedReviews = try await sut.getReviews()
+        
+        XCTAssertEqual(receivedReviews, expectedReviews)
+    }
+    
+    func test_getReviews_returnsReviewsFromStoreForGivenPlaceID() async  throws {
+        let (sut, storeSpy) = makeSUT()
+        let allReviews = makeReviews()
+        let expectedReviews = [allReviews[1]]
+        storeSpy.readAllResult = .success(allReviews)
+        
+        let receivedReviews = try await sut.getReviews(placeID: expectedReviews.first?.placeID)
         
         XCTAssertEqual(receivedReviews, expectedReviews)
     }
