@@ -199,7 +199,7 @@ public protocol LocalStore {
 
 #### Infrastructure
 
-Initially, I needed to cache only the `User` model for the autologin feature. In order to save users in the `CoreData` store an `NSManagedObject` is required. So, I had two option:
+Initially, I needed to cache only the `User` model for the autologin feature. In order to save users in the `CoreData` store an `NSManagedObject` is required. So, I had two options:
 1. Make the domain model inherit `NSManagedObject`
 
 | Advantages | Disadvantages |
@@ -212,13 +212,13 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 
 | Advantages | Disadvantages |
 |------|------|
-| Increase modularity by hiding the implementation details for the `CoreData` store | Requires creating another model, also mapping back and forth from the domain model |
-| Not forcing the domain model to contain properties relevant only for persistence (e.g. relationships) | |
+| It increases modularity by hiding the implementation details for the `CoreData` store | Requires creating another model, also mapping back and forth from the domain model |
+| It's not forcing the domain model to contain properties relevant only for persistence (e.g. relationships) | |
 | Working with structs (immutable data) can be easier to comprehend than with classes (mutable references) | |
 
-Since I wanted to hide all implementation details related to persistence, maintain modularity and decrease the coupling of domain models with a framework specific I chose to create a separate managed model corresponding to the `User` domain model.
+Since I wanted to hide all implementation details related to persistence, maintain modularity and decrease the coupling of domain models with a framework specific, I chose to create a separate managed model corresponding to the `User` domain model.
 
-After deciding to create distinct representation for all domain models, I needed a way to create an one-to-one relationship between a domain model and a managed model. The best approach I could find was to create a generic protocol for domain models to implement and have the requirements for mapping back and forth.
+After deciding to create distinct representation for all domain models, I needed a way to create an one-to-one relationship between a domain model and a managed model. The best approach I could find was to create a generic protocol, for domain models to implement, that has the requirements for mapping back and forth.
 
 ```swift
 public protocol LocalModelConvertable {
@@ -229,7 +229,7 @@ public protocol LocalModelConvertable {
 }
 ```
 
-The initial goal was to create a generic boundary for the concrete implementation to use the same store for all domain models, that's why the `LocalStore` has generic methods that must conform to `LocalModelConvertable`. Also, the mapping is done in the concrete implementation (`CoreDataLocalStore`) which respects the `Open/Closed Principle` since adding a new managed model doesn't require any change in the concrete store, but only creating the managed model and conforming the domain model to the `LocalModelConvertable` to create the relationship between them. The following code block is an example for the `User` model:
+The initial goal was to create a generic boundary for the concrete implementation to use the same store for all domain models, that's why the `LocalStore` has generic methods dependent on types that must conform to `LocalModelConvertable`. Also, the mapping is done in the concrete implementation (`CoreDataLocalStore`) which respects the `Open/Closed Principle` since adding a new managed model doesn't require any change in the concrete store, but only creating the managed model and conforming the domain model to the `LocalModelConvertable` to create the relationship between them. The following code block is an example for the `User` model:
 
 ```swift
 extension User: LocalModelConvertable {
