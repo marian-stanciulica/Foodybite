@@ -209,12 +209,12 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 | | All the following decisions would be made by trying to accomodate the coupling with CoreData |
 
 2. Create a distinct representation of an user model specific for CoreData
+
 | Advantages | Disadvantages |
 |------|------|
-| Increase modularity by hiding the implementation details for the `CoreData` store | Requires creating another model and mapping back and forth from the domain model | |
-| Not forcing the domain model to properties relevant only for persistence (e.g. relationships) | |
-| Working with structs (immutable data) can be easier to comprehend that with classes (mutable references) | |
-
+| Increase modularity by hiding the implementation details for the `CoreData` store | Requires creating another model, also mapping back and forth from the domain model |
+| Not forcing the domain model to contain properties relevant only for persistence (e.g. relationships) | |
+| Working with structs (immutable data) can be easier to comprehend than with classes (mutable references) | |
 
 #### Store User Preferences
 
