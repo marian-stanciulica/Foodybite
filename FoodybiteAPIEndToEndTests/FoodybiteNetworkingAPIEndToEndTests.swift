@@ -94,7 +94,8 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     private func makeAuthenticatedSUT() -> APIService {
-        let httpClient = URLSessionHTTPClient()
+        let session = URLSession(configuration: .ephemeral)
+        let httpClient = URLSessionHTTPClient(session: session)
         let refreshTokenLoader = RemoteStore(client: httpClient)
         let tokenStore = KeychainTokenStore()
         
