@@ -63,13 +63,7 @@ struct UserAuthenticatedView: View {
                     currentLocation: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
                     userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
-                    searchNearbyService: SearchNearbyServiceWithFallbackComposite(
-                        primary: SearchNearbyServiceCacheDecorator(
-                            searchNearbyService: userAuthenticatedFactory.placesService,
-                            cache: userAuthenticatedFactory.searchNearbyDAO
-                        ),
-                        secondary: userAuthenticatedFactory.searchNearbyDAO
-                    ),
+                    searchNearbyService: userAuthenticatedFactory.searchNearbyWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService
                 )
             }

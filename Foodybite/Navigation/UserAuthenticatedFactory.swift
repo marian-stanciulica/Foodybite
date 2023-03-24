@@ -47,6 +47,14 @@ final class UserAuthenticatedFactory {
     
     let reviewDAO = ReviewDAO(store: RootFactory.localStore)
     
+    lazy var searchNearbyWithFallbackComposite = SearchNearbyServiceWithFallbackComposite(
+        primary: SearchNearbyServiceCacheDecorator(
+            searchNearbyService: placesService,
+            cache: searchNearbyDAO
+        ),
+        secondary: searchNearbyDAO
+    )
+    
     lazy var getPlaceDetailsWithFallbackComposite = GetPlaceDetailsWithFallbackComposite(
         primary: GetPlaceDetailsServiceCacheDecorator(
             getPlaceDetailsService: placesService,
