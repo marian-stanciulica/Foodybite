@@ -9,28 +9,6 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class ReviewDAO: GetReviewsService, ReviewCache {
-    private let store: LocalStore
-
-    init(store: LocalStore) {
-        self.store = store
-    }
-    
-    func getReviews(placeID: String? = nil) async throws -> [Review] {
-        let reviews: [Review] = try await store.readAll()
-        
-        if let placeID = placeID {
-            return reviews.filter { $0.placeID == placeID }
-        }
-        
-        return reviews
-    }
-    
-    func save(reviews: [Review]) async throws {
-        try await store.writeAll(reviews)
-    }
-}
-
 final class ReviewDAOTests: XCTestCase {
 
     func test_getReviews_throwsErrorWhenStoreThrowsError() async {
