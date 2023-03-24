@@ -216,6 +216,36 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 | Not forcing the domain model to contain properties relevant only for persistence (e.g. relationships) | |
 | Working with structs (immutable data) can be easier to comprehend than with classes (mutable references) | |
 
+Since I wanted to hide all implementation details related to persistence, maintain modularity and decrease the coupling of domain models with a framework specific I chose to create a separate managed model corresponding to the `User` domain model.
+
+After deciding to create distinct representation for all domain models, I needed a way to create an one-to-one relationship between a domain model and a managed model. The best approach I could find was to create a generic protocol for domain models to implement and have the requirements for mapping back and forth.
+
+```swift
+public protocol LocalModelConvertable {
+    associatedtype LocalModel: NSManagedObject
+    
+    init(from: LocalModel)
+    func toLocalModel(context: NSManagedObjectContext) -> LocalModel
+}
+```
+
+The initial goal was to create a generic boundary for the concrete implementation to use the same store for all domain models, that's why the `LocalStore` has generic methods that must conform to `LocalModelConvertable`. Also, the mapping is done in the concrete implementation (`CoreDataLocalStore`) which respects the `Open/Closed Principle` since adding a new managed model doesn't require any change in the concrete store, but only creating the managed model and conforming the domain model to the `LocalModelConvertable` to create the relationship between them. The following code block is an example for the `User` model:
+
+```swift
+extension User: LocalModelConvertable {
+    public init(from managedUser: ManagedUser) {
+        self.init(id: managedUser.id,
+                  name: managedUser.name,
+                  email: managedUser.email,
+                  profileImage: managedUser.profileImage)
+    }
+    
+    public func toLocalModel(context: NSManagedObjectContext) -> ManagedUser {
+        ManagedUser(self, for: context)
+    }
+}
+```
+
 #### Store User Preferences
 
 I chose to create a local representation of the user preferences locally to hide the `Codable` dependency from the domain model and hide all the complexity that can come with it. 
