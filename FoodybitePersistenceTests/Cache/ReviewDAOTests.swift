@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class ReviewDAO: GetReviewsService {
+final class ReviewDAO: GetReviewsService, ReviewCache {
     private let store: LocalStore
 
     init(store: LocalStore) {
@@ -24,6 +24,10 @@ final class ReviewDAO: GetReviewsService {
         }
         
         return reviews
+    }
+    
+    func save(reviews: [Review]) async throws {
+        try await store.writeAll(reviews)
     }
 }
 
@@ -60,6 +64,21 @@ final class ReviewDAOTests: XCTestCase {
         let receivedReviews = try await sut.getReviews(placeID: expectedReviews.first?.placeID)
         
         XCTAssertEqual(receivedReviews, expectedReviews)
+    }
+    
+    func test_save_sendsReviewsToStore() async throws {
+        let (sut, storeSpy) = makeSUT()
+        let expectedReviews = makeReviews()
+        
+        try await sut.save(reviews: expectedReviews)
+        
+        XCTAssertEqual(storeSpy.messages.count, 1)
+        
+        if case let .writeAll(receivedReviews) = storeSpy.messages[0] {
+            XCTAssertEqual(expectedReviews, receivedReviews as! [Review])
+        } else {
+            XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
+        }
     }
     
     // MARK: - Helpers
