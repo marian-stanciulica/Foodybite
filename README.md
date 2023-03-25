@@ -395,9 +395,14 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 ### Domain
 
+This layer is the most inner layer in the architecture (no dependencies with other layers). It contains only models and abstractions for 
+- fetching or saving data implemented by the [Networking](#networking), [Places](#places) and [Persistence](#persistence) modules
+- getting the current location implemented by the [Location](#location) module
+- the [Presentation](#presentation) module to get the data it needs and converting it in the format the [UI](#ui) module requires it.
+
 #### User Session Feature
 
-Model: [User](./Domain/Models/User/User.swift)
+Model: User
 ```swift
 public struct User: Equatable {
     public let id: UUID
