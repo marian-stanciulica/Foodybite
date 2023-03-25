@@ -395,6 +395,66 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 ### Domain
 
+#### User Session Feature
+
+Domain Models:
+1. User
+```swift
+public struct User: Equatable {
+    public let id: UUID
+    public let name: String
+    public let email: String
+    public let profileImage: Data?
+    
+    public init(id: UUID, name: String, email: String, profileImage: Data?) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.profileImage = profileImage
+    }
+}
+```
+
+Protocols:
+1. SignUpService
+```swift
+public protocol SignUpService {
+    func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws
+}
+```
+
+2. LoginService
+```swift
+public protocol LoginService {
+    func login(email: String, password: String) async throws -> User
+}
+```
+
+3. LogoutService
+```swift
+public protocol LogoutService {
+    func logout() async throws
+}
+```
+
+#### Update/Delete Account Feature
+
+Protocols
+1. AccountService
+```swift
+public protocol AccountService {
+    func updateAccount(name: String, email: String, profileImage: Data?) async throws
+    func deleteAccount() async throws
+}
+```
+
+2. ChangePasswordService
+```swift
+public protocol ChangePasswordService {
+    func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws
+}
+```
+
 #### Store/Retrieve User Preferences Feature
 
 Domain Models:
@@ -425,6 +485,44 @@ public protocol UserPreferencesSaver {
 ```swift
 public protocol UserPreferencesLoader {
     func load() -> UserPreferences
+}
+```
+
+#### Add Review Feature
+
+Domain Models:
+1. Review
+```swift
+public struct Review: Equatable, Identifiable, Hashable {
+    public var id: UUID
+    public let placeID: String
+    public let profileImageURL: URL?
+    public let profileImageData: Data?
+    public let authorName: String
+    public let reviewText: String
+    public let rating: Int
+    public let relativeTime: String
+}
+```
+
+Protocols:
+1. AddReviewService
+```swift
+public protocol AddReviewService {
+    func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
+}
+```
+
+#### Get Reviews Feature
+
+Domain Models:
+1. Review (the same model as above)
+
+Protocols:
+1. GetReviewsService
+```swift
+public protocol GetReviewsService {
+    func getReviews(placeID: String?) async throws -> [Review]
 }
 ```
 
