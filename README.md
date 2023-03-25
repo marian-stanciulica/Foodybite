@@ -395,6 +395,39 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 ### Domain
 
+#### Store/Retrieve User Preferences Feature
+
+Domain Models:
+1. UserPreferences
+```swift
+public struct UserPreferences: Equatable {
+    public let radius: Int
+    public let starsNumber: Int
+    
+    public static let `default` = UserPreferences(radius: 10_000, starsNumber: 0)
+    
+    public init(radius: Int, starsNumber: Int) {
+        self.radius = radius
+        self.starsNumber = starsNumber
+    }
+}
+```
+
+Protocols:
+1. UserPreferencesSaver
+```swift
+public protocol UserPreferencesSaver {
+    func save(_ userPreferences: UserPreferences)
+}
+```
+
+2. UserPreferencesLoader
+```swift
+public protocol UserPreferencesLoader {
+    func load() -> UserPreferences
+}
+```
+
 ### Presentation
 
 ### UI
