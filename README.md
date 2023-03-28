@@ -681,6 +681,12 @@ public protocol PlaceDetailsCache {
 
 ### Main
 
+#### SearchNearbyServiceWithFallbackComposite
+
+I used the `Composite` design pattern to compose two strategies of fetching nearby places using the `SearchNearbyService` abstraction.
+
+![Search Nearby Composite](./Diagrams/NearbyPlaceComposite.svg)
+
 ## Testing
 
 During the entire project I've used TDD as the development process (excluding the UI layer) by following the feedback loop.
