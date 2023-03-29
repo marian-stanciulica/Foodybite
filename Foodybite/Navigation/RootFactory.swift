@@ -14,7 +14,8 @@ import FoodybitePersistence
 
 class RootFactory {
     let apiService: APIService = {
-        let httpClient = URLSessionHTTPClient()
+        let session = URLSession(configuration: .ephemeral)
+        let httpClient = URLSessionHTTPClient(session: session)
         let tokenStore = KeychainTokenStore()
         
         let remoteResourceLoader = RemoteStore(client: httpClient)

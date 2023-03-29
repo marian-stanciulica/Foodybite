@@ -13,7 +13,8 @@ import FoodybitePersistence
 
 final class UserAuthenticatedFactory {
     let authenticatedApiService: APIService = {
-        let httpClient = URLSessionHTTPClient()
+        let session = URLSession(configuration: .ephemeral)
+        let httpClient = URLSessionHTTPClient(session: session)
         let refreshTokenLoader = RemoteStore(client: httpClient)
         let tokenStore = KeychainTokenStore()
         
@@ -33,7 +34,8 @@ final class UserAuthenticatedFactory {
     }()
     
     let placesService: PlacesService = {
-        let httpClient = URLSessionHTTPClient()
+        let session = URLSession(configuration: .ephemeral)
+        let httpClient = URLSessionHTTPClient(session: session)
         let loader = RemoteLoader(client: httpClient)
         return PlacesService(loader: loader)
     }()
