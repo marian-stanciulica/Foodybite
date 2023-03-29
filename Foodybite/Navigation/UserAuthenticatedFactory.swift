@@ -6,7 +6,7 @@
 //
 
 import CoreData
-import SharedAPI
+import API_Infra
 import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence

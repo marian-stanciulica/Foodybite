@@ -1,6 +1,6 @@
 //
 //  URLProtocolStub.swift
-//  SharedAPITests
+//  API_InfraTests
 //
 //  Created by Marian Stanciulica on 20.03.2023.
 //

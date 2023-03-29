@@ -1,12 +1,12 @@
 //
 //  URLSessionHTTPClientTests.swift
-//  SharedAPITests
+//  API_InfraTests
 //
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
 import XCTest
-import SharedAPI
+import API_Infra
 
 final class URLSessionHTTPClientTests: XCTestCase {
     

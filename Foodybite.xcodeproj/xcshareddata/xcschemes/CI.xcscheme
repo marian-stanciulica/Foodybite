@@ -99,9 +99,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0FE1E2C929C1B01400B33CF5"
-               BuildableName = "SharedAPITests.xctest"
-               BlueprintName = "SharedAPITests"
+               BlueprintIdentifier = "0F34A12B29D4508300B36428"
+               BuildableName = "API_InfraTests.xctest"
+               BlueprintName = "API_InfraTests"
                ReferencedContainer = "container:Foodybite.xcodeproj">
             </BuildableReference>
          </TestableReference>

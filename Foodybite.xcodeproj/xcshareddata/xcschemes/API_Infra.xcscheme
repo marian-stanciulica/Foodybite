@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0FE1E2C229C1B01400B33CF5"
-               BuildableName = "SharedAPI.framework"
-               BlueprintName = "SharedAPI"
+               BlueprintIdentifier = "0F34A12429D4508300B36428"
+               BuildableName = "API_Infra.framework"
+               BlueprintName = "API_Infra"
                ReferencedContainer = "container:Foodybite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,12 +30,12 @@
       <Testables>
          <TestableReference
             skipped = "NO"
-            testExecutionOrdering = "random">
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0FE1E2C929C1B01400B33CF5"
-               BuildableName = "SharedAPITests.xctest"
-               BlueprintName = "SharedAPITests"
+               BlueprintIdentifier = "0F34A12B29D4508300B36428"
+               BuildableName = "API_InfraTests.xctest"
+               BlueprintName = "API_InfraTests"
                ReferencedContainer = "container:Foodybite.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -61,9 +61,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0FE1E2C229C1B01400B33CF5"
-            BuildableName = "SharedAPI.framework"
-            BlueprintName = "SharedAPI"
+            BlueprintIdentifier = "0F34A12429D4508300B36428"
+            BuildableName = "API_Infra.framework"
+            BlueprintName = "API_Infra"
             ReferencedContainer = "container:Foodybite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
