@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SharedAPI
+import SharedAPI
 
 final class URLSessionHTTPClientTests: XCTestCase {
     
@@ -83,6 +83,28 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     private func anyURLRequest() -> URLRequest {
         URLRequest(url: URL(string: "http://any-url.com")!)
+    }
+    
+    private func anyUrlResponse() -> URLResponse {
+        URLResponse(url: URL(string: "http://any-url.com")!,
+                    mimeType: nil,
+                    expectedContentLength: 0,
+                    textEncodingName: nil)
+    }
+
+    private func anyHttpUrlResponse(code: Int = 200) -> HTTPURLResponse {
+        HTTPURLResponse(url: URL(string: "http://any-url.com")!,
+                        statusCode: code,
+                        httpVersion: nil,
+                        headerFields: nil)!
+    }
+
+    private func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
+    }
+
+    private func anyData() -> Data {
+        "any data".data(using: .utf8)!
     }
     
 }
