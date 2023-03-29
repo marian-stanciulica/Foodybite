@@ -4,19 +4,42 @@
 
 This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribbble.com: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
 
+## Summary
+1. [Motivation](#motivation)
+2. [Architecture](#architecture)
+    1. [Overview](#overview)
+    2. [Shared API](#shared-api)
+    3. [Networking](#networking)
+    4. [Places](#places)
+    5. [Persistence](#persistence)
+    6. [Location](#location)
+    7. [Domain](#domain)
+    8. [Presentation](#presentation)
+    9. [UI](#ui)
+    10. [Main](#main)
+3. [Testing Strategy](#testing-strategy)
+    1. [Unit Tests](#unit-tests)
+    2. [Integration Tests](#integration-tests)
+        1. [End-to-End Tests](#end-to-end-tests)
+        2. [Cache Integration Tests](#cache-integration-tests)
+    3. [Snapshot Tests](#snapshot-tests)
+4. [Metrics](#metrics)
+
 ## Motivation
 
 In 2022, I felt that it was the right time to dive deeper in `SwiftUI` since I had seen the potential of the framework and my curiosity drove me to use it in a larger project as I had already been using it for testing its functionalities.
 
-After finishing the UI, the next challenge I gave to myself was to design the app in the best possible way using all the best practices in order to create a high quality project and sharp my skills. At the same time, my interest in TDD and modular design were emerging, that's the reason I used only TDD for all the modules besides UI (used it for snapshot tests afterwards 😀). 
+After finishing the UI, the next challenge I gave to myself was to design the app in the best possible way using all the best practices in order to create a high quality project and sharp my skills. At the same time, my interest in TDD and modular design were emerging, that's the reason I only used TDD when writing all modules besides UI (used it for snapshot tests afterwards 😀). 
 
-In the process, I was able to significantly improve my TDD skills and acknowledge its value as it helped me understand better what I was trying to achieve before writing the code. On the other hand, the architecture seemed to materialize while I was writing the tests and by using TDD I could further improve the initial design.
+In the process, I was able to significantly improve my TDD skills and acknowledge its value as it helped me understand better what I was trying to achieve before writing the code because I needed to have a clear picture of what I wanted to test first. On the other hand, the architecture seemed to materialize while I was writing the tests and by using TDD I could further improve the initial design.
 
 You can find below the entire process I've gone through while designing this project, the decisions and trade-offs I've made regarding the architecture, how I structured the testing pyramid, what were some security issues I needed to consider and some really cool metrics about the evolution of the codebase.
 
 Thank you for reading and enjoy! 🚀
 
 ## Architecture
+
+### Overview
 
 ![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
 
@@ -703,7 +726,7 @@ I used the `Composite` design pattern to compose two strategies of fetching near
 
 ![Search Nearby Composite](./Diagrams/NearbyPlaceComposite.svg)
 
-## Testing
+## Testing Strategy
 
 During the entire project I've used TDD as the development process (excluding the UI layer) by following the feedback loop.
 
@@ -714,8 +737,6 @@ I've been using TDD for over a year now and I really like it because it helps me
 ### Unit Tests
 
 I used unit tests as the foundation for my testing pyramid because they are the most reliable and cheap to write. Also, I can easily test each component in isolation by mocking collaborators without making any assumptions about the rest of the system.
-
-### Snapshots Tests
 
 ### Integration Tests
 
@@ -728,6 +749,8 @@ I used an `URLSession` with ephemeral configuration for both my own server and `
 #### Cache Integration Tests
 
 An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I chose to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
+
+### Snapshots Tests
 
 ## Metrics
 
