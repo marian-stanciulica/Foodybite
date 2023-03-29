@@ -66,7 +66,7 @@ This layer is the most inner layer in the architecture (no dependencies with oth
 - getting the current location implemented by the [Location](#location) module
 - the [Presentation](#presentation) module to get the data it needs and converting it in the format the [UI](#ui) module requires it.
 
-#### User Session Feature
+#### 1. User Session Feature
 
 Model: User
 ```swift
@@ -107,7 +107,7 @@ public protocol LogoutService {
 }
 ```
 
-#### Update/Delete Account Feature
+#### 2. Update/Delete Account Feature
 
 Protocols:
 1. AccountService
@@ -125,7 +125,7 @@ public protocol ChangePasswordService {
 }
 ```
 
-#### Store/Retrieve User Preferences Feature
+#### 3. Store/Retrieve User Preferences Feature
 
 Domain Model: UserPreferences
 ```swift
@@ -157,7 +157,7 @@ public protocol UserPreferencesLoader {
 }
 ```
 
-#### Add Review Feature
+#### 4. Add Review Feature
 
 Domain Model: Review
 ```swift
@@ -180,7 +180,7 @@ public protocol AddReviewService {
 }
 ```
 
-#### Get Reviews Feature
+#### 5. Get Reviews Feature
 
 Domain Model (same `Review` model as for `Add Review Feature`)
 
@@ -191,7 +191,7 @@ public protocol GetReviewsService {
 }
 ```
 
-#### Search Nearby Feature
+#### 6. Search Nearby Feature
 
 Domain Models:
 1. NearbyPlace
@@ -230,7 +230,7 @@ public protocol SearchNearbyService {
 }
 ```
 
-#### Get Place Details Feature
+#### 7. Get Place Details Feature
 
 Domain Models:
 1. PlaceDetails
@@ -265,7 +265,7 @@ public protocol GetPlaceDetailsService {
 }
 ```
 
-#### Fetch Place Photo Feature
+#### 8. Fetch Place Photo Feature
 
 Domain Model (same `Photo` model as for `Search Nearby Feature`)
 
@@ -276,7 +276,7 @@ public protocol FetchPlacePhotoService {
 }
 ```
 
-#### Autocomplete Feature (Search Places)
+#### 9. Autocomplete Feature (Search Places)
 
 Domain Model: AutocompletePrediction
 ```swift
@@ -293,7 +293,7 @@ public protocol AutocompletePlacesService {
 }
 ```
 
-#### Get Current Location Feature
+#### 10. Get Current Location Feature
 
 Domain Model (same `Location` model as for `Search Nearby Feature`)
 
@@ -306,7 +306,7 @@ public protocol LocationProviding {
 }
 ```
 
-#### Cache Reviews Feature
+#### 11. Cache Reviews Feature
 
 Domain Model (same `Review` model as for `Add Review Feature`)
 
@@ -317,7 +317,7 @@ public protocol ReviewCache {
 }
 ```
 
-#### Cache Nearby Places Feature
+#### 12. Cache Nearby Places Feature
 
 Domain Model (same `NearbyPlace` model as for `Search Nearby Feature`)
 
@@ -328,7 +328,7 @@ public protocol SearchNearbyCache {
 }
 ```
 
-#### Cache Place Details Feature
+#### 13. Cache Place Details Feature
 
 Domain Model (same `PlaceDetails` model as for `Get Place Details Feature`)
 
