@@ -8,7 +8,7 @@ This beautiful design was made available by [Yagnesh P](https://www.behance.net/
 2. [Architecture](#architecture)
     1. [Overview](#overview)
     2. [Domain](#domain)
-    3. [Shared API](#shared-api)
+    3. [API Infra](#api-infra)
     4. [Networking](#networking)
     5. [Places](#places)
     6. [Persistence](#persistence)
@@ -48,7 +48,7 @@ I think it's the best approach for this project since vertical slicing is more s
 
 The following diagram provides a top-level view with all modules from this project along with their dependencies on other modules:
 1. [Domain](#domain)
-2. [Shared API](#shared-api)
+2. [API Infra](#api-infra)
 3. [Networking](#networking)
 4. [Places](#places)
 5. [Persistence](#persistence)
@@ -339,9 +339,9 @@ public protocol PlaceDetailsCache {
 }
 ```
 
-### Shared API
+### API Infra
 
-![Shared API](./Diagrams/Shared_API.svg)
+![API Infra](./Diagrams/API_Infra.svg)
 
 ### Networking
 The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram and decisions made during testing (all components were tested using TDD):
@@ -378,7 +378,7 @@ The following diagram represents the networking layer talking with my backend ap
 This flow is composed by 3 classes: 
 - `APIService`, which implements domain protocols, creates `URLRequest` objects from endpoints and sends them to the remote store.
 - `RemoteStore`, which implements `ResourceLoader` and `ResourceSender`, validates the status code returned by the client and parses received data.
-- `AuthenticatedURLSessionHTTPClient`, which implements `HTTPClient`, signs each request using the access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root` this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `SharedAPI` module is used.
+- `AuthenticatedURLSessionHTTPClient`, which implements `HTTPClient`, signs each request using the access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root` this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `API Infra` module is used.
 
 ![AuthenticatedURLSessionHTTPClient](./Diagrams/AuthenticatedURLSessionHTTPClient.svg)
 
@@ -476,7 +476,7 @@ For testing the mapping from `Data` to `Decodable` I chose to test it directly i
 
 ### Places
 
-The following diagram presents the `Places` module which has as a dependency `Shared API` because it shares the need to fetch resources over the network with the `Networking` module. This module calls [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
+The following diagram presents the `Places` module which has as a dependency `API Infra` because it shares the need to fetch resources over the network with the `Networking` module. This module calls [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
 
 ![Places](./Diagrams/Places.svg)
 
