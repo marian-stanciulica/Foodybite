@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SharedAPI
 
 struct GetPlaceDetailsEndpoint: Endpoint {
     private let placeID: String

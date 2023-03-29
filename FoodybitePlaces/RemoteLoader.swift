@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SharedAPI
 
 public class RemoteLoader: ResourceLoader, DataLoader {
     private let client: HTTPClient

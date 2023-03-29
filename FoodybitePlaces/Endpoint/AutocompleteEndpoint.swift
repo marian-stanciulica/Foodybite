@@ -7,7 +7,6 @@
 
 import Foundation
 import Domain
-import SharedAPI
 
 struct AutocompleteEndpoint: Endpoint {
     private let input: String

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SharedAPI
 
 struct GetPlacePhotoEndpoint: Endpoint {
     private let photoReference: String
