@@ -1167,7 +1167,6 @@
 				0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */,
 				0F447CCB28FB19C20026C5DB /* Data */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
-				0F4E0E7829D4423400A4508A /* CodableDataParser.swift */,
 				0F4E0E7E29D4434C00A4508A /* HTTPClient.swift */,
 				0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */,
 				0F4E0E7A29D4430400A4508A /* ResourceLoader.swift */,
@@ -1744,6 +1743,7 @@
 		0F447CCB28FB19C20026C5DB /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0F4E0E8D29D4461000A4508A /* Parser */,
 				0F0280FB29262FD9006B219F /* Requests */,
 				0F0280F829262B11006B219F /* Responses */,
 			);
@@ -1784,6 +1784,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F4E0E8D29D4461000A4508A /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				0F4E0E7829D4423400A4508A /* CodableDataParser.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 		0F53B86B29AB4CE500DE5E13 /* Helpers */ = {
