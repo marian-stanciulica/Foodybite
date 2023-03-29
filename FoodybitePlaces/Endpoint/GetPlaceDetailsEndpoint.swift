@@ -19,6 +19,10 @@ struct GetPlaceDetailsEndpoint: Endpoint {
         "/maps/api/place/details/json"
     }
     
+    var method: RequestMethod {
+        .get
+    }
+    
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),

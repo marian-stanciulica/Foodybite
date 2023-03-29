@@ -7,7 +7,6 @@
 
 import Foundation
 import FoodybitePlaces
-import SharedAPI
 
 enum EndpointStub: Endpoint {
     case invalidPath
@@ -20,6 +19,10 @@ enum EndpointStub: Endpoint {
         case .stub:
             return "/valid/path"
         }
+    }
+    
+    var method: RequestMethod {
+        .get
     }
     
     var queryItems: [URLQueryItem]? {

@@ -19,6 +19,10 @@ struct GetPlacePhotoEndpoint: Endpoint {
         "/maps/api/place/photo"
     }
     
+    var method: RequestMethod {
+        .get
+    }
+    
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),

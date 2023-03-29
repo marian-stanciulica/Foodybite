@@ -6,29 +6,14 @@
 //
 
 import Foundation
-import SharedAPI
 
-public extension Endpoint {
-    var scheme: String {
-        "https"
-    }
-    
-    var port: Int? {
-        nil
-    }
-    
-    var host: String {
-        "maps.googleapis.com"
-    }
-    
-    var method: RequestMethod {
-        .get
-    }
-    
-    var body: Encodable? {
-        nil
-    }
-    
+public protocol Endpoint {
+    var path: String { get }
+    var method: RequestMethod { get }
+    var queryItems: [URLQueryItem]? { get }
+}
+
+extension Endpoint {
     var apiKey: String {
         let bundle = Bundle(for: PlacesService.self)
         guard let filePath = bundle.path(forResource: "GooglePlaces-Info", ofType: "plist") else {
@@ -42,5 +27,21 @@ public extension Endpoint {
         }
         
         return value
+    }
+    
+    public func createURLRequest() throws -> URLRequest {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "maps.googleapis.com"
+        components.path = path
+        components.queryItems = queryItems
+
+        guard let url = components.url else { throw  NetworkError.invalidURL }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+        urlRequest.allHTTPHeaderFields = ["Content-Type" : "application/json"]
+        
+        return urlRequest
     }
 }

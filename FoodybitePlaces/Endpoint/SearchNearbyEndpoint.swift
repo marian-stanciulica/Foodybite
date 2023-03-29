@@ -22,6 +22,10 @@ struct SearchNearbyEndpoint: Endpoint {
         "/maps/api/place/nearbysearch/json"
     }
     
+    var method: RequestMethod {
+        .get
+    }
+    
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),

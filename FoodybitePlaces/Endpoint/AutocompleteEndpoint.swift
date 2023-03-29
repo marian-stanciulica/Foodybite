@@ -24,6 +24,10 @@ struct AutocompleteEndpoint: Endpoint {
         "/maps/api/place/autocomplete/json"
     }
     
+    var method: RequestMethod {
+        .get
+    }
+    
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "input", value: input),
