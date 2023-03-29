@@ -1,10 +1,20 @@
 # Foodybite
 
-The idea behind `Foodybite` is to create a simple way to find restaurants near you. Users can set their preferred radius and number of stars to filter restaurants based on location and rating. Additionally, they can see details for each restaurant found and give a review. The app offers the capability to search directly for a restaurant and give the opportunity to the user to give a review right away.
+💡The idea behind it is to create a simple way to find restaurants near you. Users can set their preferred radius and number of stars to filter restaurants based on location and rating. Additionally, they can see details, like opening hours, address, reviews, or photos for each restaurant found and give a review. The app offers the capability to search directly for a restaurant and give the opportunity to the user to give a review right away.
 
-This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribble: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
+This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribbble.com: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
 
 ## Motivation
+
+In 2022, I felt that it was the right time to dive deeper in `SwiftUI` since I had seen the potential of the framework and my curiosity drove me to use it in a larger project as I had already been using it for testing its functionalities.
+
+After finishing the UI, the next challenge I gave to myself was to design the app in the best possible way using all the best practices in order to create a high quality project and sharp my skills. At the same time, my interest in TDD and modular design were emerging, that's the reason I used only TDD for all the modules besides UI (used it for snapshot tests afterwards 😀). 
+
+In the process, I was able to significantly improve my TDD skills and acknowledge its value as it helped me understand better what I was trying to achieve before writing the code. On the other hand, the architecture seemed to materialize while I was writing the tests and by using TDD I could further improve the initial design.
+
+You can find below the entire process I've gone through while designing this project, the decisions and trade-offs I've made regarding the architecture, how I structured the testing pyramid, what were some security issues I needed to consider and some really cool metrics about the evolution of the codebase.
+
+Thank you for reading and enjoy! 🚀
 
 ## Architecture
 
