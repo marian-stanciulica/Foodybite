@@ -156,6 +156,11 @@
 		0F4E0E7529D4407400A4508A /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7429D4407400A4508A /* RequestMethod.swift */; };
 		0F4E0E7729D4408B00A4508A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7629D4408B00A4508A /* NetworkError.swift */; };
 		0F4E0E7929D4423400A4508A /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7829D4423400A4508A /* CodableDataParser.swift */; };
+		0F4E0E7B29D4430400A4508A /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7A29D4430400A4508A /* ResourceLoader.swift */; };
+		0F4E0E7D29D4432E00A4508A /* ResourceSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7C29D4432E00A4508A /* ResourceSender.swift */; };
+		0F4E0E7F29D4434C00A4508A /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7E29D4434C00A4508A /* HTTPClient.swift */; };
+		0F4E0E8829D4444500A4508A /* FoodybiteNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6B296729C4645100F8E0F6 /* FoodybiteNetworking.framework */; };
+		0F4E0E8929D4444500A4508A /* FoodybiteNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F6B296729C4645100F8E0F6 /* FoodybiteNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
 		0F4F6D7E29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */; };
 		0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
@@ -501,6 +506,13 @@
 			remoteGlobalIDString = 0F412E752962C78D00FDDF41;
 			remoteInfo = FoodybitePlaces;
 		};
+		0F4E0E8A29D4444500A4508A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F0BDA1828F83FD500E91FD0;
+			remoteInfo = FoodybiteNetworking;
+		};
 		0F6B296329C454E200F8E0F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -523,13 +535,6 @@
 			remoteInfo = FoodybitePersistence;
 		};
 		0FE1E2CC29C1B01400B33CF5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0FE1E2C229C1B01400B33CF5;
-			remoteInfo = SharedAPI;
-		};
-		0FE1E2DB29C1B08B00B33CF5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
 			proxyType = 1;
@@ -579,6 +584,17 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F4E0E8C29D4444500A4508A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0F4E0E8929D4444500A4508A /* FoodybiteNetworking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +765,9 @@
 		0F4E0E7429D4407400A4508A /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		0F4E0E7629D4408B00A4508A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0F4E0E7829D4423400A4508A /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
+		0F4E0E7A29D4430400A4508A /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
+		0F4E0E7C29D4432E00A4508A /* ResourceSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceSender.swift; sourceTree = "<group>"; };
+		0F4E0E7E29D4434C00A4508A /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1096,6 +1115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F4E0E8829D4444500A4508A /* FoodybiteNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,7 +1168,10 @@
 				0F447CCB28FB19C20026C5DB /* Data */,
 				0F447CB328FAC2940026C5DB /* Endpoint */,
 				0F4E0E7829D4423400A4508A /* CodableDataParser.swift */,
+				0F4E0E7E29D4434C00A4508A /* HTTPClient.swift */,
 				0F1FDE5029018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift */,
+				0F4E0E7A29D4430400A4508A /* ResourceLoader.swift */,
+				0F4E0E7C29D4432E00A4508A /* ResourceSender.swift */,
 				0F447CAB28FAC1580026C5DB /* RemoteStore.swift */,
 				0F447CCE28FB1A020026C5DB /* APIService.swift */,
 			);
@@ -1756,6 +1779,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0F4E0E8229D4442700A4508A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0F53B86B29AB4CE500DE5E13 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1922,6 +1952,7 @@
 				0F6B296F29C4645100F8E0F6 /* FoodybitePersistenceTests.xctest */,
 				0F6B297029C4645100F8E0F6 /* FoodybiteAPIEndToEndTests.xctest */,
 				0F6B297129C4645100F8E0F6 /* FoodybiteCacheIntegrationTests.xctest */,
+				0F4E0E8229D4442700A4508A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2961,7 +2992,6 @@
 			);
 			dependencies = (
 				0F2BACCD2982BBAB006D4A7F /* PBXTargetDependency */,
-				0FE1E2DC29C1B08B00B33CF5 /* PBXTargetDependency */,
 			);
 			name = FoodybiteNetworking;
 			productName = FoodybiteNetworking;
@@ -3174,10 +3204,12 @@
 				0FE1E2BF29C1B01400B33CF5 /* Sources */,
 				0FE1E2C029C1B01400B33CF5 /* Frameworks */,
 				0FE1E2C129C1B01400B33CF5 /* Resources */,
+				0F4E0E8C29D4444500A4508A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0F4E0E8B29D4444500A4508A /* PBXTargetDependency */,
 			);
 			name = SharedAPI;
 			productName = SharedAPI;
@@ -3500,6 +3532,7 @@
 				0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */,
 				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */,
+				0F4E0E7F29D4434C00A4508A /* HTTPClient.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */,
 				0F4E0E7729D4408B00A4508A /* NetworkError.swift in Sources */,
@@ -3510,6 +3543,7 @@
 				0F028100292630D5006B219F /* LoginRequestBody.swift in Sources */,
 				0FF7C65829B1E2B300622E9C /* ChangePasswordEndpoint.swift in Sources */,
 				0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */,
+				0F4E0E7D29D4432E00A4508A /* ResourceSender.swift in Sources */,
 				0F1FDE4929016AF500E12B09 /* RefreshTokenService.swift in Sources */,
 				0F73ECB3292FC8E60025B237 /* RefreshTokenRequestBody.swift in Sources */,
 				0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */,
@@ -3521,6 +3555,7 @@
 				0FF7C66029B1E5B800622E9C /* LoginEndpoint.swift in Sources */,
 				0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */,
 				0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */,
+				0F4E0E7B29D4430400A4508A /* ResourceLoader.swift in Sources */,
 				0F0280FD29262FE7006B219F /* SignUpRequestBody.swift in Sources */,
 				0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */,
 				0F4E0E7929D4423400A4508A /* CodableDataParser.swift in Sources */,
@@ -3949,6 +3984,11 @@
 			target = 0F412E752962C78D00FDDF41 /* FoodybitePlaces */;
 			targetProxy = 0F412E7F2962C78E00FDDF41 /* PBXContainerItemProxy */;
 		};
+		0F4E0E8B29D4444500A4508A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F0BDA1828F83FD500E91FD0 /* FoodybiteNetworking */;
+			targetProxy = 0F4E0E8A29D4444500A4508A /* PBXContainerItemProxy */;
+		};
 		0F6B296429C454E200F8E0F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0F7137B62841F8340058757A /* Foodybite */;
@@ -3968,11 +4008,6 @@
 			isa = PBXTargetDependency;
 			target = 0FE1E2C229C1B01400B33CF5 /* SharedAPI */;
 			targetProxy = 0FE1E2CC29C1B01400B33CF5 /* PBXContainerItemProxy */;
-		};
-		0FE1E2DC29C1B08B00B33CF5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0FE1E2C229C1B01400B33CF5 /* SharedAPI */;
-			targetProxy = 0FE1E2DB29C1B08B00B33CF5 /* PBXContainerItemProxy */;
 		};
 		0FE1E2E029C1B0B400B33CF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

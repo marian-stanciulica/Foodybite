@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SharedAPI
+import FoodybiteNetworking
 
 class ResourceLoaderSpy: ResourceLoader {
     private let response: Decodable

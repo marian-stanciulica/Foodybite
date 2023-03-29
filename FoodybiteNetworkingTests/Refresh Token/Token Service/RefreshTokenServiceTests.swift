@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import FoodybiteNetworking
-import SharedAPI
 
 final class RefreshTokenServiceTests: XCTestCase {
 

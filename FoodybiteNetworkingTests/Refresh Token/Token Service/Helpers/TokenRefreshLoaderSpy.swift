@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SharedAPI
 import FoodybiteNetworking
 
 class TokenRefreshLoaderSpy: ResourceLoader {

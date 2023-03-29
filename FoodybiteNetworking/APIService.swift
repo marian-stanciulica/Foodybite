@@ -7,7 +7,6 @@
 
 import Foundation
 import Domain
-import SharedAPI
 
 public class APIService {
     private let loader: ResourceLoader

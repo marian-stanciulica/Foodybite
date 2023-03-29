@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import FoodybiteNetworking
 
-public class URLSessionHTTPClient: HTTPClient {
+public class URLSessionHTTPClient: HTTPClient, FoodybiteNetworking.HTTPClient {
     private let session: URLSession
     
     public init(session: URLSession = URLSession.shared) {

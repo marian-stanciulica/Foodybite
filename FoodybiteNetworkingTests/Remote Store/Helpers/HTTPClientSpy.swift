@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SharedAPI
+import FoodybiteNetworking
 
 class HTTPClientSpy: HTTPClient {
     private(set) var urlRequests = [URLRequest]()

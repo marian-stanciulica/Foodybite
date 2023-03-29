@@ -8,7 +8,6 @@
 import XCTest
 import Domain
 @testable import FoodybiteNetworking
-import SharedAPI
 
 final class APIServiceTests: XCTestCase {
     

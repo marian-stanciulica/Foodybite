@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol Endpoint {
+public protocol Endpoint {
     var path: String { get }
     var method: RequestMethod { get }
     var body: Encodable? { get }
 }
 
-extension Endpoint {
+public extension Endpoint {
     func createURLRequest() throws -> URLRequest {
         var components = URLComponents()
         components.scheme = "http"

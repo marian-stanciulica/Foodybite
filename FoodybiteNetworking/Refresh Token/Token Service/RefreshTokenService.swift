@@ -5,8 +5,6 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
-import SharedAPI
-
 public class RefreshTokenService: TokenRefresher {
     private let loader: ResourceLoader
     private let tokenStore: TokenStore

@@ -6,22 +6,10 @@
 //
 
 import Foundation
-import SharedAPI
+@testable import FoodybiteNetworking
 
 enum EndpointStub: Endpoint {
     case stub
-    
-    var scheme: String {
-        "http"
-    }
-    
-    var port: Int? {
-        nil
-    }
-    
-    var host: String {
-        "host"
-    }
     
     var path: String {
         return "/path"
@@ -31,15 +19,7 @@ enum EndpointStub: Endpoint {
         .get
     }
     
-    var headers: [String : String] {
-        [:]
-    }
-    
     var body: Encodable? {
-        nil
-    }
-    
-    var queryItems: [URLQueryItem]? {
         nil
     }
 }
