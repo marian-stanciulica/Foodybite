@@ -5,8 +5,6 @@
 //  Created by Marian Stanciulica on 04.02.2023.
 //
 
-import SharedAPI
-
 enum ReviewEndpoint: Endpoint {
     case post(AddReviewRequestBody)
     case get(String?)

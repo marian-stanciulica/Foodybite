@@ -5,9 +5,6 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
-import Foundation
-import SharedAPI
-
 enum AccountEndpoint: Endpoint {
     case post(UpdateAccountRequestBody)
     case delete

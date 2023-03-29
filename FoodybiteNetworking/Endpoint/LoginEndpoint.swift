@@ -5,8 +5,6 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
-import SharedAPI
-
 struct LoginEndpoint: Endpoint {
     private let requestBody: LoginRequestBody
     

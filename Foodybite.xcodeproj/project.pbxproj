@@ -153,6 +153,8 @@
 		0F447CCF28FB1A020026C5DB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CCE28FB1A020026C5DB /* APIService.swift */; };
 		0F447CD528FB1A850026C5DB /* ResourceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */; };
 		0F4AB0F129BB20B5004D338F /* GetReviewsServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AB0F029BB20B5004D338F /* GetReviewsServiceStub.swift */; };
+		0F4E0E7529D4407400A4508A /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7429D4407400A4508A /* RequestMethod.swift */; };
+		0F4E0E7729D4408B00A4508A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E7629D4408B00A4508A /* NetworkError.swift */; };
 		0F4F6D7D29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */; };
 		0F4F6D7E29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */; };
 		0F53B86D29AB4CFD00DE5E13 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
@@ -743,6 +745,8 @@
 		0F447CD128FB1A2A0026C5DB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoaderSpy.swift; sourceTree = "<group>"; };
 		0F4AB0F029BB20B5004D338F /* GetReviewsServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsServiceStub.swift; sourceTree = "<group>"; };
+		0F4E0E7429D4407400A4508A /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		0F4E0E7629D4408B00A4508A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0F4F6D7B29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F4F6D7C29ACDDC5007BBA8C /* test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_profileViewWhenGetReviewsStateIsSuccessAndGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1640,6 +1644,7 @@
 		0F447CB328FAC2940026C5DB /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
+				0F4E0E7329D4406600A4508A /* Helpers */,
 				0F0BDA3028F8411900E91FD0 /* Endpoint.swift */,
 				0FF7C65B29B1E46200622E9C /* RefreshTokenEndpoint.swift */,
 				0FF7C65F29B1E5B800622E9C /* LoginEndpoint.swift */,
@@ -1735,6 +1740,15 @@
 			isa = PBXGroup;
 			children = (
 				0F447CD428FB1A850026C5DB /* ResourceLoaderSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F4E0E7329D4406600A4508A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F4E0E7429D4407400A4508A /* RequestMethod.swift */,
+				0F4E0E7629D4408B00A4508A /* NetworkError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3479,11 +3493,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F4E0E7529D4407400A4508A /* RequestMethod.swift in Sources */,
 				0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */,
 				0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */,
 				0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */,
 				0F0BDA3128F8411900E91FD0 /* Endpoint.swift in Sources */,
 				0FF7C65C29B1E46200622E9C /* RefreshTokenEndpoint.swift in Sources */,
+				0F4E0E7729D4408B00A4508A /* NetworkError.swift in Sources */,
 				0F8961902928C01E00FFDC48 /* RemoteUser.swift in Sources */,
 				0F73EC8A292F73540025B237 /* ChangePasswordRequestBody.swift in Sources */,
 				0F447CAC28FAC1580026C5DB /* RemoteStore.swift in Sources */,

@@ -23,7 +23,7 @@ final class APIServiceTests: XCTestCase {
     func assertURLComponents(
         urlRequest: URLRequest,
         path: String,
-        method: RequestMethod,
+        method: FoodybiteNetworking.RequestMethod,
         body: Encodable? = nil,
         file: StaticString = #filePath,
         line: UInt = #line

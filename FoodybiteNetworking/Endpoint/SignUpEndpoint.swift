@@ -5,9 +5,6 @@
 //  Created by Marian Stanciulica on 13.10.2022.
 //
 
-import Foundation
-import SharedAPI
-
 struct SignUpEndpoint: Endpoint {
     private let requestBody: SignUpRequestBody
     
