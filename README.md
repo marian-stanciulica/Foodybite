@@ -4,7 +4,6 @@
 
 This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribbble.com: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
 
-## Summary
 1. [Motivation](#motivation)
 2. [Architecture](#architecture)
     1. [Overview](#overview)
@@ -27,7 +26,7 @@ This beautiful design was made available by [Yagnesh P](https://www.behance.net/
 
 ## Motivation
 
-In 2022, I felt that it was the right time to dive deeper in `SwiftUI` since I had seen the potential of the framework and my curiosity drove me to use it in a larger project as I had already been using it for testing its functionalities.
+The initial spark of this project was when I felt it was the right time to dive deeper in `SwiftUI` since I had seen the potential of the framework and my curiosity drove me to use it in a larger project as I had already been using it for testing its functionalities.
 
 After finishing the UI, the next challenge I gave to myself was to design the app in the best possible way using all the best practices in order to create a high quality project and sharp my skills. At the same time, my interest in TDD and modular design were emerging, that's the reason I only used TDD when writing all modules besides UI (used it for snapshot tests afterwards 😀). 
 
@@ -41,18 +40,24 @@ Thank you for reading and enjoy! 🚀
 
 ### Overview
 
-![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
+For this project, I chose to organize the project into independent frameworks using horizontal slicing and break down the app into layers, respecting the dependency rule:
 
-Modules:
-- [Shared API](#shared-api)
-- [Networking](#networking)
-- [Places](#places)
-- [Persistence](#persistence)
-- [Location](#location)
-- [Domain](#domain)
-- [Presentation](#presentation)
-- [UI](#ui)
-- [Main](#main)
+> ❗️ High-level modules should not depend on lower-level modules and lower-level modules should only communicate and know about the next higher-level layer.
+
+I think it's the best approach for this project since vertical slicing is more suitable for larger projects with feature teams. Also, the number of features isn't that high in order to make the layers bloated with a large number of classes and become unmanageable. 
+
+The following diagram provides a top-level view with all modules from this project along with their dependencies on other modules:
+1. [Shared API](#shared-api)
+2. [Networking](#networking)
+3. [Places](#places)
+4. [Persistence](#persistence)
+5. [Location](#location)
+6. [Domain](#domain)
+7. [Presentation](#presentation)
+8. [UI](#ui)
+9. [Main](#main)
+
+![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
 
 ### Shared API
 
