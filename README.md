@@ -681,6 +681,8 @@ public protocol PlaceDetailsCache {
 
 ### Main
 
+This module is responsible for instantiation and composing all independent modules in a centralized place which simplifies the management of modules, components and their dependencies, thus removing the need for them to communicate directly, increasing the composability and extensibility of the system (`Open/Closed Principle`). 
+
 #### SearchNearbyServiceWithFallbackComposite
 
 I used the `Composite` design pattern to compose two strategies of fetching nearby places using the `SearchNearbyService` abstraction.
