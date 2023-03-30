@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct ReviewView: View {
     @StateObject var viewModel: ReviewViewModel

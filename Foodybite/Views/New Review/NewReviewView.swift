@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct NewReviewView<SelectedView: View>: View {
     @Binding var currentPage: Page

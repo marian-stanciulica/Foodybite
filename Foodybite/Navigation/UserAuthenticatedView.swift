@@ -7,6 +7,7 @@
 
 import Domain
 import SwiftUI
+import FoodybitePresentation
 
 struct UserAuthenticatedView: View {
     @Binding var loggedInUserID: String?

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct SelectedRestaurantView: View {
     let photoView: PhotoView

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct HomeSearchView<SearchCriteriaView: View>: View {
     @Binding var searchText: String

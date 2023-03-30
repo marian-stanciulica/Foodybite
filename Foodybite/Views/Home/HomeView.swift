@@ -7,6 +7,7 @@
 
 import Domain
 import SwiftUI
+import FoodybitePresentation
 
 struct HomeView<Cell: View, SearchView: View>: View {
     @StateObject var viewModel: HomeViewModel

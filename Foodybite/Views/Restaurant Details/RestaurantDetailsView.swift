@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct RestaurantDetailsView: View {
     @StateObject var viewModel: RestaurantDetailsViewModel

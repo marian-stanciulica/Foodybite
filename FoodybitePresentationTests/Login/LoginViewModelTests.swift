@@ -6,8 +6,8 @@
 //
 
 import XCTest
-import Foodybite
 import Domain
+import FoodybitePresentation
 
 final class LoginViewModelTests: XCTestCase {
     

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Domain
-import FoodybiteNetworking
+import FoodybitePresentation
 
 struct AuthFlowView {
     

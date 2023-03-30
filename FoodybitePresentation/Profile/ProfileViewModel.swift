@@ -27,7 +27,7 @@ public final class ProfileViewModel: ObservableObject {
     private let accountService: AccountService
     private let getReviewsService: GetReviewsService
     private let goToLogin: () -> Void
-    let user: User
+    public let user: User
 
     @Published public var getReviewsState: State = .idle
     @Published public var deleteAccountError: DeleteAccountError?

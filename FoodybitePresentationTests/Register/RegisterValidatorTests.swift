@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Foodybite
+import FoodybitePresentation
 
 final class RegisterValidatorTests: XCTestCase {
     

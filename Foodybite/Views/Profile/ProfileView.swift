@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct ProfileView<Cell: View>: View {
     @StateObject var viewModel: ProfileViewModel

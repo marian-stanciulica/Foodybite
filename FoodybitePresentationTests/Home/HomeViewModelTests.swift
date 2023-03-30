@@ -7,7 +7,7 @@
 
 import XCTest
 import Domain
-import Foodybite
+import FoodybitePresentation
 
 final class HomeViewModelTests: XCTestCase {
     

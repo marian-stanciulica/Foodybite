@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Domain
+import FoodybitePresentation
 
 struct ChangePasswordView: View {
     @ObservedObject var viewModel: ChangePasswordViewModel

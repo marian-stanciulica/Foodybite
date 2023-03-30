@@ -9,6 +9,7 @@ import XCTest
 import SwiftUI
 import SnapshotTesting
 import Domain
+import FoodybitePresentation
 @testable import Foodybite
 
 final class SearchCriteriaViewSnapshotTests: XCTestCase {
