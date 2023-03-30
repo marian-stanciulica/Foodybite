@@ -31,6 +31,7 @@
 		0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4D929169D6700A8FC8F /* ManagedUser.swift */; };
 		0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */; };
 		0F1C74C229D568F600D4FC80 /* SHA512PasswordHasherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C74C129D568F600D4FC80 /* SHA512PasswordHasherTests.swift */; };
+		0F1C74C429D56CDF00D4FC80 /* SHA512PasswordHasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C74C329D56CDF00D4FC80 /* SHA512PasswordHasher.swift */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -646,6 +647,7 @@
 		0F19B4D929169D6700A8FC8F /* ManagedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUser.swift; sourceTree = "<group>"; };
 		0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		0F1C74C129D568F600D4FC80 /* SHA512PasswordHasherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA512PasswordHasherTests.swift; sourceTree = "<group>"; };
+		0F1C74C329D56CDF00D4FC80 /* SHA512PasswordHasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA512PasswordHasher.swift; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -1181,6 +1183,7 @@
 				0F4E0E7A29D4430400A4508A /* ResourceLoader.swift */,
 				0F4E0E7C29D4432E00A4508A /* ResourceSender.swift */,
 				0F447CAB28FAC1580026C5DB /* RemoteStore.swift */,
+				0F1C74C329D56CDF00D4FC80 /* SHA512PasswordHasher.swift */,
 				0F447CCE28FB1A020026C5DB /* APIService.swift */,
 			);
 			path = FoodybiteNetworking;
@@ -3516,6 +3519,7 @@
 				0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */,
 				0F1FDE5129018B3E00E12B09 /* AuthenticatedURLSessionHTTPClient.swift in Sources */,
 				0F447CCD28FB19DF0026C5DB /* LoginResponse.swift in Sources */,
+				0F1C74C429D56CDF00D4FC80 /* SHA512PasswordHasher.swift in Sources */,
 				0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */,
 				0FF7C66029B1E5B800622E9C /* LoginEndpoint.swift in Sources */,
 				0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */,

@@ -6,16 +6,7 @@
 //
 
 import XCTest
-import CryptoKit
-
-final class SHA512PasswordHasher {
-    
-    static func hash(password: String) -> String {
-        let hashed = SHA512.hash(data: password.data(using: .utf8)!)
-        return hashed.compactMap { String(format: "%02x", $0) } .joined()
-    }
-    
-}
+@testable import FoodybiteNetworking
 
 final class SHA512PasswordHasherTests: XCTestCase {
     
