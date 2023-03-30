@@ -39,6 +39,21 @@ final class RefreshTokenServiceTests: XCTestCase {
             body: RefreshTokenRequestBody(refreshToken: authToken.refreshToken))
     }
 
+    func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnceWhenMultipleClientsRequestIt() async throws {
+        let (sut, loaderSpy, _) = makeSUT(authToken: makeRemoteAuthToken())
+        let numberOfCallingFetchRemoteToken = 10
+        
+        await withThrowingTaskGroup(of: Void.self) { group in
+            (0..<numberOfCallingFetchRemoteToken).forEach { _ in
+                group.addTask {
+                    try await sut.fetchLocallyRemoteToken()
+                }
+            }
+        }
+        
+        XCTAssertEqual(loaderSpy.requests.count, 1)
+    }
+    
     func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
         let expectedAuthToken = makeRemoteAuthToken()
         let (sut, _, _) = makeSUT(authToken: expectedAuthToken)
