@@ -126,7 +126,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let getReviewsServiceSpy = GetReviewsServiceSpy()
         let sut = RestaurantDetailsViewModel(
             input: input,
-            currentLocation: anyLocation,
+            getDistanceInKmFromCurrentLocation: { _ in 353.6 },
             getPlaceDetailsService: getPlaceDetailsServiceSpy,
             getReviewsService: getReviewsServiceSpy
         )
@@ -153,10 +153,6 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private var anyError: NSError {
         NSError(domain: "any error", code: 1)
-    }
-    
-    private var anyLocation: Location {
-        Location(latitude: 2.3, longitude: 4.5)
     }
     
     private func anyPlaceDetails() -> PlaceDetails {

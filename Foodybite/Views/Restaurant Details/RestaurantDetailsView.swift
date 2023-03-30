@@ -101,7 +101,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
             RestaurantDetailsView(
                 viewModel: RestaurantDetailsViewModel(
                     input: .placeIdToFetch("#1"),
-                    currentLocation: Location(latitude: 1.2, longitude: 3.4),
+                    getDistanceInKmFromCurrentLocation: { _ in 3.4 },
                     getPlaceDetailsService: PreviewSearchNearbyService(),
                     getReviewsService: PreviewGetReviewsService()
                 ),

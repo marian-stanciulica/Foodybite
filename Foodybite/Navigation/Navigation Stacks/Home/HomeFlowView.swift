@@ -88,7 +88,9 @@ enum HomeFlowView {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
                 input: .placeIdToFetch(placeID),
-                currentLocation: currentLocation,
+                getDistanceInKmFromCurrentLocation: { referenceLocation in
+                    DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
+                },
                 getPlaceDetailsService: getPlaceDetailsService,
                 getReviewsService: getReviewsService
             ),

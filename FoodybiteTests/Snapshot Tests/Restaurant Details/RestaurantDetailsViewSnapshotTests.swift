@@ -60,11 +60,9 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(getPlaceDetailsState: RestaurantDetailsViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
-        let currentLocation = Location(latitude: 0, longitude: 0)
-        
         let restaurantDetailsViewModel = RestaurantDetailsViewModel(
             input: .placeIdToFetch("place id"),
-            currentLocation: currentLocation,
+            getDistanceInKmFromCurrentLocation: { _ in 123.4 },
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
             getReviewsService: EmptyGetReviewsService()
         )

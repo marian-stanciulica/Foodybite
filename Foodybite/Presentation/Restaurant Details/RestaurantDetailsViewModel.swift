@@ -27,7 +27,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     private let input: Input
-    private let currentLocation: Location
+    private let getDistanceInKmFromCurrentLocation: (Location) -> Double
     private let getPlaceDetailsService: GetPlaceDetailsService
     private let getReviewsService: GetReviewsService
     private var userPlacedReviews = [Review]()
@@ -48,13 +48,18 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     public var distanceInKmFromCurrentLocation: String {
         guard case let .success(placeDetails) = getPlaceDetailsState else { return "" }
 
-        let distance = DistanceSolver.getDistanceInKm(from: currentLocation, to: placeDetails.location)
+        let distance = getDistanceInKmFromCurrentLocation(placeDetails.location)
         return "\(distance)"
     }
     
-    public init(input: Input, currentLocation: Location, getPlaceDetailsService: GetPlaceDetailsService, getReviewsService: GetReviewsService) {
+    public init(
+        input: Input,
+        getDistanceInKmFromCurrentLocation: @escaping (Location) -> Double,
+        getPlaceDetailsService: GetPlaceDetailsService,
+        getReviewsService: GetReviewsService
+    ) {
         self.input = input
-        self.currentLocation = currentLocation
+        self.getDistanceInKmFromCurrentLocation = getDistanceInKmFromCurrentLocation
         self.getPlaceDetailsService = getPlaceDetailsService
         self.getReviewsService = getReviewsService
     }

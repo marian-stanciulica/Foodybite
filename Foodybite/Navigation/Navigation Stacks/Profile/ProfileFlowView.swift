@@ -90,7 +90,9 @@ enum ProfileFlowView {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
                 input: .fetchedPlaceDetails(placeDetails),
-                currentLocation: currentLocation,
+                getDistanceInKmFromCurrentLocation: { referenceLocation in
+                    DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
+                },
                 getPlaceDetailsService: getPlaceDetailsService,
                 getReviewsService: getReviewsService
             ), makePhotoView: { photoReference in
