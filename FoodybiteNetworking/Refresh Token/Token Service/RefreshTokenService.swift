@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RefreshTokenService: TokenRefresher {
+public actor RefreshTokenService: TokenRefresher {
     private let loader: ResourceLoader
     private let tokenStore: TokenStore
     private var refreshTask: Task<AuthToken, Error>?
@@ -17,7 +17,7 @@ public class RefreshTokenService: TokenRefresher {
         self.tokenStore = tokenStore
     }
     
-    public func getLocalToken() throws -> AuthToken {
+    nonisolated public func getLocalToken() throws -> AuthToken {
         return try tokenStore.read()
     }
     
