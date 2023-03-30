@@ -5,6 +5,8 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
+import Foundation
+
 public class RefreshTokenService: TokenRefresher {
     private let loader: ResourceLoader
     private let tokenStore: TokenStore
@@ -25,10 +27,7 @@ public class RefreshTokenService: TokenRefresher {
             return
         }
         
-        let authToken = try tokenStore.read()
-        let body = RefreshTokenRequestBody(refreshToken: authToken.refreshToken)
-        let endpoint = RefreshTokenEndpoint(requestBody: body)
-        let urlRequest = try endpoint.createURLRequest()
+        let urlRequest = try createURLRequest()
         
         let task: Task<AuthToken, Error> = Task {
             defer { refreshTask = nil }
@@ -38,5 +37,12 @@ public class RefreshTokenService: TokenRefresher {
         
         let remoteAuthToken: AuthToken = try await task.value
         try tokenStore.write(remoteAuthToken)
+    }
+    
+    private func createURLRequest() throws -> URLRequest {
+        let authToken = try tokenStore.read()
+        let body = RefreshTokenRequestBody(refreshToken: authToken.refreshToken)
+        let endpoint = RefreshTokenEndpoint(requestBody: body)
+        return try endpoint.createURLRequest()
     }
 }
