@@ -86,6 +86,20 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         }
     }
     
+    func test_send_triggersRefreshingTokensRequestOnlyOnceOnMultiple401StatusCodes() async throws {
+        let urlRequest = try! EndpointStub.stub.createURLRequest()
+        let anyData = anyData()
+        let anyHttpUrlResponse = anyHttpUrlResponse(code: 401)
+        
+        let (sut, httpClientSpy, tokenRefresher) = makeSUT()
+        httpClientSpy.result = .success((anyData, anyHttpUrlResponse))
+        
+        _ = try await sut.send(urlRequest)
+        _ = try await sut.send(urlRequest)
+
+        XCTAssertEqual(tokenRefresher.getRemoteTokenCalledCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: HTTPClient, httClientSpy: HTTPClientSpy, tokenRefresherFake: TokenRefresherFake) {
