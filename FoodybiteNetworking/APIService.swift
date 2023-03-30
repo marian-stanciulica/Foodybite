@@ -36,11 +36,14 @@ extension APIService: LoginService {
 
 extension APIService: SignUpService {
     public func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
+        let hashedPassword = SHA512PasswordHasher.hash(password: password)
+        let hashedConfirmPassword = SHA512PasswordHasher.hash(password: confirmPassword)
+        
         let body = SignUpRequestBody(
             name: name,
             email: email,
-            password: password,
-            confirmPassword: confirmPassword,
+            password: hashedPassword,
+            confirmPassword: hashedConfirmPassword,
             profileImage: profileImage
         )
         let endpoint = SignUpEndpoint(requestBody: body)

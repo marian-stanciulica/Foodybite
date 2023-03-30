@@ -18,12 +18,14 @@ extension APIServiceTests {
     
     func test_signUp_usesSignUpEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
+        let password = anyPassword()
+        let hashedPassword = hash(password: password)
         
         try await sut.signUp(
             name: anyName(),
             email: anyEmail(),
-            password: anyPassword(),
-            confirmPassword: anyPassword(),
+            password: password,
+            confirmPassword: password,
             profileImage: anyData()
         )
         
@@ -32,17 +34,17 @@ extension APIServiceTests {
             urlRequest: sender.requests[0],
             path: "/auth/signup",
             method: .post,
-            body: makeSignUpRequestBody())
+            body: makeSignUpRequestBody(password: hashedPassword, confirmPassword: hashedPassword))
     }
     
     // MARK: - Helpers
     
-    private func makeSignUpRequestBody() -> SignUpRequestBody {
+    private func makeSignUpRequestBody(password: String, confirmPassword: String) -> SignUpRequestBody {
         SignUpRequestBody(
             name: anyName(),
             email: anyEmail(),
-            password: anyPassword(),
-            confirmPassword: anyPassword(),
+            password: password,
+            confirmPassword: confirmPassword,
             profileImage: anyData()
         )
     }
