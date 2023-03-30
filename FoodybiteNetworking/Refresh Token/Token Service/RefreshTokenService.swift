@@ -10,7 +10,7 @@ import Foundation
 public actor RefreshTokenService: TokenRefresher {
     private let loader: ResourceLoader
     private let tokenStore: TokenStore
-    private var refreshTask: Task<AuthToken, Error>?
+    private var refreshTask: Task<Void, Error>?
     
     public init(loader: ResourceLoader, tokenStore: TokenStore) {
         self.loader = loader
@@ -23,20 +23,21 @@ public actor RefreshTokenService: TokenRefresher {
     
     public func fetchLocallyRemoteToken() async throws {
         if let refreshTask = refreshTask {
-            _ = try await refreshTask.value
+            try await refreshTask.value
             return
         }
         
         let urlRequest = try createURLRequest()
         
-        let task: Task<AuthToken, Error> = Task {
-            defer { refreshTask = nil }
-            return try await loader.get(for: urlRequest)
+        let task: Task<Void, Error> = Task {
+            let remoteAuthToken: AuthToken = try await loader.get(for: urlRequest)
+            try tokenStore.write(remoteAuthToken)
+            
+            refreshTask = nil
         }
-        refreshTask = task
         
-        let remoteAuthToken: AuthToken = try await task.value
-        try tokenStore.write(remoteAuthToken)
+        refreshTask = task
+        try await task.value
     }
     
     private func createURLRequest() throws -> URLRequest {
