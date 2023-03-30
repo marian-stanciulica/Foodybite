@@ -30,18 +30,18 @@ final class APIServiceTests: XCTestCase {
     ) {
         let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
 
-        XCTAssertEqual(urlComponents?.scheme, "http", file: file, line: line)
-        XCTAssertEqual(urlComponents?.port, 8080, file: file, line: line)
-        XCTAssertEqual(urlComponents?.host, "localhost", file: file, line: line)
-        XCTAssertEqual(urlComponents?.path, path, file: file, line: line)
-        XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
-        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
+        XCTAssertEqual(urlComponents?.scheme, "http", "Scheme is not http", file: file, line: line)
+        XCTAssertEqual(urlComponents?.port, 8080, "Port is not 8080", file: file, line: line)
+        XCTAssertEqual(urlComponents?.host, "localhost", "Host is not localhost", file: file, line: line)
+        XCTAssertEqual(urlComponents?.path, path, "Path is not \(path)", file: file, line: line)
+        XCTAssertNil(urlComponents?.queryItems, "QueryItems are not nil", file: file, line: line)
+        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, "Method is not \(method.rawValue)", file: file, line: line)
         
         if let body = body {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             let bodyData = try! encoder.encode(body)
-            XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
+            XCTAssertEqual(urlRequest.httpBody, bodyData, "HTTP Body is not correct", file: file, line: line)
         } else if let httpBody = urlRequest.httpBody {
             XCTFail("Body expected to be nil, got \(httpBody) instead")
         }
