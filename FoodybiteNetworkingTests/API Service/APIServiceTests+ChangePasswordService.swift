@@ -17,14 +17,21 @@ extension APIServiceTests {
     }
     
     func test_changePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
-        let currentPassword = anyPassword()
-        let newPassword = anyPassword()
         let (sut, _, sender, _) = makeSUT()
+        
+        let currentPassword = anyPassword()
+        let hashedCurrentPassword = hash(password: currentPassword)
+        
+        let newPassword = anyPassword()
+        let hashedNewPassword = hash(password: newPassword)
+        
+        let confirmPassword = anyPassword()
+        let hashedConfirmPassword = hash(password: confirmPassword)
         
         try await sut.changePassword(
             currentPassword: currentPassword,
             newPassword: newPassword,
-            confirmPassword: newPassword
+            confirmPassword: confirmPassword
         )
         
         XCTAssertEqual(sender.requests.count, 1)
@@ -32,16 +39,21 @@ extension APIServiceTests {
             urlRequest: sender.requests[0],
             path: "/auth/changePassword",
             method: .post,
-            body: makeChangePasswordRequestBody(currentPassword: currentPassword, newPassword: newPassword))
+            body: makeChangePasswordRequestBody(
+                currentPassword: hashedCurrentPassword,
+                newPassword: hashedNewPassword,
+                confirmPassword: hashedConfirmPassword
+            )
+        )
     }
     
     // MARK: - Helpers
     
-    private func makeChangePasswordRequestBody(currentPassword: String, newPassword: String) -> ChangePasswordRequestBody {
+    private func makeChangePasswordRequestBody(currentPassword: String, newPassword: String, confirmPassword: String) -> ChangePasswordRequestBody {
         ChangePasswordRequestBody(
             currentPassword: currentPassword,
             newPassword: newPassword,
-            confirmPassword: newPassword
+            confirmPassword: confirmPassword
         )
     }
 }

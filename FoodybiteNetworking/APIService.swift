@@ -54,9 +54,13 @@ extension APIService: SignUpService {
 
 extension APIService: ChangePasswordService {
     public func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws {
-        let body = ChangePasswordRequestBody(currentPassword: currentPassword,
-                                             newPassword: newPassword,
-                                             confirmPassword: confirmPassword)
+        let hashedCurrentPassword = SHA512PasswordHasher.hash(password: currentPassword)
+        let hashedNewPassword = SHA512PasswordHasher.hash(password: newPassword)
+        let hashedConfirmPassword = SHA512PasswordHasher.hash(password: confirmPassword)
+        
+        let body = ChangePasswordRequestBody(currentPassword: hashedCurrentPassword,
+                                             newPassword: hashedNewPassword,
+                                             confirmPassword: hashedConfirmPassword)
         let endpoint = ChangePasswordEndpoint(requestBody: body)
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
