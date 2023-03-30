@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CryptoKit
 @testable import FoodybiteNetworking
 import Domain
 
@@ -19,6 +20,7 @@ extension APIServiceTests {
     func test_login_usesLoginEndpointToCreateURLRequest() async throws {
         let email = anyEmail()
         let password = anyPassword()
+        let hashedPassword = hash(password: password)
         let (sut, loader, _, _) = makeSUT(response: anyLoginResponse())
         
         _ = try await sut.login(email: email, password: password)
@@ -28,7 +30,7 @@ extension APIServiceTests {
             urlRequest: loader.requests[0],
             path: "/auth/login",
             method: .post,
-            body: LoginRequestBody(email: email, password: password))
+            body: LoginRequestBody(email: email, password: hashedPassword))
     }
     
     func test_login_receiveExpectedLoginResponse() async throws {
@@ -66,5 +68,10 @@ extension APIServiceTests {
     private func anyAuthToken() -> AuthToken {
         AuthToken(accessToken: "any access token",
                          refreshToken: "any refresh token")
+    }
+    
+    private func hash(password: String) -> String {
+        let hashed = SHA512.hash(data: password.data(using: .utf8)!)
+        return hashed.compactMap { String(format: "%02x", $0) } .joined()
     }
 }
