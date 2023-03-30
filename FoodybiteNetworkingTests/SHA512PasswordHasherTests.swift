@@ -21,16 +21,24 @@ final class SHA512PasswordHasherTests: XCTestCase {
     
     func test_hash_hasCorrectHashSizeWhenPasswordIsEmpty() {
         let password = ""
-        let hashed = SHA512PasswordHasher.hash(password: password)
+        let hash = SHA512PasswordHasher.hash(password: password)
         
-        XCTAssertEqual(hashed.count, 128)
+        XCTAssertEqual(hash.count, 128)
     }
     
     func test_hash_hasCorrectHashSizeWhenPasswordIsReallyLong() {
         let password = "qPz5GBjUyxTVUZ6k4Cr5V7RSNTWpGfcUB5jwsfq22WXhpbezH3vNwLyMRQPaxYVJVzhgJ7JpduQSvRmpYvxvWa2qn4WLkxGvaDG3fq9mgB6SThtXutJHDw4q"
-        let hashed = SHA512PasswordHasher.hash(password: password)
+        let hash = SHA512PasswordHasher.hash(password: password)
         
-        XCTAssertEqual(hashed.count, 128)
+        XCTAssertEqual(hash.count, 128)
+    }
+    
+    func test_hash_outputsSameHashWhenHashingTwiceSamePassword() {
+        let password = "qPz5GBjUyxTVUZ6k4Cr5V7RSNTWpGfcUB5"
+        let firstHash = SHA512PasswordHasher.hash(password: password)
+        let secondHash = SHA512PasswordHasher.hash(password: password)
+        
+        XCTAssertEqual(firstHash, secondHash)
     }
     
 }
