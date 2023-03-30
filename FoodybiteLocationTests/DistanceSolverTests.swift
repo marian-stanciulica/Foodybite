@@ -7,7 +7,7 @@
 
 import XCTest
 import Domain
-import Foodybite
+import FoodybiteLocation
 
 final class DistanceSolverTests: XCTestCase {
     

@@ -11,6 +11,7 @@ import FoodybiteNetworking
 import FoodybitePlaces
 import FoodybitePersistence
 import FoodybitePresentation
+import FoodybiteLocation
 
 enum HomeFlowView {
     

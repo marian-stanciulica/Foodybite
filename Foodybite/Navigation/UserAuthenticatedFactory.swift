@@ -10,6 +10,7 @@ import API_Infra
 import FoodybitePlaces
 import FoodybiteNetworking
 import FoodybitePersistence
+import FoodybiteLocation
 
 final class UserAuthenticatedFactory {
     let authenticatedApiService: APIService = {

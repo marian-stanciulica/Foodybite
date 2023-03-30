@@ -8,6 +8,7 @@
 import SwiftUI
 import Domain
 import FoodybitePresentation
+import FoodybiteLocation
 
 struct RootView: View {
     private let rootFactory = RootFactory()
