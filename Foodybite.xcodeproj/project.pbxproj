@@ -76,6 +76,7 @@
 		0F1C755029D5C7C100D4FC80 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41765298D5B1E00F2BF92 /* LocationManager.swift */; };
 		0F1C755129D5C7C100D4FC80 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */; };
 		0F1C755229D5C7C100D4FC80 /* DistanceSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F423AAC29858F1F009EB345 /* DistanceSolver.swift */; };
+		0F1C756229D5C93000D4FC80 /* FoodybiteUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1C755A29D5C93000D4FC80 /* FoodybiteUI.framework */; };
 		0F1FDE3A2901570200E12B09 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */; };
 		0F1FDE3C2901572700E12B09 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3B2901572700E12B09 /* AuthToken.swift */; };
 		0F1FDE3F2901591100E12B09 /* RefreshTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */; };
@@ -505,6 +506,13 @@
 			remoteGlobalIDString = 0F1C753729D5C72B00D4FC80;
 			remoteInfo = FoodybiteLocation;
 		};
+		0F1C756329D5C93000D4FC80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F1C755929D5C93000D4FC80;
+			remoteInfo = FoodybiteUI;
+		};
 		0F2BACBE29829D3B006D4A7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0F7137AF2841F8340058757A /* Project object */;
@@ -702,6 +710,8 @@
 		0F1C74D129D5B64100D4FC80 /* FoodybitePresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1C753829D5C72B00D4FC80 /* FoodybiteLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybiteLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1C753F29D5C72B00D4FC80 /* FoodybiteLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteLocationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1C755A29D5C93000D4FC80 /* FoodybiteUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybiteUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1C756129D5C93000D4FC80 /* FoodybiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		0F1FDE3E2901591100E12B09 /* RefreshTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenServiceTests.swift; sourceTree = "<group>"; };
@@ -1155,6 +1165,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0F1C755729D5C93000D4FC80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F1C755E29D5C93000D4FC80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F1C756229D5C93000D4FC80 /* FoodybiteUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0F2BACB629829D3B006D4A7F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1434,6 +1459,20 @@
 				0F423AAA29858BA9009EB345 /* DistanceSolverTests.swift */,
 			);
 			path = FoodybiteLocationTests;
+			sourceTree = "<group>";
+		};
+		0F1C755B29D5C93000D4FC80 /* FoodybiteUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FoodybiteUI;
+			sourceTree = "<group>";
+		};
+		0F1C756529D5C93000D4FC80 /* FoodybiteUITests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FoodybiteUITests;
 			sourceTree = "<group>";
 		};
 		0F1FDE3D290158F400E12B09 /* Token Service */ = {
@@ -2119,6 +2158,8 @@
 				0F1C754329D5C72B00D4FC80 /* FoodybiteLocationTests */,
 				0F1C74CB29D5B64100D4FC80 /* FoodybitePresentation */,
 				0F1C74D529D5B64100D4FC80 /* FoodybitePresentationTests */,
+				0F1C755B29D5C93000D4FC80 /* FoodybiteUI */,
+				0F1C756529D5C93000D4FC80 /* FoodybiteUITests */,
 				0F2BACBA29829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
 				0FC73C5229B6097C005879B8 /* FoodybiteCacheIntegrationTests */,
 				0F6B296529C4645100F8E0F6 /* Foodybite.app */,
@@ -2139,6 +2180,8 @@
 				0F1C74D129D5B64100D4FC80 /* FoodybitePresentationTests.xctest */,
 				0F1C753829D5C72B00D4FC80 /* FoodybiteLocation.framework */,
 				0F1C753F29D5C72B00D4FC80 /* FoodybiteLocationTests.xctest */,
+				0F1C755A29D5C93000D4FC80 /* FoodybiteUI.framework */,
+				0F1C756129D5C93000D4FC80 /* FoodybiteUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3025,6 +3068,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0F1C755529D5C93000D4FC80 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0F34A12029D4508300B36428 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -3199,6 +3249,42 @@
 			name = FoodybiteLocationTests;
 			productName = FoodybiteLocationTests;
 			productReference = 0F1C753F29D5C72B00D4FC80 /* FoodybiteLocationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0F1C755929D5C93000D4FC80 /* FoodybiteUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F1C756929D5C93000D4FC80 /* Build configuration list for PBXNativeTarget "FoodybiteUI" */;
+			buildPhases = (
+				0F1C755529D5C93000D4FC80 /* Headers */,
+				0F1C755629D5C93000D4FC80 /* Sources */,
+				0F1C755729D5C93000D4FC80 /* Frameworks */,
+				0F1C755829D5C93000D4FC80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoodybiteUI;
+			productName = FoodybiteUI;
+			productReference = 0F1C755A29D5C93000D4FC80 /* FoodybiteUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0F1C756029D5C93000D4FC80 /* FoodybiteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F1C756C29D5C93000D4FC80 /* Build configuration list for PBXNativeTarget "FoodybiteUITests" */;
+			buildPhases = (
+				0F1C755D29D5C93000D4FC80 /* Sources */,
+				0F1C755E29D5C93000D4FC80 /* Frameworks */,
+				0F1C755F29D5C93000D4FC80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F1C756429D5C93000D4FC80 /* PBXTargetDependency */,
+			);
+			name = FoodybiteUITests;
+			productName = FoodybiteUITests;
+			productReference = 0F1C756129D5C93000D4FC80 /* FoodybiteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */ = {
@@ -3420,6 +3506,12 @@
 					0F1C753E29D5C72B00D4FC80 = {
 						CreatedOnToolsVersion = 14.2;
 					};
+					0F1C755929D5C93000D4FC80 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					0F1C756029D5C93000D4FC80 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					0F2BACB829829D3B006D4A7F = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 0F7137B62841F8340058757A;
@@ -3485,6 +3577,8 @@
 				0F1C753E29D5C72B00D4FC80 /* FoodybiteLocationTests */,
 				0F1C74C929D5B64100D4FC80 /* FoodybitePresentation */,
 				0F1C74D029D5B64100D4FC80 /* FoodybitePresentationTests */,
+				0F1C755929D5C93000D4FC80 /* FoodybiteUI */,
+				0F1C756029D5C93000D4FC80 /* FoodybiteUITests */,
 				0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
 				0FC73C5029B6097C005879B8 /* FoodybiteCacheIntegrationTests */,
 			);
@@ -3640,6 +3734,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0F1C753D29D5C72B00D4FC80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F1C755829D5C93000D4FC80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F1C755F29D5C93000D4FC80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3915,6 +4023,20 @@
 			files = (
 				0F1C754D29D5C7B900D4FC80 /* LocationProviderTests.swift in Sources */,
 				0F1C754E29D5C7B900D4FC80 /* DistanceSolverTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F1C755629D5C93000D4FC80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F1C755D29D5C93000D4FC80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4194,6 +4316,11 @@
 			isa = PBXTargetDependency;
 			target = 0F1C753729D5C72B00D4FC80 /* FoodybiteLocation */;
 			targetProxy = 0F1C755329D5C82F00D4FC80 /* PBXContainerItemProxy */;
+		};
+		0F1C756429D5C93000D4FC80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F1C755929D5C93000D4FC80 /* FoodybiteUI */;
+			targetProxy = 0F1C756329D5C93000D4FC80 /* PBXContainerItemProxy */;
 		};
 		0F2BACBF29829D3B006D4A7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4779,6 +4906,128 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteLocationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0F1C756A29D5C93000D4FC80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ULSKSPKFH7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0F1C756B29D5C93000D4FC80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ULSKSPKFH7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0F1C756D29D5C93000D4FC80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ULSKSPKFH7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0F1C756E29D5C93000D4FC80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ULSKSPKFH7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marian.FoodybiteUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -5542,6 +5791,24 @@
 			buildConfigurations = (
 				0F1C754B29D5C72B00D4FC80 /* Debug */,
 				0F1C754C29D5C72B00D4FC80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F1C756929D5C93000D4FC80 /* Build configuration list for PBXNativeTarget "FoodybiteUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F1C756A29D5C93000D4FC80 /* Debug */,
+				0F1C756B29D5C93000D4FC80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F1C756C29D5C93000D4FC80 /* Build configuration list for PBXNativeTarget "FoodybiteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F1C756D29D5C93000D4FC80 /* Debug */,
+				0F1C756E29D5C93000D4FC80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
