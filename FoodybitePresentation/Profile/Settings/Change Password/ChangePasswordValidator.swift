@@ -9,7 +9,7 @@ import Foundation
 
 public class ChangePasswordValidator {
     public enum Error: Swift.Error, Equatable {
-        case passwordError(PasswordValidator.Error)
+        case passwordError(PasswordValidator)
         case serverError
         
         public func toString() -> String {
@@ -24,7 +24,7 @@ public class ChangePasswordValidator {
     
     static func validate(currentPassword: String, newPassword: String, confirmPassword: String) throws {
         if currentPassword.isEmpty {
-            throw PasswordValidator.Error.empty
+            throw PasswordValidator.empty
         }
         
         try PasswordValidator.validate(password: newPassword, confirmPassword: confirmPassword)

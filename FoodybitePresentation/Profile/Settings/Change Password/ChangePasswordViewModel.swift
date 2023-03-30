@@ -43,7 +43,7 @@ public final class ChangePasswordViewModel: ObservableObject {
         } catch {
             if let error = error as? ChangePasswordValidator.Error {
                 result  = .failure(error)
-            } else if let error = error as? PasswordValidator.Error {
+            } else if let error = error as? PasswordValidator {
                 result = .failure(.passwordError(error))
             }
         }

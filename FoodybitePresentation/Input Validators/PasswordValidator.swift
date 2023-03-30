@@ -7,41 +7,31 @@
 
 import Foundation
 
-public class PasswordValidator {
-    public enum Error: String, Swift.Error, Equatable {
-        case empty = "Empty Password"
-        case tooShortPassword = "Too short password"
-        case passwordDoesntContainUpperLetter = "Password should contain at least one uppercase letter"
-        case passwordDoesntContainLowerLetter = "Password should contain at least one lowercase letter"
-        case passwordDoesntContainDigits = "Password should contain at least one digit"
-        case passwordDoesntContainSpecialCharacter = "Password should contain at least one special character"
-        case passwordsDontMatch = "Passwords do not match"
-    }
-    
-    private init() {}
+public enum PasswordValidator: String, Swift.Error, Equatable {
+    case empty = "Empty Password"
+    case tooShortPassword = "Too short password"
+    case passwordDoesntContainUpperLetter = "Password should contain at least one uppercase letter"
+    case passwordDoesntContainLowerLetter = "Password should contain at least one lowercase letter"
+    case passwordDoesntContainDigits = "Password should contain at least one digit"
+    case passwordDoesntContainSpecialCharacter = "Password should contain at least one special character"
+    case passwordsDontMatch = "Passwords do not match"
     
     static func validate(password: String, confirmPassword: String) throws {
         if !containsUpperLetter(password: password) {
-            throw Error.passwordDoesntContainUpperLetter
+            throw passwordDoesntContainUpperLetter
         } else if !containsLowerLetter(password: password) {
-            throw Error.passwordDoesntContainLowerLetter
+            throw passwordDoesntContainLowerLetter
         } else if !containsDigits(password: password) {
-            throw Error.passwordDoesntContainDigits
+            throw passwordDoesntContainDigits
         } else if !containsSpecialCharacters(password: password) {
-            throw Error.passwordDoesntContainSpecialCharacter
+            throw passwordDoesntContainSpecialCharacter
         } else if password.count < 8 {
-            throw Error.tooShortPassword
+            throw tooShortPassword
         }
         
         if password != confirmPassword {
-            throw Error.passwordsDontMatch
+            throw passwordsDontMatch
         }
-    }
-    
-    private static func isValid(email: String) -> Bool {
-        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: email)
     }
     
     private static func containsUpperLetter(password: String) -> Bool {

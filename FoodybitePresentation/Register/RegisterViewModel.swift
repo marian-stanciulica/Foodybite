@@ -46,7 +46,7 @@ public class RegisterViewModel: ObservableObject {
         } catch {
             if let error = error as? RegisterValidator.Error {
                 registerResult = .failure(error)
-            } else if let error = error as? PasswordValidator.Error {
+            } else if let error = error as? PasswordValidator {
                 registerResult = .failure(.passwordError(error))
             }
         }

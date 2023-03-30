@@ -9,7 +9,7 @@ import Foundation
 
 public class RegisterValidator {
     public enum Error: Swift.Error, Equatable {
-        case passwordError(PasswordValidator.Error)
+        case passwordError(PasswordValidator)
         case serverError
         case emptyName
         case emptyEmail
