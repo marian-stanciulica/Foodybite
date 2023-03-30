@@ -1271,7 +1271,6 @@
 				0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */,
 				0F7E23CE2920E329005196EA /* Navigation */,
 				0FABA445298BF7EC00EACFE5 /* Location */,
-				0F73ECA6292FA0820025B237 /* Presentation */,
 			);
 			path = FoodybiteTests;
 			sourceTree = "<group>";
@@ -2100,7 +2099,6 @@
 				A2032BA2284205B600F8D8C8 /* Components */,
 				0F7E23D12920E837005196EA /* Navigation */,
 				0FD41762298D5AE100F2BF92 /* Location */,
-				0FB0E111291F861E0058ABCB /* Presentation */,
 				A2032BA0284204A700F8D8C8 /* Views */,
 				A2032B9F2842049300F8D8C8 /* Resources */,
 			);
@@ -2169,13 +2167,6 @@
 				0F73ECA3292F9D8C0025B237 /* PasswordValidatorTests.swift */,
 			);
 			path = "Input Validators";
-			sourceTree = "<group>";
-		};
-		0F73ECA6292FA0820025B237 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presentation;
 			sourceTree = "<group>";
 		};
 		0F73ECAA292FA1DA0025B237 /* Change Password */ = {
@@ -2430,13 +2421,6 @@
 				0FABD5262996392500918251 /* NewReviewViewModelTests.swift */,
 			);
 			path = "New Review";
-			sourceTree = "<group>";
-		};
-		0FB0E111291F861E0058ABCB /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presentation;
 			sourceTree = "<group>";
 		};
 		0FB0E114291F87260058ABCB /* Register */ = {
