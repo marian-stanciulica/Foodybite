@@ -11,6 +11,7 @@ import FoodybiteNetworking
 import FoodybitePlaces
 import FoodybitePresentation
 import FoodybiteLocation
+import FoodybiteUI
 
 enum ProfileFlowView {
     

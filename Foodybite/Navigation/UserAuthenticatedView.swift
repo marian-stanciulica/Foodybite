@@ -9,6 +9,7 @@ import Domain
 import SwiftUI
 import FoodybitePresentation
 import FoodybiteLocation
+import FoodybiteUI
 
 struct UserAuthenticatedView: View {
     @Binding var loggedInUserID: String?
@@ -97,7 +98,6 @@ struct UserAuthenticatedView: View {
     @ViewBuilder private func makeNewReviewView(currentLocation: Location) -> some View {
         TabBarPageView(page: $tabRouter.currentPage) {
             NewReviewView(
-                currentPage: $tabRouter.currentPage,
                 plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
                     autocompletePlacesService: userAuthenticatedFactory.placesService,

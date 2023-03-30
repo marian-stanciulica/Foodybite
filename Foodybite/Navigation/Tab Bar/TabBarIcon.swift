@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FoodybiteUI
 
 struct TabBarIcon: View {
     @Binding var currentPage: Page
