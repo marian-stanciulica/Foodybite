@@ -10,7 +10,6 @@ import Foundation
 public class AuthenticatedURLSessionHTTPClient: HTTPClient {
     private let decoratee: HTTPClient
     private let tokenRefresher: TokenRefresher
-    private var fetchingNewTokensStarted = false
     
     public init(decoratee: HTTPClient, tokenRefresher: TokenRefresher) {
         self.decoratee = decoratee
@@ -21,8 +20,7 @@ public class AuthenticatedURLSessionHTTPClient: HTTPClient {
         let signedURLRequest = try sign(request: urlRequest)
         let (data, response) = try await decoratee.send(signedURLRequest)
         
-        if response.statusCode == 401 && !fetchingNewTokensStarted {
-            fetchingNewTokensStarted = true
+        if response.statusCode == 401 {
             try await tokenRefresher.fetchLocallyRemoteToken()
             let signedURLRequest = try sign(request: urlRequest)
             return try await decoratee.send(signedURLRequest)
