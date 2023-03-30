@@ -371,7 +371,64 @@ The following diagram represents the networking layer talking with my backend ap
 
 #### 1. Refresh Token Strategy
 
+The following diagram presents the entire state machine for making requests that require authentication.
+
 ![Refresh Token State Machine](./Diagrams/Refresh_Token_State_Machine.svg)
+
+In order to avoid making multiple `Refresh Tokens` requests when they were requested multiple times in parallel, I stored the first task in an instance property. The first request creates the task and the following requests are just waiting for the task value (in this case, the value is `Void`, so the rest of the requests only waits for the completion of the task).
+
+```swift
+public func fetchLocallyRemoteToken() async throws {
+    if let refreshTask = refreshTask {
+        return try await refreshTask.value
+    }
+    
+    let urlRequest = try createURLRequest()
+    
+    let task: Task<Void, Error> = Task {
+        let remoteAuthToken: AuthToken = try await loader.get(for: urlRequest)
+        try tokenStore.write(remoteAuthToken)
+        
+        refreshTask = nil
+    }
+    
+    refreshTask = task
+    try await task.value
+}
+```
+
+I used a `TaskGroup` for testing this behaviour to trigger multiple requests for `AuthToken` in parallel, validating that only one request is actually made and all the other requests receive the token stored by the first request.
+
+```swift
+func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
+    let (sut, loaderSpy, _) = makeSUT(authToken: makeRemoteAuthToken())
+    
+    await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
+    
+    XCTAssertEqual(loaderSpy.requests.count, 1)
+}
+
+private func requestRemoteAuthTokenInParallel(on sut: TokenRefresher, numberOfRequests: Int) async {
+    await withThrowingTaskGroup(of: Void.self) { group in
+        (0..<numberOfRequests).forEach { _ in
+            group.addTask {
+                try await sut.fetchLocallyRemoteToken()
+            }
+        }
+    }
+}
+```
+
+Additionally, `RefreshTokenService` is an actor because I want to prevent potential race conditions that can occur while mutating the `refreshTask` instance property from different threads. Also, the actor is instantiated in the composition root only once, meaning it has a singleton lifetime, preventing multiple instances of `RefreshTokenService` to make concurrent `refreshTokens` requests.
+
+```swift
+public actor RefreshTokenService: TokenRefresher {
+    private let loader: ResourceLoader
+    private let tokenStore: TokenStore
+    private var refreshTask: Task<Void, Error>?
+    ....
+}
+```
 
 #### 2. Network Request Flow
 
