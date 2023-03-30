@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class LoginViewSnapshotTests: XCTestCase {
  
@@ -39,14 +38,12 @@ final class LoginViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(email: String = "", password: String = "", state: LoginViewModel.State) -> UIViewController {
+    private func makeSUT(email: String = "", password: String = "", state: LoginViewModel.State) -> LoginView {
         let viewModel = LoginViewModel(loginService: EmptyLoginService(), goToMainTab: { _ in })
         viewModel.email = email
         viewModel.password = password
         viewModel.state = state
-        let registerView = LoginView(viewModel: viewModel, goToSignUp: {})
-        let sut = UIHostingController(rootView: registerView)
-        return sut
+        return LoginView(viewModel: viewModel, goToSignUp: {})
     }
     
     private class EmptyLoginService: LoginService {

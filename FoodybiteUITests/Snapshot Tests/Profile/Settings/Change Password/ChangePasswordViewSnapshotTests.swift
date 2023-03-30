@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class ChangePasswordViewSnapshotTests: XCTestCase {
     
@@ -47,15 +46,13 @@ final class ChangePasswordViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(currentPassword: String = "", newPassword: String = "", confirmPassword: String = "", state: ChangePasswordViewModel.Result) -> UIViewController {
+    private func makeSUT(currentPassword: String = "", newPassword: String = "", confirmPassword: String = "", state: ChangePasswordViewModel.Result) -> ChangePasswordView {
         let viewModel = ChangePasswordViewModel(changePasswordService: EmptyChangePasswordService())
         viewModel.result = state
         viewModel.currentPassword = currentPassword
         viewModel.newPassword = newPassword
         viewModel.confirmPassword = confirmPassword
-        let settingsView = ChangePasswordView(viewModel: viewModel)
-        let sut = UIHostingController(rootView: settingsView)
-        return sut
+        return ChangePasswordView(viewModel: viewModel)
     }
     
     private class EmptyChangePasswordService: ChangePasswordService {

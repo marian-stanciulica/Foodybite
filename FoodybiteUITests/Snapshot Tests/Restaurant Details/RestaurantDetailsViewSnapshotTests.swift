@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     
@@ -60,7 +59,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(getPlaceDetailsState: RestaurantDetailsViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
+    private func makeSUT(getPlaceDetailsState: RestaurantDetailsViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> RestaurantDetailsView {
         let restaurantDetailsViewModel = RestaurantDetailsViewModel(
             input: .placeIdToFetch("place id"),
             getDistanceInKmFromCurrentLocation: { _ in 123.4 },
@@ -75,15 +74,13 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
         
-        let restaurantDetailsView = RestaurantDetailsView(
+        return RestaurantDetailsView(
             viewModel: restaurantDetailsViewModel,
             makePhotoView: { _ in
                 PhotoView(viewModel: photoViewModel)
             },
             showReviewView: {}
         )
-        let sut = UIHostingController(rootView: restaurantDetailsView)
-        return sut
     }
     
     private class EmptyGetReviewsService: GetReviewsService {

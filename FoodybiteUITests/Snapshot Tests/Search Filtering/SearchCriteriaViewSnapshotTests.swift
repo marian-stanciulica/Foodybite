@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class SearchCriteriaViewSnapshotTests: XCTestCase {
     
@@ -23,14 +22,12 @@ final class SearchCriteriaViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(radius: CGFloat, starsNumber: Int) -> UIViewController {
+    private func makeSUT(radius: CGFloat, starsNumber: Int) -> SearchCriteriaView {
         let viewModel = SearchCriteriaViewModel(
             userPreferences: makeUserPreferences(),
             userPreferencesSaver: EmptyUserPreferencesSaver()
         )
-        let registerView = SearchCriteriaView(viewModel: viewModel)
-        let sut = UIHostingController(rootView: registerView)
-        return sut
+        return SearchCriteriaView(viewModel: viewModel)
     }
     
     private func makeUserPreferences() -> UserPreferences {

@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class EditProfileViewSnapshotTests: XCTestCase {
     
@@ -47,15 +46,13 @@ final class EditProfileViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(name: String = "", email: String = "", profileImage: Data? = nil, state: EditProfileViewModel.State) -> UIViewController {
+    private func makeSUT(name: String = "", email: String = "", profileImage: Data? = nil, state: EditProfileViewModel.State) -> EditProfileView {
         let viewModel = EditProfileViewModel(accountService: EmptyAccountService())
         viewModel.name = name
         viewModel.email = email
         viewModel.profileImage = profileImage
         viewModel.state = state
-        let editProfileView = EditProfileView(viewModel: viewModel)
-        let sut = UIHostingController(rootView: editProfileView)
-        return sut
+        return EditProfileView(viewModel: viewModel)
     }
     
     private class EmptyAccountService: AccountService {

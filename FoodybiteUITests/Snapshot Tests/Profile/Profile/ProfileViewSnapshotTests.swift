@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class ProfileViewSnapshotTests: XCTestCase {
     
@@ -101,17 +100,15 @@ final class ProfileViewSnapshotTests: XCTestCase {
         getReviewsState: ProfileViewModel.State,
         getPlaceDetailsState: RestaurantReviewCellViewModel.State = .idle,
         fetchPhotoState: PhotoViewModel.State = .isLoading
-    ) -> UIViewController {
+    ) -> ProfileView<RestaurantReviewCellView> {
         let viewModel = ProfileViewModel(accountService: EmptyAccountService(), getReviewsService: EmptyGetReviewsService(), user: user, goToLogin: {})
         viewModel.getReviewsState = getReviewsState
-        let profileView = ProfileView(
+        return ProfileView(
             viewModel: viewModel,
             cell: { self.makeCell(review: $0, getPlaceDetailsState: getPlaceDetailsState, fetchPhotoState: fetchPhotoState) },
             goToSettings: {},
             goToEditProfile: {}
         )
-        let sut = UIHostingController(rootView: profileView)
-        return sut
     }
     
     private func makeCell(

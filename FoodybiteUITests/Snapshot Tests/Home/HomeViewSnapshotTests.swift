@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class HomeViewSnapshotTests: XCTestCase {
     
@@ -70,7 +69,7 @@ final class HomeViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(searchText: String = "", getNearbyPlacesState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> UIViewController {
+    private func makeSUT(searchText: String = "", getNearbyPlacesState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> HomeView<RestaurantCell, HomeSearchView<SearchCriteriaView>> {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
         let homeViewModel = HomeViewModel(searchNearbyService: EmptySearchNearbyService(),
@@ -109,8 +108,8 @@ final class HomeViewSnapshotTests: XCTestCase {
                 )
             }
         )
-        let sut = UIHostingController(rootView: homeView)
-        return sut
+
+        return homeView
     }
     
     private func makeNearbyPlaces() -> [NearbyPlace] {

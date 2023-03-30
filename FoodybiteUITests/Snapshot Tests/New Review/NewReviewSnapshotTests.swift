@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class NewReviewSnapshotTests: XCTestCase {
     
@@ -84,7 +83,7 @@ final class NewReviewSnapshotTests: XCTestCase {
         getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle,
         fetchPhotoState: PhotoViewModel.State = .isLoading,
         postReviewState: NewReviewViewModel.PostReviewState = .idle
-    ) -> UIViewController {
+    ) -> NewReviewView<SelectedRestaurantView> {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
             getPlaceDetailsService: EmptyGetPlaceDetailsService(),
@@ -99,13 +98,11 @@ final class NewReviewSnapshotTests: XCTestCase {
         viewModel.getPlaceDetailsState = getPlaceDetailsState
         viewModel.postReviewState = postReviewState
         
-        let newReviewView = NewReviewView(
+        return NewReviewView(
             plusButtonActive: .constant(true),
             viewModel: viewModel,
             selectedView: { self.makeCell(placeDetails: $0, fetchPhotoState: fetchPhotoState) }
         )
-        let sut = UIHostingController(rootView: newReviewView)
-        return sut
     }
     
     private func makeCell(placeDetails: PlaceDetails, fetchPhotoState: PhotoViewModel.State) -> SelectedRestaurantView {

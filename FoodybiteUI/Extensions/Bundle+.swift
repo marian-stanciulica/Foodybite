@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bundle {
+public extension Bundle {
     static var current: Bundle {
         class BundleIdentifier { }
         return Bundle(for: BundleIdentifier.self)

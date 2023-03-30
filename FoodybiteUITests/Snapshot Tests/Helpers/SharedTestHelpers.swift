@@ -6,18 +6,20 @@
 //
 
 import XCTest
+import SwiftUI
 import SnapshotTesting
 
-func assertLightSnapshot(
-    matching value: UIViewController,
+func assertLightSnapshot<SomeView: View>(
+    matching value: SomeView,
     as snapshotting: Snapshotting<UIViewController, UIImage>,
     record recording: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line) {
     let trait = UITraitCollection(userInterfaceStyle: .light)
+    let view = UIHostingController(rootView: value)
     
-    assertSnapshot(matching: value,
+    assertSnapshot(matching: view,
                    as: .image(on: .iPhone13, traits: trait),
                    named: "light",
                    record: recording,
@@ -26,16 +28,17 @@ func assertLightSnapshot(
                    line: line)
 }
 
-func assertDarkSnapshot(
-    matching value: UIViewController,
+func assertDarkSnapshot<SomeView: View>(
+    matching value: SomeView,
     as snapshotting: Snapshotting<UIViewController, UIImage>,
     record recording: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line) {
     let trait = UITraitCollection(userInterfaceStyle: .dark)
-    
-    assertSnapshot(matching: value,
+    let view = UIHostingController(rootView: value)
+
+    assertSnapshot(matching: view,
                    as: .image(on: .iPhone13, traits: trait),
                    named: "dark",
                    record: recording,

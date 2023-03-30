@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class ReviewViewSnapshotTests: XCTestCase {
     
@@ -41,14 +40,12 @@ final class ReviewViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(starsNumber: Int = 0, reviewText: String = "", state: ReviewViewModel.State) -> UIViewController {
+    private func makeSUT(starsNumber: Int = 0, reviewText: String = "", state: ReviewViewModel.State) -> ReviewView {
         let viewModel = ReviewViewModel(placeID: "", reviewService: EmptyAddReviewService())
         viewModel.starsNumber = starsNumber
         viewModel.reviewText = reviewText
         viewModel.state = state
-        let registerView = ReviewView(viewModel: viewModel, dismissScreen: {})
-        let sut = UIHostingController(rootView: registerView)
-        return sut
+        return ReviewView(viewModel: viewModel, dismissScreen: {})
     }
     
     private class EmptyAddReviewService: AddReviewService {

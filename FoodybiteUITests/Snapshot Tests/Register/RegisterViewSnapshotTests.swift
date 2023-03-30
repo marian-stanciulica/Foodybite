@@ -6,11 +6,10 @@
 //
 
 import XCTest
-import SwiftUI
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
-@testable import FoodybiteUI
+import FoodybiteUI
 
 final class RegisterViewSnapshotTests: XCTestCase {
     
@@ -49,7 +48,7 @@ final class RegisterViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(name: String = "", email: String = "", password: String = "", confirmPassword: String = "", profileImage: Data? = nil, registerResult: RegisterViewModel.State) -> UIViewController {
+    private func makeSUT(name: String = "", email: String = "", password: String = "", confirmPassword: String = "", profileImage: Data? = nil, registerResult: RegisterViewModel.State) -> RegisterView {
         let viewModel = RegisterViewModel(signUpService: EmptySignUpService())
         viewModel.name = name
         viewModel.email = email
@@ -57,9 +56,7 @@ final class RegisterViewSnapshotTests: XCTestCase {
         viewModel.confirmPassword = confirmPassword
         viewModel.registerResult = registerResult
         viewModel.profileImage = profileImage
-        let registerView = RegisterView(viewModel: viewModel, goToLogin: {})
-        let sut = UIHostingController(rootView: registerView)
-        return sut
+        return RegisterView(viewModel: viewModel, goToLogin: {})
     }
     
     private class EmptySignUpService: SignUpService {
