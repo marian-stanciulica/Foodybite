@@ -16,6 +16,7 @@ enum HomeFlowView {
     @ViewBuilder static func makeHomeView(
         flow: Flow<HomeRoute>,
         currentLocation: Location,
+        computeDistanceInKmFromCurrentLocation: @escaping (Location) -> Double,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver,
         searchNearbyService: SearchNearbyService,
@@ -31,7 +32,7 @@ enum HomeFlowView {
             },
             cell: { nearbyPlace in
                 makeRestaurantCell(nearbyPlace: nearbyPlace,
-                                   currentLocation: currentLocation,
+                                   distanceInKmFromCurrentLocation: computeDistanceInKmFromCurrentLocation(nearbyPlace.location),
                                    fetchPhotoService: fetchPhotoService)
             },
             searchView: { searchText in
@@ -44,7 +45,7 @@ enum HomeFlowView {
     
     @ViewBuilder private static func makeRestaurantCell(
         nearbyPlace: NearbyPlace,
-        currentLocation: Location,
+        distanceInKmFromCurrentLocation: Double,
         fetchPhotoService: FetchPlacePhotoService
     ) -> some View {
         RestaurantCell(
@@ -56,7 +57,7 @@ enum HomeFlowView {
             ),
             viewModel: RestaurantCellViewModel(
                 nearbyPlace: nearbyPlace,
-                currentLocation: currentLocation
+                distanceInKmFromCurrentLocation: distanceInKmFromCurrentLocation
             )
         )
     }

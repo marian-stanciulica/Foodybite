@@ -97,7 +97,7 @@ final class HomeViewSnapshotTests: XCTestCase {
                     photoView: PhotoView(viewModel: photoViewModel),
                     viewModel: RestaurantCellViewModel(
                         nearbyPlace: nearbyPlace,
-                        currentLocation: currentLocation
+                        distanceInKmFromCurrentLocation: 23.4
                     )
                 )
             },

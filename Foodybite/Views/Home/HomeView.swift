@@ -78,7 +78,7 @@ struct HomeView_Previews: PreviewProvider {
                     ),
                     viewModel: RestaurantCellViewModel(
                         nearbyPlace: nearbyPlace,
-                        currentLocation: Location(latitude: 2.1, longitude: 3.4)
+                        distanceInKmFromCurrentLocation: 2.3
                     )
                 )
             },

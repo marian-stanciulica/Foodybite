@@ -20,7 +20,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
     func test_distanceInKmFromCurrentLocation_computedCorrectly() {
         let sut = makeSUT()
 
-        XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
+        XCTAssertEqual(sut.distance, "353.6")
     }
     
     func test_isOpen_equalsNearbyPlaceIsOpen() {
@@ -47,7 +47,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
                 location: Location(latitude: 4.4, longitude: 6.9),
                 photo: anyPhoto()
             ),
-            currentLocation: anyLocation
+            distanceInKmFromCurrentLocation: 353.6
         )
         return sut
     }

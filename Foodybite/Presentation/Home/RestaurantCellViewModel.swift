@@ -10,11 +10,11 @@ import Domain
 
 public final class RestaurantCellViewModel: ObservableObject {
     private let nearbyPlace: NearbyPlace
-    private let currentLocation: Location
+    private let distanceInKmFromCurrentLocation: Double
     
-    public init(nearbyPlace: NearbyPlace, currentLocation: Location) {
+    public init(nearbyPlace: NearbyPlace, distanceInKmFromCurrentLocation: Double) {
         self.nearbyPlace = nearbyPlace
-        self.currentLocation = currentLocation
+        self.distanceInKmFromCurrentLocation = distanceInKmFromCurrentLocation
     }
     
     public var isOpen: Bool {
@@ -29,8 +29,7 @@ public final class RestaurantCellViewModel: ObservableObject {
         String(format: "%.1f", nearbyPlace.rating)
     }
     
-    public var distanceInKmFromCurrentLocation: String {
-        let distance = DistanceSolver.getDistanceInKm(from: currentLocation, to: nearbyPlace.location)
-        return "\(distance)"
+    public var distance: String {
+        return "\(distanceInKmFromCurrentLocation)"
     }
 }

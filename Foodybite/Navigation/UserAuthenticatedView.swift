@@ -61,6 +61,9 @@ struct UserAuthenticatedView: View {
                 HomeFlowView.makeHomeView(
                     flow: homeflow,
                     currentLocation: currentLocation,
+                    computeDistanceInKmFromCurrentLocation: { referenceLocation in
+                        DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
+                    },
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
                     userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
                     searchNearbyService: userAuthenticatedFactory.searchNearbyWithFallbackComposite,
