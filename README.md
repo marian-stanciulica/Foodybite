@@ -375,7 +375,7 @@ The following diagram presents the entire state machine for making requests that
 
 ![Refresh Token State Machine](./Diagrams/Refresh_Token_State_Machine.svg)
 
-In order to avoid making multiple `Refresh Tokens` requests when they were requested multiple times in parallel, I stored the first task in an instance property. The first request creates the task and the following requests are just waiting for the task value (in this case, the value is `Void`, so the rest of the requests only waits for the completion of the task).
+In order to avoid making multiple `refreshTokens` requests when they were requested multiple times in parallel, I stored the first task in an instance property. The first request creates the task and the following requests are just waiting for the task value (in this case, the value is `Void`, so the rest of the requests only waits for the completion of the task).
 
 ```swift
 public func fetchLocallyRemoteToken() async throws {
@@ -426,7 +426,7 @@ public actor RefreshTokenService: TokenRefresher {
     private let loader: ResourceLoader
     private let tokenStore: TokenStore
     private var refreshTask: Task<Void, Error>?
-    ....
+    ...
 }
 ```
 
