@@ -19,8 +19,15 @@ final class SHA512PasswordHasher {
 
 final class SHA512PasswordHasherTests: XCTestCase {
     
-    func test_hash_returnsHashWhenPasswordIsEmpty() {
+    func test_hash_hasCorrectHashSizeWhenPasswordIsEmpty() {
         let password = ""
+        let hashed = SHA512PasswordHasher.hash(password: password)
+        
+        XCTAssertEqual(hashed.count, 128)
+    }
+    
+    func test_hash_hasCorrectHashSizeWhenPasswordIsReallyLong() {
+        let password = "qPz5GBjUyxTVUZ6k4Cr5V7RSNTWpGfcUB5jwsfq22WXhpbezH3vNwLyMRQPaxYVJVzhgJ7JpduQSvRmpYvxvWa2qn4WLkxGvaDG3fq9mgB6SThtXutJHDw4q"
         let hashed = SHA512PasswordHasher.hash(password: password)
         
         XCTAssertEqual(hashed.count, 128)
