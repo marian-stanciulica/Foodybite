@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import CryptoKit
 @testable import FoodybiteNetworking
 import Domain
 
@@ -68,10 +67,5 @@ extension APIServiceTests {
     private func anyAuthToken() -> AuthToken {
         AuthToken(accessToken: "any access token",
                          refreshToken: "any refresh token")
-    }
-    
-    private func hash(password: String) -> String {
-        let hashed = SHA512.hash(data: password.data(using: .utf8)!)
-        return hashed.compactMap { String(format: "%02x", $0) } .joined()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CryptoKit
 import Domain
 @testable import FoodybiteNetworking
 
@@ -44,6 +45,11 @@ final class APIServiceTests: XCTestCase {
         } else if let httpBody = urlRequest.httpBody {
             XCTFail("Body expected to be nil, got \(httpBody) instead")
         }
+    }
+    
+    func hash(password: String) -> String {
+        let hashed = SHA512.hash(data: password.data(using: .utf8)!)
+        return hashed.compactMap { String(format: "%02x", $0) } .joined()
     }
     
     func anyName() -> String {
