@@ -41,15 +41,8 @@ final class RefreshTokenServiceTests: XCTestCase {
 
     func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, loaderSpy, _) = makeSUT(authToken: makeRemoteAuthToken())
-        let numberOfCallingFetchRemoteToken = 10
         
-        await withThrowingTaskGroup(of: Void.self) { group in
-            (0..<numberOfCallingFetchRemoteToken).forEach { _ in
-                group.addTask {
-                    try await sut.fetchLocallyRemoteToken()
-                }
-            }
-        }
+        await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
         
         XCTAssertEqual(loaderSpy.requests.count, 1)
     }
@@ -78,22 +71,15 @@ final class RefreshTokenServiceTests: XCTestCase {
     
     func test_fetchLocallyRemoteToken_storesAuthTokenOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, _, tokenStoreStub) = makeSUT()
-        let numberOfCallingFetchRemoteToken = 10
         
-        await withThrowingTaskGroup(of: Void.self) { group in
-            (0..<numberOfCallingFetchRemoteToken).forEach { _ in
-                group.addTask {
-                    try await sut.fetchLocallyRemoteToken()
-                }
-            }
-        }
+        await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
         
         XCTAssertEqual(tokenStoreStub.writeCount, 1)
     }
 
     // MARK: - Helpers
 
-    private func makeSUT(authToken: AuthToken? = nil) -> (sut: RefreshTokenService,
+    private func makeSUT(authToken: AuthToken? = nil) -> (sut: TokenRefresher,
                                                           loader: TokenRefreshLoaderSpy,
                                                           tokenStore: TokenStoreStub) {
         let defaultAuthToken = makeRemoteAuthToken()
@@ -127,6 +113,16 @@ final class RefreshTokenServiceTests: XCTestCase {
             XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
         } else if let httpBody = urlRequest.httpBody {
             XCTFail("Body expected to be nil, got \(httpBody) instead")
+        }
+    }
+    
+    private func requestRemoteAuthTokenInParallel(on sut: TokenRefresher, numberOfRequests: Int) async {
+        await withThrowingTaskGroup(of: Void.self) { group in
+            (0..<numberOfRequests).forEach { _ in
+                group.addTask {
+                    try await sut.fetchLocallyRemoteToken()
+                }
+            }
         }
     }
     
