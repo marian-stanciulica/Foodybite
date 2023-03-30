@@ -91,12 +91,29 @@ extension PlacesServiceTests {
                 internationalPhoneNumber: "",
                 name: "place 1",
                 openingHours: RemoteOpeningHoursDetails(openNow: false, periods: [], weekdayText: []),
-                photos: [],
+                photos: [
+                    RemotePhoto(
+                        width: 100,
+                        height: 100,
+                        photoReference: "photo reference"
+                    )
+                ],
                 placeID: "",
                 plusCode: PlusCode(compoundCode: "", globalCode: ""),
                 rating: 0,
                 reference: "",
-                reviews: [],
+                reviews: [
+                    RemoteReview(
+                        authorName: "Author",
+                        authorURL: URL(string: "http://any-url.com")!,
+                        language: "",
+                        profilePhotoURL: nil,
+                        rating: 4,
+                        relativeTimeDescription: "a year ago",
+                        text: "quite nice",
+                        time: 3
+                    )
+                ],
                 types: [],
                 url: "",
                 userRatingsTotal: 0,

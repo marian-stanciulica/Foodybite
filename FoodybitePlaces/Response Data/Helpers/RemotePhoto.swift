@@ -9,9 +9,9 @@ import Foundation
 import Domain
 
 struct RemotePhoto: Decodable {
+    let width: Int
     let height: Int
     let photoReference: String
-    let width: Int
 
     enum CodingKeys: String, CodingKey {
         case height

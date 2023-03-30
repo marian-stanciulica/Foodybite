@@ -110,7 +110,30 @@ extension PlacesServiceTests {
                 types: [],
                 userRatingsTotal: 0,
                 vicinity: ""
-            )
+            ),
+            SearchNearbyResult(
+                businessStatus: "",
+                geometry: Geometry(
+                    location: RemoteLocation(lat: 0, lng: 0),
+                    viewport: Viewport(
+                        northeast: RemoteLocation(lat: 0, lng: 0),
+                        southwest: RemoteLocation(lat: 0, lng: 0))),
+                icon: "",
+                iconBackgroundColor: "",
+                iconMaskBaseURI: "",
+                name: "a place",
+                openingHours: nil,
+                photos: [],
+                placeID: "#1",
+                plusCode: PlusCode(compoundCode: "", globalCode: ""),
+                priceLevel: 0,
+                rating: nil,
+                reference: "",
+                scope: "",
+                types: [],
+                userRatingsTotal: 0,
+                vicinity: ""
+            ),
         ], status: status)
     }
     
