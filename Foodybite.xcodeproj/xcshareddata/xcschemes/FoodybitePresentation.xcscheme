@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0F95A875290D024400806AE9"
-               BuildableName = "FoodybitePersistence.framework"
-               BlueprintName = "FoodybitePersistence"
+               BlueprintIdentifier = "0F1C74C929D5B64100D4FC80"
+               BuildableName = "FoodybitePresentation.framework"
+               BlueprintName = "FoodybitePresentation"
                ReferencedContainer = "container:Foodybite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,21 +32,21 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0F95A875290D024400806AE9"
-            BuildableName = "FoodybitePersistence.framework"
-            BlueprintName = "FoodybitePersistence"
+            BlueprintIdentifier = "0F1C74C929D5B64100D4FC80"
+            BuildableName = "FoodybitePresentation.framework"
+            BlueprintName = "FoodybitePresentation"
             ReferencedContainer = "container:Foodybite.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO"
-            testExecutionOrdering = "random">
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0F95A87C290D024400806AE9"
-               BuildableName = "FoodybitePersistenceTests.xctest"
-               BlueprintName = "FoodybitePersistenceTests"
+               BlueprintIdentifier = "0F1C74D029D5B64100D4FC80"
+               BuildableName = "FoodybitePresentationTests.xctest"
+               BlueprintName = "FoodybitePresentationTests"
                ReferencedContainer = "container:Foodybite.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -72,9 +72,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0F95A875290D024400806AE9"
-            BuildableName = "FoodybitePersistence.framework"
-            BlueprintName = "FoodybitePersistence"
+            BlueprintIdentifier = "0F1C74C929D5B64100D4FC80"
+            BuildableName = "FoodybitePresentation.framework"
+            BlueprintName = "FoodybitePresentation"
             ReferencedContainer = "container:Foodybite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
