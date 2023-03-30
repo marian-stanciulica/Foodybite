@@ -39,7 +39,7 @@ final class RefreshTokenServiceTests: XCTestCase {
             body: RefreshTokenRequestBody(refreshToken: authToken.refreshToken))
     }
 
-    func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnceWhenMultipleClientsRequestIt() async throws {
+    func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, loaderSpy, _) = makeSUT(authToken: makeRemoteAuthToken())
         let numberOfCallingFetchRemoteToken = 10
         
@@ -74,6 +74,21 @@ final class RefreshTokenServiceTests: XCTestCase {
         
         XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
         XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+    }
+    
+    func test_fetchLocallyRemoteToken_storesAuthTokenOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
+        let (sut, _, tokenStoreStub) = makeSUT()
+        let numberOfCallingFetchRemoteToken = 10
+        
+        await withThrowingTaskGroup(of: Void.self) { group in
+            (0..<numberOfCallingFetchRemoteToken).forEach { _ in
+                group.addTask {
+                    try await sut.fetchLocallyRemoteToken()
+                }
+            }
+        }
+        
+        XCTAssertEqual(tokenStoreStub.writeCount, 1)
     }
 
     // MARK: - Helpers

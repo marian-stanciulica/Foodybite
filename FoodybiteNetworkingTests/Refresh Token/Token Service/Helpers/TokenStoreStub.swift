@@ -10,6 +10,7 @@ import FoodybiteNetworking
 
 class TokenStoreStub: TokenStore {
     private var stub: AuthToken?
+    private(set) var writeCount = 0
     
     init() {}
     
@@ -26,6 +27,7 @@ class TokenStoreStub: TokenStore {
     }
     
     func write(_ token: AuthToken) throws {
+        writeCount += 1
         stub = token
     }
     
