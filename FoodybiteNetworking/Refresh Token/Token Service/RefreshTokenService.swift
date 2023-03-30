@@ -23,8 +23,7 @@ public actor RefreshTokenService: TokenRefresher {
     
     public func fetchLocallyRemoteToken() async throws {
         if let refreshTask = refreshTask {
-            try await refreshTask.value
-            return
+            return try await refreshTask.value
         }
         
         let urlRequest = try createURLRequest()
