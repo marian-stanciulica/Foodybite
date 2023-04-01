@@ -19,8 +19,8 @@ struct UserAuthenticatedView: View {
 
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
     @StateObject var tabRouter = TabRouter()
-    @StateObject var homeflow = Flow<HomeRoute>()
-    @StateObject var profileflow = Flow<ProfileRoute>()
+    @StateObject var homeFlow = Flow<HomeRoute>()
+    @StateObject var profileFlow = Flow<ProfileRoute>()
     
     @State var plusButtonActive = false
     
@@ -56,10 +56,10 @@ struct UserAuthenticatedView: View {
     }
     
     @ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
-        NavigationStack(path: $homeflow.path) {
+        NavigationStack(path: $homeFlow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
                 HomeFlowView.makeHomeView(
-                    flow: homeflow,
+                    flow: homeFlow,
                     currentLocation: currentLocation,
                     computeDistanceInKmFromCurrentLocation: { referenceLocation in
                         DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
@@ -74,7 +74,7 @@ struct UserAuthenticatedView: View {
                 switch route {
                 case let .placeDetails(placeID):
                     HomeFlowView.makeRestaurantDetailsView(
-                        flow: homeflow,
+                        flow: homeFlow,
                         placeID: placeID,
                         currentLocation: currentLocation,
                         getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
@@ -83,7 +83,7 @@ struct UserAuthenticatedView: View {
                     )
                 case let .addReview(placeID):
                     HomeFlowView.makeReviewView(
-                        flow: homeflow,
+                        flow: homeFlow,
                         placeID: placeID,
                         addReviewService: userAuthenticatedFactory.authenticatedApiService
                     )
@@ -119,10 +119,10 @@ struct UserAuthenticatedView: View {
     }
     
     @ViewBuilder private func makeProfileFlowView(currentLocation: Location) -> some View {
-        NavigationStack(path: $profileflow.path) {
+        NavigationStack(path: $profileFlow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
                 ProfileFlowView.makeProfileView(
-                    flow: profileflow,
+                    flow: profileFlow,
                     user: user,
                     accountService: userAuthenticatedFactory.authenticatedApiService,
                     getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
@@ -135,7 +135,7 @@ struct UserAuthenticatedView: View {
                 switch route {
                 case .settings:
                     ProfileFlowView.makeSettingsView(
-                        flow: profileflow,
+                        flow: profileFlow,
                         logoutService: userAuthenticatedFactory.authenticatedApiService,
                         goToLogin: { loggedInUserID = nil }
                     )
@@ -145,7 +145,7 @@ struct UserAuthenticatedView: View {
                     ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.authenticatedApiService)
                 case let .placeDetails(placeDetails):
                     ProfileFlowView.makeRestaurantDetailsView(
-                        flow: profileflow,
+                        flow: profileFlow,
                         placeDetails: placeDetails,
                         currentLocation: currentLocation,
                         getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
@@ -154,7 +154,7 @@ struct UserAuthenticatedView: View {
                     )
                 case let .addReview(placeID):
                     ProfileFlowView.makeReviewView(
-                        flow: profileflow,
+                        flow: profileFlow,
                         placeID: placeID,
                         addReviewService: userAuthenticatedFactory.authenticatedApiService
                     )
