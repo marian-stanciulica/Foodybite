@@ -1049,6 +1049,8 @@ During the entire project I've used TDD as the development process (excluding th
 
 I've been using TDD for over a year now and I really like it because it helps me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using TDD. Additionally, it helped me understand better what I was trying to build before writing code while increasing my confidence in the correctness of the system afterwards.
 
+The foundation for my testing strategy was to use unit tests for testing the system internals (without hitting external systems, like the network or the disk). In addition, I use `End-to-End` tests to test the integration with the network infrastructure and `Cache Integration` tests to test the integration with the disk and keychain. Furthermore, I use snapshot tests to validate the layout of the screens.
+
 ### Summary Table
 
 | Strategy | Count | Duration (s) |
@@ -1084,6 +1086,10 @@ I used an `URLSession` with ephemeral configuration for both my own server and `
 An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I chose to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
 
 ### Snapshots Tests
+
+Initially, I used snapshots tests for checking the layout of the UI for each state injecting the state directly in the viewModels. Afterwards, I used them to test-drive new screens as a feedback mechanism instead of using the preview. It felt like a better alternative because they are relatively fast to run and I could check the UI both for light and dark mode at the same time.
+
+Nevertheless, I didn't test any logic using snapshot tests as all the logic was encapsulated in viewModels which were already unit tested.
 
 ## CI/CD
 
