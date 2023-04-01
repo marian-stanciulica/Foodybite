@@ -890,13 +890,13 @@ public struct HomeView<Cell: View, SearchView: View>: View {
 This module is responsible for instantiation and composing all independent modules in a centralized place which simplifies the management of modules, components and their dependencies, thus removing the need for them to communicate directly, increasing the composability and extensibility of the system (`Open/Closed Principle`). 
 
 Moreover, it represent the composition root of the app and I use it to handle the following responsiblities:
-1. Adding caching by intercepting network requests (`Decorator Pattern`)
-2. Adding fallback strategies when network requests fail (`Composite Pattern`)
-3. Handling navigation (hierarchical navigation and tab navigation)
+1. [Adding caching by intercepting network requests](#adding-caching-by-intercepting-network-requests) (`Decorator Pattern`)
+2. [Adding fallback strategies when network requests fail](#adding-fallback-strategies-when-network-requests-fail) (`Composite Pattern`)
+3. [Handling navigation](#handling-navigation) (hierarchical navigation and tab navigation)
 
 #### Adding caching by intercepting network requests
 
-One extremely beneficial advantage of having a composition root is the possibility to inject behaviour in an instance without changing the implementation using the `Decorator` pattern. I used it to intercept the requests and save the received domain models in the local store.
+One extremely beneficial advantage of having a composition root is the possibility to inject behaviour in an instance without changing its implementation using the `Decorator` pattern. I use it to intercept the requests and save the received domain models in the local store.
 
 The following is an example of how I applied the pattern to introduce the caching behaviour after receiving the nearby restaurants. The decorator just conforms to the protocol the decoratee conforms and has an additional dependency, the cache, for storing the objects.
 
@@ -918,11 +918,49 @@ public final class SearchNearbyServiceCacheDecorator: SearchNearbyService {
 }
 ```
 
+I did the same for caching details and reviews for a given restaurant.
+
 #### Adding fallback strategies when network requests fail
 
-I used the `Composite` design pattern to compose two strategies of fetching nearby places using the `SearchNearbyService` abstraction.
+In order to compose multiple implementations of a particular abstraction we can use the `Composite` pattern. Thus, it's executed the first strategy that doesn't fail.
 
-![Search Nearby Composite](./Diagrams/NearbyPlaceComposite.svg)
+The following is an example of how I composed two strategies of fetching nearby places using the `SearchNearbyService` abstraction. I chose to compose two abstraction instead of using concrete types to easily test the composite in isolation and to increase the flexibility of the composition as it's not bounded to a given implementation of the protocol. 
+
+```swift
+public final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService {
+    private let primary: SearchNearbyService
+    private let secondary: SearchNearbyService
+    
+    public init(primary: SearchNearbyService, secondary: SearchNearbyService) {
+        self.primary = primary
+        self.secondary = secondary
+    }
+    
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+        do {
+            return try await primary.searchNearby(location: location, radius: radius)
+        } catch {
+            return try await secondary.searchNearby(location: location, radius: radius)
+        }
+    }
+}
+```
+
+In this manner, I can introduce multiple retries of the requests until I end up loading the data from the local store. For now, I only try the network request once and then I fetch the data from cache.
+
+```swift
+lazy var searchNearbyWithFallbackComposite = SearchNearbyServiceWithFallbackComposite(
+    primary: SearchNearbyServiceCacheDecorator(
+        searchNearbyService: placesService,
+        cache: searchNearbyDAO
+    ),
+    secondary: searchNearbyDAO
+)
+```
+
+I similarly composed the `GetPlaceDetailsService` and `GetReviewsService` protocols.
+
+#### Handling navigation
 
 ## Testing Strategy
 
