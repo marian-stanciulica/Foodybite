@@ -1065,13 +1065,11 @@ For all tests I used the following naming convention: test_methodName_expectedOu
 
 I structured all tests using the `Given-When-Then` template/structure.
 
-I enabled test randomization for all targets besides the End-to-End tests since they must run in order to create the user on the server, create the session after login and running all the tests that require authentication. Alternatively, I could have called the `signUp` and `login` requests before each request that requires authentication to avoid the temporal coupling between tests, but for now I chose to keep the order.
+I enabled test randomization for all targets to ensure there is no temporal coupling between tests and they left no artifacts on disk or in memory (outside of the `End-to-End` tests since they must run in order to create the user on the server, create the session after login and running all the tests that require authentication). Alternatively, I could have called the `signUp` and `login` requests before each request that requires authentication to avoid the temporal coupling between tests, but for now I choose to keep the order.
 
 ### Unit Tests
 
 I used unit tests as the foundation for my testing pyramid because they are the most reliable and cheap to write. Also, I can easily test each component in isolation by mocking collaborators without making any assumptions about the rest of the system.
-
-During unit testing, I paid attention not to persistent artifacts on disk or in memory, especially while testing the `Keychain` store or the `CoreData` store.
 
 ### Integration Tests
 
