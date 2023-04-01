@@ -1010,7 +1010,7 @@ public enum HomeRoute: Hashable {
 Furthermore, I used the `navigationDestination(for:destination:)` modifier to define links between the root view and the destination based on the route. The following example is the instantiation of the `HomeView` and defining all its navigation destinations:
 
 ```swift
-@ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
+@ViewBuilder func makeHomeFlowView(currentLocation: Location) -> some View {
     NavigationStack(path: $homeFlow.path) {
         TabBarPageView(page: $tabRouter.currentPage) {
             HomeFlowView.makeHomeView(
@@ -1032,16 +1032,16 @@ Furthermore, I used the `navigationDestination(for:destination:)` modifier to de
     }
 }
 
-@ViewBuilder static func makeRestaurantDetailsView(flow: Flow<HomeRoute>, ...) -> some View {
+@ViewBuilder func makeRestaurantDetailsView(flow: Flow<HomeRoute>, ...) -> some View {
     RestaurantDetailsView(..., showReviewView: {
         flow.append(.addReview(placeID))
     })
 }
 ```
 
-As you can see, the navigation stack wraps a `TabBarPageView` that wraps `HomeView` that on each case of the `HomeRoute` instantiates the corresponding view. Moreover, in the factory method that instantiates `RestaurantDetailsView` we can see that it needs a closure in the constructor for navigating to the `Add Review` screen.
+As you can see, the navigation stack wraps a `TabBarPageView` that wraps `HomeView` and on each case of `HomeRoute` instantiates the corresponding view. Moreover, in the factory method that instantiates `RestaurantDetailsView` we can see that it needs a closure in the constructor for navigating to the `Add Review` screen.
 
-All the hierarchical navigation in the app is done in the same way, using `NavigationStack` and that modifier, and allows me to change the order of the screens from the composition root without touching other modules. In addition, it improves the overall flexibility and modularity of the system as the views have no information about how the navigation is actually done.
+I did all the hierarchical navigation in the app this way and allowed me to change the order of the screens from the composition root without touching other modules. In addition, it improved the overall flexibility and modularity of the system as the views has no information about how the navigation is actually done.
 
 ## Testing Strategy
 
