@@ -1049,7 +1049,13 @@ During the entire project I've used TDD as the development process (excluding th
 
 I've been using TDD for over a year now and I really like it because it helps me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using TDD. Additionally, it helped me understand better what I was trying to build before writing code while increasing my confidence in the correctness of the system afterwards.
 
-![TDD Feedback Loop](./Diagrams/TDD_Feedback_Loop.png)
+| Strategy | Count | Duration (s) |
+|------|------|------|
+| Unit Tests | 262 | 0.84 |
+| End-to-End Tests | 11 | 1.75 |
+| Cache Integration Tests | 3 | 0.04 |
+| Snapshot Tests | 49 | 6.1 |
+| Total | 325 | 8.73 |
 
 ### Unit Tests
 
