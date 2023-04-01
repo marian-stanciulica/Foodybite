@@ -2,8 +2,6 @@
 
 💡The idea behind it is to create a simple way to find restaurants near you. Users can set their preferred radius and number of stars to filter restaurants based on location and rating. Additionally, they can see details, like opening hours, address, reviews, or photos for each restaurant found and give a review. The app offers the capability to search directly for a restaurant and give the opportunity to the user to give a review right away.
 
-This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribbble.com: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
-
 1. [Motivation](#motivation)
 2. [Architecture](#architecture)
     1. [Overview](#overview)
@@ -23,6 +21,8 @@ This beautiful design was made available by [Yagnesh P](https://www.behance.net/
         2. [Cache Integration Tests](#cache-integration-tests)
     3. [Snapshot Tests](#snapshot-tests)
 4. [Metrics](#metrics)
+5. [Credits](#credits)
+6. [References](#references)
 
 ## Motivation
 
@@ -816,3 +816,15 @@ An important aspect while testing different systems in integration is to take in
 
 ## Metrics
 
+## Credits
+
+This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribbble.com: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
+
+## References
+
+1. [The iOS Lead Essential Program](https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/)
+2. [Clean Architecture](https://www.goodreads.com/book/show/18043011-clean-architecture?ac=1&from_search=true&qid=cebbBLQz86&rank=1) by Robert C. Martin
+3. [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.goodreads.com/book/show/3735293-clean-code?from_search=true&from_srp=true&qid=0lfCKDxK4E&rank=1) by Robert C. Martin
+4. [Dependency Injection Principles, Practices, and Patterns](https://www.goodreads.com/book/show/44416307-dependency-injection-principles-practices-and-patterns?ref=nav_sb_ss_1_27) by Mark Seemann and Steven van Deursen
+5. [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.goodreads.com/book/show/179133.Domain_Driven_Design?ref=nav_sb_noss_l_16)
+6. [Design It! : Pragmatic Programmers: From Programmer to Software Architect](https://www.goodreads.com/book/show/31670678-design-it?from_search=true&from_srp=true&qid=Nm98t342VP&rank=6) by Michael Keeling
