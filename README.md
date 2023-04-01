@@ -344,8 +344,7 @@ The following diagram represents the networking layer talking with my backend ap
 1. [Refresh Token Strategy](#1-refresh-token-strategy)
 2. [Network Request Flow](#2-network-request-flow)
 3. [Endpoint Creation](#3-endpoint-creation)
-4. [Mock Network Requests](#4-mock-network-requests)
-5. [Testing `Data` to `Decodable` Mapping](#5-testing-data-to-decodable-mapping)
+4. [Testing `Data` to `Decodable` Mapping](#4-testing-data-to-decodable-mapping)
 
 ![Networking Diagram](./Diagrams/Networking.svg)
 
@@ -495,7 +494,30 @@ struct LoginEndpoint: Endpoint {
 ```
 Currently, when the need to add another endpoint arises, I can create another struct which conforms to `Endpoint` or edit a file containing related endpoints to the one I want to add (this case still violates the principle, but considering the relatedness of the endpoints I think it's a good trade-off for now).
 
-#### 4. Mock Network Requests
+#### 4. Testing `Data` to `Decodable` Mapping
+
+For testing the mapping from `Data` to `Decodable` I chose to test it directly in the `RemoteStore`, hiding the knowledge of a collaborator (in this case `CodableDataParser`). While I could do this using a stubbed collaborator (e.g. a protocol `DataParser`), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
+
+### Places
+
+The following diagram presents the `Places` module which has as a dependency `API Infra` because it shares the need to fetch resources over the network with the `Networking` module. This module calls [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
+
+![Places](./Diagrams/Places.svg)
+
+| Component | Responsibility |
+|------|------|
+| RemoteLoader | Validates the response from `HTTPClient` and parses the data or returns it directly |
+| PlacesService | Creates the endpoints and sends them to the `ResourceLoader` or `DataLoader` |
+| SearchNearbyEndpoint | Creates `URLRequest` for searching nearby restaurants |
+| GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
+| GetPlacePhotoEndpoint | Creates `URLRequest` for fetching image data using a photo reference |
+| AutocompleteEndpoint | Creates `URLRequest` for searching restaurants given an input, location and radius |
+
+### API Infra
+
+![API Infra](./Diagrams/API_Infra.svg)
+
+#### Mock Network Requests
 
 I prefer not to hit the network while testing the `URLSessionHTTPClient`. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
 
@@ -522,29 +544,6 @@ extension URLSession: URLSessionProtocol {}
 3. By subclassing `URLProtocol` and overriding a couple of methods to intercept the requests. Also, the stub should be registered by calling `URLProtocol.registerClass(URLProtocolStub.self)` to be used by the `URL Loading System`.
 
 ✅ For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side.
-
-#### 5. Testing `Data` to `Decodable` Mapping
-
-For testing the mapping from `Data` to `Decodable` I chose to test it directly in the `RemoteStore`, hiding the knowledge of a collaborator (in this case `CodableDataParser`). While I could do this using a stubbed collaborator (e.g. a protocol `DataParser`), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
-
-### Places
-
-The following diagram presents the `Places` module which has as a dependency `API Infra` because it shares the need to fetch resources over the network with the `Networking` module. This module calls [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
-
-![Places](./Diagrams/Places.svg)
-
-| Component | Responsibility |
-|------|------|
-| RemoteLoader | Validates the response from `HTTPClient` and parses the data or returns it directly |
-| PlacesService | Creates the endpoints and sends them to the `ResourceLoader` or `DataLoader` |
-| SearchNearbyEndpoint | Creates `URLRequest` for searching nearby restaurants |
-| GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
-| GetPlacePhotoEndpoint | Creates `URLRequest` for fetching image data using a photo reference |
-| AutocompleteEndpoint | Creates `URLRequest` for searching restaurants given an input, location and radius |
-
-### API Infra
-
-![API Infra](./Diagrams/API_Infra.svg)
 
 ### Persistence
 
