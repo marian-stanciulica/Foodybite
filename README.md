@@ -866,6 +866,23 @@ Thus, by introducing abstractions, I increased the testability of the view model
 
 ### UI
 
+The following diagram is the tree-like representation of all the screens in the app. Since I wanted the views to be completely decoupled from one another to increase their reusability, I chose to move the responsibility of creating subviews on layer above, meaning the composition root. Additionally, I decoupled all views from the navigation logic by using closures to trigger transitions between them (More details in the [Main](#main) section).
+
+The best example is the `HomeView` which is defined as a generic view which needs:
+- one closure to signal that the app should navigate to the place details screen (the view being completely agnostic how the navigation is done)
+- one closure that receives a `NearbyPlace` and returns a `Cell` view to be rendered (the view is not responsible by creating the cell and doesn't care what cell it receives)
+- one closure that receives a binding to a `String` and returns a view for searching nearby restaurants
+
+Furthermore, I avoid making views to depend on their subviews' dependencies by moving the responsibility of creating its subviews to the composition root. Thus, I keep the views constructors containing only dependencies they use.
+
+```swift
+public struct HomeView<Cell: View, SearchView: View>: View {
+    let showPlaceDetails: (String) -> Void
+    let cell: (NearbyPlace) -> Cell
+    let searchView: (Binding<String>) -> SearchView
+    ...
+```
+
 ![Screen Hierarchy](./Diagrams/Screen_Hierarchy.svg)
 
 ### Main
