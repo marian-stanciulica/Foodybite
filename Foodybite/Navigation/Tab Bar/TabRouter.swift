@@ -8,11 +8,11 @@
 import Foundation
 
 class TabRouter: ObservableObject {
+    enum Page {
+        case home
+        case newReview
+        case account
+    }
+    
     @Published var currentPage: Page = .home
-}
-
-enum Page {
-    case home
-    case newReview
-    case account
 }

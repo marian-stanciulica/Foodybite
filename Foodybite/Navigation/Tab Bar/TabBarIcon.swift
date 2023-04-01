@@ -9,8 +9,8 @@ import SwiftUI
 import FoodybiteUI
 
 struct TabBarIcon: View {
-    @Binding var currentPage: Page
-    let assignedPage: Page
+    @Binding var currentPage: TabRouter.Page
+    let assignedPage: TabRouter.Page
     
     let width: CGFloat
     let height: CGFloat

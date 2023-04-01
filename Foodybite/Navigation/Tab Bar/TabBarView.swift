@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @Binding var plusButtonActive: Bool
-    @Binding var currentPage: Page
+    @Binding var currentPage: TabRouter.Page
     
     let tabBarWidth: CGFloat
     let tabBarHeight: CGFloat

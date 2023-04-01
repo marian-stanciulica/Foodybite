@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarPageView<Content: View>: View {
-    @Binding var page: Page
+    @Binding var page: TabRouter.Page
     @State var plusButtonActive = false
     let content: () -> Content
     
