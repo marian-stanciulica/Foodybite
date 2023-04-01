@@ -892,7 +892,7 @@ This module is responsible for instantiation and composing all independent modul
 Moreover, it represent the composition root of the app and I use it to handle the following responsiblities:
 1. [Adding caching by intercepting network requests](#adding-caching-by-intercepting-network-requests) (`Decorator Pattern`)
 2. [Adding fallback strategies when network requests fail](#adding-fallback-strategies-when-network-requests-fail) (`Composite Pattern`)
-3. [Handling navigation](#handling-navigation) (hierarchical navigation and tab navigation)
+3. [Handling navigation](#handling-navigation) (flat and hierarchical navigation)
 
 #### Adding caching by intercepting network requests
 
@@ -961,6 +961,87 @@ lazy var searchNearbyWithFallbackComposite = SearchNearbyServiceWithFallbackComp
 I similarly composed the `GetPlaceDetailsService` and `GetReviewsService` protocols.
 
 #### Handling navigation
+
+##### Flat Navigation
+
+I used a custom tab bar to handle flat navigation by using a `TabRouter` observable object to navigate at the corresponding page when the user taps on the tab icon. The `Page` enum holds cases for all the tabs available.
+
+```swift
+class TabRouter: ObservableObject {
+    enum Page {
+        case home
+        case newReview
+        case account
+    }
+    
+    @Published var currentPage: Page = .home
+}
+```
+
+Each view presented in the tab bar is wrapped in a `TabBarPageView` container view, so adding a new view is a matter of adding a new case in the `Page` enum and wrapping a view to be shown in the custom tab bar while switching through the current page.
+
+##### Hierarchical Navigation
+
+For this kind of navigation, I used the new `NavigationStack` type introduced in iOS 16. First of all, I created a generic `Flow` class that can append or remove a new route.
+
+```swift
+final class Flow<Route: Hashable>: ObservableObject {
+    @Published var path = [Route]()
+    
+    func append(_ value: Route) {
+        path.append(value)
+    }
+    
+    func navigateBack() {
+        path.removeLast()
+    }
+}
+```
+
+Second of all, I created enums for each navigation path. For example, from the `Home` screen the user can navigate to the `Place Details` screen and then to the `Add Review` screen. So all reachable screens will be the following (I used the associated value of a case to send additional information between screens. In this case, it's the place ID.):
+
+```swift
+public enum HomeRoute: Hashable {
+    case placeDetails(String)
+    case addReview(String)
+}
+```
+
+Furthermore, I used the `navigationDestination(for:destination:)` modifier to define links between the root view and the destination based on the route. The following example is the instantiation of the `HomeView` and defining all its navigation destinations:
+
+```swift
+@ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
+    NavigationStack(path: $homeFlow.path) {
+        TabBarPageView(page: $tabRouter.currentPage) {
+            HomeFlowView.makeHomeView(
+                ...
+            )
+        }
+        .navigationDestination(for: HomeRoute.self) { route in
+            switch route {
+            case let .placeDetails(placeID):
+                HomeFlowView.makeRestaurantDetailsView(
+                    ...
+                )
+            case let .addReview(placeID):
+                HomeFlowView.makeReviewView(
+                    ...
+                )
+            }
+        }
+    }
+}
+
+@ViewBuilder static func makeRestaurantDetailsView(flow: Flow<HomeRoute>, ...) -> some View {
+    RestaurantDetailsView(..., showReviewView: {
+        flow.append(.addReview(placeID))
+    })
+}
+```
+
+As you can see, the navigation stack wraps a `TabBarPageView` that wraps `HomeView` that on each case of the `HomeRoute` instantiates the corresponding view. Moreover, in the factory method that instantiates `RestaurantDetailsView` we can see that it needs a closure in the constructor for navigating to the `Add Review` screen.
+
+All the hierarchical navigation in the app is done in the same way, using `NavigationStack` and that modifier, and allows me to change the order of the screens from the composition root without touching other modules. In addition, it improves the overall flexibility and modularity of the system as the views have no information about how the navigation is actually done.
 
 ## Testing Strategy
 
