@@ -30,7 +30,7 @@ public class KeychainTokenStore: TokenStore {
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword,
             kSecReturnData: true
-        ] as CFDictionary
+        ] as [CFString : Any] as CFDictionary
 
         var result: AnyObject?
         SecItemCopyMatching(query, &result)
@@ -54,7 +54,7 @@ public class KeychainTokenStore: TokenStore {
             kSecAttrService: service,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword
-        ] as CFDictionary
+        ] as [CFString : Any] as CFDictionary
 
         let status = SecItemAdd(query, nil)
 
@@ -63,7 +63,7 @@ public class KeychainTokenStore: TokenStore {
                 kSecAttrService: service,
                 kSecAttrAccount: account,
                 kSecClass: kSecClassGenericPassword,
-            ] as CFDictionary
+            ] as [CFString : Any] as CFDictionary
 
             let attributesToUpdate = [kSecValueData: data] as CFDictionary
             SecItemUpdate(query, attributesToUpdate)
