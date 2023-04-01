@@ -2228,6 +2228,11 @@
 				0FF7C67329B2028B00622E9C /* Foodybite.entitlements */,
 				0F423AAF29859FB8009EB345 /* Info.plist */,
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
+				0F207C5229B897910095E905 /* RootFactory.swift */,
+				0F207C5029B897510095E905 /* RootView.swift */,
+				0F207C5629B8B0E30095E905 /* UserAuthenticatedFactory.swift */,
+				0FD41773298D778500F2BF92 /* UserAuthenticatedViewModel.swift */,
+				0F207C5429B8B0AD0095E905 /* UserAuthenticatedView.swift */,
 				0F1C762F29D5D19200D4FC80 /* Extensions */,
 				0F18977429B7A0B20052094F /* Composition Helpers */,
 				0F7E23D12920E837005196EA /* Navigation */,
@@ -2383,11 +2388,6 @@
 		0F7E23D12920E837005196EA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0F207C5229B897910095E905 /* RootFactory.swift */,
-				0F207C5029B897510095E905 /* RootView.swift */,
-				0F207C5629B8B0E30095E905 /* UserAuthenticatedFactory.swift */,
-				0FD41773298D778500F2BF92 /* UserAuthenticatedViewModel.swift */,
-				0F207C5429B8B0AD0095E905 /* UserAuthenticatedView.swift */,
 				0F73EC83292F5F460025B237 /* Tab Bar */,
 				0F73EC81292F5F1D0025B237 /* Navigation Stacks */,
 			);
