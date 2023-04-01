@@ -26,10 +26,7 @@ struct UserAuthenticatedView: View {
     
     var body: some View {
         if locationProvider.locationServicesEnabled {
-            makeTabNavigationView(
-                user: user,
-                locationProvider: locationProvider
-            )
+            makeTabNavigationView()
             .task {
                 await viewModel.getCurrentLocation()
             }
@@ -38,7 +35,7 @@ struct UserAuthenticatedView: View {
         }
     }
     
-    @ViewBuilder private func makeTabNavigationView(user: User, locationProvider: LocationProvider) -> some View {
+    @ViewBuilder private func makeTabNavigationView() -> some View {
         switch viewModel.state {
         case .isLoading:
             ProgressView()
