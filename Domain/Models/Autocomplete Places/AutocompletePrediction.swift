@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 10.02.2023.
 //
 
-public struct AutocompletePrediction: Equatable {
+public struct AutocompletePrediction: Hashable {
     public let placePrediction: String
     public let placeID: String
     

@@ -33,7 +33,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     func test_endToEndAutocomplete_matchesFixedTestAutocompletePredictions() async {
         do {
             let receivedAutocompletePredictions = try await autocomplete()
-            XCTAssertEqual(receivedAutocompletePredictions, expectedAutocompletePredictions)
+            XCTAssertEqual(Set(receivedAutocompletePredictions), expectedAutocompletePredictions)
         } catch {
             XCTFail("Expected successful nearby places request, got \(error) instead")
         }
@@ -223,7 +223,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         )
     }
     
-    private var expectedAutocompletePredictions: [AutocompletePrediction] {
+    private var expectedAutocompletePredictions: Set<AutocompletePrediction> {
         [
             AutocompletePrediction(
                 placePrediction: "Trattoria Don Vito, Strada D. I. Mendeleev, Bucharest, Romania",
@@ -238,13 +238,13 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 placeID: "ChIJ18kE60f_sUARUUt7OD7LOVk"
             ),
             AutocompletePrediction(
+                placePrediction: "Trattoria La Famiglia, Strada Nicolae Golescu, Bucharest, Romania",
+                placeID: "ChIJizLJDE__sUARWSZT2x5bxhE"
+            ),
+            AutocompletePrediction(
                 placePrediction: "Trattoria Mezzaluna, Strada Crăciun, Bucharest, Romania",
                 placeID: "ChIJW1WlL634sUAR2DY7DgRv5ig"
             ),
-            AutocompletePrediction(
-                placePrediction: "Trattoria La Famiglia, Strada Nicolae Golescu, Bucharest, Romania",
-                placeID: "ChIJizLJDE__sUARWSZT2x5bxhE"
-            )
         ]
     }
     
