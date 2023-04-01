@@ -7,19 +7,35 @@
     1. [Overview](#overview)
     2. [Domain](#domain)
     3. [Networking](#networking)
+        1. [Refresh Token Strategy](#1-refresh-token-strategy)
+        2. [Network Request Flow](#2-network-request-flow)
+        3. [Endpoint Creation](#3-endpoint-creation)
+        4. [Testing `Data` to `Decodable` Mapping](#4-testing-data-to-decodable-mapping)
+        5. [Parsing JSON Response](#5-parsing-json-response)
     4. [Places](#places)
     5. [API Infra](#api-infra)
+        1. [Mock Network Requests](#mock-network-requests)
     6. [Persistence](#persistence)
+        1. [Cache Domain Models](#cache-domain-models)
+        2. [Infrastructure](#infrastructure)
+        3. [Store User Preferences](#store-user-preferences)
     7. [Location](#location)
+        1. [From delegation to async/await](#from-delegation-to-asyncawait)
+        2. [Get current location using TDD](#get-current-location-using-tdd)
     8. [Presentation](#presentation)
     9. [UI](#ui)
     10. [Main](#main)
+        1. [Adding caching by intercepting network requests](#adding-caching-by-intercepting-network-requests) (`Decorator Pattern`)
+        2. [Adding fallback strategies when network requests fail](#adding-fallback-strategies-when-network-requests-fail) (`Composite Pattern`)
+        3. [Handling navigation](#handling-navigation) (flat and hierarchical navigation)
 3. [Testing Strategy](#testing-strategy)
-    1. [Unit Tests](#unit-tests)
-    2. [Integration Tests](#integration-tests)
+    1. [Summary Table](#summary-table)
+    2. [Methodology](#methodology)
+    3. [Unit Tests](#unit-tests)
+    4. [Integration Tests](#integration-tests)
         1. [End-to-End Tests](#end-to-end-tests)
         2. [Cache Integration Tests](#cache-integration-tests)
-    3. [Snapshot Tests](#snapshot-tests)
+    5. [Snapshot Tests](#snapshot-tests)
 4. [CI/CD](#cicd)
 5. [Security](#security)
     1. [API key for Google Places API](#api-key-for-google-places-api)
@@ -1061,7 +1077,7 @@ The foundation for my testing strategy was to use unit tests for testing the sys
 | Snapshot Tests | 49 | 6.1 |
 | Total | 325 | 8.73 |
 
-### Methodogy
+### Methodology
 
 For all tests I used the following naming convention: test_methodName_expectedOutputWhenGivenInput.
 
