@@ -889,7 +889,36 @@ public struct HomeView<Cell: View, SearchView: View>: View {
 
 This module is responsible for instantiation and composing all independent modules in a centralized place which simplifies the management of modules, components and their dependencies, thus removing the need for them to communicate directly, increasing the composability and extensibility of the system (`Open/Closed Principle`). 
 
-#### SearchNearbyServiceWithFallbackComposite
+Moreover, it represent the composition root of the app and I use it to handle the following responsiblities:
+1. Adding caching by intercepting network requests (`Decorator Pattern`)
+2. Adding fallback strategies when network requests fail (`Composite Pattern`)
+3. Handling navigation (hierarchical navigation and tab navigation)
+
+#### Adding caching by intercepting network requests
+
+One extremely beneficial advantage of having a composition root is the possibility to inject behaviour in an instance without changing the implementation using the `Decorator` pattern. I used it to intercept the requests and save the received domain models in the local store.
+
+The following is an example of how I applied the pattern to introduce the caching behaviour after receiving the nearby restaurants. The decorator just conforms to the protocol the decoratee conforms and has an additional dependency, the cache, for storing the objects.
+
+```swift
+public final class SearchNearbyServiceCacheDecorator: SearchNearbyService {
+    private let searchNearbyService: SearchNearbyService
+    private let cache: SearchNearbyCache
+    
+    public init(searchNearbyService: SearchNearbyService, cache: SearchNearbyCache) {
+        self.searchNearbyService = searchNearbyService
+        self.cache = cache
+    }
+    
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+        let nearbyPlaces = try await searchNearbyService.searchNearby(location: location, radius: radius)
+        try? await cache.save(nearbyPlaces: nearbyPlaces)
+        return nearbyPlaces
+    }
+}
+```
+
+#### Adding fallback strategies when network requests fail
 
 I used the `Composite` design pattern to compose two strategies of fetching nearby places using the `SearchNearbyService` abstraction.
 
