@@ -1049,6 +1049,8 @@ During the entire project I've used TDD as the development process (excluding th
 
 I've been using TDD for over a year now and I really like it because it helps me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using TDD. Additionally, it helped me understand better what I was trying to build before writing code while increasing my confidence in the correctness of the system afterwards.
 
+### Summary Table
+
 | Strategy | Count | Duration (s) |
 |------|------|------|
 | Unit Tests | 262 | 0.84 |
@@ -1057,9 +1059,19 @@ I've been using TDD for over a year now and I really like it because it helps me
 | Snapshot Tests | 49 | 6.1 |
 | Total | 325 | 8.73 |
 
+### Methodogy
+
+For all tests I used the following naming convention: test_methodName_expectedOutputWhenGivenInput.
+
+I structured all tests using the `Given-When-Then` template/structure.
+
+I enabled test randomization for all targets besides the End-to-End tests since they must run in order to create the user on the server, create the session after login and running all the tests that require authentication. Alternatively, I could have called the `signUp` and `login` requests before each request that requires authentication to avoid the temporal coupling between tests, but for now I chose to keep the order.
+
 ### Unit Tests
 
 I used unit tests as the foundation for my testing pyramid because they are the most reliable and cheap to write. Also, I can easily test each component in isolation by mocking collaborators without making any assumptions about the rest of the system.
+
+During unit testing, I paid attention not to persistent artifacts on disk or in memory, especially while testing the `Keychain` store or the `CoreData` store.
 
 ### Integration Tests
 
