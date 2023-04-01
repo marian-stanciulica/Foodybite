@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class Flow<Route>: ObservableObject {
+final public class Flow<Route: Hashable>: ObservableObject {
     @Published public var path = [Route]()
     
     public init() { }
