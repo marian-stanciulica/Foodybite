@@ -20,7 +20,7 @@
         1. [End-to-End Tests](#end-to-end-tests)
         2. [Cache Integration Tests](#cache-integration-tests)
     3. [Snapshot Tests](#snapshot-tests)
-4. [CI/CD](#ci/cd)
+4. [CI/CD](#ci\/cd)
 5. [Security](#security)
     1. [API key for Google Places API](#api-key-for-google-places-api)
     2. [Store Tokens from FoodybiteServer in Keychain](#store-tokens-from-foodybiteserver-in-keychain)
