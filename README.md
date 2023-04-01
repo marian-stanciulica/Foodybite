@@ -851,9 +851,9 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 ### Presentation
 
-This layer makes the requests for getting data for a user case and it formats the data exactly how the `UI` module needs it for displaying.
+This layer makes the requests for getting data using a service and it formats the data exactly how the `UI` module needs it for displaying.
 
-Decoupling view models from the concrete implementations of the services allowed me to simply add the caching and the fallback features later on without changing the view models and shows how the view models conforms to the `Open/Closed Principle`. Additionally, since I created separate abstraction for each request I was able to add functionality gradually to each request. For this reason, each view model has access to only methods it cares about, thus respecting the `Interface Segregation Principle` and making the concrete implementations depend on the clients' needs as they must conform to the protocol.
+Decoupling view models from the concrete implementations of the services allowed me to simply add the caching and the fallback features later on without changing the view models and shows how the view models conforms to the `Open/Closed Principle`. Additionally, since I created separate abstraction for each request I was able to gradually add functionality to each request. For this reason, each view model has access to only methods it cares about, thus respecting the `Interface Segregation Principle` and making the concrete implementations depend on the clients' needs as they must conform to the protocol.
 
 On the other side, adding all methods in a single protocol would have violated the `Single Responsibility Principle`, making the protocol bloated and forcing the clients that implements it to contain methods they don't care about, which is also a violation of the `Liskov Substitution Principle` if the client crashes the app because it doesn't know how to handle that scenario or simply don't care about implementing that method and decide to voluntarily crash the app.
 
