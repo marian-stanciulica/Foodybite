@@ -6,9 +6,9 @@
 2. [Architecture](#architecture)
     1. [Overview](#overview)
     2. [Domain](#domain)
-    3. [API Infra](#api-infra)
-    4. [Networking](#networking)
-    5. [Places](#places)
+    3. [Networking](#networking)
+    4. [Places](#places)
+    5. [API Infra](#api-infra)
     6. [Persistence](#persistence)
     7. [Location](#location)
     8. [Presentation](#presentation)
@@ -48,9 +48,9 @@ I think it's the best approach for this project since vertical slicing is more s
 
 The following diagram provides a top-level view with all modules from this project along with their dependencies on other modules:
 1. [Domain](#domain)
-2. [API Infra](#api-infra)
-3. [Networking](#networking)
-4. [Places](#places)
+2. [Networking](#networking)
+3. [Places](#places)
+4. [API Infra](#api-infra)
 5. [Persistence](#persistence)
 6. [Location](#location)
 7. [Presentation](#presentation)
@@ -339,10 +339,6 @@ public protocol PlaceDetailsCache {
 }
 ```
 
-### API Infra
-
-![API Infra](./Diagrams/API_Infra.svg)
-
 ### Networking
 The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram and decisions made during testing (all components were tested using TDD):
 1. [Refresh Token Strategy](#1-refresh-token-strategy)
@@ -545,6 +541,10 @@ The following diagram presents the `Places` module which has as a dependency `AP
 | GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
 | GetPlacePhotoEndpoint | Creates `URLRequest` for fetching image data using a photo reference |
 | AutocompleteEndpoint | Creates `URLRequest` for searching restaurants given an input, location and radius |
+
+### API Infra
+
+![API Infra](./Diagrams/API_Infra.svg)
 
 ### Persistence
 
