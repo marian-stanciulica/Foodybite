@@ -729,12 +729,6 @@
 		0F19B4DB2916AF3D00A8FC8F /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		0F1C74C129D568F600D4FC80 /* SHA512PasswordHasherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA512PasswordHasherTests.swift; sourceTree = "<group>"; };
 		0F1C74C329D56CDF00D4FC80 /* SHA512PasswordHasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA512PasswordHasher.swift; sourceTree = "<group>"; };
-		0F1C74CA29D5B64100D4FC80 /* FoodybitePresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePresentation.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePresentation.framework; sourceTree = "<absolute>"; };
-		0F1C74D129D5B64100D4FC80 /* FoodybitePresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePresentationTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePresentationTests.xctest; sourceTree = "<absolute>"; };
-		0F1C753829D5C72B00D4FC80 /* FoodybiteLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteLocation.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteLocation.framework; sourceTree = "<absolute>"; };
-		0F1C753F29D5C72B00D4FC80 /* FoodybiteLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteLocationTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteLocationTests.xctest; sourceTree = "<absolute>"; };
-		0F1C755A29D5C93000D4FC80 /* FoodybiteUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteUI.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteUI.framework; sourceTree = "<absolute>"; };
-		0F1C756129D5C93000D4FC80 /* FoodybiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteUITests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteUITests.xctest; sourceTree = "<absolute>"; };
 		0F1C763429D5E9AC00D4FC80 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		0F1FDE392901570200E12B09 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		0F1FDE3B2901572700E12B09 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
@@ -784,8 +778,6 @@
 		0F2BACB3298292FA006D4A7F /* PlusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusCode.swift; sourceTree = "<group>"; };
 		0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybitePlacesAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteNetworkingAPIEndToEndTests.swift; sourceTree = "<group>"; };
-		0F34A12529D4508300B36428 /* API_Infra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = API_Infra.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/API_Infra.framework; sourceTree = "<absolute>"; };
-		0F34A12C29D4508300B36428 /* API_InfraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = API_InfraTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/API_InfraTests.xctest; sourceTree = "<absolute>"; };
 		0F39172329C1C58A00EE0201 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyStatus.swift; sourceTree = "<group>"; };
 		0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyResult.swift; sourceTree = "<group>"; };
@@ -916,17 +908,6 @@
 		0F62F2E129AF8915008F1C19 /* test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png; sourceTree = "<group>"; };
 		0F62F2E429AF89C0008F1C19 /* test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png; sourceTree = "<group>"; };
 		0F62F2E529AF89C0008F1C19 /* test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_restaurantDetailsViewWhenGetPlaceDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png; sourceTree = "<group>"; };
-		0F6B296529C4645100F8E0F6 /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Foodybite.app; path = "/Users/marian.stanciulica/Desktop/Foodybite/build/Debug-iphoneos/Foodybite.app"; sourceTree = "<absolute>"; };
-		0F6B296629C4645100F8E0F6 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Domain.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/Domain.framework; sourceTree = "<absolute>"; };
-		0F6B296729C4645100F8E0F6 /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybiteNetworking.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworking.framework; sourceTree = "<absolute>"; };
-		0F6B296929C4645100F8E0F6 /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePersistence.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistence.framework; sourceTree = "<absolute>"; };
-		0F6B296A29C4645100F8E0F6 /* FoodybitePlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FoodybitePlaces.framework; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePlaces.framework; sourceTree = "<absolute>"; };
-		0F6B296B29C4645100F8E0F6 /* FoodybiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteTests.xctest; path = "/Users/marian.stanciulica/Desktop/Foodybite/build/Debug-iphoneos/FoodybiteTests.xctest"; sourceTree = "<absolute>"; };
-		0F6B296D29C4645100F8E0F6 /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteNetworkingTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteNetworkingTests.xctest; sourceTree = "<absolute>"; };
-		0F6B296E29C4645100F8E0F6 /* FoodybitePlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePlacesTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePlacesTests.xctest; sourceTree = "<absolute>"; };
-		0F6B296F29C4645100F8E0F6 /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybitePersistenceTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybitePersistenceTests.xctest; sourceTree = "<absolute>"; };
-		0F6B297029C4645100F8E0F6 /* FoodybiteAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteAPIEndToEndTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteAPIEndToEndTests.xctest; sourceTree = "<absolute>"; };
-		0F6B297129C4645100F8E0F6 /* FoodybiteCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodybiteCacheIntegrationTests.xctest; path = /Users/marian.stanciulica/Desktop/Foodybite/build/Debug/FoodybiteCacheIntegrationTests.xctest; sourceTree = "<absolute>"; };
 		0F6BFD4629B5DFBE008CDA48 /* test_homeViewWhenSearchTextIsNotEmpty.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_homeViewWhenSearchTextIsNotEmpty.dark.png; sourceTree = "<group>"; };
 		0F6BFD4729B5DFBE008CDA48 /* test_homeViewWhenSearchTextIsNotEmpty.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_homeViewWhenSearchTextIsNotEmpty.light.png; sourceTree = "<group>"; };
 		0F70C49C29866D3600C004DD /* RestaurantCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -1028,6 +1009,25 @@
 		0FB1D3FE29AD0BD400304A94 /* test_newReviewWhenFetchPhotoStateIsSuccess.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenFetchPhotoStateIsSuccess.dark.png; sourceTree = "<group>"; };
 		0FB1D40529AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenInputIsValidPostButtonIsEnabled.light.png; sourceTree = "<group>"; };
 		0FB1D40629AD0FE900304A94 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png; sourceTree = "<group>"; };
+		0FC2120E29D7FE9B00353290 /* Foodybite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodybite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2120F29D7FE9B00353290 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121029D7FE9B00353290 /* API_Infra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = API_Infra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121129D7FE9B00353290 /* FoodybiteNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybiteNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121229D7FE9B00353290 /* FoodybitePlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePlaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121329D7FE9B00353290 /* FoodybitePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121429D7FE9B00353290 /* FoodybiteLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybiteLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121529D7FE9B00353290 /* FoodybitePresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybitePresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121629D7FE9B00353290 /* FoodybiteUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoodybiteUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121729D7FE9B00353290 /* FoodybiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121829D7FE9B00353290 /* API_InfraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = API_InfraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121929D7FE9B00353290 /* FoodybiteNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121A29D7FE9B00353290 /* FoodybitePlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePlacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121B29D7FE9B00353290 /* FoodybitePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121C29D7FE9B00353290 /* FoodybiteLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteLocationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121D29D7FE9B00353290 /* FoodybitePresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybitePresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121E29D7FE9B00353290 /* FoodybiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2121F29D7FE9B00353290 /* FoodybiteAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2122029D7FE9B00353290 /* FoodybiteCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodybiteCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		0FC73C5D29B611F5005879B8 /* NullLocalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullLocalStore.swift; sourceTree = "<group>"; };
 		0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelConvertable.swift; sourceTree = "<group>"; };
@@ -1368,7 +1368,7 @@
 			path = "Search Nearby";
 			sourceTree = "<group>";
 		};
-		0F18977429B7A0B20052094F /* Composition Root */ = {
+		0F18977429B7A0B20052094F /* Composition Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				0FC73C5D29B611F5005879B8 /* NullLocalStore.swift */,
@@ -1379,7 +1379,7 @@
 				0F61265729C0F7A600658A4D /* GetReviewsServiceCacheDecorator.swift */,
 				0F61265B29C0FAEA00658A4D /* GetReviewsServiceWithFallbackComposite.swift */,
 			);
-			path = "Composition Root";
+			path = "Composition Helpers";
 			sourceTree = "<group>";
 		};
 		0F19B476291647DB00A8FC8F /* Domain */ = {
@@ -2200,6 +2200,25 @@
 				0F1C756529D5C93000D4FC80 /* FoodybiteUITests */,
 				0F2BACBA29829D3B006D4A7F /* FoodybiteAPIEndToEndTests */,
 				0FC73C5229B6097C005879B8 /* FoodybiteCacheIntegrationTests */,
+				0FC2120E29D7FE9B00353290 /* Foodybite.app */,
+				0FC2120F29D7FE9B00353290 /* Domain.framework */,
+				0FC2121029D7FE9B00353290 /* API_Infra.framework */,
+				0FC2121129D7FE9B00353290 /* FoodybiteNetworking.framework */,
+				0FC2121229D7FE9B00353290 /* FoodybitePlaces.framework */,
+				0FC2121329D7FE9B00353290 /* FoodybitePersistence.framework */,
+				0FC2121429D7FE9B00353290 /* FoodybiteLocation.framework */,
+				0FC2121529D7FE9B00353290 /* FoodybitePresentation.framework */,
+				0FC2121629D7FE9B00353290 /* FoodybiteUI.framework */,
+				0FC2121729D7FE9B00353290 /* FoodybiteTests.xctest */,
+				0FC2121829D7FE9B00353290 /* API_InfraTests.xctest */,
+				0FC2121929D7FE9B00353290 /* FoodybiteNetworkingTests.xctest */,
+				0FC2121A29D7FE9B00353290 /* FoodybitePlacesTests.xctest */,
+				0FC2121B29D7FE9B00353290 /* FoodybitePersistenceTests.xctest */,
+				0FC2121C29D7FE9B00353290 /* FoodybiteLocationTests.xctest */,
+				0FC2121D29D7FE9B00353290 /* FoodybitePresentationTests.xctest */,
+				0FC2121E29D7FE9B00353290 /* FoodybiteUITests.xctest */,
+				0FC2121F29D7FE9B00353290 /* FoodybiteAPIEndToEndTests.xctest */,
+				0FC2122029D7FE9B00353290 /* FoodybiteCacheIntegrationTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2210,7 +2229,7 @@
 				0F423AAF29859FB8009EB345 /* Info.plist */,
 				0F7137BA2841F8340058757A /* FoodybiteApp.swift */,
 				0F1C762F29D5D19200D4FC80 /* Extensions */,
-				0F18977429B7A0B20052094F /* Composition Root */,
+				0F18977429B7A0B20052094F /* Composition Helpers */,
 				0F7E23D12920E837005196EA /* Navigation */,
 			);
 			path = Foodybite;
@@ -3114,7 +3133,7 @@
 			);
 			name = FoodybiteNetworking;
 			productName = FoodybiteNetworking;
-			productReference = 0F6B296729C4645100F8E0F6 /* FoodybiteNetworking.framework */;
+			productReference = 0FC2121129D7FE9B00353290 /* FoodybiteNetworking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F0BDA1F28F83FD500E91FD0 /* FoodybiteNetworkingTests */ = {
@@ -3133,7 +3152,7 @@
 			);
 			name = FoodybiteNetworkingTests;
 			productName = FoodybiteNetworkingTests;
-			productReference = 0F6B296D29C4645100F8E0F6 /* FoodybiteNetworkingTests.xctest */;
+			productReference = 0FC2121929D7FE9B00353290 /* FoodybiteNetworkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F108806291E2397007A28FA /* FoodybiteTests */ = {
@@ -3153,7 +3172,7 @@
 			packageProductDependencies = (
 			);
 			productName = FoodybiteTests;
-			productReference = 0F6B296B29C4645100F8E0F6 /* FoodybiteTests.xctest */;
+			productReference = 0FC2121729D7FE9B00353290 /* FoodybiteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F19B474291647DB00A8FC8F /* Domain */ = {
@@ -3171,7 +3190,7 @@
 			);
 			name = Domain;
 			productName = DomainModels;
-			productReference = 0F6B296629C4645100F8E0F6 /* Domain.framework */;
+			productReference = 0FC2120F29D7FE9B00353290 /* Domain.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F1C74C929D5B64100D4FC80 /* FoodybitePresentation */ = {
@@ -3191,7 +3210,7 @@
 			);
 			name = FoodybitePresentation;
 			productName = FoodybitePresentation;
-			productReference = 0F1C74CA29D5B64100D4FC80 /* FoodybitePresentation.framework */;
+			productReference = 0FC2121529D7FE9B00353290 /* FoodybitePresentation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F1C74D029D5B64100D4FC80 /* FoodybitePresentationTests */ = {
@@ -3209,7 +3228,7 @@
 			);
 			name = FoodybitePresentationTests;
 			productName = FoodybitePresentationTests;
-			productReference = 0F1C74D129D5B64100D4FC80 /* FoodybitePresentationTests.xctest */;
+			productReference = 0FC2121D29D7FE9B00353290 /* FoodybitePresentationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F1C753729D5C72B00D4FC80 /* FoodybiteLocation */ = {
@@ -3228,7 +3247,7 @@
 			);
 			name = FoodybiteLocation;
 			productName = FoodybiteLocation;
-			productReference = 0F1C753829D5C72B00D4FC80 /* FoodybiteLocation.framework */;
+			productReference = 0FC2121429D7FE9B00353290 /* FoodybiteLocation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F1C753E29D5C72B00D4FC80 /* FoodybiteLocationTests */ = {
@@ -3246,7 +3265,7 @@
 			);
 			name = FoodybiteLocationTests;
 			productName = FoodybiteLocationTests;
-			productReference = 0F1C753F29D5C72B00D4FC80 /* FoodybiteLocationTests.xctest */;
+			productReference = 0FC2121C29D7FE9B00353290 /* FoodybiteLocationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F1C755929D5C93000D4FC80 /* FoodybiteUI */ = {
@@ -3267,7 +3286,7 @@
 			);
 			name = FoodybiteUI;
 			productName = FoodybiteUI;
-			productReference = 0F1C755A29D5C93000D4FC80 /* FoodybiteUI.framework */;
+			productReference = 0FC2121629D7FE9B00353290 /* FoodybiteUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F1C756029D5C93000D4FC80 /* FoodybiteUITests */ = {
@@ -3288,7 +3307,7 @@
 				0F1C762A29D5CEB700D4FC80 /* SnapshotTesting */,
 			);
 			productName = FoodybiteUITests;
-			productReference = 0F1C756129D5C93000D4FC80 /* FoodybiteUITests.xctest */;
+			productReference = 0FC2121E29D7FE9B00353290 /* FoodybiteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F2BACB829829D3B006D4A7F /* FoodybiteAPIEndToEndTests */ = {
@@ -3308,7 +3327,7 @@
 			);
 			name = FoodybiteAPIEndToEndTests;
 			productName = FoodybiteAPIEndToEndTests;
-			productReference = 0F6B297029C4645100F8E0F6 /* FoodybiteAPIEndToEndTests.xctest */;
+			productReference = 0FC2121F29D7FE9B00353290 /* FoodybiteAPIEndToEndTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F34A12429D4508300B36428 /* API_Infra */ = {
@@ -3329,7 +3348,7 @@
 			);
 			name = API_Infra;
 			productName = API_Infra;
-			productReference = 0F34A12529D4508300B36428 /* API_Infra.framework */;
+			productReference = 0FC2121029D7FE9B00353290 /* API_Infra.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F34A12B29D4508300B36428 /* API_InfraTests */ = {
@@ -3347,7 +3366,7 @@
 			);
 			name = API_InfraTests;
 			productName = API_InfraTests;
-			productReference = 0F34A12C29D4508300B36428 /* API_InfraTests.xctest */;
+			productReference = 0FC2121829D7FE9B00353290 /* API_InfraTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F412E752962C78D00FDDF41 /* FoodybitePlaces */ = {
@@ -3367,7 +3386,7 @@
 			);
 			name = FoodybitePlaces;
 			productName = FoodybitePlaces;
-			productReference = 0F6B296A29C4645100F8E0F6 /* FoodybitePlaces.framework */;
+			productReference = 0FC2121229D7FE9B00353290 /* FoodybitePlaces.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F412E7C2962C78E00FDDF41 /* FoodybitePlacesTests */ = {
@@ -3386,7 +3405,7 @@
 			);
 			name = FoodybitePlacesTests;
 			productName = FoodybitePlacesTests;
-			productReference = 0F6B296E29C4645100F8E0F6 /* FoodybitePlacesTests.xctest */;
+			productReference = 0FC2121A29D7FE9B00353290 /* FoodybitePlacesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0F7137B62841F8340058757A /* Foodybite */ = {
@@ -3412,7 +3431,7 @@
 			);
 			name = Foodybite;
 			productName = Foodybite;
-			productReference = 0F6B296529C4645100F8E0F6 /* Foodybite.app */;
+			productReference = 0FC2120E29D7FE9B00353290 /* Foodybite.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0F95A875290D024400806AE9 /* FoodybitePersistence */ = {
@@ -3434,7 +3453,7 @@
 			packageProductDependencies = (
 			);
 			productName = FoodybitePersistence;
-			productReference = 0F6B296929C4645100F8E0F6 /* FoodybitePersistence.framework */;
+			productReference = 0FC2121329D7FE9B00353290 /* FoodybitePersistence.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0F95A87C290D024400806AE9 /* FoodybitePersistenceTests */ = {
@@ -3452,7 +3471,7 @@
 			);
 			name = FoodybitePersistenceTests;
 			productName = FoodybitePersistenceTests;
-			productReference = 0F6B296F29C4645100F8E0F6 /* FoodybitePersistenceTests.xctest */;
+			productReference = 0FC2121B29D7FE9B00353290 /* FoodybitePersistenceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		0FC73C5029B6097C005879B8 /* FoodybiteCacheIntegrationTests */ = {
@@ -3470,7 +3489,7 @@
 			);
 			name = FoodybiteCacheIntegrationTests;
 			productName = FoodybiteCacheIntegrationTests;
-			productReference = 0F6B297129C4645100F8E0F6 /* FoodybiteCacheIntegrationTests.xctest */;
+			productReference = 0FC2122029D7FE9B00353290 /* FoodybiteCacheIntegrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
