@@ -345,6 +345,7 @@ The following diagram represents the networking layer talking with my backend ap
 2. [Network Request Flow](#2-network-request-flow)
 3. [Endpoint Creation](#3-endpoint-creation)
 4. [Testing `Data` to `Decodable` Mapping](#4-testing-data-to-decodable-mapping)
+5. [Parsing JSON Response](#5-parsing-json-response)
 
 ![Networking Diagram](./Diagrams/Networking.svg)
 
@@ -430,7 +431,7 @@ public actor RefreshTokenService: TokenRefresher {
 This flow is composed by 3 classes: 
 - `APIService`, which implements domain protocols, creates `URLRequest` objects from endpoints and sends them to the remote store.
 - `RemoteStore`, which implements `ResourceLoader` and `ResourceSender`, validates the status code returned by the client and parses received data.
-- `AuthenticatedURLSessionHTTPClient`, which implements `HTTPClient`, signs each request using the access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root` this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `API Infra` module is used.
+- `AuthenticatedURLSessionHTTPClient`, which decorates `HTTPClient`, signs each request using the access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root` this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `API Infra` module is used.
 
 ![AuthenticatedURLSessionHTTPClient](./Diagrams/AuthenticatedURLSessionHTTPClient.svg)
 
@@ -498,6 +499,14 @@ Currently, when the need to add another endpoint arises, I can create another st
 
 For testing the mapping from `Data` to `Decodable` I chose to test it directly in the `RemoteStore`, hiding the knowledge of a collaborator (in this case `CodableDataParser`). While I could do this using a stubbed collaborator (e.g. a protocol `DataParser`), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
 
+#### 5. Parsing JSON Response
+
+To parse the JSON received from the server I had had two alternatives:
+1. To make domain models conform to `Codable` and use them directly to decode the data
+2. Create distinct representation for each domain model that needs to be parse
+
+I end up choosing the second approach as I didn't want to leak details implementation of the concrete implementation outside of the module because it would reduce its encapsulation by letting other modules know how it does the JSON parsing.
+
 ### Places
 
 The following diagram presents the `Places` module which has as a dependency `API Infra` because it shares the need to fetch resources over the network with the `Networking` module. This module calls [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
@@ -512,6 +521,10 @@ The following diagram presents the `Places` module which has as a dependency `AP
 | GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
 | GetPlacePhotoEndpoint | Creates `URLRequest` for fetching image data using a photo reference |
 | AutocompleteEndpoint | Creates `URLRequest` for searching restaurants given an input, location and radius |
+
+#### Parsing JSON Response
+
+The [same argument](#5-parsing-json-response) as for the `Networking` module is also valid in this context. Additionally, I chose for the DTOs to include all fields made available by the `Google Places API` for the convenience of easily checking what fields are available for each request and how I can use them for developing next features without checking the documentation all the time.
 
 ### API Infra
 
