@@ -20,9 +20,14 @@
         1. [End-to-End Tests](#end-to-end-tests)
         2. [Cache Integration Tests](#cache-integration-tests)
     3. [Snapshot Tests](#snapshot-tests)
-4. [Metrics](#metrics)
-5. [Credits](#credits)
-6. [References](#references)
+4. [CI/CD](#ci-cd)
+5. [Security](#security)
+    1. [API key for Google Places API](#api-key-for-google-places-api)
+    2. [Store Tokens from FoodybiteServer in Keychain](#store-tokens-from-foodybiteserver-in-keychain)
+    3. [Password Hashing](#password-hashing)
+6. [Metrics](#metrics)
+7. [Credits](#credits)
+8. [References](#references)
 
 ## Motivation
 
@@ -898,6 +903,16 @@ I used an `URLSession` with ephemeral configuration for both my own server and `
 An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I chose to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
 
 ### Snapshots Tests
+
+## CI/CD
+
+## Security
+
+### 1. API key for Google Places API
+
+### 2. Store Tokens from FoodybiteServer in Keychain
+
+### 3. Password Hashing
 
 ## Metrics
 
