@@ -1097,9 +1097,13 @@ Nevertheless, I didn't test any logic using snapshot tests as all the logic was 
 
 ### API key for Google Places API
 
+For security purposes, I put the `API_KEY` from the `Google Places API` in a plist in order not to leak in the source code and removed the file from the git index. This way the file exists only locally on my device avoiding leaking to an attacker that could make requests on my behalf for free.
+
 ### Store Tokens from FoodybiteServer in Keychain
 
 ### Password Hashing
+
+I avoid sending passwords in the requests' body as clear text by hashing them using `SHA512` before sending them. This way, I never store any password or send them over the network.
 
 ## Metrics
 
