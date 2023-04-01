@@ -515,11 +515,13 @@ The following diagram presents the `Places` module which has as a dependency `AP
 
 ### API Infra
 
+The following diagrams contains the concrete implementation of the `HTTPClient` protocol using `URLSession`. It respects the dependency rule stated in the overview section, as it depends on the `Networking` and `Places` modules. Since both modules require to make network requests I chose to extract the infrastructure class in a separate module and compose them in the `Composition Root`.
+
 ![API Infra](./Diagrams/API_Infra.svg)
 
 #### Mock Network Requests
 
-I prefer not to hit the network while testing the `URLSessionHTTPClient`. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
+It's recommended not to hit the network while testing the `URLSessionHTTPClient` in isolation, I use [end-to-end tests](#end-to-end-tests) to check the whole integration of the networking modules with the backend. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
 
 1. By creating a spy/stub class for `URLSession`, overriding the following method to return stubbed data or capturing the parameters.
 
@@ -541,9 +543,72 @@ extension URLSession: URLSessionProtocol {}
 
 > 🚩 The need to create the protocol in production for the sole purpose of testing because it's not an abstraction meant to be used by other clients.
 
-3. By subclassing `URLProtocol` and overriding a couple of methods to intercept the requests. Also, the stub should be registered by calling `URLProtocol.registerClass(URLProtocolStub.self)` to be used by the `URL Loading System`.
+3. By subclassing `URLProtocol` and overriding a couple of methods to intercept the requests. Also, the stub should be registered to be used by the `URL Loading System` by calling `URLProtocol.registerClass(URLProtocolStub.self)` or set directly in the `protocolClasses` property of `URLSessionConfiguration` before instantiating the session. Below is the factory method I use to instantiate `URLSessionHTTPClient` for testing:
 
-✅ For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side.
+```swift
+private func makeSUT() -> URLSessionHTTPClient {
+    let configuration = URLSessionConfiguration.ephemeral
+    configuration.protocolClasses = [URLProtocolStub.self]
+    let session = URLSession(configuration: configuration)
+    let sut = URLSessionHTTPClient(session: session)
+    return sut
+}
+```
+
+For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side. I also use a struct to stub fake responses in the client and an array to spy on the `URLRequests` received. 
+
+It's critical after each test to remove the stub not to influence the initial state of the other tests since the properties are static and are shared between tests. The reason why the properties are static is because I'm not instantiating the `URLProtocolStub` directly and use it to instantiate the session, instead the system instantiate it. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
+
+```swift
+class URLProtocolStub: URLProtocol {
+    private struct Stub {
+        let data: Data?
+        let response: URLResponse?
+        let error: Error?
+    }
+    
+    private static var stub: Stub?
+    private(set) static var capturedRequests = [URLRequest]()
+    
+    static func stub(data: Data?, response: URLResponse?, error: Error?) {
+        stub = Stub(data: data, response: response, error: error)
+    }
+    
+    static func removeStub() {
+        stub = nil
+        capturedRequests = []
+    }
+    
+    override class func canInit(with request: URLRequest) -> Bool {
+        capturedRequests.append(request)
+        return true
+    }
+    
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
+    }
+    
+    override func startLoading() {
+        guard let stub = URLProtocolStub.stub else { return }
+        
+        if let data = stub.data {
+            client?.urlProtocol(self, didLoad: data)
+        }
+        
+        if let response = stub.response {
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+        }
+        
+        if let error = stub.error {
+            client?.urlProtocol(self, didFailWithError: error)
+        } else {
+            client?.urlProtocolDidFinishLoading(self)
+        }
+    }
+    
+    override func stopLoading() {}
+}
+```
 
 ### Persistence
 
