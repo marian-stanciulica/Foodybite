@@ -515,13 +515,13 @@ The following diagram presents the `Places` module which has as a dependency `AP
 
 ### API Infra
 
-The following diagrams contains the concrete implementation of the `HTTPClient` protocol using `URLSession`. It respects the dependency rule stated in the overview section, as it depends on the `Networking` and `Places` modules. Since both modules require to make network requests I chose to extract the infrastructure class in a separate module and compose them in the `Composition Root`.
+The following diagram contains the concrete implementation of the `HTTPClient` protocol using `URLSession`. It respects the dependency rule stated in the overview section, as it depends on the `Networking` and `Places` modules. Since both modules require to make network requests, I chose to extract the infrastructure class in a separate module and compose them in the `Composition Root`.
 
 ![API Infra](./Diagrams/API_Infra.svg)
 
 #### Mock Network Requests
 
-It's recommended not to hit the network while testing the `URLSessionHTTPClient` in isolation, I use [end-to-end tests](#end-to-end-tests) to check the whole integration of the networking modules with the backend. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
+It's recommended not to hit the network while testing the `URLSessionHTTPClient` in isolation, instead I use [end-to-end tests](#end-to-end-tests) to check the whole integration of the networking modules with the backend. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
 
 1. By creating a spy/stub class for `URLSession`, overriding the following method to return stubbed data or capturing the parameters.
 
@@ -557,7 +557,7 @@ private func makeSUT() -> URLSessionHTTPClient {
 
 For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side. I also use a struct to stub fake responses in the client and an array to spy on the `URLRequests` received. 
 
-It's critical after each test to remove the stub not to influence the initial state of the other tests since the properties are static and are shared between tests. The reason why the properties are static is because I'm not instantiating the `URLProtocolStub` directly and use it to instantiate the session, instead the system instantiate it. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
+It's critical after each test to remove the stub not to influence the initial state of the other tests since the properties are static and shared between tests. The reason why the properties are static is because I don't instantiate the `URLProtocolStub` directly and use it to instantiate the session, instead the system instantiate it. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
 
 ```swift
 class URLProtocolStub: URLProtocol {
