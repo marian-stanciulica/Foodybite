@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Foodybite
+@testable import Foodybite
 
 final class FlowTests: XCTestCase {
     
