@@ -158,12 +158,12 @@ public protocol UserPreferencesLoader {
 }
 ```
 
-#### 4. Nearby Places Feature
+#### 4. Nearby Restaurants Feature
 
 ```swift
-public struct NearbyPlace: Equatable {
-    public let placeID: String
-    public let placeName: String
+public struct NearbyRestaurant: Equatable {
+    public let id: String
+    public let name: String
     public let isOpen: Bool
     public let rating: Double
     public let location: Location
@@ -177,16 +177,16 @@ public struct Location: Equatable, Hashable {
 ```
 
 ```swift
-public protocol SearchNearbyService {
-    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace]
+public protocol NearbyRestaurantsService {
+    func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant]
 }
 
-public protocol SearchNearbyCache {
-    func save(nearbyPlaces: [NearbyPlace]) async throws
+public protocol NearbyRestaurantsCache {
+    func save(nearbyRestaurants: [NearbyRestaurant]) async throws
 }
 ```
 
-#### 5. Fetch Place Photo Feature
+#### 5. Fetch Restaurant Photo Feature
 
 ```swift
 public struct Photo: Equatable, Hashable {
@@ -197,16 +197,16 @@ public struct Photo: Equatable, Hashable {
 ```
 
 ```swift
-public protocol FetchPlacePhotoService {
-    func fetchPlacePhoto(photoReference: String) async throws -> Data
+public protocol RestaurantPhotoService {
+    func fetchPhoto(photoReference: String) async throws -> Data
 }
 ```
 
-#### 6. Place Details Feature
+#### 6. Restaurant Details Feature
 
 ```swift
-public struct PlaceDetails: Equatable, Hashable {
-    public let placeID: String
+public struct RestaurantDetails: Equatable, Hashable {
+    public let id: String
     public let phoneNumber: String?
     public let name: String
     public let address: String
@@ -235,26 +235,26 @@ public struct Review: Equatable, Identifiable, Hashable {
 ```
 
 ```swift
-public protocol GetPlaceDetailsService {
-    func getPlaceDetails(placeID: String) async throws -> PlaceDetails
+public protocol RestaurantDetailsService {
+    func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails
 }
 
-public protocol PlaceDetailsCache {
-    func save(placeDetails: PlaceDetails) async throws
+public protocol RestaurantDetailsCache {
+    func save(restaurantDetails: RestaurantDetails) async throws
 }
 ```
 
 #### 7. Autocomplete Feature (Search Places)
 
 ```swift
-public struct AutocompletePrediction: Equatable {
-    public let placePrediction: String
-    public let placeID: String
+public struct AutocompletePrediction: Hashable {
+    public let restaurantPrediction: String
+    public let restaurantID: String
 }
 ```
 
 ```swift
-public protocol AutocompletePlacesService {
+public protocol AutocompleteRestaurantsService {
     func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction]
 }
 ```
@@ -264,7 +264,7 @@ public protocol AutocompletePlacesService {
 ```swift
 public struct Review: Equatable, Identifiable, Hashable {
     public var id: UUID
-    public let placeID: String
+    public let restaurantID: String
     public let profileImageURL: URL?
     public let profileImageData: Data?
     public let authorName: String
@@ -276,7 +276,7 @@ public struct Review: Equatable, Identifiable, Hashable {
 
 ```swift
 public protocol AddReviewService {
-    func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
+    func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
 }
 ```
 
@@ -285,7 +285,7 @@ public protocol AddReviewService {
 ```swift
 public struct Review: Equatable, Identifiable, Hashable {
     public var id: UUID
-    public let placeID: String
+    public let restaurantID: String
     public let profileImageURL: URL?
     public let profileImageData: Data?
     public let authorName: String
@@ -297,7 +297,7 @@ public struct Review: Equatable, Identifiable, Hashable {
 
 ```swift
 public protocol GetReviewsService {
-    func getReviews(placeID: String?) async throws -> [Review]
+    func getReviews(restaurantID: String?) async throws -> [Review]
 }
 
 public protocol ReviewCache {
@@ -318,6 +318,7 @@ public struct Location: Equatable, Hashable {
 public protocol LocationProviding {
     var locationServicesEnabled: Bool { get }
     
+    func requestWhenInUseAuthorization()
     func requestLocation() async throws -> Location
 }
 ```

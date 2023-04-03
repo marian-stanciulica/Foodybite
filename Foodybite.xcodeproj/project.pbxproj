@@ -2799,8 +2799,8 @@
 		0FDA1A4029DAAE840081333A /* Get Reviews Feature */ = {
 			isa = PBXGroup;
 			children = (
-				0F61265529C0F75700658A4D /* ReviewCache.swift */,
 				0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */,
+				0F61265529C0F75700658A4D /* ReviewCache.swift */,
 			);
 			path = "Get Reviews Feature";
 			sourceTree = "<group>";
