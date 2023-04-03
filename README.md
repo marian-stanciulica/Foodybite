@@ -1117,6 +1117,10 @@ For security purposes, I put the `API_KEY` from the `Google Places API` in a pli
 
 ### Store Tokens from FoodybiteServer in Keychain
 
+I chose to store in the `Keychain` the tokens received on login from the server to ensure the security and privacy of the user since session tokens are considered sensitive information. If an attacker has access to them, he can imporsonate the real user and steal his data or make distructive actions. 
+
+I use `Keychain` because is the default option of secure storage on iOS, uses strong encryption to protect the data, making it difficult for other apps or users to access the stored information. Additionally, it can be erased remotely, helping to prevent unauthorized access.
+
 ### Password Hashing
 
 I avoid sending passwords in the requests' body as clear text by hashing them using `SHA512` before sending them. This way, I never store any password or send them over the network.
