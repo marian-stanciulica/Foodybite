@@ -36,7 +36,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         
-        try await sut.save(placeDetails: expectedRestaurantDetails)
+        try await sut.save(restaurantDetails: expectedRestaurantDetails)
         
         XCTAssertEqual(storeSpy.messages.count, 1)
         

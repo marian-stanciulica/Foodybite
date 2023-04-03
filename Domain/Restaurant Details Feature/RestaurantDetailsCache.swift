@@ -6,5 +6,5 @@
 //
 
 public protocol RestaurantDetailsCache {
-    func save(placeDetails: RestaurantDetails) async throws
+    func save(restaurantDetails: RestaurantDetails) async throws
 }

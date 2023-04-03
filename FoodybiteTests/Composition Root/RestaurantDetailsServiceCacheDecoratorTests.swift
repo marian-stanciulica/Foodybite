@@ -63,8 +63,8 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
     private class PlaceDetailsCacheSpy: RestaurantDetailsCache {
         private(set) var capturedValues = [RestaurantDetails]()
         
-        func save(placeDetails: RestaurantDetails) async throws {
-            capturedValues.append(placeDetails)
+        func save(restaurantDetails: RestaurantDetails) async throws {
+            capturedValues.append(restaurantDetails)
         }
     }
 }

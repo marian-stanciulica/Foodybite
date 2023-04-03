@@ -26,7 +26,7 @@ public final class RestaurantDetailsDAO: RestaurantDetailsService, RestaurantDet
         return foundPlace
     }
     
-    public func save(placeDetails: RestaurantDetails) async throws {
-        try await store.write(placeDetails)
+    public func save(restaurantDetails: RestaurantDetails) async throws {
+        try await store.write(restaurantDetails)
     }
 }
