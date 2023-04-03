@@ -52,7 +52,7 @@ final class UserAuthenticatedFactory {
     
     lazy var searchNearbyWithFallbackComposite = NearbyRestaurantsServiceWithFallbackComposite(
         primary: NearbyRestaurantsServiceCacheDecorator(
-            searchNearbyService: placesService,
+            nearbyRestaurantsService: placesService,
             cache: searchNearbyDAO
         ),
         secondary: searchNearbyDAO
@@ -60,7 +60,7 @@ final class UserAuthenticatedFactory {
     
     lazy var getPlaceDetailsWithFallbackComposite = RestaurantDetailsServiceWithFallbackComposite(
         primary: RestaurantDetailsServiceCacheDecorator(
-            getPlaceDetailsService: placesService,
+            restaurantDetailsService: placesService,
             cache: placeDetailsDAO
         ),
         secondary: placeDetailsDAO

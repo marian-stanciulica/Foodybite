@@ -1,5 +1,5 @@
 //
-//  SearchNearbyServiceCacheDecoratorTests.swift
+//  NearbyRestaurantsServiceCacheDecoratorTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 07.03.2023.
@@ -9,21 +9,21 @@ import XCTest
 import Domain
 import Foodybite
 
-final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
+final class NearbyRestaurantsServiceCacheDecoratorTests: XCTestCase {
     
-    func test_searchNearby_throwsErrorWhenSearchNearbyServiceThrowsError() async {
+    func test_searchNearby_throwsErrorWhenServiceThrowsError() async {
         let (sut, serviceStub, _) = makeSUT()
         serviceStub.stub = .failure(anyError())
         
         do {
-            let nearbyPlaces = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, received nearby places \(nearbyPlaces) instead")
+            let nearbyRestaurants = try await searchNearby(on: sut)
+            XCTFail("Expected to fail, received \(nearbyRestaurants) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
-    func test_searchNearby_returnsNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async throws {
+    func test_searchNearby_returnsNearbyRestaurantsWhenServiceReturnsSuccessfully() async throws {
         let (sut, serviceStub, _) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         serviceStub.stub = .success(expectedNearbyRestaurants)
@@ -32,7 +32,7 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
     }
     
-    func test_searchNearby_doesNotCacheWhenSearchNearbyServiceThrowsError() async {
+    func test_searchNearby_doesNotCacheWhenServiceThrowsError() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
         
@@ -41,7 +41,7 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
     }
     
-    func test_searchNearby_cachesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
+    func test_searchNearby_cachesNearbyRestaurantsWhenServiceReturnsSuccessfully() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         serviceStub.stub = .success(expectedNearbyRestaurants)
@@ -56,7 +56,7 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     private func makeSUT() -> (sut: NearbyRestaurantsServiceCacheDecorator, serviceStub: SearchNearbyServiceStub, cacheSpy: SearchNearbyCacheSpy) {
         let serviceStub = SearchNearbyServiceStub()
         let cacheSpy = SearchNearbyCacheSpy()
-        let sut = NearbyRestaurantsServiceCacheDecorator(searchNearbyService: serviceStub, cache: cacheSpy)
+        let sut = NearbyRestaurantsServiceCacheDecorator(nearbyRestaurantsService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)
     }
     

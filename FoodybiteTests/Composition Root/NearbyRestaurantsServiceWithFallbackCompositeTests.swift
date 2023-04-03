@@ -1,5 +1,5 @@
 //
-//  SearchNearbyServiceWithFallbackCompositeTests.swift
+//  NearbyRestaurantsServiceWithFallbackCompositeTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -9,9 +9,9 @@ import XCTest
 import Domain
 import Foodybite
 
-final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
+final class NearbyRestaurantsServiceWithFallbackCompositeTests: XCTestCase {
     
-    func test_searchNearby_returnsNearbyPlacesWhenPrimaryReturnsSuccessfully() async throws {
+    func test_searchNearby_returnsNearbyRestaurantsWhenPrimaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, _) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         primaryStub.stub = .success(expectedNearbyRestaurants)
@@ -34,7 +34,7 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0].radius, expectedRadius)
     }
     
-    func test_searchNearby_returnsNearbyPlacesWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+    func test_searchNearby_returnsNearbyRestaurantsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         primaryStub.stub = .failure(anyError())

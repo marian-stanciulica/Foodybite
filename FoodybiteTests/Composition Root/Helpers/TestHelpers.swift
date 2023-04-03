@@ -42,7 +42,7 @@ func makeNearbyRestaurants() -> [NearbyRestaurant] {
     ]
 }
 
-func makeExpectedPlaceDetails() -> RestaurantDetails {
+func makeRestaurantDetails() -> RestaurantDetails {
     RestaurantDetails(placeID: "Expected place",
                  phoneNumber: "",
                  name: "",

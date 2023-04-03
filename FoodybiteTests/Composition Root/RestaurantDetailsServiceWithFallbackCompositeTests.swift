@@ -1,5 +1,5 @@
 //
-//  GetPlaceDetailsWithFallbackCompositeTests.swift
+//  RestaurantDetailsServiceWithFallbackCompositeTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -9,19 +9,19 @@ import XCTest
 import Domain
 import Foodybite
 
-final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
+final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
     
-    func test_getPlaceDetails_returnsPlaceDetailsWhenPrimaryReturnsSuccessfully() async throws {
+    func test_getRestaurantDetails_returnsRestaurantDetailsWhenPrimaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, _) = makeSUT()
-        let expectedPlaceDetails = makeExpectedPlaceDetails()
-        primaryStub.stub = .success(expectedPlaceDetails)
+        let expectedRestaurantDetails = makeRestaurantDetails()
+        primaryStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(placeID: expectedRestaurantDetails.placeID)
         
-        XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
+        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
-    func test_getPlaceDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
+    func test_getRestaurantDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedPlaceID = "place id"
         primaryStub.stub = .failure(anyError())
@@ -32,25 +32,25 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
     }
     
-    func test_getPlaceDetails_returnsPlaceDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+    func test_getRestaurantDetails_returnsPlaceDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
-        let expectedPlaceDetails = makeExpectedPlaceDetails()
+        let expectedRestaurantDetails = makeRestaurantDetails()
         primaryStub.stub = .failure(anyError())
-        secondaryStub.stub = .success(expectedPlaceDetails)
+        secondaryStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(placeID: expectedRestaurantDetails.placeID)
         
-        XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails)
+        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
-    func test_getPlaceDetails_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
+    func test_getRestaurantDetails_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         primaryStub.stub = .failure(anyError())
         secondaryStub.stub = .failure(anyError())
         
         do {
-            let placeDetails = try await sut.getRestaurantDetails(placeID: "place id")
-            XCTFail("Expected to fail, got \(placeDetails) instead")
+            let restaurantDetails = try await sut.getRestaurantDetails(placeID: "place id")
+            XCTFail("Expected to fail, got \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)
         }
