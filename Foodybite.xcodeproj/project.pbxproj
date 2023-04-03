@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F0280FD29262FE7006B219F /* SignUpRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */; };
 		0F028100292630D5006B219F /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0280FF292630D5006B219F /* LoginRequestBody.swift */; };
+		0F03EC8829DB1A3F00C9AAC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F03EC8729DB1A3F00C9AAC8 /* Assets.xcassets */; };
 		0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */; };
 		0F04032B29C06D9700122E60 /* UserDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032A29C06D9700122E60 /* UserDAOTests.swift */; };
 		0F04032D29C0709900122E60 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04032C29C0709900122E60 /* UserDAO.swift */; };
@@ -706,6 +707,7 @@
 /* Begin PBXFileReference section */
 		0F0280FC29262FE7006B219F /* SignUpRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestBody.swift; sourceTree = "<group>"; };
 		0F0280FF292630D5006B219F /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
+		0F03EC8729DB1A3F00C9AAC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F04032629C06BCE00122E60 /* User+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F04032A29C06D9700122E60 /* UserDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAOTests.swift; sourceTree = "<group>"; };
 		0F04032C29C0709900122E60 /* UserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
@@ -2156,6 +2158,7 @@
 				0F1C762F29D5D19200D4FC80 /* Extensions */,
 				0F18977429B7A0B20052094F /* Composition Helpers */,
 				0F7E23D12920E837005196EA /* Navigation */,
+				0F03EC8729DB1A3F00C9AAC8 /* Assets.xcassets */,
 			);
 			path = Foodybite;
 			sourceTree = "<group>";
@@ -3780,6 +3783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F03EC8829DB1A3F00C9AAC8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
