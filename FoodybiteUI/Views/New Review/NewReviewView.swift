@@ -74,6 +74,7 @@ public struct NewReviewView<SelectedView: View>: View {
                         
                         ProgressView()
                     }
+                    .padding()
                 case let .failure(error):
                     Text(error.rawValue)
                         .foregroundColor(.red)

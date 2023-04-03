@@ -291,6 +291,8 @@
 		0F4E0E9629D44A6A00A4508A /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E9529D44A6A00A4508A /* ResourceLoader.swift */; };
 		0F4E0E9829D44A8300A4508A /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E9729D44A8300A4508A /* DataLoader.swift */; };
 		0F4E0E9A29D44AB300A4508A /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E9929D44AB300A4508A /* CodableDataParser.swift */; };
+		0F53B0B129DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F53B0AF29DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png */; };
+		0F53B0B229DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F53B0B029DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png */; };
 		0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4934298FD931004162E5 /* TabBarPageView.swift */; };
 		0F61265329C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */; };
 		0F61265629C0F75700658A4D /* ReviewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265529C0F75700658A4D /* ReviewCache.swift */; };
@@ -867,6 +869,8 @@
 		0F4E0E9529D44A6A00A4508A /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F4E0E9729D44A8300A4508A /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		0F4E0E9929D44AB300A4508A /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
+		0F53B0AF29DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png; sourceTree = "<group>"; };
+		0F53B0B029DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		0F5912552996886100D67B21 /* NewReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewViewModel.swift; sourceTree = "<group>"; };
 		0F591257299697E600D67B21 /* NewReviewSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewSearchView.swift; sourceTree = "<group>"; };
@@ -2493,6 +2497,8 @@
 			children = (
 				0F6FD5EA29DB0CEA000A28F8 /* test_newReviewViewIdleState.dark.png */,
 				0F6FD5F029DB0CEA000A28F8 /* test_newReviewViewIdleState.light.png */,
+				0F53B0B029DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png */,
+				0F53B0AF29DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png */,
 				0F6FD5F329DB0CEB000A28F8 /* test_newReviewViewWhenGetRestaurantDetailsStateIsSuccess.dark.png */,
 				0F6FD5EC29DB0CEA000A28F8 /* test_newReviewViewWhenGetRestaurantDetailsStateIsSuccess.light.png */,
 				0F6FD5E929DB0CEA000A28F8 /* test_newReviewViewWithAutocompletePredictions.dark.png */,
@@ -3650,6 +3656,7 @@
 				0F6FD62329DB0D1B000A28F8 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */,
 				0F6FD5FB29DB0CEB000A28F8 /* test_newReviewWhenInputIsValidPostButtonIsEnabled.dark.png in Resources */,
 				0F6FD5C529DB0C51000A28F8 /* test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess.dark.png in Resources */,
+				0F53B0B229DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png in Resources */,
 				0F1C75F429D5CB0B00D4FC80 /* test_editProfileViewIsLoadingState.light.png in Resources */,
 				0F6FD61D29DB0D1B000A28F8 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccess.light.png in Resources */,
 				0F6FD5E329DB0C86000A28F8 /* test_restaurantDetailsViewSuccessState.light.png in Resources */,
@@ -3683,6 +3690,7 @@
 				0F6FD5E829DB0CAC000A28F8 /* test_searchCriteriaView.dark.png in Resources */,
 				0F6FD61929DB0D1B000A28F8 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsIsLoading.light.png in Resources */,
 				0F1C75F229D5CB0B00D4FC80 /* test_editProfileViewIdleState.dark.png in Resources */,
+				0F53B0B129DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png in Resources */,
 				0F1C761B29D5CB5900D4FC80 /* test_loginViewFailureState.light.png in Resources */,
 				0F1C75FB29D5CB1A00D4FC80 /* test_settingsViewIdleState.light.png in Resources */,
 				0F6FD5C429DB0C51000A28F8 /* test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure.dark.png in Resources */,
