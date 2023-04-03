@@ -10,10 +10,10 @@ import Domain
 import FoodybitePresentation
 
 public struct ChangePasswordView: View {
-    @ObservedObject var viewModel: ChangePasswordViewModel
+    @StateObject var viewModel: ChangePasswordViewModel
 
     public init(viewModel: ChangePasswordViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {

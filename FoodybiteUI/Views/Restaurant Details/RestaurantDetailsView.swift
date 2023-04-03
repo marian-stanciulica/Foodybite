@@ -10,12 +10,12 @@ import Domain
 import FoodybitePresentation
 
 public struct RestaurantDetailsView: View {
-    @ObservedObject var viewModel: RestaurantDetailsViewModel
+    @StateObject var viewModel: RestaurantDetailsViewModel
     let makePhotoView: (String?) -> PhotoView
     let showReviewView: () -> Void
     
     public init(viewModel: RestaurantDetailsViewModel, makePhotoView: @escaping (String?) -> PhotoView, showReviewView: @escaping () -> Void) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         self.makePhotoView = makePhotoView
         self.showReviewView = showReviewView
     }

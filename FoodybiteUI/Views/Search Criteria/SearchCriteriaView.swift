@@ -10,11 +10,11 @@ import Domain
 import FoodybitePresentation
 
 public struct SearchCriteriaView: View {
-    @ObservedObject var viewModel: SearchCriteriaViewModel
+    @StateObject var viewModel: SearchCriteriaViewModel
     @Environment(\.presentationMode) var presentationMode
     
     public init(viewModel: SearchCriteriaViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {

@@ -10,11 +10,11 @@ import Domain
 import FoodybitePresentation
 
 public struct LoginView: View {
-    @ObservedObject var viewModel: LoginViewModel
+    @StateObject var viewModel: LoginViewModel
     let goToSignUp: () -> Void
 
     public init(viewModel: LoginViewModel, goToSignUp: @escaping () -> Void) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         self.goToSignUp = goToSignUp
     }
     

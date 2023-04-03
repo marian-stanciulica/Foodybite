@@ -11,11 +11,11 @@ import FoodybitePresentation
 
 public struct RestaurantCell: View {
     let photoView: PhotoView
-    @ObservedObject var viewModel: RestaurantCellViewModel
+    @StateObject var viewModel: RestaurantCellViewModel
     
     public init(photoView: PhotoView, viewModel: RestaurantCellViewModel) {
         self.photoView = photoView
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {

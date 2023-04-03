@@ -10,10 +10,10 @@ import Domain
 import FoodybitePresentation
 
 public struct EditProfileView: View {
-    @ObservedObject var viewModel: EditProfileViewModel
+    @StateObject var viewModel: EditProfileViewModel
     
     public init(viewModel: EditProfileViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {

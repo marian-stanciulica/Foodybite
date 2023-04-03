@@ -10,7 +10,7 @@ import Domain
 import FoodybitePresentation
 
 public struct ProfileView<Cell: View>: View {
-    @ObservedObject var viewModel: ProfileViewModel
+    @StateObject var viewModel: ProfileViewModel
     let cell: (Review) -> Cell
     let goToSettings: () -> Void
     let goToEditProfile: () -> Void
@@ -23,7 +23,7 @@ public struct ProfileView<Cell: View>: View {
         goToEditProfile: @escaping () -> Void,
         editProfileAlertDisplayed: Bool = false
     ) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         self.cell = cell
         self.goToSettings = goToSettings
         self.goToEditProfile = goToEditProfile

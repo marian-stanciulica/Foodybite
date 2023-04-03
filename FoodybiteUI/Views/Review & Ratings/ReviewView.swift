@@ -10,11 +10,11 @@ import Domain
 import FoodybitePresentation
 
 public struct ReviewView: View {
-    @ObservedObject var viewModel: ReviewViewModel
+    @StateObject var viewModel: ReviewViewModel
     let dismissScreen: () -> Void
     
     public init(viewModel: ReviewViewModel, dismissScreen: @escaping () -> Void) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         self.dismissScreen = dismissScreen
     }
     

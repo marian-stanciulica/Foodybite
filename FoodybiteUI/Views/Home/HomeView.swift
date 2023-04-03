@@ -10,7 +10,7 @@ import SwiftUI
 import FoodybitePresentation
 
 public struct HomeView<Cell: View, SearchView: View>: View {
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
     let showRestaurantDetails: (String) -> Void
     let cell: (NearbyRestaurant) -> Cell
     let searchView: (Binding<String>) -> SearchView
@@ -21,7 +21,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
         cell: @escaping (NearbyRestaurant) -> Cell,
         searchView: @escaping (Binding<String>) -> SearchView
     ) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         self.showRestaurantDetails = showRestaurantDetails
         self.cell = cell
         self.searchView = searchView

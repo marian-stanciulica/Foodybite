@@ -11,12 +11,12 @@ import FoodybitePresentation
 
 public struct NewReviewView<SelectedView: View>: View {
     @Binding var plusButtonActive: Bool
-    @ObservedObject var viewModel: NewReviewViewModel
+    @StateObject var viewModel: NewReviewViewModel
     let selectedView: (RestaurantDetails) -> SelectedView
     
     public init(plusButtonActive: Binding<Bool>, viewModel: NewReviewViewModel, selectedView: @escaping (RestaurantDetails) -> SelectedView) {
         self._plusButtonActive = plusButtonActive
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         self.selectedView = selectedView
     }
     
