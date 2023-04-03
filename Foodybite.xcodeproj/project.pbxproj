@@ -1380,12 +1380,13 @@
 				0FDA1A3D29DAADAD0081333A /* User Session Feature */,
 				0FDA1A3E29DAADF40081333A /* Update Account Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
-				0FDA1A3F29DAAE490081333A /* Add Review Feature */,
-				0FDA1A4029DAAE840081333A /* Get Reviews Feature */,
 				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
+				0FDA1A4229DAAF3E0081333A /* Fetch Place Photo Feature */,
 				0FDA1A3B29DAACFA0081333A /* Place Details Feature */,
 				0FDA1A3C29DAAD590081333A /* Autocomplete Feature */,
-				0FA6BE292994E829003E1912 /* Protocols */,
+				0FDA1A3F29DAAE490081333A /* Add Review Feature */,
+				0FDA1A4029DAAE840081333A /* Get Reviews Feature */,
+				0FDA1A4129DAAF0A0081333A /* Location Feature */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -2425,14 +2426,6 @@
 			path = SearchCriteriaViewSnapshotTests;
 			sourceTree = "<group>";
 		};
-		0FA6BE292994E829003E1912 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0FD4176B298D60E400F2BF92 /* Location Protocols */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		0FABD5252996386B00918251 /* New Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -2620,14 +2613,6 @@
 			path = ProfileViewSnapshotTests;
 			sourceTree = "<group>";
 		};
-		0FD4176B298D60E400F2BF92 /* Location Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0FD41769298D609C00F2BF92 /* LocationProviding.swift */,
-			);
-			path = "Location Protocols";
-			sourceTree = "<group>";
-		};
 		0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2741,10 +2726,8 @@
 			children = (
 				0F215CB4298265A0000F88F4 /* NearbyPlace.swift */,
 				0F423A8E29850D0D009EB345 /* Location.swift */,
-				0F70C4A229869C8C00C004DD /* Photo.swift */,
 				0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */,
 				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
-				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
 			);
 			path = "Nearby Places Feature";
 			sourceTree = "<group>";
@@ -2805,6 +2788,23 @@
 				0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */,
 			);
 			path = "Get Reviews Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A4129DAAF0A0081333A /* Location Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0FD41769298D609C00F2BF92 /* LocationProviding.swift */,
+			);
+			path = "Location Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A4229DAAF3E0081333A /* Fetch Place Photo Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F70C4A229869C8C00C004DD /* Photo.swift */,
+				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
+			);
+			path = "Fetch Place Photo Feature";
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
