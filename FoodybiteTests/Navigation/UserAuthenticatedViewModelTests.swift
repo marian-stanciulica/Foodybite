@@ -83,6 +83,8 @@ final class UserAuthenticatedViewModelTests: XCTestCase {
             
             throw NSError(domain: "any error", code: 1)
         }
+        
+        func requestWhenInUseAuthorization() {}
     }
     
 }
