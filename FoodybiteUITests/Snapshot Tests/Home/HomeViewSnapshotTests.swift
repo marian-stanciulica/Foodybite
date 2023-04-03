@@ -72,7 +72,7 @@ final class HomeViewSnapshotTests: XCTestCase {
     private func makeSUT(searchText: String = "", getNearbyPlacesState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> HomeView<RestaurantCell, HomeSearchView<SearchCriteriaView>> {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
-        let homeViewModel = HomeViewModel(searchNearbyService: EmptySearchNearbyService(),
+        let homeViewModel = HomeViewModel(nearbyRestaurantsService: EmptyNearbyRestaurantsService(),
                                           currentLocation: currentLocation,
                                           userPreferences: UserPreferences(radius: 200, starsNumber: 4))
         homeViewModel.searchNearbyState = getNearbyPlacesState
@@ -80,7 +80,7 @@ final class HomeViewSnapshotTests: XCTestCase {
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",
-            fetchPhotoService: EmptyPlacePhotoService()
+            restaurantPhotoService: EmptyPlacePhotoService()
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
         
@@ -138,7 +138,7 @@ final class HomeViewSnapshotTests: XCTestCase {
         ]
     }
     
-    private class EmptySearchNearbyService: NearbyRestaurantsService {
+    private class EmptyNearbyRestaurantsService: NearbyRestaurantsService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] { [] }
     }
             

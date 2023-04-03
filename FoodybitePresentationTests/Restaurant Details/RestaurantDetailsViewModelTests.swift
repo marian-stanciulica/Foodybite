@@ -127,7 +127,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         let sut = RestaurantDetailsViewModel(
             input: input,
             getDistanceInKmFromCurrentLocation: { _ in 353.6 },
-            getPlaceDetailsService: getPlaceDetailsServiceSpy,
+            restaurantDetailsService: getPlaceDetailsServiceSpy,
             getReviewsService: getReviewsServiceSpy
         )
         return (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy)

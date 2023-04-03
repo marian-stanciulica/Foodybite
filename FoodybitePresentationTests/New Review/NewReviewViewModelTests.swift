@@ -199,7 +199,7 @@ final class NewReviewViewModelTests: XCTestCase {
         let defaultLocation = Location(latitude: 0, longitude: 0)
         let sut = NewReviewViewModel(
             autocompletePlacesService: autocompleteSpy,
-            getPlaceDetailsService: getPlaceDetailsServiceSpy,
+            restaurantDetailsService: getPlaceDetailsServiceSpy,
             addReviewService: addReviewServiceSpy,
             location: location ?? defaultLocation,
             userPreferences: userPreferences ?? .default

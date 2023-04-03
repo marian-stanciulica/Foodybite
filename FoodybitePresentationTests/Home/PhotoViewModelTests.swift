@@ -51,7 +51,7 @@ final class PhotoViewModelTests: XCTestCase {
     
     private func makeSUT(photoReference: String? = "photo reference") -> (sut: PhotoViewModel, fetchPhotoServiceSpy: FetchPlacePhotoServiceSpy) {
         let fetchPhotoServiceSpy = FetchPlacePhotoServiceSpy()
-        let sut = PhotoViewModel(photoReference: photoReference, fetchPhotoService: fetchPhotoServiceSpy)
+        let sut = PhotoViewModel(photoReference: photoReference, restaurantPhotoService: fetchPhotoServiceSpy)
         return (sut, fetchPhotoServiceSpy)
     }
     

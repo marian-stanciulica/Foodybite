@@ -23,7 +23,7 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(sut.searchNearbyState, .idle)
     }
     
-    func test_searchNearby_sendsInputToSearchNearbyService() async {
+    func test_searchNearby_sendsInputToNearbyRestaurantsService() async {
         let (sut, serviceSpy) = makeSUT()
 
         await sut.searchNearby()
@@ -33,22 +33,22 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(serviceSpy.capturedValues[0].radius, anyUserPreferences.radius)
     }
     
-    func test_searchNearby_setsErrorWhenSearchNearbyServiceThrowsError() async {
+    func test_searchNearby_setsErrorWhenNearbyRestaurantsServiceThrowsError() async {
         let (sut, serviceSpy) = makeSUT()
         serviceSpy.result = .failure(anyError)
         
         await assert(on: sut, withExpectedResult: .failure(.serverError))
     }
     
-    func test_searchNearby_updatesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
+    func test_searchNearby_updatesNearbyPlacesWhenNearbyRestaurantsServiceReturnsSuccessfully() async {
         let (sut, serviceSpy) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyRestaurants()
-        serviceSpy.result = .success(expectedNearbyPlaces)
+        let expectedNearbyRestaurants = makeNearbyRestaurants()
+        serviceSpy.result = .success(expectedNearbyRestaurants)
         
-        await assert(on: sut, withExpectedResult: .success(expectedNearbyPlaces))
+        await assert(on: sut, withExpectedResult: .success(expectedNearbyRestaurants))
     }
     
-    func test_filteredNearbyPlaces_isEmptyWhenSearchNearbyStateIsNotSuccess() {
+    func test_filteredNearbyRestaurants_isEmptyWhenSearchNearbyStateIsNotSuccess() {
         let (sut, _) = makeSUT()
         
         sut.searchNearbyState = .idle
@@ -61,29 +61,29 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
     }
     
-    func test_filteredNearbyPlaces_filtersNearbyPlacesUsingSearchText() {
+    func test_filteredNearbyRestaurants_filtersNearbyRestaurantsUsingSearchText() {
         let (sut, _) = makeSUT()
-        let nearbyPlaces = makeNearbyRestaurants()
-        sut.searchNearbyState = .success(nearbyPlaces)
-        sut.searchText = nearbyPlaces[1].placeName
+        let nearbyRestaurants = makeNearbyRestaurants()
+        sut.searchNearbyState = .success(nearbyRestaurants)
+        sut.searchText = nearbyRestaurants[1].placeName
         
-        XCTAssertEqual(sut.filteredNearbyRestaurants, [nearbyPlaces[1]])
+        XCTAssertEqual(sut.filteredNearbyRestaurants, [nearbyRestaurants[1]])
     }
     
-    func test_filteredNearbyPlaces_equalsNearbyPlacesWhensearchTextIsEmpty() {
+    func test_filteredNearbyRestaurants_equalsNearbyRestaurantsWhenSearchTextIsEmpty() {
         let (sut, _) = makeSUT()
-        let nearbyPlaces = makeNearbyRestaurants()
-        sut.searchNearbyState = .success(nearbyPlaces)
+        let nearbyRestaurants = makeNearbyRestaurants()
+        sut.searchNearbyState = .success(nearbyRestaurants)
         sut.searchText = ""
         
-        XCTAssertEqual(sut.filteredNearbyRestaurants, nearbyPlaces)
+        XCTAssertEqual(sut.filteredNearbyRestaurants, nearbyRestaurants)
     }
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: HomeViewModel, serviceSpy: SearchNearbyServiceSpy) {
-        let serviceSpy = SearchNearbyServiceSpy()
-        let sut = HomeViewModel(searchNearbyService: serviceSpy, currentLocation: anyLocation, userPreferences: anyUserPreferences)
+    private func makeSUT() -> (sut: HomeViewModel, serviceSpy: NearbyRestaurantsServiceSpy) {
+        let serviceSpy = NearbyRestaurantsServiceSpy()
+        let sut = HomeViewModel(nearbyRestaurantsService: serviceSpy, currentLocation: anyLocation, userPreferences: anyUserPreferences)
         return (sut, serviceSpy)
     }
     
@@ -121,7 +121,7 @@ final class HomeViewModelTests: XCTestCase {
         ]
     }
     
-    private class SearchNearbyServiceSpy: NearbyRestaurantsService {
+    private class NearbyRestaurantsServiceSpy: NearbyRestaurantsService {
         var result: Result<[NearbyRestaurant], Error>?
         private(set) var capturedValues = [(location: Location, radius: Int)]()
         

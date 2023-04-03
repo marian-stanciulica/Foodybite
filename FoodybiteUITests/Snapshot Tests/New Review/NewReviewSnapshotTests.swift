@@ -86,7 +86,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     ) -> NewReviewView<SelectedRestaurantView> {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
-            getPlaceDetailsService: EmptyGetPlaceDetailsService(),
+            restaurantDetailsService: EmptyGetPlaceDetailsService(),
             addReviewService: EmptyAddReviewService(),
             location: Location(latitude: 0, longitude: 0),
             userPreferences: UserPreferences(radius: 0, starsNumber: 0)
@@ -108,7 +108,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     private func makeCell(placeDetails: RestaurantDetails, fetchPhotoState: PhotoViewModel.State) -> SelectedRestaurantView {
         let viewModel = PhotoViewModel(
             photoReference: placeDetails.photos.first?.photoReference,
-            fetchPhotoService: EmptyPlacePhotoService()
+            restaurantPhotoService: EmptyPlacePhotoService()
         )
         viewModel.fetchPhotoState = fetchPhotoState
         let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), placeDetails: placeDetails)

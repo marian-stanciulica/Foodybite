@@ -109,7 +109,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                 viewModel: RestaurantDetailsViewModel(
                     input: .placeIdToFetch("#1"),
                     getDistanceInKmFromCurrentLocation: { _ in 3.4 },
-                    restaurantDetailsService: PreviewSearchNearbyService(),
+                    restaurantDetailsService: PreviewNearbyRestaurantsService(),
                     getReviewsService: PreviewGetReviewsService()
                 ),
                 makePhotoView: { _ in
@@ -125,7 +125,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewSearchNearbyService: RestaurantDetailsService {
+    private class PreviewNearbyRestaurantsService: RestaurantDetailsService {
         func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 placeID: "place #1",
