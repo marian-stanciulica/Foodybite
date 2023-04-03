@@ -43,8 +43,8 @@ final class UserAuthenticatedFactory {
     
     let userPreferencesStore = UserPreferencesLocalStore()
     
-    let searchNearbyDAO = SearchNearbyDAO(store: RootFactory.localStore,
-                                          getDistanceInKm: DistanceSolver.getDistanceInKm)
+    private let nearbyRestaurantsDAO = NearbyRestaurantsDAO(store: RootFactory.localStore,
+                                                            getDistanceInKm: DistanceSolver.getDistanceInKm)
     
     let placeDetailsDAO = GetPlaceDetailsDAO(store: RootFactory.localStore)
     
@@ -53,9 +53,9 @@ final class UserAuthenticatedFactory {
     lazy var searchNearbyWithFallbackComposite = NearbyRestaurantsServiceWithFallbackComposite(
         primary: NearbyRestaurantsServiceCacheDecorator(
             nearbyRestaurantsService: placesService,
-            cache: searchNearbyDAO
+            cache: nearbyRestaurantsDAO
         ),
-        secondary: searchNearbyDAO
+        secondary: nearbyRestaurantsDAO
     )
     
     lazy var getPlaceDetailsWithFallbackComposite = RestaurantDetailsServiceWithFallbackComposite(

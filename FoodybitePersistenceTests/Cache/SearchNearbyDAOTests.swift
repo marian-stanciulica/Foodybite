@@ -52,10 +52,10 @@ final class SearchNearbyDAOTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyDAO, storeSpy: LocalStoreSpy, distanceProviderStub: DistanceProviderStub) {
+    private func makeSUT() -> (sut: NearbyRestaurantsDAO, storeSpy: LocalStoreSpy, distanceProviderStub: DistanceProviderStub) {
         let storeSpy = LocalStoreSpy()
         let distanceProviderStub = DistanceProviderStub()
-        let sut = SearchNearbyDAO(store: storeSpy, getDistanceInKm: distanceProviderStub.getDistanceInKm)
+        let sut = NearbyRestaurantsDAO(store: storeSpy, getDistanceInKm: distanceProviderStub.getDistanceInKm)
         return (sut, storeSpy, distanceProviderStub)
     }
     
@@ -89,7 +89,7 @@ final class SearchNearbyDAOTests: XCTestCase {
         ]
     }
     
-    private func searchNearby(on sut: SearchNearbyDAO, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
+    private func searchNearby(on sut: NearbyRestaurantsDAO, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     

@@ -1,5 +1,5 @@
 //
-//  SearchNearbyDAO.swift
+//  NearbyRestaurantsDAO.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 07.03.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class SearchNearbyDAO: NearbyRestaurantsService, NearbyRestaurantsCache {
+public final class NearbyRestaurantsDAO: NearbyRestaurantsService, NearbyRestaurantsCache {
     private let store: LocalStore
     private let getDistanceInKm: (Location, Location) -> Double
     

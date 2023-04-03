@@ -18,7 +18,7 @@
 		0F18976029B75F660052094F /* SearchNearbyDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */; };
 		0F18976329B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976229B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift */; };
 		0F18976529B766000052094F /* ManagedNearbyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */; };
-		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
+		0F18976929B785020052094F /* NearbyRestaurantsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* NearbyRestaurantsDAO.swift */; };
 		0F18976E29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976D29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift */; };
 		0F18977329B79D6C0052094F /* NearbyRestaurantsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18977229B79D6C0052094F /* NearbyRestaurantsCache.swift */; };
 		0F18977629B7A0C60052094F /* NearbyRestaurantsServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18977529B7A0C60052094F /* NearbyRestaurantsServiceCacheDecorator.swift */; };
@@ -717,7 +717,7 @@
 		0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAOTests.swift; sourceTree = "<group>"; };
 		0F18976229B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NearbyRestaurant+LocalModelConvertible.swift"; sourceTree = "<group>"; };
 		0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedNearbyRestaurant.swift; sourceTree = "<group>"; };
-		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
+		0F18976829B785020052094F /* NearbyRestaurantsDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsDAO.swift; sourceTree = "<group>"; };
 		0F18976D29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F18977229B79D6C0052094F /* NearbyRestaurantsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsCache.swift; sourceTree = "<group>"; };
 		0F18977529B7A0C60052094F /* NearbyRestaurantsServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsServiceCacheDecorator.swift; sourceTree = "<group>"; };
@@ -2078,7 +2078,7 @@
 				0F19B49329164B1000A8FC8F /* Infrastructure */,
 				0F41D9AD2913E7BE00F0E4C2 /* LocalStore.swift */,
 				0F04032C29C0709900122E60 /* UserDAO.swift */,
-				0F18976829B785020052094F /* SearchNearbyDAO.swift */,
+				0F18976829B785020052094F /* NearbyRestaurantsDAO.swift */,
 				0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */,
 				0F3F1A6929CDDD360047E243 /* ReviewDAO.swift */,
 			);
@@ -4193,7 +4193,7 @@
 			files = (
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
 				0F207C6C29B8C1F10095E905 /* ManagedRestaurantDetails.swift in Sources */,
-				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
+				0F18976929B785020052094F /* NearbyRestaurantsDAO.swift in Sources */,
 				0F61266529C0FE1900658A4D /* Review+LocalModelConvertable.swift in Sources */,
 				0F04032D29C0709900122E60 /* UserDAO.swift in Sources */,
 				0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */,
