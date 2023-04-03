@@ -1,6 +1,6 @@
 //
 //  LogoutService.swift
-//  FoodybiteNetworking
+//  Domain
 //
 //  Created by Marian Stanciulica on 24.11.2022.
 //

@@ -9,9 +9,9 @@ import Domain
 
 public final class SearchNearbyServiceCacheDecorator: NearbyRestaurantsService {
     private let searchNearbyService: NearbyRestaurantsService
-    private let cache: SearchNearbyCache
+    private let cache: NearbyRestaurantsCache
     
-    public init(searchNearbyService: NearbyRestaurantsService, cache: SearchNearbyCache) {
+    public init(searchNearbyService: NearbyRestaurantsService, cache: NearbyRestaurantsCache) {
         self.searchNearbyService = searchNearbyService
         self.cache = cache
     }

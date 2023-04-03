@@ -1,6 +1,6 @@
 //
-//  SearchNearbyService.swift
-//  FoodybitePlaces
+//  NearbyRestaurantsService.swift
+//  Domain
 //
 //  Created by Marian Stanciulica on 02.01.2023.
 //

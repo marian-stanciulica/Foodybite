@@ -64,7 +64,7 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     
-    private class SearchNearbyCacheSpy: SearchNearbyCache {
+    private class SearchNearbyCacheSpy: NearbyRestaurantsCache {
         private(set) var capturedValues = [[NearbyRestaurant]]()
         
         func save(nearbyPlaces: [NearbyRestaurant]) async throws {

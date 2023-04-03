@@ -1,6 +1,6 @@
 //
 //  SignUpService.swift
-//  FoodybiteNetworking
+//  Domain
 //
 //  Created by Marian Stanciulica on 12.11.2022.
 //

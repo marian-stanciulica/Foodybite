@@ -1,6 +1,6 @@
 //
 //  AccountService.swift
-//  FoodybiteNetworking
+//  Domain
 //
 //  Created by Marian Stanciulica on 25.11.2022.
 //

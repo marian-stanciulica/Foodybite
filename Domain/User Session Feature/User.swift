@@ -1,6 +1,6 @@
 //
 //  User.swift
-//  Foodybite
+//  Domain
 //
 //  Created by Marian Stanciulica on 05.11.2022.
 //
