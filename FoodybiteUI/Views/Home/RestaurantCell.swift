@@ -44,7 +44,7 @@ public struct RestaurantCell: View {
             }
 
             RestaurantInformationView(
-                placeName: viewModel.restaurantName,
+                name: viewModel.restaurantName,
                 distance: viewModel.distance,
                 address: nil
             )

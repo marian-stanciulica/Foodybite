@@ -91,7 +91,7 @@ final class HomeViewSnapshotTests: XCTestCase {
         
         let homeView = HomeView(
             viewModel: homeViewModel,
-            showPlaceDetails: { _ in },
+            showRestaurantDetails: { _ in },
             cell: { nearbyRestaurant in
                 RestaurantCell(
                     photoView: PhotoView(viewModel: photoViewModel),

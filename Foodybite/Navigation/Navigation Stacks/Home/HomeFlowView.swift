@@ -30,7 +30,7 @@ enum HomeFlowView {
                 nearbyRestaurantsService: nearbyRestaurantsService,
                 currentLocation: currentLocation,
                 userPreferences: userPreferences),
-            showPlaceDetails: { restaurantID in
+            showRestaurantDetails: { restaurantID in
                 flow.append(.restaurantDetails(restaurantID))
             },
             cell: { nearbyRestaurant in

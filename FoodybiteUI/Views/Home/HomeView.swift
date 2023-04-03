@@ -11,18 +11,18 @@ import FoodybitePresentation
 
 public struct HomeView<Cell: View, SearchView: View>: View {
     @ObservedObject var viewModel: HomeViewModel
-    let showPlaceDetails: (String) -> Void
+    let showRestaurantDetails: (String) -> Void
     let cell: (NearbyRestaurant) -> Cell
     let searchView: (Binding<String>) -> SearchView
     
     public init(
         viewModel: HomeViewModel,
-        showPlaceDetails: @escaping (String) -> Void,
+        showRestaurantDetails: @escaping (String) -> Void,
         cell: @escaping (NearbyRestaurant) -> Cell,
         searchView: @escaping (Binding<String>) -> SearchView
     ) {
         self.viewModel = viewModel
-        self.showPlaceDetails = showPlaceDetails
+        self.showRestaurantDetails = showRestaurantDetails
         self.cell = cell
         self.searchView = searchView
     }
@@ -57,7 +57,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                                 .padding(4)
                                 .shadow(color: Color(uiColor: .systemGray3), radius: 2)
                                 .onTapGesture {
-                                    showPlaceDetails(place.id)
+                                    showRestaurantDetails(place.id)
                                 }
                         }
                     }
@@ -81,7 +81,7 @@ struct HomeView_Previews: PreviewProvider {
                 currentLocation: Location(latitude: 2.3, longitude: 4.5),
                 userPreferences: UserPreferences(radius: 200, starsNumber: 4)
             ),
-            showPlaceDetails: { _ in }, cell: { nearbyRestaurant in
+            showRestaurantDetails: { _ in }, cell: { nearbyRestaurant in
                 RestaurantCell(
                     photoView: PhotoView(
                         viewModel: PhotoViewModel(

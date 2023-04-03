@@ -48,7 +48,7 @@ public struct RestaurantDetailsView: View {
                                 
                                 HStack {
                                     RestaurantInformationView(
-                                        placeName: placeDetails.name,
+                                        name: placeDetails.name,
                                         distance: viewModel.distanceInKmFromCurrentLocation,
                                         address: placeDetails.address
                                     )

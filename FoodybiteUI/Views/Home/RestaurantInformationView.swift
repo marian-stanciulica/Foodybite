@@ -9,14 +9,14 @@ import Domain
 import SwiftUI
 
 struct RestaurantInformationView: View {
-    let placeName: String
+    let name: String
     let distance: String
     let address: String?
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(placeName)
+                Text(name)
                     .font(.title2.weight(.bold))
 
                 DistanceText(distance: distance)
@@ -34,7 +34,7 @@ struct RestaurantInformationView: View {
 struct RestaurantInformationView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantInformationView(
-            placeName: "Happy Bones",
+            name: "Happy Bones",
             distance: "1.2",
             address: "394 Broome St, New York, NY 10013, USA"
         )
