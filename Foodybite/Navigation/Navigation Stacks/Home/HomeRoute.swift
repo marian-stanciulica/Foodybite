@@ -6,6 +6,6 @@
 //
 
 public enum HomeRoute: Hashable {
-    case placeDetails(String)
+    case restaurantDetails(String)
     case addReview(String)
 }

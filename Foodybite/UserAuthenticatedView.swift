@@ -72,7 +72,7 @@ struct UserAuthenticatedView: View {
             }
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
-                case let .placeDetails(placeID):
+                case let .restaurantDetails(placeID):
                     HomeFlowView.makeRestaurantDetailsView(
                         flow: homeFlow,
                         placeID: placeID,
