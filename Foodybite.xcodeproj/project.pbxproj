@@ -261,7 +261,7 @@
 		0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */; };
 		0F207C7729B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */; };
 		0F207C7929B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */; };
-		0F207C7C29B8E2B10095E905 /* PlaceDetailsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */; };
+		0F207C7C29B8E2B10095E905 /* RestaurantDetailsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7B29B8E2B10095E905 /* RestaurantDetailsCache.swift */; };
 		0F207C7E29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */; };
 		0F207C8029B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */; };
 		0F207C8229B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */; };
@@ -757,7 +757,7 @@
 		0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsDAO.swift; sourceTree = "<group>"; };
 		0F207C7629B8CFC40095E905 /* GetPlaceDetailsWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		0F207C7829B8D01C0095E905 /* GetPlaceDetailsServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceStub.swift; sourceTree = "<group>"; };
-		0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsCache.swift; sourceTree = "<group>"; };
+		0F207C7B29B8E2B10095E905 /* RestaurantDetailsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsCache.swift; sourceTree = "<group>"; };
 		0F207C7D29B8E4DD0095E905 /* GetPlaceDetailsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F207C7F29B8E8830095E905 /* GetPlaceDetailsServiceCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsServiceCacheDecorator.swift; sourceTree = "<group>"; };
 		0F207C8129B8E8BF0095E905 /* GetPlaceDetailsWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsWithFallbackComposite.swift; sourceTree = "<group>"; };
@@ -2738,7 +2738,7 @@
 				0F215CB5298265A0000F88F4 /* RestaurantDetails.swift */,
 				0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */,
 				0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */,
-				0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */,
+				0F207C7B29B8E2B10095E905 /* RestaurantDetailsCache.swift */,
 			);
 			path = "Restaurant Details Feature";
 			sourceTree = "<group>";
@@ -3911,7 +3911,7 @@
 				0F70C4A329869C8C00C004DD /* Photo.swift in Sources */,
 				0FF7C69729B2356200622E9C /* UserPreferencesSaver.swift in Sources */,
 				0FA6BE2E2994E8A0003E1912 /* LoginService.swift in Sources */,
-				0F207C7C29B8E2B10095E905 /* PlaceDetailsCache.swift in Sources */,
+				0F207C7C29B8E2B10095E905 /* RestaurantDetailsCache.swift in Sources */,
 				0F215CB829826CF8000F88F4 /* RestaurantDetails.swift in Sources */,
 				0F19B48A291647F300A8FC8F /* User.swift in Sources */,
 				0FA6BE302994E8AA003E1912 /* AddReviewService.swift in Sources */,

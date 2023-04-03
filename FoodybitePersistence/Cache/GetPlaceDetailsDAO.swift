@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class GetPlaceDetailsDAO: RestaurantDetailsService, PlaceDetailsCache {
+public final class GetPlaceDetailsDAO: RestaurantDetailsService, RestaurantDetailsCache {
     private let store: LocalStore
 
     private struct CacheMissError: Error {}

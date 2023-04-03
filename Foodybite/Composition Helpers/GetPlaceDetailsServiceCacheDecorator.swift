@@ -9,9 +9,9 @@ import Domain
 
 public final class GetPlaceDetailsServiceCacheDecorator: RestaurantDetailsService {
     private let getPlaceDetailsService: RestaurantDetailsService
-    private let cache: PlaceDetailsCache
+    private let cache: RestaurantDetailsCache
     
-    public init(getPlaceDetailsService: RestaurantDetailsService, cache: PlaceDetailsCache) {
+    public init(getPlaceDetailsService: RestaurantDetailsService, cache: RestaurantDetailsCache) {
         self.getPlaceDetailsService = getPlaceDetailsService
         self.cache = cache
     }
