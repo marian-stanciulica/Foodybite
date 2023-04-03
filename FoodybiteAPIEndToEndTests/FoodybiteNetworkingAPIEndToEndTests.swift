@@ -170,11 +170,11 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     private func firstRestaurantID() -> String {
-        "first place id"
+        "first restaurant id"
     }
     
     private func secondRestaurantID() -> String {
-        "second place id"
+        "second restaurant id"
     }
     
     private func firstReviewText() -> String {
@@ -208,7 +208,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     private func expectedReviewsForFirstRestaurantID() -> [Review] {
         [
             Review(
-                restaurantID: "place #1",
+                restaurantID: "restaurant #1",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: testingNewName,
@@ -222,7 +222,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     private func expectedReviewsForSecondRestaurantID() -> [Review] {
         [
             Review(
-                restaurantID: "place #2",
+                restaurantID: "restaurant #2",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: testingNewName,

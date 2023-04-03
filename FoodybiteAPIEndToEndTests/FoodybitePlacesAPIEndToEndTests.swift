@@ -12,21 +12,21 @@ import FoodybitePlaces
 
 final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
 
-    func test_endToEndSearchNearby_matchesFixedTestNearbyPlaces() async {
+    func test_endToEndSearchNearby_matchesFixedTestNearbyRestaurants() async {
         do {
             let receivedNearbyRestaurants = try await getNearbyRestaurants()
             XCTAssertTrue(areEqual(first: receivedNearbyRestaurants, second: expectedNearbyRestaurants))
         } catch {
-            XCTFail("Expected successful nearby places request, got \(error) instead")
+            XCTFail("Expected successful nearby restaurants request, got \(error) instead")
         }
     }
     
-    func test_endToEndGetPlaceDetails_matchesFixedTestPlaceDetails() async {
+    func test_endToEndGetRestaurantDetails_matchesFixedTestRestaurantDetails() async {
         do {
-            let receivedPlaceDetails = try await getPlaceDetails()
-            XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
+            let receivedRestaurantDetails = try await getRestaurantDetails()
+            XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
         } catch {
-            XCTFail("Expected successful nearby places request, got \(error) instead")
+            XCTFail("Expected successful restaurant details request, got \(error) instead")
         }
     }
     
@@ -35,7 +35,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
             let receivedAutocompletePredictions = try await autocomplete()
             XCTAssertEqual(Set(receivedAutocompletePredictions), expectedAutocompletePredictions)
         } catch {
-            XCTFail("Expected successful nearby places request, got \(error) instead")
+            XCTFail("Expected successful autocomplete request, got \(error) instead")
         }
     }
     
@@ -48,7 +48,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         return PlacesService(loader: loader)
     }
     
-    private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> RestaurantDetails {
+    private func getRestaurantDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> RestaurantDetails {
         let apiService = makeSUT(file: file, line: line)
         return try await apiService.getRestaurantDetails(restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70")
     }
@@ -72,21 +72,21 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         [
             NearbyRestaurant(
                 id: "ChIJW823ek__sUARZVGTsg0Yx70",
-                placeName: "Trattoria Il Calcio Ateneu",
+                name: "Trattoria Il Calcio Ateneu",
                 isOpen: false,
                 rating: 4.2,
                 location: Location(latitude: 44.441016, longitude: 26.0975475),
                 photo: Photo(width: 1600, height: 1063, photoReference: "AfLeUgPOZIEqo7bgl3yeMQFrosnDUOi1Z67x4Mwem_VBKOJPMyLMM6q6uArOa5Uu0U6bph2ToNq9Gql6gKWBft6-7kNjbvt_b7Kdob3jizzu4gDcTYvdJTePL0m78lxQH6l5p85OR3FMTweC6DQiIaVlcA-fwekEm80DKCNbYbycgspK4PIr")),
             NearbyRestaurant(
                 id: "ChIJz7sYKOv_sUARrLLBAx36TFs",
-                placeName: "MACE by Joseph Hadad",
+                name: "MACE by Joseph Hadad",
                 isOpen: true,
                 rating: 4.3,
                 location: Location(latitude: 44.4412386, longitude: 26.098049),
                 photo: Photo(width: 7952, height: 5304, photoReference: "AfLeUgNupaTE3EI92EI3ikWp53wttMWcn-52xYfTilSfij1TFU0HT-hSZUuqG_jzyoj8buPlNwXUqhrKsuPg5Xe6DLUeZ8FYsDg1YgDIja2vBaxpYwwtyFy4G6D7UgEU394jMyXm8FDgK8ztAXnkrS58Ta9zQ97X3FyjSoL5d5c6YER3BJC4")),
             NearbyRestaurant(
                 id: "ChIJ9feBck__sUARr25IXqhjG-Q",
-                placeName: "Mara Mura Ateneu",
+                name: "Mara Mura Ateneu",
                 isOpen: true,
                 rating: 4.4,
                 location: Location(latitude: 44.441425, longitude: 26.0978549),
@@ -99,7 +99,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         
         for i in 0..<first.count {
             if first[i].id != second[i].id &&
-                first[i].placeName != second[i].placeName &&
+                first[i].name != second[i].name &&
                 first[i].location != second[i].location &&
                 first[i].photo != second[i].photo {
                 return false
@@ -109,7 +109,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         return true
     }
     
-    private var expectedPlaceDetails: RestaurantDetails {
+    private var expectedRestaurantDetails: RestaurantDetails {
         RestaurantDetails(
             id: "ChIJW823ek__sUARZVGTsg0Yx70",
             phoneNumber: nil,
