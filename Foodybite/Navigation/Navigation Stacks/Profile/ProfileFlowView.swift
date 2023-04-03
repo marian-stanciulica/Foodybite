@@ -92,7 +92,7 @@ enum ProfileFlowView {
     ) -> some View {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
-                input: .fetchedPlaceDetails(placeDetails),
+                input: .fetchedRestaurantDetails(placeDetails),
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },

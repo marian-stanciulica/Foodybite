@@ -22,7 +22,7 @@ public struct RestaurantDetailsView: View {
     
     public var body: some View {
         VStack {
-            switch viewModel.getPlaceDetailsState {
+            switch viewModel.getRestaurantDetailsState {
             case .idle:
                 EmptyView()
                 
@@ -92,11 +92,11 @@ public struct RestaurantDetailsView: View {
             }
         }
         .task {
-            if viewModel.getPlaceDetailsState == .idle {
+            if viewModel.getRestaurantDetailsState == .idle {
                 await viewModel.getRestaurantDetails()
             }
             
-            await viewModel.getPlaceReviews()
+            await viewModel.getRestaurantReviews()
         }
         .arrowBackButtonStyle()
     }

@@ -19,100 +19,100 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues, [anyPlaceID()])
     }
     
-    func test_getPlaceDetails_doesNotSendParamsToRestaurantDetailsServiceWhenInputIsFetchedPlaceDetails() async {
-        let (sut, restaurantDetailsServiceSpy, _) = makeSUT(input: .fetchedPlaceDetails(anyPlaceDetails()))
+    func test_getRestaurantDetails_doesNotSendParamsToRestaurantDetailsServiceWhenInputIsFetchedRestaurantDetails() async {
+        let (sut, restaurantDetailsServiceSpy, _) = makeSUT(input: .fetchedRestaurantDetails(anyRestaurantDetails()))
         
         await sut.getRestaurantDetails()
         
         XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues, [])
     }
     
-    func test_getPlaceDetails_setsErrorWhenRestaurantDetailsServiceThrowsError() async {
+    func test_getRestaurantDetails_setsErrorWhenRestaurantDetailsServiceThrowsError() async {
         let (sut, restaurantDetailsServiceSpy, _) = makeSUT()
         restaurantDetailsServiceSpy.result = .failure(anyError)
         
-        await assertGetPlaceDetails(on: sut, withExpectedResult: .failure(.serverError))
+        await assertGetRestaurantDetails(on: sut, withExpectedResult: .failure(.serverError))
     }
     
-    func test_getPlaceDetails_updatesPlaceDetailsWhenRestaurantDetailsServiceReturnsSuccessfully() async {
+    func test_getRestaurantDetails_updatesRestaurantDetailsWhenRestaurantDetailsServiceReturnsSuccessfully() async {
         let (sut, restaurantDetailsServiceSpy, _) = makeSUT()
-        let expectedPlaceDetails = anyPlaceDetails()
-        restaurantDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        let expectedRestaurantDetails = anyRestaurantDetails()
+        restaurantDetailsServiceSpy.result = .success(expectedRestaurantDetails)
         
-        await assertGetPlaceDetails(on: sut, withExpectedResult: .success(expectedPlaceDetails))
+        await assertGetRestaurantDetails(on: sut, withExpectedResult: .success(expectedRestaurantDetails))
     }
     
-    func test_getPlaceDetails_updatesPlaceDetailsWhenInputIsFetchedPlaceDetails() async {
-        let expectedPlaceDetails = anyPlaceDetails()
-        let (sut, _, _) = makeSUT(input: .fetchedPlaceDetails(expectedPlaceDetails))
+    func test_getRestaurantDetails_updatesRestaurantDetailsWhenInputIsFetchedRestaurantDetails() async {
+        let expectedRestaurantDetails = anyRestaurantDetails()
+        let (sut, _, _) = makeSUT(input: .fetchedRestaurantDetails(expectedRestaurantDetails))
 
-        await assertGetPlaceDetails(on: sut, withExpectedResult: .success(expectedPlaceDetails))
+        await assertGetRestaurantDetails(on: sut, withExpectedResult: .success(expectedRestaurantDetails))
     }
     
     func test_rating_returnsFormattedRating() {
         let (sut, _, _) = makeSUT()
-        sut.getPlaceDetailsState = .success(anyPlaceDetails())
+        sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
         
         XCTAssertEqual(sut.rating, rating().formatted)
     }
     
     func test_distanceInKmFromCurrentLocation_computedCorrectly() {
         let (sut, _, _) = makeSUT()
-        sut.getPlaceDetailsState = .success(anyPlaceDetails())
+        sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
 
         XCTAssertEqual(sut.distanceInKmFromCurrentLocation, "353.6")
     }
     
-    func test_getPlaceReviews_sendsInputToGetReviewsService() async {
+    func test_getRestaurantReviews_sendsInputToGetReviewsService() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
-        sut.getPlaceDetailsState = .success(anyPlaceDetails())
+        sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
 
-        await sut.getPlaceReviews()
+        await sut.getRestaurantReviews()
         
         XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
     }
     
-    func test_getPlaceReviews_doesNotSendParamsToGetReviewsServiceWhenInputIsFetchedPlaceDetails() async {
-        let (sut, _, getReviewsServiceSpy) = makeSUT(input: .fetchedPlaceDetails(anyPlaceDetails()))
+    func test_getRestaurantReviews_doesNotSendParamsToGetReviewsServiceWhenInputIsFetchedRestaurantDetails() async {
+        let (sut, _, getReviewsServiceSpy) = makeSUT(input: .fetchedRestaurantDetails(anyRestaurantDetails()))
         
-        await sut.getPlaceReviews()
+        await sut.getRestaurantReviews()
         
         XCTAssertEqual(getReviewsServiceSpy.capturedValues, [])
     }
     
-    func test_getPlaceReviews_appendsReviewsToPlaceDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
+    func test_getRestaurantReviews_appendsReviewsToRestaurantDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
         let (sut, restaurantDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
-        let placeDetails = anyPlaceDetails()
-        restaurantDetailsServiceSpy.result = .success(placeDetails)
+        let restaurantDetails = anyRestaurantDetails()
+        restaurantDetailsServiceSpy.result = .success(restaurantDetails)
         await sut.getRestaurantDetails()
         
-        let anyPlaceReviews = placeDetails.reviews
+        let anyRestaurantReviews = restaurantDetails.reviews
         let getReviewsResult = firstGetReviewsResult()
-        let expectedReviews = anyPlaceReviews + getReviewsResult
+        let expectedReviews = anyRestaurantReviews + getReviewsResult
         
         getReviewsServiceSpy.result = getReviewsResult
-        await sut.getPlaceReviews()
+        await sut.getRestaurantReviews()
         
         XCTAssertEqual(sut.reviews, expectedReviews)
     }
     
-    func test_getPlaceReviews_doesNotDuplicateReviewsWhenCalledTwice() async {
+    func test_getRestaurantReviews_doesNotDuplicateReviewsWhenCalledTwice() async {
         let (sut, restaurantDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
-        let placeDetails = anyPlaceDetails()
+        let restaurantDetails = anyRestaurantDetails()
 
-        restaurantDetailsServiceSpy.result = .success(placeDetails)
+        restaurantDetailsServiceSpy.result = .success(restaurantDetails)
         await sut.getRestaurantDetails()
-        let anyPlaceReviews = placeDetails.reviews
+        let anyRestaurantReviews = restaurantDetails.reviews
         
         let firstGetReviewsResult = firstGetReviewsResult()
         getReviewsServiceSpy.result = firstGetReviewsResult
-        await sut.getPlaceReviews()
-        XCTAssertEqual(sut.reviews, anyPlaceReviews + firstGetReviewsResult)
+        await sut.getRestaurantReviews()
+        XCTAssertEqual(sut.reviews, anyRestaurantReviews + firstGetReviewsResult)
 
         let secondGetReviewsResult = secondGetReviewsResult()
         getReviewsServiceSpy.result = secondGetReviewsResult
-        await sut.getPlaceReviews()
-        XCTAssertEqual(sut.reviews, anyPlaceReviews + secondGetReviewsResult)
+        await sut.getRestaurantReviews()
+        XCTAssertEqual(sut.reviews, anyRestaurantReviews + secondGetReviewsResult)
     }
     
     // MARK: - Helpers
@@ -133,11 +133,13 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         return (sut, restaurantDetailsServiceSpy, getReviewsServiceSpy)
     }
     
-    private func assertGetPlaceDetails(on sut: RestaurantDetailsViewModel,
-                                       withExpectedResult expectedResult: RestaurantDetailsViewModel.State,
-                                       file: StaticString = #file,
-                                       line: UInt = #line) async {
-        let resultSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
+    private func assertGetRestaurantDetails(
+        on sut: RestaurantDetailsViewModel,
+        withExpectedResult expectedResult: RestaurantDetailsViewModel.State,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) async {
+        let resultSpy = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
         XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
         
@@ -155,7 +157,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         NSError(domain: "any error", code: 1)
     }
     
-    private func anyPlaceDetails() -> RestaurantDetails {
+    private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
             placeID: "place #1",
             phoneNumber: "+61 2 9374 4000",

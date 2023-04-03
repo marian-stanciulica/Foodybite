@@ -16,7 +16,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     public enum Input {
         case placeIdToFetch(String)
-        case fetchedPlaceDetails(RestaurantDetails)
+        case fetchedRestaurantDetails(RestaurantDetails)
     }
     
     public enum State: Equatable {
@@ -32,21 +32,21 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     private let getReviewsService: GetReviewsService
     private var userPlacedReviews = [Review]()
 
-    @Published public var getPlaceDetailsState: State = .idle
+    @Published public var getRestaurantDetailsState: State = .idle
     
     public var reviews: [Review] {
-        guard case let .success(placeDetails) = getPlaceDetailsState else { return userPlacedReviews }
+        guard case let .success(placeDetails) = getRestaurantDetailsState else { return userPlacedReviews }
         return placeDetails.reviews + userPlacedReviews
     }
     
     public var rating: String {
-        guard case let .success(placeDetails) = getPlaceDetailsState else { return "" }
+        guard case let .success(placeDetails) = getRestaurantDetailsState else { return "" }
         
         return String(format: "%.1f", placeDetails.rating)
     }
     
     public var distanceInKmFromCurrentLocation: String {
-        guard case let .success(placeDetails) = getPlaceDetailsState else { return "" }
+        guard case let .success(placeDetails) = getRestaurantDetailsState else { return "" }
 
         let distance = getDistanceInKmFromCurrentLocation(placeDetails.location)
         return "\(distance)"
@@ -65,7 +65,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     public func showMaps() {
-        guard case let .success(placeDetails) = getPlaceDetailsState else { return }
+        guard case let .success(placeDetails) = getRestaurantDetailsState else { return }
 
         let location = placeDetails.location
         guard let url = URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)") else { return }
@@ -76,27 +76,27 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     @MainActor public func getRestaurantDetails() async {
-        getPlaceDetailsState = .isLoading
+        getRestaurantDetailsState = .isLoading
         
         switch input {
         case let .placeIdToFetch(placeID):
             await fetchRestaurantDetails(placeID: placeID)
             
-        case let .fetchedPlaceDetails(placeDetails):
-            getPlaceDetailsState = .success(placeDetails)
+        case let .fetchedRestaurantDetails(placeDetails):
+            getRestaurantDetailsState = .success(placeDetails)
         }
     }
     
     @MainActor private func fetchRestaurantDetails(placeID: String) async {
         do {
             let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
-            getPlaceDetailsState = .success(placeDetails)
+            getRestaurantDetailsState = .success(placeDetails)
         } catch {
-            getPlaceDetailsState = .failure(.serverError)
+            getRestaurantDetailsState = .failure(.serverError)
         }
     }
     
-    @MainActor public func getPlaceReviews() async {
+    @MainActor public func getRestaurantReviews() async {
         if case let .placeIdToFetch(placeID) = input {
             if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
                 userPlacedReviews = reviews

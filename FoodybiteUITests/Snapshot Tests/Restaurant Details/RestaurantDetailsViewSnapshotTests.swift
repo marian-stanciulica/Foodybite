@@ -66,7 +66,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
             restaurantDetailsService: EmptyRestaurantDetailsService(),
             getReviewsService: EmptyGetReviewsService()
         )
-        restaurantDetailsViewModel.getPlaceDetailsState = getPlaceDetailsState
+        restaurantDetailsViewModel.getRestaurantDetailsState = getPlaceDetailsState
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",
