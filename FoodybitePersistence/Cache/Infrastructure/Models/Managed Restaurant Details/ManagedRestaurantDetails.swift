@@ -29,7 +29,7 @@ public class ManagedRestaurantDetails: NSManagedObject {
     public convenience init(_ model: RestaurantDetails, for context: NSManagedObjectContext) {
         self.init(context: context)
 
-        placeID = model.placeID
+        placeID = model.restaurantID
         phoneNumber = model.phoneNumber
         name = model.name
         address = model.address

@@ -70,7 +70,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantReviewCellView(
             viewModel: RestaurantReviewCellViewModel(
-                review: Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Marian", reviewText: "nice", rating: 2, relativeTime: "10 hours ago"),
+                review: Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Marian", reviewText: "nice", rating: 2, relativeTime: "10 hours ago"),
                 restaurantDetailsService: PreviewRestaurantDetailsService()
             ),
             makePhotoView: { _ in
@@ -86,9 +86,9 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     }
     
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 phoneNumber: "",
                 name: "Place name",
                 address: "Place address",

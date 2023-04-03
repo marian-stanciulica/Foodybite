@@ -50,7 +50,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> RestaurantDetails {
         let apiService = makeSUT(file: file, line: line)
-        return try await apiService.getRestaurantDetails(placeID: "ChIJW823ek__sUARZVGTsg0Yx70")
+        return try await apiService.getRestaurantDetails(restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70")
     }
     
     private func getNearbyRestaurants(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyRestaurant] {
@@ -71,21 +71,21 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     private var expectedNearbyRestaurants: [NearbyRestaurant] {
         [
             NearbyRestaurant(
-                placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
                 placeName: "Trattoria Il Calcio Ateneu",
                 isOpen: false,
                 rating: 4.2,
                 location: Location(latitude: 44.441016, longitude: 26.0975475),
                 photo: Photo(width: 1600, height: 1063, photoReference: "AfLeUgPOZIEqo7bgl3yeMQFrosnDUOi1Z67x4Mwem_VBKOJPMyLMM6q6uArOa5Uu0U6bph2ToNq9Gql6gKWBft6-7kNjbvt_b7Kdob3jizzu4gDcTYvdJTePL0m78lxQH6l5p85OR3FMTweC6DQiIaVlcA-fwekEm80DKCNbYbycgspK4PIr")),
             NearbyRestaurant(
-                placeID: "ChIJz7sYKOv_sUARrLLBAx36TFs",
+                restaurantID: "ChIJz7sYKOv_sUARrLLBAx36TFs",
                 placeName: "MACE by Joseph Hadad",
                 isOpen: true,
                 rating: 4.3,
                 location: Location(latitude: 44.4412386, longitude: 26.098049),
                 photo: Photo(width: 7952, height: 5304, photoReference: "AfLeUgNupaTE3EI92EI3ikWp53wttMWcn-52xYfTilSfij1TFU0HT-hSZUuqG_jzyoj8buPlNwXUqhrKsuPg5Xe6DLUeZ8FYsDg1YgDIja2vBaxpYwwtyFy4G6D7UgEU394jMyXm8FDgK8ztAXnkrS58Ta9zQ97X3FyjSoL5d5c6YER3BJC4")),
             NearbyRestaurant(
-                placeID: "ChIJ9feBck__sUARr25IXqhjG-Q",
+                restaurantID: "ChIJ9feBck__sUARr25IXqhjG-Q",
                 placeName: "Mara Mura Ateneu",
                 isOpen: true,
                 rating: 4.4,
@@ -98,7 +98,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         guard first.count == second.count else { return false }
         
         for i in 0..<first.count {
-            if first[i].placeID != second[i].placeID &&
+            if first[i].restaurantID != second[i].restaurantID &&
                 first[i].placeName != second[i].placeName &&
                 first[i].location != second[i].location &&
                 first[i].photo != second[i].photo {
@@ -111,7 +111,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     private var expectedPlaceDetails: RestaurantDetails {
         RestaurantDetails(
-            placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+            restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
             phoneNumber: nil,
             name: "Trattoria Il Calcio Ateneu",
             address: "langa Ateneul Roman, Strada Benjamin Franklin nr 1-3, București 030167, Romania",
@@ -120,7 +120,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
             reviews: [
                 Review(
                     id: UUID(uuidString: "19AA1457-40CB-4FFA-BA80-B2A3532EEC72")!,
-                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                    restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a-/AD5-WCmuoPq7Qv-tV7LfTiF1mZyxmrAEi_XstJvGwV12rA=s128-c0x00000000-cc-rp-mo-ba5"),
                     profileImageData: nil,
                     authorName: "Teo Gerald",
@@ -130,7 +130,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "A13A852C-2784-4F05-A3B8-11A166DC7ACE")!,
-                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                    restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a-/AD5-WClGanbJiMX3rUcO4HOX_jzYVPam9tOXe6VOJayFvvA=s128-c0x00000000-cc-rp-mo"),
                     profileImageData: nil,
                     authorName: "Roberta MP",
@@ -140,7 +140,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "3FC4E8FF-3957-4016-B7FB-E96D0702AB8C")!,
-                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                    restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a-/AD5-WClSZj-j3ArJJVODvrbO33dGXjPvi537Jn7aQRWdrw=s128-c0x00000000-cc-rp-mo-ba3"),
                     profileImageData: nil,
                     authorName: "Voitescu Alin",
@@ -150,7 +150,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "C687B640-49D7-49F2-9243-690C0C78B374")!,
-                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                    restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a/AEdFTp6JWaT3eZMQNjqrV9vMjKEtJt8iouW-huxN7N1Z=s128-c0x00000000-cc-rp-mo-ba3"),
                     profileImageData: nil,
                     authorName: "Victoria Kassis",
@@ -160,7 +160,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
                 ),
                 Review(
                     id: UUID(uuidString: "13165133-BBE2-4F66-8D61-54511DEFA6F1")!,
-                    placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                    restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
                     profileImageURL: URL(string: "https://lh3.googleusercontent.com/a/AEdFTp5ViUd_CX3-otX0oXhFwHBFNL5BUbwxSDu3MLw-=s128-c0x00000000-cc-rp-mo-ba6"),
                     profileImageData: nil,
                     authorName: "Gunilla S",
@@ -227,23 +227,23 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         [
             AutocompletePrediction(
                 placePrediction: "Trattoria Don Vito, Strada D. I. Mendeleev, Bucharest, Romania",
-                placeID: "ChIJgxvxNE7_sUARNMOzDLF21PU"
+                restaurantID: "ChIJgxvxNE7_sUARNMOzDLF21PU"
             ),
             AutocompletePrediction(
                 placePrediction: "Trattoria Il Calcio Ateneu, Strada Benjamin Franklin, Bucharest, Romania",
-                placeID: "ChIJW823ek__sUARZVGTsg0Yx70"
+                restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70"
             ),
             AutocompletePrediction(
                 placePrediction: "Trattoria Il Calcio Magheru, Strada Anastasie Simu, Bucharest, Romania",
-                placeID: "ChIJ18kE60f_sUARUUt7OD7LOVk"
+                restaurantID: "ChIJ18kE60f_sUARUUt7OD7LOVk"
             ),
             AutocompletePrediction(
                 placePrediction: "Trattoria La Famiglia, Strada Nicolae Golescu, Bucharest, Romania",
-                placeID: "ChIJizLJDE__sUARWSZT2x5bxhE"
+                restaurantID: "ChIJizLJDE__sUARWSZT2x5bxhE"
             ),
             AutocompletePrediction(
                 placePrediction: "Trattoria Mezzaluna, Strada Crăciun, Bucharest, Romania",
-                placeID: "ChIJW1WlL634sUAR2DY7DgRv5ig"
+                restaurantID: "ChIJW1WlL634sUAR2DY7DgRv5ig"
             ),
         ]
     }

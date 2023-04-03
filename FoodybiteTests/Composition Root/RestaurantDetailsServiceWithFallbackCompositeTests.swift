@@ -16,20 +16,20 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         let expectedRestaurantDetails = makeRestaurantDetails()
         primaryStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(placeID: expectedRestaurantDetails.placeID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
         
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
     func test_getRestaurantDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
-        let expectedPlaceID = "place id"
+        let expectedRestaurantID = "place id"
         primaryStub.stub = .failure(anyError())
         
-        _ = try await sut.getRestaurantDetails(placeID: expectedPlaceID)
+        _ = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantID)
         
         XCTAssertEqual(secondaryStub.capturedValues.count, 1)
-        XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
+        XCTAssertEqual(secondaryStub.capturedValues[0], expectedRestaurantID)
     }
     
     func test_getRestaurantDetails_returnsPlaceDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
@@ -38,7 +38,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         primaryStub.stub = .failure(anyError())
         secondaryStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(placeID: expectedRestaurantDetails.placeID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
         
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
@@ -49,7 +49,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         secondaryStub.stub = .failure(anyError())
         
         do {
-            let restaurantDetails = try await sut.getRestaurantDetails(placeID: "place id")
+            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "place id")
             XCTFail("Expected to fail, got \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)

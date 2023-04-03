@@ -30,8 +30,8 @@ enum HomeFlowView {
                 nearbyRestaurantsService: nearbyRestaurantsService,
                 currentLocation: currentLocation,
                 userPreferences: userPreferences),
-            showPlaceDetails: { placeID in
-                flow.append(.restaurantDetails(placeID))
+            showPlaceDetails: { restaurantID in
+                flow.append(.restaurantDetails(restaurantID))
             },
             cell: { nearbyRestaurant in
                 makeRestaurantCell(nearbyRestaurant: nearbyRestaurant,
@@ -82,7 +82,7 @@ enum HomeFlowView {
     
     @ViewBuilder static func makeRestaurantDetailsView(
         flow: Flow<HomeRoute>,
-        placeID: String,
+        restaurantID: String,
         currentLocation: Location,
         restaurantDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService,
@@ -90,7 +90,7 @@ enum HomeFlowView {
     ) -> some View {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
-                input: .placeIdToFetch(placeID),
+                input: .restaurantIdToFetch(restaurantID),
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },
@@ -105,19 +105,19 @@ enum HomeFlowView {
                     )
                 )
             }, showReviewView: {
-                flow.append(.addReview(placeID))
+                flow.append(.addReview(restaurantID))
             }
         )
     }
     
     @ViewBuilder static func makeReviewView(
         flow: Flow<HomeRoute>,
-        placeID: String,
+        restaurantID: String,
         addReviewService: AddReviewService
     ) -> some View {
         ReviewView(
             viewModel: ReviewViewModel(
-                placeID: placeID,
+                restaurantID: restaurantID,
                 reviewService: addReviewService
             ), dismissScreen: {
                 flow.navigateBack()

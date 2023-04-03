@@ -41,7 +41,7 @@ final class ReviewViewSnapshotTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(starsNumber: Int = 0, reviewText: String = "", state: ReviewViewModel.State) -> ReviewView {
-        let viewModel = ReviewViewModel(placeID: "", reviewService: EmptyAddReviewService())
+        let viewModel = ReviewViewModel(restaurantID: "", reviewService: EmptyAddReviewService())
         viewModel.starsNumber = starsNumber
         viewModel.reviewText = reviewText
         viewModel.state = state
@@ -49,6 +49,6 @@ final class ReviewViewSnapshotTests: XCTestCase {
     }
     
     private class EmptyAddReviewService: AddReviewService {
-        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
+        func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
     }
 }

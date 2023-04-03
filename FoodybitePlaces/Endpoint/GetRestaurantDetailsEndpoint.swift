@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct GetPlaceDetailsEndpoint: Endpoint {
-    private let placeID: String
+struct GetRestaurantDetailsEndpoint: Endpoint {
+    private let restaurantID: String
     
-    init(placeID: String) {
-        self.placeID = placeID
+    init(restaurantID: String) {
+        self.restaurantID = restaurantID
     }
     
     var path: String {
@@ -25,7 +25,7 @@ struct GetPlaceDetailsEndpoint: Endpoint {
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),
-            URLQueryItem(name: "place_id", value: placeID)
+            URLQueryItem(name: "place_id", value: restaurantID)
         ]
     }
 }

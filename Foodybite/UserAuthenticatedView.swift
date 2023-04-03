@@ -72,19 +72,19 @@ struct UserAuthenticatedView: View {
             }
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
-                case let .restaurantDetails(placeID):
+                case let .restaurantDetails(restaurantID):
                     HomeFlowView.makeRestaurantDetailsView(
                         flow: homeFlow,
-                        placeID: placeID,
+                        restaurantID: restaurantID,
                         currentLocation: currentLocation,
                         restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
-                case let .addReview(placeID):
+                case let .addReview(restaurantID):
                     HomeFlowView.makeReviewView(
                         flow: homeFlow,
-                        placeID: placeID,
+                        restaurantID: restaurantID,
                         addReviewService: userAuthenticatedFactory.authenticatedApiService
                     )
                 }
@@ -152,10 +152,10 @@ struct UserAuthenticatedView: View {
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
-                case let .addReview(placeID):
+                case let .addReview(restaurantID):
                     ProfileFlowView.makeReviewView(
                         flow: profileFlow,
-                        placeID: placeID,
+                        restaurantID: restaurantID,
                         addReviewService: userAuthenticatedFactory.authenticatedApiService
                     )
                 }

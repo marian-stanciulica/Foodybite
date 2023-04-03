@@ -17,14 +17,14 @@ extension APIServiceTests {
     }
     
     func test_addReview_usesAddReviewEndpointToCreateURLRequest() async throws {
-        let placeID = anyPlaceID()
+        let restaurantID = anyRestaurantID()
         let reviewText = anyReviewText()
         let starsNumber = anyStarsNumber()
         let createdAt = Date()
         let (sut, _, sender, _) = makeSUT()
         
         try await sut.addReview(
-            placeID: placeID,
+            restaurantID: restaurantID,
             reviewText: reviewText,
             starsNumber: starsNumber,
             createdAt: createdAt
@@ -36,7 +36,7 @@ extension APIServiceTests {
             path: "/review",
             method: .post,
             body: AddReviewRequestBody(
-                placeID: placeID,
+                restaurantID: restaurantID,
                 text: reviewText,
                 stars: starsNumber,
                 createdAt: createdAt
@@ -46,14 +46,14 @@ extension APIServiceTests {
     
     func test_getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
         let (sut, loader, _, _) = makeSUT(response: anyGetReviews().response)
-        let placeID = anyPlaceID()
+        let restaurantID = anyRestaurantID()
         
-        _ = try await sut.getReviews(placeID: placeID)
+        _ = try await sut.getReviews(restaurantID: restaurantID)
         
         XCTAssertEqual(loader.requests.count, 1)
         assertURLComponents(
             urlRequest: loader.requests[0],
-            path: "/review/\(placeID)",
+            path: "/review/\(restaurantID)",
             method: .get,
             body: nil)
     }
@@ -69,7 +69,7 @@ extension APIServiceTests {
 
     // MARK: - Helpers
     
-    private func anyPlaceID() -> String {
+    private func anyRestaurantID() -> String {
         "any place id"
     }
     
@@ -83,15 +83,15 @@ extension APIServiceTests {
     
     private func anyGetReviews() -> (response: [RemoteReview], model: [Review]) {
         let response = [
-            RemoteReview(placeID: "place #1", profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
-            RemoteReview(placeID: "place #2", profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
-            RemoteReview(placeID: "place #3", profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
+            RemoteReview(restaurantID: "place #1", profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
+            RemoteReview(restaurantID: "place #2", profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
+            RemoteReview(restaurantID: "place #3", profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
         ]
         
         let formatter = RelativeDateTimeFormatter()
         let model = response.map {
             Review(id: $0.id,
-                   placeID: $0.placeID,
+                   restaurantID: $0.restaurantID,
                    profileImageURL: nil,
                    profileImageData: $0.profileImageData,
                    authorName: $0.authorName,

@@ -16,19 +16,19 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         storeSpy.readResult = .failure(anyError())
         
         do {
-            let restaurantDetails = try await sut.getRestaurantDetails(placeID: "place #1")
+            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "place #1")
             XCTFail("Expected to fail, received \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
-    func test_getRestaurantDetails_returnsRestaurantDetailsForPlaceIdWhenStoreContainsRestaurantDetails() async throws {
+    func test_getRestaurantDetails_returnsRestaurantDetailsForRestaurantIDWhenStoreContainsRestaurantDetails() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         storeSpy.readAllResult = .success(makeRestaurantsDetailsArray() + [expectedRestaurantDetails])
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(placeID: expectedRestaurantDetails.placeID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
@@ -57,7 +57,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
     
     private func makeRestaurantsDetailsArray() -> [RestaurantDetails] {
         [
-            RestaurantDetails(placeID: "Place #1",
+            RestaurantDetails(restaurantID: "Place #1",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -66,7 +66,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
                          reviews: [],
                          location: Location(latitude: 0, longitude: 0),
                          photos: []),
-            RestaurantDetails(placeID: "Place #2",
+            RestaurantDetails(restaurantID: "Place #2",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -79,7 +79,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
     }
     
     private func makeRestaurantDetails() -> RestaurantDetails {
-        RestaurantDetails(placeID: "Expected place",
+        RestaurantDetails(restaurantID: "Expected place",
                      phoneNumber: "",
                      name: "",
                      address: "",

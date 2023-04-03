@@ -15,7 +15,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     public enum Input {
-        case placeIdToFetch(String)
+        case restaurantIdToFetch(String)
         case fetchedRestaurantDetails(RestaurantDetails)
     }
     
@@ -79,17 +79,17 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         getRestaurantDetailsState = .isLoading
         
         switch input {
-        case let .placeIdToFetch(placeID):
-            await fetchRestaurantDetails(placeID: placeID)
+        case let .restaurantIdToFetch(restaurantID):
+            await fetchRestaurantDetails(restaurantID: restaurantID)
             
         case let .fetchedRestaurantDetails(placeDetails):
             getRestaurantDetailsState = .success(placeDetails)
         }
     }
     
-    @MainActor private func fetchRestaurantDetails(placeID: String) async {
+    @MainActor private func fetchRestaurantDetails(restaurantID: String) async {
         do {
-            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
+            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: restaurantID)
             getRestaurantDetailsState = .success(placeDetails)
         } catch {
             getRestaurantDetailsState = .failure(.serverError)
@@ -97,8 +97,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     @MainActor public func getRestaurantReviews() async {
-        if case let .placeIdToFetch(placeID) = input {
-            if let reviews = try? await getReviewsService.getReviews(placeID: placeID) {
+        if case let .restaurantIdToFetch(restaurantID) = input {
+            if let reviews = try? await getReviewsService.getReviews(restaurantID: restaurantID) {
                 userPlacedReviews = reviews
             }
         }

@@ -23,13 +23,13 @@ final class GetReviewsServiceWithFallbackCompositeTests: XCTestCase {
     
     func test_getReviews_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
-        let expectedPlaceID = "place id"
+        let expectedRestaurantID = "place id"
         primaryStub.stub = .failure(anyError())
         
-        _ = try await sut.getReviews(placeID: expectedPlaceID)
+        _ = try await sut.getReviews(restaurantID: expectedRestaurantID)
         
         XCTAssertEqual(secondaryStub.capturedValues.count, 1)
-        XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
+        XCTAssertEqual(secondaryStub.capturedValues[0], expectedRestaurantID)
     }
     
     func test_getReviews_returnsReviewsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {

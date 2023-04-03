@@ -13,9 +13,9 @@ enum ReviewEndpoint: Endpoint {
         switch self {
         case .post:
             return "/review"
-        case let .get(placeID):
-            if let placeID = placeID {
-                return "/review/\(placeID)"
+        case let .get(restaurantID):
+            if let restaurantID = restaurantID {
+                return "/review/\(restaurantID)"
             }
             
             return "/review"

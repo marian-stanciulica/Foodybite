@@ -117,9 +117,9 @@ final class NewReviewSnapshotTests: XCTestCase {
     
     private func makeAutocompletePredictions() -> [AutocompletePrediction] {
         [
-            AutocompletePrediction(placePrediction: "Prediction #1", placeID: "place #1"),
-            AutocompletePrediction(placePrediction: "Prediction #2", placeID: "place #2"),
-            AutocompletePrediction(placePrediction: "Prediction #3", placeID: "place #3")
+            AutocompletePrediction(placePrediction: "Prediction #1", restaurantID: "place #1"),
+            AutocompletePrediction(placePrediction: "Prediction #2", restaurantID: "place #2"),
+            AutocompletePrediction(placePrediction: "Prediction #3", restaurantID: "place #3")
         ]
     }
     
@@ -128,6 +128,6 @@ final class NewReviewSnapshotTests: XCTestCase {
     }
     
     private class EmptyAddReviewService: AddReviewService {
-        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
+        func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
     }
 }

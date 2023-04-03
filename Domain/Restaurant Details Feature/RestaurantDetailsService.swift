@@ -6,5 +6,5 @@
 //
 
 public protocol RestaurantDetailsService {
-    func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails
+    func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails
 }

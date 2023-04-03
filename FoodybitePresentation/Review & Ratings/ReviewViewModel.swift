@@ -21,7 +21,7 @@ public final class ReviewViewModel: ObservableObject {
     }
     
     private let reviewService: AddReviewService
-    private let placeID: String
+    private let restaurantID: String
     
     @Published public var state: State = .idle
     @Published public var reviewText = ""
@@ -31,8 +31,8 @@ public final class ReviewViewModel: ObservableObject {
         state == .isLoading
     }
     
-    public init(placeID: String, reviewService: AddReviewService) {
-        self.placeID = placeID
+    public init(restaurantID: String, reviewService: AddReviewService) {
+        self.restaurantID = restaurantID
         self.reviewService = reviewService
     }
     
@@ -40,7 +40,7 @@ public final class ReviewViewModel: ObservableObject {
         state = .isLoading
         
         do {
-            try await reviewService.addReview(placeID: placeID, reviewText: reviewText, starsNumber: starsNumber, createdAt: Date())
+            try await reviewService.addReview(restaurantID: restaurantID, reviewText: reviewText, starsNumber: starsNumber, createdAt: Date())
             state = .success
         } catch {
             state = .failure(.serverError)

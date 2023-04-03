@@ -10,14 +10,14 @@ import UIKit
 import Domain
 
 func makePlaceDetails() -> RestaurantDetails {
-    RestaurantDetails(placeID: "place #1",
+    RestaurantDetails(restaurantID: "place #1",
                  phoneNumber: "0764 456 321",
                  name: "Place name",
                  address: "Place address",
                  rating: 4,
                  openingHoursDetails: OpeningHoursDetails(openNow: true, weekdayText: ["Mon: 10:00 - 17:00"]),
                  reviews: [
-                    Review(placeID: "place #1", profileImageURL: nil, profileImageData: makePhotoData(), authorName: "Author", reviewText: makeReviewText(), rating: 4, relativeTime: "an hour ago")
+                    Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: makePhotoData(), authorName: "Author", reviewText: makeReviewText(), rating: 4, relativeTime: "an hour ago")
                  ],
                  location: Location(latitude: 3.4, longitude: 6.5),
                  photos: [

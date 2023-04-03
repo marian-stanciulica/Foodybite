@@ -10,7 +10,7 @@ import Domain
 
 struct RemoteReview: Decodable {
     let id = UUID()
-    let placeID: String
+    let restaurantID: String
     let profileImageData: Data?
     let authorName: String
     let reviewText: String
@@ -18,7 +18,7 @@ struct RemoteReview: Decodable {
     let createdAt: Date
     
     enum CodingKeys: String, CodingKey {
-        case placeID
+        case restaurantID
         case profileImageData
         case authorName
         case reviewText
@@ -31,7 +31,7 @@ struct RemoteReview: Decodable {
 
         return Review(
             id: id,
-            placeID: placeID,
+            restaurantID: restaurantID,
             profileImageURL: nil,
             profileImageData: profileImageData,
             authorName: authorName,

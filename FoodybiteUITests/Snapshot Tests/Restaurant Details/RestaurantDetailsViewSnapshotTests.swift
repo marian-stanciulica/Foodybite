@@ -61,7 +61,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     
     private func makeSUT(getPlaceDetailsState: RestaurantDetailsViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> RestaurantDetailsView {
         let restaurantDetailsViewModel = RestaurantDetailsViewModel(
-            input: .placeIdToFetch("place id"),
+            input: .restaurantIdToFetch("place id"),
             getDistanceInKmFromCurrentLocation: { _ in 123.4 },
             restaurantDetailsService: EmptyRestaurantDetailsService(),
             getReviewsService: EmptyGetReviewsService()
@@ -84,7 +84,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
     }
     
     private class EmptyGetReviewsService: GetReviewsService {
-        func getReviews(placeID: String?) async throws -> [Review] { [] }
+        func getReviews(restaurantID: String?) async throws -> [Review] { [] }
     }
 }
  

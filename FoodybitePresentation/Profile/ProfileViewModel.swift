@@ -52,7 +52,7 @@ public final class ProfileViewModel: ObservableObject {
         getReviewsState = .isLoading
         
         do {
-            let reviews = try await getReviewsService.getReviews(placeID: nil)
+            let reviews = try await getReviewsService.getReviews(restaurantID: nil)
             getReviewsState = .success(reviews)
         } catch {
             getReviewsState = .failure(.serverError)

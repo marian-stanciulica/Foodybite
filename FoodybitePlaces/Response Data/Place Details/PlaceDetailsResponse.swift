@@ -13,7 +13,7 @@ struct PlaceDetailsResponse: Decodable {
     
     var restaurantDetails: RestaurantDetails {
         RestaurantDetails(
-            placeID: result.placeID,
+            restaurantID: result.placeID,
             phoneNumber: result.internationalPhoneNumber,
             name: result.name,
             address: result.formattedAddress,
@@ -21,7 +21,7 @@ struct PlaceDetailsResponse: Decodable {
             openingHoursDetails: result.openingHours?.model,
             reviews: result.reviews.map {
                 Review(
-                    placeID: result.placeID,
+                    restaurantID: result.placeID,
                     profileImageURL: $0.profilePhotoURL,
                     profileImageData: nil,
                     authorName: $0.authorName,

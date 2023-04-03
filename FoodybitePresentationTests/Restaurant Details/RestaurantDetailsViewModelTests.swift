@@ -12,11 +12,11 @@ import FoodybitePresentation
 final class RestaurantDetailsViewModelTests: XCTestCase {
     
     func test_getRestaurantDetails_sendsParamsToRestaurantDetailsService() async {
-        let (sut, restaurantDetailsServiceSpy, _) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
+        let (sut, restaurantDetailsServiceSpy, _) = makeSUT(input: .restaurantIdToFetch(anyRestaurantID()))
         
         await sut.getRestaurantDetails()
         
-        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues, [anyPlaceID()])
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues, [anyRestaurantID()])
     }
     
     func test_getRestaurantDetails_doesNotSendParamsToRestaurantDetailsServiceWhenInputIsFetchedRestaurantDetails() async {
@@ -64,12 +64,12 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     func test_getRestaurantReviews_sendsInputToGetReviewsService() async {
-        let (sut, _, getReviewsServiceSpy) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
+        let (sut, _, getReviewsServiceSpy) = makeSUT(input: .restaurantIdToFetch(anyRestaurantID()))
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
 
         await sut.getRestaurantReviews()
         
-        XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyPlaceID())
+        XCTAssertEqual(getReviewsServiceSpy.capturedValues.first, anyRestaurantID())
     }
     
     func test_getRestaurantReviews_doesNotSendParamsToGetReviewsServiceWhenInputIsFetchedRestaurantDetails() async {
@@ -117,7 +117,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(input: RestaurantDetailsViewModel.Input = .placeIdToFetch("")) -> (
+    private func makeSUT(input: RestaurantDetailsViewModel.Input = .restaurantIdToFetch("")) -> (
         sut: RestaurantDetailsViewModel,
         restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy,
         getReviewsServiceSpy: GetReviewsServiceSpy
@@ -149,8 +149,8 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         resultSpy.cancel()
     }
     
-    private func anyPlaceID() -> String {
-        "any place id"
+    private func anyRestaurantID() -> String {
+        "any restaurant id"
     }
     
     private var anyError: NSError {
@@ -159,7 +159,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            placeID: "place #1",
+            restaurantID: "place #1",
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
@@ -178,7 +178,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    placeID: "place #1",
+                    restaurantID: "place #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -200,14 +200,14 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
-            capturedValues.append(placeID)
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
+            capturedValues.append(restaurantID)
             
             if let result = result {
                 return try result.get()
             }
             
-            return RestaurantDetails(placeID: "place #1",
+            return RestaurantDetails(restaurantID: "place #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",
@@ -231,7 +231,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     private func firstGetReviewsResult() -> [Review] {
         [
             Review(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #1",
@@ -244,7 +244,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     private func secondGetReviewsResult() -> [Review] {
         [
             Review(
-                placeID: "place #2",
+                restaurantID: "place #2",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #2",
@@ -258,8 +258,8 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         private(set) var capturedValues = [String?]()
         var result = [Review]()
         
-        func getReviews(placeID: String?) async throws -> [Review] {
-            capturedValues.append(placeID)
+        func getReviews(restaurantID: String?) async throws -> [Review] {
+            capturedValues.append(restaurantID)
             return result
         }
     }

@@ -16,10 +16,10 @@ public final class RestaurantDetailsDAO: RestaurantDetailsService, RestaurantDet
         self.store = store
     }
     
-    public func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+    public func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
         let allPlaces: [RestaurantDetails] = try await store.readAll()
         
-        guard let foundPlace = allPlaces.first(where: { $0.placeID == placeID }) else {
+        guard let foundPlace = allPlaces.first(where: { $0.restaurantID == restaurantID }) else {
             throw CacheMissError()
         }
         

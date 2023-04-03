@@ -7,10 +7,10 @@
 
 public struct AutocompletePrediction: Hashable {
     public let placePrediction: String
-    public let placeID: String
+    public let restaurantID: String
     
-    public init(placePrediction: String, placeID: String) {
+    public init(placePrediction: String, restaurantID: String) {
         self.placePrediction = placePrediction
-        self.placeID = placeID
+        self.restaurantID = restaurantID
     }
 }

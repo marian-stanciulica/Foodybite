@@ -33,13 +33,13 @@ final class ReviewDAOTests: XCTestCase {
         XCTAssertEqual(receivedReviews, expectedReviews)
     }
     
-    func test_getReviews_returnsReviewsFromStoreForGivenPlaceID() async  throws {
+    func test_getReviews_returnsReviewsFromStoreForGivenRestaurantID() async  throws {
         let (sut, storeSpy) = makeSUT()
         let allReviews = makeReviews()
         let expectedReviews = [allReviews[1]]
         storeSpy.readAllResult = .success(allReviews)
         
-        let receivedReviews = try await sut.getReviews(placeID: expectedReviews.first?.placeID)
+        let receivedReviews = try await sut.getReviews(restaurantID: expectedReviews.first?.restaurantID)
         
         XCTAssertEqual(receivedReviews, expectedReviews)
     }
@@ -69,9 +69,9 @@ final class ReviewDAOTests: XCTestCase {
     
     private func makeReviews() -> [Review] {
         [
-            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
-            Review(placeID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
-            Review(placeID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
+            Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
+            Review(restaurantID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
+            Review(restaurantID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
         ]
     }
     

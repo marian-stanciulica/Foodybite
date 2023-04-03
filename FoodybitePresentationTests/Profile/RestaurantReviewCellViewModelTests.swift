@@ -24,7 +24,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         await sut.getRestaurantDetails()
         
         XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, review.placeID)
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, review.restaurantID)
     }
     
     func test_getRestaurantDetails_setsGetRestaurantDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
@@ -96,8 +96,8 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         return (sut, restaurantDetailsServiceSpy)
     }
     
-    private func anyPlaceID() -> String {
-        "any place id"
+    private func anyRestaurantID() -> String {
+        "any restaurant id"
     }
     
     private func anyError() -> NSError {
@@ -105,12 +105,12 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     }
     
     private static func anyReview() -> Review {
-        Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author", reviewText: "very nice", rating: 5, relativeTime: "1 hour ago")
+        Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author", reviewText: "very nice", rating: 5, relativeTime: "1 hour ago")
     }
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            placeID: "place #1",
+            restaurantID: "place #1",
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
@@ -129,7 +129,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    placeID: "place #1",
+                    restaurantID: "place #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -155,14 +155,14 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
-            capturedValues.append(placeID)
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
+            capturedValues.append(restaurantID)
             
             if let result = result {
                 return try result.get()
             }
             
-            return RestaurantDetails(placeID: "place #1",
+            return RestaurantDetails(restaurantID: "place #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",

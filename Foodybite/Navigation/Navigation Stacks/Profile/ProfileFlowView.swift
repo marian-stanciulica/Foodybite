@@ -106,17 +106,17 @@ enum ProfileFlowView {
                     )
                 )
             }, showReviewView: {
-                flow.append(.addReview(placeDetails.placeID))
+                flow.append(.addReview(placeDetails.restaurantID))
             }
         )
     }
     
     @ViewBuilder static func makeReviewView(
         flow: Flow<ProfileRoute>,
-        placeID: String,
+        restaurantID: String,
         addReviewService: AddReviewService
     ) -> some View {
-        ReviewView(viewModel: ReviewViewModel(placeID: placeID, reviewService: addReviewService)) {
+        ReviewView(viewModel: ReviewViewModel(restaurantID: restaurantID, reviewService: addReviewService)) {
             flow.navigateBack()
         }
     }

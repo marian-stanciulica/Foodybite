@@ -25,7 +25,7 @@ struct NewReviewSearchView: View {
             
             if !autocompleteResults.isEmpty {
                 VStack(alignment: .leading) {
-                    ForEach(autocompleteResults, id: \.placeID) { result in
+                    ForEach(autocompleteResults, id: \.restaurantID) { result in
                         VStack {
                             RoundedRectangle(cornerRadius: 0.5)
                                 .frame(height: 1)
@@ -47,7 +47,7 @@ struct NewReviewSearchView: View {
                             searchText = ""
                             
                             Task {
-                                await onPlaceSelected(result.placeID)
+                                await onPlaceSelected(result.restaurantID)
                             }
                         }
                     }

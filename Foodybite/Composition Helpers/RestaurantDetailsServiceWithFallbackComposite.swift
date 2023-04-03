@@ -16,11 +16,11 @@ public final class RestaurantDetailsServiceWithFallbackComposite: RestaurantDeta
         self.secondary = secondary
     }
     
-    public func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+    public func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
         do {
-            return try await primary.getRestaurantDetails(placeID: placeID)
+            return try await primary.getRestaurantDetails(restaurantID: restaurantID)
         } catch {
-            return try await secondary.getRestaurantDetails(placeID: placeID)
+            return try await secondary.getRestaurantDetails(restaurantID: restaurantID)
         }
     }
 }

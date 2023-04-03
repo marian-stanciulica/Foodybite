@@ -36,15 +36,15 @@ final class ReviewViewModelTests: XCTestCase {
     }
     
     func test_postReview_sendsParametersCorrectlyToReviewService() async {
-        let expectedPlaceId = anyPlaceID()
-        let (sut, reviewServiceSpy) = makeSUT(placeID: expectedPlaceId)
+        let expectedRestaurantID = anyRestaurantID()
+        let (sut, reviewServiceSpy) = makeSUT(restaurantID: expectedRestaurantID)
         sut.reviewText = anyReviewText()
         sut.starsNumber = anyStarsNumber()
         
         await sut.addReview()
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.placeID, expectedPlaceId)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.restaurantID, expectedRestaurantID)
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
     }
@@ -70,13 +70,13 @@ final class ReviewViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(placeID: String = "") -> (sut: ReviewViewModel, reviewServiceSpy: ReviewServiceSpy) {
+    private func makeSUT(restaurantID: String = "") -> (sut: ReviewViewModel, reviewServiceSpy: ReviewServiceSpy) {
         let reviewServiceSpy = ReviewServiceSpy()
-        let sut = ReviewViewModel(placeID: placeID, reviewService: reviewServiceSpy)
+        let sut = ReviewViewModel(restaurantID: restaurantID, reviewService: reviewServiceSpy)
         return (sut, reviewServiceSpy)
     }
     
-    private func anyPlaceID() -> String {
+    private func anyRestaurantID() -> String {
         "any place id"
     }
     
@@ -93,11 +93,11 @@ final class ReviewViewModelTests: XCTestCase {
     }
     
     private class ReviewServiceSpy: AddReviewService {
-        private(set) var capturedValues = [(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date)]()
+        private(set) var capturedValues = [(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date)]()
         var error: Error?
         
-        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
-            capturedValues.append((placeID, reviewText, starsNumber, createdAt))
+        func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+            capturedValues.append((restaurantID, reviewText, starsNumber, createdAt))
             
             if let error = error {
                 throw error

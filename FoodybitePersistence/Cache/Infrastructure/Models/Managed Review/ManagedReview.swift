@@ -29,7 +29,7 @@ public class ManagedReview: NSManagedObject {
         self.init(context: context)
 
         id = model.id
-        placeID = model.placeID
+        placeID = model.restaurantID
         profileImageURL = model.profileImageURL
         profileImageData = model.profileImageData
         authorName = model.authorName

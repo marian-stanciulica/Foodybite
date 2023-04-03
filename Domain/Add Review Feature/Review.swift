@@ -9,7 +9,7 @@ import Foundation
 
 public struct Review: Equatable, Identifiable, Hashable {
     public var id: UUID
-    public let placeID: String
+    public let restaurantID: String
     public let profileImageURL: URL?
     public let profileImageData: Data?
     public let authorName: String
@@ -17,9 +17,9 @@ public struct Review: Equatable, Identifiable, Hashable {
     public let rating: Int
     public let relativeTime: String
     
-    public init(id: UUID = UUID(), placeID: String, profileImageURL: URL?, profileImageData: Data?, authorName: String, reviewText: String, rating: Int, relativeTime: String) {
+    public init(id: UUID = UUID(), restaurantID: String, profileImageURL: URL?, profileImageData: Data?, authorName: String, reviewText: String, rating: Int, relativeTime: String) {
         self.id = id
-        self.placeID = placeID
+        self.restaurantID = restaurantID
         self.profileImageURL = profileImageURL
         self.profileImageData = profileImageData
         self.authorName = authorName
@@ -29,7 +29,7 @@ public struct Review: Equatable, Identifiable, Hashable {
     }
     
     public static func ==(lhs: Review, rhs: Review) -> Bool {
-        lhs.placeID == rhs.placeID &&
+        lhs.restaurantID == rhs.restaurantID &&
         lhs.profileImageURL == rhs.profileImageURL &&
         lhs.profileImageData == rhs.profileImageData &&
         lhs.authorName == rhs.authorName &&

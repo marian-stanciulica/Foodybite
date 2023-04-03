@@ -172,17 +172,17 @@ struct ProfileView_Previews: PreviewProvider {
     }
     
     private class PreviewGetReviewsService: GetReviewsService {
-        func getReviews(placeID: String?) async throws -> [Review] {
+        func getReviews(restaurantID: String?) async throws -> [Review] {
             [
-                Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "", reviewText: "", rating: 1, relativeTime: ""),
+                Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "", reviewText: "", rating: 1, relativeTime: ""),
             ]
         }
     }
     
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 phoneNumber: "",
                 name: "Place name",
                 address: "Place address",

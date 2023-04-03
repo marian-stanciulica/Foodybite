@@ -26,7 +26,7 @@ public class ManagedNearbyRestaurant: NSManagedObject {
     public convenience init(_ model: NearbyRestaurant, for context: NSManagedObjectContext) {
         self.init(context: context)
 
-        placeID = model.placeID
+        placeID = model.restaurantID
         placeName = model.placeName
         isOpen = model.isOpen
         rating = model.rating

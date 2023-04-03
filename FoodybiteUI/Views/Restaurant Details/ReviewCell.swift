@@ -54,7 +54,7 @@ struct ReviewCell_Previews: PreviewProvider {
     static var previews: some View {
         ReviewCell(
             review: Review(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 profileImageURL: URL(string: "www.google.com"),
                 profileImageData: nil,
                 authorName: "Marian",

@@ -51,7 +51,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     func test_6endToEndAddReview_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().addReview(
-                placeID: firstPlaceID(),
+                restaurantID: firstRestaurantID(),
                 reviewText: firstReviewText(),
                 starsNumber: firstStarsNumber(),
                 createdAt: firstCreatedAt()
@@ -62,15 +62,15 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     func test_7endToEndGetReviews_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().addReview(
-                placeID: secondPlaceID(),
+                restaurantID: secondRestaurantID(),
                 reviewText: secondReviewText(),
                 starsNumber: secondStarsNumber(),
                 createdAt: secondCreatedAt()
             )
         })
         
-        await executeGetReviews(placeID: firstPlaceID(), expectedReviews: expectedReviewsForFirstPlaceID())
-        await executeGetReviews(placeID: secondPlaceID(), expectedReviews: expectedReviewsForSecondPlaceID())
+        await executeGetReviews(restaurantID: firstRestaurantID(), expectedReviews: expectedReviewsForFirstRestaurantID())
+        await executeGetReviews(restaurantID: secondRestaurantID(), expectedReviews: expectedReviewsForSecondRestaurantID())
         await executeGetReviews(expectedReviews: expectedAllReviews())
     }
     
@@ -125,9 +125,9 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         }
     }
     
-    private func executeGetReviews(placeID: String? = nil, expectedReviews: [Review], file: StaticString = #filePath, line: UInt = #line) async {
+    private func executeGetReviews(restaurantID: String? = nil, expectedReviews: [Review], file: StaticString = #filePath, line: UInt = #line) async {
         do {
-            let receivedReviews = try await makeAuthenticatedSUT().getReviews(placeID: placeID)
+            let receivedReviews = try await makeAuthenticatedSUT().getReviews(restaurantID: restaurantID)
             XCTAssertTrue(receivedReviews.isEqual(to: expectedReviews), file: file, line: line)
         } catch {
             XCTFail("Expected successful get reviews, got \(error) instead", file: file, line: line)
@@ -169,11 +169,11 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
              profileImage: testingProfileImage)
     }
     
-    private func firstPlaceID() -> String {
+    private func firstRestaurantID() -> String {
         "first place id"
     }
     
-    private func secondPlaceID() -> String {
+    private func secondRestaurantID() -> String {
         "second place id"
     }
     
@@ -202,13 +202,13 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     }
     
     private func expectedAllReviews() -> [Review] {
-        expectedReviewsForFirstPlaceID() + expectedReviewsForSecondPlaceID()
+        expectedReviewsForFirstRestaurantID() + expectedReviewsForSecondRestaurantID()
     }
     
-    private func expectedReviewsForFirstPlaceID() -> [Review] {
+    private func expectedReviewsForFirstRestaurantID() -> [Review] {
         [
             Review(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: testingNewName,
@@ -219,10 +219,10 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         ]
     }
     
-    private func expectedReviewsForSecondPlaceID() -> [Review] {
+    private func expectedReviewsForSecondRestaurantID() -> [Review] {
         [
             Review(
-                placeID: "place #2",
+                restaurantID: "place #2",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: testingNewName,

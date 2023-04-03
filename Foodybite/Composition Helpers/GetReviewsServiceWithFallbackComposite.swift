@@ -16,11 +16,11 @@ public final class GetReviewsServiceWithFallbackComposite: GetReviewsService {
         self.secondary = secondary
     }
     
-    public func getReviews(placeID: String? = nil) async throws -> [Review] {
+    public func getReviews(restaurantID: String? = nil) async throws -> [Review] {
         do {
-            return try await primary.getReviews(placeID: placeID)
+            return try await primary.getReviews(restaurantID: restaurantID)
         } catch {
-            return try await secondary.getReviews(placeID: placeID)
+            return try await secondary.getReviews(restaurantID: restaurantID)
         }
     }
 }

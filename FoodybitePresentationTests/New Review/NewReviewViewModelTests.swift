@@ -69,12 +69,12 @@ final class NewReviewViewModelTests: XCTestCase {
     
     func test_getRestaurantDetails_sendsInputsToRestaurantDetailsService() async {
         let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
-        let anyPlaceID = anyPlaceID()
+        let anyRestaurantID = anyRestaurantID()
         
-        await sut.getRestaurantDetails(placeID: anyPlaceID)
+        await sut.getRestaurantDetails(restaurantID: anyRestaurantID)
         
         XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, anyPlaceID)
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, anyRestaurantID)
     }
     
     func test_getRestaurantDetails_setsGetRestaurantDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
@@ -82,7 +82,7 @@ final class NewReviewViewModelTests: XCTestCase {
         restaurantDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
-        await sut.getRestaurantDetails(placeID: anyPlaceID())
+        await sut.getRestaurantDetails(restaurantID: anyRestaurantID())
         
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
@@ -93,7 +93,7 @@ final class NewReviewViewModelTests: XCTestCase {
         restaurantDetailsServiceSpy.result = .success(expectedRestaurantDetails)
         let stateSpy = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
-        await sut.getRestaurantDetails(placeID: anyPlaceID())
+        await sut.getRestaurantDetails(restaurantID: anyRestaurantID())
         
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedRestaurantDetails)])
     }
@@ -152,7 +152,7 @@ final class NewReviewViewModelTests: XCTestCase {
         await sut.postReview()
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.placeID, anyPlaceDetails.placeID)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.restaurantID, anyPlaceDetails.restaurantID)
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
     }
@@ -211,7 +211,7 @@ final class NewReviewViewModelTests: XCTestCase {
         "any data".data(using: .utf8)!
     }
     
-    private func anyPlaceID() -> String {
+    private func anyRestaurantID() -> String {
         "any place id"
     }
     
@@ -241,15 +241,15 @@ final class NewReviewViewModelTests: XCTestCase {
     
     private func anyAutocompletePredictions() -> [AutocompletePrediction] {
         [
-            AutocompletePrediction(placePrediction: "place prediction #1", placeID: "place id #1"),
-            AutocompletePrediction(placePrediction: "place prediction #2", placeID: "place id #2"),
-            AutocompletePrediction(placePrediction: "place prediction #3", placeID: "place id #3")
+            AutocompletePrediction(placePrediction: "place prediction #1", restaurantID: "place id #1"),
+            AutocompletePrediction(placePrediction: "place prediction #2", restaurantID: "place id #2"),
+            AutocompletePrediction(placePrediction: "place prediction #3", restaurantID: "place id #3")
         ]
     }
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            placeID: "place #1",
+            restaurantID: "place #1",
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
@@ -268,7 +268,7 @@ final class NewReviewViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    placeID: "place #1",
+                    restaurantID: "place #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -309,14 +309,14 @@ final class NewReviewViewModelTests: XCTestCase {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
-            capturedValues.append(placeID)
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
+            capturedValues.append(restaurantID)
             
             if let result = result {
                 return try result.get()
             }
             
-            return RestaurantDetails(placeID: "place #1",
+            return RestaurantDetails(restaurantID: "place #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",
@@ -330,11 +330,11 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     private class AddReviewServiceSpy: AddReviewService {
-        private(set) var capturedValues = [(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date)]()
+        private(set) var capturedValues = [(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date)]()
         var error: Error?
         
-        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
-            capturedValues.append((placeID, reviewText, starsNumber, createdAt))
+        func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+            capturedValues.append((restaurantID, reviewText, starsNumber, createdAt))
             
             if let error = error {
                 throw error

@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AddReviewService {
-    func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
+    func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
 }

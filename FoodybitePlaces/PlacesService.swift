@@ -32,8 +32,8 @@ extension PlacesService: NearbyRestaurantsService {
 }
 
 extension PlacesService: RestaurantDetailsService {
-    public func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
-        let endpoint = GetPlaceDetailsEndpoint(placeID: placeID)
+    public func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
+        let endpoint = GetRestaurantDetailsEndpoint(restaurantID: restaurantID)
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
         

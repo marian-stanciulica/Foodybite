@@ -6,5 +6,5 @@
 //
 
 public protocol GetReviewsService {
-    func getReviews(placeID: String?) async throws -> [Review]
+    func getReviews(restaurantID: String?) async throws -> [Review]
 }

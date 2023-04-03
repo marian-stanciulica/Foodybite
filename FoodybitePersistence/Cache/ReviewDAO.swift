@@ -14,11 +14,11 @@ public final class ReviewDAO: GetReviewsService, ReviewCache {
         self.store = store
     }
     
-    public func getReviews(placeID: String? = nil) async throws -> [Review] {
+    public func getReviews(restaurantID: String? = nil) async throws -> [Review] {
         let reviews: [Review] = try await store.readAll()
         
-        if let placeID = placeID {
-            return reviews.filter { $0.placeID == placeID }
+        if let restaurantID = restaurantID {
+            return reviews.filter { $0.restaurantID == restaurantID }
         }
         
         return reviews

@@ -107,7 +107,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
         NavigationView {
             RestaurantDetailsView(
                 viewModel: RestaurantDetailsViewModel(
-                    input: .placeIdToFetch("#1"),
+                    input: .restaurantIdToFetch("#1"),
                     getDistanceInKmFromCurrentLocation: { _ in 3.4 },
                     restaurantDetailsService: PreviewNearbyRestaurantsService(),
                     getReviewsService: PreviewGetReviewsService()
@@ -126,9 +126,9 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
     }
     
     private class PreviewNearbyRestaurantsService: RestaurantDetailsService {
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 phoneNumber: "+61 2 9374 4000",
                 name: "Happy Bones",
                 address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
@@ -147,7 +147,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                 ),
                 reviews: [
                     Review(
-                        placeID: "place #1",
+                        restaurantID: "place #1",
                         profileImageURL: URL(string: "www.google.com"),
                         profileImageData: nil,
                         authorName: "Marian",
@@ -156,7 +156,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         relativeTime: "5 months ago"
                     ),
                     Review(
-                        placeID: "place #1",
+                        restaurantID: "place #1",
                         profileImageURL: URL(string: "www.google.com"),
                         profileImageData: nil,
                         authorName: "Marian",
@@ -178,7 +178,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
     }
     
     private class PreviewGetReviewsService: GetReviewsService {
-        func getReviews(placeID: String?) async throws -> [Review] {
+        func getReviews(restaurantID: String?) async throws -> [Review] {
             []
         }
     }

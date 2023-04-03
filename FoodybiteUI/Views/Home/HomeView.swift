@@ -48,7 +48,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                         .padding(.bottom)
                     
                     LazyVStack {
-                        ForEach(viewModel.filteredNearbyRestaurants, id: \.placeID) { place in
+                        ForEach(viewModel.filteredNearbyRestaurants, id: \.restaurantID) { place in
                             cell(place)
                                 .background(Color(uiColor: .systemBackground))
                                 .cornerRadius(16)
@@ -57,7 +57,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                                 .padding(4)
                                 .shadow(color: Color(uiColor: .systemGray3), radius: 2)
                                 .onTapGesture {
-                                    showPlaceDetails(place.placeID)
+                                    showPlaceDetails(place.restaurantID)
                                 }
                         }
                     }
@@ -102,9 +102,9 @@ struct HomeView_Previews: PreviewProvider {
     private class PreviewNearbyRestaurantsService: NearbyRestaurantsService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
             [
-                NearbyRestaurant(placeID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
-                NearbyRestaurant(placeID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
-                NearbyRestaurant(placeID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
+                NearbyRestaurant(restaurantID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
+                NearbyRestaurant(restaurantID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
+                NearbyRestaurant(restaurantID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
             ]
         }
     }

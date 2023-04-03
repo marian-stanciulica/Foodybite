@@ -11,14 +11,14 @@ final class RestaurantDetailsServiceStub: RestaurantDetailsService {
     private(set) var capturedValues = [String]()
     var stub: Result<RestaurantDetails, Error>?
     
-    func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
-        capturedValues.append(placeID)
+    func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
+        capturedValues.append(restaurantID)
         
         if let stub = stub {
             return try stub.get()
         }
         
-        return RestaurantDetails(placeID: "",
+        return RestaurantDetails(restaurantID: "",
                             phoneNumber: nil,
                             name: "",
                             address: "",

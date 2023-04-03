@@ -52,7 +52,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         getRestaurantDetailsState = .isLoading
         
         do {
-            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: review.placeID)
+            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: review.restaurantID)
             getRestaurantDetailsState = .success(placeDetails)
         } catch {
             getRestaurantDetailsState = .failure(.serverError)

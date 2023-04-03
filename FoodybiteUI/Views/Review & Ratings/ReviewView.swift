@@ -75,11 +75,11 @@ public struct ReviewView: View {
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ReviewView(viewModel: ReviewViewModel(placeID: "any place id", reviewService: PreviewReviewService()), dismissScreen: {})
+            ReviewView(viewModel: ReviewViewModel(restaurantID: "any place id", reviewService: PreviewReviewService()), dismissScreen: {})
         }
     }
     
     private class PreviewReviewService: AddReviewService {
-        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
+        func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
     }
 }

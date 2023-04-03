@@ -58,8 +58,8 @@ public struct NewReviewView<SelectedView: View>: View {
                     onChange: {
                         await viewModel.autocomplete()
                     },
-                    onPlaceSelected: { placeID in
-                        await viewModel.getRestaurantDetails(placeID: placeID)
+                    onPlaceSelected: { restaurantID in
+                        await viewModel.getRestaurantDetails(restaurantID: restaurantID)
                     }
                 )
                 
@@ -129,8 +129,8 @@ struct NewReviewView_Previews: PreviewProvider {
     private class PreviewAutocompletePlacesService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             let predictions = [
-                AutocompletePrediction(placePrediction: "Prediction 1", placeID: "place #1"),
-                AutocompletePrediction(placePrediction: "Another Pre 2", placeID: "place #2")
+                AutocompletePrediction(placePrediction: "Prediction 1", restaurantID: "place #1"),
+                AutocompletePrediction(placePrediction: "Another Pre 2", restaurantID: "place #2")
             ]
             
             return predictions.filter { $0.placePrediction.contains(input) }
@@ -138,9 +138,9 @@ struct NewReviewView_Previews: PreviewProvider {
     }
     
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
-        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+        func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 phoneNumber: "",
                 name: "Place name",
                 address: "Place address",
@@ -162,7 +162,7 @@ struct NewReviewView_Previews: PreviewProvider {
     }
     
     private class PreviewAddReviewService: AddReviewService {
-        func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
+        func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
             
         }
     }

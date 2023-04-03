@@ -66,21 +66,21 @@ final class NearbyRestaurantsDAOTests: XCTestCase {
     private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
             NearbyRestaurant(
-                placeID: "place #1",
+                restaurantID: "place #1",
                 placeName: "Place name 1",
                 isOpen: true,
                 rating: 3,
                 location: Location(latitude: 2, longitude: 5),
                 photo: nil),
             NearbyRestaurant(
-                placeID: "place #2",
+                restaurantID: "place #2",
                 placeName: "Place name 2",
                 isOpen: false,
                 rating: 4,
                 location: Location(latitude: 43, longitude: 56),
                 photo: nil),
             NearbyRestaurant(
-                placeID: "place #3",
+                restaurantID: "place #3",
                 placeName: "Place name 3",
                 isOpen: true,
                 rating: 5,

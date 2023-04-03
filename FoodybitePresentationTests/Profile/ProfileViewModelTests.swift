@@ -37,7 +37,7 @@ final class ProfileViewModelTests: XCTestCase {
         XCTAssertTrue(goToLoginCalled)
     }
     
-    func test_getAllReviews_sendsNilPlaceIdToGetReviewsService() async {
+    func test_getAllReviews_sendsNilRestaurantIDToGetReviewsService() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
         
         await sut.getAllReviews()
@@ -89,8 +89,8 @@ final class ProfileViewModelTests: XCTestCase {
     
     private func anyReviews() -> [Review] {
         [
-            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #1", reviewText: "It was nice", rating: 4, relativeTime: "1 hour ago"),
-            Review(placeID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #2", reviewText: "Didn't like it", rating: 1, relativeTime: "2 years ago")
+            Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #1", reviewText: "It was nice", rating: 4, relativeTime: "1 hour ago"),
+            Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #2", reviewText: "Didn't like it", rating: 1, relativeTime: "2 years ago")
         ]
     }
     
@@ -127,8 +127,8 @@ final class ProfileViewModelTests: XCTestCase {
         private(set) var capturedValues = [String?]()
         var result: Result<[Review], Error>?
         
-        func getReviews(placeID: String?) async throws -> [Review] {
-            capturedValues.append(placeID)
+        func getReviews(restaurantID: String?) async throws -> [Review] {
+            capturedValues.append(restaurantID)
             
             if let result = result {
                 return try result.get()

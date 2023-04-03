@@ -154,14 +154,14 @@ final class ProfileViewSnapshotTests: XCTestCase {
     
     private func makeReviews() -> [Review] {
         [
-            Review(placeID: "",
+            Review(restaurantID: "",
                    profileImageURL: nil,
                    profileImageData: UIImage.make(withColor: .red).pngData(),
                    authorName: "Testing",
                    reviewText: "That was nice",
                    rating: 4,
                    relativeTime: "an hour ago"),
-            Review(placeID: "",
+            Review(restaurantID: "",
                    profileImageURL: nil,
                    profileImageData: UIImage.make(withColor: .blue).pngData(),
                    authorName: "Testing",
@@ -177,7 +177,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
     }
     
     private class EmptyGetReviewsService: GetReviewsService {
-        func getReviews(placeID: String?) async throws -> [Review] {
+        func getReviews(restaurantID: String?) async throws -> [Review] {
             []
         }
     }

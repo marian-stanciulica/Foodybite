@@ -72,11 +72,11 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
     
-    @MainActor public func getRestaurantDetails(placeID: String) async {
+    @MainActor public func getRestaurantDetails(restaurantID: String) async {
         getRestaurantDetailsState = .isLoading
         
         do {
-            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
+            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: restaurantID)
             getRestaurantDetailsState = .success(placeDetails)
         } catch {
             getRestaurantDetailsState = .failure(.serverError)
@@ -90,7 +90,7 @@ public final class NewReviewViewModel: ObservableObject {
         if case let .success(placeDetails) = getRestaurantDetailsState {
             do {
                 try await addReviewService.addReview(
-                    placeID: placeDetails.placeID,
+                    restaurantID: placeDetails.restaurantID,
                     reviewText: reviewText,
                     starsNumber: starsNumber,
                     createdAt: Date())
