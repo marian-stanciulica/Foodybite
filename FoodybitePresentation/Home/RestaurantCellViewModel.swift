@@ -21,7 +21,7 @@ public final class RestaurantCellViewModel: ObservableObject {
         nearbyRestaurant.isOpen
     }
     
-    public var placeName: String {
+    public var restaurantName: String {
         nearbyRestaurant.placeName
     }
     
