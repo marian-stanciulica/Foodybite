@@ -22,7 +22,7 @@ public struct RestaurantReviewCellView: View {
     
     public var body: some View {
         VStack(alignment: .leading) {
-            switch viewModel.getPlaceDetailsState {
+            switch viewModel.getRestaurantDetailsState {
             case .idle:
                 EmptyView()
             case .isLoading:
@@ -47,19 +47,19 @@ public struct RestaurantReviewCellView: View {
                         .padding()
                 }
                 
-                AddressView(placeName: viewModel.placeName,
-                            address: viewModel.placeAddress)
+                AddressView(placeName: viewModel.restaurantName,
+                            address: viewModel.restaurantAddress)
                 .padding(.horizontal)
             }
         }
         .cornerRadius(16)
         .task {
-            guard viewModel.getPlaceDetailsState == .idle else { return }
+            guard viewModel.getRestaurantDetailsState == .idle else { return }
             
-            await viewModel.getPlaceDetails()
+            await viewModel.getRestaurantDetails()
         }
         .onTapGesture {
-            if case let .success(placeDetails) = viewModel.getPlaceDetailsState {
+            if case let .success(placeDetails) = viewModel.getRestaurantDetailsState {
                 showPlaceDetails(placeDetails)
             }
         }

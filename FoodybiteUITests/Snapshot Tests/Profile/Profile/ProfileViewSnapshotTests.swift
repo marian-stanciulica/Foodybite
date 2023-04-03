@@ -120,7 +120,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
             review: review,
             restaurantDetailsService: EmptyRestaurantDetailsService()
         )
-        restaurantReviewCellViewModel.getPlaceDetailsState = getPlaceDetailsState
+        restaurantReviewCellViewModel.getRestaurantDetailsState = getPlaceDetailsState
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",

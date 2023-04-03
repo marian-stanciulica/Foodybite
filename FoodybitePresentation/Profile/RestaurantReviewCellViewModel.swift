@@ -9,36 +9,36 @@ import Foundation
 import Domain
 
 public class RestaurantReviewCellViewModel: ObservableObject {
-    public enum GetPlaceDetailsError: String, Error {
+    public enum GetRestaurantDetailsError: String, Error {
         case serverError = "An error occured while fetching review details. Please try again later!"
     }
     
     public enum State: Equatable {
         case idle
         case isLoading
-        case failure(GetPlaceDetailsError)
+        case failure(GetRestaurantDetailsError)
         case success(RestaurantDetails)
     }
     
     private let review: Review
     private let restaurantDetailsService: RestaurantDetailsService
     
-    @Published public var getPlaceDetailsState: State = .idle
+    @Published public var getRestaurantDetailsState: State = .idle
     
     public var rating: String {
         "\(review.rating)"
     }
     
-    public var placeName: String {
-        if case let .success(placeDetails) = getPlaceDetailsState {
-            return placeDetails.name
+    public var restaurantName: String {
+        if case let .success(restaurantDetails) = getRestaurantDetailsState {
+            return restaurantDetails.name
         }
         return ""
     }
     
-    public var placeAddress: String {
-        if case let .success(placeDetails) = getPlaceDetailsState {
-            return placeDetails.address
+    public var restaurantAddress: String {
+        if case let .success(restaurantDetails) = getRestaurantDetailsState {
+            return restaurantDetails.address
         }
         return ""
     }
@@ -48,14 +48,14 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         self.restaurantDetailsService = restaurantDetailsService
     }
     
-    @MainActor public func getPlaceDetails() async {
-        getPlaceDetailsState = .isLoading
+    @MainActor public func getRestaurantDetails() async {
+        getRestaurantDetailsState = .isLoading
         
         do {
             let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: review.placeID)
-            getPlaceDetailsState = .success(placeDetails)
+            getRestaurantDetailsState = .success(placeDetails)
         } catch {
-            getPlaceDetailsState = .failure(.serverError)
+            getRestaurantDetailsState = .failure(.serverError)
         }
     }
 }
