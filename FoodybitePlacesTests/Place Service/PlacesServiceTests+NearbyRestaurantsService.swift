@@ -1,5 +1,5 @@
 //
-//  PlacesServiceTests+SearchNearbyService.swift
+//  PlacesServiceTests+NearbyRestaurantsService.swift
 //  FoodybitePlacesTests
 //
 //  Created by Marian Stanciulica on 15.03.2023.
@@ -11,7 +11,7 @@ import Domain
 
 extension PlacesServiceTests {
     
-    func test_conformsToSearchNearbyService() {
+    func test_conformsToNearbyRestaurantsService() {
         let (sut, _) = makeSUT(response: anySearchNearbyResponse())
         XCTAssertNotNil(sut as NearbyRestaurantsService)
     }
@@ -34,24 +34,23 @@ extension PlacesServiceTests {
     }
     
     func test_searchNearby_throwsErrorWhenStatusIsNotOK() async {
-        let nearbyPlaces = anySearchNearbyResponse(status: .overQueryLimit)
-        let (sut, _) = makeSUT(response: nearbyPlaces)
+        let failedResponse = anySearchNearbyResponse(status: .overQueryLimit)
+        let (sut, _) = makeSUT(response: failedResponse)
         
         do {
-            let nearbyPlaces = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, got \(nearbyPlaces) instead")
+            let nearbyRestaurants = try await searchNearby(on: sut)
+            XCTFail("Expected to fail, got \(nearbyRestaurants) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
-        let expectedResponse = anySearchNearbyResponse()
-        let expected = expectedResponse.nearbyRestaurants
-        let (sut, _) = makeSUT(response: expectedResponse)
+        let successfulResponse = anySearchNearbyResponse()
+        let (sut, _) = makeSUT(response: successfulResponse)
         
-        let receivedResponse = try await searchNearby(on: sut)
-        XCTAssertEqual(expected, receivedResponse)
+        let receivedNearbyRestaurants = try await searchNearby(on: sut)
+        XCTAssertEqual(successfulResponse.nearbyRestaurants, receivedNearbyRestaurants)
     }
     
     // MARK: - Helpers

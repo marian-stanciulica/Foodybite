@@ -294,8 +294,8 @@
 		0F39174B29C1EF8600EE0201 /* MatchedSubstring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39174A29C1EF8600EE0201 /* MatchedSubstring.swift */; };
 		0F39174D29C1EF9C00EE0201 /* StructuredFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39174C29C1EF9C00EE0201 /* StructuredFormatting.swift */; };
 		0F39174F29C1EFAD00EE0201 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39174E29C1EFAD00EE0201 /* Term.swift */; };
-		0F39175129C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175029C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift */; };
-		0F39175329C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175229C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift */; };
+		0F39175129C2035900EE0201 /* PlacesServiceTests+NearbyRestaurantsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175029C2035900EE0201 /* PlacesServiceTests+NearbyRestaurantsService.swift */; };
+		0F39175329C20FF400EE0201 /* PlacesServiceTests+RestaurantDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175229C20FF400EE0201 /* PlacesServiceTests+RestaurantDetailsService.swift */; };
 		0F39175529C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175429C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift */; };
 		0F39175729C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175629C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift */; };
 		0F39175929C23B5B00EE0201 /* APIServiceTests+LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39175829C23B5B00EE0201 /* APIServiceTests+LoginService.swift */; };
@@ -794,8 +794,8 @@
 		0F39174A29C1EF8600EE0201 /* MatchedSubstring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedSubstring.swift; sourceTree = "<group>"; };
 		0F39174C29C1EF9C00EE0201 /* StructuredFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredFormatting.swift; sourceTree = "<group>"; };
 		0F39174E29C1EFAD00EE0201 /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
-		0F39175029C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+SearchNearbyService.swift"; sourceTree = "<group>"; };
-		0F39175229C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+GetPlaceDetails.swift"; sourceTree = "<group>"; };
+		0F39175029C2035900EE0201 /* PlacesServiceTests+NearbyRestaurantsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+NearbyRestaurantsService.swift"; sourceTree = "<group>"; };
+		0F39175229C20FF400EE0201 /* PlacesServiceTests+RestaurantDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+RestaurantDetailsService.swift"; sourceTree = "<group>"; };
 		0F39175429C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+FetchPlacePhotoService.swift"; sourceTree = "<group>"; };
 		0F39175629C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesServiceTests+AutocompletePlacesService.swift"; sourceTree = "<group>"; };
 		0F39175829C23B5B00EE0201 /* APIServiceTests+LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIServiceTests+LoginService.swift"; sourceTree = "<group>"; };
@@ -1769,8 +1769,8 @@
 			children = (
 				0F412EC42962D40800FDDF41 /* Helpers */,
 				0F412EC02962D24400FDDF41 /* PlacesServiceTests.swift */,
-				0F39175029C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift */,
-				0F39175229C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift */,
+				0F39175029C2035900EE0201 /* PlacesServiceTests+NearbyRestaurantsService.swift */,
+				0F39175229C20FF400EE0201 /* PlacesServiceTests+RestaurantDetailsService.swift */,
 				0F39175429C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift */,
 				0F39175629C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift */,
 			);
@@ -4144,13 +4144,13 @@
 				0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */,
 				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
 				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
-				0F39175329C20FF400EE0201 /* PlacesServiceTests+GetPlaceDetails.swift in Sources */,
+				0F39175329C20FF400EE0201 /* PlacesServiceTests+RestaurantDetailsService.swift in Sources */,
 				0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */,
 				0F39175529C217C800EE0201 /* PlacesServiceTests+FetchPlacePhotoService.swift in Sources */,
 				0F39175729C21A7200EE0201 /* PlacesServiceTests+AutocompletePlacesService.swift in Sources */,
 				0F412EC12962D24400FDDF41 /* PlacesServiceTests.swift in Sources */,
 				0F412EB22962CC4A00FDDF41 /* HTTPClientSpy.swift in Sources */,
-				0F39175129C2035900EE0201 /* PlacesServiceTests+SearchNearbyService.swift in Sources */,
+				0F39175129C2035900EE0201 /* PlacesServiceTests+NearbyRestaurantsService.swift in Sources */,
 				0F412E932962C97300FDDF41 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
