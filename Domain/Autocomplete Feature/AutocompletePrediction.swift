@@ -6,11 +6,11 @@
 //
 
 public struct AutocompletePrediction: Hashable {
-    public let placePrediction: String
+    public let restaurantPrediction: String
     public let restaurantID: String
     
-    public init(placePrediction: String, restaurantID: String) {
-        self.placePrediction = placePrediction
+    public init(restaurantPrediction: String, restaurantID: String) {
+        self.restaurantPrediction = restaurantPrediction
         self.restaurantID = restaurantID
     }
 }

@@ -14,7 +14,7 @@ struct AutocompleteResponse: Decodable {
     
     var autocompletePredictions: [AutocompletePrediction] {
         predictions.map {
-            AutocompletePrediction(placePrediction: $0.description, restaurantID: $0.placeID)
+            AutocompletePrediction(restaurantPrediction: $0.description, restaurantID: $0.placeID)
         }
     }
     

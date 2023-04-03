@@ -241,9 +241,9 @@ final class NewReviewViewModelTests: XCTestCase {
     
     private func anyAutocompletePredictions() -> [AutocompletePrediction] {
         [
-            AutocompletePrediction(placePrediction: "place prediction #1", restaurantID: "place id #1"),
-            AutocompletePrediction(placePrediction: "place prediction #2", restaurantID: "place id #2"),
-            AutocompletePrediction(placePrediction: "place prediction #3", restaurantID: "place id #3")
+            AutocompletePrediction(restaurantPrediction: "place prediction #1", restaurantID: "place id #1"),
+            AutocompletePrediction(restaurantPrediction: "place prediction #2", restaurantID: "place id #2"),
+            AutocompletePrediction(restaurantPrediction: "place prediction #3", restaurantID: "place id #3")
         ]
     }
     

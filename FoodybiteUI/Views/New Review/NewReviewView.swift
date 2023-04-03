@@ -129,11 +129,11 @@ struct NewReviewView_Previews: PreviewProvider {
     private class PreviewAutocompletePlacesService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             let predictions = [
-                AutocompletePrediction(placePrediction: "Prediction 1", restaurantID: "place #1"),
-                AutocompletePrediction(placePrediction: "Another Pre 2", restaurantID: "place #2")
+                AutocompletePrediction(restaurantPrediction: "Prediction 1", restaurantID: "place #1"),
+                AutocompletePrediction(restaurantPrediction: "Another Pre 2", restaurantID: "place #2")
             ]
             
-            return predictions.filter { $0.placePrediction.contains(input) }
+            return predictions.filter { $0.restaurantPrediction.contains(input) }
         }
     }
     

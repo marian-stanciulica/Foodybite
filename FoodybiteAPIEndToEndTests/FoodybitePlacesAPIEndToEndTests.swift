@@ -226,23 +226,23 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     private var expectedAutocompletePredictions: Set<AutocompletePrediction> {
         [
             AutocompletePrediction(
-                placePrediction: "Trattoria Don Vito, Strada D. I. Mendeleev, Bucharest, Romania",
+                restaurantPrediction: "Trattoria Don Vito, Strada D. I. Mendeleev, Bucharest, Romania",
                 restaurantID: "ChIJgxvxNE7_sUARNMOzDLF21PU"
             ),
             AutocompletePrediction(
-                placePrediction: "Trattoria Il Calcio Ateneu, Strada Benjamin Franklin, Bucharest, Romania",
+                restaurantPrediction: "Trattoria Il Calcio Ateneu, Strada Benjamin Franklin, Bucharest, Romania",
                 restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70"
             ),
             AutocompletePrediction(
-                placePrediction: "Trattoria Il Calcio Magheru, Strada Anastasie Simu, Bucharest, Romania",
+                restaurantPrediction: "Trattoria Il Calcio Magheru, Strada Anastasie Simu, Bucharest, Romania",
                 restaurantID: "ChIJ18kE60f_sUARUUt7OD7LOVk"
             ),
             AutocompletePrediction(
-                placePrediction: "Trattoria La Famiglia, Strada Nicolae Golescu, Bucharest, Romania",
+                restaurantPrediction: "Trattoria La Famiglia, Strada Nicolae Golescu, Bucharest, Romania",
                 restaurantID: "ChIJizLJDE__sUARWSZT2x5bxhE"
             ),
             AutocompletePrediction(
-                placePrediction: "Trattoria Mezzaluna, Strada Crăciun, Bucharest, Romania",
+                restaurantPrediction: "Trattoria Mezzaluna, Strada Crăciun, Bucharest, Romania",
                 restaurantID: "ChIJW1WlL634sUAR2DY7DgRv5ig"
             ),
         ]

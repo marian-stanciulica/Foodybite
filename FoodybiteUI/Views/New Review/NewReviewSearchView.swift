@@ -33,7 +33,7 @@ struct NewReviewSearchView: View {
                                 .padding(0)
                             
                             HStack {
-                                Text(result.placePrediction)
+                                Text(result.restaurantPrediction)
                                 
                                 Spacer()
                                 

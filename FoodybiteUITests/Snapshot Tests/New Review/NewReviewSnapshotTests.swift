@@ -117,9 +117,9 @@ final class NewReviewSnapshotTests: XCTestCase {
     
     private func makeAutocompletePredictions() -> [AutocompletePrediction] {
         [
-            AutocompletePrediction(placePrediction: "Prediction #1", restaurantID: "place #1"),
-            AutocompletePrediction(placePrediction: "Prediction #2", restaurantID: "place #2"),
-            AutocompletePrediction(placePrediction: "Prediction #3", restaurantID: "place #3")
+            AutocompletePrediction(restaurantPrediction: "Prediction #1", restaurantID: "place #1"),
+            AutocompletePrediction(restaurantPrediction: "Prediction #2", restaurantID: "place #2"),
+            AutocompletePrediction(restaurantPrediction: "Prediction #3", restaurantID: "place #3")
         ]
     }
     
