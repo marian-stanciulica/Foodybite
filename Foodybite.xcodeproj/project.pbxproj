@@ -1360,14 +1360,6 @@
 			path = "Composition Root";
 			sourceTree = "<group>";
 		};
-		0F18977129B79D630052094F /* Search Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
-			);
-			path = "Search Nearby";
-			sourceTree = "<group>";
-		};
 		0F18977429B7A0B20052094F /* Composition Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1385,6 +1377,7 @@
 		0F19B476291647DB00A8FC8F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
 				0F423AA229855F64009EB345 /* Models */,
 				0FA6BE292994E829003E1912 /* Protocols */,
@@ -1789,7 +1782,6 @@
 		0F412EBA2962D13700FDDF41 /* Places Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */,
 				0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */,
 				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
 				0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */,
@@ -1903,9 +1895,6 @@
 		0F423AA429855F81009EB345 /* Nearby Places */ = {
 			isa = PBXGroup;
 			children = (
-				0F215CB4298265A0000F88F4 /* NearbyPlace.swift */,
-				0F423A8E29850D0D009EB345 /* Location.swift */,
-				0F70C4A229869C8C00C004DD /* Photo.swift */,
 			);
 			path = "Nearby Places";
 			sourceTree = "<group>";
@@ -1914,7 +1903,6 @@
 			isa = PBXGroup;
 			children = (
 				0F19B46E291645F200A8FC8F /* User.swift */,
-				0FF7C68929B2281300622E9C /* UserPreferences.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2510,7 +2498,6 @@
 			isa = PBXGroup;
 			children = (
 				0F61265429C0F74B00658A4D /* Review */,
-				0F18977129B79D630052094F /* Search Nearby */,
 				0F207C7A29B8E2810095E905 /* Get Place Details */,
 				0FA6BE2A2994E87A003E1912 /* Networking Protocols */,
 				0F412EBA2962D13700FDDF41 /* Places Protocols */,
@@ -2848,6 +2835,18 @@
 			path = ReviewViewSnapshotTests;
 			sourceTree = "<group>";
 		};
+		0FDA1A3A29DAAC920081333A /* Nearby Places Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F215CB4298265A0000F88F4 /* NearbyPlace.swift */,
+				0F423A8E29850D0D009EB345 /* Location.swift */,
+				0F70C4A229869C8C00C004DD /* Photo.swift */,
+				0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */,
+				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
+			);
+			path = "Nearby Places Feature";
+			sourceTree = "<group>";
+		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
 			isa = PBXGroup;
 			children = (
@@ -2920,6 +2919,7 @@
 		0FF7C69329B2353E00622E9C /* User Preferences Feature */ = {
 			isa = PBXGroup;
 			children = (
+				0FF7C68929B2281300622E9C /* UserPreferences.swift */,
 				0FF7C69429B2354F00622E9C /* UserPreferencesLoader.swift */,
 				0FF7C69629B2356200622E9C /* UserPreferencesSaver.swift */,
 			);
