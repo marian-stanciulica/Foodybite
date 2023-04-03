@@ -1377,11 +1377,11 @@
 		0F19B476291647DB00A8FC8F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				0FDA1A3D29DAADAD0081333A /* User Session Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
 				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
 				0FDA1A3B29DAACFA0081333A /* Place Details Feature */,
 				0FDA1A3C29DAAD590081333A /* Autocomplete Feature */,
-				0F423AA229855F64009EB345 /* Models */,
 				0FA6BE292994E829003E1912 /* Protocols */,
 			);
 			path = Domain;
@@ -1863,22 +1863,6 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		0F423AA229855F64009EB345 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0F423AA529855F98009EB345 /* User */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		0F423AA529855F98009EB345 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				0F19B46E291645F200A8FC8F /* User.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
 		0F447CB328FAC2940026C5DB /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
@@ -1958,10 +1942,7 @@
 		0F447CD028FB1A190026C5DB /* Auth Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F447CD128FB1A2A0026C5DB /* LoginService.swift */,
-				0FB0E10D291F7D380058ABCB /* SignUpService.swift */,
 				0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */,
-				0F73ECB4292FD9150025B237 /* LogoutService.swift */,
 				0F2A26AD2930D44A00387A1C /* AccountService.swift */,
 			);
 			path = "Auth Protocols";
@@ -2829,6 +2810,17 @@
 				0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */,
 			);
 			path = "Autocomplete Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A3D29DAADAD0081333A /* User Session Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B46E291645F200A8FC8F /* User.swift */,
+				0FB0E10D291F7D380058ABCB /* SignUpService.swift */,
+				0F447CD128FB1A2A0026C5DB /* LoginService.swift */,
+				0F73ECB4292FD9150025B237 /* LogoutService.swift */,
+			);
+			path = "User Session Feature";
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
