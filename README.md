@@ -618,8 +618,8 @@ The following diagram presents the `Persistence` module, highlights the [infrast
 | LocalUserPreferences | Local representation of `UserPreferences` |
 | UserPreferencesLocalStore | Uses `UserDefaults` to store and retrieve `UserPreferences` models |
 | UserDAO | Uses `LocalStore` to save or retrieve a user |
-| SearchNearbyDAO | Uses `LocalStore` to save or retrieve nearby places |
-| GetPlaceDetailsDAO | Uses `LocalStore` to save or retrieve place details |
+| NearbyRestaurantsDAO | Uses `LocalStore` to save or retrieve nearby restaurants |
+| RestaurantDetailsDAO | Uses `LocalStore` to save or retrieve restaurant details |
 | CoreDataLocalStore | CoreData implementation of `LocalStore` that writes or reads objects which conforms to `LocalModelConvertable` |
 | LocalModelConvertable | Generic protocol that creates a one-to-one relationship between a domain model and a managed model (local) |
 
