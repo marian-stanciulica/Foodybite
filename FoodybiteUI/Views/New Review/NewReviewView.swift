@@ -67,18 +67,11 @@ public struct NewReviewView<SelectedView: View>: View {
                 case .idle:
                     EmptyView()
                 case .isLoading:
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(Color(uiColor: .systemGray3))
-                            .frame(height: 200)
-                        
-                        ProgressView()
-                    }
-                    .padding()
+                    ProgressView()
+                        .padding()
                 case let .failure(error):
                     Text(error.rawValue)
                         .foregroundColor(.red)
-                        .padding()
                 case let .success(restaurantDetails):
                     selectedView(restaurantDetails)
                 }

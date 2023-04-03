@@ -28,16 +28,23 @@ final class NewReviewViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
-        let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
-                          fetchPhotoState: .isLoading)
+    func test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading() {
+        let sut = makeSUT(getRestaurantDetailsState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading() {
-        let sut = makeSUT(getRestaurantDetailsState: .isLoading)
+    func test_newReviewViewWhenGetRestaurantDetailsStateIsFailure() {
+        let sut = makeSUT(getRestaurantDetailsState: .failure(.serverError))
+        
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+    
+    func test_newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
+        let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
+                          fetchPhotoState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
