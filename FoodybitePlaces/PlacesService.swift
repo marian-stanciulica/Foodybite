@@ -41,7 +41,7 @@ extension PlacesService: RestaurantDetailsService {
             throw StatusError()
         }
         
-        return response.placeDetails
+        return response.restaurantDetails
     }
 }
 

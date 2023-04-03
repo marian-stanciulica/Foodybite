@@ -49,7 +49,7 @@ extension PlacesServiceTests {
         
         let receivedResponse = try await sut.getRestaurantDetails(placeID: randomString())
         
-        XCTAssertEqual(placeDetailsResponse.placeDetails, receivedResponse)
+        XCTAssertEqual(placeDetailsResponse.restaurantDetails, receivedResponse)
     }
     
     // MARK: - Helpers

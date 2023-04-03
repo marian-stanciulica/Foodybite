@@ -11,7 +11,7 @@ struct PlaceDetailsResponse: Decodable {
     let result: Details
     let status: PlaceDetailsStatus
     
-    var placeDetails: RestaurantDetails {
+    var restaurantDetails: RestaurantDetails {
         RestaurantDetails(
             placeID: result.placeID,
             phoneNumber: result.internationalPhoneNumber,
