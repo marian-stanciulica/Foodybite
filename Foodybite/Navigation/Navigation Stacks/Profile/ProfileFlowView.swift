@@ -84,7 +84,7 @@ enum ProfileFlowView {
     
     @ViewBuilder static func makeRestaurantDetailsView(
         flow: Flow<ProfileRoute>,
-        placeDetails: PlaceDetails,
+        placeDetails: RestaurantDetails,
         currentLocation: Location,
         getPlaceDetailsService: GetPlaceDetailsService,
         getReviewsService: GetReviewsService,

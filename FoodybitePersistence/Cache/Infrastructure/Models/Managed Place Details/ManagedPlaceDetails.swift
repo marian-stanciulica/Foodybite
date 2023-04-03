@@ -26,7 +26,7 @@ public class ManagedPlaceDetails: NSManagedObject {
         return NSFetchRequest<ManagedPlaceDetails>(entityName: "ManagedPlaceDetails")
     }
     
-    public convenience init(_ model: PlaceDetails, for context: NSManagedObjectContext) {
+    public convenience init(_ model: RestaurantDetails, for context: NSManagedObjectContext) {
         self.init(context: context)
 
         placeID = model.placeID

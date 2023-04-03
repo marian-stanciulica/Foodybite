@@ -11,9 +11,9 @@ import FoodybitePresentation
 
 public struct SelectedRestaurantView: View {
     let photoView: PhotoView
-    let placeDetails: PlaceDetails
+    let placeDetails: RestaurantDetails
     
-    public init(photoView: PhotoView, placeDetails: PlaceDetails) {
+    public init(photoView: PhotoView, placeDetails: RestaurantDetails) {
         self.photoView = photoView
         self.placeDetails = placeDetails
     }
@@ -42,7 +42,7 @@ struct SelectedRestaurantView_Previews: PreviewProvider {
                     fetchPhotoService: PreviewFetchPlacePhotoService()
                 )
             ),
-            placeDetails: PlaceDetails(
+            placeDetails: RestaurantDetails(
                 placeID: "",
                 phoneNumber: nil,
                 name: "Place name",

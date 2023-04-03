@@ -16,8 +16,8 @@ public final class GetPlaceDetailsDAO: GetPlaceDetailsService, PlaceDetailsCache
         self.store = store
     }
     
-    public func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-        let allPlaces: [PlaceDetails] = try await store.readAll()
+    public func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+        let allPlaces: [RestaurantDetails] = try await store.readAll()
         
         guard let foundPlace = allPlaces.first(where: { $0.placeID == placeID }) else {
             throw CacheMissError()
@@ -26,7 +26,7 @@ public final class GetPlaceDetailsDAO: GetPlaceDetailsService, PlaceDetailsCache
         return foundPlace
     }
     
-    public func save(placeDetails: PlaceDetails) async throws {
+    public func save(placeDetails: RestaurantDetails) async throws {
         try await store.write(placeDetails)
     }
 }

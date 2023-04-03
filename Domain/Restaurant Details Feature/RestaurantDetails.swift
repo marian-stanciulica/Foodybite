@@ -1,11 +1,11 @@
 //
-//  PlaceDetails.swift
-//  FoodybitePlaces
+//  RestaurantDetails.swift
+//  Domain
 //
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct PlaceDetails: Equatable, Hashable {
+public struct RestaurantDetails: Equatable, Hashable {
     public let placeID: String
     public let phoneNumber: String?
     public let name: String
@@ -28,7 +28,7 @@ public struct PlaceDetails: Equatable, Hashable {
         self.photos = photos
     }
     
-    public static func ==(lhs: PlaceDetails, rhs: PlaceDetails) -> Bool {
+    public static func ==(lhs: RestaurantDetails, rhs: RestaurantDetails) -> Bool {
         lhs.placeID == rhs.placeID &&
         lhs.phoneNumber == rhs.phoneNumber &&
         lhs.name == rhs.name &&

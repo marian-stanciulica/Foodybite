@@ -41,7 +41,7 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
         XCTAssertEqual(storeSpy.messages.count, 1)
         
         if case let .write(receivedPlaceDetails) = storeSpy.messages[0] {
-            XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails as! PlaceDetails)
+            XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails as! RestaurantDetails)
         } else {
             XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
         }
@@ -55,9 +55,9 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
         return (sut, storeSpy)
     }
     
-    private func makePlaceDetails() -> [PlaceDetails] {
+    private func makePlaceDetails() -> [RestaurantDetails] {
         [
-            PlaceDetails(placeID: "Place #1",
+            RestaurantDetails(placeID: "Place #1",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -66,7 +66,7 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
                          reviews: [],
                          location: Location(latitude: 0, longitude: 0),
                          photos: []),
-            PlaceDetails(placeID: "Place #2",
+            RestaurantDetails(placeID: "Place #2",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -78,8 +78,8 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
         ]
     }
     
-    private func makeExpectedPlaceDetails() -> PlaceDetails {
-        PlaceDetails(placeID: "Expected place",
+    private func makeExpectedPlaceDetails() -> RestaurantDetails {
+        RestaurantDetails(placeID: "Expected place",
                      phoneNumber: "",
                      name: "",
                      address: "",

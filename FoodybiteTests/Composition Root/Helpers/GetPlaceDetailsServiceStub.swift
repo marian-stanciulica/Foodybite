@@ -9,16 +9,16 @@ import Domain
 
 final class GetPlaceDetailsServiceStub: GetPlaceDetailsService {
     private(set) var capturedValues = [String]()
-    var stub: Result<PlaceDetails, Error>?
+    var stub: Result<RestaurantDetails, Error>?
     
-    func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+    func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
         capturedValues.append(placeID)
         
         if let stub = stub {
             return try stub.get()
         }
         
-        return PlaceDetails(placeID: "",
+        return RestaurantDetails(placeID: "",
                             phoneNumber: nil,
                             name: "",
                             address: "",

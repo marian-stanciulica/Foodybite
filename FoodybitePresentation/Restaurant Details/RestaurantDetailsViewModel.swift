@@ -16,14 +16,14 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     public enum Input {
         case placeIdToFetch(String)
-        case fetchedPlaceDetails(PlaceDetails)
+        case fetchedPlaceDetails(RestaurantDetails)
     }
     
     public enum State: Equatable {
         case idle
         case isLoading
         case failure(GetPlaceDetailsError)
-        case success(PlaceDetails)
+        case success(RestaurantDetails)
     }
     
     private let input: Input

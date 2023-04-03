@@ -12,9 +12,9 @@ import FoodybitePresentation
 public struct NewReviewView<SelectedView: View>: View {
     @Binding var plusButtonActive: Bool
     @ObservedObject var viewModel: NewReviewViewModel
-    let selectedView: (PlaceDetails) -> SelectedView
+    let selectedView: (RestaurantDetails) -> SelectedView
     
-    public init(plusButtonActive: Binding<Bool>, viewModel: NewReviewViewModel, selectedView: @escaping (PlaceDetails) -> SelectedView) {
+    public init(plusButtonActive: Binding<Bool>, viewModel: NewReviewViewModel, selectedView: @escaping (RestaurantDetails) -> SelectedView) {
         self._plusButtonActive = plusButtonActive
         self.viewModel = viewModel
         self.selectedView = selectedView
@@ -138,8 +138,8 @@ struct NewReviewView_Previews: PreviewProvider {
     }
     
     private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
-        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-            PlaceDetails(
+        func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+            RestaurantDetails(
                 placeID: "place #1",
                 phoneNumber: "",
                 name: "Place name",

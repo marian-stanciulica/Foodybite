@@ -12,9 +12,9 @@ import FoodybitePresentation
 public struct RestaurantReviewCellView: View {
     @ObservedObject var viewModel: RestaurantReviewCellViewModel
     let makePhotoView: (String?) -> PhotoView
-    let showPlaceDetails: (PlaceDetails) -> Void
+    let showPlaceDetails: (RestaurantDetails) -> Void
     
-    public init(viewModel: RestaurantReviewCellViewModel, makePhotoView: @escaping (String?) -> PhotoView, showPlaceDetails: @escaping (PlaceDetails) -> Void) {
+    public init(viewModel: RestaurantReviewCellViewModel, makePhotoView: @escaping (String?) -> PhotoView, showPlaceDetails: @escaping (RestaurantDetails) -> Void) {
         self.viewModel = viewModel
         self.makePhotoView = makePhotoView
         self.showPlaceDetails = showPlaceDetails
@@ -86,8 +86,8 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     }
     
     private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
-        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
-            PlaceDetails(
+        func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+            RestaurantDetails(
                 placeID: "place #1",
                 phoneNumber: "",
                 name: "Place name",

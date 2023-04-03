@@ -247,8 +247,8 @@ final class NewReviewViewModelTests: XCTestCase {
         ]
     }
     
-    private func anyPlaceDetails() -> PlaceDetails {
-        PlaceDetails(
+    private func anyPlaceDetails() -> RestaurantDetails {
+        RestaurantDetails(
             placeID: "place #1",
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
@@ -307,16 +307,16 @@ final class NewReviewViewModelTests: XCTestCase {
     
     private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
         private(set) var capturedValues = [String]()
-        var result: Result<PlaceDetails, Error>?
+        var result: Result<RestaurantDetails, Error>?
         
-        func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+        func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
             capturedValues.append(placeID)
             
             if let result = result {
                 return try result.get()
             }
             
-            return PlaceDetails(placeID: "place #1",
+            return RestaurantDetails(placeID: "place #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",

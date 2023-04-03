@@ -42,8 +42,8 @@ func makeNearbyRestaurants() -> [NearbyRestaurant] {
     ]
 }
 
-func makeExpectedPlaceDetails() -> PlaceDetails {
-    PlaceDetails(placeID: "Expected place",
+func makeExpectedPlaceDetails() -> RestaurantDetails {
+    RestaurantDetails(placeID: "Expected place",
                  phoneNumber: "",
                  name: "",
                  address: "",

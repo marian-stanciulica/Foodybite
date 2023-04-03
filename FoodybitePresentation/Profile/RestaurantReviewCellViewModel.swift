@@ -17,7 +17,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         case idle
         case isLoading
         case failure(GetPlaceDetailsError)
-        case success(PlaceDetails)
+        case success(RestaurantDetails)
     }
     
     private let review: Review

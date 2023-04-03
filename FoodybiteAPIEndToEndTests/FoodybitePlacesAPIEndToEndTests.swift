@@ -48,7 +48,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         return PlacesService(loader: loader)
     }
     
-    private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> PlaceDetails {
+    private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> RestaurantDetails {
         let apiService = makeSUT(file: file, line: line)
         return try await apiService.getPlaceDetails(placeID: "ChIJW823ek__sUARZVGTsg0Yx70")
     }
@@ -109,8 +109,8 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         return true
     }
     
-    private var expectedPlaceDetails: PlaceDetails {
-        PlaceDetails(
+    private var expectedPlaceDetails: RestaurantDetails {
+        RestaurantDetails(
             placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
             phoneNumber: nil,
             name: "Trattoria Il Calcio Ateneu",

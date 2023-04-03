@@ -8,7 +8,7 @@
 import Domain
 import CoreData
 
-extension PlaceDetails: LocalModelConvertable {
+extension RestaurantDetails: LocalModelConvertable {
     public init(from managedPlaceDetails: ManagedPlaceDetails) {
         var openingHoursDetails: OpeningHoursDetails?
         

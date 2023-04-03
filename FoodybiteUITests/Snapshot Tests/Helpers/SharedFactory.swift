@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import Domain
 
-func makePlaceDetails() -> PlaceDetails {
-    PlaceDetails(placeID: "place #1",
+func makePlaceDetails() -> RestaurantDetails {
+    RestaurantDetails(placeID: "place #1",
                  phoneNumber: "0764 456 321",
                  name: "Place name",
                  address: "Place address",

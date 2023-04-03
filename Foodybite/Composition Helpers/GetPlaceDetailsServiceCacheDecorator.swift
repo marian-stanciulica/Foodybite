@@ -16,7 +16,7 @@ public final class GetPlaceDetailsServiceCacheDecorator: GetPlaceDetailsService 
         self.cache = cache
     }
     
-    public func getPlaceDetails(placeID: String) async throws -> PlaceDetails {
+    public func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
         let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
         try? await cache.save(placeDetails: placeDetails)
         return placeDetails
