@@ -7,9 +7,6 @@
 
 import SwiftUI
 import Domain
-import FoodybiteNetworking
-import FoodybitePlaces
-import FoodybitePersistence
 import FoodybitePresentation
 import FoodybiteLocation
 import FoodybiteUI

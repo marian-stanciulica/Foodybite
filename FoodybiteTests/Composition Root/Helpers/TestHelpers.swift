@@ -19,21 +19,21 @@ func anyError() -> NSError {
 func makeNearbyRestaurants() -> [NearbyRestaurant] {
     [
         NearbyRestaurant(
-            id: "place #1",
+            id: "restaurant #1",
             name: "Name 1",
             isOpen: true,
             rating: 3,
             location: Location(latitude: 2, longitude: 5),
             photo: nil),
         NearbyRestaurant(
-            id: "place #2",
+            id: "restaurant #2",
             name: "Name 2",
             isOpen: false,
             rating: 4,
             location: Location(latitude: 43, longitude: 56),
             photo: nil),
         NearbyRestaurant(
-            id: "place #3",
+            id: "restaurant #3",
             name: "Name 3",
             isOpen: true,
             rating: 5,
@@ -58,8 +58,8 @@ func makeRestaurantDetails() -> RestaurantDetails {
 
 func makeReviews() -> [Review] {
     [
-        Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
-        Review(restaurantID: "place #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
-        Review(restaurantID: "place #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
+        Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #1", rating: 2, relativeTime: "1 hour ago"),
+        Review(restaurantID: "restaurant #2", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #2", rating: 3, relativeTime: "one year ago"),
+        Review(restaurantID: "restaurant #3", profileImageURL: nil, profileImageData: nil, authorName: "Author name #1", reviewText: "review text #3", rating: 4, relativeTime: "2 months ago")
     ]
 }

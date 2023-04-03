@@ -103,15 +103,15 @@ struct UserAuthenticatedView: View {
                     location: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
                 ),
-                selectedView: { placeDetails in
+                selectedView: { restaurantDetails in
                     SelectedRestaurantView(
                         photoView: PhotoView(
                             viewModel: PhotoViewModel(
-                                photoReference: placeDetails.photos.first?.photoReference,
+                                photoReference: restaurantDetails.photos.first?.photoReference,
                                 restaurantPhotoService: userAuthenticatedFactory.placesService
                             )
                         ),
-                        restaurantDetails: placeDetails
+                        restaurantDetails: restaurantDetails
                     )
                 }
             )
@@ -143,10 +143,10 @@ struct UserAuthenticatedView: View {
                     ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.authenticatedApiService)
                 case .editProfile:
                     ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.authenticatedApiService)
-                case let .restaurantDetails(placeDetails):
+                case let .restaurantDetails(restaurantDetails):
                     ProfileFlowView.makeRestaurantDetailsView(
                         flow: profileFlow,
-                        restaurantDetails: placeDetails,
+                        restaurantDetails: restaurantDetails,
                         currentLocation: currentLocation,
                         restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,

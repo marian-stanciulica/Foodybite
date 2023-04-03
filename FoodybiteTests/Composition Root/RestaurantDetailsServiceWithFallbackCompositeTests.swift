@@ -23,7 +23,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
     
     func test_getRestaurantDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
-        let expectedRestaurantID = "place id"
+        let expectedRestaurantID = "restaurant id"
         primaryStub.stub = .failure(anyError())
         
         _ = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantID)
@@ -49,7 +49,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         secondaryStub.stub = .failure(anyError())
         
         do {
-            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "place id")
+            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant id")
             XCTFail("Expected to fail, got \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)

@@ -16,7 +16,7 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
         serviceStub.stub = .failure(anyError())
         
         do {
-            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "place id")
+            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant id")
             XCTFail("Expected to fail, received \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -36,7 +36,7 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
         
-        _ = try? await sut.getRestaurantDetails(restaurantID: "place id")
+        _ = try? await sut.getRestaurantDetails(restaurantID: "restaurant id")
         
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
     }
