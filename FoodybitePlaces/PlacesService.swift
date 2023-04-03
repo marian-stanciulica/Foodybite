@@ -53,7 +53,7 @@ extension PlacesService: RestaurantPhotoService {
     }
 }
 
-extension PlacesService: AutocompletePlacesService {
+extension PlacesService: AutocompleteRestaurantsService {
     public func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
         let endpoint = AutocompleteEndpoint(input: input, location: location, radius: radius)
         let request = try endpoint.createURLRequest()

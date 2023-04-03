@@ -123,7 +123,7 @@ final class NewReviewSnapshotTests: XCTestCase {
         ]
     }
     
-    private class EmptyAutocompletePlacesService: AutocompletePlacesService {
+    private class EmptyAutocompletePlacesService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] { [] }
     }
     

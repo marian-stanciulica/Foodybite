@@ -13,7 +13,7 @@ extension PlacesServiceTests {
     
     func test_conformsToAutocompletePlacesService() {
         let (sut, _) = makeSUT(response: anyData())
-        XCTAssertNotNil(sut as AutocompletePlacesService)
+        XCTAssertNotNil(sut as AutocompleteRestaurantsService)
     }
     
     func test_autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {

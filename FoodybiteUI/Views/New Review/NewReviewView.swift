@@ -126,7 +126,7 @@ struct NewReviewView_Previews: PreviewProvider {
         )
     }
     
-    private class PreviewAutocompletePlacesService: AutocompletePlacesService {
+    private class PreviewAutocompletePlacesService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             let predictions = [
                 AutocompletePrediction(placePrediction: "Prediction 1", placeID: "place #1"),

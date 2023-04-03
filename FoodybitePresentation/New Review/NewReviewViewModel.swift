@@ -31,7 +31,7 @@ public final class NewReviewViewModel: ObservableObject {
         case success
     }
     
-    private let autocompletePlacesService: AutocompletePlacesService
+    private let autocompletePlacesService: AutocompleteRestaurantsService
     private let getPlaceDetailsService: RestaurantDetailsService
     private let addReviewService: AddReviewService
     private let location: Location
@@ -52,7 +52,7 @@ public final class NewReviewViewModel: ObservableObject {
         return false
     }
     
-    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
+    public init(autocompletePlacesService: AutocompleteRestaurantsService, getPlaceDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
         self.autocompletePlacesService = autocompletePlacesService
         self.getPlaceDetailsService = getPlaceDetailsService
         self.addReviewService = addReviewService

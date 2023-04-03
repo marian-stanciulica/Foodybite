@@ -290,7 +290,7 @@ final class NewReviewViewModelTests: XCTestCase {
         ]
     }
     
-    private class AutocompletePlacesServiceSpy: AutocompletePlacesService {
+    private class AutocompletePlacesServiceSpy: AutocompleteRestaurantsService {
         private(set) var capturedValues = [(input: String, location: Location, radius: Int)]()
         var result: Result<[AutocompletePrediction], Error>?
         
