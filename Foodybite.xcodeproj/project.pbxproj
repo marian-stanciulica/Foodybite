@@ -1380,6 +1380,8 @@
 				0FDA1A3D29DAADAD0081333A /* User Session Feature */,
 				0FDA1A3E29DAADF40081333A /* Update Account Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
+				0FDA1A3F29DAAE490081333A /* Add Review Feature */,
+				0FDA1A4029DAAE840081333A /* Get Reviews Feature */,
 				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
 				0FDA1A3B29DAACFA0081333A /* Place Details Feature */,
 				0FDA1A3C29DAAD590081333A /* Autocomplete Feature */,
@@ -1774,14 +1776,6 @@
 			path = "Place Service";
 			sourceTree = "<group>";
 		};
-		0F412EBA2962D13700FDDF41 /* Places Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
-			);
-			path = "Places Protocols";
-			sourceTree = "<group>";
-		};
 		0F412EC42962D40800FDDF41 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1992,14 +1986,6 @@
 				0F5912552996886100D67B21 /* NewReviewViewModel.swift */,
 			);
 			path = "New Review";
-			sourceTree = "<group>";
-		};
-		0F61265429C0F74B00658A4D /* Review */ = {
-			isa = PBXGroup;
-			children = (
-				0F61265529C0F75700658A4D /* ReviewCache.swift */,
-			);
-			path = Review;
 			sourceTree = "<group>";
 		};
 		0F61266329C0FC8400658A4D /* Managed Review */ = {
@@ -2442,20 +2428,9 @@
 		0FA6BE292994E829003E1912 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F61265429C0F74B00658A4D /* Review */,
-				0FA6BE2A2994E87A003E1912 /* Networking Protocols */,
-				0F412EBA2962D13700FDDF41 /* Places Protocols */,
 				0FD4176B298D60E400F2BF92 /* Location Protocols */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		0FA6BE2A2994E87A003E1912 /* Networking Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0FC863FC298E72C70024016B /* Review Protocols */,
-			);
-			path = "Networking Protocols";
 			sourceTree = "<group>";
 		};
 		0FABD5252996386B00918251 /* New Review */ = {
@@ -2544,15 +2519,6 @@
 				0FC73C5329B6097C005879B8 /* FoodybiteCacheIntegrationTests.swift */,
 			);
 			path = FoodybiteCacheIntegrationTests;
-			sourceTree = "<group>";
-		};
-		0FC863FC298E72C70024016B /* Review Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0FC863FD298E72F20024016B /* AddReviewService.swift */,
-				0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */,
-			);
-			path = "Review Protocols";
 			sourceTree = "<group>";
 		};
 		0FC863FF298E793A0024016B /* Review & Ratings */ = {
@@ -2778,6 +2744,7 @@
 				0F70C4A229869C8C00C004DD /* Photo.swift */,
 				0F412EBB2962D15100FDDF41 /* SearchNearbyService.swift */,
 				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
+				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
 			);
 			path = "Nearby Places Feature";
 			sourceTree = "<group>";
@@ -2787,7 +2754,6 @@
 			children = (
 				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
 				0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */,
-				0F423AA829856C82009EB345 /* Review.swift */,
 				0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */,
 				0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */,
 			);
@@ -2821,6 +2787,24 @@
 				0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */,
 			);
 			path = "Update Account Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A3F29DAAE490081333A /* Add Review Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F423AA829856C82009EB345 /* Review.swift */,
+				0FC863FD298E72F20024016B /* AddReviewService.swift */,
+			);
+			path = "Add Review Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A4029DAAE840081333A /* Get Reviews Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F61265529C0F75700658A4D /* ReviewCache.swift */,
+				0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */,
+			);
+			path = "Get Reviews Feature";
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
