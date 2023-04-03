@@ -79,8 +79,8 @@ struct RestaurantCell_Previews: PreviewProvider {
         .padding()
     }
     
-    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
-        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+        func fetchPhoto(photoReference: String) async throws -> Data {
             return Data()
         }
     }

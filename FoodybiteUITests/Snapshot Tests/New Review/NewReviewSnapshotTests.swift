@@ -108,7 +108,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     private func makeCell(placeDetails: PlaceDetails, fetchPhotoState: PhotoViewModel.State) -> SelectedRestaurantView {
         let viewModel = PhotoViewModel(
             photoReference: placeDetails.photos.first?.photoReference,
-            fetchPhotoService: EmptyFetchPlacePhotoService()
+            fetchPhotoService: EmptyPlacePhotoService()
         )
         viewModel.fetchPhotoState = fetchPhotoState
         let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), placeDetails: placeDetails)

@@ -124,7 +124,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",
-            fetchPhotoService: EmptyFetchPlacePhotoService()
+            fetchPhotoService: EmptyPlacePhotoService()
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
         

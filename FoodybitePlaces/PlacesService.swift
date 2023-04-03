@@ -45,8 +45,8 @@ extension PlacesService: GetPlaceDetailsService {
     }
 }
 
-extension PlacesService: FetchPlacePhotoService {
-    public func fetchPlacePhoto(photoReference: String) async throws -> Data {
+extension PlacesService: RestaurantPhotoService {
+    public func fetchPhoto(photoReference: String) async throws -> Data {
         let endpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
         let request = try endpoint.createURLRequest()
         return try await loader.getData(for: request)

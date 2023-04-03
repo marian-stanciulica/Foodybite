@@ -155,8 +155,8 @@ struct NewReviewView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
-        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+        func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
         }
     }

@@ -358,7 +358,7 @@
 		0F61265C29C0FAEA00658A4D /* GetReviewsServiceWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265B29C0FAEA00658A4D /* GetReviewsServiceWithFallbackComposite.swift */; };
 		0F61266229C0FC8100658A4D /* ManagedReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265D29C0FC7200658A4D /* ManagedReview.swift */; };
 		0F61266529C0FE1900658A4D /* Review+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61266429C0FE1900658A4D /* Review+LocalModelConvertable.swift */; };
-		0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */; };
+		0F70C4A129868E2F00C004DD /* RestaurantPhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C4A029868E2F00C004DD /* RestaurantPhotoService.swift */; };
 		0F70C4A329869C8C00C004DD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70C4A229869C8C00C004DD /* Photo.swift */; };
 		0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7137BA2841F8340058757A /* FoodybiteApp.swift */; };
 		0F73EC86292F608E0025B237 /* ProfileRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F73EC85292F608E0025B237 /* ProfileRoute.swift */; };
@@ -912,7 +912,7 @@
 		0F6BFD4729B5DFBE008CDA48 /* test_homeViewWhenSearchTextIsNotEmpty.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_homeViewWhenSearchTextIsNotEmpty.light.png; sourceTree = "<group>"; };
 		0F70C49C29866D3600C004DD /* RestaurantCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModelTests.swift; sourceTree = "<group>"; };
 		0F70C49E2986798F00C004DD /* RestaurantCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCellViewModel.swift; sourceTree = "<group>"; };
-		0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacePhotoService.swift; sourceTree = "<group>"; };
+		0F70C4A029868E2F00C004DD /* RestaurantPhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotoService.swift; sourceTree = "<group>"; };
 		0F70C4A229869C8C00C004DD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0F7137BA2841F8340058757A /* FoodybiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteApp.swift; sourceTree = "<group>"; };
 		0F7137BC2841F8340058757A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -1381,7 +1381,7 @@
 				0FDA1A3E29DAADF40081333A /* Update Account Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
 				0FDA1A3A29DAAC920081333A /* Nearby Restaurants Feature */,
-				0FDA1A4229DAAF3E0081333A /* Fetch Place Photo Feature */,
+				0FDA1A4229DAAF3E0081333A /* Fetch Restaurant Photo Feature */,
 				0FDA1A3B29DAACFA0081333A /* Place Details Feature */,
 				0FDA1A3C29DAAD590081333A /* Autocomplete Feature */,
 				0FDA1A3F29DAAE490081333A /* Add Review Feature */,
@@ -2798,13 +2798,13 @@
 			path = "Location Feature";
 			sourceTree = "<group>";
 		};
-		0FDA1A4229DAAF3E0081333A /* Fetch Place Photo Feature */ = {
+		0FDA1A4229DAAF3E0081333A /* Fetch Restaurant Photo Feature */ = {
 			isa = PBXGroup;
 			children = (
 				0F70C4A229869C8C00C004DD /* Photo.swift */,
-				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
+				0F70C4A029868E2F00C004DD /* RestaurantPhotoService.swift */,
 			);
-			path = "Fetch Place Photo Feature";
+			path = "Fetch Restaurant Photo Feature";
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
@@ -3906,7 +3906,7 @@
 				0FA6BE2C2994E8A0003E1912 /* SignUpService.swift in Sources */,
 				0F61265629C0F75700658A4D /* ReviewCache.swift in Sources */,
 				0F423A8B29850CE3009EB345 /* NearbyRestaurantsService.swift in Sources */,
-				0F70C4A129868E2F00C004DD /* FetchPlacePhotoService.swift in Sources */,
+				0F70C4A129868E2F00C004DD /* RestaurantPhotoService.swift in Sources */,
 				0F70C4A329869C8C00C004DD /* Photo.swift in Sources */,
 				0FF7C69729B2356200622E9C /* UserPreferencesSaver.swift in Sources */,
 				0FA6BE2E2994E8A0003E1912 /* LoginService.swift in Sources */,

@@ -74,11 +74,11 @@ final class PhotoViewModelTests: XCTestCase {
         "any data".data(using: .utf8)!
     }
     
-    private class FetchPlacePhotoServiceSpy: FetchPlacePhotoService {
+    private class FetchPlacePhotoServiceSpy: RestaurantPhotoService {
         var result: Result<Data, Error>?
         private(set) var capturedValues = [String]()
 
-        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+        func fetchPhoto(photoReference: String) async throws -> Data {
             capturedValues.append(photoReference)
             
             if let result = result {

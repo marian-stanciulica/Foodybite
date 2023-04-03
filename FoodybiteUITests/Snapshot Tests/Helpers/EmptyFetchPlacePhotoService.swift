@@ -8,8 +8,8 @@
 import Foundation
 import Domain
 
-class EmptyFetchPlacePhotoService: FetchPlacePhotoService {
-    func fetchPlacePhoto(photoReference: String) async throws -> Data {
+class EmptyPlacePhotoService: RestaurantPhotoService {
+    func fetchPhoto(photoReference: String) async throws -> Data {
         Data()
     }
 }

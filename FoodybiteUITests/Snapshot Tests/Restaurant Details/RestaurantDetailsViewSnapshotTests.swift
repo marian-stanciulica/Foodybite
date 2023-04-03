@@ -70,7 +70,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",
-            fetchPhotoService: EmptyFetchPlacePhotoService()
+            fetchPhotoService: EmptyPlacePhotoService()
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
         

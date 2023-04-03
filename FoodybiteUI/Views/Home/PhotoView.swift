@@ -75,8 +75,8 @@ struct PhotoView_Previews: PreviewProvider {
         ))
     }
     
-    private class PreviewFetchPlacePhotoService: FetchPlacePhotoService {
-        func fetchPlacePhoto(photoReference: String) async throws -> Data {
+    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+        func fetchPhoto(photoReference: String) async throws -> Data {
             throw NSError(domain: "", code: 1)
         }
     }

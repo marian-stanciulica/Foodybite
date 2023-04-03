@@ -13,7 +13,7 @@ extension PlacesServiceTests {
     
     func test_conformsToFetchPlacePhotoService() {
         let (sut, _) = makeSUT(response: anyData())
-        XCTAssertNotNil(sut as FetchPlacePhotoService)
+        XCTAssertNotNil(sut as RestaurantPhotoService)
     }
     
     func test_fetchPlacePhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
@@ -21,7 +21,7 @@ extension PlacesServiceTests {
         let (sut, loader) = makeSUT(response: anyData())
         let endpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
         
-        _ = try await sut.fetchPlacePhoto(photoReference: photoReference)
+        _ = try await sut.fetchPhoto(photoReference: photoReference)
         
         XCTAssertEqual(loader.getDataRequests.count, 1)
         assertURLComponents(
@@ -37,7 +37,7 @@ extension PlacesServiceTests {
         let (sut, loader) = makeSUT(response: response)
         loader.data = expectedData
         
-        let receivedResponse = try await sut.fetchPlacePhoto(photoReference: randomString())
+        let receivedResponse = try await sut.fetchPhoto(photoReference: randomString())
         
         XCTAssertEqual(expectedData, receivedResponse)
     }
