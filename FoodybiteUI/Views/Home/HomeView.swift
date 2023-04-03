@@ -77,7 +77,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
             viewModel: HomeViewModel(
-                searchNearbyService: PreviewSearchNearbyService(),
+                nearbyRestaurantsService: PreviewSearchNearbyService(),
                 currentLocation: Location(latitude: 2.3, longitude: 4.5),
                 userPreferences: UserPreferences(radius: 200, starsNumber: 4)
             ),

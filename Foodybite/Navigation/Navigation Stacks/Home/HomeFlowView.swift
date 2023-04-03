@@ -22,12 +22,12 @@ enum HomeFlowView {
         computeDistanceInKmFromCurrentLocation: @escaping (Location) -> Double,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver,
-        searchNearbyService: NearbyRestaurantsService,
+        nearbyRestaurantsService: NearbyRestaurantsService,
         fetchPhotoService: RestaurantPhotoService
     ) -> some View {
         HomeView(
             viewModel: HomeViewModel(
-                searchNearbyService: searchNearbyService,
+                nearbyRestaurantsService: nearbyRestaurantsService,
                 currentLocation: currentLocation,
                 userPreferences: userPreferences),
             showPlaceDetails: { placeID in

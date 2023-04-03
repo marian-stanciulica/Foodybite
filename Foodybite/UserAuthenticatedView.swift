@@ -66,7 +66,7 @@ struct UserAuthenticatedView: View {
                     },
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
                     userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
-                    searchNearbyService: userAuthenticatedFactory.searchNearbyWithFallbackComposite,
+                    nearbyRestaurantsService: userAuthenticatedFactory.nearbyRestaurantsServiceWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService
                 )
             }
