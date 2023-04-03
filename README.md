@@ -89,7 +89,6 @@ This layer is the most inner layer in the architecture (no dependencies with oth
 
 #### 1. User Session Feature
 
-Model: User
 ```swift
 public struct User: Equatable {
     public let id: UUID
@@ -106,23 +105,15 @@ public struct User: Equatable {
 }
 ```
 
-Protocols:
-1. SignUpService
 ```swift
 public protocol SignUpService {
     func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws
 }
-```
 
-2. LoginService
-```swift
 public protocol LoginService {
     func login(email: String, password: String) async throws -> User
 }
-```
 
-3. LogoutService
-```swift
 public protocol LogoutService {
     func logout() async throws
 }
@@ -130,17 +121,12 @@ public protocol LogoutService {
 
 #### 2. Update/Delete Account Feature
 
-Protocols:
-1. AccountService
 ```swift
 public protocol AccountService {
     func updateAccount(name: String, email: String, profileImage: Data?) async throws
     func deleteAccount() async throws
 }
-```
 
-2. ChangePasswordService
-```swift
 public protocol ChangePasswordService {
     func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws
 }
@@ -148,7 +134,6 @@ public protocol ChangePasswordService {
 
 #### 3. Store/Retrieve User Preferences Feature
 
-Domain Model: UserPreferences
 ```swift
 public struct UserPreferences: Equatable {
     public let radius: Int
@@ -163,24 +148,119 @@ public struct UserPreferences: Equatable {
 }
 ```
 
-Protocols:
-1. UserPreferencesSaver
 ```swift
 public protocol UserPreferencesSaver {
     func save(_ userPreferences: UserPreferences)
 }
-```
 
-2. UserPreferencesLoader
-```swift
 public protocol UserPreferencesLoader {
     func load() -> UserPreferences
 }
 ```
 
-#### 4. Add Review Feature
+#### 4. Nearby Places Feature
 
-Domain Model: Review
+```swift
+public struct NearbyPlace: Equatable {
+    public let placeID: String
+    public let placeName: String
+    public let isOpen: Bool
+    public let rating: Double
+    public let location: Location
+    public let photo: Photo?
+}
+
+public struct Location: Equatable, Hashable {
+    public let latitude: Double
+    public let longitude: Double
+}
+```
+
+```swift
+public protocol SearchNearbyService {
+    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace]
+}
+
+public protocol SearchNearbyCache {
+    func save(nearbyPlaces: [NearbyPlace]) async throws
+}
+```
+
+#### 5. Fetch Place Photo Feature
+
+```swift
+public struct Photo: Equatable, Hashable {
+    public let width: Int
+    public let height: Int
+    public let photoReference: String
+}
+```
+
+```swift
+public protocol FetchPlacePhotoService {
+    func fetchPlacePhoto(photoReference: String) async throws -> Data
+}
+```
+
+#### 6. Place Details Feature
+
+```swift
+public struct PlaceDetails: Equatable, Hashable {
+    public let placeID: String
+    public let phoneNumber: String?
+    public let name: String
+    public let address: String
+    public let rating: Double
+    public let openingHoursDetails: OpeningHoursDetails?
+    public var reviews: [Review]
+    public let location: Location
+    public let photos: [Photo]
+}
+
+public struct OpeningHoursDetails: Equatable, Hashable {
+    public let openNow: Bool
+    public let weekdayText: [String]
+}
+
+public struct Review: Equatable, Identifiable, Hashable {
+    public var id: UUID
+    public let placeID: String
+    public let profileImageURL: URL?
+    public let profileImageData: Data?
+    public let authorName: String
+    public let reviewText: String
+    public let rating: Int
+    public let relativeTime: String
+}
+```
+
+```swift
+public protocol GetPlaceDetailsService {
+    func getPlaceDetails(placeID: String) async throws -> PlaceDetails
+}
+
+public protocol PlaceDetailsCache {
+    func save(placeDetails: PlaceDetails) async throws
+}
+```
+
+#### 7. Autocomplete Feature (Search Places)
+
+```swift
+public struct AutocompletePrediction: Equatable {
+    public let placePrediction: String
+    public let placeID: String
+}
+```
+
+```swift
+public protocol AutocompletePlacesService {
+    func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction]
+}
+```
+
+#### 8. Add Review Feature
+
 ```swift
 public struct Review: Equatable, Identifiable, Hashable {
     public var id: UUID
@@ -194,40 +274,39 @@ public struct Review: Equatable, Identifiable, Hashable {
 }
 ```
 
-Protocol: AddReviewService
 ```swift
 public protocol AddReviewService {
     func addReview(placeID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
 }
 ```
 
-#### 5. Get Reviews Feature
+#### 9. Get Reviews Feature
 
-Domain Model (same `Review` model as for `Add Review Feature`)
+```swift
+public struct Review: Equatable, Identifiable, Hashable {
+    public var id: UUID
+    public let placeID: String
+    public let profileImageURL: URL?
+    public let profileImageData: Data?
+    public let authorName: String
+    public let reviewText: String
+    public let rating: Int
+    public let relativeTime: String
+}
+```
 
-Protocol: GetReviewsService
 ```swift
 public protocol GetReviewsService {
     func getReviews(placeID: String?) async throws -> [Review]
 }
-```
 
-#### 6. Search Nearby Feature
-
-Domain Models:
-1. NearbyPlace
-```swift
-public struct NearbyPlace: Equatable {
-    public let placeID: String
-    public let placeName: String
-    public let isOpen: Bool
-    public let rating: Double
-    public let location: Location
-    public let photo: Photo?
+public protocol ReviewCache {
+    func save(reviews: [Review]) async throws
 }
 ```
 
-2. Location
+#### 10. Location Feature
+
 ```swift
 public struct Location: Equatable, Hashable {
     public let latitude: Double
@@ -235,128 +314,11 @@ public struct Location: Equatable, Hashable {
 }
 ```
 
-3. Photo
-```swift
-public struct Photo: Equatable, Hashable {
-    public let width: Int
-    public let height: Int
-    public let photoReference: String
-}
-```
-
-Protocol: SearchNearbyService
-```swift
-public protocol SearchNearbyService {
-    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace]
-}
-```
-
-#### 7. Get Place Details Feature
-
-Domain Models:
-1. PlaceDetails
-```swift
-public struct PlaceDetails: Equatable, Hashable {
-    public let placeID: String
-    public let phoneNumber: String?
-    public let name: String
-    public let address: String
-    public let rating: Double
-    public let openingHoursDetails: OpeningHoursDetails?
-    public var reviews: [Review]
-    public let location: Location
-    public let photos: [Photo]
-}
-```
-
-2. OpeningHoursDetails
-```swift
-public struct OpeningHoursDetails: Equatable, Hashable {
-    public let openNow: Bool
-    public let weekdayText: [String]
-}
-```
-
-3. Review (same model as for `Add Review Feature`)
-
-Protocol: GetPlaceDetailsService
-```swift
-public protocol GetPlaceDetailsService {
-    func getPlaceDetails(placeID: String) async throws -> PlaceDetails
-}
-```
-
-#### 8. Fetch Place Photo Feature
-
-Domain Model (same `Photo` model as for `Search Nearby Feature`)
-
-Protocol: FetchPlacePhotoService
-```swift
-public protocol FetchPlacePhotoService {
-    func fetchPlacePhoto(photoReference: String) async throws -> Data
-}
-```
-
-#### 9. Autocomplete Feature (Search Places)
-
-Domain Model: AutocompletePrediction
-```swift
-public struct AutocompletePrediction: Equatable {
-    public let placePrediction: String
-    public let placeID: String
-}
-```
-
-Protocol: AutocompletePlacesService
-```swift
-public protocol AutocompletePlacesService {
-    func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction]
-}
-```
-
-#### 10. Get Current Location Feature
-
-Domain Model (same `Location` model as for `Search Nearby Feature`)
-
-Protocol: LocationProviding
 ```swift
 public protocol LocationProviding {
     var locationServicesEnabled: Bool { get }
     
     func requestLocation() async throws -> Location
-}
-```
-
-#### 11. Cache Reviews Feature
-
-Domain Model (same `Review` model as for `Add Review Feature`)
-
-Protocol: ReviewCache
-```swift
-public protocol ReviewCache {
-    func save(reviews: [Review]) async throws
-}
-```
-
-#### 12. Cache Nearby Places Feature
-
-Domain Model (same `NearbyPlace` model as for `Search Nearby Feature`)
-
-Protocol: SearchNearbyCache
-```swift
-public protocol SearchNearbyCache {
-    func save(nearbyPlaces: [NearbyPlace]) async throws
-}
-```
-
-#### 13. Cache Place Details Feature
-
-Domain Model (same `PlaceDetails` model as for `Get Place Details Feature`)
-
-Protocol: PlaceDetailsCache
-```swift
-public protocol PlaceDetailsCache {
-    func save(placeDetails: PlaceDetails) async throws
 }
 ```
 
