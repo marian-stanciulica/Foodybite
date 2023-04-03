@@ -63,7 +63,22 @@ public struct NewReviewView<SelectedView: View>: View {
                     }
                 )
                 
-                if case let .success(restaurantDetails) = viewModel.getRestaurantDetailsState {
+                switch viewModel.getRestaurantDetailsState {
+                case .idle:
+                    EmptyView()
+                case .isLoading:
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .foregroundColor(Color(uiColor: .systemGray3))
+                            .frame(height: 200)
+                        
+                        ProgressView()
+                    }
+                case let .failure(error):
+                    Text(error.rawValue)
+                        .foregroundColor(.red)
+                        .padding()
+                case let .success(restaurantDetails):
                     selectedView(restaurantDetails)
                 }
                 
