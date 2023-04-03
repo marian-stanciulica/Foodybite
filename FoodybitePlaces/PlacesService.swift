@@ -17,7 +17,7 @@ public class PlacesService {
     }
 }
 
-extension PlacesService: SearchNearbyService {
+extension PlacesService: NearbyRestaurantsService {
     public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         let endpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let request = try endpoint.createURLRequest()

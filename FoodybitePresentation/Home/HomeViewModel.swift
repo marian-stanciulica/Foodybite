@@ -20,7 +20,7 @@ public final class HomeViewModel: ObservableObject {
         case success([NearbyRestaurant])
     }
     
-    private let searchNearbyService: SearchNearbyService
+    private let searchNearbyService: NearbyRestaurantsService
     private let currentLocation: Location
     private let userPreferences: UserPreferences
     
@@ -37,7 +37,7 @@ public final class HomeViewModel: ObservableObject {
         return nearbyRestaurants.filter { $0.placeName.contains(searchText) }
     }
     
-    public init(searchNearbyService: SearchNearbyService, currentLocation: Location, userPreferences: UserPreferences) {
+    public init(searchNearbyService: NearbyRestaurantsService, currentLocation: Location, userPreferences: UserPreferences) {
         self.searchNearbyService = searchNearbyService
         self.currentLocation = currentLocation
         self.userPreferences = userPreferences

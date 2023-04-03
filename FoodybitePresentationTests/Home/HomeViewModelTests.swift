@@ -121,7 +121,7 @@ final class HomeViewModelTests: XCTestCase {
         ]
     }
     
-    private class SearchNearbyServiceSpy: SearchNearbyService {
+    private class SearchNearbyServiceSpy: NearbyRestaurantsService {
         var result: Result<[NearbyRestaurant], Error>?
         private(set) var capturedValues = [(location: Location, radius: Int)]()
         

@@ -22,7 +22,7 @@ enum HomeFlowView {
         computeDistanceInKmFromCurrentLocation: @escaping (Location) -> Double,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver,
-        searchNearbyService: SearchNearbyService,
+        searchNearbyService: NearbyRestaurantsService,
         fetchPhotoService: FetchPlacePhotoService
     ) -> some View {
         HomeView(

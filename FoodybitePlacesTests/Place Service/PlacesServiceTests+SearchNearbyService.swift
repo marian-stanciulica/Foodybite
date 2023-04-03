@@ -13,7 +13,7 @@ extension PlacesServiceTests {
     
     func test_conformsToSearchNearbyService() {
         let (sut, _) = makeSUT(response: anySearchNearbyResponse())
-        XCTAssertNotNil(sut as SearchNearbyService)
+        XCTAssertNotNil(sut as NearbyRestaurantsService)
     }
     
     func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {

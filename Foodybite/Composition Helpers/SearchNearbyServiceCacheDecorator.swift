@@ -7,11 +7,11 @@
 
 import Domain
 
-public final class SearchNearbyServiceCacheDecorator: SearchNearbyService {
-    private let searchNearbyService: SearchNearbyService
+public final class SearchNearbyServiceCacheDecorator: NearbyRestaurantsService {
+    private let searchNearbyService: NearbyRestaurantsService
     private let cache: SearchNearbyCache
     
-    public init(searchNearbyService: SearchNearbyService, cache: SearchNearbyCache) {
+    public init(searchNearbyService: NearbyRestaurantsService, cache: SearchNearbyCache) {
         self.searchNearbyService = searchNearbyService
         self.cache = cache
     }

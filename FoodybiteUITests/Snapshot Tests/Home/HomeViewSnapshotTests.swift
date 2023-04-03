@@ -138,7 +138,7 @@ final class HomeViewSnapshotTests: XCTestCase {
         ]
     }
     
-    private class EmptySearchNearbyService: SearchNearbyService {
+    private class EmptySearchNearbyService: NearbyRestaurantsService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] { [] }
     }
             

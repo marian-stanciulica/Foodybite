@@ -7,7 +7,7 @@
 
 import Domain
 
-final class SearchNearbyServiceStub: SearchNearbyService {
+final class SearchNearbyServiceStub: NearbyRestaurantsService {
     private(set) var capturedValues = [(location: Location, radius: Int)]()
     var stub: Result<[NearbyRestaurant], Error>?
     

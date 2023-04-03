@@ -99,7 +99,7 @@ struct HomeView_Previews: PreviewProvider {
         )
     }
     
-    private class PreviewSearchNearbyService: SearchNearbyService {
+    private class PreviewSearchNearbyService: NearbyRestaurantsService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
             [
                 NearbyRestaurant(placeID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),

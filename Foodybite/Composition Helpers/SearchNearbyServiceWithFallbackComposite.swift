@@ -7,11 +7,11 @@
 
 import Domain
 
-public final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService {
-    private let primary: SearchNearbyService
-    private let secondary: SearchNearbyService
+public final class SearchNearbyServiceWithFallbackComposite: NearbyRestaurantsService {
+    private let primary: NearbyRestaurantsService
+    private let secondary: NearbyRestaurantsService
     
-    public init(primary: SearchNearbyService, secondary: SearchNearbyService) {
+    public init(primary: NearbyRestaurantsService, secondary: NearbyRestaurantsService) {
         self.primary = primary
         self.secondary = secondary
     }
