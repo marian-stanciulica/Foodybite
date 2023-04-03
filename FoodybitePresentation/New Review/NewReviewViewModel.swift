@@ -37,7 +37,7 @@ public final class NewReviewViewModel: ObservableObject {
     private let location: Location
     private let userPreferences: UserPreferences
     
-    @Published public var getPlaceDetailsState: RestaurantDetailsState = .idle
+    @Published public var getRestaurantDetailsState: RestaurantDetailsState = .idle
     @Published public var postReviewState: PostReviewState = .idle
     
     @Published public var searchText = ""
@@ -46,7 +46,7 @@ public final class NewReviewViewModel: ObservableObject {
     @Published public var autocompleteResults = [AutocompletePrediction]()
     
     public var postReviewEnabled: Bool {
-        if case .success = getPlaceDetailsState {
+        if case .success = getRestaurantDetailsState {
             return !reviewText.isEmpty && starsNumber > 0
         }
         return false
@@ -61,7 +61,7 @@ public final class NewReviewViewModel: ObservableObject {
     }
     
     @MainActor public func autocomplete() async {
-        getPlaceDetailsState = .idle
+        getRestaurantDetailsState = .idle
         
         do {
             autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText,
@@ -72,14 +72,14 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
     
-    @MainActor public func getPlaceDetails(placeID: String) async {
-        getPlaceDetailsState = .isLoading
+    @MainActor public func getRestaurantDetails(placeID: String) async {
+        getRestaurantDetailsState = .isLoading
         
         do {
             let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
-            getPlaceDetailsState = .success(placeDetails)
+            getRestaurantDetailsState = .success(placeDetails)
         } catch {
-            getPlaceDetailsState = .failure(.serverError)
+            getRestaurantDetailsState = .failure(.serverError)
         }
     }
     
@@ -87,7 +87,7 @@ public final class NewReviewViewModel: ObservableObject {
         guard postReviewEnabled else { return }
         postReviewState = .isLoading
         
-        if case let .success(placeDetails) = getPlaceDetailsState {
+        if case let .success(placeDetails) = getRestaurantDetailsState {
             do {
                 try await addReviewService.addReview(
                     placeID: placeDetails.placeID,

@@ -95,7 +95,7 @@ final class NewReviewSnapshotTests: XCTestCase {
         viewModel.starsNumber = starsNumber
         viewModel.reviewText = reviewText
         viewModel.autocompleteResults = autocompletePredictions
-        viewModel.getPlaceDetailsState = getPlaceDetailsState
+        viewModel.getRestaurantDetailsState = getPlaceDetailsState
         viewModel.postReviewState = postReviewState
         
         return NewReviewView(

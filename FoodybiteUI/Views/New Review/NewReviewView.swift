@@ -59,11 +59,11 @@ public struct NewReviewView<SelectedView: View>: View {
                         await viewModel.autocomplete()
                     },
                     onPlaceSelected: { placeID in
-                        await viewModel.getPlaceDetails(placeID: placeID)
+                        await viewModel.getRestaurantDetails(placeID: placeID)
                     }
                 )
                 
-                if case let .success(placeDetails) = viewModel.getPlaceDetailsState {
+                if case let .success(placeDetails) = viewModel.getRestaurantDetailsState {
                     selectedView(placeDetails)
                 }
                 
