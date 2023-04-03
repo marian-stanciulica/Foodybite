@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E252" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ManagedNearbyRestaurant" representedClassName="ManagedNearbyRestaurant" syncable="YES">
+        <attribute name="id" attributeType="String"/>
         <attribute name="isOpen" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="placeID" attributeType="String"/>
-        <attribute name="placeName" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
         <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPhoto" inverseName="nearbyPlace" inverseEntity="ManagedPhoto"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="placeID"/>
+                <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>

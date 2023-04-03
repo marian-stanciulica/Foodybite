@@ -11,8 +11,8 @@ import Domain
 
 @objc(ManagedNearbyRestaurant)
 public class ManagedNearbyRestaurant: NSManagedObject {
-    @NSManaged public var placeID: String
-    @NSManaged public var placeName: String
+    @NSManaged public var id: String
+    @NSManaged public var name: String
     @NSManaged public var isOpen: Bool
     @NSManaged public var rating: Double
     @NSManaged public var latitude: Double
@@ -26,8 +26,8 @@ public class ManagedNearbyRestaurant: NSManagedObject {
     public convenience init(_ model: NearbyRestaurant, for context: NSManagedObjectContext) {
         self.init(context: context)
 
-        placeID = model.id
-        placeName = model.name
+        id = model.id
+        name = model.name
         isOpen = model.isOpen
         rating = model.rating
         latitude = model.location.latitude
