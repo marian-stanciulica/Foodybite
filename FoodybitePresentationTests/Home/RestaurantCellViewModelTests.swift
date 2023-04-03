@@ -29,7 +29,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
         XCTAssertEqual(sut.isOpen, isOpen())
     }
     
-    func test_placeName_equalsNearbyRestaurantName() {
+    func test_restaurantName_equalsNearbyRestaurantName() {
         let sut = makeSUT()
 
         XCTAssertEqual(sut.restaurantName, anyRestaurantName())
@@ -41,7 +41,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
         let sut = RestaurantCellViewModel(
             nearbyRestaurant: NearbyRestaurant(
                 id: UUID().uuidString,
-                placeName: anyRestaurantName(),
+                name: anyRestaurantName(),
                 isOpen: isOpen(),
                 rating: rating().raw,
                 location: Location(latitude: 4.4, longitude: 6.9),

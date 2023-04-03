@@ -66,7 +66,7 @@ struct RestaurantCell_Previews: PreviewProvider {
             viewModel: RestaurantCellViewModel(
                 nearbyRestaurant: NearbyRestaurant(
                     id: "place id",
-                    placeName: "Place name",
+                    name: "Place name",
                     isOpen: true,
                     rating: 3.4,
                     location: Location(latitude: 0, longitude: 0),

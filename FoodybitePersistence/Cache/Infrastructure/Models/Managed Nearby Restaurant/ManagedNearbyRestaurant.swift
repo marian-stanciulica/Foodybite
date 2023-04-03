@@ -27,7 +27,7 @@ public class ManagedNearbyRestaurant: NSManagedObject {
         self.init(context: context)
 
         placeID = model.id
-        placeName = model.placeName
+        placeName = model.name
         isOpen = model.isOpen
         rating = model.rating
         latitude = model.location.latitude

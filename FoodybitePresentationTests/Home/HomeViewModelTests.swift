@@ -40,7 +40,7 @@ final class HomeViewModelTests: XCTestCase {
         await assert(on: sut, withExpectedResult: .failure(.serverError))
     }
     
-    func test_searchNearby_updatesNearbyPlacesWhenNearbyRestaurantsServiceReturnsSuccessfully() async {
+    func test_searchNearby_updatesNearbyRestaurantsWhenNearbyRestaurantsServiceReturnsSuccessfully() async {
         let (sut, serviceSpy) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         serviceSpy.result = .success(expectedNearbyRestaurants)
@@ -65,7 +65,7 @@ final class HomeViewModelTests: XCTestCase {
         let (sut, _) = makeSUT()
         let nearbyRestaurants = makeNearbyRestaurants()
         sut.searchNearbyState = .success(nearbyRestaurants)
-        sut.searchText = nearbyRestaurants[1].placeName
+        sut.searchText = nearbyRestaurants[1].name
         
         XCTAssertEqual(sut.filteredNearbyRestaurants, [nearbyRestaurants[1]])
     }
@@ -115,9 +115,9 @@ final class HomeViewModelTests: XCTestCase {
     
     private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
-            NearbyRestaurant(id: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
-            NearbyRestaurant(id: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
-            NearbyRestaurant(id: "#3", placeName: "place 3", isOpen: false, rating: 4.5, location: Location(latitude: 4, longitude: 5), photo: nil)
+            NearbyRestaurant(id: "#1", name: "restaurant 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
+            NearbyRestaurant(id: "#2", name: "restaurant 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
+            NearbyRestaurant(id: "#3", name: "restaurant 3", isOpen: false, rating: 4.5, location: Location(latitude: 4, longitude: 5), photo: nil)
         ]
     }
     

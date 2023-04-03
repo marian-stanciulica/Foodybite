@@ -97,7 +97,7 @@ struct UserAuthenticatedView: View {
             NewReviewView(
                 plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
-                    autocompletePlacesService: userAuthenticatedFactory.placesService,
+                    autocompleteRestaurantsService: userAuthenticatedFactory.placesService,
                     restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                     addReviewService: userAuthenticatedFactory.authenticatedApiService,
                     location: currentLocation,
@@ -143,10 +143,10 @@ struct UserAuthenticatedView: View {
                     ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.authenticatedApiService)
                 case .editProfile:
                     ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.authenticatedApiService)
-                case let .placeDetails(placeDetails):
+                case let .restaurantDetails(placeDetails):
                     ProfileFlowView.makeRestaurantDetailsView(
                         flow: profileFlow,
-                        placeDetails: placeDetails,
+                        restaurantDetails: placeDetails,
                         currentLocation: currentLocation,
                         restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,

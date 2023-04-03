@@ -48,8 +48,8 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                         .padding(.bottom)
                     
                     LazyVStack {
-                        ForEach(viewModel.filteredNearbyRestaurants, id: \.id) { place in
-                            cell(place)
+                        ForEach(viewModel.filteredNearbyRestaurants, id: \.id) { restaurant in
+                            cell(restaurant)
                                 .background(Color(uiColor: .systemBackground))
                                 .cornerRadius(16)
                                 .frame(maxWidth: .infinity)
@@ -57,7 +57,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                                 .padding(4)
                                 .shadow(color: Color(uiColor: .systemGray3), radius: 2)
                                 .onTapGesture {
-                                    showRestaurantDetails(place.id)
+                                    showRestaurantDetails(restaurant.id)
                                 }
                         }
                     }
@@ -102,9 +102,9 @@ struct HomeView_Previews: PreviewProvider {
     private class PreviewNearbyRestaurantsService: NearbyRestaurantsService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
             [
-                NearbyRestaurant(id: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
-                NearbyRestaurant(id: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
-                NearbyRestaurant(id: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
+                NearbyRestaurant(id: "#1", name: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
+                NearbyRestaurant(id: "#2", name: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
+                NearbyRestaurant(id: "#3", name: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
             ]
         }
     }

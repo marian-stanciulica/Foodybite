@@ -51,8 +51,8 @@ final class NearbyRestaurantsServiceWithFallbackCompositeTests: XCTestCase {
         secondaryStub.stub = .failure(anyError())
         
         do {
-            let nearbyPlaces = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, got \(nearbyPlaces) instead")
+            let nearbyRestaurants = try await searchNearby(on: sut)
+            XCTFail("Expected to fail, got \(nearbyRestaurants) instead")
         } catch {
             XCTAssertNotNil(error)
         }

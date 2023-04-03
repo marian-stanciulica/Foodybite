@@ -77,7 +77,7 @@ final class ReviewViewModelTests: XCTestCase {
     }
     
     private func anyRestaurantID() -> String {
-        "any place id"
+        "any restaurant id"
     }
     
     private func anyReviewText() -> String {

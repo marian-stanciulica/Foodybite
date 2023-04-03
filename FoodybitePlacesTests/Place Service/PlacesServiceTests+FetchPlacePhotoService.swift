@@ -11,12 +11,12 @@ import Domain
 
 extension PlacesServiceTests {
     
-    func test_conformsToFetchPlacePhotoService() {
+    func test_conformsToRestaurantPhotoService() {
         let (sut, _) = makeSUT(response: anyData())
         XCTAssertNotNil(sut as RestaurantPhotoService)
     }
     
-    func test_fetchPlacePhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
+    func test_fetchPhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
         let photoReference = randomString()
         let (sut, loader) = makeSUT(response: anyData())
         let endpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
@@ -31,7 +31,7 @@ extension PlacesServiceTests {
         )
     }
     
-    func test_fetchPlacePhoto_receivesExpectedPlacePhotoResponse() async throws {
+    func test_fetchPhoto_receivesExpectedPlacePhotoResponse() async throws {
         let response = anyData()
         let expectedData = anyData()
         let (sut, loader) = makeSUT(response: response)

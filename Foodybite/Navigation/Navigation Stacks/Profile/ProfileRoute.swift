@@ -11,6 +11,6 @@ public enum ProfileRoute: Hashable {
     case settings
     case changePassword
     case editProfile
-    case placeDetails(RestaurantDetails)
+    case restaurantDetails(RestaurantDetails)
     case addReview(String)
 }

@@ -39,9 +39,9 @@ public struct RestaurantReviewCellView: View {
                     .frame(height: 200)
                     .padding(.horizontal)
                     .background(Color(uiColor: .systemGray5))
-            case let .success(placeDetails):
+            case let .success(restaurantDetails):
                 ZStack(alignment: .topTrailing) {
-                    makePhotoView(placeDetails.photos.first?.photoReference)
+                    makePhotoView(restaurantDetails.photos.first?.photoReference)
                     
                     RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
                         .padding()
@@ -59,8 +59,8 @@ public struct RestaurantReviewCellView: View {
             await viewModel.getRestaurantDetails()
         }
         .onTapGesture {
-            if case let .success(placeDetails) = viewModel.getRestaurantDetailsState {
-                showRestaurantDetails(placeDetails)
+            if case let .success(restaurantDetails) = viewModel.getRestaurantDetailsState {
+                showRestaurantDetails(restaurantDetails)
             }
         }
     }

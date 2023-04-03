@@ -36,21 +36,21 @@ public struct RestaurantDetailsView: View {
                 
                 Spacer()
                 
-            case let .success(placeDetails):
+            case let .success(restaurantDetails):
                 GeometryReader { proxy in
                     ZStack(alignment: .bottom) {
                         ScrollView {
                             VStack(alignment: .leading) {
                                 RestaurantImageView(
-                                    photoView: makePhotoView(placeDetails.photos.first?.photoReference),
-                                    phoneNumber: placeDetails.phoneNumber,
+                                    photoView: makePhotoView(restaurantDetails.photos.first?.photoReference),
+                                    phoneNumber: restaurantDetails.phoneNumber,
                                     showMaps: viewModel.showMaps)
                                 
                                 HStack {
                                     RestaurantInformationView(
-                                        name: placeDetails.name,
+                                        name: restaurantDetails.name,
                                         distance: viewModel.distanceInKmFromCurrentLocation,
-                                        address: placeDetails.address
+                                        address: restaurantDetails.address
                                     )
                                     
                                     Spacer()
@@ -63,22 +63,22 @@ public struct RestaurantDetailsView: View {
                                 }
                                 .padding(.horizontal)
                                 
-                                if let openingHoursDetails = placeDetails.openingHoursDetails {
+                                if let openingHoursDetails = restaurantDetails.openingHoursDetails {
                                     OpenHoursView(openingHoursDetails: openingHoursDetails)
                                         .padding(.horizontal)
                                 }
                                 
                                 RestaurantPhotosView(
                                     imageWidth: proxy.size.width / 2.5,
-                                    photosReferences: placeDetails.photos.map { $0.photoReference },
+                                    photosReferences: restaurantDetails.photos.map { $0.photoReference },
                                     makePhotoView: makePhotoView
                                 )
                                 .padding(.bottom)
                                 
-                                HeaderView(name: "Review & Ratings", allItemsCount: placeDetails.reviews.count)
+                                HeaderView(name: "Review & Ratings", allItemsCount: restaurantDetails.reviews.count)
                                 
                                 LazyVStack {
-                                    ForEach(placeDetails.reviews) { review in
+                                    ForEach(restaurantDetails.reviews) { review in
                                         ReviewCell(review: review)
                                     }
                                 }

@@ -11,7 +11,7 @@ import Domain
 
 extension PlacesServiceTests {
     
-    func test_conformsToAutocompletePlacesService() {
+    func test_conformsToAutocompleteRestaurantsService() {
         let (sut, _) = makeSUT(response: anyData())
         XCTAssertNotNil(sut as AutocompleteRestaurantsService)
     }

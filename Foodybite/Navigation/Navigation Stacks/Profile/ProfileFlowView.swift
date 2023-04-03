@@ -45,8 +45,8 @@ enum ProfileFlowView {
                             )
                         )
                     },
-                    showRestaurantDetails: { placeDetails in
-                        flow.append(.placeDetails(placeDetails))
+                    showRestaurantDetails: {
+                        flow.append(.restaurantDetails($0))
                     }
                 )
             },
@@ -84,7 +84,7 @@ enum ProfileFlowView {
     
     @ViewBuilder static func makeRestaurantDetailsView(
         flow: Flow<ProfileRoute>,
-        placeDetails: RestaurantDetails,
+        restaurantDetails: RestaurantDetails,
         currentLocation: Location,
         restaurantDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService,
@@ -92,7 +92,7 @@ enum ProfileFlowView {
     ) -> some View {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
-                input: .fetchedRestaurantDetails(placeDetails),
+                input: .fetchedRestaurantDetails(restaurantDetails),
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },
@@ -106,7 +106,7 @@ enum ProfileFlowView {
                     )
                 )
             }, showReviewView: {
-                flow.append(.addReview(placeDetails.id))
+                flow.append(.addReview(restaurantDetails.id))
             }
         )
     }

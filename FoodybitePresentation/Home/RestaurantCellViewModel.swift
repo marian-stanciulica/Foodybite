@@ -22,7 +22,7 @@ public final class RestaurantCellViewModel: ObservableObject {
     }
     
     public var restaurantName: String {
-        nearbyRestaurant.placeName
+        nearbyRestaurant.name
     }
     
     public var rating: String {

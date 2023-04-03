@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Domain
 
-func makePlaceDetails() -> RestaurantDetails {
+func makeRestaurantDetails() -> RestaurantDetails {
     RestaurantDetails(id: "place #1",
                  phoneNumber: "0764 456 321",
                  name: "Place name",
@@ -17,7 +17,7 @@ func makePlaceDetails() -> RestaurantDetails {
                  rating: 4,
                  openingHoursDetails: OpeningHoursDetails(openNow: true, weekdayText: ["Mon: 10:00 - 17:00"]),
                  reviews: [
-                    Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: makePhotoData(), authorName: "Author", reviewText: makeReviewText(), rating: 4, relativeTime: "an hour ago")
+                    Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: makePhotoData(), authorName: "Author", reviewText: makeReviewText(), rating: 4, relativeTime: "an hour ago")
                  ],
                  location: Location(latitude: 3.4, longitude: 6.5),
                  photos: [

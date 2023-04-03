@@ -10,7 +10,7 @@ import UIKit
 import Domain
 
 public final class RestaurantDetailsViewModel: ObservableObject {
-    public enum GetPlaceDetailsError: String, Swift.Error {
+    public enum GetRestaurantDetailsError: String, Swift.Error {
         case serverError = "Server connection failed. Please try again!"
     }
     
@@ -22,7 +22,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     public enum State: Equatable {
         case idle
         case isLoading
-        case failure(GetPlaceDetailsError)
+        case failure(GetRestaurantDetailsError)
         case success(RestaurantDetails)
     }
     
@@ -35,20 +35,20 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     @Published public var getRestaurantDetailsState: State = .idle
     
     public var reviews: [Review] {
-        guard case let .success(placeDetails) = getRestaurantDetailsState else { return userPlacedReviews }
-        return placeDetails.reviews + userPlacedReviews
+        guard case let .success(restaurantDetails) = getRestaurantDetailsState else { return userPlacedReviews }
+        return restaurantDetails.reviews + userPlacedReviews
     }
     
     public var rating: String {
-        guard case let .success(placeDetails) = getRestaurantDetailsState else { return "" }
+        guard case let .success(restaurantDetails) = getRestaurantDetailsState else { return "" }
         
-        return String(format: "%.1f", placeDetails.rating)
+        return String(format: "%.1f", restaurantDetails.rating)
     }
     
     public var distanceInKmFromCurrentLocation: String {
-        guard case let .success(placeDetails) = getRestaurantDetailsState else { return "" }
+        guard case let .success(restaurantDetails) = getRestaurantDetailsState else { return "" }
 
-        let distance = getDistanceInKmFromCurrentLocation(placeDetails.location)
+        let distance = getDistanceInKmFromCurrentLocation(restaurantDetails.location)
         return "\(distance)"
     }
     
@@ -65,9 +65,9 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     }
     
     public func showMaps() {
-        guard case let .success(placeDetails) = getRestaurantDetailsState else { return }
+        guard case let .success(restaurantDetails) = getRestaurantDetailsState else { return }
 
-        let location = placeDetails.location
+        let location = restaurantDetails.location
         guard let url = URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)") else { return }
         
         if UIApplication.shared.canOpenURL(url) {
@@ -82,15 +82,15 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         case let .restaurantIdToFetch(restaurantID):
             await fetchRestaurantDetails(restaurantID: restaurantID)
             
-        case let .fetchedRestaurantDetails(placeDetails):
-            getRestaurantDetailsState = .success(placeDetails)
+        case let .fetchedRestaurantDetails(restaurantDetails):
+            getRestaurantDetailsState = .success(restaurantDetails)
         }
     }
     
     @MainActor private func fetchRestaurantDetails(restaurantID: String) async {
         do {
-            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: restaurantID)
-            getRestaurantDetailsState = .success(placeDetails)
+            let restaurantDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: restaurantID)
+            getRestaurantDetailsState = .success(restaurantDetails)
         } catch {
             getRestaurantDetailsState = .failure(.serverError)
         }

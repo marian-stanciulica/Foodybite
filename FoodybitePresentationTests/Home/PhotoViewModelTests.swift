@@ -11,13 +11,13 @@ import FoodybitePresentation
 
 final class PhotoViewModelTests: XCTestCase {
     
-    func test_init_getPlacePhotoStateIsLoading() {
+    func test_init_fetchPhotoStateIsLoading() {
         let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.fetchPhotoState, .isLoading)
     }
     
-    func test_fetchPhoto_sendsPhotoReferenceToFetchPlacePhotoService() async {
+    func test_fetchPhoto_sendsPhotoReferenceToRestaurantPhotoService() async {
         let photoReference = "photo reference"
         let (sut, photoServiceSpy) = makeSUT(photoReference: photoReference)
         
@@ -32,14 +32,14 @@ final class PhotoViewModelTests: XCTestCase {
         await assert(on: sut, expectedResult: .noImageAvailable)
     }
     
-    func test_fetchPhoto_setsFetchPhotoStateToFailureWhenFetchPlacePhotoServiceThrowsError() async {
+    func test_fetchPhoto_setsFetchPhotoStateToFailureWhenRestaurantPhotoServiceThrowsError() async {
         let (sut, photoServiceSpy) = makeSUT()
         photoServiceSpy.result = .failure(anyError())
         
         await assert(on: sut, expectedResult: .failure)
     }
     
-    func test_fetchPhoto_setsFetchPhotoStateToSuccessWhenFetchPlacePhotoServiceReturnsSuccessfully() async {
+    func test_fetchPhoto_setsFetchPhotoStateToSuccessWhenRestaurantPhotoServiceReturnsSuccessfully() async {
         let (sut, photoServiceSpy) = makeSUT()
         let expectedData = anyData()
         photoServiceSpy.result = .success(expectedData)
@@ -49,8 +49,8 @@ final class PhotoViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(photoReference: String? = "photo reference") -> (sut: PhotoViewModel, fetchPhotoServiceSpy: FetchPlacePhotoServiceSpy) {
-        let fetchPhotoServiceSpy = FetchPlacePhotoServiceSpy()
+    private func makeSUT(photoReference: String? = "photo reference") -> (sut: PhotoViewModel, fetchPhotoServiceSpy: RestaurantPhotoServiceSpy) {
+        let fetchPhotoServiceSpy = RestaurantPhotoServiceSpy()
         let sut = PhotoViewModel(photoReference: photoReference, restaurantPhotoService: fetchPhotoServiceSpy)
         return (sut, fetchPhotoServiceSpy)
     }
@@ -74,7 +74,7 @@ final class PhotoViewModelTests: XCTestCase {
         "any data".data(using: .utf8)!
     }
     
-    private class FetchPlacePhotoServiceSpy: RestaurantPhotoService {
+    private class RestaurantPhotoServiceSpy: RestaurantPhotoService {
         var result: Result<Data, Error>?
         private(set) var capturedValues = [String]()
 

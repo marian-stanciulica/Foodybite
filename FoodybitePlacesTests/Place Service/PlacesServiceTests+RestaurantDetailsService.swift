@@ -16,7 +16,7 @@ extension PlacesServiceTests {
         XCTAssertNotNil(sut as RestaurantDetailsService)
     }
     
-    func test_getRestaurantDetails_usesGetPlaceDetailsEndpointToCreateURLRequest() async throws {
+    func test_getRestaurantDetails_usesGetRestaurantDetailsEndpointToCreateURLRequest() async throws {
         let restaurantID = randomString()
         let (sut, loader) = makeSUT(response: anyRestaurantDetailsResponse())
         let endpoint = GetRestaurantDetailsEndpoint(restaurantID: restaurantID)
@@ -43,7 +43,7 @@ extension PlacesServiceTests {
         }
     }
     
-    func test_getRestaurantDetails_receiveExpectedPlaceDetailsResponse() async throws {
+    func test_getRestaurantDetails_receiveExpectedRestaurantDetailsResponse() async throws {
         let successfulResponse = anyRestaurantDetailsResponse()
         let (sut, _) = makeSUT(response: successfulResponse)
         

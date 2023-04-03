@@ -34,7 +34,7 @@ public final class HomeViewModel: ObservableObject {
             return nearbyRestaurants
         }
         
-        return nearbyRestaurants.filter { $0.placeName.contains(searchText) }
+        return nearbyRestaurants.filter { $0.name.contains(searchText) }
     }
     
     public init(nearbyRestaurantsService: NearbyRestaurantsService, currentLocation: Location, userPreferences: UserPreferences) {
@@ -47,8 +47,8 @@ public final class HomeViewModel: ObservableObject {
         searchNearbyState = .isLoading
         
         do {
-            let nearbyPlaces = try await nearbyRestaurantsService.searchNearby(location: currentLocation, radius: userPreferences.radius)
-            searchNearbyState = .success(nearbyPlaces)
+            let nearbyRestaurants = try await nearbyRestaurantsService.searchNearby(location: currentLocation, radius: userPreferences.radius)
+            searchNearbyState = .success(nearbyRestaurants)
         } catch {
             searchNearbyState = .failure(.serverError)
         }

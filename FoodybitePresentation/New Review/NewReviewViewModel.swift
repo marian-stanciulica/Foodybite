@@ -10,7 +10,7 @@ import Domain
 
 public final class NewReviewViewModel: ObservableObject {
     public enum RestaurantDetailsError: String, Error {
-        case serverError = "An error occured while fetching place details. Please try again later!"
+        case serverError = "An error occured while fetching restaurant details. Please try again later!"
     }
     
     public enum PostReviewError: String, Error {
@@ -31,7 +31,7 @@ public final class NewReviewViewModel: ObservableObject {
         case success
     }
     
-    private let autocompletePlacesService: AutocompleteRestaurantsService
+    private let autocompleteRestaurantsService: AutocompleteRestaurantsService
     private let restaurantDetailsService: RestaurantDetailsService
     private let addReviewService: AddReviewService
     private let location: Location
@@ -52,8 +52,8 @@ public final class NewReviewViewModel: ObservableObject {
         return false
     }
     
-    public init(autocompletePlacesService: AutocompleteRestaurantsService, restaurantDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
-        self.autocompletePlacesService = autocompletePlacesService
+    public init(autocompleteRestaurantsService: AutocompleteRestaurantsService, restaurantDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
+        self.autocompleteRestaurantsService = autocompleteRestaurantsService
         self.restaurantDetailsService = restaurantDetailsService
         self.addReviewService = addReviewService
         self.location = location
@@ -64,7 +64,7 @@ public final class NewReviewViewModel: ObservableObject {
         getRestaurantDetailsState = .idle
         
         do {
-            autocompleteResults = try await autocompletePlacesService.autocomplete(input: searchText,
+            autocompleteResults = try await autocompleteRestaurantsService.autocomplete(input: searchText,
                                                                                    location: location,
                                                                                    radius: userPreferences.radius)
         } catch {
@@ -76,8 +76,8 @@ public final class NewReviewViewModel: ObservableObject {
         getRestaurantDetailsState = .isLoading
         
         do {
-            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: restaurantID)
-            getRestaurantDetailsState = .success(placeDetails)
+            let restaurantDetails = try await restaurantDetailsService.getRestaurantDetails(restaurantID: restaurantID)
+            getRestaurantDetailsState = .success(restaurantDetails)
         } catch {
             getRestaurantDetailsState = .failure(.serverError)
         }
@@ -87,10 +87,10 @@ public final class NewReviewViewModel: ObservableObject {
         guard postReviewEnabled else { return }
         postReviewState = .isLoading
         
-        if case let .success(placeDetails) = getRestaurantDetailsState {
+        if case let .success(restaurantDetails) = getRestaurantDetailsState {
             do {
                 try await addReviewService.addReview(
-                    restaurantID: placeDetails.id,
+                    restaurantID: restaurantDetails.id,
                     reviewText: reviewText,
                     starsNumber: starsNumber,
                     createdAt: Date())

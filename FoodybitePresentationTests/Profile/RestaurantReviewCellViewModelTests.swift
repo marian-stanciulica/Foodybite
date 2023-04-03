@@ -78,7 +78,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         XCTAssertTrue(sut.restaurantAddress.isEmpty)
     }
     
-    func test_restaurantAddress_equalsFetchedPlaceDetailsAddress() async {
+    func test_restaurantAddress_equalsFetchedRestaurantDetailsAddress() async {
         let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let anyRestaurantDetails = anyRestaurantDetails()
         restaurantDetailsServiceSpy.result = .success(anyRestaurantDetails)
@@ -105,14 +105,14 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     }
     
     private static func anyReview() -> Review {
-        Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Author", reviewText: "very nice", rating: 5, relativeTime: "1 hour ago")
+        Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: nil, authorName: "Author", reviewText: "very nice", rating: 5, relativeTime: "1 hour ago")
     }
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            id: "place #1",
+            id: "restaurant #1",
             phoneNumber: "+61 2 9374 4000",
-            name: "Place name",
+            name: "restaurant name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
             rating: 3.4,
             openingHoursDetails: OpeningHoursDetails(
@@ -129,7 +129,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    restaurantID: "place #1",
+                    restaurantID: "restaurant #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -162,7 +162,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
                 return try result.get()
             }
             
-            return RestaurantDetails(id: "place #1",
+            return RestaurantDetails(id: "restaurant #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",

@@ -63,8 +63,8 @@ public struct NewReviewView<SelectedView: View>: View {
                     }
                 )
                 
-                if case let .success(placeDetails) = viewModel.getRestaurantDetailsState {
-                    selectedView(placeDetails)
+                if case let .success(restaurantDetails) = viewModel.getRestaurantDetailsState {
+                    selectedView(restaurantDetails)
                 }
                 
                 Text("Ratings")
@@ -106,13 +106,13 @@ struct NewReviewView_Previews: PreviewProvider {
         NewReviewView(
             plusButtonActive: .constant(true),
             viewModel: NewReviewViewModel(
-                autocompletePlacesService: PreviewAutocompletePlacesService(),
+                autocompleteRestaurantsService: PreviewAutocompletePlacesService(),
                 restaurantDetailsService: PreviewRestaurantDetailsService(),
                 addReviewService: PreviewAddReviewService(),
                 location: Location(latitude: 0, longitude: 0),
                 userPreferences: UserPreferences(radius: 0, starsNumber: 0)
             ),
-            selectedView: { placeDetails in
+            selectedView: { restaurantDetails in
                 SelectedRestaurantView(
                     photoView: PhotoView(
                         viewModel: PhotoViewModel(
@@ -120,7 +120,7 @@ struct NewReviewView_Previews: PreviewProvider {
                             restaurantPhotoService: PreviewFetchPlacePhotoService()
                         )
                     ),
-                    restaurantDetails: placeDetails
+                    restaurantDetails: restaurantDetails
                 )
             }
         )

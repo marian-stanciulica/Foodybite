@@ -159,9 +159,9 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            id: "place #1",
+            id: "restaurant #1",
             phoneNumber: "+61 2 9374 4000",
-            name: "Place name",
+            name: "restaurant name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
             rating: rating().raw,
             openingHoursDetails: OpeningHoursDetails(
@@ -178,7 +178,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    restaurantID: "place #1",
+                    restaurantID: "restaurant #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -207,7 +207,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
                 return try result.get()
             }
             
-            return RestaurantDetails(id: "place #1",
+            return RestaurantDetails(id: "restaurant #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",
@@ -231,7 +231,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     private func firstGetReviewsResult() -> [Review] {
         [
             Review(
-                restaurantID: "place #1",
+                restaurantID: "restaurant #1",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #1",
@@ -244,7 +244,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     private func secondGetReviewsResult() -> [Review] {
         [
             Review(
-                restaurantID: "place #2",
+                restaurantID: "restaurant #2",
                 profileImageURL: nil,
                 profileImageData: nil,
                 authorName: "Author name #2",

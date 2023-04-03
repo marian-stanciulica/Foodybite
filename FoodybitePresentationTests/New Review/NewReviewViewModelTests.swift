@@ -21,7 +21,7 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.starsNumber, 0)
     }
     
-    func test_autocomplete_sendsParametersCorrectlyToAutocompletePlacesService() async {
+    func test_autocomplete_sendsParametersCorrectlyToAutocompleteRestaurantsService() async {
         let location = anyLocation()
         let userPreferences = anyUserPreferences()
         let (sut, autocompleteSpy, _, _) = makeSUT(location: location, userPreferences: userPreferences)
@@ -35,7 +35,7 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(autocompleteSpy.capturedValues.first?.radius, userPreferences.radius)
     }
     
-    func test_autocomplete_setsResultsToEmptyWhenAutocompletePlacesServiceThrowsError() async {
+    func test_autocomplete_setsResultsToEmptyWhenAutocompleteRestaurantsServiceThrowsError() async {
         let (sut, autocompleteSpy, _, _) = makeSUT()
         autocompleteSpy.result = .failure(anyError())
         
@@ -45,7 +45,7 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertTrue(sut.autocompleteResults.isEmpty)
     }
     
-    func test_autocomplete_setsResultsToReceivedResultsWhenAutocompletePlacesServiceReturnsSuccessfully() async {
+    func test_autocomplete_setsResultsToReceivedResultsWhenAutocompleteRestaurantsServiceReturnsSuccessfully() async {
         let (sut, autocompleteSpy, _, _) = makeSUT()
         let expectedResults = anyAutocompletePredictions()
         
@@ -144,15 +144,15 @@ final class NewReviewViewModelTests: XCTestCase {
     
     func test_postReview_sendsParametersCorrectlyToAddReviewService() async {
         let (sut, _, _, reviewServiceSpy) = makeSUT()
-        let anyPlaceDetails = anyRestaurantDetails()
-        sut.getRestaurantDetailsState = .success(anyPlaceDetails)
+        let anyRestaurantDetails = anyRestaurantDetails()
+        sut.getRestaurantDetailsState = .success(anyRestaurantDetails)
         sut.reviewText = anyReviewText()
         sut.starsNumber = anyStarsNumber()
         
         await sut.postReview()
         
         XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.restaurantID, anyPlaceDetails.id)
+        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.restaurantID, anyRestaurantDetails.id)
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
         XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
     }
@@ -188,17 +188,17 @@ final class NewReviewViewModelTests: XCTestCase {
     
     private func makeSUT(location: Location? = nil, userPreferences: UserPreferences? = nil) -> (
         sut: NewReviewViewModel,
-        autocompleteSpy: AutocompletePlacesServiceSpy,
+        autocompleteSpy: AutocompleteRestaurantsServiceSpy,
         restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy,
         addReviewServiceSpy: AddReviewServiceSpy
     ) {
-        let autocompleteSpy = AutocompletePlacesServiceSpy()
+        let autocompleteSpy = AutocompleteRestaurantsServiceSpy()
         let restaurantDetailsServiceSpy = RestaurantDetailsServiceSpy()
         let addReviewServiceSpy = AddReviewServiceSpy()
 
         let defaultLocation = Location(latitude: 0, longitude: 0)
         let sut = NewReviewViewModel(
-            autocompletePlacesService: autocompleteSpy,
+            autocompleteRestaurantsService: autocompleteSpy,
             restaurantDetailsService: restaurantDetailsServiceSpy,
             addReviewService: addReviewServiceSpy,
             location: location ?? defaultLocation,
@@ -212,7 +212,7 @@ final class NewReviewViewModelTests: XCTestCase {
     }
     
     private func anyRestaurantID() -> String {
-        "any place id"
+        "any restaurant id"
     }
     
     private func anyLocation() -> Location {
@@ -241,17 +241,17 @@ final class NewReviewViewModelTests: XCTestCase {
     
     private func anyAutocompletePredictions() -> [AutocompletePrediction] {
         [
-            AutocompletePrediction(restaurantPrediction: "place prediction #1", restaurantID: "place id #1"),
-            AutocompletePrediction(restaurantPrediction: "place prediction #2", restaurantID: "place id #2"),
-            AutocompletePrediction(restaurantPrediction: "place prediction #3", restaurantID: "place id #3")
+            AutocompletePrediction(restaurantPrediction: "restaurant prediction #1", restaurantID: "restaurant id #1"),
+            AutocompletePrediction(restaurantPrediction: "restaurant prediction #2", restaurantID: "restaurant id #2"),
+            AutocompletePrediction(restaurantPrediction: "restaurant prediction #3", restaurantID: "restaurant id #3")
         ]
     }
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            id: "place #1",
+            id: "restaurant #1",
             phoneNumber: "+61 2 9374 4000",
-            name: "Place name",
+            name: "restaurant name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
             rating: 3.4,
             openingHoursDetails: OpeningHoursDetails(
@@ -268,7 +268,7 @@ final class NewReviewViewModelTests: XCTestCase {
             ),
             reviews: [
                 Review(
-                    restaurantID: "place #1",
+                    restaurantID: "restaurant #1",
                     profileImageURL: URL(string: "www.google.com"),
                     profileImageData: nil,
                     authorName: "Marian",
@@ -290,7 +290,7 @@ final class NewReviewViewModelTests: XCTestCase {
         ]
     }
     
-    private class AutocompletePlacesServiceSpy: AutocompleteRestaurantsService {
+    private class AutocompleteRestaurantsServiceSpy: AutocompleteRestaurantsService {
         private(set) var capturedValues = [(input: String, location: Location, radius: Int)]()
         var result: Result<[AutocompletePrediction], Error>?
         
@@ -316,7 +316,7 @@ final class NewReviewViewModelTests: XCTestCase {
                 return try result.get()
             }
             
-            return RestaurantDetails(id: "place #1",
+            return RestaurantDetails(id: "restaurant #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",

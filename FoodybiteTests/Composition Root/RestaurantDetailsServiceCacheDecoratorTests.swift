@@ -32,7 +32,7 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
-    func test_getRestaurantDetails_doesNotCacheWhenPlaceDetailsServiceThrowsError() async {
+    func test_getRestaurantDetails_doesNotCacheWhenRestaurantDetailsServiceThrowsError() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
         
@@ -53,14 +53,14 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RestaurantDetailsServiceCacheDecorator, serviceStub: RestaurantDetailsServiceStub, cacheSpy: PlaceDetailsCacheSpy) {
+    private func makeSUT() -> (sut: RestaurantDetailsServiceCacheDecorator, serviceStub: RestaurantDetailsServiceStub, cacheSpy: RestaurantDetailsCacheSpy) {
         let serviceStub = RestaurantDetailsServiceStub()
-        let cacheSpy = PlaceDetailsCacheSpy()
+        let cacheSpy = RestaurantDetailsCacheSpy()
         let sut = RestaurantDetailsServiceCacheDecorator(restaurantDetailsService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)
     }
     
-    private class PlaceDetailsCacheSpy: RestaurantDetailsCache {
+    private class RestaurantDetailsCacheSpy: RestaurantDetailsCache {
         private(set) var capturedValues = [RestaurantDetails]()
         
         func save(restaurantDetails: RestaurantDetails) async throws {

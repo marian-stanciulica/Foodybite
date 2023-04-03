@@ -32,7 +32,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(secondaryStub.capturedValues[0], expectedRestaurantID)
     }
     
-    func test_getRestaurantDetails_returnsPlaceDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+    func test_getRestaurantDetails_returnsRestaurantDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         primaryStub.stub = .failure(anyError())

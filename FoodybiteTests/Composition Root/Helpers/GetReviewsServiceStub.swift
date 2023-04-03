@@ -1,5 +1,5 @@
 //
-//  FetchPlacePhotoServiceStub.swift
+//  GetReviewsServiceStub.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 10.03.2023.

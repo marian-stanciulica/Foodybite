@@ -70,7 +70,7 @@ extension APIServiceTests {
     // MARK: - Helpers
     
     private func anyRestaurantID() -> String {
-        "any place id"
+        "any restaurant id"
     }
     
     private func anyReviewText() -> String {
@@ -83,9 +83,9 @@ extension APIServiceTests {
     
     private func anyGetReviews() -> (response: [RemoteReview], model: [Review]) {
         let response = [
-            RemoteReview(restaurantID: "place #1", profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
-            RemoteReview(restaurantID: "place #2", profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
-            RemoteReview(restaurantID: "place #3", profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
+            RemoteReview(restaurantID: "restaurant #1", profileImageData: anyData(), authorName: "author #1", reviewText: "review Text #1", rating: 3, createdAt: Date()),
+            RemoteReview(restaurantID: "restaurant #2", profileImageData: anyData(), authorName: "author #2", reviewText: "review Text #2", rating: 1, createdAt: Date()),
+            RemoteReview(restaurantID: "restaurant #3", profileImageData: anyData(), authorName: "author #3", reviewText: "review Text #3", rating: 4, createdAt: Date()),
         ]
         
         let formatter = RelativeDateTimeFormatter()
