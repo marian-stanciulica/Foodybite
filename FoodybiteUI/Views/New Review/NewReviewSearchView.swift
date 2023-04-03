@@ -12,7 +12,7 @@ struct NewReviewSearchView: View {
     @Binding var searchText: String
     @Binding var autocompleteResults: [AutocompletePrediction]
     let onChange: () async -> Void
-    let onPlaceSelected: (String) async -> Void
+    let onRestaurantSelected: (String) async -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -47,7 +47,7 @@ struct NewReviewSearchView: View {
                             searchText = ""
                             
                             Task {
-                                await onPlaceSelected(result.restaurantID)
+                                await onRestaurantSelected(result.restaurantID)
                             }
                         }
                     }
@@ -65,6 +65,6 @@ struct NewReviewSearchView: View {
 
 struct NewReviewSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        NewReviewSearchView(searchText: .constant(""), autocompleteResults: .constant([]), onChange: {}, onPlaceSelected: { _ in })
+        NewReviewSearchView(searchText: .constant(""), autocompleteResults: .constant([]), onChange: {}, onRestaurantSelected: { _ in })
     }
 }

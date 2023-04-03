@@ -58,7 +58,7 @@ public struct NewReviewView<SelectedView: View>: View {
                     onChange: {
                         await viewModel.autocomplete()
                     },
-                    onPlaceSelected: { restaurantID in
+                    onRestaurantSelected: { restaurantID in
                         await viewModel.getRestaurantDetails(restaurantID: restaurantID)
                     }
                 )
@@ -120,7 +120,7 @@ struct NewReviewView_Previews: PreviewProvider {
                             restaurantPhotoService: PreviewFetchPlacePhotoService()
                         )
                     ),
-                    placeDetails: placeDetails
+                    restaurantDetails: placeDetails
                 )
             }
         )

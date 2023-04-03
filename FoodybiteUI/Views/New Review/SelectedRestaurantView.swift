@@ -11,11 +11,11 @@ import FoodybitePresentation
 
 public struct SelectedRestaurantView: View {
     let photoView: PhotoView
-    let placeDetails: RestaurantDetails
+    let restaurantDetails: RestaurantDetails
     
-    public init(photoView: PhotoView, placeDetails: RestaurantDetails) {
+    public init(photoView: PhotoView, restaurantDetails: RestaurantDetails) {
         self.photoView = photoView
-        self.placeDetails = placeDetails
+        self.restaurantDetails = restaurantDetails
     }
     
     public var body: some View {
@@ -23,8 +23,8 @@ public struct SelectedRestaurantView: View {
             photoView
 
             AddressView(
-                placeName: placeDetails.name,
-                address: placeDetails.address
+                placeName: restaurantDetails.name,
+                address: restaurantDetails.address
             )
             .padding(.horizontal)
         }
@@ -42,7 +42,7 @@ struct SelectedRestaurantView_Previews: PreviewProvider {
                     restaurantPhotoService: PreviewFetchPlacePhotoService()
                 )
             ),
-            placeDetails: RestaurantDetails(
+            restaurantDetails: RestaurantDetails(
                 id: "",
                 phoneNumber: nil,
                 name: "Place name",

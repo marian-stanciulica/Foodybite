@@ -111,7 +111,7 @@ struct UserAuthenticatedView: View {
                                 restaurantPhotoService: userAuthenticatedFactory.placesService
                             )
                         ),
-                        placeDetails: placeDetails
+                        restaurantDetails: placeDetails
                     )
                 }
             )

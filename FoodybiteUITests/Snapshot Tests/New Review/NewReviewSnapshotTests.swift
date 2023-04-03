@@ -111,7 +111,7 @@ final class NewReviewSnapshotTests: XCTestCase {
             restaurantPhotoService: EmptyPlacePhotoService()
         )
         viewModel.fetchPhotoState = fetchPhotoState
-        let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), placeDetails: placeDetails)
+        let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), restaurantDetails: placeDetails)
         return view
     }
     
