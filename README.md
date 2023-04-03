@@ -536,7 +536,7 @@ It's recommended not to hit the network while testing the `URLSessionHTTPClient`
 func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 ```
 
-> 🚩 There are a lot more methods in the 𝐔𝐑𝐋𝐒𝐞𝐬𝐬𝐢𝐨𝐧 class that we don't control and by subclassing we assume the behaviour of the overridden method is not depending on other methods.
+> 🚩 There are a lot more methods in the `URLSession` class that we don't control and by subclassing we assume the behaviour of the overridden method is not depending on other methods.
 
 2. By creating a protocol with only the method we are interested in mocking and making `URLSession` conform to it. Furthermore, we can implement our spy/stub using the protocol.
 
