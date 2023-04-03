@@ -53,8 +53,8 @@ final class NearbyRestaurantsServiceCacheDecoratorTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: NearbyRestaurantsServiceCacheDecorator, serviceStub: SearchNearbyServiceStub, cacheSpy: SearchNearbyCacheSpy) {
-        let serviceStub = SearchNearbyServiceStub()
+    private func makeSUT() -> (sut: NearbyRestaurantsServiceCacheDecorator, serviceStub: NearbyRestaurantsServiceStub, cacheSpy: SearchNearbyCacheSpy) {
+        let serviceStub = NearbyRestaurantsServiceStub()
         let cacheSpy = SearchNearbyCacheSpy()
         let sut = NearbyRestaurantsServiceCacheDecorator(nearbyRestaurantsService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)

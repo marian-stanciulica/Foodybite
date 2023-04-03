@@ -60,9 +60,9 @@ final class NearbyRestaurantsServiceWithFallbackCompositeTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: NearbyRestaurantsServiceWithFallbackComposite, primaryStub: SearchNearbyServiceStub, secondaryStub: SearchNearbyServiceStub) {
-        let primaryStub = SearchNearbyServiceStub()
-        let secondaryStub = SearchNearbyServiceStub()
+    private func makeSUT() -> (sut: NearbyRestaurantsServiceWithFallbackComposite, primaryStub: NearbyRestaurantsServiceStub, secondaryStub: NearbyRestaurantsServiceStub) {
+        let primaryStub = NearbyRestaurantsServiceStub()
+        let secondaryStub = NearbyRestaurantsServiceStub()
         let sut = NearbyRestaurantsServiceWithFallbackComposite(primary: primaryStub, secondary: secondaryStub)
         return (sut, primaryStub, secondaryStub)
     }

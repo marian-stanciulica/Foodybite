@@ -58,9 +58,9 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RestaurantDetailsServiceWithFallbackComposite, primaryStub: GetPlaceDetailsServiceStub, secondaryStub: GetPlaceDetailsServiceStub) {
-        let primaryStub = GetPlaceDetailsServiceStub()
-        let secondaryStub = GetPlaceDetailsServiceStub()
+    private func makeSUT() -> (sut: RestaurantDetailsServiceWithFallbackComposite, primaryStub: RestaurantDetailsServiceStub, secondaryStub: RestaurantDetailsServiceStub) {
+        let primaryStub = RestaurantDetailsServiceStub()
+        let secondaryStub = RestaurantDetailsServiceStub()
         let sut = RestaurantDetailsServiceWithFallbackComposite(primary: primaryStub, secondary: secondaryStub)
         return (sut, primaryStub, secondaryStub)
     }

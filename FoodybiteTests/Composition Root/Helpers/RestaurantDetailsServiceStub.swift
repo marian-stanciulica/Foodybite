@@ -1,5 +1,5 @@
 //
-//  GetPlaceDetailsServiceStub.swift
+//  RestaurantDetailsServiceStub.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-final class GetPlaceDetailsServiceStub: RestaurantDetailsService {
+final class RestaurantDetailsServiceStub: RestaurantDetailsService {
     private(set) var capturedValues = [String]()
     var stub: Result<RestaurantDetails, Error>?
     
