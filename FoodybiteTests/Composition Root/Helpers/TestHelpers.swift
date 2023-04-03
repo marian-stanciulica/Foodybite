@@ -19,21 +19,21 @@ func anyError() -> NSError {
 func makeNearbyRestaurants() -> [NearbyRestaurant] {
     [
         NearbyRestaurant(
-            restaurantID: "place #1",
+            id: "place #1",
             placeName: "Place name 1",
             isOpen: true,
             rating: 3,
             location: Location(latitude: 2, longitude: 5),
             photo: nil),
         NearbyRestaurant(
-            restaurantID: "place #2",
+            id: "place #2",
             placeName: "Place name 2",
             isOpen: false,
             rating: 4,
             location: Location(latitude: 43, longitude: 56),
             photo: nil),
         NearbyRestaurant(
-            restaurantID: "place #3",
+            id: "place #3",
             placeName: "Place name 3",
             isOpen: true,
             rating: 5,

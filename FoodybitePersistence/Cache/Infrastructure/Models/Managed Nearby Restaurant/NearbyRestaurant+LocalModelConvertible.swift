@@ -20,7 +20,7 @@ extension NearbyRestaurant: LocalModelConvertable {
             )
         }
         
-        self.init(restaurantID: managedNearbyRestaurant.placeID,
+        self.init(id: managedNearbyRestaurant.placeID,
                   placeName: managedNearbyRestaurant.placeName,
                   isOpen: managedNearbyRestaurant.isOpen,
                   rating: managedNearbyRestaurant.rating,

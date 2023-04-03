@@ -115,9 +115,9 @@ final class HomeViewModelTests: XCTestCase {
     
     private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
-            NearbyRestaurant(restaurantID: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
-            NearbyRestaurant(restaurantID: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
-            NearbyRestaurant(restaurantID: "#3", placeName: "place 3", isOpen: false, rating: 4.5, location: Location(latitude: 4, longitude: 5), photo: nil)
+            NearbyRestaurant(id: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
+            NearbyRestaurant(id: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
+            NearbyRestaurant(id: "#3", placeName: "place 3", isOpen: false, rating: 4.5, location: Location(latitude: 4, longitude: 5), photo: nil)
         ]
     }
     

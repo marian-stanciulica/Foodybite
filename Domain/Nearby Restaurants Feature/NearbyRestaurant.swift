@@ -6,15 +6,15 @@
 //
 
 public struct NearbyRestaurant: Equatable {
-    public let restaurantID: String
+    public let id: String
     public let placeName: String
     public let isOpen: Bool
     public let rating: Double
     public let location: Location
     public let photo: Photo?
     
-    public init(restaurantID: String, placeName: String, isOpen: Bool, rating: Double, location: Location, photo: Photo?) {
-        self.restaurantID = restaurantID
+    public init(id: String, placeName: String, isOpen: Bool, rating: Double, location: Location, photo: Photo?) {
+        self.id = id
         self.placeName = placeName
         self.isOpen = isOpen
         self.rating = rating
@@ -23,7 +23,7 @@ public struct NearbyRestaurant: Equatable {
     }
     
     public static func ==(lhs: NearbyRestaurant, rhs: NearbyRestaurant) -> Bool {
-        lhs.restaurantID == rhs.restaurantID &&
+        lhs.id == rhs.id &&
         lhs.placeName == rhs.placeName &&
         lhs.location == rhs.location &&
         lhs.photo == rhs.photo

@@ -71,21 +71,21 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     private var expectedNearbyRestaurants: [NearbyRestaurant] {
         [
             NearbyRestaurant(
-                restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
+                id: "ChIJW823ek__sUARZVGTsg0Yx70",
                 placeName: "Trattoria Il Calcio Ateneu",
                 isOpen: false,
                 rating: 4.2,
                 location: Location(latitude: 44.441016, longitude: 26.0975475),
                 photo: Photo(width: 1600, height: 1063, photoReference: "AfLeUgPOZIEqo7bgl3yeMQFrosnDUOi1Z67x4Mwem_VBKOJPMyLMM6q6uArOa5Uu0U6bph2ToNq9Gql6gKWBft6-7kNjbvt_b7Kdob3jizzu4gDcTYvdJTePL0m78lxQH6l5p85OR3FMTweC6DQiIaVlcA-fwekEm80DKCNbYbycgspK4PIr")),
             NearbyRestaurant(
-                restaurantID: "ChIJz7sYKOv_sUARrLLBAx36TFs",
+                id: "ChIJz7sYKOv_sUARrLLBAx36TFs",
                 placeName: "MACE by Joseph Hadad",
                 isOpen: true,
                 rating: 4.3,
                 location: Location(latitude: 44.4412386, longitude: 26.098049),
                 photo: Photo(width: 7952, height: 5304, photoReference: "AfLeUgNupaTE3EI92EI3ikWp53wttMWcn-52xYfTilSfij1TFU0HT-hSZUuqG_jzyoj8buPlNwXUqhrKsuPg5Xe6DLUeZ8FYsDg1YgDIja2vBaxpYwwtyFy4G6D7UgEU394jMyXm8FDgK8ztAXnkrS58Ta9zQ97X3FyjSoL5d5c6YER3BJC4")),
             NearbyRestaurant(
-                restaurantID: "ChIJ9feBck__sUARr25IXqhjG-Q",
+                id: "ChIJ9feBck__sUARr25IXqhjG-Q",
                 placeName: "Mara Mura Ateneu",
                 isOpen: true,
                 rating: 4.4,
@@ -98,7 +98,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         guard first.count == second.count else { return false }
         
         for i in 0..<first.count {
-            if first[i].restaurantID != second[i].restaurantID &&
+            if first[i].id != second[i].id &&
                 first[i].placeName != second[i].placeName &&
                 first[i].location != second[i].location &&
                 first[i].photo != second[i].photo {
