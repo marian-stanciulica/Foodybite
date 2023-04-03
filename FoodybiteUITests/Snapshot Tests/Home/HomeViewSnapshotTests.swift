@@ -14,43 +14,43 @@ import FoodybiteUI
 final class HomeViewSnapshotTests: XCTestCase {
     
     func test_homeViewIdleState() {
-        let sut = makeSUT(getNearbyPlacesState: .idle)
+        let sut = makeSUT(getNearbyRestaurantsState: .idle)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewLoadingState() {
-        let sut = makeSUT(getNearbyPlacesState: .isLoading)
+        let sut = makeSUT(getNearbyRestaurantsState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewFailureState() {
-        let sut = makeSUT(getNearbyPlacesState: .failure(.serverError))
+        let sut = makeSUT(getNearbyRestaurantsState: .failure(.serverError))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewSuccessState() {
-        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyRestaurants()))
+        let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsFailure() {
-        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyRestaurants()),
+    func test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure() {
+        let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsSuccess() {
-        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyRestaurants()),
+    func test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+        let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .success(makePhotoData()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -59,8 +59,8 @@ final class HomeViewSnapshotTests: XCTestCase {
     
     func test_homeViewWhenSearchTextIsNotEmpty() {
         let nearbyRestaurants = makeNearbyRestaurants()
-        let sut = makeSUT(searchText: nearbyRestaurants[1].placeName,
-                          getNearbyPlacesState: .success(nearbyRestaurants),
+        let sut = makeSUT(searchText: nearbyRestaurants[1].name,
+                          getNearbyRestaurantsState: .success(nearbyRestaurants),
                           fetchPhotoState: .success(makePhotoData()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -69,18 +69,18 @@ final class HomeViewSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(searchText: String = "", getNearbyPlacesState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> HomeView<RestaurantCell, HomeSearchView<SearchCriteriaView>> {
+    private func makeSUT(searchText: String = "", getNearbyRestaurantsState: HomeViewModel.State, fetchPhotoState: PhotoViewModel.State = .isLoading) -> HomeView<RestaurantCell, HomeSearchView<SearchCriteriaView>> {
         let currentLocation = Location(latitude: 0, longitude: 0)
         
         let homeViewModel = HomeViewModel(nearbyRestaurantsService: EmptyNearbyRestaurantsService(),
                                           currentLocation: currentLocation,
                                           userPreferences: UserPreferences(radius: 200, starsNumber: 4))
-        homeViewModel.searchNearbyState = getNearbyPlacesState
+        homeViewModel.searchNearbyState = getNearbyRestaurantsState
         homeViewModel.searchText = searchText
         
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",
-            restaurantPhotoService: EmptyPlacePhotoService()
+            restaurantPhotoService: EmptyRestaurantPhotoService()
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
         
@@ -115,22 +115,22 @@ final class HomeViewSnapshotTests: XCTestCase {
     private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
             NearbyRestaurant(
-                id: "place #1",
-                placeName: "Place name 1",
+                id: "restaurant #1",
+                name: "restaurant name 1",
                 isOpen: true,
                 rating: 3,
                 location: Location(latitude: 2, longitude: 5),
                 photo: nil),
             NearbyRestaurant(
-                id: "place #2",
-                placeName: "Place name 2",
+                id: "restaurant #2",
+                name: "restaurant name 2",
                 isOpen: false,
                 rating: 4,
                 location: Location(latitude: 43, longitude: 56),
                 photo: nil),
             NearbyRestaurant(
-                id: "place #3",
-                placeName: "Place name 3",
+                id: "restaurant #3",
+                name: "restaurant name 3",
                 isOpen: true,
                 rating: 5,
                 location: Location(latitude: 3, longitude: 6),
