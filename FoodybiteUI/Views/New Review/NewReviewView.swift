@@ -107,7 +107,7 @@ struct NewReviewView_Previews: PreviewProvider {
             plusButtonActive: .constant(true),
             viewModel: NewReviewViewModel(
                 autocompletePlacesService: PreviewAutocompletePlacesService(),
-                restaurantDetailsService: PreviewGetPlaceDetailsService(),
+                restaurantDetailsService: PreviewRestaurantDetailsService(),
                 addReviewService: PreviewAddReviewService(),
                 location: Location(latitude: 0, longitude: 0),
                 userPreferences: UserPreferences(radius: 0, starsNumber: 0)
@@ -137,7 +137,7 @@ struct NewReviewView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewGetPlaceDetailsService: RestaurantDetailsService {
+    private class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 placeID: "place #1",

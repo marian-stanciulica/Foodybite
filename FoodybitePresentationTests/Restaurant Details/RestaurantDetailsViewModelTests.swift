@@ -11,33 +11,33 @@ import FoodybitePresentation
 
 final class RestaurantDetailsViewModelTests: XCTestCase {
     
-    func test_getPlaceDetails_sendsParamsToGetPlaceDetailsService() async {
-        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
+    func test_getRestaurantDetails_sendsParamsToRestaurantDetailsService() async {
+        let (sut, restaurantDetailsServiceSpy, _) = makeSUT(input: .placeIdToFetch(anyPlaceID()))
         
-        await sut.getPlaceDetails()
+        await sut.getRestaurantDetails()
         
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues, [anyPlaceID()])
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues, [anyPlaceID()])
     }
     
-    func test_getPlaceDetails_doesNotSendParamsToGetPlaceDetailsServiceWhenInputIsFetchedPlaceDetails() async {
-        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT(input: .fetchedPlaceDetails(anyPlaceDetails()))
+    func test_getPlaceDetails_doesNotSendParamsToRestaurantDetailsServiceWhenInputIsFetchedPlaceDetails() async {
+        let (sut, restaurantDetailsServiceSpy, _) = makeSUT(input: .fetchedPlaceDetails(anyPlaceDetails()))
         
-        await sut.getPlaceDetails()
+        await sut.getRestaurantDetails()
         
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues, [])
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues, [])
     }
     
-    func test_getPlaceDetails_setsErrorWhenGetPlaceDetailsServiceThrowsError() async {
-        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
-        getPlaceDetailsServiceSpy.result = .failure(anyError)
+    func test_getPlaceDetails_setsErrorWhenRestaurantDetailsServiceThrowsError() async {
+        let (sut, restaurantDetailsServiceSpy, _) = makeSUT()
+        restaurantDetailsServiceSpy.result = .failure(anyError)
         
         await assertGetPlaceDetails(on: sut, withExpectedResult: .failure(.serverError))
     }
     
-    func test_getPlaceDetails_updatesPlaceDetailsWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
-        let (sut, getPlaceDetailsServiceSpy, _) = makeSUT()
+    func test_getPlaceDetails_updatesPlaceDetailsWhenRestaurantDetailsServiceReturnsSuccessfully() async {
+        let (sut, restaurantDetailsServiceSpy, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
-        getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        restaurantDetailsServiceSpy.result = .success(expectedPlaceDetails)
         
         await assertGetPlaceDetails(on: sut, withExpectedResult: .success(expectedPlaceDetails))
     }
@@ -81,10 +81,10 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     func test_getPlaceReviews_appendsReviewsToPlaceDetailsWhenGetReviewsServiceReturnsSuccessfully() async {
-        let (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
+        let (sut, restaurantDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
         let placeDetails = anyPlaceDetails()
-        getPlaceDetailsServiceSpy.result = .success(placeDetails)
-        await sut.getPlaceDetails()
+        restaurantDetailsServiceSpy.result = .success(placeDetails)
+        await sut.getRestaurantDetails()
         
         let anyPlaceReviews = placeDetails.reviews
         let getReviewsResult = firstGetReviewsResult()
@@ -97,11 +97,11 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     }
     
     func test_getPlaceReviews_doesNotDuplicateReviewsWhenCalledTwice() async {
-        let (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
+        let (sut, restaurantDetailsServiceSpy, getReviewsServiceSpy) = makeSUT()
         let placeDetails = anyPlaceDetails()
 
-        getPlaceDetailsServiceSpy.result = .success(placeDetails)
-        await sut.getPlaceDetails()
+        restaurantDetailsServiceSpy.result = .success(placeDetails)
+        await sut.getRestaurantDetails()
         let anyPlaceReviews = placeDetails.reviews
         
         let firstGetReviewsResult = firstGetReviewsResult()
@@ -119,18 +119,18 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
     
     private func makeSUT(input: RestaurantDetailsViewModel.Input = .placeIdToFetch("")) -> (
         sut: RestaurantDetailsViewModel,
-        getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy,
+        restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy,
         getReviewsServiceSpy: GetReviewsServiceSpy
     ) {
-        let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
+        let restaurantDetailsServiceSpy = RestaurantDetailsServiceSpy()
         let getReviewsServiceSpy = GetReviewsServiceSpy()
         let sut = RestaurantDetailsViewModel(
             input: input,
             getDistanceInKmFromCurrentLocation: { _ in 353.6 },
-            restaurantDetailsService: getPlaceDetailsServiceSpy,
+            restaurantDetailsService: restaurantDetailsServiceSpy,
             getReviewsService: getReviewsServiceSpy
         )
-        return (sut, getPlaceDetailsServiceSpy, getReviewsServiceSpy)
+        return (sut, restaurantDetailsServiceSpy, getReviewsServiceSpy)
     }
     
     private func assertGetPlaceDetails(on sut: RestaurantDetailsViewModel,
@@ -141,7 +141,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
 
         XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
         
-        await sut.getPlaceDetails()
+        await sut.getRestaurantDetails()
         
         XCTAssertEqual(resultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
         resultSpy.cancel()
@@ -194,7 +194,7 @@ final class RestaurantDetailsViewModelTests: XCTestCase {
         (4.52, "4.5")
     }
     
-    private class GetPlaceDetailsServiceSpy: RestaurantDetailsService {
+    private class RestaurantDetailsServiceSpy: RestaurantDetailsService {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         

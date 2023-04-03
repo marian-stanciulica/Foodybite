@@ -1,5 +1,5 @@
 //
-//  EmptyGetPlaceDetailsService.swift
+//  EmptyRestaurantDetailsService.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 27.02.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-class EmptyGetPlaceDetailsService: RestaurantDetailsService {
+class EmptyRestaurantDetailsService: RestaurantDetailsService {
     func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
         RestaurantDetails(placeID: "",
                      phoneNumber: nil,

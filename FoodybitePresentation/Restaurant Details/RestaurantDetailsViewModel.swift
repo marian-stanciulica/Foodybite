@@ -75,19 +75,19 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         }
     }
     
-    @MainActor public func getPlaceDetails() async {
+    @MainActor public func getRestaurantDetails() async {
         getPlaceDetailsState = .isLoading
         
         switch input {
         case let .placeIdToFetch(placeID):
-            await fetchPlaceDetails(placeID: placeID)
+            await fetchRestaurantDetails(placeID: placeID)
             
         case let .fetchedPlaceDetails(placeDetails):
             getPlaceDetailsState = .success(placeDetails)
         }
     }
     
-    @MainActor private func fetchPlaceDetails(placeID: String) async {
+    @MainActor private func fetchRestaurantDetails(placeID: String) async {
         do {
             let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
             getPlaceDetailsState = .success(placeDetails)

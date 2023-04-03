@@ -148,7 +148,7 @@ struct ProfileView_Previews: PreviewProvider {
                 RestaurantReviewCellView(
                     viewModel: RestaurantReviewCellViewModel(
                         review: review,
-                        getPlaceDetailsService: PreviewGetPlaceDetailsService()
+                        restaurantDetailsService: PreviewRestaurantDetailsService()
                     ),
                     makePhotoView: { _ in
                         PhotoView(
@@ -179,7 +179,7 @@ struct ProfileView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewGetPlaceDetailsService: RestaurantDetailsService {
+    private class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 placeID: "place #1",

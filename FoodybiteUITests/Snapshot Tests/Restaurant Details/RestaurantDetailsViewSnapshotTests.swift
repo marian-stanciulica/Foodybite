@@ -63,7 +63,7 @@ final class RestaurantDetailsViewSnapshotTests: XCTestCase {
         let restaurantDetailsViewModel = RestaurantDetailsViewModel(
             input: .placeIdToFetch("place id"),
             getDistanceInKmFromCurrentLocation: { _ in 123.4 },
-            restaurantDetailsService: EmptyGetPlaceDetailsService(),
+            restaurantDetailsService: EmptyRestaurantDetailsService(),
             getReviewsService: EmptyGetReviewsService()
         )
         restaurantDetailsViewModel.getPlaceDetailsState = getPlaceDetailsState

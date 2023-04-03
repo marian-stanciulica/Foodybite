@@ -86,7 +86,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     ) -> NewReviewView<SelectedRestaurantView> {
         let viewModel = NewReviewViewModel(
             autocompletePlacesService: EmptyAutocompletePlacesService(),
-            restaurantDetailsService: EmptyGetPlaceDetailsService(),
+            restaurantDetailsService: EmptyRestaurantDetailsService(),
             addReviewService: EmptyAddReviewService(),
             location: Location(latitude: 0, longitude: 0),
             userPreferences: UserPreferences(radius: 0, starsNumber: 0)

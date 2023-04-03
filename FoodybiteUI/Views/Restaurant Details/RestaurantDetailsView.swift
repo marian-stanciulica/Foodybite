@@ -93,7 +93,7 @@ public struct RestaurantDetailsView: View {
         }
         .task {
             if viewModel.getPlaceDetailsState == .idle {
-                await viewModel.getPlaceDetails()
+                await viewModel.getRestaurantDetails()
             }
             
             await viewModel.getPlaceReviews()

@@ -20,7 +20,7 @@ enum ProfileFlowView {
         user: User,
         accountService: AccountService,
         getReviewsService: GetReviewsService,
-        getPlaceDetailsService: RestaurantDetailsService,
+        restaurantDetailsService: RestaurantDetailsService,
         fetchPhotoService: RestaurantPhotoService,
         goToLogin: @escaping () -> Void
     ) -> some View {
@@ -35,7 +35,7 @@ enum ProfileFlowView {
                 RestaurantReviewCellView(
                     viewModel: RestaurantReviewCellViewModel(
                         review: review,
-                        getPlaceDetailsService: getPlaceDetailsService
+                        restaurantDetailsService: restaurantDetailsService
                     ),
                     makePhotoView: { photoReference in
                         PhotoView(

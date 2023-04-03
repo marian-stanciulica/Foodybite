@@ -126,7 +126,7 @@ struct UserAuthenticatedView: View {
                     user: user,
                     accountService: userAuthenticatedFactory.authenticatedApiService,
                     getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
-                    getPlaceDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
+                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService,
                     goToLogin: { loggedInUserID = nil }
                 )

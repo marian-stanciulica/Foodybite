@@ -67,19 +67,19 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.getPlaceDetailsState, .idle)
     }
     
-    func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
-        let (sut, _, getPlaceDetailsServiceSpy, _) = makeSUT()
+    func test_getPlaceDetails_sendsInputsToRestaurantDetailsService() async {
+        let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
         let anyPlaceID = anyPlaceID()
         
         await sut.getPlaceDetails(placeID: anyPlaceID)
         
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, anyPlaceID)
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.count, 1)
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, anyPlaceID)
     }
     
-    func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
-        let (sut, _, getPlaceDetailsServiceSpy, _) = makeSUT()
-        getPlaceDetailsServiceSpy.result = .failure(anyError())
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
+        let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
+        restaurantDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
 
         await sut.getPlaceDetails(placeID: anyPlaceID())
@@ -87,10 +87,10 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
-    func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
-        let (sut, _, getPlaceDetailsServiceSpy, _) = makeSUT()
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenRestaurantDetailsServiceReturnsSuccessfully() async {
+        let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
-        getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        restaurantDetailsServiceSpy.result = .success(expectedPlaceDetails)
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
 
         await sut.getPlaceDetails(placeID: anyPlaceID())
@@ -189,22 +189,22 @@ final class NewReviewViewModelTests: XCTestCase {
     private func makeSUT(location: Location? = nil, userPreferences: UserPreferences? = nil) -> (
         sut: NewReviewViewModel,
         autocompleteSpy: AutocompletePlacesServiceSpy,
-        getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy,
+        restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy,
         addReviewServiceSpy: AddReviewServiceSpy
     ) {
         let autocompleteSpy = AutocompletePlacesServiceSpy()
-        let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
+        let restaurantDetailsServiceSpy = RestaurantDetailsServiceSpy()
         let addReviewServiceSpy = AddReviewServiceSpy()
 
         let defaultLocation = Location(latitude: 0, longitude: 0)
         let sut = NewReviewViewModel(
             autocompletePlacesService: autocompleteSpy,
-            restaurantDetailsService: getPlaceDetailsServiceSpy,
+            restaurantDetailsService: restaurantDetailsServiceSpy,
             addReviewService: addReviewServiceSpy,
             location: location ?? defaultLocation,
             userPreferences: userPreferences ?? .default
         )
-        return (sut, autocompleteSpy, getPlaceDetailsServiceSpy, addReviewServiceSpy)
+        return (sut, autocompleteSpy, restaurantDetailsServiceSpy, addReviewServiceSpy)
     }
     
     private func anyData() -> Data {
@@ -305,7 +305,7 @@ final class NewReviewViewModelTests: XCTestCase {
         }
     }
     
-    private class GetPlaceDetailsServiceSpy: RestaurantDetailsService {
+    private class RestaurantDetailsServiceSpy: RestaurantDetailsService {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         

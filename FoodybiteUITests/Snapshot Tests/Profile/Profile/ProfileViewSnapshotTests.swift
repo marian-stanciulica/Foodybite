@@ -118,7 +118,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
     ) -> RestaurantReviewCellView {
         let restaurantReviewCellViewModel = RestaurantReviewCellViewModel(
             review: review,
-            getPlaceDetailsService: EmptyGetPlaceDetailsService()
+            restaurantDetailsService: EmptyRestaurantDetailsService()
         )
         restaurantReviewCellViewModel.getPlaceDetailsState = getPlaceDetailsState
         

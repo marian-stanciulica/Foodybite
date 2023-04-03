@@ -17,19 +17,19 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         XCTAssertEqual(sut.getPlaceDetailsState, .idle)
     }
     
-    func test_getPlaceDetails_sendsInputsToGetPlaceDetailsService() async {
+    func test_getPlaceDetails_sendsInputsToRestaurantDetailsService() async {
         let review = Self.anyReview()
-        let (sut, getPlaceDetailsServiceSpy) = makeSUT(review: review)
+        let (sut, restaurantDetailsServiceSpy) = makeSUT(review: review)
         
         await sut.getPlaceDetails()
         
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(getPlaceDetailsServiceSpy.capturedValues.first, review.placeID)
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.count, 1)
+        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, review.placeID)
     }
     
-    func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenGetPlaceDetailsServiceThrowsError() async {
-        let (sut, getPlaceDetailsServiceSpy) = makeSUT()
-        getPlaceDetailsServiceSpy.result = .failure(anyError())
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
+        let (sut, restaurantDetailsServiceSpy) = makeSUT()
+        restaurantDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
 
         await sut.getPlaceDetails()
@@ -37,10 +37,10 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
     
-    func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenGetPlaceDetailsServiceReturnsSuccessfully() async {
-        let (sut, getPlaceDetailsServiceSpy) = makeSUT()
+    func test_getPlaceDetails_setsGetPlaceDetailsStateToRequestSucceeededWhenRestaurantDetailsServiceReturnsSuccessfully() async {
+        let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let expectedPlaceDetails = anyPlaceDetails()
-        getPlaceDetailsServiceSpy.result = .success(expectedPlaceDetails)
+        restaurantDetailsServiceSpy.result = .success(expectedPlaceDetails)
         let stateSpy = PublisherSpy(sut.$getPlaceDetailsState.eraseToAnyPublisher())
 
         await sut.getPlaceDetails()
@@ -63,9 +63,9 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     }
     
     func test_placeName_equalsFetchedPlaceDetailsName() async {
-        let (sut, getPlaceDetailsServiceSpy) = makeSUT()
+        let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let anyPlaceDetails = anyPlaceDetails()
-        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails)
+        restaurantDetailsServiceSpy.result = .success(anyPlaceDetails)
 
         await sut.getPlaceDetails()
 
@@ -79,9 +79,9 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     }
     
     func test_placeAddress_equalsFetchedPlaceDetailsAddress() async {
-        let (sut, getPlaceDetailsServiceSpy) = makeSUT()
+        let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let anyPlaceDetails = anyPlaceDetails()
-        getPlaceDetailsServiceSpy.result = .success(anyPlaceDetails)
+        restaurantDetailsServiceSpy.result = .success(anyPlaceDetails)
 
         await sut.getPlaceDetails()
 
@@ -90,10 +90,10 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(review: Review = anyReview()) -> (sut: RestaurantReviewCellViewModel, getPlaceDetailsServiceSpy: GetPlaceDetailsServiceSpy) {
-        let getPlaceDetailsServiceSpy = GetPlaceDetailsServiceSpy()
-        let sut = RestaurantReviewCellViewModel(review: review, getPlaceDetailsService: getPlaceDetailsServiceSpy)
-        return (sut, getPlaceDetailsServiceSpy)
+    private func makeSUT(review: Review = anyReview()) -> (sut: RestaurantReviewCellViewModel, restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy) {
+        let restaurantDetailsServiceSpy = RestaurantDetailsServiceSpy()
+        let sut = RestaurantReviewCellViewModel(review: review, restaurantDetailsService: restaurantDetailsServiceSpy)
+        return (sut, restaurantDetailsServiceSpy)
     }
     
     private func anyPlaceID() -> String {
@@ -151,7 +151,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         ]
     }
     
-    private class GetPlaceDetailsServiceSpy: RestaurantDetailsService {
+    private class RestaurantDetailsServiceSpy: RestaurantDetailsService {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         
