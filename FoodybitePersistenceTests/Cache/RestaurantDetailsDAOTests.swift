@@ -11,37 +11,37 @@ import FoodybitePersistence
 
 final class RestaurantDetailsDAOTests: XCTestCase {
     
-    func test_getPlaceDetails_throwsErrorWhenStoreThrowsError() async {
+    func test_getRestaurantDetails_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readResult = .failure(anyError())
         
         do {
-            let nearbyPlaces = try await sut.getRestaurantDetails(placeID: "place #1")
-            XCTFail("Expected to fail, received nearby places \(nearbyPlaces) instead")
+            let restaurantDetails = try await sut.getRestaurantDetails(placeID: "place #1")
+            XCTFail("Expected to fail, received \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
-    func test_getPlaceDetails_returnsPlaceDetailsForPlaceIdWhenStoreContainsPlaceDetails() async throws {
+    func test_getRestaurantDetails_returnsRestaurantDetailsForPlaceIdWhenStoreContainsRestaurantDetails() async throws {
         let (sut, storeSpy) = makeSUT()
-        let expectedPlaceDetails = makeExpectedPlaceDetails()
-        storeSpy.readAllResult = .success(makePlaceDetails() + [expectedPlaceDetails])
+        let expectedRestaurantDetails = makeRestaurantDetails()
+        storeSpy.readAllResult = .success(makeRestaurantsDetailsArray() + [expectedRestaurantDetails])
         
-        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
-        XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(placeID: expectedRestaurantDetails.placeID)
+        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
     func test_save_sendsPlaceDetailsToStore() async throws {
         let (sut, storeSpy) = makeSUT()
-        let expectedPlaceDetails = makeExpectedPlaceDetails()
+        let expectedRestaurantDetails = makeRestaurantDetails()
         
-        try await sut.save(placeDetails: expectedPlaceDetails)
+        try await sut.save(placeDetails: expectedRestaurantDetails)
         
         XCTAssertEqual(storeSpy.messages.count, 1)
         
-        if case let .write(receivedPlaceDetails) = storeSpy.messages[0] {
-            XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails as! RestaurantDetails)
+        if case let .write(receivedRestaurantDetails) = storeSpy.messages[0] {
+            XCTAssertEqual(expectedRestaurantDetails, receivedRestaurantDetails as! RestaurantDetails)
         } else {
             XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
         }
@@ -55,7 +55,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         return (sut, storeSpy)
     }
     
-    private func makePlaceDetails() -> [RestaurantDetails] {
+    private func makeRestaurantsDetailsArray() -> [RestaurantDetails] {
         [
             RestaurantDetails(placeID: "Place #1",
                          phoneNumber: "",
@@ -78,7 +78,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         ]
     }
     
-    private func makeExpectedPlaceDetails() -> RestaurantDetails {
+    private func makeRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(placeID: "Expected place",
                      phoneNumber: "",
                      name: "",

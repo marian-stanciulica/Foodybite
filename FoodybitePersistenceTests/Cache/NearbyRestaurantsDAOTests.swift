@@ -16,35 +16,35 @@ final class NearbyRestaurantsDAOTests: XCTestCase {
         storeSpy.readResult = .failure(anyError())
         
         do {
-            let nearbyPlaces = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, received nearby places \(nearbyPlaces) instead")
+            let nearbyRestaurants = try await searchNearby(on: sut)
+            XCTFail("Expected to fail, received \(nearbyRestaurants) instead")
         } catch {
             XCTAssertNotNil(error)
         }
     }
     
-    func test_searchNearby_returnsFilteredNearbyPlacesWhenStoreReturnsSuccessfully() async throws {
+    func test_searchNearby_returnsFilteredNearbyRestaurantsWhenStoreReturnsSuccessfully() async throws {
         let (sut, storeSpy, distanceSolverStub) = makeSUT()
         let radius = 10
         distanceSolverStub.stub = [9, 11, 8]
         
-        let nearbyPlaces = makeNearbyRestaurants()
-        storeSpy.readAllResult = .success(nearbyPlaces)
+        let nearbyRestaurants = makeNearbyRestaurants()
+        storeSpy.readAllResult = .success(nearbyRestaurants)
         
-        let receivedNearbyPlaces = try await searchNearby(on: sut, radius: radius)
-        XCTAssertEqual(receivedNearbyPlaces, [nearbyPlaces[0]] + [nearbyPlaces[2]])
+        let receivedNearbyRestaurants = try await searchNearby(on: sut, radius: radius)
+        XCTAssertEqual(receivedNearbyRestaurants, [nearbyRestaurants[0]] + [nearbyRestaurants[2]])
     }
     
-    func test_save_sendsNearbyPlacesToStore() async throws {
+    func test_save_sendsNearbyRestaurantsToStore() async throws {
         let (sut, storeSpy, _) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyRestaurants()
+        let expectedNearbyRestaurants = makeNearbyRestaurants()
         
-        try await sut.save(nearbyPlaces: expectedNearbyPlaces)
+        try await sut.save(nearbyPlaces: expectedNearbyRestaurants)
         
         XCTAssertEqual(storeSpy.messages.count, 1)
         
-        if case let .writeAll(receivedNearbyPlaces) = storeSpy.messages[0] {
-            XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces as! [NearbyRestaurant])
+        if case let .writeAll(receivedNearbyRestaurants) = storeSpy.messages[0] {
+            XCTAssertEqual(expectedNearbyRestaurants, receivedNearbyRestaurants as! [NearbyRestaurant])
         } else {
             XCTFail("Expected .writeAll message, got \(storeSpy.messages[0]) instead")
         }
