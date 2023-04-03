@@ -1,5 +1,5 @@
 //
-//  ManagedPlaceDetails+CoreDataClass.swift
+//  ManagedRestaurantDetails.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 import Domain
 
-@objc(ManagedPlaceDetails)
-public class ManagedPlaceDetails: NSManagedObject {
+@objc(ManagedRestaurantDetails)
+public class ManagedRestaurantDetails: NSManagedObject {
     @NSManaged public var placeID: String
     @NSManaged public var phoneNumber: String?
     @NSManaged public var name: String
@@ -22,8 +22,8 @@ public class ManagedPlaceDetails: NSManagedObject {
     @NSManaged public var openingHoursDetails: ManagedOpeningHoursDetails?
     @NSManaged public var photos: NSSet
     
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedPlaceDetails> {
-        return NSFetchRequest<ManagedPlaceDetails>(entityName: "ManagedPlaceDetails")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedRestaurantDetails> {
+        return NSFetchRequest<ManagedRestaurantDetails>(entityName: "ManagedRestaurantDetails")
     }
     
     public convenience init(_ model: RestaurantDetails, for context: NSManagedObjectContext) {

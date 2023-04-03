@@ -1,5 +1,5 @@
 //
-//  SearchNearby+LocalModelConvertible.swift
+//  NearbyRestaurant+LocalModelConvertible.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 07.03.2023.

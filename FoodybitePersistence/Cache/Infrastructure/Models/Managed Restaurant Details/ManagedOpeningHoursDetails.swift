@@ -14,7 +14,7 @@ import Domain
 public class ManagedOpeningHoursDetails: NSManagedObject {
     @NSManaged public var openNow: Bool
     @NSManaged public var weekdayText: NSSet
-    @NSManaged public var placeDetails: ManagedPlaceDetails?
+    @NSManaged public var placeDetails: ManagedRestaurantDetails?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedOpeningHoursDetails> {
         return NSFetchRequest<ManagedOpeningHoursDetails>(entityName: "ManagedOpeningHoursDetails")

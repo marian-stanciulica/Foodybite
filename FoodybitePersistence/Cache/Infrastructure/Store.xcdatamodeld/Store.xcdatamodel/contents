@@ -16,7 +16,7 @@
     </entity>
     <entity name="ManagedOpeningHoursDetails" representedClassName="ManagedOpeningHoursDetails" syncable="YES">
         <attribute name="openNow" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPlaceDetails" inverseName="openingHoursDetails" inverseEntity="ManagedPlaceDetails"/>
+        <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedRestaurantDetails" inverseName="openingHoursDetails" inverseEntity="ManagedRestaurantDetails"/>
         <relationship name="weekdayText" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedWeekdayText" inverseName="openingHours" inverseEntity="ManagedWeekdayText"/>
     </entity>
     <entity name="ManagedPhoto" representedClassName="ManagedPhoto" syncable="YES">
@@ -24,14 +24,14 @@
         <attribute name="reference" attributeType="String"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="nearbyPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNearbyRestaurant" inverseName="photo" inverseEntity="ManagedNearbyRestaurant"/>
-        <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPlaceDetails" inverseName="photos" inverseEntity="ManagedPlaceDetails"/>
+        <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedRestaurantDetails" inverseName="photos" inverseEntity="ManagedRestaurantDetails"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="reference"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="ManagedPlaceDetails" representedClassName="ManagedPlaceDetails" syncable="YES">
+    <entity name="ManagedRestaurantDetails" representedClassName="ManagedRestaurantDetails" syncable="YES">
         <attribute name="address" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

@@ -16,7 +16,7 @@
 		0F0BDA3328F8425300E91FD0 /* RemoteStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3228F8425300E91FD0 /* RemoteStoreTests.swift */; };
 		0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */; };
 		0F18976029B75F660052094F /* SearchNearbyDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */; };
-		0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */; };
+		0F18976329B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976229B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift */; };
 		0F18976529B766000052094F /* ManagedNearbyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */; };
 		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
 		0F18976E29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976D29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift */; };
@@ -255,9 +255,9 @@
 		0F207C5B29B8BC3B0095E905 /* GetPlaceDetailsDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C5A29B8BC3B0095E905 /* GetPlaceDetailsDAOTests.swift */; };
 		0F207C5D29B8BD180095E905 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C5C29B8BD180095E905 /* SharedTestHelpers.swift */; };
 		0F207C6A29B8C1F10095E905 /* ManagedWeekdayText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6429B8C1F10095E905 /* ManagedWeekdayText.swift */; };
-		0F207C6C29B8C1F10095E905 /* ManagedPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6629B8C1F10095E905 /* ManagedPlaceDetails.swift */; };
+		0F207C6C29B8C1F10095E905 /* ManagedRestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6629B8C1F10095E905 /* ManagedRestaurantDetails.swift */; };
 		0F207C6E29B8C1F10095E905 /* ManagedOpeningHoursDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */; };
-		0F207C7329B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */; };
+		0F207C7329B8C3BD0095E905 /* RestaurantDetails+LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7229B8C3BD0095E905 /* RestaurantDetails+LocalModelConvertable.swift */; };
 		0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */; };
 		0F207C7729B8CFC40095E905 /* RestaurantDetailsServiceWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7629B8CFC40095E905 /* RestaurantDetailsServiceWithFallbackCompositeTests.swift */; };
 		0F207C7929B8D01C0095E905 /* RestaurantDetailsServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F207C7829B8D01C0095E905 /* RestaurantDetailsServiceStub.swift */; };
@@ -715,7 +715,7 @@
 		0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndpoint.swift; sourceTree = "<group>"; };
 		0F108809291E2397007A28FA /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
 		0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAOTests.swift; sourceTree = "<group>"; };
-		0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchNearby+LocalModelConvertible.swift"; sourceTree = "<group>"; };
+		0F18976229B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NearbyRestaurant+LocalModelConvertible.swift"; sourceTree = "<group>"; };
 		0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedNearbyRestaurant.swift; sourceTree = "<group>"; };
 		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
 		0F18976D29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
@@ -751,9 +751,9 @@
 		0F207C5A29B8BC3B0095E905 /* GetPlaceDetailsDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsDAOTests.swift; sourceTree = "<group>"; };
 		0F207C5C29B8BD180095E905 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		0F207C6429B8C1F10095E905 /* ManagedWeekdayText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedWeekdayText.swift; sourceTree = "<group>"; };
-		0F207C6629B8C1F10095E905 /* ManagedPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaceDetails.swift; sourceTree = "<group>"; };
+		0F207C6629B8C1F10095E905 /* ManagedRestaurantDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedRestaurantDetails.swift; sourceTree = "<group>"; };
 		0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedOpeningHoursDetails.swift; sourceTree = "<group>"; };
-		0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaceDetails+LocalModelConvertable.swift"; sourceTree = "<group>"; };
+		0F207C7229B8C3BD0095E905 /* RestaurantDetails+LocalModelConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantDetails+LocalModelConvertable.swift"; sourceTree = "<group>"; };
 		0F207C7429B8CF270095E905 /* GetPlaceDetailsDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailsDAO.swift; sourceTree = "<group>"; };
 		0F207C7629B8CFC40095E905 /* RestaurantDetailsServiceWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsServiceWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		0F207C7829B8D01C0095E905 /* RestaurantDetailsServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsServiceStub.swift; sourceTree = "<group>"; };
@@ -1408,7 +1408,7 @@
 			children = (
 				0F04032529C06BB200122E60 /* Managed User */,
 				0F207C7029B8C3390095E905 /* Managed Nearby Restaurant */,
-				0F207C7129B8C3480095E905 /* Managed Place Details */,
+				0F207C7129B8C3480095E905 /* Managed Restaurant Details */,
 				0F61266329C0FC8400658A4D /* Managed Review */,
 			);
 			path = Models;
@@ -1569,21 +1569,21 @@
 			isa = PBXGroup;
 			children = (
 				0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */,
-				0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */,
+				0F18976229B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift */,
 				0F885AC529BA01B300D63DCC /* ManagedPhoto.swift */,
 			);
 			path = "Managed Nearby Restaurant";
 			sourceTree = "<group>";
 		};
-		0F207C7129B8C3480095E905 /* Managed Place Details */ = {
+		0F207C7129B8C3480095E905 /* Managed Restaurant Details */ = {
 			isa = PBXGroup;
 			children = (
-				0F207C6629B8C1F10095E905 /* ManagedPlaceDetails.swift */,
+				0F207C6629B8C1F10095E905 /* ManagedRestaurantDetails.swift */,
+				0F207C7229B8C3BD0095E905 /* RestaurantDetails+LocalModelConvertable.swift */,
 				0F207C6829B8C1F10095E905 /* ManagedOpeningHoursDetails.swift */,
 				0F207C6429B8C1F10095E905 /* ManagedWeekdayText.swift */,
-				0F207C7229B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift */,
 			);
-			path = "Managed Place Details";
+			path = "Managed Restaurant Details";
 			sourceTree = "<group>";
 		};
 		0F2A26AF2930D90000387A1C /* Edit Profile */ = {
@@ -4192,12 +4192,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F19B4D429169C9F00A8FC8F /* Store.xcdatamodeld in Sources */,
-				0F207C6C29B8C1F10095E905 /* ManagedPlaceDetails.swift in Sources */,
+				0F207C6C29B8C1F10095E905 /* ManagedRestaurantDetails.swift in Sources */,
 				0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */,
 				0F61266529C0FE1900658A4D /* Review+LocalModelConvertable.swift in Sources */,
 				0F04032D29C0709900122E60 /* UserDAO.swift in Sources */,
 				0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */,
-				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
+				0F18976329B764E30052094F /* NearbyRestaurant+LocalModelConvertible.swift in Sources */,
 				0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */,
 				0F18976529B766000052094F /* ManagedNearbyRestaurant.swift in Sources */,
 				0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */,
@@ -4205,7 +4205,7 @@
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,
 				0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */,
 				0F207C6E29B8C1F10095E905 /* ManagedOpeningHoursDetails.swift in Sources */,
-				0F207C7329B8C3BD0095E905 /* PlaceDetails+LocalModelConvertable.swift in Sources */,
+				0F207C7329B8C3BD0095E905 /* RestaurantDetails+LocalModelConvertable.swift in Sources */,
 				0FF7C69029B233D400622E9C /* UserPreferencesLocalStore.swift in Sources */,
 				0F19B4DC2916AF3D00A8FC8F /* CoreDataHelpers.swift in Sources */,
 				0FF7C69229B233F000622E9C /* LocalUserPreferences.swift in Sources */,
