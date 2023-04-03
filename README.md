@@ -224,7 +224,7 @@ public struct OpeningHoursDetails: Equatable, Hashable {
 
 public struct Review: Equatable, Identifiable, Hashable {
     public var id: UUID
-    public let placeID: String
+    public let restaurantID: String
     public let profileImageURL: URL?
     public let profileImageData: Data?
     public let authorName: String
@@ -848,16 +848,16 @@ Thus, by introducing abstractions, I increased the testability of the view model
 The following diagram is the tree-like representation of all the screens in the app. Since I wanted the views to be completely decoupled from one another to increase their reusability, I chose to move the responsibility of creating subviews on layer above, meaning the composition root. Additionally, I decoupled all views from the navigation logic by using closures to trigger transitions between them (More details in the [Main](#main) section).
 
 The best example is the `HomeView` which is defined as a generic view which needs:
-- one closure to signal that the app should navigate to the place details screen (the view being completely agnostic how the navigation is done)
-- one closure that receives a `NearbyPlace` and returns a `Cell` view to be rendered (the view is not responsible by creating the cell and doesn't care what cell it receives)
+- one closure to signal that the app should navigate to the restaurant details screen (the view being completely agnostic how the navigation is done)
+- one closure that receives a `NearbyRestaurant` and returns a `Cell` view to be rendered (the view is not responsible by creating the cell and doesn't care what cell it receives)
 - one closure that receives a binding to a `String` and returns a view for searching nearby restaurants
 
 Furthermore, I avoid making views to depend on their subviews' dependencies by moving the responsibility of creating its subviews to the composition root. Thus, I keep the views constructors containing only dependencies they use.
 
 ```swift
-public struct HomeView<Cell: View, SearchView: View>: View {
-    let showPlaceDetails: (String) -> Void
-    let cell: (NearbyPlace) -> Cell
+struct HomeView<Cell: View, SearchView: View>: View {
+    let showRestaurantDetails: (String) -> Void
+    let cell: (NearbyRestaurant) -> Cell
     let searchView: (Binding<String>) -> SearchView
     ...
 ```
@@ -880,19 +880,19 @@ One extremely beneficial advantage of having a composition root is the possibili
 The following is an example of how I applied the pattern to introduce the caching behaviour after receiving the nearby restaurants. The decorator just conforms to the protocol the decoratee conforms and has an additional dependency, the cache, for storing the objects.
 
 ```swift
-public final class SearchNearbyServiceCacheDecorator: SearchNearbyService {
-    private let searchNearbyService: SearchNearbyService
-    private let cache: SearchNearbyCache
+public final class NearbyRestaurantsServiceCacheDecorator: NearbyRestaurantsService {
+    private let nearbyRestaurantsService: NearbyRestaurantsService
+    private let cache: NearbyRestaurantsCache
     
-    public init(searchNearbyService: SearchNearbyService, cache: SearchNearbyCache) {
-        self.searchNearbyService = searchNearbyService
+    public init(nearbyRestaurantsService: NearbyRestaurantsService, cache: NearbyRestaurantsCache) {
+        self.nearbyRestaurantsService = nearbyRestaurantsService
         self.cache = cache
     }
     
-    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
-        let nearbyPlaces = try await searchNearbyService.searchNearby(location: location, radius: radius)
-        try? await cache.save(nearbyPlaces: nearbyPlaces)
-        return nearbyPlaces
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
+        let nearbyRestaurants = try await nearbyRestaurantsService.searchNearby(location: location, radius: radius)
+        try? await cache.save(nearbyRestaurants: nearbyRestaurants)
+        return nearbyRestaurants
     }
 }
 ```
@@ -903,19 +903,19 @@ I did the same for caching details and reviews for a given restaurant.
 
 In order to compose multiple implementations of a particular abstraction we can use the `Composite` pattern. Thus, it's executed the first strategy that doesn't fail.
 
-The following is an example of how I composed two strategies of fetching nearby places using the `SearchNearbyService` abstraction. I chose to compose two abstraction instead of using concrete types to easily test the composite in isolation and to increase the flexibility of the composition as it's not bounded to a given implementation of the protocol. 
+The following is an example of how I composed two strategies of fetching nearby restaurants using the `NearbyRestaurantsService` abstraction. I chose to compose two abstraction instead of using concrete types to easily test the composite in isolation and to increase the flexibility of the composition as it's not bounded to a given implementation of the protocol. 
 
 ```swift
-public final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService {
-    private let primary: SearchNearbyService
-    private let secondary: SearchNearbyService
+public final class NearbyRestaurantsServiceWithFallbackComposite: NearbyRestaurantsService {
+    private let primary: NearbyRestaurantsService
+    private let secondary: NearbyRestaurantsService
     
-    public init(primary: SearchNearbyService, secondary: SearchNearbyService) {
+    public init(primary: NearbyRestaurantsService, secondary: NearbyRestaurantsService) {
         self.primary = primary
         self.secondary = secondary
     }
     
-    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         do {
             return try await primary.searchNearby(location: location, radius: radius)
         } catch {
@@ -928,16 +928,16 @@ public final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService
 In this manner, I can introduce multiple retries of the requests until I end up loading the data from the local store. For now, I only try the network request once and then I fetch the data from cache.
 
 ```swift
-lazy var searchNearbyWithFallbackComposite = SearchNearbyServiceWithFallbackComposite(
-    primary: SearchNearbyServiceCacheDecorator(
-        searchNearbyService: placesService,
-        cache: searchNearbyDAO
+lazy var nearbyRestaurantsServiceWithFallbackComposite = NearbyRestaurantsServiceWithFallbackComposite(
+    primary: NearbyRestaurantsServiceCacheDecorator(
+        nearbyRestaurantsService: placesService,
+        cache: nearbyRestaurantsDAO
     ),
-    secondary: searchNearbyDAO
+    secondary: nearbyRestaurantsDAO
 )
 ```
 
-I similarly composed the `GetPlaceDetailsService` and `GetReviewsService` protocols.
+I similarly composed the `RestaurantDetailsService` and `GetReviewsService` protocols.
 
 #### Handling navigation
 
@@ -977,11 +977,11 @@ final class Flow<Route: Hashable>: ObservableObject {
 }
 ```
 
-Second of all, I created enums for each navigation path. For example, from the `Home` screen the user can navigate to the `Place Details` screen and then to the `Add Review` screen. So all reachable screens will be the following (I used the associated value of a case to send additional information between screens. In this case, it's the place ID.):
+Second of all, I created enums for each navigation path. For example, from the `Home` screen the user can navigate to the `Restaurant Details` screen and then to the `Add Review` screen. So all reachable screens will be the following (I used the associated value of a case to send additional information between screens. In this case, it's the restaurant ID.):
 
 ```swift
 public enum HomeRoute: Hashable {
-    case placeDetails(String)
+    case restaurantDetails(String)
     case addReview(String)
 }
 ```
@@ -998,11 +998,11 @@ Furthermore, I used the `navigationDestination(for:destination:)` modifier to de
         }
         .navigationDestination(for: HomeRoute.self) { route in
             switch route {
-            case let .placeDetails(placeID):
+            case let .restaurantDetails(restaurantID):
                 HomeFlowView.makeRestaurantDetailsView(
                     ...
                 )
-            case let .addReview(placeID):
+            case let .addReview(restaurantID):
                 HomeFlowView.makeReviewView(
                     ...
                 )
@@ -1013,7 +1013,7 @@ Furthermore, I used the `navigationDestination(for:destination:)` modifier to de
 
 @ViewBuilder func makeRestaurantDetailsView(flow: Flow<HomeRoute>, ...) -> some View {
     RestaurantDetailsView(..., showReviewView: {
-        flow.append(.addReview(placeID))
+        flow.append(.addReview(restaurantID))
     })
 }
 ```
