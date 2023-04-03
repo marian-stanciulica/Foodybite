@@ -17,7 +17,7 @@
 		0F0BDA3928F8679100E91FD0 /* SignUpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BDA3828F8679100E91FD0 /* SignUpEndpoint.swift */; };
 		0F18976029B75F660052094F /* SearchNearbyDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */; };
 		0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */; };
-		0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976429B766000052094F /* ManagedNearbyPlace.swift */; };
+		0F18976529B766000052094F /* ManagedNearbyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */; };
 		0F18976929B785020052094F /* SearchNearbyDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976829B785020052094F /* SearchNearbyDAO.swift */; };
 		0F18976E29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18976D29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift */; };
 		0F18977329B79D6C0052094F /* NearbyRestaurantsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18977229B79D6C0052094F /* NearbyRestaurantsCache.swift */; };
@@ -716,7 +716,7 @@
 		0F108809291E2397007A28FA /* RegisterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModelTests.swift; sourceTree = "<group>"; };
 		0F18975F29B75F660052094F /* SearchNearbyDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAOTests.swift; sourceTree = "<group>"; };
 		0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchNearby+LocalModelConvertible.swift"; sourceTree = "<group>"; };
-		0F18976429B766000052094F /* ManagedNearbyPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedNearbyPlace.swift; sourceTree = "<group>"; };
+		0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedNearbyRestaurant.swift; sourceTree = "<group>"; };
 		0F18976829B785020052094F /* SearchNearbyDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyDAO.swift; sourceTree = "<group>"; };
 		0F18976D29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsServiceCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0F18977229B79D6C0052094F /* NearbyRestaurantsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRestaurantsCache.swift; sourceTree = "<group>"; };
@@ -1407,7 +1407,7 @@
 			isa = PBXGroup;
 			children = (
 				0F04032529C06BB200122E60 /* Managed User */,
-				0F207C7029B8C3390095E905 /* Managed Nearby Place */,
+				0F207C7029B8C3390095E905 /* Managed Nearby Restaurant */,
 				0F207C7129B8C3480095E905 /* Managed Place Details */,
 				0F61266329C0FC8400658A4D /* Managed Review */,
 			);
@@ -1565,14 +1565,14 @@
 			path = "Navigation Stacks";
 			sourceTree = "<group>";
 		};
-		0F207C7029B8C3390095E905 /* Managed Nearby Place */ = {
+		0F207C7029B8C3390095E905 /* Managed Nearby Restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				0F18976429B766000052094F /* ManagedNearbyPlace.swift */,
+				0F18976429B766000052094F /* ManagedNearbyRestaurant.swift */,
 				0F18976229B764E30052094F /* SearchNearby+LocalModelConvertible.swift */,
 				0F885AC529BA01B300D63DCC /* ManagedPhoto.swift */,
 			);
-			path = "Managed Nearby Place";
+			path = "Managed Nearby Restaurant";
 			sourceTree = "<group>";
 		};
 		0F207C7129B8C3480095E905 /* Managed Place Details */ = {
@@ -4199,7 +4199,7 @@
 				0F885AC829BA01B900D63DCC /* ManagedPhoto.swift in Sources */,
 				0F18976329B764E30052094F /* SearchNearby+LocalModelConvertible.swift in Sources */,
 				0F04032729C06BCE00122E60 /* User+LocalModelConvertable.swift in Sources */,
-				0F18976529B766000052094F /* ManagedNearbyPlace.swift in Sources */,
+				0F18976529B766000052094F /* ManagedNearbyRestaurant.swift in Sources */,
 				0F207C7529B8CF270095E905 /* GetPlaceDetailsDAO.swift in Sources */,
 				0F19B4D129169C1E00A8FC8F /* CoreDataLocalStore.swift in Sources */,
 				0F19B4DA29169D6700A8FC8F /* ManagedUser.swift in Sources */,

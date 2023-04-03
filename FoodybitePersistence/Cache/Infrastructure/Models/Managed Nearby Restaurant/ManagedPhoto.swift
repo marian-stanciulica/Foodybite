@@ -16,7 +16,7 @@ public class ManagedPhoto: NSManagedObject {
     @NSManaged public var height: Int16
     @NSManaged public var reference: String
     @NSManaged public var placeDetails: ManagedPlaceDetails?
-    @NSManaged public var nearbyPlace: ManagedNearbyPlace?
+    @NSManaged public var nearbyPlace: ManagedNearbyRestaurant?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedPhoto> {
         return NSFetchRequest<ManagedPhoto>(entityName: "ManagedPhoto")

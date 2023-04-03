@@ -1,5 +1,5 @@
 //
-//  ManagedNearbyPlace.swift
+//  ManagedNearbyRestaurant.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 07.03.2023.
@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 import Domain
 
-@objc(ManagedNearbyPlace)
-public class ManagedNearbyPlace: NSManagedObject {
+@objc(ManagedNearbyRestaurant)
+public class ManagedNearbyRestaurant: NSManagedObject {
     @NSManaged public var placeID: String
     @NSManaged public var placeName: String
     @NSManaged public var isOpen: Bool
@@ -19,8 +19,8 @@ public class ManagedNearbyPlace: NSManagedObject {
     @NSManaged public var longitude: Double
     @NSManaged public var photo: ManagedPhoto?
     
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedNearbyPlace> {
-        return NSFetchRequest<ManagedNearbyPlace>(entityName: "ManagedNearbyPlace")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedNearbyRestaurant> {
+        return NSFetchRequest<ManagedNearbyRestaurant>(entityName: "ManagedNearbyRestaurant")
     }
     
     public convenience init(_ model: NearbyRestaurant, for context: NSManagedObjectContext) {
