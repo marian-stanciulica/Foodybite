@@ -6,6 +6,16 @@
 2. [Architecture](#architecture)
     1. [Overview](#overview)
     2. [Domain](#domain)
+        1. [User Session Feature](#1-user-session-feature)
+        2. [Update/Delete Account Feature](#2-updatedelete-account-feature)
+        3. [Store/Retrieve User Preferences Feature](#3-storeretrieve-user-preferences-feature)
+        4. [Nearby Restaurants Feature](#4-nearby-restaurants-feature)
+        5. [Fetch Restaurant Photo Feature](#5-fetch-restaurant-photo-feature)
+        6. [Restaurant Details Feature](#6-restaurant-details-feature)
+        7. [Autocomplete Restaurants Feature](#7-autocomplete-restaurants-feature)
+        8. [Add Review Feature](#8-add-review-feature)
+        9. [Get Reviews Feature](#9-get-reviews-feature)
+        10. [Location Feature](#10-location-feature)
     3. [Networking](#networking)
         1. [Refresh Token Strategy](#1-refresh-token-strategy)
         2. [Network Request Flow](#2-network-request-flow)
@@ -244,7 +254,7 @@ public protocol RestaurantDetailsCache {
 }
 ```
 
-#### 7. Autocomplete Feature (Search Places)
+#### 7. Autocomplete Restaurants Feature
 
 ```swift
 public struct AutocompletePrediction: Hashable {
