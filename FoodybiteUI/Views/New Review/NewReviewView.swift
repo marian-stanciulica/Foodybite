@@ -107,7 +107,7 @@ struct NewReviewView_Previews: PreviewProvider {
             plusButtonActive: .constant(true),
             viewModel: NewReviewViewModel(
                 autocompletePlacesService: PreviewAutocompletePlacesService(),
-                getPlaceDetailsService: PreviewGetPlaceDetailsService(),
+                restaurantDetailsService: PreviewGetPlaceDetailsService(),
                 addReviewService: PreviewAddReviewService(),
                 location: Location(latitude: 0, longitude: 0),
                 userPreferences: UserPreferences(radius: 0, starsNumber: 0)

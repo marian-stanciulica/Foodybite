@@ -80,7 +80,7 @@ final class NewReviewSnapshotTests: XCTestCase {
         starsNumber: Int = 0,
         reviewText: String = "",
         autocompletePredictions: [AutocompletePrediction] = [],
-        getPlaceDetailsState: NewReviewViewModel.GetPlaceDetailsState = .idle,
+        getPlaceDetailsState: NewReviewViewModel.RestaurantDetailsState = .idle,
         fetchPhotoState: PhotoViewModel.State = .isLoading,
         postReviewState: NewReviewViewModel.PostReviewState = .idle
     ) -> NewReviewView<SelectedRestaurantView> {

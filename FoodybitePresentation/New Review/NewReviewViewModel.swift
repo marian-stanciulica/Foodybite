@@ -9,7 +9,7 @@ import Foundation
 import Domain
 
 public final class NewReviewViewModel: ObservableObject {
-    public enum GetPlaceDetailsError: String, Error {
+    public enum RestaurantDetailsError: String, Error {
         case serverError = "An error occured while fetching place details. Please try again later!"
     }
     
@@ -17,10 +17,10 @@ public final class NewReviewViewModel: ObservableObject {
         case serverError = "Review couldn't be posted. Please try again later!"
     }
     
-    public enum GetPlaceDetailsState: Equatable {
+    public enum RestaurantDetailsState: Equatable {
         case idle
         case isLoading
-        case failure(GetPlaceDetailsError)
+        case failure(RestaurantDetailsError)
         case success(RestaurantDetails)
     }
     
@@ -32,12 +32,12 @@ public final class NewReviewViewModel: ObservableObject {
     }
     
     private let autocompletePlacesService: AutocompleteRestaurantsService
-    private let getPlaceDetailsService: RestaurantDetailsService
+    private let restaurantDetailsService: RestaurantDetailsService
     private let addReviewService: AddReviewService
     private let location: Location
     private let userPreferences: UserPreferences
     
-    @Published public var getPlaceDetailsState: GetPlaceDetailsState = .idle
+    @Published public var getPlaceDetailsState: RestaurantDetailsState = .idle
     @Published public var postReviewState: PostReviewState = .idle
     
     @Published public var searchText = ""
@@ -52,9 +52,9 @@ public final class NewReviewViewModel: ObservableObject {
         return false
     }
     
-    public init(autocompletePlacesService: AutocompleteRestaurantsService, getPlaceDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
+    public init(autocompletePlacesService: AutocompleteRestaurantsService, restaurantDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
         self.autocompletePlacesService = autocompletePlacesService
-        self.getPlaceDetailsService = getPlaceDetailsService
+        self.restaurantDetailsService = restaurantDetailsService
         self.addReviewService = addReviewService
         self.location = location
         self.userPreferences = userPreferences
@@ -76,7 +76,7 @@ public final class NewReviewViewModel: ObservableObject {
         getPlaceDetailsState = .isLoading
         
         do {
-            let placeDetails = try await getPlaceDetailsService.getRestaurantDetails(placeID: placeID)
+            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
             getPlaceDetailsState = .success(placeDetails)
         } catch {
             getPlaceDetailsState = .failure(.serverError)

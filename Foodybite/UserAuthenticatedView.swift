@@ -98,7 +98,7 @@ struct UserAuthenticatedView: View {
                 plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
                     autocompletePlacesService: userAuthenticatedFactory.placesService,
-                    getPlaceDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
+                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                     addReviewService: userAuthenticatedFactory.authenticatedApiService,
                     location: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
