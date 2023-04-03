@@ -18,11 +18,10 @@ final class LocationProviderTests: XCTestCase {
         XCTAssertIdentical(locationManagerSpy.delegate, sut)
     }
     
-    func test_locationManagerDidChangeAuthorization_callsRequestWhenInUseAuthorizationWhenAuthorizationStatusIsNotDetermined() {
+    func test_requestWhenInUseAuthorization_callsRequestWhenInUseAuthorizationOnLocationManager() {
         let (sut, locationManagerSpy) = makeSUT()
-        locationManagerSpy.authorizationStatus = .notDetermined
         
-        sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
+        sut.requestWhenInUseAuthorization()
         
         XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
     }

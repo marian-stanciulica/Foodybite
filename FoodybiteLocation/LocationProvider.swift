@@ -34,14 +34,16 @@ public final class LocationProvider: NSObject, LocationProviding, ObservableObje
             locationManager.requestLocation()
         }
     }
+    
+    public func requestWhenInUseAuthorization() {
+        locationManager.requestWhenInUseAuthorization()
+    }
 }
 
 extension LocationProvider: LocationManagerDelegate  {
     
     public func locationManagerDidChangeAuthorization(manager: LocationManager) {
         switch manager.authorizationStatus {
-        case .notDetermined:
-            manager.requestWhenInUseAuthorization()
         case .authorizedWhenInUse, .authorizedAlways:
             locationServicesEnabled = true
         default:
