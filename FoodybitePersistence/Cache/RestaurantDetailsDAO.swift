@@ -17,13 +17,13 @@ public final class RestaurantDetailsDAO: RestaurantDetailsService, RestaurantDet
     }
     
     public func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
-        let allPlaces: [RestaurantDetails] = try await store.readAll()
+        let allRestaurants: [RestaurantDetails] = try await store.readAll()
         
-        guard let foundPlace = allPlaces.first(where: { $0.id == restaurantID }) else {
+        guard let foundRestaurant = allRestaurants.first(where: { $0.id == restaurantID }) else {
             throw CacheMissError()
         }
         
-        return foundPlace
+        return foundRestaurant
     }
     
     public func save(restaurantDetails: RestaurantDetails) async throws {

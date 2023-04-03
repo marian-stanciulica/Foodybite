@@ -16,7 +16,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         storeSpy.readResult = .failure(anyError())
         
         do {
-            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "place #1")
+            let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant #1")
             XCTFail("Expected to fail, received \(restaurantDetails) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -32,7 +32,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
-    func test_save_sendsPlaceDetailsToStore() async throws {
+    func test_save_sendsRestaurantsDetailsToStore() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         
@@ -57,7 +57,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
     
     private func makeRestaurantsDetailsArray() -> [RestaurantDetails] {
         [
-            RestaurantDetails(id: "Place #1",
+            RestaurantDetails(id: "restaurant #1",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -79,7 +79,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
     }
     
     private func makeRestaurantDetails() -> RestaurantDetails {
-        RestaurantDetails(id: "Expected place",
+        RestaurantDetails(id: "Expected restaurant",
                      phoneNumber: "",
                      name: "",
                      address: "",
