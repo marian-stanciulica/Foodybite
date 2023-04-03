@@ -90,7 +90,7 @@ public final class NewReviewViewModel: ObservableObject {
         if case let .success(placeDetails) = getRestaurantDetailsState {
             do {
                 try await addReviewService.addReview(
-                    restaurantID: placeDetails.restaurantID,
+                    restaurantID: placeDetails.id,
                     reviewText: reviewText,
                     starsNumber: starsNumber,
                     createdAt: Date())

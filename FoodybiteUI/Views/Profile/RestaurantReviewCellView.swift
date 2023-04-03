@@ -88,7 +88,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
-                restaurantID: "place #1",
+                id: "place #1",
                 phoneNumber: "",
                 name: "Place name",
                 address: "Place address",

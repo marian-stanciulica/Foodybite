@@ -28,7 +28,7 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
         let expectedRestaurantDetails = makeRestaurantDetails()
         serviceStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
@@ -46,7 +46,7 @@ final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
         let expectedRestaurantDetails = makeRestaurantDetails()
         serviceStub.stub = .success(expectedRestaurantDetails)
         
-        _ = try? await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
+        _ = try? await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
         
         XCTAssertEqual(cacheSpy.capturedValues, [expectedRestaurantDetails])
     }

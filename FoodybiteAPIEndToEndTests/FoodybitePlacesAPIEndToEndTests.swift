@@ -111,7 +111,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     private var expectedPlaceDetails: RestaurantDetails {
         RestaurantDetails(
-            restaurantID: "ChIJW823ek__sUARZVGTsg0Yx70",
+            id: "ChIJW823ek__sUARZVGTsg0Yx70",
             phoneNumber: nil,
             name: "Trattoria Il Calcio Ateneu",
             address: "langa Ateneul Roman, Strada Benjamin Franklin nr 1-3, București 030167, Romania",

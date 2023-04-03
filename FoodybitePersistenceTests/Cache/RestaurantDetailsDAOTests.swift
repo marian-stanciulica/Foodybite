@@ -28,7 +28,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
         let expectedRestaurantDetails = makeRestaurantDetails()
         storeSpy.readAllResult = .success(makeRestaurantsDetailsArray() + [expectedRestaurantDetails])
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
     
@@ -57,7 +57,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
     
     private func makeRestaurantsDetailsArray() -> [RestaurantDetails] {
         [
-            RestaurantDetails(restaurantID: "Place #1",
+            RestaurantDetails(id: "Place #1",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -66,7 +66,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
                          reviews: [],
                          location: Location(latitude: 0, longitude: 0),
                          photos: []),
-            RestaurantDetails(restaurantID: "Place #2",
+            RestaurantDetails(id: "Place #2",
                          phoneNumber: "",
                          name: "",
                          address: "",
@@ -79,7 +79,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
     }
     
     private func makeRestaurantDetails() -> RestaurantDetails {
-        RestaurantDetails(restaurantID: "Expected place",
+        RestaurantDetails(id: "Expected place",
                      phoneNumber: "",
                      name: "",
                      address: "",

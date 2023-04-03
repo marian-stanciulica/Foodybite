@@ -106,7 +106,7 @@ enum ProfileFlowView {
                     )
                 )
             }, showReviewView: {
-                flow.append(.addReview(placeDetails.restaurantID))
+                flow.append(.addReview(placeDetails.id))
             }
         )
     }

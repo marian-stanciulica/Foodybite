@@ -13,7 +13,7 @@ struct PlaceDetailsResponse: Decodable {
     
     var restaurantDetails: RestaurantDetails {
         RestaurantDetails(
-            restaurantID: result.placeID,
+            id: result.placeID,
             phoneNumber: result.internationalPhoneNumber,
             name: result.name,
             address: result.formattedAddress,

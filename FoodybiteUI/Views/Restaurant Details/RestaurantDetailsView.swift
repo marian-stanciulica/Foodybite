@@ -128,7 +128,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
     private class PreviewNearbyRestaurantsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
-                restaurantID: "place #1",
+                id: "place #1",
                 phoneNumber: "+61 2 9374 4000",
                 name: "Happy Bones",
                 address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",

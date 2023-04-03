@@ -9,7 +9,7 @@ import Domain
 
 class EmptyRestaurantDetailsService: RestaurantDetailsService {
     func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
-        RestaurantDetails(restaurantID: "",
+        RestaurantDetails(id: "",
                      phoneNumber: nil,
                      name: "",
                      address: "",

@@ -10,7 +10,7 @@ import UIKit
 import Domain
 
 func makePlaceDetails() -> RestaurantDetails {
-    RestaurantDetails(restaurantID: "place #1",
+    RestaurantDetails(id: "place #1",
                  phoneNumber: "0764 456 321",
                  name: "Place name",
                  address: "Place address",

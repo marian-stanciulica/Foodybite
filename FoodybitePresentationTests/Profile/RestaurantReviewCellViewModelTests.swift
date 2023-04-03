@@ -110,7 +110,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
     
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
-            restaurantID: "place #1",
+            id: "place #1",
             phoneNumber: "+61 2 9374 4000",
             name: "Place name",
             address: "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
@@ -162,7 +162,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
                 return try result.get()
             }
             
-            return RestaurantDetails(restaurantID: "place #1",
+            return RestaurantDetails(id: "place #1",
                                 phoneNumber: nil,
                                 name: "",
                                 address: "",

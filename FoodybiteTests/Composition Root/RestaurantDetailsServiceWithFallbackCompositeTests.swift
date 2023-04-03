@@ -16,7 +16,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         let expectedRestaurantDetails = makeRestaurantDetails()
         primaryStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
         
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
@@ -38,7 +38,7 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
         primaryStub.stub = .failure(anyError())
         secondaryStub.stub = .success(expectedRestaurantDetails)
         
-        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.restaurantID)
+        let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
         
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }

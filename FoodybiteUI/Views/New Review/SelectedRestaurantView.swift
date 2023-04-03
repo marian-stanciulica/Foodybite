@@ -43,7 +43,7 @@ struct SelectedRestaurantView_Previews: PreviewProvider {
                 )
             ),
             placeDetails: RestaurantDetails(
-                restaurantID: "",
+                id: "",
                 phoneNumber: nil,
                 name: "Place name",
                 address: "Place address",

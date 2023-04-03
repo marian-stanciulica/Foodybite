@@ -18,7 +18,7 @@ final class RestaurantDetailsServiceStub: RestaurantDetailsService {
             return try stub.get()
         }
         
-        return RestaurantDetails(restaurantID: "",
+        return RestaurantDetails(id: "",
                             phoneNumber: nil,
                             name: "",
                             address: "",
