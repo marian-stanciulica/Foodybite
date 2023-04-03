@@ -502,7 +502,7 @@ The following diagram presents the `Places` module which has as a dependency `AP
 | RemoteLoader | Validates the response from `HTTPClient` and parses the data or returns it directly |
 | PlacesService | Creates the endpoints and sends them to the `ResourceLoader` or `DataLoader` |
 | SearchNearbyEndpoint | Creates `URLRequest` for searching nearby restaurants |
-| GetPlaceDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
+| GetRestaurantDetailsEndpoint | Creates `URLRequest` for getting detailed information about a particular restaurant |
 | GetPlacePhotoEndpoint | Creates `URLRequest` for fetching image data using a photo reference |
 | AutocompleteEndpoint | Creates `URLRequest` for searching restaurants given an input, location and radius |
 
