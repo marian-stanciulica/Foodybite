@@ -1378,6 +1378,7 @@
 			isa = PBXGroup;
 			children = (
 				0FDA1A3D29DAADAD0081333A /* User Session Feature */,
+				0FDA1A3E29DAADF40081333A /* Update Account Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
 				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
 				0FDA1A3B29DAACFA0081333A /* Place Details Feature */,
@@ -1939,15 +1940,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		0F447CD028FB1A190026C5DB /* Auth Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */,
-				0F2A26AD2930D44A00387A1C /* AccountService.swift */,
-			);
-			path = "Auth Protocols";
-			sourceTree = "<group>";
-		};
 		0F447CD328FB1A650026C5DB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2461,7 +2453,6 @@
 		0FA6BE2A2994E87A003E1912 /* Networking Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F447CD028FB1A190026C5DB /* Auth Protocols */,
 				0FC863FC298E72C70024016B /* Review Protocols */,
 			);
 			path = "Networking Protocols";
@@ -2821,6 +2812,15 @@
 				0F73ECB4292FD9150025B237 /* LogoutService.swift */,
 			);
 			path = "User Session Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A3E29DAADF40081333A /* Update Account Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F2A26AD2930D44A00387A1C /* AccountService.swift */,
+				0F73EC8B292F757A0025B237 /* ChangePasswordService.swift */,
+			);
+			path = "Update Account Feature";
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
