@@ -12,7 +12,7 @@ import Domain
 
 @objc(ManagedRestaurantDetails)
 public class ManagedRestaurantDetails: NSManagedObject {
-    @NSManaged public var placeID: String
+    @NSManaged public var id: String
     @NSManaged public var phoneNumber: String?
     @NSManaged public var name: String
     @NSManaged public var address: String
@@ -29,7 +29,7 @@ public class ManagedRestaurantDetails: NSManagedObject {
     public convenience init(_ model: RestaurantDetails, for context: NSManagedObjectContext) {
         self.init(context: context)
 
-        placeID = model.id
+        id = model.id
         phoneNumber = model.phoneNumber
         name = model.name
         address = model.address

@@ -12,7 +12,7 @@ extension Review: LocalModelConvertable {
     public init(from managedReview: ManagedReview) {
         self.init(
             id: managedReview.id,
-            restaurantID: managedReview.placeID,
+            restaurantID: managedReview.restaurantID,
             profileImageURL: managedReview.profileImageURL,
             profileImageData: managedReview.profileImageData,
             authorName: managedReview.authorName,

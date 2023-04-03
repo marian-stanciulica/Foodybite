@@ -7,7 +7,7 @@
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPhoto" inverseName="nearbyPlace" inverseEntity="ManagedPhoto"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPhoto" inverseName="nearbyRestaurant" inverseEntity="ManagedPhoto"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -16,15 +16,15 @@
     </entity>
     <entity name="ManagedOpeningHoursDetails" representedClassName="ManagedOpeningHoursDetails" syncable="YES">
         <attribute name="openNow" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedRestaurantDetails" inverseName="openingHoursDetails" inverseEntity="ManagedRestaurantDetails"/>
+        <relationship name="restaurantDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedRestaurantDetails" inverseName="openingHoursDetails" inverseEntity="ManagedRestaurantDetails"/>
         <relationship name="weekdayText" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedWeekdayText" inverseName="openingHours" inverseEntity="ManagedWeekdayText"/>
     </entity>
     <entity name="ManagedPhoto" representedClassName="ManagedPhoto" syncable="YES">
         <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="reference" attributeType="String"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="nearbyPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNearbyRestaurant" inverseName="photo" inverseEntity="ManagedNearbyRestaurant"/>
-        <relationship name="placeDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedRestaurantDetails" inverseName="photos" inverseEntity="ManagedRestaurantDetails"/>
+        <relationship name="nearbyRestaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNearbyRestaurant" inverseName="photo" inverseEntity="ManagedNearbyRestaurant"/>
+        <relationship name="restaurantDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedRestaurantDetails" inverseName="photos" inverseEntity="ManagedRestaurantDetails"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="reference"/>
@@ -33,28 +33,28 @@
     </entity>
     <entity name="ManagedRestaurantDetails" representedClassName="ManagedRestaurantDetails" syncable="YES">
         <attribute name="address" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
-        <attribute name="placeID" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="openingHoursDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedOpeningHoursDetails" inverseName="placeDetails" inverseEntity="ManagedOpeningHoursDetails"/>
-        <relationship name="photos" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedPhoto" inverseName="placeDetails" inverseEntity="ManagedPhoto"/>
+        <relationship name="openingHoursDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedOpeningHoursDetails" inverseName="restaurantDetails" inverseEntity="ManagedOpeningHoursDetails"/>
+        <relationship name="photos" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedPhoto" inverseName="restaurantDetails" inverseEntity="ManagedPhoto"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="placeID"/>
+                <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
     <entity name="ManagedReview" representedClassName="ManagedReview" syncable="YES">
         <attribute name="authorName" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="placeID" attributeType="String"/>
         <attribute name="profileImageData" optional="YES" attributeType="Binary"/>
         <attribute name="profileImageURL" optional="YES" attributeType="URI"/>
         <attribute name="rating" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="relativeTime" attributeType="String"/>
+        <attribute name="restaurantID" attributeType="String"/>
         <attribute name="reviewText" attributeType="String"/>
         <uniquenessConstraints>
             <uniquenessConstraint>

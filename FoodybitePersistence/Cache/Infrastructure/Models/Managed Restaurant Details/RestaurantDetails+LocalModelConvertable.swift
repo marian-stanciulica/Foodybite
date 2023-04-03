@@ -24,7 +24,7 @@ extension RestaurantDetails: LocalModelConvertable {
             Photo(width: Int($0.width), height: Int($0.height), photoReference: $0.reference)
         }
         
-        self.init(id: managedRestaurantDetails.placeID,
+        self.init(id: managedRestaurantDetails.id,
                   phoneNumber: managedRestaurantDetails.phoneNumber,
                   name: managedRestaurantDetails.name,
                   address: managedRestaurantDetails.address,

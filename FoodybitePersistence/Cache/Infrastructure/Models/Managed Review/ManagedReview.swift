@@ -13,7 +13,7 @@ import Domain
 @objc(ManagedReview)
 public class ManagedReview: NSManagedObject {
     @NSManaged public var id: UUID
-    @NSManaged public var placeID: String
+    @NSManaged public var restaurantID: String
     @NSManaged public var profileImageURL: URL?
     @NSManaged public var profileImageData: Data?
     @NSManaged public var authorName: String
@@ -29,7 +29,7 @@ public class ManagedReview: NSManagedObject {
         self.init(context: context)
 
         id = model.id
-        placeID = model.restaurantID
+        restaurantID = model.restaurantID
         profileImageURL = model.profileImageURL
         profileImageData = model.profileImageData
         authorName = model.authorName
