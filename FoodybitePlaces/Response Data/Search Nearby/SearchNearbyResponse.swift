@@ -11,9 +11,9 @@ struct SearchNearbyResponse: Decodable {
     let results: [SearchNearbyResult]
     let status: SearchNearbyStatus
     
-    var nearbyPlaces: [NearbyPlace] {
+    var nearbyRestaurants: [NearbyRestaurant] {
         results.map {
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: $0.placeID,
                 placeName: $0.name,
                 isOpen: $0.openingHours?.openNow ?? false,

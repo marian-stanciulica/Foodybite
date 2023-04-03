@@ -13,12 +13,12 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
     
     func test_searchNearby_returnsNearbyPlacesWhenPrimaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, _) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyPlaces()
-        primaryStub.stub = .success(expectedNearbyPlaces)
+        let expectedNearbyRestaurants = makeNearbyRestaurants()
+        primaryStub.stub = .success(expectedNearbyRestaurants)
         
-        let receivedNearbyPlaces = try await searchNearby(on: sut)
+        let receivedNearbyRestaurants = try await searchNearby(on: sut)
         
-        XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
+        XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
     }
     
     func test_searchNearby_callsSecondaryWhenPrimaryThrowsError() async throws {
@@ -36,13 +36,13 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
     
     func test_searchNearby_returnsNearbyPlacesWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyPlaces()
+        let expectedNearbyRestaurants = makeNearbyRestaurants()
         primaryStub.stub = .failure(anyError())
-        secondaryStub.stub = .success(expectedNearbyPlaces)
+        secondaryStub.stub = .success(expectedNearbyRestaurants)
         
-        let receivedNearbyPlaces = try await searchNearby(on: sut)
+        let receivedNearbyRestaurants = try await searchNearby(on: sut)
         
-        XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces)
+        XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
     }
     
     func test_searchNearby_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
@@ -67,7 +67,7 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
         return (sut, primaryStub, secondaryStub)
     }
     
-    private func searchNearby(on sut: SearchNearbyServiceWithFallbackComposite, location: Location? = nil, radius: Int = 0) async throws -> [NearbyPlace] {
+    private func searchNearby(on sut: SearchNearbyServiceWithFallbackComposite, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
 }

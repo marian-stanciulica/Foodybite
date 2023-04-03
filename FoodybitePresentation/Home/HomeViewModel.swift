@@ -17,7 +17,7 @@ public final class HomeViewModel: ObservableObject {
         case idle
         case isLoading
         case failure(SearchNearbyError)
-        case success([NearbyPlace])
+        case success([NearbyRestaurant])
     }
     
     private let searchNearbyService: SearchNearbyService
@@ -27,14 +27,14 @@ public final class HomeViewModel: ObservableObject {
     @Published public var searchNearbyState: State = .idle
     @Published public var searchText = ""
     
-    public var filteredNearbyPlaces: [NearbyPlace] {
-        guard case let .success(nearbyPlaces) = searchNearbyState else { return [] }
+    public var filteredNearbyRestaurants: [NearbyRestaurant] {
+        guard case let .success(nearbyRestaurants) = searchNearbyState else { return [] }
         
         if searchText.isEmpty {
-            return nearbyPlaces
+            return nearbyRestaurants
         }
         
-        return nearbyPlaces.filter { $0.placeName.contains(searchText) }
+        return nearbyRestaurants.filter { $0.placeName.contains(searchText) }
     }
     
     public init(searchNearbyService: SearchNearbyService, currentLocation: Location, userPreferences: UserPreferences) {

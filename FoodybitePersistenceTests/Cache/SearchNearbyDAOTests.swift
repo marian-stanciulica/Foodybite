@@ -28,7 +28,7 @@ final class SearchNearbyDAOTests: XCTestCase {
         let radius = 10
         distanceSolverStub.stub = [9, 11, 8]
         
-        let nearbyPlaces = makeNearbyPlaces()
+        let nearbyPlaces = makeNearbyRestaurants()
         storeSpy.readAllResult = .success(nearbyPlaces)
         
         let receivedNearbyPlaces = try await searchNearby(on: sut, radius: radius)
@@ -37,14 +37,14 @@ final class SearchNearbyDAOTests: XCTestCase {
     
     func test_save_sendsNearbyPlacesToStore() async throws {
         let (sut, storeSpy, _) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyPlaces()
+        let expectedNearbyPlaces = makeNearbyRestaurants()
         
         try await sut.save(nearbyPlaces: expectedNearbyPlaces)
         
         XCTAssertEqual(storeSpy.messages.count, 1)
         
         if case let .writeAll(receivedNearbyPlaces) = storeSpy.messages[0] {
-            XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces as! [NearbyPlace])
+            XCTAssertEqual(expectedNearbyPlaces, receivedNearbyPlaces as! [NearbyRestaurant])
         } else {
             XCTFail("Expected .writeAll message, got \(storeSpy.messages[0]) instead")
         }
@@ -63,23 +63,23 @@ final class SearchNearbyDAOTests: XCTestCase {
         Location(latitude: 0, longitude: 0)
     }
     
-    private func makeNearbyPlaces() -> [NearbyPlace] {
+    private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "place #1",
                 placeName: "Place name 1",
                 isOpen: true,
                 rating: 3,
                 location: Location(latitude: 2, longitude: 5),
                 photo: nil),
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "place #2",
                 placeName: "Place name 2",
                 isOpen: false,
                 rating: 4,
                 location: Location(latitude: 43, longitude: 56),
                 photo: nil),
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "place #3",
                 placeName: "Place name 3",
                 isOpen: true,
@@ -89,7 +89,7 @@ final class SearchNearbyDAOTests: XCTestCase {
         ]
     }
     
-    private func searchNearby(on sut: SearchNearbyDAO, location: Location? = nil, radius: Int = 0) async throws -> [NearbyPlace] {
+    private func searchNearby(on sut: SearchNearbyDAO, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     

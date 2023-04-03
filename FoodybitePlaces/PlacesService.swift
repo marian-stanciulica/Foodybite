@@ -18,7 +18,7 @@ public class PlacesService {
 }
 
 extension PlacesService: SearchNearbyService {
-    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         let endpoint = SearchNearbyEndpoint(location: location, radius: radius)
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
@@ -27,7 +27,7 @@ extension PlacesService: SearchNearbyService {
             throw StatusError()
         }
         
-        return response.nearbyPlaces
+        return response.nearbyRestaurants
     }
 }
 

@@ -35,14 +35,14 @@ final class HomeViewSnapshotTests: XCTestCase {
     }
     
     func test_homeViewSuccessState() {
-        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()))
+        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyRestaurants()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
     func test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsFailure() {
-        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()),
+        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -50,7 +50,7 @@ final class HomeViewSnapshotTests: XCTestCase {
     }
     
     func test_homeViewWhenGetNearbyPlaceStateIsSuccessAndFetchPhotoStateIsSuccess() {
-        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyPlaces()),
+        let sut = makeSUT(getNearbyPlacesState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .success(makePhotoData()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -58,9 +58,9 @@ final class HomeViewSnapshotTests: XCTestCase {
     }
     
     func test_homeViewWhenSearchTextIsNotEmpty() {
-        let nearbyPlaces = makeNearbyPlaces()
-        let sut = makeSUT(searchText: nearbyPlaces[1].placeName,
-                          getNearbyPlacesState: .success(nearbyPlaces),
+        let nearbyRestaurants = makeNearbyRestaurants()
+        let sut = makeSUT(searchText: nearbyRestaurants[1].placeName,
+                          getNearbyPlacesState: .success(nearbyRestaurants),
                           fetchPhotoState: .success(makePhotoData()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -92,11 +92,11 @@ final class HomeViewSnapshotTests: XCTestCase {
         let homeView = HomeView(
             viewModel: homeViewModel,
             showPlaceDetails: { _ in },
-            cell: { nearbyPlace in
+            cell: { nearbyRestaurant in
                 RestaurantCell(
                     photoView: PhotoView(viewModel: photoViewModel),
                     viewModel: RestaurantCellViewModel(
-                        nearbyPlace: nearbyPlace,
+                        nearbyRestaurant: nearbyRestaurant,
                         distanceInKmFromCurrentLocation: 23.4
                     )
                 )
@@ -112,23 +112,23 @@ final class HomeViewSnapshotTests: XCTestCase {
         return homeView
     }
     
-    private func makeNearbyPlaces() -> [NearbyPlace] {
+    private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "place #1",
                 placeName: "Place name 1",
                 isOpen: true,
                 rating: 3,
                 location: Location(latitude: 2, longitude: 5),
                 photo: nil),
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "place #2",
                 placeName: "Place name 2",
                 isOpen: false,
                 rating: 4,
                 location: Location(latitude: 43, longitude: 56),
                 photo: nil),
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "place #3",
                 placeName: "Place name 3",
                 isOpen: true,
@@ -139,7 +139,7 @@ final class HomeViewSnapshotTests: XCTestCase {
     }
     
     private class EmptySearchNearbyService: SearchNearbyService {
-        func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] { [] }
+        func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] { [] }
     }
             
     private func makeUserPreferences() -> UserPreferences {

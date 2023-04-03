@@ -39,7 +39,7 @@ final class RestaurantCellViewModelTests: XCTestCase {
     
     private func makeSUT() -> RestaurantCellViewModel {
         let sut = RestaurantCellViewModel(
-            nearbyPlace: NearbyPlace(
+            nearbyRestaurant: NearbyRestaurant(
                 placeID: UUID().uuidString,
                 placeName: anyPlaceName(),
                 isOpen: isOpen(),

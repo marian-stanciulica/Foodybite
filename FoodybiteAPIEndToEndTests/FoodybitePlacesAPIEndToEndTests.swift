@@ -14,8 +14,8 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
 
     func test_endToEndSearchNearby_matchesFixedTestNearbyPlaces() async {
         do {
-            let receivedNearbyPlaces = try await getNearbyPlaces()
-            XCTAssertTrue(areEqual(first: receivedNearbyPlaces, second: expectedNearbyPlaces))
+            let receivedNearbyRestaurants = try await getNearbyRestaurants()
+            XCTAssertTrue(areEqual(first: receivedNearbyRestaurants, second: expectedNearbyRestaurants))
         } catch {
             XCTFail("Expected successful nearby places request, got \(error) instead")
         }
@@ -53,7 +53,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         return try await apiService.getPlaceDetails(placeID: "ChIJW823ek__sUARZVGTsg0Yx70")
     }
     
-    private func getNearbyPlaces(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyPlace] {
+    private func getNearbyRestaurants(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyRestaurant] {
         let apiService = makeSUT(file: file, line: line)
         let location = Location(latitude: 44.441016, longitude: 26.0975475)
         let radius = 50
@@ -68,23 +68,23 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         return try await apiService.autocomplete(input: input, location: location, radius: radius)
     }
     
-    private var expectedNearbyPlaces: [NearbyPlace] {
+    private var expectedNearbyRestaurants: [NearbyRestaurant] {
         [
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "ChIJW823ek__sUARZVGTsg0Yx70",
                 placeName: "Trattoria Il Calcio Ateneu",
                 isOpen: false,
                 rating: 4.2,
                 location: Location(latitude: 44.441016, longitude: 26.0975475),
                 photo: Photo(width: 1600, height: 1063, photoReference: "AfLeUgPOZIEqo7bgl3yeMQFrosnDUOi1Z67x4Mwem_VBKOJPMyLMM6q6uArOa5Uu0U6bph2ToNq9Gql6gKWBft6-7kNjbvt_b7Kdob3jizzu4gDcTYvdJTePL0m78lxQH6l5p85OR3FMTweC6DQiIaVlcA-fwekEm80DKCNbYbycgspK4PIr")),
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "ChIJz7sYKOv_sUARrLLBAx36TFs",
                 placeName: "MACE by Joseph Hadad",
                 isOpen: true,
                 rating: 4.3,
                 location: Location(latitude: 44.4412386, longitude: 26.098049),
                 photo: Photo(width: 7952, height: 5304, photoReference: "AfLeUgNupaTE3EI92EI3ikWp53wttMWcn-52xYfTilSfij1TFU0HT-hSZUuqG_jzyoj8buPlNwXUqhrKsuPg5Xe6DLUeZ8FYsDg1YgDIja2vBaxpYwwtyFy4G6D7UgEU394jMyXm8FDgK8ztAXnkrS58Ta9zQ97X3FyjSoL5d5c6YER3BJC4")),
-            NearbyPlace(
+            NearbyRestaurant(
                 placeID: "ChIJ9feBck__sUARr25IXqhjG-Q",
                 placeName: "Mara Mura Ateneu",
                 isOpen: true,
@@ -94,7 +94,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         ]
     }
     
-    private func areEqual(first: [NearbyPlace], second: [NearbyPlace]) -> Bool {
+    private func areEqual(first: [NearbyRestaurant], second: [NearbyRestaurant]) -> Bool {
         guard first.count == second.count else { return false }
         
         for i in 0..<first.count {

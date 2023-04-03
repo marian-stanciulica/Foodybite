@@ -8,7 +8,7 @@
 import Domain
 import CoreData
 
-extension NearbyPlace: LocalModelConvertable {
+extension NearbyRestaurant: LocalModelConvertable {
     public init(from managedNearbyPlace: ManagedNearbyPlace) {
         var photo: Photo? = nil
         

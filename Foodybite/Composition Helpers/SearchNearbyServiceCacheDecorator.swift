@@ -16,7 +16,7 @@ public final class SearchNearbyServiceCacheDecorator: SearchNearbyService {
         self.cache = cache
     }
     
-    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         let nearbyPlaces = try await searchNearbyService.searchNearby(location: location, radius: radius)
         try? await cache.save(nearbyPlaces: nearbyPlaces)
         return nearbyPlaces

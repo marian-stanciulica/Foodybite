@@ -9,9 +9,9 @@ import Domain
 
 final class SearchNearbyServiceStub: SearchNearbyService {
     private(set) var capturedValues = [(location: Location, radius: Int)]()
-    var stub: Result<[NearbyPlace], Error>?
+    var stub: Result<[NearbyRestaurant], Error>?
     
-    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+    func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         capturedValues.append((location, radius))
         
         if let stub = stub {

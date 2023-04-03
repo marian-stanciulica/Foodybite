@@ -25,11 +25,11 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     
     func test_searchNearby_returnsNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async throws {
         let (sut, serviceStub, _) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyPlaces()
-        serviceStub.stub = .success(expectedNearbyPlaces)
+        let expectedNearbyRestaurants = makeNearbyRestaurants()
+        serviceStub.stub = .success(expectedNearbyRestaurants)
         
-        let receivedNearbyPlaces = try await searchNearby(on: sut)
-        XCTAssertEqual(receivedNearbyPlaces, expectedNearbyPlaces)
+        let receivedNearbyRestaurants = try await searchNearby(on: sut)
+        XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
     }
     
     func test_searchNearby_doesNotCacheWhenSearchNearbyServiceThrowsError() async {
@@ -43,12 +43,12 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     
     func test_searchNearby_cachesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyPlaces()
-        serviceStub.stub = .success(expectedNearbyPlaces)
+        let expectedNearbyRestaurants = makeNearbyRestaurants()
+        serviceStub.stub = .success(expectedNearbyRestaurants)
         
         _ = try? await searchNearby(on: sut)
         
-        XCTAssertEqual(cacheSpy.capturedValues, [expectedNearbyPlaces])
+        XCTAssertEqual(cacheSpy.capturedValues, [expectedNearbyRestaurants])
     }
     
     // MARK: - Helpers
@@ -60,14 +60,14 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
         return (sut, serviceStub, cacheSpy)
     }
     
-    private func searchNearby(on sut: SearchNearbyServiceCacheDecorator, location: Location? = nil, radius: Int = 0) async throws -> [NearbyPlace] {
+    private func searchNearby(on sut: SearchNearbyServiceCacheDecorator, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     
     private class SearchNearbyCacheSpy: SearchNearbyCache {
-        private(set) var capturedValues = [[NearbyPlace]]()
+        private(set) var capturedValues = [[NearbyRestaurant]]()
         
-        func save(nearbyPlaces: [NearbyPlace]) async throws {
+        func save(nearbyPlaces: [NearbyRestaurant]) async throws {
             capturedValues.append(nearbyPlaces)
         }
     }

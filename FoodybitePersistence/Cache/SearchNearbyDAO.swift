@@ -16,7 +16,7 @@ public final class SearchNearbyDAO: SearchNearbyService, SearchNearbyCache {
         self.getDistanceInKm = getDistanceInKm
     }
     
-    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         try await store.readAll()
             .filter {
                 let distance = getDistanceInKm(location, $0.location)
@@ -24,7 +24,7 @@ public final class SearchNearbyDAO: SearchNearbyService, SearchNearbyCache {
             }
     }
     
-    public func save(nearbyPlaces: [NearbyPlace]) async throws {
+    public func save(nearbyPlaces: [NearbyRestaurant]) async throws {
         try await store.writeAll(nearbyPlaces)
     }
 }

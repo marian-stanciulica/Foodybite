@@ -16,7 +16,7 @@ public final class SearchNearbyServiceWithFallbackComposite: SearchNearbyService
         self.secondary = secondary
     }
     
-    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+    public func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
         do {
             return try await primary.searchNearby(location: location, radius: radius)
         } catch {

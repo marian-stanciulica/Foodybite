@@ -9,24 +9,24 @@ import Foundation
 import Domain
 
 public final class RestaurantCellViewModel: ObservableObject {
-    private let nearbyPlace: NearbyPlace
+    private let nearbyRestaurant: NearbyRestaurant
     private let distanceInKmFromCurrentLocation: Double
     
-    public init(nearbyPlace: NearbyPlace, distanceInKmFromCurrentLocation: Double) {
-        self.nearbyPlace = nearbyPlace
+    public init(nearbyRestaurant: NearbyRestaurant, distanceInKmFromCurrentLocation: Double) {
+        self.nearbyRestaurant = nearbyRestaurant
         self.distanceInKmFromCurrentLocation = distanceInKmFromCurrentLocation
     }
     
     public var isOpen: Bool {
-        nearbyPlace.isOpen
+        nearbyRestaurant.isOpen
     }
     
     public var placeName: String {
-        nearbyPlace.placeName
+        nearbyRestaurant.placeName
     }
     
     public var rating: String {
-        String(format: "%.1f", nearbyPlace.rating)
+        String(format: "%.1f", nearbyRestaurant.rating)
     }
     
     public var distance: String {

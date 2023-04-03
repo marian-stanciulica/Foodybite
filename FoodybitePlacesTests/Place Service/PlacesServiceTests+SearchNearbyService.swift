@@ -47,7 +47,7 @@ extension PlacesServiceTests {
     
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
         let expectedResponse = anySearchNearbyResponse()
-        let expected = expectedResponse.nearbyPlaces
+        let expected = expectedResponse.nearbyRestaurants
         let (sut, _) = makeSUT(response: expectedResponse)
         
         let receivedResponse = try await searchNearby(on: sut)
@@ -56,7 +56,7 @@ extension PlacesServiceTests {
     
     // MARK: - Helpers
     
-    private func searchNearby(on sut: PlacesService, location: Location? = nil, radius: Int? = nil) async throws -> [NearbyPlace] {
+    private func searchNearby(on sut: PlacesService, location: Location? = nil, radius: Int? = nil) async throws -> [NearbyRestaurant] {
         let defaultLocation = Location(latitude: -33.8, longitude: 15.1)
         let defaultRadius = 15
         

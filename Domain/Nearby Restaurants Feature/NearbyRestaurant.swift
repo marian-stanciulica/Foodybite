@@ -1,11 +1,11 @@
 //
-//  NearbyPlace.swift
-//  FoodybitePlaces
+//  NearbyRestaurant.swift
+//  Domain
 //
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct NearbyPlace: Equatable {
+public struct NearbyRestaurant: Equatable {
     public let placeID: String
     public let placeName: String
     public let isOpen: Bool
@@ -22,7 +22,7 @@ public struct NearbyPlace: Equatable {
         self.photo = photo
     }
     
-    public static func ==(lhs: NearbyPlace, rhs: NearbyPlace) -> Bool {
+    public static func ==(lhs: NearbyRestaurant, rhs: NearbyRestaurant) -> Bool {
         lhs.placeID == rhs.placeID &&
         lhs.placeName == rhs.placeName &&
         lhs.location == rhs.location &&

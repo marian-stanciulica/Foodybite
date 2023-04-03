@@ -6,5 +6,5 @@
 //
 
 public protocol SearchNearbyCache {
-    func save(nearbyPlaces: [NearbyPlace]) async throws
+    func save(nearbyPlaces: [NearbyRestaurant]) async throws
 }

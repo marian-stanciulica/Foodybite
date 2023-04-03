@@ -23,7 +23,7 @@ public class ManagedNearbyPlace: NSManagedObject {
         return NSFetchRequest<ManagedNearbyPlace>(entityName: "ManagedNearbyPlace")
     }
     
-    public convenience init(_ model: NearbyPlace, for context: NSManagedObjectContext) {
+    public convenience init(_ model: NearbyRestaurant, for context: NSManagedObjectContext) {
         self.init(context: context)
 
         placeID = model.placeID

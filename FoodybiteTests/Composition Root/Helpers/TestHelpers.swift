@@ -16,23 +16,23 @@ func anyError() -> NSError {
     NSError(domain: "any error", code: 1)
 }
 
-func makeNearbyPlaces() -> [NearbyPlace] {
+func makeNearbyRestaurants() -> [NearbyRestaurant] {
     [
-        NearbyPlace(
+        NearbyRestaurant(
             placeID: "place #1",
             placeName: "Place name 1",
             isOpen: true,
             rating: 3,
             location: Location(latitude: 2, longitude: 5),
             photo: nil),
-        NearbyPlace(
+        NearbyRestaurant(
             placeID: "place #2",
             placeName: "Place name 2",
             isOpen: false,
             rating: 4,
             location: Location(latitude: 43, longitude: 56),
             photo: nil),
-        NearbyPlace(
+        NearbyRestaurant(
             placeID: "place #3",
             placeName: "Place name 3",
             isOpen: true,

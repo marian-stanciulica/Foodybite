@@ -12,13 +12,13 @@ import FoodybitePresentation
 public struct HomeView<Cell: View, SearchView: View>: View {
     @ObservedObject var viewModel: HomeViewModel
     let showPlaceDetails: (String) -> Void
-    let cell: (NearbyPlace) -> Cell
+    let cell: (NearbyRestaurant) -> Cell
     let searchView: (Binding<String>) -> SearchView
     
     public init(
         viewModel: HomeViewModel,
         showPlaceDetails: @escaping (String) -> Void,
-        cell: @escaping (NearbyPlace) -> Cell,
+        cell: @escaping (NearbyRestaurant) -> Cell,
         searchView: @escaping (Binding<String>) -> SearchView
     ) {
         self.viewModel = viewModel
@@ -48,7 +48,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                         .padding(.bottom)
                     
                     LazyVStack {
-                        ForEach(viewModel.filteredNearbyPlaces, id: \.placeID) { place in
+                        ForEach(viewModel.filteredNearbyRestaurants, id: \.placeID) { place in
                             cell(place)
                                 .background(Color(uiColor: .systemBackground))
                                 .cornerRadius(16)
@@ -81,7 +81,7 @@ struct HomeView_Previews: PreviewProvider {
                 currentLocation: Location(latitude: 2.3, longitude: 4.5),
                 userPreferences: UserPreferences(radius: 200, starsNumber: 4)
             ),
-            showPlaceDetails: { _ in }, cell: { nearbyPlace in
+            showPlaceDetails: { _ in }, cell: { nearbyRestaurant in
                 RestaurantCell(
                     photoView: PhotoView(
                         viewModel: PhotoViewModel(
@@ -90,7 +90,7 @@ struct HomeView_Previews: PreviewProvider {
                         )
                     ),
                     viewModel: RestaurantCellViewModel(
-                        nearbyPlace: nearbyPlace,
+                        nearbyRestaurant: nearbyRestaurant,
                         distanceInKmFromCurrentLocation: 2.3
                     )
                 )
@@ -100,11 +100,11 @@ struct HomeView_Previews: PreviewProvider {
     }
     
     private class PreviewSearchNearbyService: SearchNearbyService {
-        func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+        func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
             [
-                NearbyPlace(placeID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
-                NearbyPlace(placeID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
-                NearbyPlace(placeID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
+                NearbyRestaurant(placeID: "#1", placeName: "Place name #1", isOpen: true, rating: 3.4, location: Location(latitude: 0, longitude: 0), photo: nil),
+                NearbyRestaurant(placeID: "#2", placeName: "Place name #2", isOpen: false, rating: 4.3, location: Location(latitude: 2, longitude: 1), photo: nil),
+                NearbyRestaurant(placeID: "#3", placeName: "Place name #3", isOpen: true, rating: 5.0, location: Location(latitude: 4, longitude: 5), photo: nil)
             ]
         }
     }

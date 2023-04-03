@@ -6,5 +6,5 @@
 //
 
 public protocol SearchNearbyService {
-    func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace]
+    func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant]
 }

@@ -33,9 +33,9 @@ enum HomeFlowView {
             showPlaceDetails: { placeID in
                 flow.append(.placeDetails(placeID))
             },
-            cell: { nearbyPlace in
-                makeRestaurantCell(nearbyPlace: nearbyPlace,
-                                   distanceInKmFromCurrentLocation: computeDistanceInKmFromCurrentLocation(nearbyPlace.location),
+            cell: { nearbyRestaurant in
+                makeRestaurantCell(nearbyRestaurant: nearbyRestaurant,
+                                   distanceInKmFromCurrentLocation: computeDistanceInKmFromCurrentLocation(nearbyRestaurant.location),
                                    fetchPhotoService: fetchPhotoService)
             },
             searchView: { searchText in
@@ -47,19 +47,19 @@ enum HomeFlowView {
     }
     
     @ViewBuilder private static func makeRestaurantCell(
-        nearbyPlace: NearbyPlace,
+        nearbyRestaurant: NearbyRestaurant,
         distanceInKmFromCurrentLocation: Double,
         fetchPhotoService: FetchPlacePhotoService
     ) -> some View {
         RestaurantCell(
             photoView: PhotoView(
                 viewModel: PhotoViewModel(
-                    photoReference: nearbyPlace.photo?.photoReference,
+                    photoReference: nearbyRestaurant.photo?.photoReference,
                     fetchPhotoService: fetchPhotoService
                 )
             ),
             viewModel: RestaurantCellViewModel(
-                nearbyPlace: nearbyPlace,
+                nearbyRestaurant: nearbyRestaurant,
                 distanceInKmFromCurrentLocation: distanceInKmFromCurrentLocation
             )
         )

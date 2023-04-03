@@ -42,7 +42,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_searchNearby_updatesNearbyPlacesWhenSearchNearbyServiceReturnsSuccessfully() async {
         let (sut, serviceSpy) = makeSUT()
-        let expectedNearbyPlaces = makeNearbyPlaces()
+        let expectedNearbyPlaces = makeNearbyRestaurants()
         serviceSpy.result = .success(expectedNearbyPlaces)
         
         await assert(on: sut, withExpectedResult: .success(expectedNearbyPlaces))
@@ -52,31 +52,31 @@ final class HomeViewModelTests: XCTestCase {
         let (sut, _) = makeSUT()
         
         sut.searchNearbyState = .idle
-        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
         
         sut.searchNearbyState = .isLoading
-        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
         
         sut.searchNearbyState = .failure(.serverError)
-        XCTAssertTrue(sut.filteredNearbyPlaces.isEmpty)
+        XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
     }
     
     func test_filteredNearbyPlaces_filtersNearbyPlacesUsingSearchText() {
         let (sut, _) = makeSUT()
-        let nearbyPlaces = makeNearbyPlaces()
+        let nearbyPlaces = makeNearbyRestaurants()
         sut.searchNearbyState = .success(nearbyPlaces)
         sut.searchText = nearbyPlaces[1].placeName
         
-        XCTAssertEqual(sut.filteredNearbyPlaces, [nearbyPlaces[1]])
+        XCTAssertEqual(sut.filteredNearbyRestaurants, [nearbyPlaces[1]])
     }
     
     func test_filteredNearbyPlaces_equalsNearbyPlacesWhensearchTextIsEmpty() {
         let (sut, _) = makeSUT()
-        let nearbyPlaces = makeNearbyPlaces()
+        let nearbyPlaces = makeNearbyRestaurants()
         sut.searchNearbyState = .success(nearbyPlaces)
         sut.searchText = ""
         
-        XCTAssertEqual(sut.filteredNearbyPlaces, nearbyPlaces)
+        XCTAssertEqual(sut.filteredNearbyRestaurants, nearbyPlaces)
     }
     
     // MARK: - Helpers
@@ -113,19 +113,19 @@ final class HomeViewModelTests: XCTestCase {
         UserPreferences(radius: 200, starsNumber: 4)
     }
     
-    private func makeNearbyPlaces() -> [NearbyPlace] {
+    private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
-            NearbyPlace(placeID: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
-            NearbyPlace(placeID: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
-            NearbyPlace(placeID: "#3", placeName: "place 3", isOpen: false, rating: 4.5, location: Location(latitude: 4, longitude: 5), photo: nil)
+            NearbyRestaurant(placeID: "#1", placeName: "place 1", isOpen: false, rating: 2.3, location: Location(latitude: 0, longitude: 1), photo: nil),
+            NearbyRestaurant(placeID: "#2", placeName: "place 2", isOpen: true, rating: 4.4, location: Location(latitude: 2, longitude: 3), photo: nil),
+            NearbyRestaurant(placeID: "#3", placeName: "place 3", isOpen: false, rating: 4.5, location: Location(latitude: 4, longitude: 5), photo: nil)
         ]
     }
     
     private class SearchNearbyServiceSpy: SearchNearbyService {
-        var result: Result<[NearbyPlace], Error>?
+        var result: Result<[NearbyRestaurant], Error>?
         private(set) var capturedValues = [(location: Location, radius: Int)]()
         
-        func searchNearby(location: Location, radius: Int) async throws -> [NearbyPlace] {
+        func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
             capturedValues.append((location, radius))
 
             if let result = result {
