@@ -53,10 +53,10 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: GetPlaceDetailsServiceCacheDecorator, serviceStub: GetPlaceDetailsServiceStub, cacheSpy: PlaceDetailsCacheSpy) {
+    private func makeSUT() -> (sut: RestaurantDetailsServiceCacheDecorator, serviceStub: GetPlaceDetailsServiceStub, cacheSpy: PlaceDetailsCacheSpy) {
         let serviceStub = GetPlaceDetailsServiceStub()
         let cacheSpy = PlaceDetailsCacheSpy()
-        let sut = GetPlaceDetailsServiceCacheDecorator(getPlaceDetailsService: serviceStub, cache: cacheSpy)
+        let sut = RestaurantDetailsServiceCacheDecorator(getPlaceDetailsService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)
     }
     

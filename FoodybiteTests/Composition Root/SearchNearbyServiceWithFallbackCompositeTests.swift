@@ -60,14 +60,14 @@ final class SearchNearbyServiceWithFallbackCompositeTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyServiceWithFallbackComposite, primaryStub: SearchNearbyServiceStub, secondaryStub: SearchNearbyServiceStub) {
+    private func makeSUT() -> (sut: NearbyRestaurantsServiceWithFallbackComposite, primaryStub: SearchNearbyServiceStub, secondaryStub: SearchNearbyServiceStub) {
         let primaryStub = SearchNearbyServiceStub()
         let secondaryStub = SearchNearbyServiceStub()
-        let sut = SearchNearbyServiceWithFallbackComposite(primary: primaryStub, secondary: secondaryStub)
+        let sut = NearbyRestaurantsServiceWithFallbackComposite(primary: primaryStub, secondary: secondaryStub)
         return (sut, primaryStub, secondaryStub)
     }
     
-    private func searchNearby(on sut: SearchNearbyServiceWithFallbackComposite, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
+    private func searchNearby(on sut: NearbyRestaurantsServiceWithFallbackComposite, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
 }

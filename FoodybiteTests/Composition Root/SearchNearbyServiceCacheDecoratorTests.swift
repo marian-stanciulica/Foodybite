@@ -53,14 +53,14 @@ final class SearchNearbyServiceCacheDecoratorTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: SearchNearbyServiceCacheDecorator, serviceStub: SearchNearbyServiceStub, cacheSpy: SearchNearbyCacheSpy) {
+    private func makeSUT() -> (sut: NearbyRestaurantsServiceCacheDecorator, serviceStub: SearchNearbyServiceStub, cacheSpy: SearchNearbyCacheSpy) {
         let serviceStub = SearchNearbyServiceStub()
         let cacheSpy = SearchNearbyCacheSpy()
-        let sut = SearchNearbyServiceCacheDecorator(searchNearbyService: serviceStub, cache: cacheSpy)
+        let sut = NearbyRestaurantsServiceCacheDecorator(searchNearbyService: serviceStub, cache: cacheSpy)
         return (sut, serviceStub, cacheSpy)
     }
     
-    private func searchNearby(on sut: SearchNearbyServiceCacheDecorator, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
+    private func searchNearby(on sut: NearbyRestaurantsServiceCacheDecorator, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
     

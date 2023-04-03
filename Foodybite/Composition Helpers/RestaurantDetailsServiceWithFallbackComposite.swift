@@ -1,5 +1,5 @@
 //
-//  GetPlaceDetailsWithFallbackComposite.swift
+//  RestaurantDetailsServiceWithFallbackComposite.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class GetPlaceDetailsWithFallbackComposite: RestaurantDetailsService {
+public final class RestaurantDetailsServiceWithFallbackComposite: RestaurantDetailsService {
     private let primary: RestaurantDetailsService
     private let secondary: RestaurantDetailsService
     

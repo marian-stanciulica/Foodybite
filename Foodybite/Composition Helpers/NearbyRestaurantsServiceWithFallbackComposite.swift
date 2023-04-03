@@ -1,5 +1,5 @@
 //
-//  SearchNearbyServiceWithFallbackComposite.swift
+//  NearbyRestaurantsServiceWithFallbackComposite.swift
 //  Foodybite
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class SearchNearbyServiceWithFallbackComposite: NearbyRestaurantsService {
+public final class NearbyRestaurantsServiceWithFallbackComposite: NearbyRestaurantsService {
     private let primary: NearbyRestaurantsService
     private let secondary: NearbyRestaurantsService
     
