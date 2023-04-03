@@ -28,8 +28,8 @@ final class NewReviewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
     
-    func test_newReviewViewWhenGetPlaceDetailsStateIsSuccess() {
-        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
+    func test_newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
+        let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .isLoading)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -37,7 +37,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     }
     
     func test_newReviewWhenFetchPhotoStateIsFailure() {
-        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
+        let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -45,7 +45,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     }
     
     func test_newReviewWhenFetchPhotoStateIsSuccess() {
-        let sut = makeSUT(getPlaceDetailsState: .success(makePlaceDetails()),
+        let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -55,7 +55,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     func test_newReviewWhenInputIsValidPostButtonIsEnabled() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
-                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
         
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
@@ -65,7 +65,7 @@ final class NewReviewSnapshotTests: XCTestCase {
     func test_newReviewWhenPostReviewStateIsIsLoading() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
-                          getPlaceDetailsState: .success(makePlaceDetails()),
+                          getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure,
                           postReviewState: .isLoading)
         
@@ -80,12 +80,12 @@ final class NewReviewSnapshotTests: XCTestCase {
         starsNumber: Int = 0,
         reviewText: String = "",
         autocompletePredictions: [AutocompletePrediction] = [],
-        getPlaceDetailsState: NewReviewViewModel.RestaurantDetailsState = .idle,
+        getRestaurantDetailsState: NewReviewViewModel.RestaurantDetailsState = .idle,
         fetchPhotoState: PhotoViewModel.State = .isLoading,
         postReviewState: NewReviewViewModel.PostReviewState = .idle
     ) -> NewReviewView<SelectedRestaurantView> {
         let viewModel = NewReviewViewModel(
-            autocompletePlacesService: EmptyAutocompletePlacesService(),
+            autocompleteRestaurantsService: EmptyAutocompleteRestaurantsService(),
             restaurantDetailsService: EmptyRestaurantDetailsService(),
             addReviewService: EmptyAddReviewService(),
             location: Location(latitude: 0, longitude: 0),
@@ -95,35 +95,35 @@ final class NewReviewSnapshotTests: XCTestCase {
         viewModel.starsNumber = starsNumber
         viewModel.reviewText = reviewText
         viewModel.autocompleteResults = autocompletePredictions
-        viewModel.getRestaurantDetailsState = getPlaceDetailsState
+        viewModel.getRestaurantDetailsState = getRestaurantDetailsState
         viewModel.postReviewState = postReviewState
         
         return NewReviewView(
             plusButtonActive: .constant(true),
             viewModel: viewModel,
-            selectedView: { self.makeCell(placeDetails: $0, fetchPhotoState: fetchPhotoState) }
+            selectedView: { self.makeCell(restaurantDetails: $0, fetchPhotoState: fetchPhotoState) }
         )
     }
     
-    private func makeCell(placeDetails: RestaurantDetails, fetchPhotoState: PhotoViewModel.State) -> SelectedRestaurantView {
+    private func makeCell(restaurantDetails: RestaurantDetails, fetchPhotoState: PhotoViewModel.State) -> SelectedRestaurantView {
         let viewModel = PhotoViewModel(
-            photoReference: placeDetails.photos.first?.photoReference,
-            restaurantPhotoService: EmptyPlacePhotoService()
+            photoReference: restaurantDetails.photos.first?.photoReference,
+            restaurantPhotoService: EmptyRestaurantPhotoService()
         )
         viewModel.fetchPhotoState = fetchPhotoState
-        let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), restaurantDetails: placeDetails)
+        let view = SelectedRestaurantView(photoView: PhotoView(viewModel: viewModel), restaurantDetails: restaurantDetails)
         return view
     }
     
     private func makeAutocompletePredictions() -> [AutocompletePrediction] {
         [
-            AutocompletePrediction(restaurantPrediction: "Prediction #1", restaurantID: "place #1"),
-            AutocompletePrediction(restaurantPrediction: "Prediction #2", restaurantID: "place #2"),
-            AutocompletePrediction(restaurantPrediction: "Prediction #3", restaurantID: "place #3")
+            AutocompletePrediction(restaurantPrediction: "Prediction #1", restaurantID: "restaurant #1"),
+            AutocompletePrediction(restaurantPrediction: "Prediction #2", restaurantID: "restaurant #2"),
+            AutocompletePrediction(restaurantPrediction: "Prediction #3", restaurantID: "restaurant #3")
         ]
     }
     
-    private class EmptyAutocompletePlacesService: AutocompleteRestaurantsService {
+    private class EmptyAutocompleteRestaurantsService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] { [] }
     }
     
