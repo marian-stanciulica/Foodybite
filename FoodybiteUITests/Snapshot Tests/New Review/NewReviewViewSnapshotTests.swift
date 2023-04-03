@@ -1,5 +1,5 @@
 //
-//  NewReviewSnapshotTests.swift
+//  NewReviewViewSnapshotTests.swift
 //  FoodybiteTests
 //
 //  Created by Marian Stanciulica on 27.02.2023.
@@ -11,7 +11,7 @@ import Domain
 import FoodybitePresentation
 import FoodybiteUI
 
-final class NewReviewSnapshotTests: XCTestCase {
+final class NewReviewViewSnapshotTests: XCTestCase {
     
     func test_newReviewViewIdleState() {
         let sut = makeSUT()
