@@ -1,5 +1,5 @@
 //
-//  GetPlaceDetailsDAOTests.swift
+//  RestaurantDetailsDAOTests.swift
 //  FoodybitePersistenceTests
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class GetPlaceDetailsDAOTests: XCTestCase {
+final class RestaurantDetailsDAOTests: XCTestCase {
     
     func test_getPlaceDetails_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
@@ -49,9 +49,9 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: GetPlaceDetailsDAO, storeSpy: LocalStoreSpy) {
+    private func makeSUT() -> (sut: RestaurantDetailsDAO, storeSpy: LocalStoreSpy) {
         let storeSpy = LocalStoreSpy()
-        let sut = GetPlaceDetailsDAO(store: storeSpy)
+        let sut = RestaurantDetailsDAO(store: storeSpy)
         return (sut, storeSpy)
     }
     

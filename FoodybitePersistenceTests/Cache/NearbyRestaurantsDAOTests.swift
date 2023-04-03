@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import FoodybitePersistence
 
-final class SearchNearbyDAOTests: XCTestCase {
+final class NearbyRestaurantsDAOTests: XCTestCase {
     
     func test_searchNearby_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy, _) = makeSUT()

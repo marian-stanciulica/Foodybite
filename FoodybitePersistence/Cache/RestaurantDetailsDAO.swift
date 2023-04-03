@@ -1,5 +1,5 @@
 //
-//  GetPlaceDetailsDAO.swift
+//  RestaurantDetailsDAO.swift
 //  FoodybitePersistence
 //
 //  Created by Marian Stanciulica on 08.03.2023.
@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class GetPlaceDetailsDAO: RestaurantDetailsService, RestaurantDetailsCache {
+public final class RestaurantDetailsDAO: RestaurantDetailsService, RestaurantDetailsCache {
     private let store: LocalStore
 
     private struct CacheMissError: Error {}
