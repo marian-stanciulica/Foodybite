@@ -60,7 +60,7 @@ struct RestaurantCell_Previews: PreviewProvider {
             photoView: PhotoView(
                 viewModel: PhotoViewModel(
                     photoReference: nil,
-                    fetchPhotoService: PreviewFetchPlacePhotoService()
+                    restaurantPhotoService: PreviewFetchPlacePhotoService()
                 )
             ),
             viewModel: RestaurantCellViewModel(

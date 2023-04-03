@@ -86,7 +86,7 @@ struct HomeView_Previews: PreviewProvider {
                     photoView: PhotoView(
                         viewModel: PhotoViewModel(
                             photoReference: "reference",
-                            fetchPhotoService: PreviewFetchPlacePhotoService()
+                            restaurantPhotoService: PreviewFetchPlacePhotoService()
                         )
                     ),
                     viewModel: RestaurantCellViewModel(

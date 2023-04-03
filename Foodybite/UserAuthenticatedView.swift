@@ -108,7 +108,7 @@ struct UserAuthenticatedView: View {
                         photoView: PhotoView(
                             viewModel: PhotoViewModel(
                                 photoReference: placeDetails.photos.first?.photoReference,
-                                fetchPhotoService: userAuthenticatedFactory.placesService
+                                restaurantPhotoService: userAuthenticatedFactory.placesService
                             )
                         ),
                         placeDetails: placeDetails

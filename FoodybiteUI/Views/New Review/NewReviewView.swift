@@ -117,7 +117,7 @@ struct NewReviewView_Previews: PreviewProvider {
                     photoView: PhotoView(
                         viewModel: PhotoViewModel(
                             photoReference: "reference",
-                            fetchPhotoService: PreviewFetchPlacePhotoService()
+                            restaurantPhotoService: PreviewFetchPlacePhotoService()
                         )
                     ),
                     placeDetails: placeDetails

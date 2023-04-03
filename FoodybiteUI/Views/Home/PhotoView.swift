@@ -71,7 +71,7 @@ struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
         PhotoView(viewModel: PhotoViewModel(
             photoReference: "photo reference",
-            fetchPhotoService: PreviewFetchPlacePhotoService()
+            restaurantPhotoService: PreviewFetchPlacePhotoService()
         ))
     }
     

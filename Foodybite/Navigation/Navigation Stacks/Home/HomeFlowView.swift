@@ -55,7 +55,7 @@ enum HomeFlowView {
             photoView: PhotoView(
                 viewModel: PhotoViewModel(
                     photoReference: nearbyRestaurant.photo?.photoReference,
-                    fetchPhotoService: fetchPhotoService
+                    restaurantPhotoService: fetchPhotoService
                 )
             ),
             viewModel: RestaurantCellViewModel(
@@ -101,7 +101,7 @@ enum HomeFlowView {
                 PhotoView(
                     viewModel: PhotoViewModel(
                         photoReference: photoReference,
-                        fetchPhotoService: fetchPhotoService
+                        restaurantPhotoService: fetchPhotoService
                     )
                 )
             }, showReviewView: {

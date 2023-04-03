@@ -34,7 +34,7 @@ struct RestaurantImageView_Previews: PreviewProvider {
             photoView: PhotoView(
                 viewModel: PhotoViewModel(
                     photoReference: "reference",
-                    fetchPhotoService: PreviewFetchPlacePhotoService()
+                    restaurantPhotoService: PreviewFetchPlacePhotoService()
                 )
             ),
             phoneNumber: "+61 2 9374 4000",

@@ -21,13 +21,13 @@ public final class PhotoViewModel: ObservableObject {
     }
     
     private let photoReference: String?
-    private let fetchPhotoService: RestaurantPhotoService
+    private let restaurantPhotoService: RestaurantPhotoService
     
     @Published public var fetchPhotoState: State = .isLoading
 
-    public init(photoReference: String?, fetchPhotoService: RestaurantPhotoService) {
+    public init(photoReference: String?, restaurantPhotoService: RestaurantPhotoService) {
         self.photoReference = photoReference
-        self.fetchPhotoService = fetchPhotoService
+        self.restaurantPhotoService = restaurantPhotoService
     }
     
     @MainActor public func fetchPhoto() async {
@@ -37,7 +37,7 @@ public final class PhotoViewModel: ObservableObject {
         }
         
         do {
-            let imageData = try await fetchPhotoService.fetchPhoto(photoReference: photoReference)
+            let imageData = try await restaurantPhotoService.fetchPhoto(photoReference: photoReference)
             fetchPhotoState = .success(imageData)
         } catch {
             fetchPhotoState = .failure

@@ -41,7 +41,7 @@ enum ProfileFlowView {
                         PhotoView(
                             viewModel: PhotoViewModel(
                                 photoReference: photoReference,
-                                fetchPhotoService: fetchPhotoService
+                                restaurantPhotoService: fetchPhotoService
                             )
                         )
                     },
@@ -102,7 +102,7 @@ enum ProfileFlowView {
                 PhotoView(
                     viewModel: PhotoViewModel(
                         photoReference: photoReference,
-                        fetchPhotoService: fetchPhotoService
+                        restaurantPhotoService: fetchPhotoService
                     )
                 )
             }, showReviewView: {
