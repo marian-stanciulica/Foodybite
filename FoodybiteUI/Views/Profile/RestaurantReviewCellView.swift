@@ -12,12 +12,12 @@ import FoodybitePresentation
 public struct RestaurantReviewCellView: View {
     @ObservedObject var viewModel: RestaurantReviewCellViewModel
     let makePhotoView: (String?) -> PhotoView
-    let showPlaceDetails: (RestaurantDetails) -> Void
+    let showRestaurantDetails: (RestaurantDetails) -> Void
     
-    public init(viewModel: RestaurantReviewCellViewModel, makePhotoView: @escaping (String?) -> PhotoView, showPlaceDetails: @escaping (RestaurantDetails) -> Void) {
+    public init(viewModel: RestaurantReviewCellViewModel, makePhotoView: @escaping (String?) -> PhotoView, showRestaurantDetails: @escaping (RestaurantDetails) -> Void) {
         self.viewModel = viewModel
         self.makePhotoView = makePhotoView
-        self.showPlaceDetails = showPlaceDetails
+        self.showRestaurantDetails = showRestaurantDetails
     }
     
     public var body: some View {
@@ -47,7 +47,7 @@ public struct RestaurantReviewCellView: View {
                         .padding()
                 }
                 
-                AddressView(placeName: viewModel.restaurantName,
+                AddressView(restaurantName: viewModel.restaurantName,
                             address: viewModel.restaurantAddress)
                 .padding(.horizontal)
             }
@@ -60,7 +60,7 @@ public struct RestaurantReviewCellView: View {
         }
         .onTapGesture {
             if case let .success(placeDetails) = viewModel.getRestaurantDetailsState {
-                showPlaceDetails(placeDetails)
+                showRestaurantDetails(placeDetails)
             }
         }
     }
@@ -81,7 +81,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
                     )
                 )
             },
-            showPlaceDetails: { _ in }
+            showRestaurantDetails: { _ in }
         )
     }
     

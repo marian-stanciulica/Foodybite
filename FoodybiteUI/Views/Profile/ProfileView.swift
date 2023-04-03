@@ -158,7 +158,7 @@ struct ProfileView_Previews: PreviewProvider {
                             )
                         )
                     },
-                    showPlaceDetails: { _ in }
+                    showRestaurantDetails: { _ in }
                 )
             },
             goToSettings: {},

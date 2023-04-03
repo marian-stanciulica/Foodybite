@@ -23,7 +23,7 @@ public struct SelectedRestaurantView: View {
             photoView
 
             AddressView(
-                placeName: restaurantDetails.name,
+                restaurantName: restaurantDetails.name,
                 address: restaurantDetails.address
             )
             .padding(.horizontal)

@@ -45,7 +45,7 @@ enum ProfileFlowView {
                             )
                         )
                     },
-                    showPlaceDetails: { placeDetails in
+                    showRestaurantDetails: { placeDetails in
                         flow.append(.placeDetails(placeDetails))
                     }
                 )

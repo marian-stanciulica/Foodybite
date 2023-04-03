@@ -133,7 +133,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
             makePhotoView: { _ in
                 PhotoView(viewModel: photoViewModel)
             },
-            showPlaceDetails: { _ in }
+            showRestaurantDetails: { _ in }
         )
         return cell
     }
