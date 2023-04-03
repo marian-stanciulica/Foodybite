@@ -77,7 +77,7 @@ struct UserAuthenticatedView: View {
                         flow: homeFlow,
                         placeID: placeID,
                         currentLocation: currentLocation,
-                        getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
+                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
@@ -98,7 +98,7 @@ struct UserAuthenticatedView: View {
                 plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
                     autocompletePlacesService: userAuthenticatedFactory.placesService,
-                    getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
+                    getPlaceDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                     addReviewService: userAuthenticatedFactory.authenticatedApiService,
                     location: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
@@ -126,7 +126,7 @@ struct UserAuthenticatedView: View {
                     user: user,
                     accountService: userAuthenticatedFactory.authenticatedApiService,
                     getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
-                    getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
+                    getPlaceDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                     fetchPhotoService: userAuthenticatedFactory.placesService,
                     goToLogin: { loggedInUserID = nil }
                 )
@@ -148,7 +148,7 @@ struct UserAuthenticatedView: View {
                         flow: profileFlow,
                         placeDetails: placeDetails,
                         currentLocation: currentLocation,
-                        getPlaceDetailsService: userAuthenticatedFactory.getPlaceDetailsWithFallbackComposite,
+                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )

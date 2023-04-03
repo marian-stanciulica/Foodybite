@@ -84,7 +84,7 @@ enum HomeFlowView {
         flow: Flow<HomeRoute>,
         placeID: String,
         currentLocation: Location,
-        getPlaceDetailsService: RestaurantDetailsService,
+        restaurantDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService,
         fetchPhotoService: RestaurantPhotoService
     ) -> some View {
@@ -94,7 +94,7 @@ enum HomeFlowView {
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },
-                getPlaceDetailsService: getPlaceDetailsService,
+                restaurantDetailsService: restaurantDetailsService,
                 getReviewsService: getReviewsService
             ),
             makePhotoView: { photoReference in

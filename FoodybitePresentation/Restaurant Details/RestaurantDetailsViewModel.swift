@@ -28,7 +28,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     private let input: Input
     private let getDistanceInKmFromCurrentLocation: (Location) -> Double
-    private let getPlaceDetailsService: RestaurantDetailsService
+    private let restaurantDetailsService: RestaurantDetailsService
     private let getReviewsService: GetReviewsService
     private var userPlacedReviews = [Review]()
 
@@ -55,12 +55,12 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     public init(
         input: Input,
         getDistanceInKmFromCurrentLocation: @escaping (Location) -> Double,
-        getPlaceDetailsService: RestaurantDetailsService,
+        restaurantDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService
     ) {
         self.input = input
         self.getDistanceInKmFromCurrentLocation = getDistanceInKmFromCurrentLocation
-        self.getPlaceDetailsService = getPlaceDetailsService
+        self.restaurantDetailsService = restaurantDetailsService
         self.getReviewsService = getReviewsService
     }
     
@@ -89,7 +89,7 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     
     @MainActor private func fetchPlaceDetails(placeID: String) async {
         do {
-            let placeDetails = try await getPlaceDetailsService.getRestaurantDetails(placeID: placeID)
+            let placeDetails = try await restaurantDetailsService.getRestaurantDetails(placeID: placeID)
             getPlaceDetailsState = .success(placeDetails)
         } catch {
             getPlaceDetailsState = .failure(.serverError)

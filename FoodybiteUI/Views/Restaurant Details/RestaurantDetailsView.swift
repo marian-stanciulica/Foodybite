@@ -109,7 +109,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                 viewModel: RestaurantDetailsViewModel(
                     input: .placeIdToFetch("#1"),
                     getDistanceInKmFromCurrentLocation: { _ in 3.4 },
-                    getPlaceDetailsService: PreviewSearchNearbyService(),
+                    restaurantDetailsService: PreviewSearchNearbyService(),
                     getReviewsService: PreviewGetReviewsService()
                 ),
                 makePhotoView: { _ in

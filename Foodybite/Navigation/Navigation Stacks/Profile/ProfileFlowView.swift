@@ -86,7 +86,7 @@ enum ProfileFlowView {
         flow: Flow<ProfileRoute>,
         placeDetails: RestaurantDetails,
         currentLocation: Location,
-        getPlaceDetailsService: RestaurantDetailsService,
+        restaurantDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService,
         fetchPhotoService: RestaurantPhotoService
     ) -> some View {
@@ -96,7 +96,7 @@ enum ProfileFlowView {
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },
-                getPlaceDetailsService: getPlaceDetailsService,
+                restaurantDetailsService: restaurantDetailsService,
                 getReviewsService: getReviewsService
             ), makePhotoView: { photoReference in
                 PhotoView(
