@@ -24,7 +24,7 @@ public final class NearbyRestaurantsDAO: NearbyRestaurantsService, NearbyRestaur
             }
     }
     
-    public func save(nearbyPlaces: [NearbyRestaurant]) async throws {
-        try await store.writeAll(nearbyPlaces)
+    public func save(nearbyRestaurants: [NearbyRestaurant]) async throws {
+        try await store.writeAll(nearbyRestaurants)
     }
 }

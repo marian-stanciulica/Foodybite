@@ -39,7 +39,7 @@ final class NearbyRestaurantsDAOTests: XCTestCase {
         let (sut, storeSpy, _) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         
-        try await sut.save(nearbyPlaces: expectedNearbyRestaurants)
+        try await sut.save(nearbyRestaurants: expectedNearbyRestaurants)
         
         XCTAssertEqual(storeSpy.messages.count, 1)
         

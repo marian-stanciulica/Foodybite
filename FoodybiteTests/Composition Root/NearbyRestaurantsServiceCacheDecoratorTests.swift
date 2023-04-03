@@ -67,8 +67,8 @@ final class NearbyRestaurantsServiceCacheDecoratorTests: XCTestCase {
     private class SearchNearbyCacheSpy: NearbyRestaurantsCache {
         private(set) var capturedValues = [[NearbyRestaurant]]()
         
-        func save(nearbyPlaces: [NearbyRestaurant]) async throws {
-            capturedValues.append(nearbyPlaces)
+        func save(nearbyRestaurants: [NearbyRestaurant]) async throws {
+            capturedValues.append(nearbyRestaurants)
         }
     }
     
