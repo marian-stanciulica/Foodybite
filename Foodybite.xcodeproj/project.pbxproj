@@ -1377,8 +1377,9 @@
 		0F19B476291647DB00A8FC8F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
 				0FF7C69329B2353E00622E9C /* User Preferences Feature */,
+				0FDA1A3A29DAAC920081333A /* Nearby Places Feature */,
+				0FDA1A3B29DAACFA0081333A /* Place Details Feature */,
 				0F423AA229855F64009EB345 /* Models */,
 				0FA6BE292994E829003E1912 /* Protocols */,
 			);
@@ -1580,14 +1581,6 @@
 			path = "Managed Place Details";
 			sourceTree = "<group>";
 		};
-		0F207C7A29B8E2810095E905 /* Get Place Details */ = {
-			isa = PBXGroup;
-			children = (
-				0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */,
-			);
-			path = "Get Place Details";
-			sourceTree = "<group>";
-		};
 		0F2A26AF2930D90000387A1C /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1782,7 +1775,6 @@
 		0F412EBA2962D13700FDDF41 /* Places Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */,
 				0F70C4A029868E2F00C004DD /* FetchPlacePhotoService.swift */,
 				0FA6BE3C29957463003E1912 /* AutocompletePlacesService.swift */,
 			);
@@ -1875,28 +1867,9 @@
 			isa = PBXGroup;
 			children = (
 				0F423AA529855F98009EB345 /* User */,
-				0F423AA429855F81009EB345 /* Nearby Places */,
-				0F423AA329855F72009EB345 /* Place Details */,
 				0FABD522299632B800918251 /* Autocomplete Places */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		0F423AA329855F72009EB345 /* Place Details */ = {
-			isa = PBXGroup;
-			children = (
-				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
-				0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */,
-				0F423AA829856C82009EB345 /* Review.swift */,
-			);
-			path = "Place Details";
-			sourceTree = "<group>";
-		};
-		0F423AA429855F81009EB345 /* Nearby Places */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Nearby Places";
 			sourceTree = "<group>";
 		};
 		0F423AA529855F98009EB345 /* User */ = {
@@ -2498,7 +2471,6 @@
 			isa = PBXGroup;
 			children = (
 				0F61265429C0F74B00658A4D /* Review */,
-				0F207C7A29B8E2810095E905 /* Get Place Details */,
 				0FA6BE2A2994E87A003E1912 /* Networking Protocols */,
 				0F412EBA2962D13700FDDF41 /* Places Protocols */,
 				0FD4176B298D60E400F2BF92 /* Location Protocols */,
@@ -2845,6 +2817,18 @@
 				0F18977229B79D6C0052094F /* SearchNearbyCache.swift */,
 			);
 			path = "Nearby Places Feature";
+			sourceTree = "<group>";
+		};
+		0FDA1A3B29DAACFA0081333A /* Place Details Feature */ = {
+			isa = PBXGroup;
+			children = (
+				0F215CB5298265A0000F88F4 /* PlaceDetails.swift */,
+				0F423AA629855FDD009EB345 /* OpeningHoursDetails.swift */,
+				0F423AA829856C82009EB345 /* Review.swift */,
+				0F412ED32963173400FDDF41 /* GetPlaceDetailsService.swift */,
+				0F207C7B29B8E2B10095E905 /* PlaceDetailsCache.swift */,
+			);
+			path = "Place Details Feature";
 			sourceTree = "<group>";
 		};
 		0FDE6C3E28FC6CAC0080A7FD /* Refresh Token */ = {
