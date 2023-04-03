@@ -7,11 +7,11 @@
 
 import Domain
 
-final class GetPlaceDetailsServiceStub: GetPlaceDetailsService {
+final class GetPlaceDetailsServiceStub: RestaurantDetailsService {
     private(set) var capturedValues = [String]()
     var stub: Result<RestaurantDetails, Error>?
     
-    func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+    func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
         capturedValues.append(placeID)
         
         if let stub = stub {

@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class GetPlaceDetailsDAO: GetPlaceDetailsService, PlaceDetailsCache {
+public final class GetPlaceDetailsDAO: RestaurantDetailsService, PlaceDetailsCache {
     private let store: LocalStore
 
     private struct CacheMissError: Error {}
@@ -16,7 +16,7 @@ public final class GetPlaceDetailsDAO: GetPlaceDetailsService, PlaceDetailsCache
         self.store = store
     }
     
-    public func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+    public func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
         let allPlaces: [RestaurantDetails] = try await store.readAll()
         
         guard let foundPlace = allPlaces.first(where: { $0.placeID == placeID }) else {

@@ -7,8 +7,8 @@
 
 import Domain
 
-class EmptyGetPlaceDetailsService: GetPlaceDetailsService {
-    func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+class EmptyGetPlaceDetailsService: RestaurantDetailsService {
+    func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
         RestaurantDetails(placeID: "",
                      phoneNumber: nil,
                      name: "",

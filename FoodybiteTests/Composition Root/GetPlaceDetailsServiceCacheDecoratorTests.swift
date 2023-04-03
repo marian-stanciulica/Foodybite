@@ -16,7 +16,7 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         serviceStub.stub = .failure(anyError())
         
         do {
-            let nearbyPlaces = try await sut.getPlaceDetails(placeID: "place id")
+            let nearbyPlaces = try await sut.getRestaurantDetails(placeID: "place id")
             XCTFail("Expected to fail, received nearby places \(nearbyPlaces) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -28,7 +28,7 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         let expectedPlaceDetails = makeExpectedPlaceDetails()
         serviceStub.stub = .success(expectedPlaceDetails)
         
-        let receivedPlaceDetails = try await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
         XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
     }
     
@@ -36,7 +36,7 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
         
-        _ = try? await sut.getPlaceDetails(placeID: "place id")
+        _ = try? await sut.getRestaurantDetails(placeID: "place id")
         
         XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
     }
@@ -46,7 +46,7 @@ final class GetPlaceDetailsServiceCacheDecoratorTests: XCTestCase {
         let expectedPlaceDetails = makeExpectedPlaceDetails()
         serviceStub.stub = .success(expectedPlaceDetails)
         
-        _ = try? await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        _ = try? await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
         
         XCTAssertEqual(cacheSpy.capturedValues, [expectedPlaceDetails])
     }

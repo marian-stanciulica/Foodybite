@@ -7,17 +7,17 @@
 
 import Domain
 
-public final class GetPlaceDetailsServiceCacheDecorator: GetPlaceDetailsService {
-    private let getPlaceDetailsService: GetPlaceDetailsService
+public final class GetPlaceDetailsServiceCacheDecorator: RestaurantDetailsService {
+    private let getPlaceDetailsService: RestaurantDetailsService
     private let cache: PlaceDetailsCache
     
-    public init(getPlaceDetailsService: GetPlaceDetailsService, cache: PlaceDetailsCache) {
+    public init(getPlaceDetailsService: RestaurantDetailsService, cache: PlaceDetailsCache) {
         self.getPlaceDetailsService = getPlaceDetailsService
         self.cache = cache
     }
     
-    public func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
-        let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+    public func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
+        let placeDetails = try await getPlaceDetailsService.getRestaurantDetails(placeID: placeID)
         try? await cache.save(placeDetails: placeDetails)
         return placeDetails
     }

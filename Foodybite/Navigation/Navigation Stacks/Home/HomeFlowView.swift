@@ -84,7 +84,7 @@ enum HomeFlowView {
         flow: Flow<HomeRoute>,
         placeID: String,
         currentLocation: Location,
-        getPlaceDetailsService: GetPlaceDetailsService,
+        getPlaceDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService,
         fetchPhotoService: RestaurantPhotoService
     ) -> some View {

@@ -32,7 +32,7 @@ public final class NewReviewViewModel: ObservableObject {
     }
     
     private let autocompletePlacesService: AutocompletePlacesService
-    private let getPlaceDetailsService: GetPlaceDetailsService
+    private let getPlaceDetailsService: RestaurantDetailsService
     private let addReviewService: AddReviewService
     private let location: Location
     private let userPreferences: UserPreferences
@@ -52,7 +52,7 @@ public final class NewReviewViewModel: ObservableObject {
         return false
     }
     
-    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: GetPlaceDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
+    public init(autocompletePlacesService: AutocompletePlacesService, getPlaceDetailsService: RestaurantDetailsService, addReviewService: AddReviewService, location: Location, userPreferences: UserPreferences) {
         self.autocompletePlacesService = autocompletePlacesService
         self.getPlaceDetailsService = getPlaceDetailsService
         self.addReviewService = addReviewService
@@ -76,7 +76,7 @@ public final class NewReviewViewModel: ObservableObject {
         getPlaceDetailsState = .isLoading
         
         do {
-            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: placeID)
+            let placeDetails = try await getPlaceDetailsService.getRestaurantDetails(placeID: placeID)
             getPlaceDetailsState = .success(placeDetails)
         } catch {
             getPlaceDetailsState = .failure(.serverError)

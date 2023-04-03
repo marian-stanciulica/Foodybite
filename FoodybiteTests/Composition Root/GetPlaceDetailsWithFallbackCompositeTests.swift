@@ -16,7 +16,7 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         let expectedPlaceDetails = makeExpectedPlaceDetails()
         primaryStub.stub = .success(expectedPlaceDetails)
         
-        let receivedPlaceDetails = try await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
         
         XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
     }
@@ -26,7 +26,7 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         let expectedPlaceID = "place id"
         primaryStub.stub = .failure(anyError())
         
-        _ = try await sut.getPlaceDetails(placeID: expectedPlaceID)
+        _ = try await sut.getRestaurantDetails(placeID: expectedPlaceID)
         
         XCTAssertEqual(secondaryStub.capturedValues.count, 1)
         XCTAssertEqual(secondaryStub.capturedValues[0], expectedPlaceID)
@@ -38,7 +38,7 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         primaryStub.stub = .failure(anyError())
         secondaryStub.stub = .success(expectedPlaceDetails)
         
-        let receivedPlaceDetails = try await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
         
         XCTAssertEqual(expectedPlaceDetails, receivedPlaceDetails)
     }
@@ -49,7 +49,7 @@ final class GetPlaceDetailsWithFallbackCompositeTests: XCTestCase {
         secondaryStub.stub = .failure(anyError())
         
         do {
-            let placeDetails = try await sut.getPlaceDetails(placeID: "place id")
+            let placeDetails = try await sut.getRestaurantDetails(placeID: "place id")
             XCTFail("Expected to fail, got \(placeDetails) instead")
         } catch {
             XCTAssertNotNil(error)

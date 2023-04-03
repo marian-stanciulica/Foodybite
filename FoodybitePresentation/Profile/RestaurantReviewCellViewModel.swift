@@ -21,7 +21,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
     }
     
     private let review: Review
-    private let getPlaceDetailsService: GetPlaceDetailsService
+    private let getPlaceDetailsService: RestaurantDetailsService
     
     @Published public var getPlaceDetailsState: State = .idle
     
@@ -43,7 +43,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         return ""
     }
     
-    public init(review: Review, getPlaceDetailsService: GetPlaceDetailsService) {
+    public init(review: Review, getPlaceDetailsService: RestaurantDetailsService) {
         self.review = review
         self.getPlaceDetailsService = getPlaceDetailsService
     }
@@ -52,7 +52,7 @@ public class RestaurantReviewCellViewModel: ObservableObject {
         getPlaceDetailsState = .isLoading
         
         do {
-            let placeDetails = try await getPlaceDetailsService.getPlaceDetails(placeID: review.placeID)
+            let placeDetails = try await getPlaceDetailsService.getRestaurantDetails(placeID: review.placeID)
             getPlaceDetailsState = .success(placeDetails)
         } catch {
             getPlaceDetailsState = .failure(.serverError)

@@ -16,7 +16,7 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
         storeSpy.readResult = .failure(anyError())
         
         do {
-            let nearbyPlaces = try await sut.getPlaceDetails(placeID: "place #1")
+            let nearbyPlaces = try await sut.getRestaurantDetails(placeID: "place #1")
             XCTFail("Expected to fail, received nearby places \(nearbyPlaces) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -28,7 +28,7 @@ final class GetPlaceDetailsDAOTests: XCTestCase {
         let expectedPlaceDetails = makeExpectedPlaceDetails()
         storeSpy.readAllResult = .success(makePlaceDetails() + [expectedPlaceDetails])
         
-        let receivedPlaceDetails = try await sut.getPlaceDetails(placeID: expectedPlaceDetails.placeID)
+        let receivedPlaceDetails = try await sut.getRestaurantDetails(placeID: expectedPlaceDetails.placeID)
         XCTAssertEqual(receivedPlaceDetails, expectedPlaceDetails)
     }
     

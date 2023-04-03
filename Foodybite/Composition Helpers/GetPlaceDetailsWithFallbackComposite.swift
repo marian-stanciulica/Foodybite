@@ -7,20 +7,20 @@
 
 import Domain
 
-public final class GetPlaceDetailsWithFallbackComposite: GetPlaceDetailsService {
-    private let primary: GetPlaceDetailsService
-    private let secondary: GetPlaceDetailsService
+public final class GetPlaceDetailsWithFallbackComposite: RestaurantDetailsService {
+    private let primary: RestaurantDetailsService
+    private let secondary: RestaurantDetailsService
     
-    public init(primary: GetPlaceDetailsService, secondary: GetPlaceDetailsService) {
+    public init(primary: RestaurantDetailsService, secondary: RestaurantDetailsService) {
         self.primary = primary
         self.secondary = secondary
     }
     
-    public func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+    public func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
         do {
-            return try await primary.getPlaceDetails(placeID: placeID)
+            return try await primary.getRestaurantDetails(placeID: placeID)
         } catch {
-            return try await secondary.getPlaceDetails(placeID: placeID)
+            return try await secondary.getRestaurantDetails(placeID: placeID)
         }
     }
 }

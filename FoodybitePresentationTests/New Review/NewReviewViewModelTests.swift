@@ -305,11 +305,11 @@ final class NewReviewViewModelTests: XCTestCase {
         }
     }
     
-    private class GetPlaceDetailsServiceSpy: GetPlaceDetailsService {
+    private class GetPlaceDetailsServiceSpy: RestaurantDetailsService {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
         
-        func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
             capturedValues.append(placeID)
             
             if let result = result {

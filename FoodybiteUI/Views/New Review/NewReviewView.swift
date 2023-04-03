@@ -137,8 +137,8 @@ struct NewReviewView_Previews: PreviewProvider {
         }
     }
     
-    private class PreviewGetPlaceDetailsService: GetPlaceDetailsService {
-        func getPlaceDetails(placeID: String) async throws -> RestaurantDetails {
+    private class PreviewGetPlaceDetailsService: RestaurantDetailsService {
+        func getRestaurantDetails(placeID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 placeID: "place #1",
                 phoneNumber: "",

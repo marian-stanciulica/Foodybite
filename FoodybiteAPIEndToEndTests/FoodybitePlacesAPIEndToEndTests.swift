@@ -50,7 +50,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
     
     private func getPlaceDetails(file: StaticString = #filePath, line: UInt = #line) async throws -> RestaurantDetails {
         let apiService = makeSUT(file: file, line: line)
-        return try await apiService.getPlaceDetails(placeID: "ChIJW823ek__sUARZVGTsg0Yx70")
+        return try await apiService.getRestaurantDetails(placeID: "ChIJW823ek__sUARZVGTsg0Yx70")
     }
     
     private func getNearbyRestaurants(file: StaticString = #filePath, line: UInt = #line) async throws -> [NearbyRestaurant] {

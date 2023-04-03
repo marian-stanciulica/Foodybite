@@ -20,7 +20,7 @@ enum ProfileFlowView {
         user: User,
         accountService: AccountService,
         getReviewsService: GetReviewsService,
-        getPlaceDetailsService: GetPlaceDetailsService,
+        getPlaceDetailsService: RestaurantDetailsService,
         fetchPhotoService: RestaurantPhotoService,
         goToLogin: @escaping () -> Void
     ) -> some View {
@@ -86,7 +86,7 @@ enum ProfileFlowView {
         flow: Flow<ProfileRoute>,
         placeDetails: RestaurantDetails,
         currentLocation: Location,
-        getPlaceDetailsService: GetPlaceDetailsService,
+        getPlaceDetailsService: RestaurantDetailsService,
         getReviewsService: GetReviewsService,
         fetchPhotoService: RestaurantPhotoService
     ) -> some View {

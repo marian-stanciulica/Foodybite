@@ -13,7 +13,7 @@ extension PlacesServiceTests {
     
     func test_conformsToGetPlaceDetailsService() {
         let (sut, _) = makeSUT(response: anyPlaceDetailsResponse())
-        XCTAssertNotNil(sut as GetPlaceDetailsService)
+        XCTAssertNotNil(sut as RestaurantDetailsService)
     }
     
     func test_getPlaceDetails_usesGetPlaceDetailsEndpointToCreateURLRequest() async throws {
@@ -21,7 +21,7 @@ extension PlacesServiceTests {
         let (sut, loader) = makeSUT(response: anyPlaceDetailsResponse())
         let endpoint = GetPlaceDetailsEndpoint(placeID: placeID)
         
-        _ = try await sut.getPlaceDetails(placeID: placeID)
+        _ = try await sut.getRestaurantDetails(placeID: placeID)
         
         XCTAssertEqual(loader.getRequests.count, 1)
         assertURLComponents(
@@ -36,7 +36,7 @@ extension PlacesServiceTests {
         let (sut, _) = makeSUT(response: placeDetails)
         
         do {
-            let placeDetails = try await sut.getPlaceDetails(placeID: placeDetails.result.placeID)
+            let placeDetails = try await sut.getRestaurantDetails(placeID: placeDetails.result.placeID)
             XCTFail("Expected to fail, got \(placeDetails) instead")
         } catch {
             XCTAssertNotNil(error)
@@ -47,7 +47,7 @@ extension PlacesServiceTests {
         let placeDetailsResponse = anyPlaceDetailsResponse()
         let (sut, _) = makeSUT(response: placeDetailsResponse)
         
-        let receivedResponse = try await sut.getPlaceDetails(placeID: randomString())
+        let receivedResponse = try await sut.getRestaurantDetails(placeID: randomString())
         
         XCTAssertEqual(placeDetailsResponse.placeDetails, receivedResponse)
     }
