@@ -6,31 +6,19 @@
 //
 
 import SwiftUI
+import Domain
 
 public struct TurnOnLocationView: View {
-    @State var name = "John"
+    private let name: String
+    private let locationProvider: LocationProviding
 
-    public init() {}
+    public init(name: String, locationProvider: LocationProviding) {
+        self.name = name
+        self.locationProvider = locationProvider
+    }
     
     public var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Spacer()
-
-                Button("Skip") {
-
-                }
-                .foregroundColor(.white)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(.white, lineWidth: 1)
-                )
-                .background(.white.opacity(0.25))
-            }
-            .padding()
-
-            Spacer()
             Spacer()
 
             Text("Hi \(name), Welcome to ")
@@ -49,7 +37,7 @@ public struct TurnOnLocationView: View {
             Spacer()
 
             MarineButton(title: "Turn On GPS", isLoading: false) {
-
+                locationProvider.requestWhenInUseAuthorization()
             }
         }
         .padding(.horizontal)
@@ -61,6 +49,16 @@ public struct TurnOnLocationView: View {
 
 struct TurnOnLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        TurnOnLocationView()
+        TurnOnLocationView(name: "Marian", locationProvider: PreviewLocationProviding())
+    }
+    
+    private class PreviewLocationProviding: LocationProviding {
+        var locationServicesEnabled: Bool = true
+        
+        func requestLocation() async throws -> Location {
+            Location(latitude: 0, longitude: 0)
+        }
+        
+        func requestWhenInUseAuthorization() {}
     }
 }

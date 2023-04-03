@@ -31,7 +31,7 @@ struct UserAuthenticatedView: View {
                 await viewModel.getCurrentLocation()
             }
         } else {
-            TurnOnLocationView()
+            TurnOnLocationView(name: user.name, locationProvider: locationProvider)
         }
     }
     
