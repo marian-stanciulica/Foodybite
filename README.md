@@ -1113,7 +1113,7 @@ Nevertheless, I didn't test any logic using snapshot tests as all the logic was 
 
 ### API key for Google Places API
 
-For security purposes, I put the `API_KEY` from the `Google Places API` in a plist in order not to leak in the source code and removed the file from the git index. This way the file exists only locally on my device avoiding leaking to an attacker that could make requests on my behalf for free.
+For security purposes, I stored the `API_KEY` from the `Google Places API` in a plist in order not to leak in the source code and removed the file from the git index by adding it to the `.gitignore` file. This way the file exists only locally on my device avoiding leaking to an attacker that could make requests on my behalf for free.
 
 ### Store Tokens from FoodybiteServer in Keychain
 
@@ -1123,7 +1123,9 @@ I use `Keychain` because is the default option of secure storage on iOS, uses st
 
 ### Password Hashing
 
-I avoid sending passwords in the requests' body as clear text by hashing them using `SHA512` before sending them. This way, I never store any password or send them over the network.
+I avoid sending passwords in the requests' body as clear text as they can be intercepted and read by an malicious attacker with access to the network traffic compromising the user's account and his personal information. 
+
+To prevent this scenario I use `SHA512` to hash the passwords before sending to the backend. Even if an attacker intercept the hash, it will be impossible to reverse the hash and find the password. On the other side, when the user logs in again, their entered password is hashed again which results in the same hash as initially and the server grants access to their account.
 
 ## Metrics
 
