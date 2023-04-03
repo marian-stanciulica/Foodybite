@@ -30,8 +30,8 @@ public final class RestaurantDetailsViewModel: ObservableObject {
     private let getDistanceInKmFromCurrentLocation: (Location) -> Double
     private let restaurantDetailsService: RestaurantDetailsService
     private let getReviewsService: GetReviewsService
-    private var userPlacedReviews = [Review]()
-
+   
+    @Published private var userPlacedReviews = [Review]()
     @Published public var getRestaurantDetailsState: State = .idle
     
     public var reviews: [Review] {

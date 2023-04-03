@@ -75,10 +75,10 @@ public struct RestaurantDetailsView: View {
                                 )
                                 .padding(.bottom)
                                 
-                                HeaderView(name: "Review & Ratings", allItemsCount: restaurantDetails.reviews.count)
+                                HeaderView(name: "Review & Ratings", allItemsCount: viewModel.reviews.count)
                                 
                                 LazyVStack {
-                                    ForEach(restaurantDetails.reviews) { review in
+                                    ForEach(viewModel.reviews) { review in
                                         ReviewCell(review: review)
                                     }
                                 }
