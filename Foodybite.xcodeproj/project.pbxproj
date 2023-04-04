@@ -211,6 +211,8 @@
 		0F2555FA29DABDBA0044243A /* RestaurantDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */; };
 		0F26A35229DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */; };
 		0F26A35329DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */; };
+		0F26A35629DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35429DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png */; };
+		0F26A35729DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35529DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */; };
 		0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAA29829212006D4A7F /* Geometry.swift */; };
 		0F2BACAE2982922F006D4A7F /* RemoteLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAD2982922F006D4A7F /* RemoteLocation.swift */; };
@@ -777,6 +779,8 @@
 		0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsService.swift; sourceTree = "<group>"; };
 		0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnHomeTab.light.png; sourceTree = "<group>"; };
 		0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnHomeTab.dark.png; sourceTree = "<group>"; };
+		0F26A35429DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnNewAccountTab.dark.png; sourceTree = "<group>"; };
+		0F26A35529DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnNewAccountTab.light.png; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequestBody.swift; sourceTree = "<group>"; };
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
@@ -2668,6 +2672,8 @@
 			children = (
 				0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */,
 				0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */,
+				0F26A35429DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png */,
+				0F26A35529DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png */,
 			);
 			path = TabBarPageViewSnapshotTests;
 			sourceTree = "<group>";
@@ -3648,8 +3654,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F26A35729DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png in Resources */,
 				0F26A35229DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png in Resources */,
 				0F26A35329DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */,
+				0F26A35629DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
