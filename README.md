@@ -503,7 +503,7 @@ I ended up choosing the second approach as I didn't want to leak the details of 
 
 ### Places
 
-The following diagram presents the `Places` module which has as a dependency `API Infra` because it shares the need to fetch resources over the network with the `Networking` module. This module calls [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I chose to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
+The following diagram presents the `Places` module. This module communicates with [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I decided to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
 
 ![Places](./Diagrams/Places.svg)
 
@@ -518,17 +518,17 @@ The following diagram presents the `Places` module which has as a dependency `AP
 
 #### Parsing JSON Response
 
-The [same argument](#5-parsing-json-response) as for the `Networking` module is also valid in this context. Additionally, I chose for the DTOs to include all fields made available by the `Google Places API` for the convenience of easily checking what fields are available for each request and how I can use them for developing next features without checking the documentation all the time.
+The [same argument](#5-parsing-json-response) as for the `Networking` module is also valid in this context. Additionally, I included in the DTOs all fields made available by the `Google Places API` for the convenience of easily checking what fields are available for each request to use them for developing the features without checking the documentation all the time.
 
 ### API Infra
 
-The following diagram contains the concrete implementation of the `HTTPClient` protocol using `URLSession`. It respects the dependency rule stated in the overview section, as it depends on the `Networking` and `Places` modules. Since both modules require to make network requests, I chose to extract the infrastructure class in a separate module and compose them in the `Composition Root`.
+The following diagram contains the concrete implementation of the `HTTPClient` protocol using `URLSession`. It respects the dependency rule stated in the overview section, as it depends on the `Networking` and `Places` modules. Since both modules require to make network requests, I decided to extract the infrastructure class in a separate module and compose them in the `Composition Root`.
 
 ![API Infra](./Diagrams/API_Infra.svg)
 
 #### Mock Network Requests
 
-It's recommended not to hit the network while testing the `URLSessionHTTPClient` in isolation, instead I use [end-to-end tests](#end-to-end-tests) to check the whole integration of the networking modules with the backend. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
+It's recommended not to hit the network while testing the `URLSessionHTTPClient` in isolation. For checking the actual communication, I used [end-to-end tests](#end-to-end-tests) to check the whole integration of the networking modules with the backend. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
 
 1. By creating a spy/stub class for `URLSession`, overriding the following method to return stubbed data or capturing the parameters.
 
@@ -536,7 +536,7 @@ It's recommended not to hit the network while testing the `URLSessionHTTPClient`
 func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 ```
 
-> 🚩 There are a lot more methods in the `URLSession` class that we don't control and by subclassing we assume the behaviour of the overridden method is not depending on other methods.
+> 🚩 There are many more methods in the `URLSession` class that we don't control and by subclassing we assume the behaviour of the overridden method is not depending on other methods.
 
 2. By creating a protocol with only the method we are interested in mocking and making `URLSession` conform to it. Furthermore, we can implement our spy/stub using the protocol.
 
@@ -550,7 +550,7 @@ extension URLSession: URLSessionProtocol {}
 
 > 🚩 The need to create the protocol in production for the sole purpose of testing because it's not an abstraction meant to be used by other clients.
 
-3. By subclassing `URLProtocol` and overriding a couple of methods to intercept the requests. Also, the stub should be registered to be used by the `URL Loading System` by calling `URLProtocol.registerClass(URLProtocolStub.self)` or set directly in the `protocolClasses` property of `URLSessionConfiguration` before instantiating the session. Below is the factory method I use to instantiate `URLSessionHTTPClient` for testing:
+3. By subclassing `URLProtocol` and overriding several methods to intercept the requests. Also, the stub should be registered to be used by the `URL Loading System` by calling `URLProtocol.registerClass(URLProtocolStub.self)` or set directly in the `protocolClasses` property of `URLSessionConfiguration` before instantiating the session. Below is the factory method I use to instantiate `URLSessionHTTPClient` for testing:
 
 ```swift
 private func makeSUT() -> URLSessionHTTPClient {
@@ -562,9 +562,9 @@ private func makeSUT() -> URLSessionHTTPClient {
 }
 ```
 
-For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluterring the production side. I also use a struct to stub fake responses in the client and an array to spy on the `URLRequests` received. 
+For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluttering the production side. I also use a struct to stub fake responses in the client and an array to spy on the `URLRequests` received. 
 
-It's critical after each test to remove the stub not to influence the initial state of the other tests since the properties are static and shared between tests. The reason why the properties are static is because I don't instantiate the `URLProtocolStub` directly and use it to instantiate the session, instead the system instantiate it. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
+It's critical after each test to remove the stub not to influence the initial state of the other tests since the properties are static and shared between tests. They are static because the `URLProtocolStub` can't instantiated directly, the system does it internally. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
 
 ```swift
 class URLProtocolStub: URLProtocol {
