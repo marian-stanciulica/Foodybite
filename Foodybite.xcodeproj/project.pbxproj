@@ -1350,13 +1350,13 @@
 		0F108808291E2397007A28FA /* FoodybiteTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F18976C29B78CF70052094F /* Composition Root */,
+				0F18976C29B78CF70052094F /* Composition Helpers Tests */,
 				0F7E23CE2920E329005196EA /* Navigation */,
 			);
 			path = FoodybiteTests;
 			sourceTree = "<group>";
 		};
-		0F18976C29B78CF70052094F /* Composition Root */ = {
+		0F18976C29B78CF70052094F /* Composition Helpers Tests */ = {
 			isa = PBXGroup;
 			children = (
 				0F207BCB29B8670C0095E905 /* Helpers */,
@@ -1367,7 +1367,7 @@
 				0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */,
 				0F61265929C0F81A00658A4D /* GetReviewsServiceWithFallbackCompositeTests.swift */,
 			);
-			path = "Composition Root";
+			path = "Composition Helpers Tests";
 			sourceTree = "<group>";
 		};
 		0F18977429B7A0B20052094F /* Composition Helpers */ = {
