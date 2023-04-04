@@ -619,7 +619,7 @@ class URLProtocolStub: URLProtocol {
 
 ### Persistence
 
-The following diagram presents the `Persistence` module, highlights the [infrastructure](#infrastructure) to [cache domain models](#cache-domain-models) in `CoreData`. Additionaly, it has the capability to [store `UserPreferences`](#store-user-preferences) locally in `UserDefaults`. 
+The following diagram presents the `Persistence` module, and highlights the [infrastructure](#infrastructure) to [cache domain models](#cache-domain-models) in `CoreData`. Additionaly, it has the capability to [store `UserPreferences`](#store-user-preferences) locally in `UserDefaults`. 
 
 ![Persistence](./Diagrams/Persistence.svg)
 
@@ -631,11 +631,13 @@ The following diagram presents the `Persistence` module, highlights the [infrast
 | NearbyRestaurantsDAO | Uses `LocalStore` to save or retrieve nearby restaurants |
 | RestaurantDetailsDAO | Uses `LocalStore` to save or retrieve restaurant details |
 | CoreDataLocalStore | CoreData implementation of `LocalStore` that writes or reads objects which conforms to `LocalModelConvertable` |
-| LocalModelConvertable | Generic protocol that creates a one-to-one relationship between a domain model and a managed model (local) |
+| LocalModelConvertable | Generic protocol that creates a one-to-one relationship between a domain model and a managed model |
 
 #### Cache Domain Models
 
-To increase the maintainability of the system, I decoupled the use cases from the implementation details by using the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the use cases requirements (all the `DAO` classes). This helps to achieve a better separation of concerns (not exposing managed object contexts or entities as parameters) and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need in the future to replace `CoreData` with other caching framework like `Realm` or have just an in-memory cache, it would be fairly simple. Additionally, in case of new requirements coming in, I'm not concerning myself with how the actual store works inside as long as the `LocalStore` protocol satisfy my needs for the requirements.
+To increase the maintainability of the system, I decoupled the use cases from the implementation details by using the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the use cases requirements (all the `DAO` classes). 
+
+This helps to achieve a better separation of concerns (not exposing managed object contexts or entities as parameters) and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need in the future to replace `CoreData` with other persistence frameworks like `Realm` or have just an in-memory cache, it would be fairly simple. Additionally, in case of new requirements coming in, I won't be concerned with how the actual store works inside as long as the `LocalStore` protocol satisfy my needs for the requirements.
 
 For my current use cases, I only need to write/read one object or more from the local store.
 
@@ -655,11 +657,11 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 
 | Advantages | Disadvantages |
 |------|------|
-| It's really convenient to convert the `User` domain model in a `NSManagedObject` | All modules that depend on `Domain` would depend on an implementation detail of the `Persistence` module, thus coupling the business logic with a specific framework (leaking framework details) |
+| It's really convenient to make the `User` domain model inherit from `NSManagedObject` | All modules that depend on `Domain` would depend on an implementation detail of the `Persistence` module, thus coupling the business logic with a specific framework (leaking framework details) |
 | | It increases the number of components that depends on the domain model making an eventual change to it expensive, as it can potentially break many modules |
-| | All the following decisions would be made by trying to accomodate the coupling with CoreData |
+| | All the following decisions would be made by trying to accomodate the coupling with `CoreData` |
 
-2. Create a distinct representation of an user model specific for CoreData
+2. Create a distinct representation of an user model specific for `CoreData`
 
 | Advantages | Disadvantages |
 |------|------|
@@ -667,7 +669,7 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 | It's not forcing the domain model to contain properties relevant only for persistence (e.g. relationships) | |
 | Working with structs (immutable data) can be easier to comprehend than with classes (mutable references) | |
 
-Since I wanted to hide all implementation details related to persistence, maintain modularity and decrease the coupling of domain models with a framework specific, I chose to create a separate managed model corresponding to the `User` domain model.
+Since I wanted to hide all implementation details related to persistence, maintain modularity and decrease the coupling of domain models with a specific framework, I decided to create a separate managed model corresponding to the `User` domain model.
 
 After deciding to create distinct representation for all domain models, I needed a way to create an one-to-one relationship between a domain model and a managed model. The best approach I could find was to create a generic protocol, for domain models to implement, that has the requirements for mapping back and forth.
 
@@ -699,15 +701,15 @@ extension User: LocalModelConvertable {
 
 #### Store User Preferences
 
-I chose to create a local representation of the user preferences locally to hide the `Codable` dependency from the domain model and hide all the complexity that can come with it. It's the same reasoning as for the `CoreData` local store above (hiding implementation details because clients don't care how the data is actually stored). This gives me the flexibility to change the actual implementation to better fit the new requirements (maybe moving user preferences in a `CoreData` store or choosing other way of persisting data).
+I decided to create a local representation of the user preferences locally to hide the `Codable` dependency from the domain model and hide all the complexity that can come with it. It's the same reasoning as for the `CoreData` local store above (hiding implementation details because clients don't care how the data is actually stored). This gives me the flexibility to change the actual implementation to better fit the new requirements (maybe moving user preferences in a `CoreData` store or choosing other way of persisting data).
 
 ### Location
 
 The following diagram presents the `Location` module and how it interacts with `CoreLocation`.
 
-In this module, I chose to switch from the classic delegation pattern of getting the current location to the `async/await` approach using a continuation (You can find more details about it here: [From delegation to async/await](#from-delegation-to-asyncawait)).
+In this module, I decided to switch from the classic delegation pattern of getting the current location to the `async/await` approach using a continuation (You can find more details about it here: [From delegation to async/await](#from-delegation-to-asyncawait)).
 
-Another interesting topic related to this module is how I was able to use TDD to get the current location using `CLLocationManager` and `CLLocationManagerDelegate`. (More details here: [Get current location using TDD](#get-current-location-using-tdd))
+Another interesting topic related to this module is getting the current location using `CLLocationManager` and `CLLocationManagerDelegate` while doing `TDD`. (More details here: [Get current location using TDD](#get-current-location-using-tdd))
 
 ![Location](./Diagrams/Location.svg)
 
@@ -855,7 +857,7 @@ Thus, by introducing abstractions, I increased the testability of the view model
 
 ### UI
 
-The following diagram is the tree-like representation of all the screens in the app. Since I wanted the views to be completely decoupled from one another to increase their reusability, I chose to move the responsibility of creating subviews on layer above, meaning the composition root. Additionally, I decoupled all views from the navigation logic by using closures to trigger transitions between them (More details in the [Main](#main) section).
+The following diagram is the tree-like representation of all the screens in the app. Since I wanted the views to be completely decoupled from one another to increase their reusability, I decided to move the responsibility of creating subviews on layer above, meaning the composition root. Additionally, I decoupled all views from the navigation logic by using closures to trigger transitions between them (More details in the [Main](#main) section).
 
 The best example is the `HomeView` which is defined as a generic view which needs:
 - one closure to signal that the app should navigate to the restaurant details screen (the view being completely agnostic how the navigation is done)
@@ -913,7 +915,7 @@ I did the same for caching details and reviews for a given restaurant.
 
 In order to compose multiple implementations of a particular abstraction we can use the `Composite` pattern. Thus, it's executed the first strategy that doesn't fail.
 
-The following is an example of how I composed two strategies of fetching nearby restaurants using the `NearbyRestaurantsService` abstraction. I chose to compose two abstraction instead of using concrete types to easily test the composite in isolation and to increase the flexibility of the composition as it's not bounded to a given implementation of the protocol. 
+The following is an example of how I composed two strategies of fetching nearby restaurants using the `NearbyRestaurantsService` abstraction. I decided to compose two abstraction instead of using concrete types to easily test the composite in isolation and to increase the flexibility of the composition as it's not bounded to a given implementation of the protocol. 
 
 ```swift
 public final class NearbyRestaurantsServiceWithFallbackComposite: NearbyRestaurantsService {
@@ -1072,7 +1074,7 @@ I used an `URLSession` with ephemeral configuration for both my own server and `
 
 #### Cache Integration Tests
 
-An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I chose to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
+An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I decided to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
 
 ### Snapshots Tests
 
@@ -1090,7 +1092,7 @@ For security purposes, I stored the `API_KEY` from the `Google Places API` in a 
 
 ### Store Tokens from FoodybiteServer in Keychain
 
-I chose to store in the `Keychain` the tokens received on login from the server to ensure the security and privacy of the user since session tokens are considered sensitive information. If an attacker has access to them, he can imporsonate the real user and steal his data or make distructive actions. 
+I decided to store in the `Keychain` the tokens received on login from the server to ensure the security and privacy of the user since session tokens are considered sensitive information. If an attacker has access to them, he can imporsonate the real user and steal his data or make distructive actions. 
 
 I use `Keychain` because is the default option of secure storage on iOS, uses strong encryption to protect the data, making it difficult for other apps or users to access the stored information. Additionally, it can be erased remotely, helping to prevent unauthorized access.
 
