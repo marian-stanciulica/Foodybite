@@ -27,7 +27,6 @@ struct TabBarPageView<Content: View>: View {
                            tabBarHeight: geometry.size.height / 6,
                            iconWidth: geometry.size.width / 5,
                            iconHeight: geometry.size.height / 32)
-                .background(.gray.opacity(0.1))
             }
             .edgesIgnoringSafeArea(.bottom)
         }

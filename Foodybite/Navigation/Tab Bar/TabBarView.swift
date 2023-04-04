@@ -75,10 +75,10 @@ struct TabBarView: View {
                 
                 Spacer()
             }
-            .frame(width: tabBarWidth,height: tabBarHeight / 2)
+            .frame(width: tabBarWidth, height: tabBarHeight / 2)
             .background(
                 RoundedRectangle(cornerRadius: 24)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("tabBarBackground"))
             )
         }
         .frame(width: tabBarWidth, height: tabBarHeight)

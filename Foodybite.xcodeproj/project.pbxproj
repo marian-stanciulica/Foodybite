@@ -209,6 +209,8 @@
 		0F215CB829826CF8000F88F4 /* RestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* RestaurantDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyRestaurant.swift */; };
 		0F2555FA29DABDBA0044243A /* RestaurantDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */; };
+		0F26A35229DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */; };
+		0F26A35329DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */; };
 		0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAA29829212006D4A7F /* Geometry.swift */; };
 		0F2BACAE2982922F006D4A7F /* RemoteLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAD2982922F006D4A7F /* RemoteLocation.swift */; };
@@ -391,6 +393,9 @@
 		0FC73C6029B620AC005879B8 /* LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC73C5F29B620AC005879B8 /* LocalModelConvertable.swift */; };
 		0FC863F9298E614C0024016B /* ReviewEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863F8298E614C0024016B /* ReviewEndpoint.swift */; };
 		0FC863FB298E6FD50024016B /* AddReviewRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863FA298E6FD50024016B /* AddReviewRequestBody.swift */; };
+		0FD2940E29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD2940D29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift */; };
+		0FD2940F29DC100700311714 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
+		0FD2941229DC107900311714 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 0FD2941129DC107900311714 /* SnapshotTesting */; };
 		0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41769298D609C00F2BF92 /* LocationProviding.swift */; };
 		0FD41771298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41770298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift */; };
 		0FD41774298D778500F2BF92 /* UserAuthenticatedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41773298D778500F2BF92 /* UserAuthenticatedViewModel.swift */; };
@@ -770,6 +775,8 @@
 		0F215CB4298265A0000F88F4 /* NearbyRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyRestaurant.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* RestaurantDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetails.swift; sourceTree = "<group>"; };
 		0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsService.swift; sourceTree = "<group>"; };
+		0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnHomeTab.light.png; sourceTree = "<group>"; };
+		0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnHomeTab.dark.png; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequestBody.swift; sourceTree = "<group>"; };
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
@@ -1075,6 +1082,7 @@
 		0FD19A6E29ACA32300DF7326 /* test_editProfileViewSuccessState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewSuccessState.dark.png; sourceTree = "<group>"; };
 		0FD19A6F29ACA32400DF7326 /* test_editProfileViewSuccessState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_editProfileViewSuccessState.light.png; sourceTree = "<group>"; };
 		0FD19A7329ACA3B900DF7326 /* ProfileViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewSnapshotTests.swift; sourceTree = "<group>"; };
+		0FD2940D29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageViewSnapshotTests.swift; sourceTree = "<group>"; };
 		0FD41763298D5AFD00F2BF92 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -1157,6 +1165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FD2941229DC107900311714 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1350,13 +1359,14 @@
 		0F108808291E2397007A28FA /* FoodybiteTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F18976C29B78CF70052094F /* Composition Helpers Tests */,
+				0F18976C29B78CF70052094F /* Composition Helpers */,
 				0F7E23CE2920E329005196EA /* Navigation */,
+				0FD2940A29DC0F3800311714 /* Snapshot Tests */,
 			);
 			path = FoodybiteTests;
 			sourceTree = "<group>";
 		};
-		0F18976C29B78CF70052094F /* Composition Helpers Tests */ = {
+		0F18976C29B78CF70052094F /* Composition Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				0F207BCB29B8670C0095E905 /* Helpers */,
@@ -1367,7 +1377,7 @@
 				0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */,
 				0F61265929C0F81A00658A4D /* GetReviewsServiceWithFallbackCompositeTests.swift */,
 			);
-			path = "Composition Helpers Tests";
+			path = "Composition Helpers";
 			sourceTree = "<group>";
 		};
 		0F18977429B7A0B20052094F /* Composition Helpers */ = {
@@ -2149,6 +2159,7 @@
 				0FC2121E29D7FE9B00353290 /* FoodybiteUITests.xctest */,
 				0FC2121F29D7FE9B00353290 /* FoodybiteAPIEndToEndTests.xctest */,
 				0FC2122029D7FE9B00353290 /* FoodybiteCacheIntegrationTests.xctest */,
+				0FD2941029DC107900311714 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2626,6 +2637,39 @@
 				0F6FD60929DB0D1B000A28F8 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess.light.png */,
 			);
 			path = ProfileViewSnapshotTests;
+			sourceTree = "<group>";
+		};
+		0FD2940A29DC0F3800311714 /* Snapshot Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0FD2941329DC10AF00311714 /* __Snapshots__ */,
+				0FD2940D29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift */,
+			);
+			path = "Snapshot Tests";
+			sourceTree = "<group>";
+		};
+		0FD2941029DC107900311714 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0FD2941329DC10AF00311714 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0FD2941429DC10AF00311714 /* TabBarPageViewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0FD2941429DC10AF00311714 /* TabBarPageViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */,
+				0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */,
+			);
+			path = TabBarPageViewSnapshotTests;
 			sourceTree = "<group>";
 		};
 		0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */ = {
@@ -3145,6 +3189,7 @@
 			);
 			name = FoodybiteTests;
 			packageProductDependencies = (
+				0FD2941129DC107900311714 /* SnapshotTesting */,
 			);
 			productName = FoodybiteTests;
 			productReference = 0FC2121729D7FE9B00353290 /* FoodybiteTests.xctest */;
@@ -3603,6 +3648,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F26A35229DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png in Resources */,
+				0F26A35329DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3899,10 +3946,12 @@
 			files = (
 				0F207BCA29B866750095E905 /* NearbyRestaurantsServiceWithFallbackCompositeTests.swift in Sources */,
 				0F18976E29B78D3B0052094F /* NearbyRestaurantsServiceCacheDecoratorTests.swift in Sources */,
+				0FD2940F29DC100700311714 /* SharedTestHelpers.swift in Sources */,
 				0F207C7929B8D01C0095E905 /* RestaurantDetailsServiceStub.swift in Sources */,
 				0F207C7729B8CFC40095E905 /* RestaurantDetailsServiceWithFallbackCompositeTests.swift in Sources */,
 				0F207C7E29B8E4DD0095E905 /* RestaurantDetailsServiceCacheDecoratorTests.swift in Sources */,
 				0F207BCF29B867C70095E905 /* TestHelpers.swift in Sources */,
+				0FD2940E29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift in Sources */,
 				0F4AB0F129BB20B5004D338F /* GetReviewsServiceStub.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
 				0FD41771298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift in Sources */,
@@ -6029,6 +6078,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		0F1C762A29D5CEB700D4FC80 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F1C762929D5CEB700D4FC80 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		0FD2941129DC107900311714 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0F1C762929D5CEB700D4FC80 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
