@@ -71,11 +71,11 @@ Thank you for reading and enjoy! 🚀
 
 ### Overview
 
-For this project, I chose to organize the project into independent frameworks using horizontal slicing and break down the app into layers, respecting the dependency rule:
+For this project, I organized the codebase into independent frameworks, using `horizontal slicing` to break down the app into layers, respecting the dependency rule:
 
 > ❗️ High-level modules should not depend on lower-level modules and lower-level modules should only communicate and know about the next higher-level layer.
 
-I think it's the best approach for this project since vertical slicing is more suitable for larger projects with feature teams. Also, the number of features isn't that high in order to make the layers bloated with a large number of classes and become unmanageable. 
+In my opinion, it's the best approach for this kind of project since `vertical slicing` is more suitable for larger projects with feature teams. Also, the number of features isn't high enough to make the layers bloated with an excessive number of classes and become unmanageable.
 
 The following diagram provides a top-level view with all modules from this project along with their dependencies on other modules:
 1. [Domain](#domain)
@@ -92,10 +92,10 @@ The following diagram provides a top-level view with all modules from this proje
 
 ### Domain
 
-This layer is the most inner layer in the architecture (no dependencies with other layers). It contains only models and abstractions for 
-- fetching or saving data implemented by the [Networking](#networking), [Places](#places) and [Persistence](#persistence) modules
-- getting the current location implemented by the [Location](#location) module
-- the [Presentation](#presentation) module to get the data it needs and converting it in the format the [UI](#ui) module requires it.
+The domain represents the innermost layer in the architecture (no dependencies with other layers). It contains only models and abstractions for:
+- fetching or saving data implemented by the [Networking](#networking), [Places](#places), and [Persistence](#persistence) modules
+- providing the current location implemented by the [Location](#location) module
+- the [Presentation](#presentation) module to obtain relevant data and convert it to the format required by the [UI](#ui) module
 
 #### 1. User Session Feature
 
@@ -334,7 +334,7 @@ public protocol LocationProviding {
 ```
 
 ### Networking
-The following diagram represents the networking layer talking with my backend app. For a better understanding, I will explain each major section of the diagram and decisions made during testing (all components were tested using TDD):
+The following diagram showcases the networking layer, which communicates with my backend app. For a better understanding, I will elaborate each major section of the diagram and decisions made during testing:
 1. [Refresh Token Strategy](#1-refresh-token-strategy)
 2. [Network Request Flow](#2-network-request-flow)
 3. [Endpoint Creation](#3-endpoint-creation)
@@ -349,23 +349,23 @@ The following diagram represents the networking layer talking with my backend ap
 | RefreshTokenService | Fetches new `AuthToken` from server and stores it in `TokenStore` |
 | RefreshTokenEndpoint | Creates `URLRequest` for generating new access and refresh tokens |
 | AuthToken | Struct containing accessToken and refreshToken |
-| AuthenticatedURLSessionHTTPClient | Decorator over `HTTPClient` that adds authentication capabilities to the client |
+| AuthenticatedURLSessionHTTPClient | Decorator over `HTTPClient` that adds authentication capability to the client |
 | RemoteStore | Validates the response from `HTTPClient` and parses the data |
 | APIService | Creates the endpoints and sends them to the `ResourceLoader` or `ResourceSender` |
 | LoginEndpoint | Creates `URLRequest` for authentication |
 | SignUpEndpoint | Creates `URLRequest` for creating an account |
-| AccountEndpoint | Creates `URLRequest` for updating the current account or delete it |
+| AccountEndpoint | Creates `URLRequest` for updating the current account or deleting it |
 | LogoutEndpoint | Creates `URLRequest` for ending the current session |
 | ChangePasswordEndpoint | Creates `URLRequest` for changing the password |
 | ReviewEndpoint | Creates `URLRequest` for adding a review or getting all reviews for a particular restaurant |
 
 #### 1. Refresh Token Strategy
 
-The following diagram presents the entire state machine for making requests that require authentication.
+The following diagram outlines the entire state machine of making requests that require authentication.
 
 ![Refresh Token State Machine](./Diagrams/Refresh_Token_State_Machine.svg)
 
-In order to avoid making multiple `refreshTokens` requests when they were requested multiple times in parallel, I stored the first task in an instance property. The first request creates the task and the following requests are just waiting for the task value (in this case, the value is `Void`, so the rest of the requests only waits for the completion of the task).
+In order to avoid making multiple `refreshTokens` requests in parallel, I stored the first task in an instance property. The first request creates the task and the following requests are just waiting for the task value (in this case, the value is `Void`, so they only waits for the completion of the task).
 
 ```swift
 public func fetchLocallyRemoteToken() async throws {
@@ -387,7 +387,7 @@ public func fetchLocallyRemoteToken() async throws {
 }
 ```
 
-I used a `TaskGroup` for testing this behaviour to trigger multiple requests for `AuthToken` in parallel, validating that only one request is actually made and all the other requests receive the token stored by the first request.
+To validate that only one request is actually made when multiple requests are triggered in parallel, I utilized a `TaskGroup` to simulate this behaviour and ensure that all subsequent requests received the token stored by the first request.
 
 ```swift
 func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
@@ -409,7 +409,7 @@ private func requestRemoteAuthTokenInParallel(on sut: TokenRefresher, numberOfRe
 }
 ```
 
-Additionally, `RefreshTokenService` is an actor because I want to prevent potential race conditions that can occur while mutating the `refreshTask` instance property from different threads. Also, the actor is instantiated in the composition root only once, meaning it has a singleton lifetime, preventing multiple instances of `RefreshTokenService` to make concurrent `refreshTokens` requests.
+Additionally, to prevent potential race conditions that can occur while mutating the `refreshTask` instance property from different threads, I decided to implement the `RefreshTokenService` as an actor. Also, the actor is instantiated in the composition root only once (singleton lifetime), preventing multiple instances to make concurrent `refreshTokens` requests.
 
 ```swift
 public actor RefreshTokenService: TokenRefresher {
@@ -425,15 +425,15 @@ public actor RefreshTokenService: TokenRefresher {
 This flow is composed by 3 classes: 
 - `APIService`, which implements domain protocols, creates `URLRequest` objects from endpoints and sends them to the remote store.
 - `RemoteStore`, which implements `ResourceLoader` and `ResourceSender`, validates the status code returned by the client and parses received data.
-- `AuthenticatedURLSessionHTTPClient`, which decorates `HTTPClient`, signs each request using the access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root` this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `API Infra` module is used.
+- `AuthenticatedURLSessionHTTPClient`, which decorates `HTTPClient`, signs each request with an access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root`, this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `API Infra` module is used.
 
 ![AuthenticatedURLSessionHTTPClient](./Diagrams/AuthenticatedURLSessionHTTPClient.svg)
 
 #### 3. Endpoint Creation
 
-Initially, I created a single enum with individual cases for each request which conformed to the `Endpoint` protocol. It was a convenient choice because all requests available were grouped in a single file, but as I was adding more requests I realized that each time the same file is modified, thus breaking the `Open/Closed Principle` which states that the system should be open for extension, but closed for modification.
+Initially, I created a single enum with individual cases for each request which conformed to the `Endpoint` protocol. It was a convenient choice because all requests available were grouped in a single file. However, as I was adding more requests, I recognised that each time the same file was modified, thus breaking the `Open/Closed Principle` which states that the system should be open for extension, but closed for modification.
 
-I immediately pivoted and extracted the related cases in separate enums with related cases, like it is the case for `AccountEndpoint` which has cases for `POST` and `DELETE`. 
+I immediately pivoted and extracted the initial cases in separate enums with related requests, such as with the `AccountEndpoint` which has cases for `POST` and `DELETE`.
 
 ```swift
 enum AccountEndpoint: Endpoint {
@@ -464,7 +464,7 @@ enum AccountEndpoint: Endpoint {
 }
 ```
 
-Otherwise, if a case is not related any other case then I extracted it in a struct with the body as the instance property.
+Otherwise, if a request is not related to any other requests, I extracted it into a separate struct with an instance property representing the body of the request.
 
 ```swift
 struct LoginEndpoint: Endpoint {
@@ -487,19 +487,19 @@ struct LoginEndpoint: Endpoint {
     }
 }
 ```
-Currently, when the need to add another endpoint arises, I can create another struct which conforms to `Endpoint` or edit a file containing related endpoints to the one I want to add (this case still violates the principle, but considering the relatedness of the endpoints I think it's a good trade-off for now).
+Currently, when the need to add another endpoint arises, I can only create another struct which conforms to `Endpoint` or edit a file containing related endpoints to the one I want to add (this case still violates the principle, but considering the relatedness of the endpoints I think it's a good trade-off for now).
 
 #### 4. Testing `Data` to `Decodable` Mapping
 
-For testing the mapping from `Data` to `Decodable` I chose to test it directly in the `RemoteStore`, hiding the knowledge of a collaborator (in this case `CodableDataParser`). While I could do this using a stubbed collaborator (e.g. a protocol `DataParser`), I prefered to test in integration the mapping, resulting in less complexity and less coupling of tests with the production code.
+For testing the mapping from `Data` to `Decodable` I preferred to test it directly in the `RemoteStore`, hiding the knowledge of a collaborator (in this case `CodableDataParser`). While I could have accomplished this using a stubbed collaborator (e.g. a protocol `DataParser`), I prefered to test it in integration, resulting in lower complexity and coupling of tests with the production code.
 
 #### 5. Parsing JSON Response
 
-To parse the JSON received from the server I had had two alternatives:
+To parse the JSON received from the server I had two alternatives:
 1. To make domain models conform to `Codable` and use them directly to decode the data
-2. Create distinct representation for each domain model that needs to be parse
+2. Create distinct representation for each domain model that needs to be parsed
 
-I end up choosing the second approach as I didn't want to leak details implementation of the concrete implementation outside of the module because it would reduce its encapsulation by letting other modules know how it does the JSON parsing.
+I ended up choosing the second approach as I didn't want to leak the details of the concrete implementation outside of the module because it would reduce its encapsulation by letting other modules know how JSON parsing is performed.
 
 ### Places
 
