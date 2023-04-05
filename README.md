@@ -503,7 +503,7 @@ I ended up choosing the second approach as I didn't want to leak the details of 
 
 ### Places
 
-The following diagram presents the `Places` module. This module communicates with [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview) and I decided to keep it in a separate module to respect the `Single Responsibility Principle` by isolating the requests to my server from the ones to `Google Places`.
+The following diagram depicted below represents the `Places` module. This module has been designed to adhere to the `Single Responsibility Principle` by isolating the requests to my server from the ones that communicates with [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview).
 
 ![Places](./Diagrams/Places.svg)
 
@@ -518,17 +518,17 @@ The following diagram presents the `Places` module. This module communicates wit
 
 #### Parsing JSON Response
 
-The [same argument](#5-parsing-json-response) as for the `Networking` module is also valid in this context. Additionally, I included in the DTOs all fields made available by the `Google Places API` for the convenience of easily checking what fields are available for each request to use them for developing the features without checking the documentation all the time.
+The [same argument](#5-parsing-json-response) for the `Networking` module is also valid in this context. Additionally, I included in the DTOs all fields made available by the `Google Places API` for the convenience of checking easily what fields are available for each request to use them for developing the features without checking the documentation all the time.
 
 ### API Infra
 
-The following diagram contains the concrete implementation of the `HTTPClient` protocol using `URLSession`. It respects the dependency rule stated in the overview section, as it depends on the `Networking` and `Places` modules. Since both modules require to make network requests, I decided to extract the infrastructure class in a separate module and compose them in the `Composition Root`.
+The following diagram contains the concrete implementation of the `HTTPClient` protocol utilizing `URLSession`. It respects the dependency rule outlined in the overview section, as it solely depends on the `Networking` and `Places` modules. The decision to extract the infrastructure class in a separate module and compose them in the `Composition Root` was made due to the fact that both modules require to make network requests.
 
 ![API Infra](./Diagrams/API_Infra.svg)
 
 #### Mock Network Requests
 
-It's recommended not to hit the network while testing the `URLSessionHTTPClient` in isolation. For checking the actual communication, I used [end-to-end tests](#end-to-end-tests) to check the whole integration of the networking modules with the backend. In my experience, there are 3 ways to mock a network request which uses `URLSession`:
+It's not recommended to hit the network while testing the `URLSessionHTTPClient` in isolation. For checking the actual communication, I used [end-to-end tests](#end-to-end-tests) to validate the integration of the networking modules with the backend. In my experience, there are 3 methods to mock a network request which uses `URLSession`:
 
 1. By creating a spy/stub class for `URLSession`, overriding the following method to return stubbed data or capturing the parameters.
 
@@ -548,9 +548,12 @@ public protocol URLSessionProtocol {
 extension URLSession: URLSessionProtocol {}
 ```
 
-> 🚩 The need to create the protocol in production for the sole purpose of testing because it's not an abstraction meant to be used by other clients.
+> 🚩 The need to create the protocol in production for the sole purpose of testing because it's not an abstraction meant to be used by clients.
 
-3. By subclassing `URLProtocol` and overriding several methods to intercept the requests. Also, the stub should be registered to be used by the `URL Loading System` by calling `URLProtocol.registerClass(URLProtocolStub.self)` or set directly in the `protocolClasses` property of `URLSessionConfiguration` before instantiating the session. Below is the factory method I use to instantiate `URLSessionHTTPClient` for testing:
+3. By subclassing `URLProtocol` and overriding several methods to intercept the requests. 
+
+
+Also, the stub should be registered for the `URL Loading System` to use it by calling `URLProtocol.registerClass(URLProtocolStub.self)` or set it directly in the `protocolClasses` property of `URLSessionConfiguration` before instantiating the session. To instantiate `URLSessionHTTPClient` for testing, I utilized the following factory method:
 
 ```swift
 private func makeSUT() -> URLSessionHTTPClient {
@@ -562,9 +565,9 @@ private func makeSUT() -> URLSessionHTTPClient {
 }
 ```
 
-For this project, I opted out to use the third option as it's the most reliable and it doesn't require to create additional files only for testing, thus cluttering the production side. I also use a struct to stub fake responses in the client and an array to spy on the `URLRequests` received. 
+For this project, I opted out to use the third option as it's the most reliable and doesn't require the creation of additional files exclusively for testing, thus cluttering the production side. I also use a struct to stub fake responses in the client and an array to spy on the incoming `URLRequests`. 
 
-It's critical after each test to remove the stub not to influence the initial state of the other tests since the properties are static and shared between tests. They are static because the `URLProtocolStub` can't instantiated directly, the system does it internally. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
+It's critical to remove the stub after each test not to influence the initial state of the other tests since the properties are static and shared between them. They are static because the `URLProtocolStub` can't be instantiated directly, as the system handles it internally. Thus, I don't have direct access to an instance, so I must use static properties to inject fake responses and spy the incoming requests.
 
 ```swift
 class URLProtocolStub: URLProtocol {
@@ -619,7 +622,7 @@ class URLProtocolStub: URLProtocol {
 
 ### Persistence
 
-The following diagram presents the `Persistence` module, and highlights the [infrastructure](#infrastructure) to [cache domain models](#cache-domain-models) in `CoreData`. Additionaly, it has the capability to [store `UserPreferences`](#store-user-preferences) locally in `UserDefaults`. 
+The following diagram presents the `Persistence` module and highlights the [infrastructure](#infrastructure) to [cache domain models](#cache-domain-models) in `CoreData`. Additionaly, it has the capability to [store `UserPreferences`](#store-user-preferences) locally in `UserDefaults`. 
 
 ![Persistence](./Diagrams/Persistence.svg)
 
@@ -630,14 +633,14 @@ The following diagram presents the `Persistence` module, and highlights the [inf
 | UserDAO | Uses `LocalStore` to save or retrieve a user |
 | NearbyRestaurantsDAO | Uses `LocalStore` to save or retrieve nearby restaurants |
 | RestaurantDetailsDAO | Uses `LocalStore` to save or retrieve restaurant details |
-| CoreDataLocalStore | CoreData implementation of `LocalStore` that writes or reads objects which conforms to `LocalModelConvertable` |
-| LocalModelConvertable | Generic protocol that creates a one-to-one relationship between a domain model and a managed model |
+| CoreDataLocalStore | `CoreData` implementation of `LocalStore` that writes or reads objects which conforms to `LocalModelConvertable` |
+| LocalModelConvertable | Generic protocol that creates a one-to-one relationship between a domain and managed model |
 
 #### Cache Domain Models
 
-To increase the maintainability of the system, I decoupled the use cases from the implementation details by using the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the use cases requirements (all the `DAO` classes). 
+To enhance the system's maintainability, I decoupled the use cases from the implementation details by applying the `Dependency Inversion` technique, creating the `LocalStore` protocol and making the concrete implementation of the local store to satisfy the use cases requirements (all the `DAO` classes). 
 
-This helps to achieve a better separation of concerns (not exposing managed object contexts or entities as parameters) and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need in the future to replace `CoreData` with other persistence frameworks like `Realm` or have just an in-memory cache, it would be fairly simple. Additionally, in case of new requirements coming in, I won't be concerned with how the actual store works inside as long as the `LocalStore` protocol satisfy my needs for the requirements.
+This helps to achieve a better separation of concerns (not exposing managed object contexts or entities as parameters) and allows the replacement of the infrastructure implementation without affecting other components. Thus, if I have the need to replace `CoreData` in the future with other persistence frameworks like `Realm` or have just an in-memory cache, it will be fairly simple. Additionally, in the case of new requirements coming in, I won't be concerned over the inner workings of the actual store, as long as the `LocalStore` protocol satisfy the requirements.
 
 For my current use cases, I only need to write/read one object or more from the local store.
 
@@ -658,7 +661,7 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 | Advantages | Disadvantages |
 |------|------|
 | It's really convenient to make the `User` domain model inherit from `NSManagedObject` | All modules that depend on `Domain` would depend on an implementation detail of the `Persistence` module, thus coupling the business logic with a specific framework (leaking framework details) |
-| | It increases the number of components that depends on the domain model making an eventual change to it expensive, as it can potentially break many modules |
+| | It increases the number of components that depends on the domain model making any future change to it an expensive process, as it could potentially break several modules |
 | | All the following decisions would be made by trying to accomodate the coupling with `CoreData` |
 
 2. Create a distinct representation of an user model specific for `CoreData`
@@ -671,7 +674,7 @@ Initially, I needed to cache only the `User` model for the autologin feature. In
 
 Since I wanted to hide all implementation details related to persistence, maintain modularity and decrease the coupling of domain models with a specific framework, I decided to create a separate managed model corresponding to the `User` domain model.
 
-After deciding to create distinct representation for all domain models, I needed a way to create an one-to-one relationship between a domain model and a managed model. The best approach I could find was to create a generic protocol, for domain models to implement, that has the requirements for mapping back and forth.
+After creating distinct representation for all domain models, to establish a one-to-one relationship between domain and managed models, I developed a generic protocol, for domain models to implement, with requirements for mapping between the two models.
 
 ```swift
 public protocol LocalModelConvertable {
@@ -682,7 +685,7 @@ public protocol LocalModelConvertable {
 }
 ```
 
-The initial goal was to create a generic boundary for the concrete implementation to use the same store for all domain models, that's why the `LocalStore` has generic methods dependent on types that must conform to `LocalModelConvertable`. Also, the mapping is done in the concrete implementation (`CoreDataLocalStore`) which respects the `Open/Closed Principle` since adding a new managed model doesn't require any change in the concrete store, but only creating the managed model and conforming the domain model to the `LocalModelConvertable` to create the relationship between them. The following code block is an example for the `User` model:
+The initial goal was to establish a generic boundary for the concrete implementation to use the same store for all domain models, that's why the `LocalStore` contains generic methods dependent on types that must conform to `LocalModelConvertable`. Also, the mapping is done in the concrete implementation (`CoreDataLocalStore`) which adheres to the `Open/Closed Principle` because adding a new managed model doesn't require any change in the concrete store, but only creating the managed model and conforming the domain model to the `LocalModelConvertable` to create the relationship between them. The following code block is an example for the `User` model:
 
 ```swift
 extension User: LocalModelConvertable {
@@ -701,7 +704,7 @@ extension User: LocalModelConvertable {
 
 #### Store User Preferences
 
-I decided to create a local representation of the user preferences locally to hide the `Codable` dependency from the domain model and hide all the complexity that can come with it. It's the same reasoning as for the `CoreData` local store above (hiding implementation details because clients don't care how the data is actually stored). This gives me the flexibility to change the actual implementation to better fit the new requirements (maybe moving user preferences in a `CoreData` store or choosing other way of persisting data).
+I decided to create a local representation of user preferences locally to hide the `Codable` dependency from the domain model and avoid all the complexity that may arise from it. It's the same reasoning as for the `CoreData` local store mentioned earlier (hiding implementation details because clients don't care how the data is actually stored). This gives me the flexibility to change the underlying implementation to better suit the new requirements (maybe moving user preferences in a `CoreData` store or choosing other way of persisting data).
 
 ### Location
 
@@ -720,9 +723,9 @@ Another interesting topic related to this module is getting the current location
 
 #### From delegation to async/await
 
-Since all modules use the `async/await` concurrency module I needed to switch from the usual delegation pattern that `CoreLocation` uses to advertise the current location.
+Since all modules use the `async/await` concurrency module, I needed to switch from the usual delegation pattern that `CoreLocation` uses to advertise the current location.
 
-I was able to do it by using a continuation which I capture in the `requestLocation` method in `LocationProvider` only if the user previously authorized the use of location. Afterwards, I make the request for a single location to the location manager.
+I was able to do it by using a continuation which I captured in the `requestLocation` method in `LocationProvider` only if the user previously authorized the use of the location. Afterwards, I make the request for a single location to the location manager.
 
 ```swift
 public func requestLocation() async throws -> Location {
@@ -737,7 +740,7 @@ public func requestLocation() async throws -> Location {
 }
 ```
 
-At this moment, we need to wait a delegate method to be triggered to resume the continuation either with an error or with a location.
+At this moment, we need to wait for a delegate method to be triggered to resume the continuation either with an error or with a location.
 
 ```swift
 public func locationManager(manager: LocationManager, didFailWithError error: Error) {
@@ -761,9 +764,9 @@ public func locationManager(manager: LocationManager, didUpdateLocations locatio
 
 #### Get current location using TDD
 
-To effectively test the behaviour of the `LocationProvider` in isolation I needed to decouple it from `CoreLocation`. I had quickly written an experimental class (without commiting it) to see what location features I needed and how the component would interact with `CoreLocation` before I deleted it and started the TDD process.
+To effectively test the behaviour of the `LocationProvider` in isolation, I needed to decouple it from `CoreLocation`. Before starting the TDD process, I had quickly written an experimental class (without commiting it) to determine the necessary location features and how the component would interact with `CoreLocation`.
 
-During the experimentation, I realised that I needed a way to mock the behaviour of the `CLLocationManager` class in order to spy certain behaviours (e.g. `requestLocation()`) or stub properties (e.g. `authorizationStatus`). Another reason for this is that `CoreLocation` requires user authorization which can trigger a permission dialog on the device if it wasn't granted before, making the tests relying on device state and causing them to be less maintainable and more likely to fail.
+During the experimentation, I discovered the need to mock the behaviour of the `CLLocationManager` class in order to spy certain behaviours (e.g. `requestLocation()`) or stub properties (e.g. `authorizationStatus`). Another reason for this is that `CoreLocation` requires user authorization, which can trigger a permission dialog on the device if it hasn't been granted before, making the tests reliant on device state and causing them to be less maintainable and more prone to failure.
 
 A common practice in this case is to extract a protocol with properties and methods from the target class, in this case `CLLocationManager`, that I was interested in mocking during testing. You can see below the minimal protocol for requesting the user's authorization and the current location.
 
@@ -777,6 +780,7 @@ public protocol LocationManager {
 }
 
 ```
+
 Next, I used an extension to make `CLLocationManager` conform to this protocol, allowing me to use the protocol instead of the concrete implementation of the location manager in production.
 
 ```swift
@@ -803,7 +807,7 @@ private class LocationManagerSpy: LocationManager {
 }
 ```
 
-I needed to decouple the code from the other external dependency, `CLLocationManagerDelegate`,  by creating a protocol that mimicks it, but uses the protocol for the manager defined above.
+I needed to decouple the code from the other external dependency, `CLLocationManagerDelegate`, by creating a protocol that mimicks it, but uses the protocol for the manager defined above.
 
 ```swift
 public protocol LocationManagerDelegate: AnyObject {
@@ -847,21 +851,21 @@ extension LocationProvider: CLLocationManagerDelegate {
 
 ### Presentation
 
-This layer makes the requests for getting data using a service and it formats the data exactly how the `UI` module needs it for displaying.
+This layer makes the requests for getting data using a service and it formats the data exactly how the `UI` module requires it.
 
-Decoupling view models from the concrete implementations of the services allowed me to simply add the caching and the fallback features later on without changing the view models and shows how the view models conforms to the `Open/Closed Principle`. Additionally, since I created separate abstraction for each request I was able to gradually add functionality to each request. For this reason, each view model has access to only methods it cares about, thus respecting the `Interface Segregation Principle` and making the concrete implementations depend on the clients' needs as they must conform to the protocol.
+By decoupling view models from the concrete implementations of the services allowed me to simply add the caching and the fallback features later on without changing the view models and shows how the view models conform to the `Open/Closed Principle`. Additionally, since I created separate abstractions for each request, I was able to gradually add functionalities. For this reason, each view model has access to methods it only cares about, thus respecting the `Interface Segregation Principle` and making the concrete implementations depend on the clients' needs as they must conform to the protocol.
 
-On the other side, adding all methods in a single protocol would have violated the `Single Responsibility Principle`, making the protocol bloated and forcing the clients that implements it to contain methods they don't care about, which is also a violation of the `Liskov Substitution Principle` if the client crashes the app because it doesn't know how to handle that scenario or simply don't care about implementing that method and decide to voluntarily crash the app.
+On the other side, adding all methods in a single protocol would have resulted in violating the `Single Responsibility Principle`, making the protocol bloated and forcing the clients to implement methods they don't care about. It's also a violation of the `Liskov Substitution Principle` if the client crashes the app when it doesn't know how to handle that behaviour or simply don't care about implementing it.
 
 Thus, by introducing abstractions, I increased the testability of the view models since mocking their collaborators during testing is a lot easier.
 
 ### UI
 
-The following diagram is the tree-like representation of all the screens in the app. Since I wanted the views to be completely decoupled from one another to increase their reusability, I decided to move the responsibility of creating subviews on layer above, meaning the composition root. Additionally, I decoupled all views from the navigation logic by using closures to trigger transitions between them (More details in the [Main](#main) section).
+The following diagram is the tree-like representation of all the screens in the app. To increase the reusability of views, I made the decision to move the responsibility of creating subviews to the layer above, meaning the composition root. Additionally, I decoupled all views from the navigation logic by using closures to trigger transitions between them (More details in the [Main](#main) section).
 
-The best example is the `HomeView` which is defined as a generic view which needs:
-- one closure to signal that the app should navigate to the restaurant details screen (the view being completely agnostic how the navigation is done)
-- one closure that receives a `NearbyRestaurant` and returns a `Cell` view to be rendered (the view is not responsible by creating the cell and doesn't care what cell it receives)
+The best example is the `HomeView` which is defined as a generic view requiring:
+- one closure to signal that the app should navigate to the restaurant details screen (the view being completely agnostic on how the navigation is done)
+- one closure that receives a `NearbyRestaurant` and returns a `Cell` view to be rendered (the view is not responsible for creating the cell and doesn't care what cell it receives)
 - one closure that receives a binding to a `String` and returns a view for searching nearby restaurants
 
 Furthermore, I avoid making views to depend on their subviews' dependencies by moving the responsibility of creating its subviews to the composition root. Thus, I keep the views constructors containing only dependencies they use.
@@ -878,18 +882,18 @@ struct HomeView<Cell: View, SearchView: View>: View {
 
 ### Main
 
-This module is responsible for instantiation and composing all independent modules in a centralized place which simplifies the management of modules, components and their dependencies, thus removing the need for them to communicate directly, increasing the composability and extensibility of the system (`Open/Closed Principle`). 
+This module is responsible for instantiation and composing all independent modules in a centralized location which simplifies the management of modules, components and their dependencies, thus removing the need for them to communicate directly, increasing the composability and extensibility of the system (`Open/Closed Principle`).
 
-Moreover, it represent the composition root of the app and I use it to handle the following responsiblities:
+Moreover, it represents the composition root of the app and handles the following responsiblities:
 1. [Adding caching by intercepting network requests](#adding-caching-by-intercepting-network-requests) (`Decorator Pattern`)
 2. [Adding fallback strategies when network requests fail](#adding-fallback-strategies-when-network-requests-fail) (`Composite Pattern`)
 3. [Handling navigation](#handling-navigation) (flat and hierarchical navigation)
 
 #### Adding caching by intercepting network requests
 
-One extremely beneficial advantage of having a composition root is the possibility to inject behaviour in an instance without changing its implementation using the `Decorator` pattern. I use it to intercept the requests and save the received domain models in the local store.
+One extremely beneficial advantage of having a composition root is the ability to inject behaviour into an instance without changing its implementation using the `Decorator` pattern. I use it to intercept the requests and save the received domain models in the local store.
 
-The following is an example of how I applied the pattern to introduce the caching behaviour after receiving the nearby restaurants. The decorator just conforms to the protocol the decoratee conforms and has an additional dependency, the cache, for storing the objects.
+The following is an example of how I applied the pattern to introduce the caching behaviour after receiving the nearby restaurants. The decorator just conforms to the protocol that the decoratee conforms to and has an additional dependency, the cache, for storing the objects.
 
 ```swift
 public final class NearbyRestaurantsServiceCacheDecorator: NearbyRestaurantsService {
@@ -913,9 +917,9 @@ I did the same for caching details and reviews for a given restaurant.
 
 #### Adding fallback strategies when network requests fail
 
-In order to compose multiple implementations of a particular abstraction we can use the `Composite` pattern. Thus, it's executed the first strategy that doesn't fail.
+The `Composite` pattern is an effective way to compose multiple implementations of a particular abstraction, executing the first strategy that doesn't fail.
 
-The following is an example of how I composed two strategies of fetching nearby restaurants using the `NearbyRestaurantsService` abstraction. I decided to compose two abstraction instead of using concrete types to easily test the composite in isolation and to increase the flexibility of the composition as it's not bounded to a given implementation of the protocol. 
+The following is an example of how I composed two strategies of fetching nearby restaurants using the `NearbyRestaurantsService` abstraction. I composed two abstractions instead of using concrete types to easily test the composite in isolation and increase the flexibility of the composition as it's not bounded to a given implementation. 
 
 ```swift
 public final class NearbyRestaurantsServiceWithFallbackComposite: NearbyRestaurantsService {
@@ -937,7 +941,7 @@ public final class NearbyRestaurantsServiceWithFallbackComposite: NearbyRestaura
 }
 ```
 
-In this manner, I can introduce multiple retries of the requests until I end up loading the data from the local store. For now, I only try the network request once and then I fetch the data from cache.
+In this manner, I can introduce multiple retries of requests until I end up loading the data from the local store. For now, I only try the network request once and then I fetch the data from cache.
 
 ```swift
 lazy var nearbyRestaurantsServiceWithFallbackComposite = NearbyRestaurantsServiceWithFallbackComposite(
@@ -955,7 +959,7 @@ I similarly composed the `RestaurantDetailsService` and `GetReviewsService` prot
 
 ##### Flat Navigation
 
-I used a custom tab bar to handle flat navigation by using a `TabRouter` observable object to navigate at the corresponding page when the user taps on the tab icon. The `Page` enum holds cases for all the tabs available.
+I created a custom tab bar to handle the flat navigation by using a `TabRouter` observable object to navigate at the corresponding page when the user taps on a tab icon. The `Page` enum holds cases for all the available tabs.
 
 ```swift
 class TabRouter: ObservableObject {
@@ -969,7 +973,7 @@ class TabRouter: ObservableObject {
 }
 ```
 
-Each view presented in the tab bar is wrapped in a `TabBarPageView` container view, so adding a new view is a matter of adding a new case in the `Page` enum and wrapping a view to be shown in the custom tab bar while switching through the current page.
+Each view presented in the tab bar is wrapped in a `TabBarPageView` container. Creating a new view is a matter of adding a new case in the `Page` enum and wrapping the view in the tab bar while switching through the current page.
 
 ##### Hierarchical Navigation
 
