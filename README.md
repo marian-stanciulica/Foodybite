@@ -1108,6 +1108,10 @@ To prevent this scenario I use `SHA512` to hash the passwords before sending to 
 
 ## Metrics
 
+![Testing vs Production](./Diagrams/testing_vs_production.png)
+
+![Count of files changed](./Diagrams/count_of_files_changed.png)
+
 ## Credits
 
 This beautiful design was made available by [Yagnesh P](https://www.behance.net/yagneshpipariya) for free here: [Foodybite Design](https://www.behance.net/gallery/81858385/Foobybite-Free-UI-Kit-for-Adobe-XD). You can also find him on dribbble.com: [Yagnesh P](https://dribbble.com/Yagneshp). Thank you, Yagnesh. 🙏
