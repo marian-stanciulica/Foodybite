@@ -1108,6 +1108,14 @@ To prevent this scenario I use `SHA512` to hash the passwords before sending to 
 
 ## Metrics
 
+Production files: 206
+Production lines of code: 8103
+Average lines per file: 39
+
+Testing files: 93
+Testing lines of code: 7733
+Average lines per file: 83
+
 ![Testing vs Production](./Diagrams/testing_vs_production.png)
 
 ![Count of files changed](./Diagrams/count_of_files_changed.png)
