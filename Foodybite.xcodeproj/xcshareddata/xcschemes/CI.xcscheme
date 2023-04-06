@@ -63,16 +63,6 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0F2BACB829829D3B006D4A7F"
-               BuildableName = "FoodybiteAPIEndToEndTests.xctest"
-               BlueprintName = "FoodybiteAPIEndToEndTests"
-               ReferencedContainer = "container:Foodybite.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
             skipped = "NO"
             testExecutionOrdering = "random">
             <BuildableReference
