@@ -52,6 +52,8 @@
     2. [Store Tokens from FoodybiteServer in Keychain](#store-tokens-from-foodybiteserver-in-keychain)
     3. [Password Hashing](#password-hashing)
 6. [Metrics](#metrics)
+    1. [Test lines of code per production lines of code](#test-lines-of-code-per-production-lines-of-code)
+    2. [Count of files changed](#count-of-files-changed)
 7. [Credits](#credits)
 8. [References](#references)
 
@@ -1123,11 +1125,15 @@ My initial goal was to have commits as small as possible, very frequent and with
 
 However, I decided to replace the concepts everywhere in the project to maintain consistency with the initial purpose and have meaningful domain models. I had had an average of `2.35` files changed per commits before the refactoring. The average gone up to `3.26` because of all the renaming I had to do.
 
-The following histogram represents the history for the number of files changed during the entire project. As you can see, 74% of all commits modified 3 or less files. Moreover, most of the commits with more than 10 files changed are due to renamings. Overall, the plot shows my continuous process of keeping the granularity of the commits high.
+The following histogram represents the history for the number of files changed during the entire project. As you can see, `74% of all commits modified 3 or less files`. Moreover, most of the commits with more than 10 files changed are due to renamings. Overall, the plot shows my continuous process of keeping the granularity of the commits high.
 
 ![Count of files changed](./Diagrams/count_of_files_changed.png)
 
 > ❗️ It includes `only` changes to Swift files.
+
+### Code coverage
+
+![Code coverage](./Diagrams/code_coverage.png)
 
 ## Credits
 
