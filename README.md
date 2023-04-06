@@ -1048,13 +1048,7 @@ The foundation for my testing strategy was to use unit tests for testing the sys
 
 ### Summary Table
 
-| Strategy | Count | Duration (s) |
-|------|------|------|
-| Unit Tests | 262 | 0.84 |
-| End-to-End Tests | 11 | 1.75 |
-| Cache Integration Tests | 3 | 0.04 |
-| Snapshot Tests | 49 | 6.1 |
-| Total | 325 | 8.73 |
+![Testing Strategy](./Diagrams/testing_strategy.png)
 
 ### Methodology
 
