@@ -1114,19 +1114,19 @@ To prevent this scenario I use `SHA512` to hash the passwords before sending to 
 
 ### Test lines of code per production lines of code
 
-You can see below the entire evolution of the codebase. For the first part of the project, the testing curve stays flat as I initially worked on the UI side, just testing different ideas. Afterwards, I've gone through the process of building the modules in the order presented here. 
+You can see below the entire evolution of the codebase. For the first part of the project, the testing curve stayed flat as I initially worked on the UI side, just testing different ideas. Afterward, I went through the process of building the modules in the order presented here.
 
-The usage of `TDD` all along the way is proved by the lack of flat segments on the testing curve as each commit contained changes in both and their spikes are correlated. This highlights how important was for me to have automated tests before writing production code.
+The usage of `TDD` all along the way is proved by the lack of flat segments on the testing curve as each commit contained changes in both, and their spikes are correlated. It highlights how important it was for me to have automated tests before writing production code.
 
 ![Testing vs Production](./Diagrams/testing_vs_production.png)
 
 ### Count of files changed
 
-My initial goal was to have commits as small as possible, very frequent and with meaningful messages. Additionaly, I strived for an average of changed files per commits between `2 and 2.5`. Unfortunately, I realized while polishing the last details of the project that I used the concept of `place` everywhere instead of `restaurant`. It was due to the fact that I initially borrowed the naming from `Google Places`. Also, the concepts are pretty similar and easy to use interchangeably since the set of restaurants is contained in the set of places.
+My initial goal was to make commits as small as possible, very frequent, and with meaningful messages. Additionally, I strived for an average of changed files per commit between `2 and 2.5`. Unfortunately, I realized while polishing the last details of the project that I used the concept of `place` everywhere instead of `restaurant`. It was because I initially borrowed the naming from `Google Places`. Also, they are similar and easy to use interchangeably since the set of places contains all restaurants.
 
-However, I decided to replace the concepts everywhere in the project to maintain consistency with the initial purpose and have meaningful domain models. I had had an average of `2.35` files changed per commits before the refactoring. The average gone up to `3.26` because of all the renaming I had to do.
+However, I decided to replace the concepts everywhere in the project to maintain consistency with the initial purpose and have meaningful domain models. I had an average of `2.35` files changed per commit before the refactoring. It went up to `3.26` because of all the renaming I had to do.
 
-The following histogram represents the history for the number of files changed during the entire project. As you can see, `74% of all commits modified 3 or less files`. Moreover, most of the commits with more than 10 files changed are due to renamings. Overall, the plot shows my continuous process of keeping the granularity of the commits high.
+The following histogram represents the history of the number of files changed during the project. As you can see, `74% of all commits modified three or fewer files`. Moreover, most commits with more than ten files changed are due to renaming. Overall, the plot shows my continuous process of keeping the granularity of the commits high.
 
 ![Count of files changed](./Diagrams/count_of_files_changed.png)
 
@@ -1134,17 +1134,17 @@ The following histogram represents the history for the number of files changed d
 
 ### Code coverage
 
-Having a high code coverage wasn't a goal for me during the project, instead my focus was to write quality tests. The code coverage emerged as a consequence of following `TDD` while building the modules. It's a useful metric to check what portions of the code are not executed by the tests. However, it doesn't guarantee that all possible paths have been tested.
+Having high code coverage wasn't a goal for me during the project, instead, my focus was to write quality tests. The code coverage emerged as a consequence of following `TDD` while building the modules. It's a useful metric to check what portions of the code are not executed by the tests. However, it doesn't guarantee that all possible paths have been tested.
 
 The `Persistence` module has only `47%` code coverage because `CoreDataLocalStore` has generic methods which I tested only using the `ManagedUser` to validate its behaviour, so all the other managed models are not covered.
 
-In case of the `Location` module, I was unable to trigger the delegate methods I use, that's why in order to test them I implemented my own delegate. (You can find more details here: [Get current location using TDD](#get-current-location-using-tdd))
+In the case of the `Location` module, I was unable to trigger the delegate methods I use, that's why in order to test them I implemented my own delegate. (You can find more details here: [Get current location using TDD](#get-current-location-using-tdd))
 
-So far, I haven't done any unit testing on views since they don't contain business logic. I tested them only through snapshot testing to ensure the layout is correct. I had the option to test them using a third-party framework called `ViewInspector`, but I wasn't confortable to add in production the required setup to make it work. For this reason, I decided to test the views' logic using the preview or manually if necessary.
+So far, I haven't done any unit testing on views since they don't contain business logic. I tested them only through snapshot testing to ensure the layout is correct. I had the option to test them using a third-party framework called `ViewInspector`, but I wasn't comfortable to add in production the required setup to make it work. For this reason, I decided to test the views' logic using the preview or manually if necessary.
 
 This is also valid for the views in the composition root that handles the navigation, that's the reason the coverage is only `40%`.
 
-In conclusion, all the modules are fully tested, except the view logic from the `UI` and `Main` modules. However, I kept it to the bare minimum and can be easily tested using the preview. It is a trade-off I had to make and I'm considering using the framework to write some acceptance tests in the future. But for now, I'm happy with the current solution.
+In conclusion, all the modules are fully tested, except the view logic from the `UI` and `Main` modules. However, I kept it to the bare minimum, and can be easily tested using the preview. It is a trade-off I had to make and I'm considering using the framework to write some acceptance tests in the future. But for now, I'm happy with the current solution.
 
 ![Code coverage](./Diagrams/code_coverage.png)
 
