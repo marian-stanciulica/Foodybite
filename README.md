@@ -1117,7 +1117,17 @@ The usage of `TDD` all along the way is proved by the lack of flat segments on t
 
 ![Testing vs Production](./Diagrams/testing_vs_production.png)
 
+### Count of files changed
+
+My initial goal was to have commits as small as possible, very frequent and with meaningful messages. Additionaly, I strived for an average of changed files per commits between `2 and 2.5`. Unfortunately, I realized while polishing the last details of the project that I used the concept of `place` everywhere instead of `restaurant`. It was due to the fact that I initially borrowed the naming from `Google Places`. Also, the concepts are pretty similar and easy to use interchangeably since the set of restaurants is contained in the set of places.
+
+However, I decided to replace the concepts everywhere in the project to maintain consistency with the initial purpose and have meaningful domain models. I had had an average of `2.35` files changed per commits before the refactoring. The average gone up to `3.26` because of all the renaming I had to do.
+
+The following histogram represents the history for the number of files changed during the entire project. As you can see, 74% of all commits modified 3 or less files. Moreover, most of the commits with more than 10 files changed are due to renamings. Overall, the plot shows my continuous process of keeping the granularity of the commits high.
+
 ![Count of files changed](./Diagrams/count_of_files_changed.png)
+
+> ❗️ It includes `only` changes to Swift files.
 
 ## Credits
 
