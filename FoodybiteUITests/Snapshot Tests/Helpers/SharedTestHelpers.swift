@@ -20,7 +20,7 @@ func assertLightSnapshot<SomeView: View>(
     let view = UIHostingController(rootView: value)
     
     assertSnapshot(matching: view,
-                   as: .image(on: .iPhone13, perceptualPrecision: 0.98, traits: trait),
+                   as: .image(on: .iPhone13, perceptualPrecision: 0.99, traits: trait),
                    named: "light",
                    record: recording,
                    file: file,
@@ -39,7 +39,7 @@ func assertDarkSnapshot<SomeView: View>(
     let view = UIHostingController(rootView: value)
 
     assertSnapshot(matching: view,
-                   as: .image(on: .iPhone13, perceptualPrecision: 0.98, traits: trait),
+                   as: .image(on: .iPhone13, perceptualPrecision: 0.99, traits: trait),
                    named: "dark",
                    record: recording,
                    file: file,
