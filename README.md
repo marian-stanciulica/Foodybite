@@ -1102,13 +1102,12 @@ To prevent this scenario I use `SHA512` to hash the passwords before sending to 
 
 ## Metrics
 
-Production files: 206
-Production lines of code: 8103
-Average lines per file: 39
+| Environment | Files Count | Total lines of code | Average lines per file |
+|------|------|------|------|
+| Production | 206 | 8103 | 39 |
+| Testing | 93 | 7733 | 83 |
 
-Testing files: 93
-Testing lines of code: 7733
-Average lines per file: 83
+> ❗️ Blank lines or comments are not considered. 
 
 ![Testing vs Production](./Diagrams/testing_vs_production.png)
 
