@@ -1,0 +1,16 @@
+name: CI-iOS
+on: push
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        xcode-version: latest
+      
+    - name: Xcode version
+      run: /usr/bin/xcodebuild -version
+      
+    - name: Build and Test
+      run: xcodebuild clean test -project Foodybite.xcodeproj -scheme "CI" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14" ONLY_ACTIVE_ARCH=YES
