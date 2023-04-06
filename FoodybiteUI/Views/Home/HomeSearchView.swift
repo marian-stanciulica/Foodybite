@@ -34,7 +34,7 @@ public struct HomeSearchView<SearchCriteriaView: View>: View {
                     Image("filters_icon", bundle: .current)
                         .resizable()
                         .renderingMode(.template)
-                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .foregroundColor(.gray3)
                         .frame(width: 20, height: 20)
                         .padding()
                 }

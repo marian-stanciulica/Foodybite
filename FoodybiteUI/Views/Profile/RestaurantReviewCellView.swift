@@ -28,7 +28,7 @@ public struct RestaurantReviewCellView: View {
             case .isLoading:
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .foregroundColor(.gray3)
                         .frame(height: 200)
                     
                     ProgressView()

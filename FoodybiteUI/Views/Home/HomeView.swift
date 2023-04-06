@@ -55,7 +55,7 @@ public struct HomeView<Cell: View, SearchView: View>: View {
                                 .frame(maxWidth: .infinity)
                                 .aspectRatio(0.75, contentMode: .fit)
                                 .padding(4)
-                                .shadow(color: Color(uiColor: .systemGray3), radius: 2)
+                                .shadow(color: .gray3, radius: 2)
                                 .onTapGesture {
                                     showRestaurantDetails(restaurant.id)
                                 }

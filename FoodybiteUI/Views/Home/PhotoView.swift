@@ -22,7 +22,7 @@ public struct PhotoView: View {
             case .isLoading:
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .foregroundColor(.gray3)
                         .frame(height: 200)
                     
                     ProgressView()
@@ -30,7 +30,7 @@ public struct PhotoView: View {
             case .noImageAvailable:
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .foregroundColor(.gray3)
                         .frame(height: 200)
                     
                     Text("No Image Available")
@@ -39,7 +39,7 @@ public struct PhotoView: View {
             case .failure:
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color(uiColor: .systemGray3))
+                        .foregroundColor(.gray3)
                         .frame(height: 200)
                     
                     Image(systemName: "arrow.clockwise.circle")
