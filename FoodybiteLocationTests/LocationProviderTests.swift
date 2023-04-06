@@ -44,8 +44,6 @@ final class LocationProviderTests: XCTestCase {
         }
 
         task.cancel()
-        
-        #warning("Used because the CI still runs Xcode 14.2, so it doesn't support the `fulfillment` method yet")
         await waitForExpectations(timeout: 1.0)
         
         XCTAssertEqual(locationManagerSpy.requestLocationCallCount, 1)
