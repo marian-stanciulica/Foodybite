@@ -1107,7 +1107,13 @@ To prevent this scenario I use `SHA512` to hash the passwords before sending to 
 | Production | 206 | 8103 | 39 |
 | Testing | 93 | 7733 | 83 |
 
-> ❗️ Blank lines or comments are not considered. 
+> ❗️ Blank lines and comments are not considered. 
+
+### Test lines of code per production lines of code
+
+You can see below the entire evolution of the codebase. For the first part of the project, the testing curve stays flat as I initially worked on the UI side, just testing different ideas. Afterwards, I've gone through the process of building the modules in the order presented here. 
+
+The usage of `TDD` all along the way is proved by the lack of flat segments on the testing curve as each commit contained changes in both and their spikes are correlated. This highlights how important was for me to have automated tests before writing production code.
 
 ![Testing vs Production](./Diagrams/testing_vs_production.png)
 
