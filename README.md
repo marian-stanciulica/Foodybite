@@ -54,6 +54,7 @@
 6. [Metrics](#metrics)
     1. [Test lines of code per production lines of code](#test-lines-of-code-per-production-lines-of-code)
     2. [Count of files changed](#count-of-files-changed)
+    3. [Code coverage](#code-coverage)
 7. [Credits](#credits)
 8. [References](#references)
 
@@ -1078,7 +1079,7 @@ An important aspect while testing different systems in integration is to take in
 
 ### Snapshots Tests
 
-Initially, I used snapshots tests for checking the layout of the UI for each state injecting the state directly in the viewModels. Afterwards, I used them to test-drive new screens as a feedback mechanism instead of using the preview. It felt like a better alternative because they are relatively fast to run and I could check the UI both for light and dark mode at the same time.
+Initially, I used snapshots tests for checking the layout of the UI for each state injecting the state directly in the viewModels. Afterwards, I used them to test-drive new screens as a feedback mechanism alongside with the preview. It felt like a better alternative because they are relatively fast to run and I could check the UI both for light and dark mode at the same time.
 
 Nevertheless, I didn't test any logic using snapshot tests as all the logic was encapsulated in viewModels which were already unit tested.
 
@@ -1132,6 +1133,18 @@ The following histogram represents the history for the number of files changed d
 > ❗️ It includes `only` changes to Swift files.
 
 ### Code coverage
+
+Having a high code coverage wasn't a goal for me during the project, instead my focus was to write quality tests. The code coverage emerged as a consequence of following `TDD` while building the modules. It's a useful metric to check what portions of the code are not executed by the tests. However, it doesn't guarantee that all possible paths have been tested.
+
+The `Persistence` module has only `47%` code coverage because `CoreDataLocalStore` has generic methods which I tested only using the `ManagedUser` to validate its behaviour, so all the other managed models are not covered.
+
+In case of the `Location` module, I was unable to trigger the delegate methods I use, that's why in order to test them I implemented my own delegate. (You can find more details here: [Get current location using TDD](#get-current-location-using-tdd))
+
+So far, I haven't done any unit testing on views since they don't contain business logic. I tested them only through snapshot testing to ensure the layout is correct. I had the option to test them using a third-party framework called `ViewInspector`, but I wasn't confortable to add in production the required setup to make it work. For this reason, I decided to test the views' logic using the preview or manually if necessary.
+
+This is also valid for the views in the composition root that handles the navigation, that's the reason the coverage is only `40%`.
+
+In conclusion, all the modules are fully tested, except the view logic from the `UI` and `Main` modules. However, I kept it to the bare minimum and can be easily tested using the preview. It is a trade-off I had to make and I'm considering using the framework to write some acceptance tests in the future. But for now, I'm happy with the current solution.
 
 ![Code coverage](./Diagrams/code_coverage.png)
 
