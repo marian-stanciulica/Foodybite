@@ -14,7 +14,7 @@ import FoodybiteLocation
 import FoodybiteUI
 
 enum ProfileFlowView {
-    
+
     @ViewBuilder static func makeProfileView(
         flow: Flow<ProfileRoute>,
         user: User,
@@ -54,7 +54,7 @@ enum ProfileFlowView {
             goToEditProfile: { flow.append(.editProfile) }
         )
     }
-    
+
     @ViewBuilder static func makeSettingsView(
         flow: Flow<ProfileRoute>,
         logoutService: LogoutService,
@@ -69,19 +69,19 @@ enum ProfileFlowView {
             flow.append(.changePassword)
         }
     }
-    
+
     @ViewBuilder static func makeChangePasswordView(changePasswordService: ChangePasswordService) -> some View {
         ChangePasswordView(
             viewModel: ChangePasswordViewModel(changePasswordService: changePasswordService)
         )
     }
-    
+
     @ViewBuilder static func makeEditProfileView(accountService: AccountService) -> some View {
         EditProfileView(
             viewModel: EditProfileViewModel(accountService: accountService)
         )
     }
-    
+
     @ViewBuilder static func makeRestaurantDetailsView(
         flow: Flow<ProfileRoute>,
         restaurantDetails: RestaurantDetails,
@@ -110,7 +110,7 @@ enum ProfileFlowView {
             }
         )
     }
-    
+
     @ViewBuilder static func makeReviewView(
         flow: Flow<ProfileRoute>,
         restaurantID: String,
@@ -120,5 +120,5 @@ enum ProfileFlowView {
             flow.navigateBack()
         }
     }
-    
+
 }
