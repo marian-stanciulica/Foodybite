@@ -10,11 +10,11 @@ import Domain
 import FoodybitePersistence
 
 final class NearbyRestaurantsDAOTests: XCTestCase {
-    
+
     func test_searchNearby_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy, _) = makeSUT()
         storeSpy.readResult = .failure(anyError())
-        
+
         do {
             let nearbyRestaurants = try await searchNearby(on: sut)
             XCTFail("Expected to fail, received \(nearbyRestaurants) instead")
@@ -22,47 +22,48 @@ final class NearbyRestaurantsDAOTests: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
-    
+
     func test_searchNearby_returnsFilteredNearbyRestaurantsWhenStoreReturnsSuccessfully() async throws {
         let (sut, storeSpy, distanceSolverStub) = makeSUT()
         let radius = 10
         distanceSolverStub.stub = [9, 11, 8]
-        
+
         let nearbyRestaurants = makeNearbyRestaurants()
         storeSpy.readAllResult = .success(nearbyRestaurants)
-        
+
         let receivedNearbyRestaurants = try await searchNearby(on: sut, radius: radius)
         XCTAssertEqual(receivedNearbyRestaurants, [nearbyRestaurants[0]] + [nearbyRestaurants[2]])
     }
-    
+
     func test_save_sendsNearbyRestaurantsToStore() async throws {
         let (sut, storeSpy, _) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
-        
+
         try await sut.save(nearbyRestaurants: expectedNearbyRestaurants)
-        
+
         XCTAssertEqual(storeSpy.messages.count, 1)
-        
-        if case let .writeAll(receivedNearbyRestaurants) = storeSpy.messages[0] {
-            XCTAssertEqual(expectedNearbyRestaurants, receivedNearbyRestaurants as! [NearbyRestaurant])
+
+        if case let .writeAll(receivedNearbyRestaurants) = storeSpy.messages[0],
+           let receivedNearbyRestaurants = receivedNearbyRestaurants as? [NearbyRestaurant] {
+            XCTAssertEqual(expectedNearbyRestaurants, receivedNearbyRestaurants)
         } else {
             XCTFail("Expected .writeAll message, got \(storeSpy.messages[0]) instead")
         }
     }
-    
+
     // MARK: - Helpers
-    
+
     private func makeSUT() -> (sut: NearbyRestaurantsDAO, storeSpy: LocalStoreSpy, distanceProviderStub: DistanceProviderStub) {
         let storeSpy = LocalStoreSpy()
         let distanceProviderStub = DistanceProviderStub()
         let sut = NearbyRestaurantsDAO(store: storeSpy, getDistanceInKm: distanceProviderStub.getDistanceInKm)
         return (sut, storeSpy, distanceProviderStub)
     }
-    
+
     private func anyLocation() -> Location {
         Location(latitude: 0, longitude: 0)
     }
-    
+
     private func makeNearbyRestaurants() -> [NearbyRestaurant] {
         [
             NearbyRestaurant(
@@ -88,15 +89,15 @@ final class NearbyRestaurantsDAOTests: XCTestCase {
                 photo: nil)
         ]
     }
-    
+
     private func searchNearby(on sut: NearbyRestaurantsDAO, location: Location? = nil, radius: Int = 0) async throws -> [NearbyRestaurant] {
         return try await sut.searchNearby(location: location ?? anyLocation(), radius: radius)
     }
-    
+
     private class DistanceProviderStub {
         var stub = [Double]()
         private var count = 0
-        
+
         func getDistanceInKm(from source: Location, to destination: Location) -> Double {
             let distance = stub[count]
             count += 1
