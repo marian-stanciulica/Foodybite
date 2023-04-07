@@ -21,7 +21,7 @@ extension Review: LocalModelConvertable {
             relativeTime: managedReview.relativeTime
         )
     }
-    
+
     public func toLocalModel(context: NSManagedObjectContext) -> ManagedReview {
         ManagedReview(self, for: context)
     }

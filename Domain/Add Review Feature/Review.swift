@@ -16,7 +16,7 @@ public struct Review: Equatable, Identifiable, Hashable {
     public let reviewText: String
     public let rating: Int
     public let relativeTime: String
-    
+
     public init(id: UUID = UUID(), restaurantID: String, profileImageURL: URL?, profileImageData: Data?, authorName: String, reviewText: String, rating: Int, relativeTime: String) {
         self.id = id
         self.restaurantID = restaurantID
@@ -27,8 +27,8 @@ public struct Review: Equatable, Identifiable, Hashable {
         self.rating = rating
         self.relativeTime = relativeTime
     }
-    
-    public static func ==(lhs: Review, rhs: Review) -> Bool {
+
+    public static func == (lhs: Review, rhs: Review) -> Bool {
         lhs.restaurantID == rhs.restaurantID &&
         lhs.profileImageURL == rhs.profileImageURL &&
         lhs.profileImageData == rhs.profileImageData &&
