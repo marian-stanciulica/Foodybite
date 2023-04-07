@@ -42,7 +42,7 @@ struct RestaurantImageView_Previews: PreviewProvider {
         )
         .background(.black)
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")!.pngData()!

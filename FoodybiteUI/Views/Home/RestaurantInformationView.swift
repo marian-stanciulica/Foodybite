@@ -12,7 +12,7 @@ struct RestaurantInformationView: View {
     let name: String
     let distance: String
     let address: String?
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {

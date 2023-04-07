@@ -13,13 +13,17 @@ public struct RestaurantReviewCellView: View {
     @StateObject var viewModel: RestaurantReviewCellViewModel
     let makePhotoView: (String?) -> PhotoView
     let showRestaurantDetails: (RestaurantDetails) -> Void
-    
-    public init(viewModel: RestaurantReviewCellViewModel, makePhotoView: @escaping (String?) -> PhotoView, showRestaurantDetails: @escaping (RestaurantDetails) -> Void) {
+
+    public init(
+        viewModel: RestaurantReviewCellViewModel,
+        makePhotoView: @escaping (String?) -> PhotoView,
+        showRestaurantDetails: @escaping (RestaurantDetails) -> Void
+    ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.makePhotoView = makePhotoView
         self.showRestaurantDetails = showRestaurantDetails
     }
-    
+
     public var body: some View {
         VStack(alignment: .leading) {
             switch viewModel.getRestaurantDetailsState {
@@ -30,7 +34,7 @@ public struct RestaurantReviewCellView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.gray3)
                         .frame(height: 200)
-                    
+
                     ProgressView()
                 }
             case let .failure(error):
@@ -42,11 +46,11 @@ public struct RestaurantReviewCellView: View {
             case let .success(restaurantDetails):
                 ZStack(alignment: .topTrailing) {
                     makePhotoView(restaurantDetails.photos.first?.photoReference)
-                    
+
                     RatingStar(rating: viewModel.rating, backgroundColor: Color(uiColor: .systemGray6))
                         .padding()
                 }
-                
+
                 AddressView(restaurantName: viewModel.restaurantName,
                             address: viewModel.restaurantAddress)
                 .padding(.horizontal)
@@ -55,7 +59,7 @@ public struct RestaurantReviewCellView: View {
         .cornerRadius(16)
         .task {
             guard viewModel.getRestaurantDetailsState == .idle else { return }
-            
+
             await viewModel.getRestaurantDetails()
         }
         .onTapGesture {
@@ -70,7 +74,15 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantReviewCellView(
             viewModel: RestaurantReviewCellViewModel(
-                review: Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "Marian", reviewText: "nice", rating: 2, relativeTime: "10 hours ago"),
+                review: Review(
+                    restaurantID: "place #1",
+                    profileImageURL: nil,
+                    profileImageData: nil,
+                    authorName: "Marian",
+                    reviewText: "nice",
+                    rating: 2,
+                    relativeTime: "10 hours ago"
+                ),
                 restaurantDetailsService: PreviewRestaurantDetailsService()
             ),
             makePhotoView: { _ in
@@ -84,7 +96,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
             showRestaurantDetails: { _ in }
         )
     }
-    
+
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
@@ -102,7 +114,7 @@ struct RestaurantReviewCellView_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
