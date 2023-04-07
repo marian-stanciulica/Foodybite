@@ -10,17 +10,17 @@ import XCTest
 import Domain
 
 extension APIServiceTests {
-    
+
     func test_conformsToSignUpService() {
         let (sut, _, _, _) = makeSUT()
         XCTAssertNotNil(sut as SignUpService)
     }
-    
+
     func test_signUp_usesSignUpEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
         let password = anyPassword()
         let hashedPassword = hash(password: password)
-        
+
         try await sut.signUp(
             name: anyName(),
             email: anyEmail(),
@@ -28,7 +28,7 @@ extension APIServiceTests {
             confirmPassword: password,
             profileImage: anyData()
         )
-        
+
         XCTAssertEqual(sender.requests.count, 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
@@ -36,9 +36,9 @@ extension APIServiceTests {
             method: .post,
             body: makeSignUpRequestBody(password: hashedPassword, confirmPassword: hashedPassword))
     }
-    
+
     // MARK: - Helpers
-    
+
     private func makeSignUpRequestBody(password: String, confirmPassword: String) -> SignUpRequestBody {
         SignUpRequestBody(
             name: anyName(),
@@ -48,5 +48,5 @@ extension APIServiceTests {
             profileImage: anyData()
         )
     }
-    
+
 }
