@@ -10,11 +10,11 @@ import Domain
 import FoodybitePersistence
 
 final class RestaurantDetailsDAOTests: XCTestCase {
-    
+
     func test_getRestaurantDetails_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readResult = .failure(anyError())
-        
+
         do {
             let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant #1")
             XCTFail("Expected to fail, received \(restaurantDetails) instead")
@@ -22,39 +22,40 @@ final class RestaurantDetailsDAOTests: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
-    
+
     func test_getRestaurantDetails_returnsRestaurantDetailsForRestaurantIDWhenStoreContainsRestaurantDetails() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         storeSpy.readAllResult = .success(makeRestaurantsDetailsArray() + [expectedRestaurantDetails])
-        
+
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
         XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
     }
-    
+
     func test_save_sendsRestaurantsDetailsToStore() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
-        
+
         try await sut.save(restaurantDetails: expectedRestaurantDetails)
-        
+
         XCTAssertEqual(storeSpy.messages.count, 1)
-        
-        if case let .write(receivedRestaurantDetails) = storeSpy.messages[0] {
-            XCTAssertEqual(expectedRestaurantDetails, receivedRestaurantDetails as! RestaurantDetails)
+
+        if case let .write(receivedRestaurantDetails) = storeSpy.messages[0],
+           let receivedRestaurantDetails = receivedRestaurantDetails as? RestaurantDetails {
+            XCTAssertEqual(expectedRestaurantDetails, receivedRestaurantDetails)
         } else {
             XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
         }
     }
-    
+
     // MARK: - Helpers
-    
+
     private func makeSUT() -> (sut: RestaurantDetailsDAO, storeSpy: LocalStoreSpy) {
         let storeSpy = LocalStoreSpy()
         let sut = RestaurantDetailsDAO(store: storeSpy)
         return (sut, storeSpy)
     }
-    
+
     private func makeRestaurantsDetailsArray() -> [RestaurantDetails] {
         [
             RestaurantDetails(id: "restaurant #1",
@@ -77,7 +78,7 @@ final class RestaurantDetailsDAOTests: XCTestCase {
                          photos: [])
         ]
     }
-    
+
     private func makeRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(id: "Expected restaurant",
                      phoneNumber: "",
@@ -89,5 +90,5 @@ final class RestaurantDetailsDAOTests: XCTestCase {
                      location: Location(latitude: 0, longitude: 0),
                      photos: [])
     }
-    
+
 }
