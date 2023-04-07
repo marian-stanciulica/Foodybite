@@ -13,16 +13,16 @@ struct NewReviewSearchView: View {
     @Binding var autocompleteResults: [AutocompletePrediction]
     let onChange: () async -> Void
     let onRestaurantSelected: (String) async -> Void
-    
+
     var body: some View {
         VStack(spacing: 0) {
             SearchView(searchText: $searchText)
-                .onChange(of: searchText) { newValue in
+                .onChange(of: searchText) { _ in
                     Task {
                         await onChange()
                     }
                 }
-            
+
             if !autocompleteResults.isEmpty {
                 VStack(alignment: .leading) {
                     ForEach(autocompleteResults, id: \.restaurantID) { result in
@@ -31,12 +31,12 @@ struct NewReviewSearchView: View {
                                 .frame(height: 1)
                                 .foregroundColor(.gray.opacity(0.2))
                                 .padding(0)
-                            
+
                             HStack {
                                 Text(result.restaurantPrediction)
-                                
+
                                 Spacer()
-                                
+
                                 Image(systemName: "arrow.up.right")
                             }
                             .padding(.horizontal)
@@ -45,7 +45,7 @@ struct NewReviewSearchView: View {
                         .onTapGesture {
                             autocompleteResults = []
                             searchText = ""
-                            
+
                             Task {
                                 await onRestaurantSelected(result.restaurantID)
                             }
