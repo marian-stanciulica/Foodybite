@@ -15,15 +15,15 @@ final class NullLocalStore: LocalStore {
     func read<T: LocalModelConvertable>() async throws -> T {
         throw CacheMissError()
     }
-    
+
     func readAll<T: LocalModelConvertable>() async throws -> [T] {
         throw CacheMissError()
     }
-    
+
     func write<T: LocalModelConvertable>(_ user: T) async throws {
         throw CacheMissError()
     }
-    
+
     func writeAll<T: LocalModelConvertable>(_ objects: [T]) async throws {
         throw CacheMissError()
     }
