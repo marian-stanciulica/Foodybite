@@ -10,25 +10,25 @@ import SwiftUI
 struct TabBarView: View {
     @Binding var plusButtonActive: Bool
     @Binding var currentPage: TabRouter.Page
-    
+
     let tabBarWidth: CGFloat
     let tabBarHeight: CGFloat
-    
+
     let iconWidth: CGFloat
     let iconHeight: CGFloat
-    
+
     var body: some View {
         ZStack {
             HStack {
                 Spacer()
-                
+
                 TabBarIcon(currentPage: $currentPage,
                            assignedPage: .home,
                            width: iconWidth,
                            height: iconHeight)
-                
+
                 Spacer()
-                
+
                 ZStack {
                     Circle()
                         .shadow(
@@ -42,7 +42,7 @@ struct TabBarView: View {
                             height: iconWidth * 0.8
                         )
                         .foregroundColor(.marineBlue)
-                    
+
                     Image(systemName: "plus")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -57,7 +57,7 @@ struct TabBarView: View {
                 .onTapGesture {
                     withAnimation {
                         plusButtonActive.toggle()
-                        
+
                         if currentPage != .newReview {
                             currentPage = .newReview
                         } else {
@@ -65,14 +65,14 @@ struct TabBarView: View {
                         }
                     }
                 }
-                
+
                 Spacer()
-                
+
                 TabBarIcon(currentPage: $currentPage,
                            assignedPage: .account,
                            width: iconWidth,
                            height: iconHeight)
-                
+
                 Spacer()
             }
             .frame(width: tabBarWidth, height: tabBarHeight / 2)
@@ -93,8 +93,7 @@ struct TabBarView_Previews: PreviewProvider {
                    tabBarHeight: UIScreen.screenHeight / 6,
                    iconWidth: UIScreen.screenWidth / 5,
                    iconHeight: UIScreen.screenHeight / 32)
-        
-        
+
         .padding()
         .background(.gray.opacity(0.2))
     }

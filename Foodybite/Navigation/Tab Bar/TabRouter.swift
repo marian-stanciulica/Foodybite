@@ -13,6 +13,6 @@ class TabRouter: ObservableObject {
         case newReview
         case account
     }
-    
+
     @Published var currentPage: Page = .home
 }
