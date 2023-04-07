@@ -23,8 +23,6 @@ struct OrangeButton: View {
 
 struct OrangeButton_Previews: PreviewProvider {
     static var previews: some View {
-        OrangeButton(title: "Button") {
-            
-        }
+        OrangeButton(title: "Button") { }
     }
 }

@@ -8,7 +8,7 @@
 public struct OpeningHoursDetails: Equatable, Hashable {
     public let openNow: Bool
     public let weekdayText: [String]
-    
+
     public init(openNow: Bool, weekdayText: [String]) {
         self.openNow = openNow
         self.weekdayText = weekdayText
