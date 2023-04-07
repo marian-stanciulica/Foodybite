@@ -13,13 +13,13 @@ public struct NewReviewView<SelectedView: View>: View {
     @Binding var plusButtonActive: Bool
     @StateObject var viewModel: NewReviewViewModel
     let selectedView: (RestaurantDetails) -> SelectedView
-    
+
     public init(plusButtonActive: Binding<Bool>, viewModel: NewReviewViewModel, selectedView: @escaping (RestaurantDetails) -> SelectedView) {
         self._plusButtonActive = plusButtonActive
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.selectedView = selectedView
     }
-    
+
     public var body: some View {
         ScrollView {
             VStack {
@@ -30,14 +30,14 @@ public struct NewReviewView<SelectedView: View>: View {
                         }
                     }
                     .foregroundColor(Color(uiColor: .systemGray))
-                    
+
                     Spacer()
-                    
+
                     Text("New Review")
                         .font(.title)
-                    
+
                     Spacer()
-                    
+
                     if viewModel.postReviewState == .isLoading {
                         ProgressView()
                     } else {
@@ -51,7 +51,7 @@ public struct NewReviewView<SelectedView: View>: View {
                     }
                 }
                 .padding()
-                
+
                 NewReviewSearchView(
                     searchText: $viewModel.searchText,
                     autocompleteResults: $viewModel.autocompleteResults,
@@ -62,7 +62,7 @@ public struct NewReviewView<SelectedView: View>: View {
                         await viewModel.getRestaurantDetails(restaurantID: restaurantID)
                     }
                 )
-                
+
                 switch viewModel.getRestaurantDetailsState {
                 case .idle:
                     EmptyView()
@@ -75,26 +75,26 @@ public struct NewReviewView<SelectedView: View>: View {
                 case let .success(restaurantDetails):
                     selectedView(restaurantDetails)
                 }
-                
+
                 Text("Ratings")
                     .font(.title)
-                
+
                 RatingView(stars: $viewModel.starsNumber)
                     .frame(maxWidth: 300)
-                
+
                 Text("Rate your experience")
                     .font(.title3)
                     .foregroundColor(Color(uiColor: .systemGray))
                     .padding()
-                
+
                 Text("Review")
                     .font(.title)
                     .padding(.top)
-                
+
                 VStack {
                     TextField("Write your experience", text: $viewModel.reviewText, axis: .vertical)
                         .padding()
-                    
+
                     Spacer()
                 }
                 .frame(height: 150)
@@ -103,7 +103,7 @@ public struct NewReviewView<SelectedView: View>: View {
                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
                 )
                 .padding(.horizontal)
-                
+
                 Spacer()
             }
         }
@@ -134,18 +134,18 @@ struct NewReviewView_Previews: PreviewProvider {
             }
         )
     }
-    
+
     private class PreviewAutocompletePlacesService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             let predictions = [
                 AutocompletePrediction(restaurantPrediction: "Prediction 1", restaurantID: "place #1"),
                 AutocompletePrediction(restaurantPrediction: "Another Pre 2", restaurantID: "place #2")
             ]
-            
+
             return predictions.filter { $0.restaurantPrediction.contains(input) }
         }
     }
-    
+
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
@@ -163,16 +163,16 @@ struct NewReviewView_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
         }
     }
-    
+
     private class PreviewAddReviewService: AddReviewService {
         func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
-            
+
         }
     }
 }
