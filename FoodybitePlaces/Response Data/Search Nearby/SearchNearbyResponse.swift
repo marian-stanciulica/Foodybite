@@ -10,7 +10,7 @@ import Domain
 struct SearchNearbyResponse: Decodable {
     let results: [SearchNearbyResult]
     let status: SearchNearbyStatus
-    
+
     var nearbyRestaurants: [NearbyRestaurant] {
         results.map {
             NearbyRestaurant(
@@ -26,5 +26,5 @@ struct SearchNearbyResponse: Decodable {
             )
         }
     }
-    
+
 }
