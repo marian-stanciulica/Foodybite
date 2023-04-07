@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ProfileImage: View {
     let backgroundColor: Color
-    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedItem: PhotosPickerItem?
     @Binding var selectedImageData: Data?
 
     var body: some View {
@@ -27,13 +27,13 @@ struct ProfileImage: View {
                     } else {
                         Circle()
                             .fill(backgroundColor.opacity(0.25))
-                        
+
                         Image(systemName: "person")
                             .font(.system(size: 50))
                             .foregroundColor(.white)
                     }
                 }
-                
+
                 Image(systemName: "arrow.up")
                     .padding()
                     .overlay(Circle().stroke(.white, lineWidth: 3))
