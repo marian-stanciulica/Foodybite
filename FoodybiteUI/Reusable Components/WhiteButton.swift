@@ -26,9 +26,7 @@ struct WhiteButton: View {
 
 struct WhiteButton_Previews: PreviewProvider {
     static var previews: some View {
-        WhiteButton(title: "Button") {
-            
-        }
+        WhiteButton(title: "Button") { }
         .padding()
     }
 }
