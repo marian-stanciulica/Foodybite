@@ -17,7 +17,16 @@ public struct Review: Equatable, Identifiable, Hashable {
     public let rating: Int
     public let relativeTime: String
 
-    public init(id: UUID = UUID(), restaurantID: String, profileImageURL: URL?, profileImageData: Data?, authorName: String, reviewText: String, rating: Int, relativeTime: String) {
+    public init(
+        id: UUID = UUID(),
+        restaurantID: String,
+        profileImageURL: URL?,
+        profileImageData: Data?,
+        authorName: String,
+        reviewText: String,
+        rating: Int,
+        relativeTime: String
+    ) {
         self.id = id
         self.restaurantID = restaurantID
         self.profileImageURL = profileImageURL
