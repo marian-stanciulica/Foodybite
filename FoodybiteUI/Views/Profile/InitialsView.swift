@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InitialsView: View {
     let initials: String
-    
+
     var body: some View {
         ZStack {
             GeometryReader { geometry in

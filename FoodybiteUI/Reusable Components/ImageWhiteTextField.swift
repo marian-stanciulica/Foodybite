@@ -26,7 +26,7 @@ struct ImageWhiteTextField: View {
                 if text.isEmpty {
                     Text(placeholder)
                 }
-                
+
                 if secure {
                     SecureField("", text: $text)
                 } else {
@@ -50,7 +50,7 @@ struct ImageTextField_Previews: PreviewProvider {
                                 secure: false,
                                 text: .constant("Email"))
             .background(.black)
-            
+
             ImageWhiteTextField(placeholder: "Password",
                                 imageName: "envelope",
                                 secure: true,
@@ -59,4 +59,3 @@ struct ImageTextField_Previews: PreviewProvider {
         }
     }
 }
-
