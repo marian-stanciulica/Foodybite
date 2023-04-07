@@ -21,9 +21,9 @@ struct UserAuthenticatedView: View {
     @StateObject var tabRouter = TabRouter()
     @StateObject var homeFlow = Flow<HomeRoute>()
     @StateObject var profileFlow = Flow<ProfileRoute>()
-    
+
     @State var plusButtonActive = false
-    
+
     var body: some View {
         if locationProvider.locationServicesEnabled {
             makeTabNavigationView()
@@ -34,15 +34,15 @@ struct UserAuthenticatedView: View {
             TurnOnLocationView(name: user.name, locationProvider: locationProvider)
         }
     }
-    
+
     @ViewBuilder private func makeTabNavigationView() -> some View {
         switch viewModel.state {
         case .isLoading:
             ProgressView()
-            
+
         case let .failure(error):
             Text(error.rawValue)
-            
+
         case let .success(location):
             switch tabRouter.currentPage {
             case .home:
@@ -54,7 +54,7 @@ struct UserAuthenticatedView: View {
             }
         }
     }
-    
+
     @ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
         NavigationStack(path: $homeFlow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
@@ -91,7 +91,7 @@ struct UserAuthenticatedView: View {
             }
         }
     }
-    
+
     @ViewBuilder private func makeNewReviewView(currentLocation: Location) -> some View {
         TabBarPageView(page: $tabRouter.currentPage) {
             NewReviewView(
@@ -117,7 +117,7 @@ struct UserAuthenticatedView: View {
             )
         }
     }
-    
+
     @ViewBuilder private func makeProfileFlowView(currentLocation: Location) -> some View {
         NavigationStack(path: $profileFlow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
