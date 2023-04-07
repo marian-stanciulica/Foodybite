@@ -11,11 +11,11 @@ import FoodybitePresentation
 
 public struct EditProfileView: View {
     @StateObject var viewModel: EditProfileViewModel
-    
+
     public init(viewModel: EditProfileViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     public var body: some View {
         VStack {
             ProfileImage(backgroundColor: .primary,
@@ -27,7 +27,7 @@ public struct EditProfileView: View {
                                    imageName: "person",
                                    secure: false,
                                    text: $viewModel.name)
-                
+
                 ImageGrayTextField(placeholder: "Email",
                                    imageName: "envelope",
                                    secure: false,
@@ -43,10 +43,10 @@ public struct EditProfileView: View {
             }
             .padding(.horizontal)
             .padding(.top)
-            
+
             createFeedbackText()
                 .padding(.vertical)
-            
+
             Spacer()
             Spacer()
         }
@@ -54,14 +54,14 @@ public struct EditProfileView: View {
         .navigationBarTitleDisplayMode(.inline)
         .arrowBackButtonStyle()
     }
-    
+
     private func createFeedbackText() -> Text {
         switch viewModel.state {
         case .success:
             return Text("Account updated!")
                 .foregroundColor(.green)
                 .font(.headline)
-            
+
         case let .failure(error):
             return Text(error.rawValue)
                 .foregroundColor(.red)
@@ -83,7 +83,7 @@ struct EditProfileView_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
