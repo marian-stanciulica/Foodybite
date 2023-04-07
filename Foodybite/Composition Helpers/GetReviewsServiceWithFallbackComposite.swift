@@ -10,12 +10,12 @@ import Domain
 public final class GetReviewsServiceWithFallbackComposite: GetReviewsService {
     private let primary: GetReviewsService
     private let secondary: GetReviewsService
-    
+
     public init(primary: GetReviewsService, secondary: GetReviewsService) {
         self.primary = primary
         self.secondary = secondary
     }
-    
+
     public func getReviews(restaurantID: String? = nil) async throws -> [Review] {
         do {
             return try await primary.getReviews(restaurantID: restaurantID)
