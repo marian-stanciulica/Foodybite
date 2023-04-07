@@ -7,7 +7,7 @@
 
 struct RefreshTokenEndpoint: Endpoint {
     private let requestBody: RefreshTokenRequestBody
-    
+
     init(requestBody: RefreshTokenRequestBody) {
         self.requestBody = requestBody
     }
@@ -15,11 +15,11 @@ struct RefreshTokenEndpoint: Endpoint {
     var path: String {
         "/auth/accessToken"
     }
-    
+
     var method: RequestMethod {
         .post
     }
-    
+
     var body: Encodable? {
         requestBody
     }
