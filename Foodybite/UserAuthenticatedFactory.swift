@@ -18,7 +18,7 @@ final class UserAuthenticatedFactory {
         let httpClient = URLSessionHTTPClient(session: session)
         let refreshTokenLoader = RemoteStore(client: httpClient)
         let tokenStore = KeychainTokenStore()
-        
+
         let tokenRefresher = RefreshTokenService(
             loader: refreshTokenLoader,
             tokenStore: tokenStore
@@ -28,28 +28,28 @@ final class UserAuthenticatedFactory {
             tokenRefresher: tokenRefresher
         )
         let authenticatedRemoteResourceLoader = RemoteStore(client: authenticatedHTTPClient)
-        
+
         return APIService(loader: authenticatedRemoteResourceLoader,
                           sender: authenticatedRemoteResourceLoader,
                           tokenStore: tokenStore)
     }()
-    
+
     let placesService: PlacesService = {
         let session = URLSession(configuration: .ephemeral)
         let httpClient = URLSessionHTTPClient(session: session)
         let loader = RemoteLoader(client: httpClient)
         return PlacesService(loader: loader)
     }()
-    
+
     let userPreferencesStore = UserPreferencesLocalStore()
-    
+
     private let nearbyRestaurantsDAO = NearbyRestaurantsDAO(store: RootFactory.localStore,
                                                             getDistanceInKm: DistanceSolver.getDistanceInKm)
-    
+
     private let restaurantDetailsDAO = RestaurantDetailsDAO(store: RootFactory.localStore)
-    
+
     private let reviewDAO = ReviewDAO(store: RootFactory.localStore)
-    
+
     lazy var nearbyRestaurantsServiceWithFallbackComposite = NearbyRestaurantsServiceWithFallbackComposite(
         primary: NearbyRestaurantsServiceCacheDecorator(
             nearbyRestaurantsService: placesService,
@@ -57,7 +57,7 @@ final class UserAuthenticatedFactory {
         ),
         secondary: nearbyRestaurantsDAO
     )
-    
+
     lazy var restaurantDetailsServiceWithFallbackComposite = RestaurantDetailsServiceWithFallbackComposite(
         primary: RestaurantDetailsServiceCacheDecorator(
             restaurantDetailsService: placesService,
@@ -65,7 +65,7 @@ final class UserAuthenticatedFactory {
         ),
         secondary: restaurantDetailsDAO
     )
-    
+
     lazy var getReviewsWithFallbackComposite = GetReviewsServiceWithFallbackComposite(
         primary: GetReviewsServiceCacheDecorator(
             getReviewsService: authenticatedApiService,

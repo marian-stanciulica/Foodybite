@@ -15,7 +15,7 @@ extension User: LocalModelConvertable {
                   email: managedUser.email,
                   profileImage: managedUser.profileImage)
     }
-    
+
     public func toLocalModel(context: NSManagedObjectContext) -> ManagedUser {
         ManagedUser(self, for: context)
     }
