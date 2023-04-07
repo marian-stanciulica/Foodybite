@@ -8,13 +8,13 @@
 import Foundation
 import FoodybiteNetworking
 
-class HTTPClientSpy: HTTPClient {
+final class HTTPClientSpy: HTTPClient {
     private(set) var urlRequests = [URLRequest]()
     var result: Result<(Data, HTTPURLResponse), NSError>?
-    
+
     func send(_ urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse) {
         urlRequests.append(urlRequest)
-        
+
         if let result = result {
             switch result {
             case let .failure(error):
@@ -23,7 +23,7 @@ class HTTPClientSpy: HTTPClient {
                 return result
             }
         }
-        
+
         throw NSError(domain: "error", code: 1)
     }
 }
