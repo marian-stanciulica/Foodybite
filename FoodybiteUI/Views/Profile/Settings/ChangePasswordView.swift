@@ -15,7 +15,7 @@ public struct ChangePasswordView: View {
     public init(viewModel: ChangePasswordViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     public var body: some View {
         VStack(alignment: .leading) {
             ImageGrayTextField(placeholder: "Current Password",
@@ -37,7 +37,7 @@ public struct ChangePasswordView: View {
             .padding(.bottom)
 
             createFeedbackText()
-            
+
             Spacer()
 
             MarineButton(title: "Update", isLoading: viewModel.isLoading) {
@@ -51,19 +51,19 @@ public struct ChangePasswordView: View {
         .navigationBarTitleDisplayMode(.inline)
         .arrowBackButtonStyle()
     }
-    
+
     private func createFeedbackText() -> Text {
         switch viewModel.result {
         case .success:
             return Text("Password changed successfully!")
                 .foregroundColor(.green)
                 .font(.headline)
-            
+
         case let .failure(error):
             return Text(error.toString())
                 .foregroundColor(.red)
                 .font(.headline)
-            
+
         default:
             return Text("")
         }
@@ -80,10 +80,10 @@ struct ChangePassword_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewChangePasswordService: ChangePasswordService {
         func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws {
-            
+
         }
     }
 }
