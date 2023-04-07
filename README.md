@@ -92,7 +92,8 @@ Thank you for reading and enjoy! 🚀
 brew install swiftlint 
 ```
 
-### 4. Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
+### 4. Validate the setup
+Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
 
 ## Architecture
 
