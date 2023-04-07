@@ -8,7 +8,7 @@
 enum ReviewEndpoint: Endpoint {
     case post(AddReviewRequestBody)
     case get(String?)
-    
+
     var path: String {
         switch self {
         case .post:
@@ -17,11 +17,11 @@ enum ReviewEndpoint: Endpoint {
             if let restaurantID = restaurantID {
                 return "/review/\(restaurantID)"
             }
-            
+
             return "/review"
         }
     }
-    
+
     var method: RequestMethod {
         switch self {
         case .post:
@@ -30,7 +30,7 @@ enum ReviewEndpoint: Endpoint {
             return .get
         }
     }
-    
+
     var body: Encodable? {
         switch self {
         case let .post(body):
