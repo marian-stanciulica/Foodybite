@@ -3402,7 +3402,7 @@
 			buildPhases = (
 				0F412E712962C78D00FDDF41 /* Headers */,
 				0F412E722962C78D00FDDF41 /* Sources */,
-				0FFCB59A29DF0FB500FD400B /* ShellScript */,
+				0FFCB59A29DF0FB500FD400B /* Copy GooglePlaces-Info.plist Script */,
 				0F412E732962C78D00FDDF41 /* Frameworks */,
 				0F215CBE29826D24000F88F4 /* Embed Frameworks */,
 			);
@@ -3875,8 +3875,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FFCB59A29DF0FB500FD400B /* ShellScript */ = {
+		0FFCB59A29DF0FB500FD400B /* Copy GooglePlaces-Info.plist Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -3884,6 +3885,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Copy GooglePlaces-Info.plist Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
