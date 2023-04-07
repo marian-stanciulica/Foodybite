@@ -15,32 +15,32 @@ public final class EditProfileViewModel: ObservableObject {
         case invalidEmail = "Invalid email"
         case serverError = "Server error"
     }
-    
+
     public enum State: Equatable {
         case idle
         case isLoading
         case success
         case failure(Error)
     }
-    
+
     private let accountService: AccountService
-    
+
     @Published public var name = ""
     @Published public var email = ""
-    @Published public var profileImage: Data? = nil
+    @Published public var profileImage: Data?
     @Published public var state: State = .idle
 
     public var isLoading: Bool {
         state == .isLoading
     }
-    
+
     public init(accountService: AccountService) {
         self.accountService = accountService
     }
-    
+
     @MainActor public func updateAccount() async {
         state = .isLoading
-        
+
         if name.isEmpty {
             state = .failure(.emptyName)
         } else if email.isEmpty {
@@ -56,10 +56,10 @@ public final class EditProfileViewModel: ObservableObject {
             }
         }
     }
-    
+
     private func isValid(email: String) -> Bool {
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: email)
     }
 }
