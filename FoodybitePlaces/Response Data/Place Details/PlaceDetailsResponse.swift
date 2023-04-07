@@ -10,7 +10,7 @@ import Domain
 struct PlaceDetailsResponse: Decodable {
     let result: Details
     let status: PlaceDetailsStatus
-    
+
     var restaurantDetails: RestaurantDetails {
         RestaurantDetails(
             id: result.placeID,
@@ -37,5 +37,5 @@ struct PlaceDetailsResponse: Decodable {
             photos: result.photos.map { $0.model }
         )
     }
-    
+
 }
