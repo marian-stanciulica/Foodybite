@@ -11,12 +11,12 @@ import Domain
 public final class SettingsViewModel {
     private let logoutService: LogoutService
     private let goToLogin: () -> Void
-    
+
     public init(logoutService: LogoutService, goToLogin: @escaping () -> Void) {
         self.logoutService = logoutService
         self.goToLogin = goToLogin
     }
-    
+
     public func logout() async {
         do {
             try await logoutService.logout()
@@ -25,7 +25,7 @@ public final class SettingsViewModel {
             await goToLoginScreen()
         }
     }
-    
+
     @MainActor private func goToLoginScreen() {
         goToLogin()
     }
