@@ -7,7 +7,7 @@
 
 struct LoginEndpoint: Endpoint {
     private let requestBody: LoginRequestBody
-    
+
     init(requestBody: LoginRequestBody) {
         self.requestBody = requestBody
     }
@@ -15,11 +15,11 @@ struct LoginEndpoint: Endpoint {
     var path: String {
         "/auth/login"
     }
-    
+
     var method: RequestMethod {
         .post
     }
-    
+
     var body: Encodable? {
         requestBody
     }
