@@ -8,25 +8,25 @@
 import Foundation
 import FoodybiteNetworking
 
-class ResourceLoaderSpy: ResourceLoader {
+final class ResourceLoaderSpy: ResourceLoader {
     private let response: Decodable
     var requests = [URLRequest]()
-    
+
     init(response: Decodable) {
         self.response = response
     }
-    
-    func get<T>(for urlRequest: URLRequest) async throws -> T where T : Decodable {
+
+    func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T {
         requests.append(urlRequest)
+        // swiftlint:disable:next force_cast
         return response as! T
     }
 }
 
 class ResourceSenderSpy: ResourceSender {
     var requests = [URLRequest]()
-    
+
     func post(to urlRequest: URLRequest) async throws {
         requests.append(urlRequest)
-
     }
 }
