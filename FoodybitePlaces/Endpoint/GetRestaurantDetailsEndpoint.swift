@@ -9,19 +9,19 @@ import Foundation
 
 struct GetRestaurantDetailsEndpoint: Endpoint {
     private let restaurantID: String
-    
+
     init(restaurantID: String) {
         self.restaurantID = restaurantID
     }
-    
+
     var path: String {
         "/maps/api/place/details/json"
     }
-    
+
     var method: RequestMethod {
         .get
     }
-    
+
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),
