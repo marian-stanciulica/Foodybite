@@ -13,49 +13,49 @@ final class ProfileViewModelTests: XCTestCase {
 
     func test_init_getReviewsStateIsIdle() {
         let (sut, _, _) = makeSUT()
-        
+
         XCTAssertEqual(sut.getReviewsState, .idle)
     }
-    
+
     func test_deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
         let (sut, accountServiceSpy, _) = makeSUT()
-        
+
         let expectedError = anyNSError()
         accountServiceSpy.errorToThrow = expectedError
-        
+
         await assertDeleteAccount(on: sut, withExpectedResult: .serverError)
     }
-    
+
     func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
         var goToLoginCalled = false
-        let (sut, _, _) = makeSUT() {
+        let (sut, _, _) = makeSUT {
             goToLoginCalled = true
         }
-        
+
         await sut.deleteAccount()
-        
+
         XCTAssertTrue(goToLoginCalled)
     }
-    
+
     func test_getAllReviews_sendsNilRestaurantIDToGetReviewsService() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
-        
+
         await sut.getAllReviews()
-        
+
         XCTAssertEqual(getReviewsServiceSpy.capturedValues.count, 1)
         XCTAssertNil(getReviewsServiceSpy.capturedValues[0])
     }
-    
+
     func test_getAllReviews_setsStateToLoadingErrorWhenGetReviewsServiceThrowsError() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
         getReviewsServiceSpy.result = .failure(anyNSError())
         let stateSpy = PublisherSpy(sut.$getReviewsState.eraseToAnyPublisher())
-        
+
         await sut.getAllReviews()
-        
+
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
-    
+
     func test_getAllReviews_setsStateToRequestSucceededWhenGetReviewsServiceReturnsSuccess() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
         let expectedReviews = anyReviews()
@@ -63,13 +63,17 @@ final class ProfileViewModelTests: XCTestCase {
         let stateSpy = PublisherSpy(sut.$getReviewsState.eraseToAnyPublisher())
 
         await sut.getAllReviews()
-        
+
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedReviews)])
     }
-    
+
     // MARK: - Helpers
-    
-    private func makeSUT(goToLogin: @escaping () -> Void = {}) -> (sut: ProfileViewModel, accountServiceSpy: AccountServiceSpy, getReviewsServiceSpy: GetReviewsServiceSpy) {
+
+    private func makeSUT(goToLogin: @escaping () -> Void = {}) -> (
+        sut: ProfileViewModel,
+        accountServiceSpy: AccountServiceSpy,
+        getReviewsServiceSpy: GetReviewsServiceSpy
+    ) {
         let accountServiceSpy = AccountServiceSpy()
         let getReviewsServiceSpy = GetReviewsServiceSpy()
         let sut = ProfileViewModel(accountService: accountServiceSpy,
@@ -78,22 +82,38 @@ final class ProfileViewModelTests: XCTestCase {
                                    goToLogin: goToLogin)
         return (sut, accountServiceSpy, getReviewsServiceSpy)
     }
-    
+
     private func anyNSError() -> NSError {
         return NSError(domain: "any error", code: 1)
     }
-    
+
     private func anyUser() -> User {
         User(id: UUID(), name: "User", email: "user@test.com", profileImage: nil)
     }
-    
+
     private func anyReviews() -> [Review] {
         [
-            Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #1", reviewText: "It was nice", rating: 4, relativeTime: "1 hour ago"),
-            Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: nil, authorName: "Author #2", reviewText: "Didn't like it", rating: 1, relativeTime: "2 years ago")
+            Review(
+                restaurantID: "restaurant #1",
+                profileImageURL: nil,
+                profileImageData: nil,
+                authorName: "Author #1",
+                reviewText: "It was nice",
+                rating: 4,
+                relativeTime: "1 hour ago"
+            ),
+            Review(
+                restaurantID: "restaurant #1",
+                profileImageURL: nil,
+                profileImageData: nil,
+                authorName: "Author #2",
+                reviewText: "Didn't like it",
+                rating: 1,
+                relativeTime: "2 years ago"
+            )
         ]
     }
-    
+
     private func assertDeleteAccount(on sut: ProfileViewModel,
                                      withExpectedResult expectedResult: ProfileViewModel.DeleteAccountError,
                                      file: StaticString = #file,
@@ -101,13 +121,13 @@ final class ProfileViewModelTests: XCTestCase {
         let resultSpy = PublisherSpy(sut.$deleteAccountError.eraseToAnyPublisher())
 
         XCTAssertEqual(resultSpy.results, [nil], file: file, line: line)
-        
+
         await sut.deleteAccount()
-        
+
         XCTAssertEqual(resultSpy.results, [nil, expectedResult], file: file, line: line)
         resultSpy.cancel()
     }
-                               
+
     private class AccountServiceSpy: AccountService {
         var errorToThrow: Error?
         private(set) var deleteAccountCallCount = 0
@@ -119,21 +139,21 @@ final class ProfileViewModelTests: XCTestCase {
                 throw errorToThrow
             }
         }
-        
+
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
     }
-    
+
     private class GetReviewsServiceSpy: GetReviewsService {
         private(set) var capturedValues = [String?]()
         var result: Result<[Review], Error>?
-        
+
         func getReviews(restaurantID: String?) async throws -> [Review] {
             capturedValues.append(restaurantID)
-            
+
             if let result = result {
                 return try result.get()
             }
-            
+
             return []
         }
     }
