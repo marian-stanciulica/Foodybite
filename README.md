@@ -5,7 +5,8 @@
 💡At the core of my vision lies a simple yet powerful way to create a user-friendly app that helps you find the best restaurant near you based on location, radius, and number of stars. Additionally, users can see details, like opening hours, address, reviews, or photos for each restaurant found and give a review. The app allows users to search directly for a restaurant and enables them to give a review right away.
 
 1. [Motivation](#motivation)
-2. [Architecture](#architecture)
+2. [Installation Guide](#installation-guide)
+3. [Architecture](#architecture)
     1. [Overview](#overview)
     2. [Domain](#domain)
         1. [User Session Feature](#1-user-session-feature)
@@ -40,7 +41,7 @@
         1. [Adding caching by intercepting network requests](#adding-caching-by-intercepting-network-requests) (`Decorator Pattern`)
         2. [Adding fallback strategies when network requests fail](#adding-fallback-strategies-when-network-requests-fail) (`Composite Pattern`)
         3. [Handling navigation](#handling-navigation) (flat and hierarchical navigation)
-3. [Testing Strategy](#testing-strategy)
+4. [Testing Strategy](#testing-strategy)
     1. [Summary Table](#summary-table)
     2. [Methodology](#methodology)
     3. [Unit Tests](#unit-tests)
@@ -48,17 +49,17 @@
         1. [End-to-End Tests](#end-to-end-tests)
         2. [Cache Integration Tests](#cache-integration-tests)
     5. [Snapshot Tests](#snapshot-tests)
-4. [CI/CD](#cicd)
-5. [Security](#security)
+5. [CI/CD](#cicd)
+6. [Security](#security)
     1. [API key for Google Places API](#api-key-for-google-places-api)
     2. [Store Tokens from FoodybiteServer in Keychain](#store-tokens-from-foodybiteserver-in-keychain)
     3. [Password Hashing](#password-hashing)
-6. [Metrics](#metrics)
+7. [Metrics](#metrics)
     1. [Test lines of code per production lines of code](#test-lines-of-code-per-production-lines-of-code)
     2. [Count of files changed](#count-of-files-changed)
     3. [Code coverage](#code-coverage)
-7. [Credits](#credits)
-8. [References](#references)
+8. [Credits](#credits)
+9. [References](#references)
 
 ## Motivation
 
@@ -71,6 +72,20 @@ Through this process, I was able to significantly improve my `TDD` skills and ac
 You can find below the entire process I've gone through while designing this project, the decisions and trade-offs regarding the architecture, testing pyramid and security issues. Additionally, I've included some really cool metrics about the evolution of the codebase.
 
 Thank you for reading and enjoy! 🚀
+
+## Installation Guide
+
+1. Setup `Foodybite` backend
+- download [`FoodybiteServer`](https://github.com/Marian25/FoodybiteServer) locally
+- follow the instructions to run it
+
+2. Get your unique `API_Key` from `Google Places`
+- go to [Google Maps Platform](https://developers.google.com/maps/documentation/places/web-service/cloud-setup) to create a project
+- create the `API_KEY` following the [Use API Keys with Places API](https://developers.google.com/maps/documentation/places/web-service/get-api-key) documentation page (make sure you restrict your key to only be used with `Places API`)
+- create a property list called `GooglePlaces-Info.plist` in the `FoodybitePlaces` framework
+- add a row with `API_KEY` and the value of your key
+
+3. Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
 
 ## Architecture
 
