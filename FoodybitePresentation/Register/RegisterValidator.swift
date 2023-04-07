@@ -14,7 +14,7 @@ public class RegisterValidator {
         case emptyName
         case emptyEmail
         case invalidEmail
-        
+
         public func toString() -> String {
             switch self {
             case .passwordError(let error):
@@ -30,24 +30,24 @@ public class RegisterValidator {
             }
         }
     }
-    
+
     static func validate(name: String, email: String, password: String, confirmPassword: String) throws {
         if name.isEmpty {
             throw Error.emptyName
         }
-        
+
         if email.isEmpty {
             throw Error.emptyEmail
         } else if !isValid(email: email) {
             throw Error.invalidEmail
         }
-        
+
         try PasswordValidator.validate(password: password, confirmPassword: confirmPassword)
     }
-    
+
     private static func isValid(email: String) -> Bool {
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,64}"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: email)
     }
 }
