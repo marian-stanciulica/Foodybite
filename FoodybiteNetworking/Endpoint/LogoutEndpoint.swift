@@ -9,11 +9,11 @@ struct LogoutEndpoint: Endpoint {
     var path: String {
         "/auth/logout"
     }
-    
+
     var method: RequestMethod {
         .post
     }
-    
+
     var body: Encodable? {
         nil
     }
