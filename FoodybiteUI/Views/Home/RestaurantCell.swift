@@ -12,12 +12,12 @@ import FoodybitePresentation
 public struct RestaurantCell: View {
     let photoView: PhotoView
     @StateObject var viewModel: RestaurantCellViewModel
-    
+
     public init(photoView: PhotoView, viewModel: RestaurantCellViewModel) {
         self.photoView = photoView
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     public var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .top) {
@@ -78,7 +78,7 @@ struct RestaurantCell_Previews: PreviewProvider {
         .cornerRadius(16)
         .padding()
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             return Data()
