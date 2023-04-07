@@ -75,17 +75,17 @@ Thank you for reading and enjoy! 🚀
 
 ## Installation Guide
 
-1. Setup `Foodybite` backend
-- download [`FoodybiteServer`](https://github.com/Marian25/FoodybiteServer) locally
-- follow the instructions to run it
+### 1. Setup `Foodybite` backend
+- Download [`FoodybiteServer`](https://github.com/Marian25/FoodybiteServer) locally
+- Follow the instructions to run it
 
-2. Get your unique `API_Key` from `Google Places`
-- go to [Google Maps Platform](https://developers.google.com/maps/documentation/places/web-service/cloud-setup) to create a project
-- create the `API_KEY` following the [Use API Keys with Places API](https://developers.google.com/maps/documentation/places/web-service/get-api-key) documentation page (make sure you restrict your key to only be used with `Places API`)
-- create a property list called `GooglePlaces-Info.plist` in the `FoodybitePlaces` framework
-- add a row with `API_KEY` and the value of your key
+### 2. Get your unique `API_Key` from `Google Places`
+- Go to [Google Maps Platform](https://developers.google.com/maps/documentation/places/web-service/cloud-setup) to create a project
+- Create the `API_KEY` following the [Use API Keys with Places API](https://developers.google.com/maps/documentation/places/web-service/get-api-key) documentation page (make sure you restrict your key to only be used with `Places API`)
+- Create a property list called `GooglePlaces-Info.plist` in the `FoodybitePlaces` framework
+- Add a row with `API_KEY` and the value of your key
 
-3. Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
+### 3. Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
 
 ## Architecture
 
