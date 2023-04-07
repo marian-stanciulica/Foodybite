@@ -250,7 +250,6 @@
 		0F39176329C251A100EE0201 /* APIServiceTests+ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39176229C251A100EE0201 /* APIServiceTests+ReviewService.swift */; };
 		0F3F1A6829CDD9230047E243 /* ReviewDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F1A6729CDD9230047E243 /* ReviewDAOTests.swift */; };
 		0F3F1A6A29CDDD360047E243 /* ReviewDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3F1A6929CDDD360047E243 /* ReviewDAO.swift */; };
-		0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E902962C91500FDDF41 /* EndpointStub.swift */; };
 		0F412E932962C97300FDDF41 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E922962C97300FDDF41 /* Helpers.swift */; };
 		0F412E9D2962CA4900FDDF41 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412E9C2962CA4900FDDF41 /* Endpoint.swift */; };
 		0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F412EA32962CB5300FDDF41 /* RemoteResourceLoaderTests.swift */; };
@@ -824,7 +823,6 @@
 		0F3F1A6729CDD9230047E243 /* ReviewDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDAOTests.swift; sourceTree = "<group>"; };
 		0F3F1A6929CDDD360047E243 /* ReviewDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDAO.swift; sourceTree = "<group>"; };
 		0F3F73F628467BF100A5D2BF /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
-		0F412E902962C91500FDDF41 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F412E922962C97300FDDF41 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0F412E9C2962CA4900FDDF41 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F412EA32962CB5300FDDF41 /* RemoteResourceLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceLoaderTests.swift; sourceTree = "<group>"; };
@@ -1750,7 +1748,6 @@
 			isa = PBXGroup;
 			children = (
 				0F412E922962C97300FDDF41 /* Helpers.swift */,
-				0F412E902962C91500FDDF41 /* EndpointStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3890,7 +3887,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#export PATH=\"$PATH:/opt/homebrew/bin\"\n#\n#if which swiftlint >/dev/null; then\n#  swiftlint\n#else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		0FFCB59A29DF0FB500FD400B /* Copy GooglePlaces-Info.plist Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4250,7 +4247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F412EB02962CC3400FDDF41 /* CodableMock.swift in Sources */,
-				0F412E912962C91500FDDF41 /* EndpointStub.swift in Sources */,
 				0F412EC62962D41A00FDDF41 /* ResourceLoaderSpy.swift in Sources */,
 				0F39175329C20FF400EE0201 /* PlacesServiceTests+RestaurantDetailsService.swift in Sources */,
 				0F412EA42962CB5300FDDF41 /* RemoteResourceLoaderTests.swift in Sources */,
