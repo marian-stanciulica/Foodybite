@@ -16,7 +16,17 @@ public struct RestaurantDetails: Equatable, Hashable {
     public let location: Location
     public let photos: [Photo]
 
-    public init(id: String, phoneNumber: String?, name: String, address: String, rating: Double, openingHoursDetails: OpeningHoursDetails?, reviews: [Review], location: Location, photos: [Photo]) {
+    public init(
+        id: String,
+        phoneNumber: String?,
+        name: String,
+        address: String,
+        rating: Double,
+        openingHoursDetails: OpeningHoursDetails?,
+        reviews: [Review],
+        location: Location,
+        photos: [Photo]
+    ) {
         self.id = id
         self.phoneNumber = phoneNumber
         self.name = name
@@ -28,7 +38,7 @@ public struct RestaurantDetails: Equatable, Hashable {
         self.photos = photos
     }
 
-    public static func ==(lhs: RestaurantDetails, rhs: RestaurantDetails) -> Bool {
+    public static func == (lhs: RestaurantDetails, rhs: RestaurantDetails) -> Bool {
         lhs.id == rhs.id &&
         lhs.phoneNumber == rhs.phoneNumber &&
         lhs.name == rhs.name &&
