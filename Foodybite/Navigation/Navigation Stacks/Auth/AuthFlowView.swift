@@ -11,7 +11,7 @@ import FoodybitePresentation
 import FoodybiteUI
 
 struct AuthFlowView {
-    
+
     @ViewBuilder static func makeLoginView(
         flow: Flow<AuthRoute>,
         loginService: LoginService,
@@ -26,5 +26,5 @@ struct AuthFlowView {
             }
         )
     }
-    
+
 }
