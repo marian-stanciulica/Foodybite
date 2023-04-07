@@ -10,19 +10,19 @@ import XCTest
 import Domain
 
 extension PlacesServiceTests {
-    
+
     func test_conformsToRestaurantPhotoService() {
         let (sut, _) = makeSUT(response: anyData())
         XCTAssertNotNil(sut as RestaurantPhotoService)
     }
-    
+
     func test_fetchPhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
         let photoReference = randomString()
         let (sut, loader) = makeSUT(response: anyData())
         let endpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
-        
+
         _ = try await sut.fetchPhoto(photoReference: photoReference)
-        
+
         XCTAssertEqual(loader.getDataRequests.count, 1)
         assertURLComponents(
             urlRequest: loader.getDataRequests[0],
@@ -30,20 +30,20 @@ extension PlacesServiceTests {
             apiKey: endpoint.apiKey
         )
     }
-    
+
     func test_fetchPhoto_receivesExpectedPlacePhotoResponse() async throws {
         let response = anyData()
         let expectedData = anyData()
         let (sut, loader) = makeSUT(response: response)
         loader.data = expectedData
-        
+
         let receivedResponse = try await sut.fetchPhoto(photoReference: randomString())
-        
+
         XCTAssertEqual(expectedData, receivedResponse)
     }
-    
+
     // MARK: - Helpers
-    
+
     private func assertURLComponents(
         urlRequest: URLRequest,
         photoReference: String,
@@ -56,7 +56,7 @@ extension PlacesServiceTests {
             URLQueryItem(name: "photo_reference", value: photoReference),
             URLQueryItem(name: "maxwidth", value: "400")
         ]
-        
+
         assertURLComponents(
             urlRequest: urlRequest,
             path: "/maps/api/place/photo",
@@ -64,9 +64,9 @@ extension PlacesServiceTests {
             file: file,
             line: line)
     }
-    
+
     private func anyData() -> Data {
         "any data".data(using: .utf8)!
     }
-    
+
 }
