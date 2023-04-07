@@ -1102,6 +1102,10 @@ Nevertheless, I didn't test any logic using snapshot tests as all the logic was 
 
 ## CI/CD
 
+I use `GitHub Actions` to automate the CI/CD pipeline to ensure that code changes are built and tested automatically. The pipeline runs every time commits are pushed to the main branch. It performs the following tasks:
+1. Builds the app and runs all tests to ensure that code changes do not break existing functionality.
+2. Checks code quality with [SwiftLint](https://github.com/realm/SwiftLint) to ensure that it adheres to the Swift coding style and conventions.
+
 ## Security
 
 ### API key for Google Places API
