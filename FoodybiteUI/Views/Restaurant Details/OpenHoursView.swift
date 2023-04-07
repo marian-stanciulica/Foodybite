@@ -10,7 +10,7 @@ import SwiftUI
 
 struct OpenHoursView: View {
     let openingHoursDetails: OpeningHoursDetails
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -47,11 +47,11 @@ struct OpenHoursView_Previews: PreviewProvider {
                         "Thursday: 9:00 AM – 5:00 PM",
                         "Friday: 9:00 AM – 5:00 PM",
                         "Saturday: Closed",
-                        "Sunday: Closed",
+                        "Sunday: Closed"
                     ]
                 )
             )
-            
+
             Spacer()
         }
     }
