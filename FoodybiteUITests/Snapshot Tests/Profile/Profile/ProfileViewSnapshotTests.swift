@@ -12,96 +12,101 @@ import FoodybitePresentation
 import FoodybiteUI
 
 final class ProfileViewSnapshotTests: XCTestCase {
-    
+
     func test_profileViewWhenGetReviewsStateIsIdleForUserWithoutProfileImage() {
         let sut = makeSUT(user: makeUserWithoutProfileImage(),
                           getReviewsState: .idle)
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .idle)
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsIsLoading() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .isLoading)
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .failure(.serverError))
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsIsLoading() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .isLoading)
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .failure(.serverError))
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .isLoading)
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
-        
+
         assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
-    
+
     // MARK: - Helpers
-    
+
     private func makeSUT(
         user: User,
         getReviewsState: ProfileViewModel.State,
         getRestaurantDetailsState: RestaurantReviewCellViewModel.State = .idle,
         fetchPhotoState: PhotoViewModel.State = .isLoading
     ) -> ProfileView<RestaurantReviewCellView> {
-        let viewModel = ProfileViewModel(accountService: EmptyAccountService(), getReviewsService: EmptyGetReviewsService(), user: user, goToLogin: {})
+        let viewModel = ProfileViewModel(
+            accountService: EmptyAccountService(),
+            getReviewsService: EmptyGetReviewsService(),
+            user: user,
+            goToLogin: {}
+        )
         viewModel.getReviewsState = getReviewsState
         return ProfileView(
             viewModel: viewModel,
@@ -110,7 +115,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
             goToEditProfile: {}
         )
     }
-    
+
     private func makeCell(
         review: Review,
         getRestaurantDetailsState: RestaurantReviewCellViewModel.State,
@@ -121,13 +126,13 @@ final class ProfileViewSnapshotTests: XCTestCase {
             restaurantDetailsService: EmptyRestaurantDetailsService()
         )
         restaurantReviewCellViewModel.getRestaurantDetailsState = getRestaurantDetailsState
-        
+
         let photoViewModel = PhotoViewModel(
             photoReference: "reference",
             restaurantPhotoService: EmptyRestaurantPhotoService()
         )
         photoViewModel.fetchPhotoState = fetchPhotoState
-        
+
         let cell = RestaurantReviewCellView(
             viewModel: restaurantReviewCellViewModel,
             makePhotoView: { _ in
@@ -137,21 +142,21 @@ final class ProfileViewSnapshotTests: XCTestCase {
         )
         return cell
     }
-    
+
     private func makeUserWithoutProfileImage() -> User {
         User(id: UUID(),
              name: "Testing",
              email: "testing@testing.com",
              profileImage: nil)
     }
-    
+
     private func makeUserWithProfileImage() -> User {
         User(id: UUID(),
              name: "Testing",
              email: "testing@testing.com",
              profileImage: UIImage.make(withColor: .red).pngData())
     }
-    
+
     private func makeReviews() -> [Review] {
         [
             Review(restaurantID: "",
@@ -170,12 +175,12 @@ final class ProfileViewSnapshotTests: XCTestCase {
                    relativeTime: "an hour ago")
         ]
     }
-    
+
     private class EmptyAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
     }
-    
+
     private class EmptyGetReviewsService: GetReviewsService {
         func getReviews(restaurantID: String?) async throws -> [Review] {
             []
