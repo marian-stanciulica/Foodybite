@@ -6,7 +6,7 @@
 //
 
 enum PlaceDetailsStatus: String, Decodable {
-    case ok = "OK"
+    case okStatus = "OK"
     case zeroResults = "ZERO_RESULTS"
     case notFound = "NOT_FOUND"
     case invalidRequest = "INVALID_REQUEST"

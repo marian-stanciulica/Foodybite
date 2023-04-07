@@ -85,7 +85,7 @@ extension PlacesServiceTests {
             line: line)
     }
     
-    private func anySearchNearbyResponse(status: SearchNearbyStatus = .ok) -> SearchNearbyResponse {
+    private func anySearchNearbyResponse(status: SearchNearbyStatus = .okStatus) -> SearchNearbyResponse {
         SearchNearbyResponse(results: [
             SearchNearbyResult(
                 businessStatus: "",

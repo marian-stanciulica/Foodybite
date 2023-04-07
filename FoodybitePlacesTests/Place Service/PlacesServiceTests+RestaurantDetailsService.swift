@@ -74,7 +74,7 @@ extension PlacesServiceTests {
             line: line)
     }
     
-    private func anyRestaurantDetailsResponse(status: PlaceDetailsStatus = .ok) -> PlaceDetailsResponse {
+    private func anyRestaurantDetailsResponse(status: PlaceDetailsStatus = .okStatus) -> PlaceDetailsResponse {
         PlaceDetailsResponse(
             result: Details(
                 addressComponents: [],

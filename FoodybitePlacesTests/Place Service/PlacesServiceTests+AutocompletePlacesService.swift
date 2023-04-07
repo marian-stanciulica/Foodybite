@@ -101,7 +101,7 @@ extension PlacesServiceTests {
         )
     }
 
-    private func anyAutocompleteResponse(status: AutocompleteStatus = .ok) -> AutocompleteResponse {
+    private func anyAutocompleteResponse(status: AutocompleteStatus = .okStatus) -> AutocompleteResponse {
         AutocompleteResponse(
             predictions: [
                 Prediction(

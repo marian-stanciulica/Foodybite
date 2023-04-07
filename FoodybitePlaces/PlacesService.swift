@@ -23,7 +23,7 @@ extension PlacesService: NearbyRestaurantsService {
         let request = try endpoint.createURLRequest()
         let response: SearchNearbyResponse = try await loader.get(for: request)
         
-        guard response.status == .ok else {
+        guard response.status == .okStatus else {
             throw StatusError()
         }
         
@@ -37,7 +37,7 @@ extension PlacesService: RestaurantDetailsService {
         let request = try endpoint.createURLRequest()
         let response: PlaceDetailsResponse = try await loader.get(for: request)
         
-        guard response.status == .ok else {
+        guard response.status == .okStatus else {
             throw StatusError()
         }
         
@@ -59,7 +59,7 @@ extension PlacesService: AutocompleteRestaurantsService {
         let request = try endpoint.createURLRequest()
         let response: AutocompleteResponse = try await loader.get(for: request)
         
-        guard response.status == .ok else {
+        guard response.status == .okStatus else {
             throw StatusError()
         }
         

@@ -6,7 +6,7 @@
 //
 
 enum SearchNearbyStatus: String, Decodable {
-    case ok = "OK"
+    case okStatus = "OK"
     case zeroResults = "ZERO_RESULTS"
     case invalidRequest = "INVALID_REQUEST"
     case overQueryLimit = "OVER_QUERY_LIMIT"
