@@ -21,13 +21,13 @@ struct MarineButton: View {
                     .tint(.white)
                     .padding(2)
             }
-            
+
             Text(title)
                 .foregroundColor(.white)
                 .font(.headline)
                 .disabled(isLoading)
                 .padding(.vertical)
-            
+
             Spacer()
         }
         .background(isLoading ? Color.marineBlue.opacity(0.5) : Color.marineBlue)
@@ -44,7 +44,7 @@ struct RoundedButton_Previews: PreviewProvider {
         VStack {
             MarineButton(title: "Title", isLoading: true) {}
             .padding(.vertical)
-            
+
             MarineButton(title: "Title", isLoading: false) {}
         }
     }
