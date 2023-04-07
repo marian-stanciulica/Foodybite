@@ -18,11 +18,11 @@ public class ManagedNearbyRestaurant: NSManagedObject {
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
     @NSManaged public var photo: ManagedPhoto?
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedNearbyRestaurant> {
         return NSFetchRequest<ManagedNearbyRestaurant>(entityName: "ManagedNearbyRestaurant")
     }
-    
+
     public convenience init(_ model: NearbyRestaurant, for context: NSManagedObjectContext) {
         self.init(context: context)
 
@@ -32,7 +32,7 @@ public class ManagedNearbyRestaurant: NSManagedObject {
         rating = model.rating
         latitude = model.location.latitude
         longitude = model.location.longitude
-        
+
         if let photo = model.photo {
             self.photo = ManagedPhoto(photo, for: context)
         }
