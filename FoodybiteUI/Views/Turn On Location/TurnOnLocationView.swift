@@ -16,7 +16,7 @@ public struct TurnOnLocationView: View {
         self.name = name
         self.locationProvider = locationProvider
     }
-    
+
     public var body: some View {
         VStack(alignment: .leading) {
             Spacer()
@@ -51,14 +51,14 @@ struct TurnOnLocationView_Previews: PreviewProvider {
     static var previews: some View {
         TurnOnLocationView(name: "Marian", locationProvider: PreviewLocationProviding())
     }
-    
+
     private class PreviewLocationProviding: LocationProviding {
         var locationServicesEnabled: Bool = true
-        
+
         func requestLocation() async throws -> Location {
             Location(latitude: 0, longitude: 0)
         }
-        
+
         func requestWhenInUseAuthorization() {}
     }
 }
