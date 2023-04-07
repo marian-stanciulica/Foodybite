@@ -102,8 +102,4 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         request.setValue("Bearer \(authToken.accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }
-
-    private func anyUrlRequest() -> URLRequest {
-        URLRequest(url: URL(string: "http://any-url.com")!)
-    }
 }

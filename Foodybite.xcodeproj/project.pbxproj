@@ -224,7 +224,6 @@
 		0F34A13A29D450C400B36428 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1E2EB29C1B2FF00B33CF5 /* URLSessionHTTPClient.swift */; };
 		0F34A13D29D450D000B36428 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3ABFBD29C8839E00AE8C11 /* URLProtocolStub.swift */; };
 		0F34A13E29D450D000B36428 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1E2F329C1B37200B33CF5 /* URLSessionHTTPClientTests.swift */; };
-		0F39172429C1C58A00EE0201 /* EndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39172329C1C58A00EE0201 /* EndpointStub.swift */; };
 		0F39173129C1EDE800EE0201 /* SearchNearbyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */; };
 		0F39173329C1EDFC00EE0201 /* SearchNearbyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */; };
 		0F39173529C1EE1500EE0201 /* OpeningHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F39173429C1EE1500EE0201 /* OpeningHours.swift */; };
@@ -795,7 +794,6 @@
 		0F2BACB3298292FA006D4A7F /* PlusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusCode.swift; sourceTree = "<group>"; };
 		0F2BACBB29829D3B006D4A7F /* FoodybitePlacesAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybitePlacesAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		0F2BACC32982B11F006D4A7F /* FoodybiteNetworkingAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodybiteNetworkingAPIEndToEndTests.swift; sourceTree = "<group>"; };
-		0F39172329C1C58A00EE0201 /* EndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStub.swift; sourceTree = "<group>"; };
 		0F39173029C1EDE800EE0201 /* SearchNearbyStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyStatus.swift; sourceTree = "<group>"; };
 		0F39173229C1EDFC00EE0201 /* SearchNearbyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNearbyResult.swift; sourceTree = "<group>"; };
 		0F39173429C1EE1500EE0201 /* OpeningHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningHours.swift; sourceTree = "<group>"; };
@@ -1355,7 +1353,6 @@
 			isa = PBXGroup;
 			children = (
 				0F447CBC28FB03740026C5DB /* Helpers.swift */,
-				0F39172329C1C58A00EE0201 /* EndpointStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3960,7 +3957,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F39172429C1C58A00EE0201 /* EndpointStub.swift in Sources */,
 				0F1FDE46290161E000E12B09 /* TokenStoreStub.swift in Sources */,
 				0F39175929C23B5B00EE0201 /* APIServiceTests+LoginService.swift in Sources */,
 				0F1FDE4D2901761100E12B09 /* AuthenticatedURLSessionHTTPClientTests.swift in Sources */,
