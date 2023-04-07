@@ -8,16 +8,17 @@
 import Foundation
 import FoodybiteNetworking
 
-class TokenRefreshLoaderSpy: ResourceLoader {
+final class TokenRefreshLoaderSpy: ResourceLoader {
     private let response: AuthToken
     var requests = [URLRequest]()
-    
+
     init(response: AuthToken) {
         self.response = response
     }
-    
-    func get<T>(for urlRequest: URLRequest) async throws -> T where T : Decodable {
+
+    func get<T: Decodable>(for urlRequest: URLRequest) async throws -> T {
         requests.append(urlRequest)
+        // swiftlint:disable:next force_cast
         return response as! T
     }
 }

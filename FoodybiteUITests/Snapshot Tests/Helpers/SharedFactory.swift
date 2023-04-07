@@ -17,7 +17,15 @@ func makeRestaurantDetails() -> RestaurantDetails {
                  rating: 4,
                  openingHoursDetails: OpeningHoursDetails(openNow: true, weekdayText: ["Mon: 10:00 - 17:00"]),
                  reviews: [
-                    Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: makePhotoData(), authorName: "Author", reviewText: makeReviewText(), rating: 4, relativeTime: "an hour ago")
+                    Review(
+                        restaurantID: "restaurant #1",
+                        profileImageURL: nil,
+                        profileImageData: makePhotoData(),
+                        authorName: "Author",
+                        reviewText: makeReviewText(),
+                        rating: 4,
+                        relativeTime: "an hour ago"
+                    )
                  ],
                  location: Location(latitude: 3.4, longitude: 6.5),
                  photos: [
@@ -32,5 +40,10 @@ func makePhotoData() -> Data {
 }
 
 func makeReviewText() -> String {
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur."
+    """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla
+        viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti.
+        Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu
+        eget leo congue maximus. Etiam interdum eget mi at consectetur.
+    """
 }
