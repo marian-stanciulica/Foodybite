@@ -18,15 +18,15 @@ public struct SettingsView: View {
         self.viewModel = viewModel
         self.goToChangePassword = goToChangePassword
     }
-    
+
     public var body: some View {
         List {
             Section("Account") {
                 HStack {
                     Text("Change password")
-                    
+
                     Spacer()
-                    
+
                     Button {
                         goToChangePassword()
                     } label: {
@@ -36,7 +36,7 @@ public struct SettingsView: View {
                     }
                 }
             }
-            
+
             Section("Others") {
                 Button("Logout") {
                     logoutAlertDisplayed = true
@@ -66,7 +66,7 @@ struct SeetingsView_Previews: PreviewProvider {
             goToChangePassword: {}
         )
     }
-    
+
     private class PreviewLogoutService: LogoutService {
         func logout() async throws {}
     }
