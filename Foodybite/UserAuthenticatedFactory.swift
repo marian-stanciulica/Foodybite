@@ -50,7 +50,7 @@ final class UserAuthenticatedFactory {
 
     private let reviewDAO = ReviewDAO(store: RootFactory.localStore)
 
-    lazy var nearbyRestaurantsServiceWithFallbackComposite = NearbyRestaurantsServiceWithFallbackComposite(
+    lazy var nearbyRestaurantsService = NearbyRestaurantsServiceWithFallbackComposite(
         primary: NearbyRestaurantsServiceCacheDecorator(
             nearbyRestaurantsService: placesService,
             cache: nearbyRestaurantsDAO
@@ -58,7 +58,7 @@ final class UserAuthenticatedFactory {
         secondary: nearbyRestaurantsDAO
     )
 
-    lazy var restaurantDetailsServiceWithFallbackComposite = RestaurantDetailsServiceWithFallbackComposite(
+    lazy var restaurantDetailsService = RestaurantDetailsServiceWithFallbackComposite(
         primary: RestaurantDetailsServiceCacheDecorator(
             restaurantDetailsService: placesService,
             cache: restaurantDetailsDAO

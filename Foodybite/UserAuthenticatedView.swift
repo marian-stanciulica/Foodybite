@@ -66,7 +66,7 @@ struct UserAuthenticatedView: View {
                     },
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
                     userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
-                    nearbyRestaurantsService: userAuthenticatedFactory.nearbyRestaurantsServiceWithFallbackComposite,
+                    nearbyRestaurantsService: userAuthenticatedFactory.nearbyRestaurantsService,
                     fetchPhotoService: userAuthenticatedFactory.placesService
                 )
             }
@@ -77,7 +77,7 @@ struct UserAuthenticatedView: View {
                         flow: homeFlow,
                         restaurantID: restaurantID,
                         currentLocation: currentLocation,
-                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
+                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
@@ -98,7 +98,7 @@ struct UserAuthenticatedView: View {
                 plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
                     autocompleteRestaurantsService: userAuthenticatedFactory.placesService,
-                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
+                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
                     addReviewService: userAuthenticatedFactory.authenticatedApiService,
                     location: currentLocation,
                     userPreferences: userAuthenticatedFactory.userPreferencesStore.load()
@@ -126,7 +126,7 @@ struct UserAuthenticatedView: View {
                     user: user,
                     accountService: userAuthenticatedFactory.authenticatedApiService,
                     getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
-                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
+                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
                     fetchPhotoService: userAuthenticatedFactory.placesService,
                     goToLogin: { loggedInUserID = nil }
                 )
@@ -148,7 +148,7 @@ struct UserAuthenticatedView: View {
                         flow: profileFlow,
                         restaurantDetails: restaurantDetails,
                         currentLocation: currentLocation,
-                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsServiceWithFallbackComposite,
+                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
                         getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                         fetchPhotoService: userAuthenticatedFactory.placesService
                     )
