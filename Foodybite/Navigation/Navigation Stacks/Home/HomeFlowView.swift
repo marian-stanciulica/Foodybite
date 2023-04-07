@@ -12,7 +12,7 @@ import FoodybiteLocation
 import FoodybiteUI
 
 enum HomeFlowView {
-    
+
     @ViewBuilder static func makeHomeView(
         flow: Flow<HomeRoute>,
         currentLocation: Location,
@@ -42,7 +42,7 @@ enum HomeFlowView {
             }
         )
     }
-    
+
     @ViewBuilder private static func makeRestaurantCell(
         nearbyRestaurant: NearbyRestaurant,
         distanceInKmFromCurrentLocation: Double,
@@ -61,7 +61,7 @@ enum HomeFlowView {
             )
         )
     }
-    
+
     @ViewBuilder private static func makeHomeSearchView(
         searchText: Binding<String>,
         userPreferences: UserPreferences,
@@ -76,7 +76,7 @@ enum HomeFlowView {
             )
         )
     }
-    
+
     @ViewBuilder static func makeRestaurantDetailsView(
         flow: Flow<HomeRoute>,
         restaurantID: String,
@@ -106,7 +106,7 @@ enum HomeFlowView {
             }
         )
     }
-    
+
     @ViewBuilder static func makeReviewView(
         flow: Flow<HomeRoute>,
         restaurantID: String,
