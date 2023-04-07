@@ -11,7 +11,7 @@ struct SelectRadiusView: View {
     @Binding var radius: Int
     @GestureState private var widthOffset: CGFloat = 0
     private let maximumRadius: CGFloat = 20_000
-    
+
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -24,7 +24,7 @@ struct SelectRadiusView: View {
                         )
                         .fill(Color.marineBlue)
                         .frame(width: 36, height: 66)
-                        
+
                         Text(String(format: "%.1f", (CGFloat(radius) + widthOffset) / 1_000))
                             .foregroundColor(.white)
                     }
@@ -39,13 +39,13 @@ struct SelectRadiusView: View {
                                 radius += Int(value.translation.width) * 3
                             }
                     )
-                    
+
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 6)
                             .frame(width: (CGFloat(radius) + widthOffset) / maximumRadius * (proxy.size.width - 30), height: 12)
                             .offset(x: 0, y: 6)
                             .foregroundColor(.marineBlue)
-                        
+
                         RoundedRectangle(cornerRadius: 6)
                             .frame(height: 12)
                             .offset(x: 0, y: 6)
@@ -53,7 +53,7 @@ struct SelectRadiusView: View {
                     }
                     .padding(.horizontal, 15)
                 }
-                
+
                 HStack {
                     Text("0")
                     Spacer()

@@ -12,12 +12,12 @@ import FoodybitePresentation
 public struct SelectedRestaurantView: View {
     let photoView: PhotoView
     let restaurantDetails: RestaurantDetails
-    
+
     public init(photoView: PhotoView, restaurantDetails: RestaurantDetails) {
         self.photoView = photoView
         self.restaurantDetails = restaurantDetails
     }
-    
+
     public var body: some View {
         VStack(alignment: .leading) {
             photoView
@@ -55,11 +55,11 @@ struct SelectedRestaurantView_Previews: PreviewProvider {
             )
         )
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
         }
     }
-    
+
 }
