@@ -25,7 +25,7 @@ public extension Endpoint {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        urlRequest.allHTTPHeaderFields = ["Content-Type" : "application/json"]
+        urlRequest.allHTTPHeaderFields = ["Content-Type": "application/json"]
 
         if let encodable = body {
             let encoder = JSONEncoder()
