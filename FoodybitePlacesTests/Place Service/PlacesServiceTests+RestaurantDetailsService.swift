@@ -10,19 +10,19 @@ import XCTest
 import Domain
 
 extension PlacesServiceTests {
-    
+
     func test_conformsToRestaurantDetailsService() {
         let (sut, _) = makeSUT(response: anyRestaurantDetailsResponse())
         XCTAssertNotNil(sut as RestaurantDetailsService)
     }
-    
+
     func test_getRestaurantDetails_usesGetRestaurantDetailsEndpointToCreateURLRequest() async throws {
         let restaurantID = randomString()
         let (sut, loader) = makeSUT(response: anyRestaurantDetailsResponse())
         let endpoint = GetRestaurantDetailsEndpoint(restaurantID: restaurantID)
-        
+
         _ = try await sut.getRestaurantDetails(restaurantID: restaurantID)
-        
+
         XCTAssertEqual(loader.getRequests.count, 1)
         assertURLComponents(
             urlRequest: loader.getRequests[0],
@@ -30,11 +30,11 @@ extension PlacesServiceTests {
             apiKey: endpoint.apiKey
         )
     }
-    
+
     func test_getRestaurantDetails_throwsErrorWhenStatusIsNotOK() async {
         let failedResponse = anyRestaurantDetailsResponse(status: .notFound)
         let (sut, _) = makeSUT(response: failedResponse)
-        
+
         do {
             let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: failedResponse.result.placeID)
             XCTFail("Expected to fail, got \(restaurantDetails) instead")
@@ -42,18 +42,18 @@ extension PlacesServiceTests {
             XCTAssertNotNil(error)
         }
     }
-    
+
     func test_getRestaurantDetails_receiveExpectedRestaurantDetailsResponse() async throws {
         let successfulResponse = anyRestaurantDetailsResponse()
         let (sut, _) = makeSUT(response: successfulResponse)
-        
+
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: randomString())
-        
+
         XCTAssertEqual(successfulResponse.restaurantDetails, receivedRestaurantDetails)
     }
-    
+
     // MARK: - Helpers
-    
+
     private func assertURLComponents(
         urlRequest: URLRequest,
         restaurantID: String,
@@ -65,7 +65,7 @@ extension PlacesServiceTests {
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "place_id", value: restaurantID)
         ]
-        
+
         assertURLComponents(
             urlRequest: urlRequest,
             path: "/maps/api/place/details/json",
@@ -73,7 +73,7 @@ extension PlacesServiceTests {
             file: file,
             line: line)
     }
-    
+
     private func anyRestaurantDetailsResponse(status: PlaceDetailsStatus = .okStatus) -> PlaceDetailsResponse {
         PlaceDetailsResponse(
             result: Details(
