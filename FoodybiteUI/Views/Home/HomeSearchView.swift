@@ -13,12 +13,12 @@ public struct HomeSearchView<SearchCriteriaView: View>: View {
     @Binding var searchText: String
     @State var showSearchCriteria = false
     let searchCriteriaView: SearchCriteriaView
-    
+
     public init(searchText: Binding<String>, searchCriteriaView: SearchCriteriaView) {
         self._searchText = searchText
         self.searchCriteriaView = searchCriteriaView
     }
-    
+
     public var body: some View {
         ZStack(alignment: .trailing) {
             SearchView(searchText: $searchText)
@@ -26,7 +26,7 @@ public struct HomeSearchView<SearchCriteriaView: View>: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
                 )
-            
+
             if searchText.isEmpty {
                 Button {
                     showSearchCriteria.toggle()
@@ -59,7 +59,7 @@ struct HomeSearchView_Previews: PreviewProvider {
                 )
         )
     }
-    
+
     private class PreviewUserPreferencesSaver: UserPreferencesSaver {
         func save(_ userPreferences: UserPreferences) {}
     }
