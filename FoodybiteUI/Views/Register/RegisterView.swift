@@ -17,11 +17,11 @@ public struct RegisterView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.goToLogin = goToLogin
     }
-    
+
     public var body: some View {
         VStack {
             Spacer()
-            
+
             ProfileImage(backgroundColor: .white,
                          selectedImageData: $viewModel.profileImage)
                 .padding(.bottom)
@@ -33,17 +33,17 @@ public struct RegisterView: View {
                                     imageName: "person",
                                     secure: false,
                                     text: $viewModel.name)
-                
+
                 ImageWhiteTextField(placeholder: "Email",
                                     imageName: "envelope",
                                     secure: false,
                                     text: $viewModel.email)
-                
+
                 ImageWhiteTextField(placeholder: "Password",
                                     imageName: "lock.circle",
                                     secure: true,
                                     text: $viewModel.password)
-                
+
                 ImageWhiteTextField(placeholder: "Confirm Password",
                                     imageName: "lock.circle",
                                     secure: true,
@@ -58,7 +58,7 @@ public struct RegisterView: View {
                     await viewModel.register()
                 }
             }
-            
+
             createFeedbackText()
 
             Spacer()
@@ -66,7 +66,7 @@ public struct RegisterView: View {
             HStack {
                 Text("Already have an account?")
                     .foregroundColor(.white)
-                
+
                 Button {
                     goToLogin()
                 } label: {
@@ -81,19 +81,19 @@ public struct RegisterView: View {
         )
         .arrowBackButtonStyle()
     }
-    
+
     private func createFeedbackText() -> Text {
         switch viewModel.registerResult {
         case .success:
             return Text("Registration succedeed")
                 .foregroundColor(.green)
                 .font(.headline)
-            
+
         case let .failure(error):
             return Text(error.toString())
                 .foregroundColor(.red)
                 .font(.headline)
-            
+
         default:
             return Text("")
         }
@@ -110,7 +110,7 @@ struct RegisterView_Previews: PreviewProvider {
             ) { }
         }
     }
-    
+
     private class PreviewSignUpService: SignUpService, ObservableObject {
         func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
         }
