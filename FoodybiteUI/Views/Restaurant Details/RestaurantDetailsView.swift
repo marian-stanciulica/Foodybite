@@ -13,29 +13,29 @@ public struct RestaurantDetailsView: View {
     @StateObject var viewModel: RestaurantDetailsViewModel
     let makePhotoView: (String?) -> PhotoView
     let showReviewView: () -> Void
-    
+
     public init(viewModel: RestaurantDetailsViewModel, makePhotoView: @escaping (String?) -> PhotoView, showReviewView: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.makePhotoView = makePhotoView
         self.showReviewView = showReviewView
     }
-    
+
     public var body: some View {
         VStack {
             switch viewModel.getRestaurantDetailsState {
             case .idle:
                 EmptyView()
-                
+
             case .isLoading:
                 ProgressView()
                 Spacer()
-                
+
             case let .failure(error):
                 Text(error.rawValue)
                     .foregroundColor(.red)
-                
+
                 Spacer()
-                
+
             case let .success(restaurantDetails):
                 GeometryReader { proxy in
                     ZStack(alignment: .bottom) {
@@ -45,16 +45,16 @@ public struct RestaurantDetailsView: View {
                                     photoView: makePhotoView(restaurantDetails.photos.first?.photoReference),
                                     phoneNumber: restaurantDetails.phoneNumber,
                                     showMaps: viewModel.showMaps)
-                                
+
                                 HStack {
                                     RestaurantInformationView(
                                         name: restaurantDetails.name,
                                         distance: viewModel.distanceInKmFromCurrentLocation,
                                         address: restaurantDetails.address
                                     )
-                                    
+
                                     Spacer()
-                                    
+
                                     RatingStar(
                                         rating: viewModel.rating,
                                         backgroundColor: .gray.opacity(0.1)
@@ -62,21 +62,21 @@ public struct RestaurantDetailsView: View {
                                     .padding(4)
                                 }
                                 .padding(.horizontal)
-                                
+
                                 if let openingHoursDetails = restaurantDetails.openingHoursDetails {
                                     OpenHoursView(openingHoursDetails: openingHoursDetails)
                                         .padding(.horizontal)
                                 }
-                                
+
                                 RestaurantPhotosView(
                                     imageWidth: proxy.size.width / 2.5,
                                     photosReferences: restaurantDetails.photos.map { $0.photoReference },
                                     makePhotoView: makePhotoView
                                 )
                                 .padding(.bottom)
-                                
+
                                 HeaderView(name: "Review & Ratings", allItemsCount: viewModel.reviews.count)
-                                
+
                                 LazyVStack {
                                     ForEach(viewModel.reviews) { review in
                                         ReviewCell(review: review)
@@ -84,7 +84,7 @@ public struct RestaurantDetailsView: View {
                                 }
                             }
                         }
-                        
+
                         MarineButton(title: "Rate Your Experience", isLoading: false, action: showReviewView)
                             .padding(.horizontal)
                     }
@@ -95,7 +95,7 @@ public struct RestaurantDetailsView: View {
             if viewModel.getRestaurantDetailsState == .idle {
                 await viewModel.getRestaurantDetails()
             }
-            
+
             await viewModel.getRestaurantReviews()
         }
         .arrowBackButtonStyle()
@@ -124,7 +124,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewNearbyRestaurantsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
@@ -142,7 +142,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         "Thursday: 9:00 AM – 5:00 PM",
                         "Friday: 9:00 AM – 5:00 PM",
                         "Saturday: Closed",
-                        "Sunday: Closed",
+                        "Sunday: Closed"
                     ]
                 ),
                 reviews: [
@@ -160,7 +160,12 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
                         profileImageURL: URL(string: "www.google.com"),
                         profileImageData: nil,
                         authorName: "Marian",
-                        reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti. Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu eget leo congue maximus. Etiam interdum eget mi at consectetur. ",
+                        reviewText: """
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet dapibus justo, eu cursus nulla. Nulla viverra
+                            mollis ante et rutrum. Mauris lorem ante, congue eget malesuada quis, hendrerit vel elit. Suspendisse potenti.
+                            Phasellus molestie vehicula blandit. Fusce sit amet egestas augue. Integer quis lacinia massa. Aliquam hendrerit arcu
+                            eget leo congue maximus. Etiam interdum eget mi at consectetur.
+                        """,
                         rating: 4,
                         relativeTime: "1 day ago"
                     )
@@ -170,13 +175,13 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")!.pngData()!
         }
     }
-    
+
     private class PreviewGetReviewsService: GetReviewsService {
         func getReviews(restaurantID: String?) async throws -> [Review] {
             []
