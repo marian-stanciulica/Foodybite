@@ -85,7 +85,14 @@ Thank you for reading and enjoy! 🚀
 - Create a property list called `GooglePlaces-Info.plist` in the `FoodybitePlaces` framework
 - Add a row with `API_KEY` and the value of your key
 
-### 3. Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
+### 3. (Optionally) Install SwiftLint
+- run the following command in the terminal to install `swiftlint`
+
+```bash
+brew install swiftlint 
+```
+
+### 4. Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
 
 ## Architecture
 
