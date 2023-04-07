@@ -10,7 +10,7 @@ import SwiftUI
 struct AddressView: View {
     let restaurantName: String
     let address: String
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(restaurantName)
