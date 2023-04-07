@@ -10,12 +10,12 @@ import XCTest
 import Domain
 
 extension PlacesServiceTests {
-    
+
     func test_conformsToNearbyRestaurantsService() {
         let (sut, _) = makeSUT(response: anySearchNearbyResponse())
         XCTAssertNotNil(sut as NearbyRestaurantsService)
     }
-    
+
     func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
         let location = Location(latitude: -33.8, longitude: 15.1)
         let radius = 15
@@ -32,11 +32,11 @@ extension PlacesServiceTests {
             apiKey: endpoint.apiKey
         )
     }
-    
+
     func test_searchNearby_throwsErrorWhenStatusIsNotOK() async {
         let failedResponse = anySearchNearbyResponse(status: .overQueryLimit)
         let (sut, _) = makeSUT(response: failedResponse)
-        
+
         do {
             let nearbyRestaurants = try await searchNearby(on: sut)
             XCTFail("Expected to fail, got \(nearbyRestaurants) instead")
@@ -44,24 +44,24 @@ extension PlacesServiceTests {
             XCTAssertNotNil(error)
         }
     }
-    
+
     func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
         let successfulResponse = anySearchNearbyResponse()
         let (sut, _) = makeSUT(response: successfulResponse)
-        
+
         let receivedNearbyRestaurants = try await searchNearby(on: sut)
         XCTAssertEqual(successfulResponse.nearbyRestaurants, receivedNearbyRestaurants)
     }
-    
+
     // MARK: - Helpers
-    
+
     private func searchNearby(on sut: PlacesService, location: Location? = nil, radius: Int? = nil) async throws -> [NearbyRestaurant] {
         let defaultLocation = Location(latitude: -33.8, longitude: 15.1)
         let defaultRadius = 15
-        
+
         return try await sut.searchNearby(location: location ?? defaultLocation, radius: radius ?? defaultRadius)
     }
-    
+
     private func assertURLComponents(
         urlRequest: URLRequest,
         location: Location,
@@ -76,7 +76,7 @@ extension PlacesServiceTests {
             URLQueryItem(name: "radius", value: "\(radius)"),
             URLQueryItem(name: "type", value: "restaurant")
         ]
-        
+
         assertURLComponents(
             urlRequest: urlRequest,
             path: "/maps/api/place/nearbysearch/json",
@@ -84,7 +84,7 @@ extension PlacesServiceTests {
             file: file,
             line: line)
     }
-    
+
     private func anySearchNearbyResponse(status: SearchNearbyStatus = .okStatus) -> SearchNearbyResponse {
         SearchNearbyResponse(results: [
             SearchNearbyResult(
@@ -132,8 +132,8 @@ extension PlacesServiceTests {
                 types: [],
                 userRatingsTotal: 0,
                 vicinity: ""
-            ),
+            )
         ], status: status)
     }
-    
+
 }
