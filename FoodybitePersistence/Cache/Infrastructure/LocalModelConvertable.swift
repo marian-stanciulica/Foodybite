@@ -10,7 +10,7 @@ import CoreData
 
 public protocol LocalModelConvertable {
     associatedtype LocalModel: NSManagedObject
-    
+
     init(from: LocalModel)
     func toLocalModel(context: NSManagedObjectContext) -> LocalModel
 }

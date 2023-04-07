@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-public protocol LocationManagerDelegate {
+public protocol LocationManagerDelegate: AnyObject {
     func locationManagerDidChangeAuthorization(manager: LocationManager)
     func locationManager(manager: LocationManager, didFailWithError error: Error)
     func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation])

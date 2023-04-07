@@ -10,7 +10,7 @@ import Domain
 public struct LocalUserPreferences: Codable {
     public let radius: Int
     public let starsNumber: Int
-    
+
     public func toDomain() -> UserPreferences {
         UserPreferences(radius: radius, starsNumber: starsNumber)
     }
