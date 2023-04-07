@@ -10,15 +10,15 @@ import XCTest
 import Domain
 
 extension APIServiceTests {
-    
+
     func test_conformsToLogoutService() {
         let (sut, _, _, _) = makeSUT()
         XCTAssertNotNil(sut as LogoutService)
     }
-    
+
     func test_logout_usesLogoutEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
-        
+
         try await sut.logout()
 
         XCTAssertEqual(sender.requests.count, 1)
@@ -28,5 +28,5 @@ extension APIServiceTests {
             method: .post,
             body: nil)
     }
-    
+
 }
