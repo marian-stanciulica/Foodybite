@@ -15,11 +15,11 @@ public class ManagedOpeningHoursDetails: NSManagedObject {
     @NSManaged public var openNow: Bool
     @NSManaged public var weekdayText: NSSet
     @NSManaged public var restaurantDetails: ManagedRestaurantDetails?
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedOpeningHoursDetails> {
         return NSFetchRequest<ManagedOpeningHoursDetails>(entityName: "ManagedOpeningHoursDetails")
     }
-    
+
     public convenience init(_ model: OpeningHoursDetails, for context: NSManagedObjectContext) {
         self.init(context: context)
 
