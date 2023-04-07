@@ -2,7 +2,7 @@
 
 # Foodybite
 
-💡At the core of my vision lies a simple yet powerful way to create a user-friendly app that helps you find the best restaurant near you based on location, radius, and number of stars. Additionally, users can see details, like opening hours, address, reviews, or photos for each restaurant found and give a review. The app allows users to search directly for a restaurant and enables them to give a review right away.
+💡 My vision for this project is centered around a simple yet powerful way to create a user-friendly app that helps you find the best restaurant near you based on location, radius, and number of stars. Additionally, users can see details, like opening hours, address, reviews, or photos for each restaurant found and give a review. The app allows users to search directly for a restaurant and enables them to give a review right away.
 
 1. [Motivation](#motivation)
 2. [Installation Guide](#installation-guide)
@@ -1005,7 +1005,7 @@ Each view presented in the tab bar is wrapped in a `TabBarPageView` container. C
 
 ##### Hierarchical Navigation
 
-For this kind of navigation, I used the new `NavigationStack` type introduced in iOS 16. First of all, I created a generic `Flow` class that can append or remove a new route.
+To implement this kind of navigation, I used the new `NavigationStack` type introduced in iOS 16. Firstly, I created a generic `Flow` class that can append or remove a new route.
 
 ```swift
 final class Flow<Route: Hashable>: ObservableObject {
@@ -1021,7 +1021,7 @@ final class Flow<Route: Hashable>: ObservableObject {
 }
 ```
 
-Second of all, I created enums for each navigation path. For example, from the `Home` screen the user can navigate to the `Restaurant Details` screen and then to the `Add Review` screen. So all reachable screens will be the following (I used the associated value of a case to send additional information between screens. In this case, it's the restaurant ID.):
+Secondly, I created enums for each navigation path. For instance, from the `Home` screen, the user can navigate to the `Restaurant Details` screen and then to the `Add Review` screen. Therefore, all reachable screens are the following (I used the associated value of a case to send additional information between screens. In this case, it's the restaurant ID.):
 
 ```swift
 public enum HomeRoute: Hashable {
@@ -1030,7 +1030,7 @@ public enum HomeRoute: Hashable {
 }
 ```
 
-Furthermore, I used the `navigationDestination(for:destination:)` modifier to define links between the root view and the destination based on the route. The following example is the instantiation of the `HomeView` and defining all its navigation destinations:
+Furthermore, I used the `navigationDestination(for:destination:)` modifier to define links between the root view and the destination based on the route. The following example is the instantiation of the `HomeView` and definition of its navigation destinations:
 
 ```swift
 @ViewBuilder func makeHomeFlowView(currentLocation: Location) -> some View {
@@ -1062,17 +1062,17 @@ Furthermore, I used the `navigationDestination(for:destination:)` modifier to de
 }
 ```
 
-As you can see, the navigation stack wraps a `TabBarPageView` that wraps `HomeView` and on each case of `HomeRoute` instantiates the corresponding view. Moreover, in the factory method that instantiates `RestaurantDetailsView` we can see that it needs a closure in the constructor for navigating to the `Add Review` screen.
+The navigation stack wraps a `TabBarPageView` that contains `HomeView`. Depending on the current case of `HomeRoute`,  the corresponding view is instantiated. Moreover, the factory method that instantiates `RestaurantDetailsView` requires a closure in its constructor for navigating to the `Add Review` screen.
 
-I did all the hierarchical navigation in the app this way and allowed me to change the order of the screens from the composition root without touching other modules. In addition, it improved the overall flexibility and modularity of the system as the views has no information about how the navigation is actually done.
+I handled all the hierarchical navigation throughout the app, which allowed me to change the screens order from the composition root without affecting other modules. In addition, it improves the overall flexibility and modularity of the system, as the views don't have knowledge about the navigation implementation.
 
 ## Testing Strategy
 
-During the entire project I've used TDD as the development process (excluding the UI layer) by following the feedback loop.
+Throughout the entire project, I've used `TDD` as the development process (excluding the UI layer) by following the feedback loop.
 
-I've been using TDD for over a year now and I really like it because it helps me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using TDD. Additionally, it helped me understand better what I was trying to build before writing code while increasing my confidence in the correctness of the system afterwards.
+Having used `TDD` for over a year, I really enjoy how it allows me to break down tasks and solve one problem at a time. Also, I find it interesting how the design evolves naturally when using `TDD`. Additionally, it has helped me understand better what I was trying to build before writing code while increasing my confidence in the system's correctness.
 
-The foundation for my testing strategy was to use unit tests for testing the system internals (without hitting external systems, like the network or the disk). In addition, I use `End-to-End` tests to test the integration with the network infrastructure and `Cache Integration` tests to test the integration with the disk and keychain. Furthermore, I use snapshot tests to validate the layout of the screens.
+The foundation for my testing strategy was unit tests for the system internals (without hitting external systems like the network or the disk). In addition, I wrote `End-to-End` tests to test the integration with the network infrastructure and `Cache Integration` tests to test the integration with the disk and keychain. Lastly, I used snapshot tests to validate the screens layout.
 
 ### Summary Table
 
@@ -1080,57 +1080,57 @@ The foundation for my testing strategy was to use unit tests for testing the sys
 
 ### Methodology
 
-For all tests I used the following naming convention: test_methodName_expectedOutputWhenGivenInput.
+I adopted the following naming convention for all tests: test_methodName_expectedOutputWhenGivenInput.
 
-I structured all tests using the `Given-When-Then` template/structure.
+The tests were structured using the `Given-When-Then` template/structure.
 
-I enabled test randomization for all targets to ensure there is no temporal coupling between tests and they left no artifacts on disk or in memory (outside of the `End-to-End` tests since they must run in order to create the user on the server, create the session after login and running all the tests that require authentication). Alternatively, I could have called the `signUp` and `login` requests before each request that requires authentication to avoid the temporal coupling between tests, but for now I choose to keep the order.
+To ensure there was no temporal coupling between tests and prevent artifacts from being left on the disk or in memory, I enabled test randomization for all targets (except for the `End-to-End` tests since they must run in order to create the user on the server, create the session after login and running all the tests that require authentication). Alternatively, I could have called the `signUp` and `login` requests before each request that requires authentication to avoid the temporal coupling between tests, but I choose to keep the order for now.
 
 ### Unit Tests
 
-I used unit tests as the foundation for my testing pyramid because they are the most reliable and cheap to write. Also, I can easily test each component in isolation by mocking collaborators without making any assumptions about the rest of the system.
+I based my testing pyramid's foundation on unit tests because they are the most reliable and cost-effective to write. Also, I can easily test each component in isolation by mocking collaborators without making any assumptions about the rest of the system.
 
 ### Integration Tests
 
-Furthermore, I used end-to-end tests to check the connection with the backend APIs (my backend and Google Places API) to validate actual communication between the backends and the app. On top of that, I used cache integration tests to validate that the local storage works as expected given multiple instances.
+Furthermore, I used end-to-end tests to check the connection with the backend APIs (my backend and Google Places API) to validate actual communication between the backends and the app. On top of that, I used cache integration tests to validate that the local storage functioned as intended given multiple instances.
 
 #### End-to-End Tests
 
-I used an `URLSession` with ephemeral configuration for both my own server and `Google Places API` not to cache the successful requests as the default behaviour of the `URLSession` is to cache the requests using `URLCache`. By disabling caching, I avoid the posibility of passing the tests while the network is not reachable because the cached request was returned. This way, I reduce the risk of flaky and unreliable.
+I used an `URLSession` with ephemeral configuration for both my own server and `Google Places API` to prevent caching successful requests as it's the default behaviour of `URLSession`. By disabling caching, I avoided the possibility of passing the tests while the network was unreachable because the previous cached request was returned. This approach mitigated the risk of unreliable behaviour.
 
 #### Cache Integration Tests
 
-An important aspect while testing different systems in integration is to take into consideration the potential artifacts that can be created during testing. It's important to mention here that I delete the store before and after each tests using the `setUp` and `tearDown` methods to ensure that each test have a clean state before running. That's why I decided to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
+When testing different systems in integration, it important to take into consideration the potential artifacts that can be created. To ensure a clean state before running each test, I deleted the store before and after each test using the `setUp` and `tearDown` methods. That's why I decided to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
 
 ### Snapshots Tests
 
-Initially, I used snapshots tests for checking the layout of the UI for each state injecting the state directly in the viewModels. Afterwards, I used them to test-drive new screens as a feedback mechanism alongside with the preview. It felt like a better alternative because they are relatively fast to run and I could check the UI both for light and dark mode at the same time.
+Initially, I wrote snapshots tests to verify the UI layout for each state by directly injecting the state in the viewModels. Afterwards, I used them to test-drive new screens as a feedback mechanism alongside with preview. It seemed like a better alternative because they are relatively fast to run, and I could check the UI for both light and dark modes simultaneously.
 
-Nevertheless, I didn't test any logic using snapshot tests as all the logic was encapsulated in viewModels which were already unit tested.
+Nevertheless, I didn't test any logic with snapshot tests as all the logic was encapsulated within the already unit-tested viewModels.
 
 ## CI/CD
 
-I use `GitHub Actions` to automate the CI/CD pipeline to ensure that code changes are built and tested automatically. The pipeline runs every time commits are pushed to the main branch. It performs the following tasks:
-1. Builds the app and runs all tests to ensure that code changes do not break existing functionality.
-2. Checks code quality with [SwiftLint](https://github.com/realm/SwiftLint) to ensure that it adheres to the Swift coding style and conventions.
+I used `GitHub Actions` to automate the CI/CD pipeline to ensure code changes are built and tested automatically. The pipeline runs every time commits are pushed to the main branch. It performs the following tasks:
+1. Builds the app and runs all tests to ensure code changes do not break existing functionality.
+2. Checks code quality with [SwiftLint](https://github.com/realm/SwiftLint) to ensure it adheres to the Swift coding style and conventions.
 
 ## Security
 
 ### API key for Google Places API
 
-For security purposes, I stored the `API_KEY` from the `Google Places API` in a plist in order not to leak in the source code and removed the file from the git index by adding it to the `.gitignore` file. This way the file exists only locally on my device avoiding leaking to an attacker that could make requests on my behalf for free.
+For security purposes, I stored the `API_KEY` for the `Google Places API` in a plist to prevent from being leaked in the source code by adding the file in the `.gitignore`. This ensures the file only exists locally on my device, thus preventing any possible leakage to an attacker who could make requests on my behalf for free.
 
 ### Store Tokens from FoodybiteServer in Keychain
 
-I decided to store in the `Keychain` the tokens received on login from the server to ensure the security and privacy of the user since session tokens are considered sensitive information. If an attacker has access to them, he can imporsonate the real user and steal his data or make distructive actions. 
+I decided to store the tokens received on login from the server in the `Keychain` to guarantee the security and privacy of users since session tokens are considered sensitive information. If an attacker gains access to them, they can impersonate the real user and steal his data or make destructive actions.
 
-I use `Keychain` because is the default option of secure storage on iOS, uses strong encryption to protect the data, making it difficult for other apps or users to access the stored information. Additionally, it can be erased remotely, helping to prevent unauthorized access.
+`Keychain` is the default option of secure storage on iOS because it uses strong encryption to protect the data, making it difficult for other apps or users to access the stored information. Additionally, it can be erased remotely, further preventing unauthorized access.
 
 ### Password Hashing
 
-I avoid sending passwords in the requests' body as clear text as they can be intercepted and read by an malicious attacker with access to the network traffic compromising the user's account and his personal information. 
+I avoided sending passwords in clear text in the requests' body as they can be intercepted and read by a malicious attacker with access to the network traffic compromising the user's account and his personal information.
 
-To prevent this scenario I use `SHA512` to hash the passwords before sending to the backend. Even if an attacker intercept the hash, it will be impossible to reverse the hash and find the password. On the other side, when the user logs in again, their entered password is hashed again which results in the same hash as initially and the server grants access to their account.
+To prevent this scenario, I used `SHA512` to hash the passwords before sending to the backend. Even if an attacker intercept the hash, they will be unable to reverse the hash and find the password. On the other side, when the user logs in again, their entered password is hashed again, which results in the same hash as initially, allowing the server to grant access to their account.
 
 ## Metrics
 
@@ -1143,37 +1143,37 @@ To prevent this scenario I use `SHA512` to hash the passwords before sending to 
 
 ### Test lines of code per production lines of code
 
-You can see below the entire evolution of the codebase. For the first part of the project, the testing curve stayed flat as I initially worked on the UI side, just testing different ideas. Afterward, I went through the process of building the modules in the order presented here.
+Below, You can see the entire evolution of the codebase. For the first part of the project, the testing curve stayed flat as I initially worked on the UI, testing out different ideas. Afterwards, I went through the process of building the modules in the order presented here.
 
-The usage of `TDD` all along the way is proved by the lack of flat segments on the testing curve as each commit contained changes in both, and their spikes are correlated. It highlights how important it was for me to have automated tests before writing production code.
+The usage of `TDD` throughout the project is proved by the lack of flat segments on the testing curve. Each commit contained changes in both testing and production, and their spikes are directly correlated. It highlights how important it was for me to have automated tests before writing production code.
 
 ![Testing vs Production](./Diagrams/testing_vs_production.png)
 
 ### Count of files changed
 
-My initial goal was to make commits as small as possible, very frequent, and with meaningful messages. Additionally, I strived for an average of changed files per commit between `2 and 2.5`. Unfortunately, I realized while polishing the last details of the project that I used the concept of `place` everywhere instead of `restaurant`. It was because I initially borrowed the naming from `Google Places`. Also, they are similar and easy to use interchangeably since the set of places contains all restaurants.
+My initial goal was to make commits as small as possible, very frequent, and with meaningful messages. Additionally, I strived for an average between `2 and 2.5` changed files per commit. Unfortunately, while polishing the last details of the project, I realised that I had used the concept of `place` instead of `restaurant` throughout the codebase. I had initially borrowed the naming from `Google Places`, and because they are similar and can be used interchangeably, as the set of places contains all restaurants.
 
-However, I decided to replace the concepts everywhere in the project to maintain consistency with the initial purpose and have meaningful domain models. I had an average of `2.35` files changed per commit before the refactoring. It went up to `3.26` because of all the renaming I had to do.
+However, I decided to replace the concepts everywhere in the project to maintain consistency with the initial purpose and to have meaningful domain models. Before the refactoring, I had an average of `2.35` files changed per commit. However, due to all the renaming that had to be done, it went up to `3.26`.
 
-The following histogram represents the history of the number of files changed during the project. As you can see, `74% of all commits modified three or fewer files`. Moreover, most commits with more than ten files changed are due to renaming. Overall, the plot shows my continuous process of keeping the granularity of the commits high.
+The following histogram represents the history of the number of files changed during the project. As you can see, `74% of all commits modified three or fewer files`. Moreover, most commits with more than ten files changed are due to renaming. Overall, the plot demonstrates my continuous effort of keeping high the granularity of the commits.
 
 ![Count of files changed](./Diagrams/count_of_files_changed.png)
 
-> ❗️ It includes `only` changes to Swift files.
+> ❗️ It `only` includes changes to Swift files.
 
 ### Code coverage
 
-Having high code coverage wasn't a goal for me during the project, instead, my focus was to write quality tests. The code coverage emerged as a consequence of following `TDD` while building the modules. It's a useful metric to check what portions of the code are not executed by the tests. However, it doesn't guarantee that all possible paths have been tested.
+Having high code coverage wasn't a goal during the project. Instead, my focus was to write quality tests. The code coverage emerged as a consequence of following `TDD` while building the modules. It's a useful metric to check what portions of the code are not executed by tests. However, it doesn't guarantee that all possible paths have been tested.
 
-The `Persistence` module has only `47%` code coverage because `CoreDataLocalStore` has generic methods which I tested only using the `ManagedUser` to validate its behaviour, so all the other managed models are not covered.
+The `Persistence` module has only `47%` code coverage due to `CoreDataLocalStore` has generic methods which I tested using only the `ManagedUser` to validate its behaviour, so all the other managed models are not covered.
 
-In the case of the `Location` module, I was unable to trigger the delegate methods I use, that's why in order to test them I implemented my own delegate. (You can find more details here: [Get current location using TDD](#get-current-location-using-tdd))
+In the case of the `Location` module, I was unable to trigger delegate methods, that's why in order to test them I implemented my own delegate. (You can find more details here: [Get current location using TDD](#get-current-location-using-tdd))
 
-So far, I haven't done any unit testing on views since they don't contain business logic. I tested them only through snapshot testing to ensure the layout is correct. I had the option to test them using a third-party framework called `ViewInspector`, but I wasn't comfortable to add in production the required setup to make it work. For this reason, I decided to test the views' logic using the preview or manually if necessary.
+So far, I haven't done any unit testing on views since they don't contain business logic. I tested them only through snapshot testing to ensure the correct layout. I had the option to test them using a third-party framework, called `ViewInspector`, but I wasn't comfortable to add the required setup in production to make it work. For this reason, I decided to test the views' logic using the preview or manually if necessary.
 
 This is also valid for the views in the composition root that handles the navigation, that's the reason the coverage is only `40%`.
 
-In conclusion, all the modules are fully tested, except the view logic from the `UI` and `Main` modules. However, I kept it to the bare minimum, and can be easily tested using the preview. It is a trade-off I had to make and I'm considering using the framework to write some acceptance tests in the future. But for now, I'm happy with the current solution.
+In conclusion, all the modules are completely tested, except the view logic from the `UI` and `Main` modules. However, I kept it to the bare minimum and can be easily tested using the preview. It was a trade-off I had to make, and I'm considering using the framework to write some acceptance tests in the future. For now, I'm satisfied with the current solution and confident that my testing strategy will ensure the stability of the application.
 
 ![Code coverage](./Diagrams/code_coverage.png)
 
