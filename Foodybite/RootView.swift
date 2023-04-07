@@ -17,7 +17,7 @@ struct RootView: View {
     @AppStorage("loggedInUserID") var loggedInUserID: String?
     @StateObject var authflow = Flow<AuthRoute>()
     @StateObject var locationProvider = LocationProvider()
-    
+
     var body: some View {
         HStack {
             if let user = user, loggedInUserID != nil {
@@ -44,7 +44,7 @@ struct RootView: View {
             }
         }
     }
-    
+
     @ViewBuilder private func makeAuthFlowView(
         loginService: LoginService,
         signUpService: SignUpService,
@@ -64,7 +64,7 @@ struct RootView: View {
             }
         }
     }
-    
+
     @ViewBuilder private func makeRegisterView(signUpService: SignUpService) -> some View {
         RegisterView(viewModel: RegisterViewModel(signUpService: signUpService)) {
             authflow.navigateBack()
