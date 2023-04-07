@@ -11,7 +11,7 @@ import CoreData
 extension NearbyRestaurant: LocalModelConvertable {
     public init(from managedNearbyRestaurant: ManagedNearbyRestaurant) {
         var photo: Photo? = nil
-        
+
         if let managedPhoto = managedNearbyRestaurant.photo {
             photo = Photo(
                 width: Int(managedPhoto.width),
@@ -19,7 +19,7 @@ extension NearbyRestaurant: LocalModelConvertable {
                 photoReference: managedPhoto.reference
             )
         }
-        
+
         self.init(id: managedNearbyRestaurant.id,
                   name: managedNearbyRestaurant.name,
                   isOpen: managedNearbyRestaurant.isOpen,
@@ -27,7 +27,7 @@ extension NearbyRestaurant: LocalModelConvertable {
                   location: Location(latitude: managedNearbyRestaurant.latitude, longitude: managedNearbyRestaurant.longitude),
                   photo: photo)
     }
-    
+
     public func toLocalModel(context: NSManagedObjectContext) -> ManagedNearbyRestaurant {
         ManagedNearbyRestaurant(self, for: context)
     }
