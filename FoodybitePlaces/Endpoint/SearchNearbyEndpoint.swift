@@ -11,20 +11,20 @@ import Domain
 struct SearchNearbyEndpoint: Endpoint {
     private let location: Location
     private let radius: Int
-    
+
     init(location: Location, radius: Int) {
         self.location = location
         self.radius = radius
     }
-    
+
     var path: String {
         "/maps/api/place/nearbysearch/json"
     }
-    
+
     var method: RequestMethod {
         .get
     }
-    
+
     var queryItems: [URLQueryItem]? {
         [
             URLQueryItem(name: "key", value: apiKey),
