@@ -11,19 +11,20 @@ import CoreData
 extension RestaurantDetails: LocalModelConvertable {
     public init(from managedRestaurantDetails: ManagedRestaurantDetails) {
         var openingHoursDetails: OpeningHoursDetails?
-        
+
         if let openingHoursDetailsModel = managedRestaurantDetails.openingHoursDetails {
             if let weekdayTextArray = openingHoursDetailsModel.weekdayText.allObjects as? [String] {
                 openingHoursDetails = OpeningHoursDetails(openNow: openingHoursDetailsModel.openNow,
                                                           weekdayText: weekdayTextArray)
             }
         }
-        
-        let managedPhotos = managedRestaurantDetails.photos.allObjects as! [ManagedPhoto]
-        let photos = managedPhotos.map {
-            Photo(width: Int($0.width), height: Int($0.height), photoReference: $0.reference)
-        }
-        
+
+        let photos = managedRestaurantDetails.photos.allObjects
+            .compactMap { $0 as? ManagedPhoto }
+            .map {
+                Photo(width: Int($0.width), height: Int($0.height), photoReference: $0.reference)
+            }
+
         self.init(id: managedRestaurantDetails.id,
                   phoneNumber: managedRestaurantDetails.phoneNumber,
                   name: managedRestaurantDetails.name,
@@ -36,7 +37,7 @@ extension RestaurantDetails: LocalModelConvertable {
                     longitude: managedRestaurantDetails.longitude),
                   photos: photos)
     }
-    
+
     public func toLocalModel(context: NSManagedObjectContext) -> ManagedRestaurantDetails {
         ManagedRestaurantDetails(self, for: context)
     }
