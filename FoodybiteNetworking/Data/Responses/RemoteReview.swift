@@ -16,7 +16,7 @@ struct RemoteReview: Decodable {
     let reviewText: String
     let rating: Int
     let createdAt: Date
-    
+
     enum CodingKeys: String, CodingKey {
         case restaurantID
         case profileImageData
@@ -25,7 +25,7 @@ struct RemoteReview: Decodable {
         case rating
         case createdAt
     }
-    
+
     var review: Review {
         let formatter = RelativeDateTimeFormatter()
 

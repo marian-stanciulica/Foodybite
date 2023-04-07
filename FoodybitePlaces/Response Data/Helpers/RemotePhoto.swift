@@ -18,7 +18,7 @@ struct RemotePhoto: Decodable {
         case photoReference = "photo_reference"
         case width
     }
-    
+
     var model: Photo {
         Photo(width: width, height: height, photoReference: photoReference)
     }

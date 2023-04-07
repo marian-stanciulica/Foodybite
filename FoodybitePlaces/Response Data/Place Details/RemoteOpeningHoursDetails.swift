@@ -17,7 +17,7 @@ struct RemoteOpeningHoursDetails: Decodable {
         case periods
         case weekdayText = "weekday_text"
     }
-    
+
     var model: OpeningHoursDetails {
         OpeningHoursDetails(openNow: openNow, weekdayText: weekdayText)
     }
