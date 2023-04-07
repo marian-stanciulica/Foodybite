@@ -10,38 +10,38 @@ import Domain
 
 public class RegisterViewModel: ObservableObject {
     private let signUpService: SignUpService
-    
+
     public enum State: Equatable {
         case idle
         case isLoading
         case success
         case failure(RegisterValidator.Error)
     }
-    
+
     @Published public var name = ""
     @Published public var email = ""
     @Published public var password = ""
     @Published public var confirmPassword = ""
     @Published public var profileImage: Data?
     @Published public var registerResult: State = .idle
-    
+
     public var isLoading: Bool {
         registerResult == .isLoading
     }
-    
+
     public init(signUpService: SignUpService) {
         self.signUpService = signUpService
     }
-    
+
     @MainActor public func register() async {
         registerResult = .isLoading
-        
+
         do {
             try RegisterValidator.validate(name: name,
                                            email: email,
                                            password: password,
                                            confirmPassword: confirmPassword)
-            
+
             try await signUp()
         } catch {
             if let error = error as? RegisterValidator.Error {
@@ -51,7 +51,7 @@ public class RegisterViewModel: ObservableObject {
             }
         }
     }
-    
+
     @MainActor private func signUp() async throws {
         do {
             try await signUpService.signUp(name: name,
@@ -65,7 +65,7 @@ public class RegisterViewModel: ObservableObject {
             throw RegisterValidator.Error.serverError
         }
     }
-    
+
     @MainActor private func resetInputs() {
         name = ""
         email = ""
