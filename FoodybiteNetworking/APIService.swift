@@ -12,7 +12,7 @@ public class APIService {
     private let loader: ResourceLoader
     private let sender: ResourceSender
     private let tokenStore: TokenStore
-    
+
     public init(loader: ResourceLoader, sender: ResourceSender, tokenStore: TokenStore) {
         self.loader = loader
         self.sender = sender
@@ -27,9 +27,9 @@ extension APIService: LoginService {
         let endpoint = LoginEndpoint(requestBody: body)
         let urlRequest = try endpoint.createURLRequest()
         let loginResponse: LoginResponse = try await loader.get(for: urlRequest)
-        
+
         try tokenStore.write(loginResponse.token)
-        
+
         return loginResponse.remoteUser.model
     }
 }
@@ -38,7 +38,7 @@ extension APIService: SignUpService {
     public func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
         let hashedPassword = SHA512PasswordHasher.hash(password: password)
         let hashedConfirmPassword = SHA512PasswordHasher.hash(password: confirmPassword)
-        
+
         let body = SignUpRequestBody(
             name: name,
             email: email,
@@ -57,7 +57,7 @@ extension APIService: ChangePasswordService {
         let hashedCurrentPassword = SHA512PasswordHasher.hash(password: currentPassword)
         let hashedNewPassword = SHA512PasswordHasher.hash(password: newPassword)
         let hashedConfirmPassword = SHA512PasswordHasher.hash(password: confirmPassword)
-        
+
         let body = ChangePasswordRequestBody(currentPassword: hashedCurrentPassword,
                                              newPassword: hashedNewPassword,
                                              confirmPassword: hashedConfirmPassword)
@@ -82,7 +82,7 @@ extension APIService: AccountService {
         let urlRequest = try endpoint.createURLRequest()
         try await sender.post(to: urlRequest)
     }
-    
+
     public func deleteAccount() async throws {
         let endpoint = AccountEndpoint.delete
         let urlRequest = try endpoint.createURLRequest()
