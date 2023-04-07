@@ -29,7 +29,7 @@ public struct ProfileView<Cell: View>: View {
         self.goToEditProfile = goToEditProfile
         self.editProfileAlertDisplayed = editProfileAlertDisplayed
     }
-    
+
     public var body: some View {
         ScrollView {
             VStack {
@@ -77,7 +77,7 @@ public struct ProfileView<Cell: View>: View {
                 .padding(.vertical)
                 .task {
                     guard viewModel.getReviewsState == .idle else { return }
-                    
+
                     await viewModel.getAllReviews()
                 }
 
@@ -165,20 +165,28 @@ struct ProfileView_Previews: PreviewProvider {
             goToEditProfile: {}
         )
     }
-    
+
     private class PreviewAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
     }
-    
+
     private class PreviewGetReviewsService: GetReviewsService {
         func getReviews(restaurantID: String?) async throws -> [Review] {
             [
-                Review(restaurantID: "place #1", profileImageURL: nil, profileImageData: nil, authorName: "", reviewText: "", rating: 1, relativeTime: ""),
+                Review(
+                    restaurantID: "place #1",
+                    profileImageURL: nil,
+                    profileImageData: nil,
+                    authorName: "",
+                    reviewText: "",
+                    rating: 1,
+                    relativeTime: ""
+                )
             ]
         }
     }
-    
+
     private class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
@@ -196,7 +204,7 @@ struct ProfileView_Previews: PreviewProvider {
             )
         }
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test")?.pngData() ?? Data()
