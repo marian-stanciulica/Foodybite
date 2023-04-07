@@ -17,11 +17,11 @@ public class ManagedPhoto: NSManagedObject {
     @NSManaged public var reference: String
     @NSManaged public var restaurantDetails: ManagedRestaurantDetails?
     @NSManaged public var nearbyRestaurant: ManagedNearbyRestaurant?
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedPhoto> {
         return NSFetchRequest<ManagedPhoto>(entityName: "ManagedPhoto")
     }
-    
+
     public convenience init(_ model: Photo, for context: NSManagedObjectContext) {
         self.init(context: context)
 
@@ -29,7 +29,7 @@ public class ManagedPhoto: NSManagedObject {
         height = Int16(model.height)
         reference = model.photoReference
     }
-    
+
     static func first(with reference: String, in context: NSManagedObjectContext) throws -> ManagedPhoto? {
         let request = NSFetchRequest<ManagedPhoto>(entityName: entity().name!)
         request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedPhoto.reference), reference])

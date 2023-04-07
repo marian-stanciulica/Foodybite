@@ -20,11 +20,11 @@ public class ManagedReview: NSManagedObject {
     @NSManaged public var reviewText: String
     @NSManaged public var rating: Int16
     @NSManaged public var relativeTime: String
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedReview> {
         return NSFetchRequest<ManagedReview>(entityName: "ManagedReview")
     }
-    
+
     public convenience init(_ model: Review, for context: NSManagedObjectContext) {
         self.init(context: context)
 
