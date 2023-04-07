@@ -265,4 +265,3 @@ private extension Review {
         rating == review.rating
     }
 }
-
