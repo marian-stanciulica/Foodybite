@@ -20,11 +20,11 @@ final class RefreshTokenServiceTests: XCTestCase {
 
         let receivedToken = try tokenStoreStub.read()
         let expectedToken = try sut.getLocalToken()
-        
+
         XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
         XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
     }
-    
+
     func test_fetchLocallyRemoteToken_usesRefreshTokenEndpointToCreateURLRequest() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
@@ -41,12 +41,12 @@ final class RefreshTokenServiceTests: XCTestCase {
 
     func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, loaderSpy, _) = makeSUT(authToken: makeRemoteAuthToken())
-        
+
         await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
-        
+
         XCTAssertEqual(loaderSpy.requests.count, 1)
     }
-    
+
     func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
         let expectedAuthToken = makeRemoteAuthToken()
         let (sut, _, _) = makeSUT(authToken: expectedAuthToken)
@@ -57,23 +57,23 @@ final class RefreshTokenServiceTests: XCTestCase {
         XCTAssertEqual(expectedAuthToken.accessToken, receivedResponse.accessToken)
         XCTAssertEqual(expectedAuthToken.refreshToken, receivedResponse.refreshToken)
     }
-    
+
     func test_fetchLocallyRemoteToken_storesAuthTokenInTokenStore() async throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
         try await sut.fetchLocallyRemoteToken()
         let expectedToken = try sut.getLocalToken()
         let receivedToken = try tokenStoreStub.read()
-        
+
         XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
         XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
     }
-    
+
     func test_fetchLocallyRemoteToken_storesAuthTokenOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, _, tokenStoreStub) = makeSUT()
-        
+
         await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
-        
+
         XCTAssertEqual(tokenStoreStub.writeCount, 1)
     }
 
@@ -88,7 +88,7 @@ final class RefreshTokenServiceTests: XCTestCase {
         let sut = RefreshTokenService(loader: loaderSpy, tokenStore: tokenStoreStub)
         return (sut, loaderSpy, tokenStoreStub)
     }
-    
+
     private func assertURLComponents(
         urlRequest: URLRequest,
         path: String,
@@ -105,17 +105,21 @@ final class RefreshTokenServiceTests: XCTestCase {
         XCTAssertEqual(urlComponents?.path, path, file: file, line: line)
         XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
         XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
-        
+
         if let body = body {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
-            let bodyData = try! encoder.encode(body)
-            XCTAssertEqual(urlRequest.httpBody, bodyData, file: file, line: line)
+
+            if let bodyData = try? encoder.encode(body) {
+                XCTAssertEqual(urlRequest.httpBody, bodyData, "HTTP Body is not correct", file: file, line: line)
+            } else {
+                XCTFail("Couldn't encode the body", file: file, line: line)
+            }
         } else if let httpBody = urlRequest.httpBody {
             XCTFail("Body expected to be nil, got \(httpBody) instead")
         }
     }
-    
+
     private func requestRemoteAuthTokenInParallel(on sut: TokenRefresher, numberOfRequests: Int) async {
         await withThrowingTaskGroup(of: Void.self) { group in
             (0..<numberOfRequests).forEach { _ in
@@ -125,11 +129,11 @@ final class RefreshTokenServiceTests: XCTestCase {
             }
         }
     }
-    
+
     private func makeRemoteAuthToken() -> AuthToken {
         AuthToken(accessToken: "remote access token", refreshToken: "remote refresh token")
     }
-    
+
     private func makeStoredAuthToken() -> AuthToken {
         AuthToken(accessToken: "stored access token", refreshToken: "stored refresh token")
     }
