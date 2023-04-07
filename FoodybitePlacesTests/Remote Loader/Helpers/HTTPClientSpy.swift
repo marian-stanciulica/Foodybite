@@ -8,13 +8,13 @@
 import Foundation
 import FoodybitePlaces
 
-class HTTPClientSpy: HTTPClient {
+final class HTTPClientSpy: HTTPClient {
     var urlRequests = [URLRequest]()
     var result: Result<(Data, HTTPURLResponse), NSError>?
-    
+
     func send(_ urlRequest: URLRequest) throws -> (data: Data, response: HTTPURLResponse) {
         urlRequests.append(urlRequest)
-        
+
         if let result = result {
             switch result {
             case let .failure(error):
@@ -23,15 +23,15 @@ class HTTPClientSpy: HTTPClient {
                 return result
             }
         }
-        
+
         return (anyLoginMocksData(), anyHttpUrlResponse())
     }
-    
+
     private func anyLoginMocksData() -> Data {
         let loginMocks = [
             CodableMock(name: "name 1", password: "password 1"),
             CodableMock(name: "name 2", password: "password 2")
         ]
-        return try! JSONEncoder().encode(loginMocks)
+        return (try? JSONEncoder().encode(loginMocks)) ?? Data()
     }
 }
