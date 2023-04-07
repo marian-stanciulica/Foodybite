@@ -3400,6 +3400,7 @@
 				0FFCB59A29DF0FB500FD400B /* Copy GooglePlaces-Info.plist Script */,
 				0F412E732962C78D00FDDF41 /* Frameworks */,
 				0F215CBE29826D24000F88F4 /* Embed Frameworks */,
+				0FE0948829E04FFB00BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3871,6 +3872,25 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		0FE0948729E0153100BF68C1 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		0FE0948829E04FFB00BF68C1 /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
