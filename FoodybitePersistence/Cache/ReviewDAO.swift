@@ -13,17 +13,17 @@ public final class ReviewDAO: GetReviewsService, ReviewCache {
     public init(store: LocalStore) {
         self.store = store
     }
-    
+
     public func getReviews(restaurantID: String? = nil) async throws -> [Review] {
         let reviews: [Review] = try await store.readAll()
-        
+
         if let restaurantID = restaurantID {
             return reviews.filter { $0.restaurantID == restaurantID }
         }
-        
+
         return reviews
     }
-    
+
     public func save(reviews: [Review]) async throws {
         try await store.writeAll(reviews)
     }
