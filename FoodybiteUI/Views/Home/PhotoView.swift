@@ -11,11 +11,11 @@ import FoodybitePresentation
 
 public struct PhotoView: View {
     @StateObject var viewModel: PhotoViewModel
-    
+
     public init(viewModel: PhotoViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     public var body: some View {
         Group {
             switch viewModel.fetchPhotoState {
@@ -24,7 +24,7 @@ public struct PhotoView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.gray3)
                         .frame(height: 200)
-                    
+
                     ProgressView()
                 }
             case .noImageAvailable:
@@ -32,7 +32,7 @@ public struct PhotoView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.gray3)
                         .frame(height: 200)
-                    
+
                     Text("No Image Available")
                         .foregroundColor(.red)
                 }
@@ -41,7 +41,7 @@ public struct PhotoView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.gray3)
                         .frame(height: 200)
-                    
+
                     Image(systemName: "arrow.clockwise.circle")
                         .resizable()
                         .frame(width: 24, height: 24)
@@ -61,7 +61,7 @@ public struct PhotoView: View {
         }
         .task {
             guard viewModel.fetchPhotoState == .isLoading else { return }
-            
+
             await viewModel.fetchPhoto()
         }
     }
@@ -74,7 +74,7 @@ struct PhotoView_Previews: PreviewProvider {
             restaurantPhotoService: PreviewFetchPlacePhotoService()
         ))
     }
-    
+
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             throw NSError(domain: "", code: 1)

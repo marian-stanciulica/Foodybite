@@ -9,11 +9,10 @@ public struct Photo: Hashable {
     public let width: Int
     public let height: Int
     public let photoReference: String
-    
+
     public init(width: Int, height: Int, photoReference: String) {
         self.width = width
         self.height = height
         self.photoReference = photoReference
     }
 }
-
