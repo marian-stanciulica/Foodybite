@@ -10,14 +10,14 @@ import Domain
 final class RestaurantDetailsServiceStub: RestaurantDetailsService {
     private(set) var capturedValues = [String]()
     var stub: Result<RestaurantDetails, Error>?
-    
+
     func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
         capturedValues.append(restaurantID)
-        
+
         if let stub = stub {
             return try stub.get()
         }
-        
+
         return RestaurantDetails(id: "",
                             phoneNumber: nil,
                             name: "",
