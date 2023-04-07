@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RatingView: View {
     @Binding var stars: Int
-    
+
     var body: some View {
         HStack {
             ForEach(1...5, id: \.self) { index in

@@ -10,7 +10,7 @@ import SwiftUI
 struct RatingStar: View {
     let rating: String
     let backgroundColor: Color
-    
+
     var body: some View {
         HStack {
             Image("rating_yellow_star", bundle: .current)
