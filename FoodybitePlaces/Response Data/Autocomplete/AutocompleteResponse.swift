@@ -11,11 +11,11 @@ import Domain
 struct AutocompleteResponse: Decodable {
     let predictions: [Prediction]
     let status: AutocompleteStatus
-    
+
     var autocompletePredictions: [AutocompletePrediction] {
         predictions.map {
             AutocompletePrediction(restaurantPrediction: $0.description, restaurantID: $0.placeID)
         }
     }
-    
+
 }
