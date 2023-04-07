@@ -10,7 +10,7 @@ import CoreData
 
 extension NearbyRestaurant: LocalModelConvertable {
     public init(from managedNearbyRestaurant: ManagedNearbyRestaurant) {
-        var photo: Photo? = nil
+        var photo: Photo?
 
         if let managedPhoto = managedNearbyRestaurant.photo {
             photo = Photo(
