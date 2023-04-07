@@ -10,33 +10,33 @@ import Domain
 import FoodybitePresentation
 
 final class RestaurantReviewCellViewModelTests: XCTestCase {
-    
+
     func test_init_getRestaurantDetailsStateIsLoading() {
         let (sut, _) = makeSUT()
-        
+
         XCTAssertEqual(sut.getRestaurantDetailsState, .idle)
     }
-    
+
     func test_getRestaurantDetails_sendsInputsToRestaurantDetailsService() async {
         let review = Self.anyReview()
         let (sut, restaurantDetailsServiceSpy) = makeSUT(review: review)
-        
+
         await sut.getRestaurantDetails()
-        
+
         XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.count, 1)
         XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, review.restaurantID)
     }
-    
+
     func test_getRestaurantDetails_setsGetRestaurantDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
         let (sut, restaurantDetailsServiceSpy) = makeSUT()
         restaurantDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
         await sut.getRestaurantDetails()
-        
+
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
-    
+
     func test_getRestaurantDetails_setsGetRestaurantDetailsStateToRequestSucceeededWhenRestaurantDetailsServiceReturnsSuccessfully() async {
         let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let expectedRestaurantDetails = anyRestaurantDetails()
@@ -44,24 +44,24 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
         let stateSpy = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
         await sut.getRestaurantDetails()
-        
+
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedRestaurantDetails)])
     }
-    
+
     func test_rating_returnsFormattedRating() {
         let review = Self.anyReview()
         let (sut, _) = makeSUT(review: review)
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
-        
+
         XCTAssertEqual(sut.rating, "\(review.rating)")
     }
-    
+
     func test_restaurantName_initiallySetToEmpty() {
         let (sut, _) = makeSUT()
 
         XCTAssertTrue(sut.restaurantName.isEmpty)
     }
-    
+
     func test_restaurantName_equalsFetchedRestaurantDetailsName() async {
         let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let anyRestaurantDetails = anyRestaurantDetails()
@@ -71,13 +71,13 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.restaurantName, anyRestaurantDetails.name)
     }
-    
+
     func test_restaurantAddress_initiallySetToEmpty() {
         let (sut, _) = makeSUT()
 
         XCTAssertTrue(sut.restaurantAddress.isEmpty)
     }
-    
+
     func test_restaurantAddress_equalsFetchedRestaurantDetailsAddress() async {
         let (sut, restaurantDetailsServiceSpy) = makeSUT()
         let anyRestaurantDetails = anyRestaurantDetails()
@@ -87,27 +87,38 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.restaurantAddress, anyRestaurantDetails.address)
     }
-    
+
     // MARK: - Helpers
-    
-    private func makeSUT(review: Review = anyReview()) -> (sut: RestaurantReviewCellViewModel, restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy) {
+
+    private func makeSUT(review: Review = anyReview()) -> (
+        sut: RestaurantReviewCellViewModel,
+        restaurantDetailsServiceSpy: RestaurantDetailsServiceSpy
+    ) {
         let restaurantDetailsServiceSpy = RestaurantDetailsServiceSpy()
         let sut = RestaurantReviewCellViewModel(review: review, restaurantDetailsService: restaurantDetailsServiceSpy)
         return (sut, restaurantDetailsServiceSpy)
     }
-    
+
     private func anyRestaurantID() -> String {
         "any restaurant id"
     }
-    
+
     private func anyError() -> NSError {
         NSError(domain: "any error", code: 1)
     }
-    
+
     private static func anyReview() -> Review {
-        Review(restaurantID: "restaurant #1", profileImageURL: nil, profileImageData: nil, authorName: "Author", reviewText: "very nice", rating: 5, relativeTime: "1 hour ago")
+        Review(
+            restaurantID: "restaurant #1",
+            profileImageURL: nil,
+            profileImageData: nil,
+            authorName: "Author",
+            reviewText: "very nice",
+            rating: 5,
+            relativeTime: "1 hour ago"
+        )
     }
-    
+
     private func anyRestaurantDetails() -> RestaurantDetails {
         RestaurantDetails(
             id: "restaurant #1",
@@ -124,7 +135,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
                     "Thursday: 9:00 AM – 5:00 PM",
                     "Friday: 9:00 AM – 5:00 PM",
                     "Saturday: Closed",
-                    "Sunday: Closed",
+                    "Sunday: Closed"
                 ]
             ),
             reviews: [
@@ -142,7 +153,7 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
             photos: anyPhotos()
         )
     }
-    
+
     private func anyPhotos() -> [Photo] {
         [
             Photo(width: 100, height: 200, photoReference: "first photo reference"),
@@ -150,18 +161,18 @@ final class RestaurantReviewCellViewModelTests: XCTestCase {
             Photo(width: 300, height: 400, photoReference: "third photo reference")
         ]
     }
-    
+
     private class RestaurantDetailsServiceSpy: RestaurantDetailsService {
         private(set) var capturedValues = [String]()
         var result: Result<RestaurantDetails, Error>?
-        
+
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             capturedValues.append(restaurantID)
-            
+
             if let result = result {
                 return try result.get()
             }
-            
+
             return RestaurantDetails(id: "restaurant #1",
                                 phoneNumber: nil,
                                 name: "",
