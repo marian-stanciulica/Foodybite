@@ -8,7 +8,7 @@
 
 public protocol LocationProviding {
     var locationServicesEnabled: Bool { get }
-    
+
     func requestWhenInUseAuthorization()
     func requestLocation() async throws -> Location
 }
