@@ -1,2 +1,5 @@
 disabled_rules:
   - large_tuple
+
+line_length:
+  warning: 150
