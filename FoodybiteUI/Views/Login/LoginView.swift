@@ -17,7 +17,7 @@ public struct LoginView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.goToSignUp = goToSignUp
     }
-    
+
     public var body: some View {
         VStack {
             Spacer()
@@ -33,7 +33,7 @@ public struct LoginView: View {
                                     imageName: "envelope",
                                     secure: false,
                                     text: $viewModel.email)
-                
+
                 ImageWhiteTextField(placeholder: "Password",
                                     imageName: "lock.circle",
                                     secure: true,
@@ -55,7 +55,7 @@ public struct LoginView: View {
                     await viewModel.login()
                 }
             }
-            
+
             createFeedbackText()
 
             Spacer()
@@ -73,14 +73,14 @@ public struct LoginView: View {
             BackgroundImage(imageName: "login_background")
         )
     }
-    
+
     private func createFeedbackText() -> Text {
         if case let .failure(loginError) = viewModel.state {
             return Text(loginError.rawValue)
                 .foregroundColor(.red)
                 .font(.headline)
         }
-        
+
         return Text("")
     }
 }
@@ -89,11 +89,11 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             LoginView(viewModel: LoginViewModel(loginService: PreviewLoginService(), goToMainTab: { _ in })) {
-                
+
             }
         }
     }
-    
+
     private class PreviewLoginService: LoginService {
         func login(email: String, password: String) async throws -> User {
             throw LoginViewModel.LoginError.serverError
