@@ -22,7 +22,6 @@ struct PhoneAndDirectionsView: View {
                     .foregroundColor(.white)
                     .frame(height: 24)
 
-
                 Text(phoneNumber)
                     .font(.callout)
                     .foregroundColor(.white)
