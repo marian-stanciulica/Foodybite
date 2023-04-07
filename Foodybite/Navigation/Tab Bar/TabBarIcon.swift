@@ -11,7 +11,7 @@ import FoodybiteUI
 struct TabBarIcon: View {
     @Binding var currentPage: TabRouter.Page
     let assignedPage: TabRouter.Page
-    
+
     let width: CGFloat
     let height: CGFloat
 
@@ -28,7 +28,7 @@ struct TabBarIcon: View {
         }
         .foregroundColor(currentPage == assignedPage ? .marineBlue : .gray)
     }
-    
+
     private func getImage() -> String {
         switch assignedPage {
         case .home:

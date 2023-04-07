@@ -10,13 +10,13 @@ import SwiftUI
 struct StatsView: View {
     let stats: String
     let description: String
-    
+
     var body: some View {
         VStack {
             Text(stats)
                 .foregroundColor(.marineBlue)
                 .font(.title2)
-            
+
             Text(description)
                 .foregroundColor(.gray)
                 .font(.body)

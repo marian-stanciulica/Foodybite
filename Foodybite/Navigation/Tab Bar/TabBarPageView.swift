@@ -11,16 +11,16 @@ struct TabBarPageView<Content: View>: View {
     @Binding var page: TabRouter.Page
     @State var plusButtonActive = false
     let content: () -> Content
-    
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
-                
+
                 content()
-                
+
                 Spacer()
-                
+
                 TabBarView(plusButtonActive: $plusButtonActive,
                            currentPage: $page,
                            tabBarWidth: geometry.size.width,
