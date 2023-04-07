@@ -21,13 +21,13 @@ struct ImageGrayTextField: View {
                 Image(systemName: imageName)
                     .foregroundColor(.marineBlue)
             }
-            
+
             ZStack(alignment: .leading) {
                 if text.isEmpty {
                     Text(placeholder)
                         .foregroundColor(.gray)
                 }
-                
+
                 if secure {
                     SecureField("", text: $text)
                 } else {
