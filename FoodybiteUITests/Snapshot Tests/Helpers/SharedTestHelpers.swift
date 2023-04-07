@@ -18,7 +18,7 @@ func assertLightSnapshot<SomeView: View>(
     line: UInt = #line) {
     let trait = UITraitCollection(userInterfaceStyle: .light)
     let view = UIHostingController(rootView: value)
-    
+
     assertSnapshot(matching: view,
                    as: .image(on: .iPhone13, perceptualPrecision: 0.99, traits: trait),
                    named: "light",

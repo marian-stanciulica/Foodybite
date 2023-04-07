@@ -13,7 +13,7 @@ struct SignUpRequestBody: Encodable, Equatable {
     let password: String
     let confirmPassword: String
     let profileImage: Data?
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case email
