@@ -15,7 +15,7 @@ public enum PasswordValidator: String, Swift.Error, Equatable {
     case passwordDoesntContainDigits = "Password should contain at least one digit"
     case passwordDoesntContainSpecialCharacter = "Password should contain at least one special character"
     case passwordsDontMatch = "Passwords do not match"
-    
+
     static func validate(password: String, confirmPassword: String) throws {
         if !containsUpperLetter(password: password) {
             throw passwordDoesntContainUpperLetter
@@ -28,33 +28,33 @@ public enum PasswordValidator: String, Swift.Error, Equatable {
         } else if password.count < 8 {
             throw tooShortPassword
         }
-        
+
         if password != confirmPassword {
             throw passwordsDontMatch
         }
     }
-    
+
     private static func containsUpperLetter(password: String) -> Bool {
         let regex = ".*[A-Z]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
-    
+
     private static func containsLowerLetter(password: String) -> Bool {
         let regex = ".*[a-z]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
-    
+
     private static func containsDigits(password: String) -> Bool {
         let regex = ".*[0-9]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
-    
+
     private static func containsSpecialCharacters(password: String) -> Bool {
         let regex = ".*[.*&^%$#@()/]+.*"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: password)
     }
 }
