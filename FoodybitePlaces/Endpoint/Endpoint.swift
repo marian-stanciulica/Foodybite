@@ -19,16 +19,16 @@ extension Endpoint {
         guard let filePath = bundle.path(forResource: "GooglePlaces-Info", ofType: "plist") else {
             fatalError("Couldn't find file 'GooglePlaces-Info.plist' containing 'Places API Key'.")
         }
-        
+
         let plist = NSDictionary(contentsOfFile: filePath)
-        
+
         guard let value = plist?.object(forKey: "API_KEY") as? String else {
             fatalError("Couldn't find key 'API_KEY' in 'GooglePlaces-Info.plist'.")
         }
-        
+
         return value
     }
-    
+
     public func createURLRequest() throws -> URLRequest {
         var components = URLComponents()
         components.scheme = "https"
@@ -37,11 +37,11 @@ extension Endpoint {
         components.queryItems = queryItems
 
         guard let url = components.url else { throw  NetworkError.invalidURL }
-        
+
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        urlRequest.allHTTPHeaderFields = ["Content-Type" : "application/json"]
-        
+        urlRequest.allHTTPHeaderFields = ["Content-Type": "application/json"]
+
         return urlRequest
     }
 }
