@@ -12,36 +12,36 @@ public final class LocationProvider: NSObject, LocationProviding, ObservableObje
     private var locationManager: LocationManager
     private var continuation: CheckedContinuation<Location, Error>?
     @Published public var locationServicesEnabled = false
-    
+
     private enum LocationError: Swift.Error {
         case locationServicesDisabled
     }
-    
+
     public init(locationManager: LocationManager = CLLocationManager()) {
         self.locationManager = locationManager
         super.init()
-        
+
         self.locationManager.delegate = self
     }
-    
+
     public func requestLocation() async throws -> Location {
         guard locationServicesEnabled else {
             throw LocationError.locationServicesDisabled
         }
-        
+
         return try await withCheckedThrowingContinuation { continuation in
             self.continuation = continuation
             locationManager.requestLocation()
         }
     }
-    
+
     public func requestWhenInUseAuthorization() {
         locationManager.requestWhenInUseAuthorization()
     }
 }
 
-extension LocationProvider: LocationManagerDelegate  {
-    
+extension LocationProvider: LocationManagerDelegate {
+
     public func locationManagerDidChangeAuthorization(manager: LocationManager) {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
@@ -50,12 +50,12 @@ extension LocationProvider: LocationManagerDelegate  {
             locationServicesEnabled = false
         }
     }
-    
+
     public func locationManager(manager: LocationManager, didFailWithError error: Error) {
         continuation?.resume(throwing: error)
         continuation = nil
     }
-    
+
     public func locationManager(manager: LocationManager, didUpdateLocations locations: [CLLocation]) {
         if let firstLocation = locations.first {
             let location = Location(latitude: firstLocation.coordinate.latitude,
@@ -64,21 +64,21 @@ extension LocationProvider: LocationManagerDelegate  {
             continuation = nil
         }
     }
-    
+
 }
 
 extension LocationProvider: CLLocationManagerDelegate {
-    
+
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationManagerDidChangeAuthorization(manager: manager)
     }
-    
+
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager(manager: manager, didFailWithError: error)
     }
-    
+
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager(manager: manager, didUpdateLocations: locations)
     }
-    
+
 }
