@@ -17,16 +17,16 @@ public final class ChangePasswordViewModel: ObservableObject {
         case failure(ChangePasswordValidator.Error)
         case success
     }
-    
+
     @Published public var currentPassword = ""
     @Published public var newPassword = ""
     @Published public var confirmPassword = ""
     @Published public var result: Result = .idle
-    
+
     public var isLoading: Bool {
         result == .isLoading
     }
-    
+
     public init(changePasswordService: ChangePasswordService) {
         self.changePasswordService = changePasswordService
     }
@@ -38,7 +38,7 @@ public final class ChangePasswordViewModel: ObservableObject {
             try ChangePasswordValidator.validate(currentPassword: currentPassword,
                                                  newPassword: newPassword,
                                                  confirmPassword: confirmPassword)
-            
+
             try await makeRequest()
         } catch {
             if let error = error as? ChangePasswordValidator.Error {
@@ -48,7 +48,7 @@ public final class ChangePasswordViewModel: ObservableObject {
             }
         }
     }
-    
+
     @MainActor private func makeRequest() async throws {
         do {
             try await changePasswordService.changePassword(currentPassword: currentPassword,
@@ -59,5 +59,5 @@ public final class ChangePasswordViewModel: ObservableObject {
             throw ChangePasswordValidator.Error.serverError
         }
     }
-    
+
 }
