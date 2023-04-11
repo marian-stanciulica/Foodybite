@@ -19,10 +19,28 @@ struct ProfileFlowView: View {
     let user: User
     let goToLogin: () -> Void
     @Binding var currentPage: TabRouter.Page
-    @ObservedObject var flow: Flow<ProfileRoute>
+    @StateObject var flow = Flow<ProfileRoute>()
 
     var body: some View {
-        makeProfileView()
+        NavigationStack(path: $flow.path) {
+            TabBarPageView(page: $currentPage) {
+                makeProfileView()
+            }
+            .navigationDestination(for: ProfileRoute.self) { route in
+                switch route {
+                case .settings:
+                    makeSettingsView()
+                case .changePassword:
+                    makeChangePasswordView()
+                case .editProfile:
+                    makeEditProfileView()
+                case let .restaurantDetails(restaurantDetails):
+                    makeRestaurantDetailsView(restaurantDetails: restaurantDetails)
+                case let .addReview(restaurantID):
+                    makeReviewView(restaurantID: restaurantID)
+                }
+            }
+        }
     }
 
     @ViewBuilder private func makeProfileView() -> some View {
@@ -57,14 +75,10 @@ struct ProfileFlowView: View {
         )
     }
 
-    @ViewBuilder static func makeSettingsView(
-        flow: Flow<ProfileRoute>,
-        logoutService: LogoutService,
-        goToLogin: @escaping () -> Void
-    ) -> some View {
+    @ViewBuilder private func makeSettingsView() -> some View {
         SettingsView(
             viewModel: SettingsViewModel(
-                logoutService: logoutService,
+                logoutService: userAuthenticatedFactory.authenticatedApiService,
                 goToLogin: goToLogin
             )
         ) {
@@ -72,39 +86,32 @@ struct ProfileFlowView: View {
         }
     }
 
-    @ViewBuilder static func makeChangePasswordView(changePasswordService: ChangePasswordService) -> some View {
+    @ViewBuilder private func makeChangePasswordView() -> some View {
         ChangePasswordView(
-            viewModel: ChangePasswordViewModel(changePasswordService: changePasswordService)
+            viewModel: ChangePasswordViewModel(changePasswordService: userAuthenticatedFactory.authenticatedApiService)
         )
     }
 
-    @ViewBuilder static func makeEditProfileView(accountService: AccountService) -> some View {
+    @ViewBuilder private func makeEditProfileView() -> some View {
         EditProfileView(
-            viewModel: EditProfileViewModel(accountService: accountService)
+            viewModel: EditProfileViewModel(accountService: userAuthenticatedFactory.authenticatedApiService)
         )
     }
 
-    @ViewBuilder static func makeRestaurantDetailsView(
-        flow: Flow<ProfileRoute>,
-        restaurantDetails: RestaurantDetails,
-        currentLocation: Location,
-        restaurantDetailsService: RestaurantDetailsService,
-        getReviewsService: GetReviewsService,
-        fetchPhotoService: RestaurantPhotoService
-    ) -> some View {
+    @ViewBuilder private func makeRestaurantDetailsView(restaurantDetails: RestaurantDetails) -> some View {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
                 input: .fetchedRestaurantDetails(restaurantDetails),
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },
-                restaurantDetailsService: restaurantDetailsService,
-                getReviewsService: getReviewsService
+                restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
+                getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite
             ), makePhotoView: { photoReference in
                 PhotoView(
                     viewModel: PhotoViewModel(
                         photoReference: photoReference,
-                        restaurantPhotoService: fetchPhotoService
+                        restaurantPhotoService: userAuthenticatedFactory.placesService
                     )
                 )
             }, showReviewView: {
@@ -113,12 +120,8 @@ struct ProfileFlowView: View {
         )
     }
 
-    @ViewBuilder static func makeReviewView(
-        flow: Flow<ProfileRoute>,
-        restaurantID: String,
-        addReviewService: AddReviewService
-    ) -> some View {
-        ReviewView(viewModel: ReviewViewModel(restaurantID: restaurantID, reviewService: addReviewService)) {
+    @ViewBuilder private func makeReviewView(restaurantID: String) -> some View {
+        ReviewView(viewModel: ReviewViewModel(restaurantID: restaurantID, reviewService: userAuthenticatedFactory.authenticatedApiService)) {
             flow.navigateBack()
         }
     }

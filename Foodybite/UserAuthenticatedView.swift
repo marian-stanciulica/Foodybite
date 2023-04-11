@@ -19,7 +19,6 @@ struct UserAuthenticatedView: View {
 
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
     @StateObject var tabRouter = TabRouter()
-    @StateObject var profileFlow = Flow<ProfileRoute>()
 
     @State var plusButtonActive = false
 
@@ -51,7 +50,11 @@ struct UserAuthenticatedView: View {
             case .newReview:
                 makeNewReviewView(currentLocation: location)
             case .account:
-                makeProfileFlowView(currentLocation: location)
+                ProfileFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
+                                currentLocation: location,
+                                user: user,
+                                goToLogin: { loggedInUserID = nil },
+                                currentPage: $tabRouter.currentPage)
             }
         }
     }
@@ -79,48 +82,6 @@ struct UserAuthenticatedView: View {
                     )
                 }
             )
-        }
-    }
-
-    @ViewBuilder private func makeProfileFlowView(currentLocation: Location) -> some View {
-        NavigationStack(path: $profileFlow.path) {
-            TabBarPageView(page: $tabRouter.currentPage) {
-                ProfileFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
-                                currentLocation: currentLocation,
-                                user: user,
-                                goToLogin: { loggedInUserID = nil },
-                                currentPage: $tabRouter.currentPage,
-                                flow: profileFlow)
-            }
-            .navigationDestination(for: ProfileRoute.self) { route in
-                switch route {
-                case .settings:
-                    ProfileFlowView.makeSettingsView(
-                        flow: profileFlow,
-                        logoutService: userAuthenticatedFactory.authenticatedApiService,
-                        goToLogin: { loggedInUserID = nil }
-                    )
-                case .changePassword:
-                    ProfileFlowView.makeChangePasswordView(changePasswordService: userAuthenticatedFactory.authenticatedApiService)
-                case .editProfile:
-                    ProfileFlowView.makeEditProfileView(accountService: userAuthenticatedFactory.authenticatedApiService)
-                case let .restaurantDetails(restaurantDetails):
-                    ProfileFlowView.makeRestaurantDetailsView(
-                        flow: profileFlow,
-                        restaurantDetails: restaurantDetails,
-                        currentLocation: currentLocation,
-                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
-                        getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
-                        fetchPhotoService: userAuthenticatedFactory.placesService
-                    )
-                case let .addReview(restaurantID):
-                    ProfileFlowView.makeReviewView(
-                        flow: profileFlow,
-                        restaurantID: restaurantID,
-                        addReviewService: userAuthenticatedFactory.authenticatedApiService
-                    )
-                }
-            }
         }
     }
 }
