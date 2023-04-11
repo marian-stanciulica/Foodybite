@@ -19,7 +19,6 @@ struct UserAuthenticatedView: View {
 
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
     @StateObject var tabRouter = TabRouter()
-    @StateObject var homeFlow = Flow<HomeRoute>()
     @StateObject var profileFlow = Flow<ProfileRoute>()
 
     @State var plusButtonActive = false
@@ -46,40 +45,13 @@ struct UserAuthenticatedView: View {
         case let .success(location):
             switch tabRouter.currentPage {
             case .home:
-                makeHomeFlowView(currentLocation: location)
+                HomeFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
+                             currentLocation: location,
+                             currentPage: $tabRouter.currentPage)
             case .newReview:
                 makeNewReviewView(currentLocation: location)
             case .account:
                 makeProfileFlowView(currentLocation: location)
-            }
-        }
-    }
-
-    @ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
-        NavigationStack(path: $homeFlow.path) {
-            TabBarPageView(page: $tabRouter.currentPage) {
-                HomeFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
-                             flow: homeFlow,
-                             currentLocation: currentLocation)
-            }
-            .navigationDestination(for: HomeRoute.self) { route in
-                switch route {
-                case let .restaurantDetails(restaurantID):
-                    HomeFlowView.makeRestaurantDetailsView(
-                        flow: homeFlow,
-                        restaurantID: restaurantID,
-                        currentLocation: currentLocation,
-                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
-                        getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
-                        fetchPhotoService: userAuthenticatedFactory.placesService
-                    )
-                case let .addReview(restaurantID):
-                    HomeFlowView.makeReviewView(
-                        flow: homeFlow,
-                        restaurantID: restaurantID,
-                        addReviewService: userAuthenticatedFactory.authenticatedApiService
-                    )
-                }
             }
         }
     }

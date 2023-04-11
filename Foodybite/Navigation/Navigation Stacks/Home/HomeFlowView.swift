@@ -13,10 +13,28 @@ import FoodybiteUI
 
 struct HomeFlowView: View {
     let userAuthenticatedFactory: UserAuthenticatedFactory
-    @ObservedObject var flow: Flow<HomeRoute>
     let currentLocation: Location
+    @Binding var currentPage: TabRouter.Page
+
+    @StateObject var flow = Flow<HomeRoute>()
 
     var body: some View {
+        NavigationStack(path: $flow.path) {
+            TabBarPageView(page: $currentPage) {
+                makeHomeView()
+            }
+            .navigationDestination(for: HomeRoute.self) { route in
+                switch route {
+                case let .restaurantDetails(restaurantID):
+                    makeRestaurantDetailsView(restaurantID: restaurantID)
+                case let .addReview(restaurantID):
+                    makeReviewView(restaurantID: restaurantID)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder private func makeHomeView() -> some View {
         HomeView(
             viewModel: HomeViewModel(
                 nearbyRestaurantsService: userAuthenticatedFactory.nearbyRestaurantsService,
@@ -25,76 +43,52 @@ struct HomeFlowView: View {
             showRestaurantDetails: { restaurantID in
                 flow.append(.restaurantDetails(restaurantID))
             },
-            cell: { nearbyRestaurant in
-                makeRestaurantCell(nearbyRestaurant: nearbyRestaurant,
-                                   distanceInKmFromCurrentLocation:
-                    DistanceSolver.getDistanceInKm(from: currentLocation, to: nearbyRestaurant.location),
-                                   fetchPhotoService: userAuthenticatedFactory.placesService)
-            },
-            searchView: { searchText in
-                makeHomeSearchView(searchText: searchText,
-                                   userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
-                                   userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore)
-            }
+            cell: makeRestaurantCell,
+            searchView: makeHomeSearchView
         )
     }
 
-    @ViewBuilder private func makeRestaurantCell(
-        nearbyRestaurant: NearbyRestaurant,
-        distanceInKmFromCurrentLocation: Double,
-        fetchPhotoService: RestaurantPhotoService
-    ) -> some View {
+    @ViewBuilder private func makeRestaurantCell(nearbyRestaurant: NearbyRestaurant) -> some View {
         RestaurantCell(
             photoView: PhotoView(
                 viewModel: PhotoViewModel(
                     photoReference: nearbyRestaurant.photo?.photoReference,
-                    restaurantPhotoService: fetchPhotoService
+                    restaurantPhotoService: userAuthenticatedFactory.placesService
                 )
             ),
             viewModel: RestaurantCellViewModel(
                 nearbyRestaurant: nearbyRestaurant,
-                distanceInKmFromCurrentLocation: distanceInKmFromCurrentLocation
+                distanceInKmFromCurrentLocation: DistanceSolver.getDistanceInKm(from: currentLocation, to: nearbyRestaurant.location)
             )
         )
     }
 
-    @ViewBuilder private func makeHomeSearchView(
-        searchText: Binding<String>,
-        userPreferences: UserPreferences,
-        userPreferencesSaver: UserPreferencesSaver
-    ) -> some View {
+    @ViewBuilder private func makeHomeSearchView(searchText: Binding<String>) -> some View {
         HomeSearchView(
             searchText: searchText,
             searchCriteriaView: SearchCriteriaView(
                 viewModel: SearchCriteriaViewModel(
-                    userPreferences: userPreferences,
-                    userPreferencesSaver: userPreferencesSaver)
+                    userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
+                    userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore)
             )
         )
     }
 
-    @ViewBuilder static func makeRestaurantDetailsView(
-        flow: Flow<HomeRoute>,
-        restaurantID: String,
-        currentLocation: Location,
-        restaurantDetailsService: RestaurantDetailsService,
-        getReviewsService: GetReviewsService,
-        fetchPhotoService: RestaurantPhotoService
-    ) -> some View {
+    @ViewBuilder private func makeRestaurantDetailsView(restaurantID: String) -> some View {
         RestaurantDetailsView(
             viewModel: RestaurantDetailsViewModel(
                 input: .restaurantIdToFetch(restaurantID),
                 getDistanceInKmFromCurrentLocation: { referenceLocation in
                     DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
                 },
-                restaurantDetailsService: restaurantDetailsService,
-                getReviewsService: getReviewsService
+                restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
+                getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite
             ),
             makePhotoView: { photoReference in
                 PhotoView(
                     viewModel: PhotoViewModel(
                         photoReference: photoReference,
-                        restaurantPhotoService: fetchPhotoService
+                        restaurantPhotoService: userAuthenticatedFactory.placesService
                     )
                 )
             }, showReviewView: {
@@ -103,15 +97,11 @@ struct HomeFlowView: View {
         )
     }
 
-    @ViewBuilder static func makeReviewView(
-        flow: Flow<HomeRoute>,
-        restaurantID: String,
-        addReviewService: AddReviewService
-    ) -> some View {
+    @ViewBuilder private func makeReviewView(restaurantID: String) -> some View {
         ReviewView(
             viewModel: ReviewViewModel(
                 restaurantID: restaurantID,
-                reviewService: addReviewService
+                reviewService: userAuthenticatedFactory.authenticatedApiService
             ), dismissScreen: {
                 flow.navigateBack()
             }
