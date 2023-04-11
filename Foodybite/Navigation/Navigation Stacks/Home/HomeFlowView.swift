@@ -11,39 +11,35 @@ import FoodybitePresentation
 import FoodybiteLocation
 import FoodybiteUI
 
-enum HomeFlowView {
+struct HomeFlowView: View {
+    let userAuthenticatedFactory: UserAuthenticatedFactory
+    @ObservedObject var flow: Flow<HomeRoute>
+    let currentLocation: Location
 
-    @ViewBuilder static func makeHomeView(
-        flow: Flow<HomeRoute>,
-        currentLocation: Location,
-        computeDistanceInKmFromCurrentLocation: @escaping (Location) -> Double,
-        userPreferences: UserPreferences,
-        userPreferencesSaver: UserPreferencesSaver,
-        nearbyRestaurantsService: NearbyRestaurantsService,
-        fetchPhotoService: RestaurantPhotoService
-    ) -> some View {
+    var body: some View {
         HomeView(
             viewModel: HomeViewModel(
-                nearbyRestaurantsService: nearbyRestaurantsService,
+                nearbyRestaurantsService: userAuthenticatedFactory.nearbyRestaurantsService,
                 currentLocation: currentLocation,
-                userPreferences: userPreferences),
+                userPreferences: userAuthenticatedFactory.userPreferencesStore.load()),
             showRestaurantDetails: { restaurantID in
                 flow.append(.restaurantDetails(restaurantID))
             },
             cell: { nearbyRestaurant in
                 makeRestaurantCell(nearbyRestaurant: nearbyRestaurant,
-                                   distanceInKmFromCurrentLocation: computeDistanceInKmFromCurrentLocation(nearbyRestaurant.location),
-                                   fetchPhotoService: fetchPhotoService)
+                                   distanceInKmFromCurrentLocation:
+                    DistanceSolver.getDistanceInKm(from: currentLocation, to: nearbyRestaurant.location),
+                                   fetchPhotoService: userAuthenticatedFactory.placesService)
             },
             searchView: { searchText in
                 makeHomeSearchView(searchText: searchText,
-                                   userPreferences: userPreferences,
-                                   userPreferencesSaver: userPreferencesSaver)
+                                   userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
+                                   userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore)
             }
         )
     }
 
-    @ViewBuilder private static func makeRestaurantCell(
+    @ViewBuilder private func makeRestaurantCell(
         nearbyRestaurant: NearbyRestaurant,
         distanceInKmFromCurrentLocation: Double,
         fetchPhotoService: RestaurantPhotoService
@@ -62,7 +58,7 @@ enum HomeFlowView {
         )
     }
 
-    @ViewBuilder private static func makeHomeSearchView(
+    @ViewBuilder private func makeHomeSearchView(
         searchText: Binding<String>,
         userPreferences: UserPreferences,
         userPreferencesSaver: UserPreferencesSaver

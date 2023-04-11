@@ -58,17 +58,9 @@ struct UserAuthenticatedView: View {
     @ViewBuilder private func makeHomeFlowView(currentLocation: Location) -> some View {
         NavigationStack(path: $homeFlow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
-                HomeFlowView.makeHomeView(
-                    flow: homeFlow,
-                    currentLocation: currentLocation,
-                    computeDistanceInKmFromCurrentLocation: { referenceLocation in
-                        DistanceSolver.getDistanceInKm(from: currentLocation, to: referenceLocation)
-                    },
-                    userPreferences: userAuthenticatedFactory.userPreferencesStore.load(),
-                    userPreferencesSaver: userAuthenticatedFactory.userPreferencesStore,
-                    nearbyRestaurantsService: userAuthenticatedFactory.nearbyRestaurantsService,
-                    fetchPhotoService: userAuthenticatedFactory.placesService
-                )
+                HomeFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
+                             flow: homeFlow,
+                             currentLocation: currentLocation)
             }
             .navigationDestination(for: HomeRoute.self) { route in
                 switch route {
