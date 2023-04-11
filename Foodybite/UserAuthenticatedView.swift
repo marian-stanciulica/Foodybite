@@ -85,15 +85,12 @@ struct UserAuthenticatedView: View {
     @ViewBuilder private func makeProfileFlowView(currentLocation: Location) -> some View {
         NavigationStack(path: $profileFlow.path) {
             TabBarPageView(page: $tabRouter.currentPage) {
-                ProfileFlowView.makeProfileView(
-                    flow: profileFlow,
-                    user: user,
-                    accountService: userAuthenticatedFactory.authenticatedApiService,
-                    getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
-                    restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
-                    fetchPhotoService: userAuthenticatedFactory.placesService,
-                    goToLogin: { loggedInUserID = nil }
-                )
+                ProfileFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
+                                currentLocation: currentLocation,
+                                user: user,
+                                goToLogin: { loggedInUserID = nil },
+                                currentPage: $tabRouter.currentPage,
+                                flow: profileFlow)
             }
             .navigationDestination(for: ProfileRoute.self) { route in
                 switch route {

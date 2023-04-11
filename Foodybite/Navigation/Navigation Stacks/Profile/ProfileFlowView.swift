@@ -13,21 +13,23 @@ import FoodybitePresentation
 import FoodybiteLocation
 import FoodybiteUI
 
-enum ProfileFlowView {
+struct ProfileFlowView: View {
+    let userAuthenticatedFactory: UserAuthenticatedFactory
+    let currentLocation: Location
+    let user: User
+    let goToLogin: () -> Void
+    @Binding var currentPage: TabRouter.Page
+    @ObservedObject var flow: Flow<ProfileRoute>
 
-    @ViewBuilder static func makeProfileView(
-        flow: Flow<ProfileRoute>,
-        user: User,
-        accountService: AccountService,
-        getReviewsService: GetReviewsService,
-        restaurantDetailsService: RestaurantDetailsService,
-        fetchPhotoService: RestaurantPhotoService,
-        goToLogin: @escaping () -> Void
-    ) -> some View {
+    var body: some View {
+        makeProfileView()
+    }
+
+    @ViewBuilder private func makeProfileView() -> some View {
         ProfileView(
             viewModel: ProfileViewModel(
-                accountService: accountService,
-                getReviewsService: getReviewsService,
+                accountService: userAuthenticatedFactory.authenticatedApiService,
+                getReviewsService: userAuthenticatedFactory.getReviewsWithFallbackComposite,
                 user: user,
                 goToLogin: goToLogin
             ),
@@ -35,13 +37,13 @@ enum ProfileFlowView {
                 RestaurantReviewCellView(
                     viewModel: RestaurantReviewCellViewModel(
                         review: review,
-                        restaurantDetailsService: restaurantDetailsService
+                        restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService
                     ),
                     makePhotoView: { photoReference in
                         PhotoView(
                             viewModel: PhotoViewModel(
                                 photoReference: photoReference,
-                                restaurantPhotoService: fetchPhotoService
+                                restaurantPhotoService: userAuthenticatedFactory.placesService
                             )
                         )
                     },
