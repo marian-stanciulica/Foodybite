@@ -104,22 +104,22 @@ Test that everything is wired up correctly by running tests for the `FoodybiteAP
 ## Built With
 
 ### Tools
-✅ Xcode 14.2
-✅ Swift 5.7
+- ✅ Xcode 14.2
+- ✅ Swift 5.7
 
 ### Frameworks
-✅ SwiftUI
-✅ Combine
-✅ CoreData
-✅ CoreLocation
+- ✅ SwiftUI
+- ✅ Combine
+- ✅ CoreData
+- ✅ CoreLocation
 
 ### Concepts
-✅ MVVM, Clean Architecture
-✅ Modular Design
-✅ SOLID Principles
-✅ TDD, Unit Testing, Integration Testing, Snapshot Testing
-✅ Composite, Decorator Patterns
-✅ Domain-Driven Design
+- ✅ MVVM, Clean Architecture
+- ✅ Modular Design
+- ✅ SOLID Principles
+- ✅ TDD, Unit Testing, Integration Testing, Snapshot Testing
+- ✅ Composite, Decorator Patterns
+- ✅ Domain-Driven Design
 
 ## Architecture
 
