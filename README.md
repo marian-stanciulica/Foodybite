@@ -6,7 +6,9 @@
 
 1. [Motivation](#motivation)
 2. [Installation Guide](#installation-guide)
-3. [Architecture](#architecture)
+3. [Demo](#demo)
+4. [Built With](#built-with)
+5. [Architecture](#architecture)
     1. [Overview](#overview)
     2. [Domain](#domain)
         1. [User Session Feature](#1-user-session-feature)
@@ -41,7 +43,7 @@
         1. [Adding caching by intercepting network requests](#adding-caching-by-intercepting-network-requests) (`Decorator Pattern`)
         2. [Adding fallback strategies when network requests fail](#adding-fallback-strategies-when-network-requests-fail) (`Composite Pattern`)
         3. [Handling navigation](#handling-navigation) (flat and hierarchical navigation)
-4. [Testing Strategy](#testing-strategy)
+6. [Testing Strategy](#testing-strategy)
     1. [Summary Table](#summary-table)
     2. [Methodology](#methodology)
     3. [Unit Tests](#unit-tests)
@@ -49,17 +51,17 @@
         1. [End-to-End Tests](#end-to-end-tests)
         2. [Cache Integration Tests](#cache-integration-tests)
     5. [Snapshot Tests](#snapshot-tests)
-5. [CI/CD](#cicd)
-6. [Security](#security)
+7. [CI/CD](#cicd)
+8. [Security](#security)
     1. [API key for Google Places API](#api-key-for-google-places-api)
     2. [Store Tokens from FoodybiteServer in Keychain](#store-tokens-from-foodybiteserver-in-keychain)
     3. [Password Hashing](#password-hashing)
-7. [Metrics](#metrics)
+9. [Metrics](#metrics)
     1. [Test lines of code per production lines of code](#test-lines-of-code-per-production-lines-of-code)
     2. [Count of files changed](#count-of-files-changed)
     3. [Code coverage](#code-coverage)
-8. [Credits](#credits)
-9. [References](#references)
+10. [Credits](#credits)
+11. [References](#references)
 
 ## Motivation
 
@@ -94,6 +96,30 @@ brew install swiftlint
 
 ### 4. Validate the setup
 Test that everything is wired up correctly by running tests for the `FoodybiteAPIEndtoEndTests` and `CI` targets to check the communication with both backends and validate that all tests pass.
+
+## Demo
+
+![Profile](./Diagrams/Videos/profile.mp4)
+
+## Built With
+
+### Tools
+✅ Xcode 14.2
+✅ Swift 5.7
+
+### Frameworks
+✅ SwiftUI
+✅ Combine
+✅ CoreData
+✅ CoreLocation
+
+### Concepts
+✅ MVVM, Clean Architecture
+✅ Modular Design
+✅ SOLID Principles
+✅ TDD, Unit Testing, Integration Testing, Snapshot Testing
+✅ Composite, Decorator Patterns
+✅ Domain-Driven Design
 
 ## Architecture
 
