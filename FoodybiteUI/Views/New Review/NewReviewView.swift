@@ -10,14 +10,14 @@ import Domain
 import FoodybitePresentation
 
 public struct NewReviewView<SelectedView: View>: View {
-    @Binding var plusButtonActive: Bool
     @StateObject var viewModel: NewReviewViewModel
     let selectedView: (RestaurantDetails) -> SelectedView
+    let dismissScreen: () -> Void
 
-    public init(plusButtonActive: Binding<Bool>, viewModel: NewReviewViewModel, selectedView: @escaping (RestaurantDetails) -> SelectedView) {
-        self._plusButtonActive = plusButtonActive
+    public init(viewModel: NewReviewViewModel, selectedView: @escaping (RestaurantDetails) -> SelectedView, dismissScreen: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.selectedView = selectedView
+        self.dismissScreen = dismissScreen
     }
 
     public var body: some View {
@@ -26,7 +26,7 @@ public struct NewReviewView<SelectedView: View>: View {
                 HStack {
                     Button("Cancel") {
                         withAnimation {
-                            plusButtonActive = false
+                            dismissScreen()
                         }
                     }
                     .foregroundColor(Color(uiColor: .systemGray))
@@ -113,7 +113,6 @@ public struct NewReviewView<SelectedView: View>: View {
 struct NewReviewView_Previews: PreviewProvider {
     static var previews: some View {
         NewReviewView(
-            plusButtonActive: .constant(true),
             viewModel: NewReviewViewModel(
                 autocompleteRestaurantsService: PreviewAutocompletePlacesService(),
                 restaurantDetailsService: PreviewRestaurantDetailsService(),
@@ -131,7 +130,8 @@ struct NewReviewView_Previews: PreviewProvider {
                     ),
                     restaurantDetails: restaurantDetails
                 )
-            }
+            },
+            dismissScreen: {}
         )
     }
 

@@ -20,8 +20,6 @@ struct UserAuthenticatedView: View {
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
     @StateObject var tabRouter = TabRouter()
 
-    @State var plusButtonActive = false
-
     var body: some View {
         if locationProvider.locationServicesEnabled {
             makeTabNavigationView()
@@ -62,7 +60,6 @@ struct UserAuthenticatedView: View {
     @ViewBuilder private func makeNewReviewView(currentLocation: Location) -> some View {
         TabBarPageView(page: $tabRouter.currentPage) {
             NewReviewView(
-                plusButtonActive: $plusButtonActive,
                 viewModel: NewReviewViewModel(
                     autocompleteRestaurantsService: userAuthenticatedFactory.placesService,
                     restaurantDetailsService: userAuthenticatedFactory.restaurantDetailsService,
@@ -80,6 +77,9 @@ struct UserAuthenticatedView: View {
                         ),
                         restaurantDetails: restaurantDetails
                     )
+                },
+                dismissScreen: {
+                    tabRouter.currentPage = .home
                 }
             )
         }
