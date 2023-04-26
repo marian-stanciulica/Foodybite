@@ -29,8 +29,12 @@ struct ImageWhiteTextField: View {
 
                 if secure {
                     SecureField("", text: $text)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
                 } else {
                     TextField("", text: $text)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
                 }
             }
             .foregroundColor(.white)
