@@ -20,7 +20,7 @@ public class RegisterValidator {
             case .passwordError(let error):
                 return error.rawValue
             case .serverError:
-                return "Server error"
+                return "There was a problem with the account creation. Please try again later!"
             case .emptyName:
                 return "Empty name"
             case .emptyEmail:
