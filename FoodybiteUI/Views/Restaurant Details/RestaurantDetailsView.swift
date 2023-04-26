@@ -179,7 +179,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
 
     private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
-            UIImage(named: "restaurant_logo_test")!.pngData()!
+            UIImage(named: "restaurant_logo_test", in: .current, with: nil)!.pngData()!
         }
     }
 
