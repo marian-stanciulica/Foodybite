@@ -79,7 +79,7 @@ public struct RegisterView: View {
         .background(
             BackgroundImage(imageName: "register_background")
         )
-        .arrowBackButtonStyle()
+        .arrowBackButtonStyle(color: .white)
     }
 
     private func createFeedbackText() -> Text {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ArrowBackButton: ViewModifier {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    let color: Color?
 
     func body(content: Content) -> some View {
         content
@@ -20,8 +21,9 @@ struct ArrowBackButton: ViewModifier {
                     } label: {
                         Image("back_arrow")
                             .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(color ?? .black)
                             .frame(width: 12, height: 24)
-                            .foregroundColor(.white)
                     }
                 }
             }
@@ -29,7 +31,7 @@ struct ArrowBackButton: ViewModifier {
 }
 
 extension View {
-    func arrowBackButtonStyle() -> some View {
-        modifier(ArrowBackButton())
+    func arrowBackButtonStyle(color: Color? = nil) -> some View {
+        modifier(ArrowBackButton(color: color))
     }
 }
