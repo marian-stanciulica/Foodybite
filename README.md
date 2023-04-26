@@ -101,7 +101,25 @@ Test that everything is wired up correctly by running tests for the `FoodybiteAP
 
 ## Demo
 
-![Profile](./Diagrams/Videos/profile.mp4)
+### Sign Up
+
+https://user-images.githubusercontent.com/11156132/234677287-425734c9-0d49-4910-a219-c3fdefab51f8.mp4
+
+### Home
+
+https://user-images.githubusercontent.com/11156132/234677401-d642c47d-c00f-4513-b613-4146e1982c2d.mp4
+
+### Home Search
+
+https://user-images.githubusercontent.com/11156132/234677436-760e4c0e-2161-46b2-ab34-9d59bd106a6f.mp4
+
+### Post Review
+
+https://user-images.githubusercontent.com/11156132/234677693-04a85cfa-c01b-43ab-9d4b-b1dbc0653f30.mp4
+
+### Profile
+
+https://user-images.githubusercontent.com/11156132/234677956-9803775e-d151-4dd9-8e20-e0d0071b5772.mp4
 
 ## Tools
 - ✅ Xcode 14.2
