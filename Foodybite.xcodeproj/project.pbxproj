@@ -292,6 +292,7 @@
 		0F4E0E9629D44A6A00A4508A /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E9529D44A6A00A4508A /* ResourceLoader.swift */; };
 		0F4E0E9829D44A8300A4508A /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E9729D44A8300A4508A /* DataLoader.swift */; };
 		0F4E0E9A29D44AB300A4508A /* CodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E0E9929D44AB300A4508A /* CodableDataParser.swift */; };
+		0F4E34AB29F9812D00D41D4E /* PostReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4E34AA29F9812D00D41D4E /* PostReviewButton.swift */; };
 		0F53B0B129DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F53B0AF29DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png */; };
 		0F53B0B229DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F53B0B029DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png */; };
 		0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4934298FD931004162E5 /* TabBarPageView.swift */; };
@@ -877,6 +878,7 @@
 		0F4E0E9529D44A6A00A4508A /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		0F4E0E9729D44A8300A4508A /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		0F4E0E9929D44AB300A4508A /* CodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataParser.swift; sourceTree = "<group>"; };
+		0F4E34AA29F9812D00D41D4E /* PostReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReviewButton.swift; sourceTree = "<group>"; };
 		0F53B0AF29DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.light.png; sourceTree = "<group>"; };
 		0F53B0B029DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png; sourceTree = "<group>"; };
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -1713,6 +1715,7 @@
 				0F3F73F628467BF100A5D2BF /* NewReviewView.swift */,
 				0F591257299697E600D67B21 /* NewReviewSearchView.swift */,
 				0F0620482997F33F00D47857 /* SelectedRestaurantView.swift */,
+				0F4E34AA29F9812D00D41D4E /* PostReviewButton.swift */,
 			);
 			path = "New Review";
 			sourceTree = "<group>";
@@ -4281,6 +4284,7 @@
 				0F1C758329D5CA5C00D4FC80 /* OpenHoursView.swift in Sources */,
 				0F1C758929D5CA6700D4FC80 /* RadiusIndicatorView.swift in Sources */,
 				0F1C759629D5CA8300D4FC80 /* SettingsView.swift in Sources */,
+				0F4E34AB29F9812D00D41D4E /* PostReviewButton.swift in Sources */,
 				0F1C757729D5CA3C00D4FC80 /* RatingStar.swift in Sources */,
 				0F1C758E29D5CA7000D4FC80 /* NewReviewSearchView.swift in Sources */,
 				0F1C757829D5CA3C00D4FC80 /* BackgroundImage.swift in Sources */,

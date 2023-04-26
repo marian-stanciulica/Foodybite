@@ -23,34 +23,8 @@ public struct NewReviewView<SelectedView: View>: View {
     public var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    Button("Cancel") {
-                        withAnimation {
-                            dismissScreen()
-                        }
-                    }
-                    .foregroundColor(Color(uiColor: .systemGray))
-
-                    Spacer()
-
-                    Text("New Review")
-                        .font(.title)
-
-                    Spacer()
-
-                    if viewModel.postReviewState == .isLoading {
-                        ProgressView()
-                    } else {
-                        Button("Post") {
-                            Task {
-                                await viewModel.postReview()
-                            }
-                        }
-                        .disabled(!viewModel.postReviewEnabled)
-                        .foregroundColor(viewModel.postReviewEnabled ? .marineBlue : Color(uiColor: .systemGray))
-                    }
-                }
-                .padding()
+                Text("New Review")
+                    .font(.title)
 
                 NewReviewSearchView(
                     searchText: $viewModel.searchText,
@@ -105,6 +79,20 @@ public struct NewReviewView<SelectedView: View>: View {
                 .padding(.horizontal)
 
                 Spacer()
+
+                if viewModel.postReviewState == .isLoading {
+                    ProgressView()
+                } else {
+                    PostReviewButton(
+                        title: "Post",
+                        isLoading: viewModel.postReviewState == .isLoading,
+                        disabled: !viewModel.postReviewEnabled) {
+                            Task {
+                                await viewModel.postReview()
+                            }
+                        }
+                    .padding()
+                }
             }
         }
     }
