@@ -38,7 +38,7 @@ public struct RestaurantDetailsView: View {
 
             case let .success(restaurantDetails):
                 GeometryReader { proxy in
-                    ZStack(alignment: .bottom) {
+                    VStack {
                         ScrollView {
                             VStack(alignment: .leading) {
                                 RestaurantImageView(
