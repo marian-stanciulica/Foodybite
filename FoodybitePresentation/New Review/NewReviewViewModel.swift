@@ -28,7 +28,6 @@ public final class NewReviewViewModel: ObservableObject {
         case idle
         case isLoading
         case failure(PostReviewError)
-        case success
     }
 
     private let autocompleteRestaurantsService: AutocompleteRestaurantsService
@@ -101,10 +100,17 @@ public final class NewReviewViewModel: ObservableObject {
                     starsNumber: starsNumber,
                     createdAt: Date())
 
-                postReviewState = .success
+                resetState()
             } catch {
                 postReviewState = .failure(.serverError)
             }
         }
+    }
+
+    @MainActor private func resetState() {
+        postReviewState = .idle
+        getRestaurantDetailsState = .idle
+        reviewText = ""
+        starsNumber = 0
     }
 }

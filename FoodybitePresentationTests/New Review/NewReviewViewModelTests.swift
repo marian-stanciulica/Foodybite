@@ -171,17 +171,22 @@ final class NewReviewViewModelTests: XCTestCase {
         XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
     }
 
-    func test_postReview_setsStateToRequestSucceededWhenAddReviewServiceReturnsSuccess() async {
+    func test_postReview_resetsStateForAllPublishedVariablesWhenReviewPostedSuccessfully() async {
         let (sut, _, _, _) = makeSUT()
-        sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
+        let restaurantDetails = anyRestaurantDetails()
+        sut.getRestaurantDetailsState = .success(restaurantDetails)
         sut.reviewText = anyReviewText()
         sut.starsNumber = anyStarsNumber()
 
-        let stateSpy = PublisherSpy(sut.$postReviewState.eraseToAnyPublisher())
+        let postReviewState = PublisherSpy(sut.$postReviewState.eraseToAnyPublisher())
+        let getRestaurantDetailsState = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
         await sut.postReview()
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success])
+        XCTAssertTrue(sut.reviewText.isEmpty)
+        XCTAssertEqual(sut.starsNumber, 0)
+        XCTAssertEqual(postReviewState.results, [.idle, .isLoading, .idle])
+        XCTAssertEqual(getRestaurantDetailsState.results, [.success(restaurantDetails), .idle])
     }
 
     // MARK: - Helpers
