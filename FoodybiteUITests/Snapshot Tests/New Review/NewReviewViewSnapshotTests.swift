@@ -113,9 +113,9 @@ final class NewReviewViewSnapshotTests: XCTestCase {
         viewModel.postReviewState = postReviewState
 
         return NewReviewView(
-            plusButtonActive: .constant(true),
             viewModel: viewModel,
-            selectedView: { self.makeCell(restaurantDetails: $0, fetchPhotoState: fetchPhotoState) }
+            selectedView: { self.makeCell(restaurantDetails: $0, fetchPhotoState: fetchPhotoState) },
+            dismissScreen: {}
         )
     }
 
