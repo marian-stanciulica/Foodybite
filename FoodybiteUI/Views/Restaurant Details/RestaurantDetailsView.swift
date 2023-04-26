@@ -99,6 +99,7 @@ public struct RestaurantDetailsView: View {
             await viewModel.getRestaurantReviews()
         }
         .arrowBackButtonStyle()
+        .navigationTitle("Restaurant Details")
     }
 }
 
