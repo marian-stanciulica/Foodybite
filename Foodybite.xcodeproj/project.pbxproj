@@ -3143,12 +3143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F0BDA2C28F83FD500E91FD0 /* Build configuration list for PBXNativeTarget "FoodybiteNetworking" */;
 			buildPhases = (
+				0FE0948729E0153100BF68C1 /* SwiftLint Script */,
 				0F0BDA1428F83FD500E91FD0 /* Headers */,
 				0F0BDA1528F83FD500E91FD0 /* Sources */,
 				0F0BDA1628F83FD500E91FD0 /* Frameworks */,
 				0F0BDA1728F83FD500E91FD0 /* Resources */,
 				0F2BACCE2982BBAB006D4A7F /* Embed Frameworks */,
-				0FE0948729E0153100BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3204,11 +3204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F19B484291647DC00A8FC8F /* Build configuration list for PBXNativeTarget "Domain" */;
 			buildPhases = (
+				0FE0948B29E0513C00BF68C1 /* SwiftLint Script */,
 				0F19B470291647DB00A8FC8F /* Headers */,
 				0F19B471291647DB00A8FC8F /* Sources */,
 				0F19B472291647DB00A8FC8F /* Frameworks */,
 				0F19B473291647DB00A8FC8F /* Resources */,
-				0FE0948B29E0513C00BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3223,12 +3223,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F1C74D929D5B64100D4FC80 /* Build configuration list for PBXNativeTarget "FoodybitePresentation" */;
 			buildPhases = (
+				0FE0948D29E051B300BF68C1 /* SwiftLint Script */,
 				0F1C74C529D5B64100D4FC80 /* Headers */,
 				0F1C74C629D5B64100D4FC80 /* Sources */,
 				0F1C74C729D5B64100D4FC80 /* Frameworks */,
 				0F1C74C829D5B64100D4FC80 /* Resources */,
 				0F1C752E29D5C08100D4FC80 /* Embed Frameworks */,
-				0FE0948D29E051B300BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3262,11 +3262,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F1C754729D5C72B00D4FC80 /* Build configuration list for PBXNativeTarget "FoodybiteLocation" */;
 			buildPhases = (
+				0FE0948C29E0517C00BF68C1 /* SwiftLint Script */,
 				0F1C753329D5C72B00D4FC80 /* Headers */,
 				0F1C753429D5C72B00D4FC80 /* Sources */,
 				0F1C753529D5C72B00D4FC80 /* Frameworks */,
 				0F1C753629D5C72B00D4FC80 /* Resources */,
-				0FE0948C29E0517C00BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3300,12 +3300,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F1C756929D5C93000D4FC80 /* Build configuration list for PBXNativeTarget "FoodybiteUI" */;
 			buildPhases = (
+				0FE0948E29E051E300BF68C1 /* SwiftLint Script */,
 				0F1C755529D5C93000D4FC80 /* Headers */,
 				0F1C755629D5C93000D4FC80 /* Sources */,
 				0F1C755729D5C93000D4FC80 /* Frameworks */,
 				0F1C755829D5C93000D4FC80 /* Resources */,
 				0F1C762429D5CDC600D4FC80 /* Embed Frameworks */,
-				0FE0948E29E051E300BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3363,12 +3363,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F34A13829D4508400B36428 /* Build configuration list for PBXNativeTarget "API_Infra" */;
 			buildPhases = (
+				0FE0948A29E050E900BF68C1 /* SwiftLint Script */,
 				0F34A12029D4508300B36428 /* Headers */,
 				0F34A12129D4508300B36428 /* Sources */,
 				0F34A12229D4508300B36428 /* Frameworks */,
 				0F34A12329D4508300B36428 /* Resources */,
 				0F34A14429D450E700B36428 /* Embed Frameworks */,
-				0FE0948A29E050E900BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3403,12 +3403,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F412E892962C78E00FDDF41 /* Build configuration list for PBXNativeTarget "FoodybitePlaces" */;
 			buildPhases = (
+				0FE0948829E04FFB00BF68C1 /* SwiftLint Script */,
 				0F412E712962C78D00FDDF41 /* Headers */,
 				0F412E722962C78D00FDDF41 /* Sources */,
 				0FFCB59A29DF0FB500FD400B /* Copy GooglePlaces-Info.plist Script */,
 				0F412E732962C78D00FDDF41 /* Frameworks */,
 				0F215CBE29826D24000F88F4 /* Embed Frameworks */,
-				0FE0948829E04FFB00BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3443,11 +3443,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F7137C52841F8370058757A /* Build configuration list for PBXNativeTarget "Foodybite" */;
 			buildPhases = (
+				0FE0948F29E0521C00BF68C1 /* SwiftLint Script */,
 				0F7137B32841F8340058757A /* Sources */,
 				0F7137B42841F8340058757A /* Frameworks */,
 				0F7137B52841F8340058757A /* Resources */,
 				0F8961AE2928CE0800FFDC48 /* Embed Frameworks */,
-				0FE0948F29E0521C00BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -3470,12 +3470,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F95A889290D024500806AE9 /* Build configuration list for PBXNativeTarget "FoodybitePersistence" */;
 			buildPhases = (
+				0FE0948929E0505E00BF68C1 /* SwiftLint Script */,
 				0F95A871290D024400806AE9 /* Headers */,
 				0F95A872290D024400806AE9 /* Sources */,
 				0F95A873290D024400806AE9 /* Frameworks */,
 				0F95A874290D024400806AE9 /* Resources */,
 				0F19B4902916486A00A8FC8F /* Embed Frameworks */,
-				0FE0948929E0505E00BF68C1 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
