@@ -1074,35 +1074,23 @@ public enum HomeRoute: Hashable {
 }
 ```
 
-Furthermore, I used the `navigationDestination(for:destination:)` modifier to define links between the root view and the destination based on the route. The following example is the instantiation of the `HomeView` and definition of its navigation destinations:
+Furthermore, I used the `navigationDestination(for:destination:)` modifier to define links between the root view and the destination based on the route. The following example is the instantiation of the `HomeView` and definition of its navigation destinations which are encapsulated in the `HomeViewFlow`:
 
 ```swift
-@ViewBuilder func makeHomeFlowView(currentLocation: Location) -> some View {
-    NavigationStack(path: $homeFlow.path) {
-        TabBarPageView(page: $tabRouter.currentPage) {
-            HomeFlowView.makeHomeView(
-                ...
-            )
+var body: some View {
+    NavigationStack(path: $flow.path) {
+        TabBarPageView(page: $currentPage) {
+            makeHomeView()
         }
         .navigationDestination(for: HomeRoute.self) { route in
             switch route {
             case let .restaurantDetails(restaurantID):
-                HomeFlowView.makeRestaurantDetailsView(
-                    ...
-                )
+                makeRestaurantDetailsView(restaurantID: restaurantID)
             case let .addReview(restaurantID):
-                HomeFlowView.makeReviewView(
-                    ...
-                )
+                makeReviewView(restaurantID: restaurantID)
             }
         }
     }
-}
-
-@ViewBuilder func makeRestaurantDetailsView(flow: Flow<HomeRoute>, ...) -> some View {
-    RestaurantDetailsView(..., showReviewView: {
-        flow.append(.addReview(restaurantID))
-    })
 }
 ```
 
