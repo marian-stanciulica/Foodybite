@@ -1143,8 +1143,8 @@ Nevertheless, I didn't test any logic with snapshot tests as all the logic was e
 ## CI/CD
 
 I used `GitHub Actions` to automate the CI/CD pipeline to ensure code changes are built and tested automatically. The pipeline runs every time commits are pushed to the main branch. It performs the following tasks:
-1. Builds the app and runs all tests to ensure code changes do not break existing functionality.
-2. Checks code quality with [SwiftLint](https://github.com/realm/SwiftLint) to ensure it adheres to the Swift coding style and conventions.
+1. Checks code quality with [SwiftLint](https://github.com/realm/SwiftLint) to ensure it adheres to the Swift coding style and conventions.
+2. Builds the app and runs all tests to ensure code changes do not break existing functionality.
 
 ## Security
 
