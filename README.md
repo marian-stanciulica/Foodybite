@@ -6,7 +6,7 @@
 
 1. [Motivation](#motivation)
 2. [Installation Guide](#installation-guide)
-3. [Demo Videos](./Readme_Sections/Demo_Videos.md#demo-videos)
+3. [Demo Videos](./Readme_Sections/Demo_Videos/Demo_Videos.md#demo-videos)
 4. [Tools](#tools)
 5. [Frameworks](#frameworks)
 6. [Concepts](#concepts)
