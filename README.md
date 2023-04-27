@@ -158,7 +158,7 @@ The following diagram provides a top-level view with all modules from this proje
 6. [Location](#location)
 7. [Presentation](#presentation)
 8. [UI](#ui)
-9. [Main](#main)
+9. [Main](#main) (Composition Root)
 
 ![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
 
