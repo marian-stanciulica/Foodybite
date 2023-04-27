@@ -19,7 +19,7 @@ The following diagram provides a top-level view with all modules from this proje
 8. [UI](#ui)
 9. [Main](#main) (Composition Root)
 
-![Top Level Modules](./Diagrams/Top_Level_View_Modules.svg)
+![Top Level Modules](./Top_Level_View_Modules.svg)
 
 ### Domain
 
@@ -272,7 +272,7 @@ The following diagram showcases the networking layer, which communicates with my
 4. [Testing `Data` to `Decodable` Mapping](#4-testing-data-to-decodable-mapping)
 5. [Parsing JSON Response](#5-parsing-json-response)
 
-![Networking Diagram](./Diagrams/Networking.svg)
+![Networking Diagram](./Networking.svg)
 
 | Component | Responsibility |
 |------|------|
@@ -294,7 +294,7 @@ The following diagram showcases the networking layer, which communicates with my
 
 The following diagram outlines the entire state machine of making requests that require authentication.
 
-![Refresh Token State Machine](./Diagrams/Refresh_Token_State_Machine.svg)
+![Refresh Token State Machine](./Refresh_Token_State_Machine.svg)
 
 In order to avoid making multiple `refreshTokens` requests in parallel, I stored the first task in an instance property. The first request creates the task and the following requests are just waiting for the task value (in this case, the value is `Void`, so they only waits for the completion of the task).
 
@@ -358,7 +358,7 @@ This flow is composed by 3 classes:
 - `RemoteStore`, which implements `ResourceLoader` and `ResourceSender`, validates the status code returned by the client and parses received data.
 - `AuthenticatedURLSessionHTTPClient`, which decorates `HTTPClient`, signs each request with an access token fetched using an `TokenRefresher` collaborator (You can find more details about refresh token strategy [here](#1-refresh-token-strategy)). In the `Composition Root`, this class is used only for requests that require authentication, otherwise an instance of `URLSessionHTTPClient` from the `API Infra` module is used.
 
-![AuthenticatedURLSessionHTTPClient](./Diagrams/AuthenticatedURLSessionHTTPClient.svg)
+![AuthenticatedURLSessionHTTPClient](./AuthenticatedURLSessionHTTPClient.svg)
 
 #### 3. Endpoint Creation
 
@@ -436,7 +436,7 @@ I ended up choosing the second approach as I didn't want to leak the details of 
 
 The following diagram depicted below represents the `Places` module. This module has been designed to adhere to the `Single Responsibility Principle` by isolating the requests to my server from the ones that communicates with [`Google Places APIs`](https://developers.google.com/maps/documentation/places/web-service/overview).
 
-![Places](./Diagrams/Places.svg)
+![Places](./Places.svg)
 
 | Component | Responsibility |
 |------|------|
@@ -455,7 +455,7 @@ The [same argument](#5-parsing-json-response) for the `Networking` module is als
 
 The following diagram contains the concrete implementation of the `HTTPClient` protocol utilizing `URLSession`. It respects the dependency rule outlined in the overview section, as it solely depends on the `Networking` and `Places` modules. The decision to extract the infrastructure class in a separate module and compose them in the `Composition Root` was made due to the fact that both modules require to make network requests.
 
-![API Infra](./Diagrams/API_Infra.svg)
+![API Infra](./API_Infra.svg)
 
 #### Mock Network Requests
 
@@ -555,7 +555,7 @@ class URLProtocolStub: URLProtocol {
 
 The following diagram presents the `Persistence` module and highlights the [infrastructure](#infrastructure) to [cache domain models](#cache-domain-models) in `CoreData`. Additionaly, it has the capability to [store `UserPreferences`](#store-user-preferences) locally in `UserDefaults`. 
 
-![Persistence](./Diagrams/Persistence.svg)
+![Persistence](./Persistence.svg)
 
 | Component | Responsibility |
 |------|------|
@@ -645,7 +645,7 @@ In this module, I decided to switch from the classic delegation pattern of getti
 
 Another interesting topic related to this module is getting the current location using `CLLocationManager` and `CLLocationManagerDelegate` while doing `TDD`. (More details here: [Get current location using TDD](#get-current-location-using-tdd))
 
-![Location](./Diagrams/Location.svg)
+![Location](./Location.svg)
 
 | Component | Responsibility |
 |------|------|
@@ -809,7 +809,7 @@ struct HomeView<Cell: View, SearchView: View>: View {
     ...
 ```
 
-![Screen Hierarchy](./Diagrams/Screen_Hierarchy.svg)
+![Screen Hierarchy](./Screen_Hierarchy.svg)
 
 ### Main
 
