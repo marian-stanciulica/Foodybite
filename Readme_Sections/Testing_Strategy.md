@@ -34,7 +34,7 @@ I used an `URLSession` with ephemeral configuration for both my own server and `
 
 When testing different systems in integration, it important to take into consideration the potential artifacts that can be created. To ensure a clean state before running each test, I deleted the store before and after each test using the `setUp` and `tearDown` methods. That's why I decided to inject the store URL in the `CoreDataLocalStore` to dynamically create a separate path when testing based on the test filename.
 
-### Snapshots Tests
+### Snapshot Tests
 
 Initially, I wrote snapshots tests to verify the UI layout for each state by directly injecting the state in the viewModels. Afterwards, I used them to test-drive new screens as a feedback mechanism alongside with preview. It seemed like a better alternative because they are relatively fast to run, and I could check the UI for both light and dark modes simultaneously.
 
