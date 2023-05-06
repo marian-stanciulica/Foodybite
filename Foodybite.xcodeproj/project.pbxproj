@@ -298,6 +298,9 @@
 		0F5767812A062D55002B5484 /* FetchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767802A062D55002B5484 /* FetchLocationViewModel.swift */; };
 		0F5767842A062D77002B5484 /* FetchLocationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767832A062D77002B5484 /* FetchLocationViewModelTests.swift */; };
 		0F5767872A062E8F002B5484 /* FetchLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767862A062E8F002B5484 /* FetchLocationView.swift */; };
+		0F57678A2A063506002B5484 /* FetchLocationViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767892A063506002B5484 /* FetchLocationViewSnapshotTests.swift */; };
+		0F57678F2A06374A002B5484 /* test_locationServicesDisabledState.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F57678D2A06374A002B5484 /* test_locationServicesDisabledState.dark.png */; };
+		0F5767902A06374A002B5484 /* test_locationServicesDisabledState.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F57678E2A06374A002B5484 /* test_locationServicesDisabledState.light.png */; };
 		0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4934298FD931004162E5 /* TabBarPageView.swift */; };
 		0F61265329C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */; };
 		0F61265629C0F75700658A4D /* ReviewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265529C0F75700658A4D /* ReviewCache.swift */; };
@@ -886,6 +889,9 @@
 		0F5767802A062D55002B5484 /* FetchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationViewModel.swift; sourceTree = "<group>"; };
 		0F5767832A062D77002B5484 /* FetchLocationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationViewModelTests.swift; sourceTree = "<group>"; };
 		0F5767862A062E8F002B5484 /* FetchLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationView.swift; sourceTree = "<group>"; };
+		0F5767892A063506002B5484 /* FetchLocationViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationViewSnapshotTests.swift; sourceTree = "<group>"; };
+		0F57678D2A06374A002B5484 /* test_locationServicesDisabledState.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_locationServicesDisabledState.dark.png; sourceTree = "<group>"; };
+		0F57678E2A06374A002B5484 /* test_locationServicesDisabledState.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_locationServicesDisabledState.light.png; sourceTree = "<group>"; };
 		0F5912552996886100D67B21 /* NewReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewViewModel.swift; sourceTree = "<group>"; };
 		0F591257299697E600D67B21 /* NewReviewSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewSearchView.swift; sourceTree = "<group>"; };
 		0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsService.swift; sourceTree = "<group>"; };
@@ -2024,6 +2030,32 @@
 			path = "Fetch Location";
 			sourceTree = "<group>";
 		};
+		0F5767882A0634E1002B5484 /* Fetch Location */ = {
+			isa = PBXGroup;
+			children = (
+				0F57678B2A06374A002B5484 /* __Snapshots__ */,
+				0F5767892A063506002B5484 /* FetchLocationViewSnapshotTests.swift */,
+			);
+			path = "Fetch Location";
+			sourceTree = "<group>";
+		};
+		0F57678B2A06374A002B5484 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0F57678C2A06374A002B5484 /* FetchLocationViewSnapshotTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		0F57678C2A06374A002B5484 /* FetchLocationViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F57678D2A06374A002B5484 /* test_locationServicesDisabledState.dark.png */,
+				0F57678E2A06374A002B5484 /* test_locationServicesDisabledState.light.png */,
+			);
+			path = FetchLocationViewSnapshotTests;
+			sourceTree = "<group>";
+		};
 		0F5912542996884900D67B21 /* New Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -2699,6 +2731,7 @@
 			isa = PBXGroup;
 			children = (
 				0F53B86B29AB4CE500DE5E13 /* Helpers */,
+				0F5767882A0634E1002B5484 /* Fetch Location */,
 				0F62F2AA29AF668A008F1C19 /* Home */,
 				0F62F2CB29AF6FDB008F1C19 /* Restaurant Details */,
 				0F9BEC0729ADE46000641D74 /* Search Filtering */,
@@ -3768,6 +3801,7 @@
 				0F1C75F729D5CB0B00D4FC80 /* test_editProfileViewIsLoadingState.dark.png in Resources */,
 				0F6FD5FC29DB0CEB000A28F8 /* test_newReviewWhenFetchPhotoStateIsSuccess.dark.png in Resources */,
 				0F6FD5F729DB0CEB000A28F8 /* test_newReviewViewWithAutocompletePredictions.dark.png in Resources */,
+				0F57678F2A06374A002B5484 /* test_locationServicesDisabledState.dark.png in Resources */,
 				0F1C761329D5CB4800D4FC80 /* test_registerViewSuccessState.light.png in Resources */,
 				0F1C761829D5CB5900D4FC80 /* test_loginViewIsLoadingState.dark.png in Resources */,
 				0F1C761129D5CB4800D4FC80 /* test_registerViewSuccessState.dark.png in Resources */,
@@ -3824,6 +3858,7 @@
 				0F1C761D29D5CB5900D4FC80 /* test_loginViewIdleState.light.png in Resources */,
 				0F6FD5C829DB0C51000A28F8 /* test_homeViewFailureState.light.png in Resources */,
 				0F1C760C29D5CB3600D4FC80 /* test_reviewViewIdleState.light.png in Resources */,
+				0F5767902A06374A002B5484 /* test_locationServicesDisabledState.light.png in Resources */,
 				0F6FD62629DB0D1B000A28F8 /* test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsFailure.light.png in Resources */,
 				0F6FD5CC29DB0C51000A28F8 /* test_homeViewSuccessState.light.png in Resources */,
 				0F6FD5E229DB0C86000A28F8 /* test_restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure.light.png in Resources */,
@@ -4342,6 +4377,7 @@
 			files = (
 				0F1C75FA29D5CB0B00D4FC80 /* EditProfileViewSnapshotTests.swift in Sources */,
 				0F1C759F29D5CAAB00D4FC80 /* UIImage+.swift in Sources */,
+				0F57678A2A063506002B5484 /* FetchLocationViewSnapshotTests.swift in Sources */,
 				0F1C760929D5CB3600D4FC80 /* ReviewViewSnapshotTests.swift in Sources */,
 				0F1C75A029D5CAAB00D4FC80 /* SharedFactory.swift in Sources */,
 				0F1C75C029D5CAD200D4FC80 /* RestaurantDetailsViewSnapshotTests.swift in Sources */,

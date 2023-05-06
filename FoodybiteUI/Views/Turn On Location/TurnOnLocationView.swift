@@ -8,16 +8,16 @@
 import SwiftUI
 import Domain
 
-public struct TurnOnLocationView: View {
+struct TurnOnLocationView: View {
     private let name: String
     private let locationProvider: LocationProviding
 
-    public init(name: String, locationProvider: LocationProviding) {
+    init(name: String, locationProvider: LocationProviding) {
         self.name = name
         self.locationProvider = locationProvider
     }
 
-    public var body: some View {
+    var body: some View {
         VStack(alignment: .leading) {
             Spacer()
 

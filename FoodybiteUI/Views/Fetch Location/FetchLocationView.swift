@@ -21,7 +21,7 @@ public struct FetchLocationView<TabBar: View>: View {
     }
 
     public var body: some View {
-        if viewModel.locationProvider.locationServicesEnabled {
+        if viewModel.locationServicesEnabled {
             feedbackCurrentLocationFetch()
                 .task {
                     await viewModel.getCurrentLocation()
