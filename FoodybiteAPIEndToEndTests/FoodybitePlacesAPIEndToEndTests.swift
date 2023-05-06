@@ -64,7 +64,7 @@ final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
         let apiService = makeSUT(file: file, line: line)
         let input = "Trattoria"
         let location = Location(latitude: 44.441016, longitude: 26.0975475)
-        let radius = 10
+        let radius = 2
         return try await apiService.autocomplete(input: input, location: location, radius: radius)
     }
 
