@@ -14,10 +14,10 @@ import FoodybiteUI
 struct UserAuthenticatedView: View {
     @Binding var loggedInUserID: String?
     let user: User
-    @ObservedObject var locationProvider: LocationProvider
+    @StateObject var locationProvider = LocationProvider()
+    @StateObject var tabRouter = TabRouter()
 
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
-    @StateObject var tabRouter = TabRouter()
 
     var body: some View {
         FetchLocationView(

@@ -16,15 +16,13 @@ struct RootView: View {
     @State var user: User?
     @AppStorage("loggedInUserID") var loggedInUserID: String?
     @StateObject var authflow = Flow<AuthRoute>()
-    @StateObject var locationProvider = LocationProvider()
 
     var body: some View {
         HStack {
             if let user = user, loggedInUserID != nil {
                 UserAuthenticatedView(
                     loggedInUserID: $loggedInUserID,
-                    user: user,
-                    locationProvider: locationProvider
+                    user: user
                 )
             } else {
                 makeAuthFlowView(loginService: rootFactory.apiService,
