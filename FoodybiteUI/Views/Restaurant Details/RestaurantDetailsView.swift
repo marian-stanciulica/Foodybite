@@ -46,27 +46,7 @@ public struct RestaurantDetailsView: View {
                                     phoneNumber: restaurantDetails.phoneNumber,
                                     showMaps: showMaps)
 
-                                HStack {
-                                    RestaurantInformationView(
-                                        name: restaurantDetails.name,
-                                        distance: viewModel.distanceInKmFromCurrentLocation,
-                                        address: restaurantDetails.address
-                                    )
-
-                                    Spacer()
-
-                                    RatingStar(
-                                        rating: viewModel.rating,
-                                        backgroundColor: .gray.opacity(0.1)
-                                    )
-                                    .padding(4)
-                                }
-                                .padding(.horizontal)
-
-                                if let openingHoursDetails = restaurantDetails.openingHoursDetails {
-                                    OpenHoursView(openingHoursDetails: openingHoursDetails)
-                                        .padding(.horizontal)
-                                }
+                                makeRestaurantInformationView(restaurantDetails)
 
                                 RestaurantPhotosView(
                                     imageWidth: proxy.size.width / 2.5,
@@ -100,6 +80,30 @@ public struct RestaurantDetailsView: View {
         }
         .arrowBackButtonStyle()
         .navigationTitle("Restaurant Details")
+    }
+
+    @ViewBuilder private func makeRestaurantInformationView(_ restaurantDetails: RestaurantDetails) -> some View {
+        HStack {
+            RestaurantInformationView(
+                name: restaurantDetails.name,
+                distance: viewModel.distanceInKmFromCurrentLocation,
+                address: restaurantDetails.address
+            )
+
+            Spacer()
+
+            RatingStar(
+                rating: viewModel.rating,
+                backgroundColor: .gray.opacity(0.1)
+            )
+            .padding(4)
+        }
+        .padding(.horizontal)
+
+        if let openingHoursDetails = restaurantDetails.openingHoursDetails {
+            OpenHoursView(openingHoursDetails: openingHoursDetails)
+                .padding(.horizontal)
+        }
     }
 
     private func showMaps() {
