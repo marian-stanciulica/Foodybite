@@ -19,7 +19,7 @@ public final class FetchLocationViewModel: ObservableObject {
         case success(Location)
     }
 
-    private let locationProvider: LocationProviding
+    @Published public var locationProvider: LocationProviding
     @Published public var state: State = .isLoading
 
     public var locationServicesEnabled: Bool {

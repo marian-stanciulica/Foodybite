@@ -15,45 +15,33 @@ struct UserAuthenticatedView: View {
     @Binding var loggedInUserID: String?
     let user: User
     @ObservedObject var locationProvider: LocationProvider
-    @StateObject var viewModel: UserAuthenticatedViewModel
 
     private let userAuthenticatedFactory = UserAuthenticatedFactory()
     @StateObject var tabRouter = TabRouter()
 
     var body: some View {
-        if locationProvider.locationServicesEnabled {
-            makeTabNavigationView()
-            .task {
-                await viewModel.getCurrentLocation()
-            }
-        } else {
-            TurnOnLocationView(name: user.name, locationProvider: locationProvider)
-        }
+        FetchLocationView(
+            viewModel: FetchLocationViewModel(
+                locationProvider: locationProvider),
+            username: user.name,
+            makeTabNavigationView: makeTabNavigationView
+        )
     }
 
-    @ViewBuilder private func makeTabNavigationView() -> some View {
-        switch viewModel.state {
-        case .isLoading:
-            ProgressView()
-
-        case let .failure(error):
-            Text(error.rawValue)
-
-        case let .success(location):
-            switch tabRouter.currentPage {
-            case .home:
-                HomeFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
-                             currentLocation: location,
-                             currentPage: $tabRouter.currentPage)
-            case .newReview:
-                makeNewReviewView(currentLocation: location)
-            case .account:
-                ProfileFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
-                                currentLocation: location,
-                                user: user,
-                                goToLogin: { loggedInUserID = nil },
-                                currentPage: $tabRouter.currentPage)
-            }
+    @ViewBuilder private func makeTabNavigationView(location: Location) -> some View {
+        switch tabRouter.currentPage {
+        case .home:
+            HomeFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
+                         currentLocation: location,
+                         currentPage: $tabRouter.currentPage)
+        case .newReview:
+            makeNewReviewView(currentLocation: location)
+        case .account:
+            ProfileFlowView(userAuthenticatedFactory: userAuthenticatedFactory,
+                            currentLocation: location,
+                            user: user,
+                            goToLogin: { loggedInUserID = nil },
+                            currentPage: $tabRouter.currentPage)
         }
     }
 
@@ -91,8 +79,7 @@ struct AuthenticatedContainerView_Previews: PreviewProvider {
         UserAuthenticatedView(
             loggedInUserID: .constant(nil),
             user: User(id: UUID(), name: "User", email: "user@user.com", profileImage: nil),
-            locationProvider: LocationProvider(),
-            viewModel: UserAuthenticatedViewModel(locationProvider: LocationProvider())
+            locationProvider: LocationProvider()
         )
     }
 }

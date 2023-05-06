@@ -24,8 +24,7 @@ struct RootView: View {
                 UserAuthenticatedView(
                     loggedInUserID: $loggedInUserID,
                     user: user,
-                    locationProvider: locationProvider,
-                    viewModel: UserAuthenticatedViewModel(locationProvider: locationProvider)
+                    locationProvider: locationProvider
                 )
             } else {
                 makeAuthFlowView(loginService: rootFactory.apiService,

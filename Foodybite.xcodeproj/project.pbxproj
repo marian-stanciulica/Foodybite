@@ -297,6 +297,7 @@
 		0F53B0B229DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F53B0B029DB2EDB00C34D29 /* test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading.dark.png */; };
 		0F5767812A062D55002B5484 /* FetchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767802A062D55002B5484 /* FetchLocationViewModel.swift */; };
 		0F5767842A062D77002B5484 /* FetchLocationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767832A062D77002B5484 /* FetchLocationViewModelTests.swift */; };
+		0F5767872A062E8F002B5484 /* FetchLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5767862A062E8F002B5484 /* FetchLocationView.swift */; };
 		0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E4934298FD931004162E5 /* TabBarPageView.swift */; };
 		0F61265329C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265229C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift */; };
 		0F61265629C0F75700658A4D /* ReviewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61265529C0F75700658A4D /* ReviewCache.swift */; };
@@ -886,6 +887,7 @@
 		0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		0F5767802A062D55002B5484 /* FetchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationViewModel.swift; sourceTree = "<group>"; };
 		0F5767832A062D77002B5484 /* FetchLocationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationViewModelTests.swift; sourceTree = "<group>"; };
+		0F5767862A062E8F002B5484 /* FetchLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationView.swift; sourceTree = "<group>"; };
 		0F5912552996886100D67B21 /* NewReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewViewModel.swift; sourceTree = "<group>"; };
 		0F591257299697E600D67B21 /* NewReviewSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewSearchView.swift; sourceTree = "<group>"; };
 		0F5E4931298FB8CE004162E5 /* GetReviewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviewsService.swift; sourceTree = "<group>"; };
@@ -1525,6 +1527,7 @@
 		0F1C756F29D5C9FD00D4FC80 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F5767852A062E7D002B5484 /* Fetch Location */,
 				A2E64BCD2842455800FC41B7 /* Home */,
 				A2C2421828474C2500CB233B /* Restaurant Details */,
 				0F2B4CB728454D87004D0EF7 /* Search Criteria */,
@@ -2021,6 +2024,14 @@
 			isa = PBXGroup;
 			children = (
 				0F5767832A062D77002B5484 /* FetchLocationViewModelTests.swift */,
+			);
+			path = "Fetch Location";
+			sourceTree = "<group>";
+		};
+		0F5767852A062E7D002B5484 /* Fetch Location */ = {
+			isa = PBXGroup;
+			children = (
+				0F5767862A062E8F002B5484 /* FetchLocationView.swift */,
 			);
 			path = "Fetch Location";
 			sourceTree = "<group>";
@@ -4307,6 +4318,7 @@
 				0F1C759129D5CA7900D4FC80 /* RestaurantReviewCellView.swift in Sources */,
 				0F1C758329D5CA5C00D4FC80 /* OpenHoursView.swift in Sources */,
 				0F1C758929D5CA6700D4FC80 /* RadiusIndicatorView.swift in Sources */,
+				0F5767872A062E8F002B5484 /* FetchLocationView.swift in Sources */,
 				0F1C759629D5CA8300D4FC80 /* SettingsView.swift in Sources */,
 				0F4E34AB29F9812D00D41D4E /* PostReviewButton.swift in Sources */,
 				0F1C757729D5CA3C00D4FC80 /* RatingStar.swift in Sources */,
