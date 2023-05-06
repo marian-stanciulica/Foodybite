@@ -55,13 +55,7 @@ public struct RestaurantDetailsView: View {
                                 )
                                 .padding(.bottom)
 
-                                HeaderView(name: "Review & Ratings", allItemsCount: viewModel.reviews.count)
-
-                                LazyVStack {
-                                    ForEach(viewModel.reviews) { review in
-                                        ReviewCell(review: review)
-                                    }
-                                }
+                                makeReviews()
                             }
                         }
 
@@ -103,6 +97,16 @@ public struct RestaurantDetailsView: View {
         if let openingHoursDetails = restaurantDetails.openingHoursDetails {
             OpenHoursView(openingHoursDetails: openingHoursDetails)
                 .padding(.horizontal)
+        }
+    }
+
+    @ViewBuilder private func makeReviews() -> some View {
+        HeaderView(name: "Review & Ratings", allItemsCount: viewModel.reviews.count)
+
+        LazyVStack {
+            ForEach(viewModel.reviews) { review in
+                ReviewCell(review: review)
+            }
         }
     }
 
