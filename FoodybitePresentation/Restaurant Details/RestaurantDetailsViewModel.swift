@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 import Domain
 
 public final class RestaurantDetailsViewModel: ObservableObject {
@@ -62,17 +61,6 @@ public final class RestaurantDetailsViewModel: ObservableObject {
         self.getDistanceInKmFromCurrentLocation = getDistanceInKmFromCurrentLocation
         self.restaurantDetailsService = restaurantDetailsService
         self.getReviewsService = getReviewsService
-    }
-
-    public func showMaps() {
-        guard case let .success(restaurantDetails) = getRestaurantDetailsState else { return }
-
-        let location = restaurantDetails.location
-        guard let url = URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)") else { return }
-
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        }
     }
 
     @MainActor public func getRestaurantDetails() async {

@@ -44,7 +44,7 @@ public struct RestaurantDetailsView: View {
                                 RestaurantImageView(
                                     photoView: makePhotoView(restaurantDetails.photos.first?.photoReference),
                                     phoneNumber: restaurantDetails.phoneNumber,
-                                    showMaps: viewModel.showMaps)
+                                    showMaps: showMaps)
 
                                 HStack {
                                     RestaurantInformationView(
@@ -100,6 +100,17 @@ public struct RestaurantDetailsView: View {
         }
         .arrowBackButtonStyle()
         .navigationTitle("Restaurant Details")
+    }
+
+    private func showMaps() {
+        guard case let .success(restaurantDetails) = viewModel.getRestaurantDetailsState else { return }
+
+        let location = restaurantDetails.location
+        guard let url = URL(string: "maps://?saddr=&daddr=\(location.latitude),\(location.longitude)") else { return }
+
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
 }
 
