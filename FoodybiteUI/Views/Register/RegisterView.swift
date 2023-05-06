@@ -28,28 +28,7 @@ public struct RegisterView: View {
 
             Spacer()
 
-            Group {
-                ImageWhiteTextField(placeholder: "Name",
-                                    imageName: "person",
-                                    secure: false,
-                                    text: $viewModel.name)
-
-                ImageWhiteTextField(placeholder: "Email",
-                                    imageName: "envelope",
-                                    secure: false,
-                                    text: $viewModel.email)
-
-                ImageWhiteTextField(placeholder: "Password",
-                                    imageName: "lock.circle",
-                                    secure: true,
-                                    text: $viewModel.password)
-
-                ImageWhiteTextField(placeholder: "Confirm Password",
-                                    imageName: "lock.circle",
-                                    secure: true,
-                                    text: $viewModel.confirmPassword)
-            }
-            .padding(.bottom)
+            makeTextFields()
 
             Spacer()
 
@@ -63,17 +42,7 @@ public struct RegisterView: View {
 
             Spacer()
 
-            HStack {
-                Text("Already have an account?")
-                    .foregroundColor(.white)
-
-                Button {
-                    goToLogin()
-                } label: {
-                    Text("Login")
-                        .foregroundColor(.marineBlue)
-                }
-            }
+            makeAlreadyHaveAccount()
         }
         .padding(.horizontal)
         .background(
@@ -96,6 +65,45 @@ public struct RegisterView: View {
 
         default:
             return Text("")
+        }
+    }
+
+    @ViewBuilder private func makeTextFields() -> some View {
+        Group {
+            ImageWhiteTextField(placeholder: "Name",
+                                imageName: "person",
+                                secure: false,
+                                text: $viewModel.name)
+
+            ImageWhiteTextField(placeholder: "Email",
+                                imageName: "envelope",
+                                secure: false,
+                                text: $viewModel.email)
+
+            ImageWhiteTextField(placeholder: "Password",
+                                imageName: "lock.circle",
+                                secure: true,
+                                text: $viewModel.password)
+
+            ImageWhiteTextField(placeholder: "Confirm Password",
+                                imageName: "lock.circle",
+                                secure: true,
+                                text: $viewModel.confirmPassword)
+        }
+        .padding(.bottom)
+    }
+
+    @ViewBuilder private func makeAlreadyHaveAccount() -> some View {
+        HStack {
+            Text("Already have an account?")
+                .foregroundColor(.white)
+
+            Button {
+                goToLogin()
+            } label: {
+                Text("Login")
+                    .foregroundColor(.marineBlue)
+            }
         }
     }
 }
