@@ -22,30 +22,7 @@ struct TabBarView: View {
             HStack {
                 makeTabBarIcon(assignedPage: .home)
 
-                ZStack {
-                    Circle()
-                        .shadow(
-                            color: .marineBlue.opacity(0.5),
-                            radius: 5,
-                            x: 0,
-                            y: 4
-                        )
-                        .frame(
-                            width: iconWidth * 0.8,
-                            height: iconWidth * 0.8
-                        )
-                        .foregroundColor(.marineBlue)
-
-                    Image(systemName: "plus")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(
-                            width: iconWidth * 0.3,
-                            height: iconWidth * 0.3
-                        )
-                        .foregroundColor(.white)
-                        .rotationEffect(Angle(degrees: plusButtonActive ? 135 : 0))
-                }
+                makeNewReviewTabBarIcon()
                 .offset(y: -tabBarHeight / 4)
                 .onTapGesture {
                     withAnimation {
@@ -77,6 +54,33 @@ struct TabBarView: View {
                    width: iconWidth,
                    height: iconHeight)
         Spacer()
+    }
+
+    private func makeNewReviewTabBarIcon() -> some View {
+        ZStack {
+            Circle()
+                .shadow(
+                    color: .marineBlue.opacity(0.5),
+                    radius: 5,
+                    x: 0,
+                    y: 4
+                )
+                .frame(
+                    width: iconWidth * 0.8,
+                    height: iconWidth * 0.8
+                )
+                .foregroundColor(.marineBlue)
+
+            Image(systemName: "plus")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(
+                    width: iconWidth * 0.3,
+                    height: iconWidth * 0.3
+                )
+                .foregroundColor(.white)
+                .rotationEffect(Angle(degrees: plusButtonActive ? 135 : 0))
+        }
     }
 }
 
