@@ -27,19 +27,7 @@ public struct LoginView: View {
                 .bold()
 
             Spacer()
-
-            Group {
-                ImageWhiteTextField(placeholder: "Email",
-                                    imageName: "envelope",
-                                    secure: false,
-                                    text: $viewModel.email)
-
-                ImageWhiteTextField(placeholder: "Password",
-                                    imageName: "lock.circle",
-                                    secure: true,
-                                    text: $viewModel.password)
-            }
-            .padding(.bottom)
+            makeTextFields()
 
             HStack {
                 Spacer()
@@ -49,15 +37,7 @@ public struct LoginView: View {
             }
 
             Spacer()
-
-            MarineButton(title: "Login", isLoading: viewModel.isLoading) {
-                Task {
-                    await viewModel.login()
-                }
-            }
-
-            createFeedbackText()
-
+            makeLoginButton()
             Spacer()
 
             Button {
@@ -82,6 +62,31 @@ public struct LoginView: View {
         }
 
         return Text("")
+    }
+
+    @ViewBuilder private func makeTextFields() -> some View {
+        Group {
+            ImageWhiteTextField(placeholder: "Email",
+                                imageName: "envelope",
+                                secure: false,
+                                text: $viewModel.email)
+
+            ImageWhiteTextField(placeholder: "Password",
+                                imageName: "lock.circle",
+                                secure: true,
+                                text: $viewModel.password)
+        }
+        .padding(.bottom)
+    }
+
+    @ViewBuilder private func makeLoginButton() -> some View {
+        MarineButton(title: "Login", isLoading: viewModel.isLoading) {
+            Task {
+                await viewModel.login()
+            }
+        }
+
+        createFeedbackText()
     }
 }
 
