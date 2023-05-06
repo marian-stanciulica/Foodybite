@@ -20,14 +20,7 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             HStack {
-                Spacer()
-
-                TabBarIcon(currentPage: $currentPage,
-                           assignedPage: .home,
-                           width: iconWidth,
-                           height: iconHeight)
-
-                Spacer()
+                makeTabBarIcon(assignedPage: .home)
 
                 ZStack {
                     Circle()
@@ -66,14 +59,7 @@ struct TabBarView: View {
                     }
                 }
 
-                Spacer()
-
-                TabBarIcon(currentPage: $currentPage,
-                           assignedPage: .account,
-                           width: iconWidth,
-                           height: iconHeight)
-
-                Spacer()
+                makeTabBarIcon(assignedPage: .account)
             }
             .frame(width: tabBarWidth, height: tabBarHeight / 2)
             .background(
@@ -82,6 +68,15 @@ struct TabBarView: View {
             )
         }
         .frame(width: tabBarWidth, height: tabBarHeight)
+    }
+
+    @ViewBuilder private func makeTabBarIcon(assignedPage: TabRouter.Page) -> some View {
+        Spacer()
+        TabBarIcon(currentPage: $currentPage,
+                   assignedPage: assignedPage,
+                   width: iconWidth,
+                   height: iconHeight)
+        Spacer()
     }
 }
 
