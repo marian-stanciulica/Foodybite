@@ -35,6 +35,13 @@ final class FetchLocationViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
 
+    func test_locationServicesEnabledAndSuccessState() {
+        let sut = makeSUT(state: .success(Location(latitude: 3.4, longitude: 7.6)))
+
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(locationServicesEnabled: Bool = true, state: FetchLocationViewModel.State = .isLoading) -> some View {
@@ -45,9 +52,9 @@ final class FetchLocationViewSnapshotTests: XCTestCase {
         )
         viewModel.state = state
 
-        return FetchLocationView(viewModel: viewModel, username: "Marian") { _ in
-            EmptyView()
-                .foregroundColor(.red)
+        return FetchLocationView(viewModel: viewModel, username: "Marian") { location in
+            Text("Location (\(location.latitude),\(location.longitude)")
+                .background(.red)
         }
     }
 
