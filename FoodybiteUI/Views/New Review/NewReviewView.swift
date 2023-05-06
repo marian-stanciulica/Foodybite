@@ -26,16 +26,7 @@ public struct NewReviewView<SelectedView: View>: View {
                 Text("New Review")
                     .font(.title)
 
-                NewReviewSearchView(
-                    searchText: $viewModel.searchText,
-                    autocompleteResults: $viewModel.autocompleteResults,
-                    onChange: {
-                        await viewModel.autocomplete()
-                    },
-                    onRestaurantSelected: { restaurantID in
-                        await viewModel.getRestaurantDetails(restaurantID: restaurantID)
-                    }
-                )
+                makeSearchView()
 
                 switch viewModel.getRestaurantDetailsState {
                 case .idle:
@@ -50,50 +41,75 @@ public struct NewReviewView<SelectedView: View>: View {
                     selectedView(restaurantDetails)
                 }
 
-                Text("Ratings")
-                    .font(.title)
+                makeRatingsView()
 
-                RatingView(stars: $viewModel.starsNumber)
-                    .frame(maxWidth: 300)
-
-                Text("Rate your experience")
-                    .font(.title3)
-                    .foregroundColor(Color(uiColor: .systemGray))
-                    .padding()
-
-                Text("Review")
-                    .font(.title)
-                    .padding(.top)
-
-                VStack {
-                    TextField("Write your experience", text: $viewModel.reviewText, axis: .vertical)
-                        .padding()
-
-                    Spacer()
-                }
-                .frame(height: 150)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-                )
-                .padding(.horizontal)
+                makeRateExperienceTextField()
 
                 Spacer()
 
-                if viewModel.postReviewState == .isLoading {
-                    ProgressView()
-                } else {
-                    PostReviewButton(
-                        title: "Post",
-                        isLoading: viewModel.postReviewState == .isLoading,
-                        disabled: !viewModel.postReviewEnabled) {
-                            Task {
-                                await viewModel.postReview()
-                            }
-                        }
-                    .padding()
-                }
+                makePostReviewButton()
             }
+        }
+    }
+
+    @ViewBuilder private func makeSearchView() -> some View {
+        NewReviewSearchView(
+            searchText: $viewModel.searchText,
+            autocompleteResults: $viewModel.autocompleteResults,
+            onChange: {
+                await viewModel.autocomplete()
+            },
+            onRestaurantSelected: { restaurantID in
+                await viewModel.getRestaurantDetails(restaurantID: restaurantID)
+            }
+        )
+    }
+
+    @ViewBuilder private func makeRatingsView() -> some View {
+        Text("Ratings")
+            .font(.title)
+
+        RatingView(stars: $viewModel.starsNumber)
+            .frame(maxWidth: 300)
+    }
+
+    @ViewBuilder private func makeRateExperienceTextField() -> some View {
+        Text("Rate your experience")
+            .font(.title3)
+            .foregroundColor(Color(uiColor: .systemGray))
+            .padding()
+
+        Text("Review")
+            .font(.title)
+            .padding(.top)
+
+        VStack {
+            TextField("Write your experience", text: $viewModel.reviewText, axis: .vertical)
+                .padding()
+
+            Spacer()
+        }
+        .frame(height: 150)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+        )
+        .padding(.horizontal)
+    }
+
+    @ViewBuilder private func makePostReviewButton() -> some View {
+        if viewModel.postReviewState == .isLoading {
+            ProgressView()
+        } else {
+            PostReviewButton(
+                title: "Post",
+                isLoading: viewModel.postReviewState == .isLoading,
+                disabled: !viewModel.postReviewEnabled) {
+                    Task {
+                        await viewModel.postReview()
+                    }
+                }
+            .padding()
         }
     }
 }
