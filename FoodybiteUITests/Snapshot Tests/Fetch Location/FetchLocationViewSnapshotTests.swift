@@ -21,14 +21,22 @@ final class FetchLocationViewSnapshotTests: XCTestCase {
         assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
     }
 
+    func test_locationServicesEnabledAndIsLoadingState() {
+        let sut = makeSUT(state: .isLoading)
+
+        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+    }
+
     // MARK: - Helpers
 
-    private func makeSUT(locationServicesEnabled: Bool) -> some View {
+    private func makeSUT(locationServicesEnabled: Bool = true, state: FetchLocationViewModel.State = .isLoading) -> some View {
         let viewModel = FetchLocationViewModel(
             locationProvider: EmptyLocationProvider(
                 locationServicesEnabled: locationServicesEnabled
             )
         )
+        viewModel.state = state
 
         return FetchLocationView(viewModel: viewModel, username: "Marian") { _ in
             EmptyView()
