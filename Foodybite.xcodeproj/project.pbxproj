@@ -400,8 +400,6 @@
 		0FD2940F29DC100700311714 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53B86C29AB4CFD00DE5E13 /* SharedTestHelpers.swift */; };
 		0FD2941229DC107900311714 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 0FD2941129DC107900311714 /* SnapshotTesting */; };
 		0FD4176C298D610000F2BF92 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41769298D609C00F2BF92 /* LocationProviding.swift */; };
-		0FD41771298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41770298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift */; };
-		0FD41774298D778500F2BF92 /* UserAuthenticatedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD41773298D778500F2BF92 /* UserAuthenticatedViewModel.swift */; };
 		0FDE6C4128FC6CE60080A7FD /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4028FC6CE60080A7FD /* TokenStore.swift */; };
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FE7F80829DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE7F80629DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.light.png */; };
@@ -1094,8 +1092,6 @@
 		0FD41765298D5B1E00F2BF92 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0FD41767298D5B3500F2BF92 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		0FD41769298D609C00F2BF92 /* LocationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviding.swift; sourceTree = "<group>"; };
-		0FD41770298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticatedViewModelTests.swift; sourceTree = "<group>"; };
-		0FD41773298D778500F2BF92 /* UserAuthenticatedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticatedViewModel.swift; sourceTree = "<group>"; };
 		0FD5E72C29AA4E1500C5C984 /* RegisterViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewSnapshotTests.swift; sourceTree = "<group>"; };
 		0FD5E74329AA71B700C5C984 /* LoginViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSnapshotTests.swift; sourceTree = "<group>"; };
 		0FD5E75B29AA7B5100C5C984 /* ReviewViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewSnapshotTests.swift; sourceTree = "<group>"; };
@@ -1585,14 +1581,6 @@
 				0F4AB0F029BB20B5004D338F /* GetReviewsServiceStub.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		0F207C4F29B872F00095E905 /* Navigation Stacks */ = {
-			isa = PBXGroup;
-			children = (
-				0F7E23CF2920E374005196EA /* FlowTests.swift */,
-			);
-			path = "Navigation Stacks";
 			sourceTree = "<group>";
 		};
 		0F207C7029B8C3390095E905 /* Managed Nearby Restaurant */ = {
@@ -2207,7 +2195,6 @@
 				0F207C5229B897910095E905 /* RootFactory.swift */,
 				0F207C5029B897510095E905 /* RootView.swift */,
 				0F207C5629B8B0E30095E905 /* UserAuthenticatedFactory.swift */,
-				0FD41773298D778500F2BF92 /* UserAuthenticatedViewModel.swift */,
 				0F207C5429B8B0AD0095E905 /* UserAuthenticatedView.swift */,
 				0F1C762F29D5D19200D4FC80 /* Extensions */,
 				0F18977429B7A0B20052094F /* Composition Helpers */,
@@ -2356,8 +2343,7 @@
 		0F7E23CE2920E329005196EA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0FD41770298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift */,
-				0F207C4F29B872F00095E905 /* Navigation Stacks */,
+				0F7E23CF2920E374005196EA /* FlowTests.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -4186,7 +4172,6 @@
 				0FD2940E29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift in Sources */,
 				0F4AB0F129BB20B5004D338F /* GetReviewsServiceStub.swift in Sources */,
 				0F7E23D02920E374005196EA /* FlowTests.swift in Sources */,
-				0FD41771298D66F600F2BF92 /* UserAuthenticatedViewModelTests.swift in Sources */,
 				0F61265329C0F26300658A4D /* GetReviewsServiceCacheDecoratorTests.swift in Sources */,
 				0F207BCD29B8671C0095E905 /* NearbyRestaurantsServiceStub.swift in Sources */,
 				0F61265A29C0F81A00658A4D /* GetReviewsServiceWithFallbackCompositeTests.swift in Sources */,
@@ -4485,7 +4470,6 @@
 				0F73EC88292F609B0025B237 /* ProfileFlowView.swift in Sources */,
 				0F5E4935298FD931004162E5 /* TabBarPageView.swift in Sources */,
 				0FC73C5E29B611F5005879B8 /* NullLocalStore.swift in Sources */,
-				0FD41774298D778500F2BF92 /* UserAuthenticatedViewModel.swift in Sources */,
 				0F7137BB2841F8340058757A /* FoodybiteApp.swift in Sources */,
 				0F7E23D32920E861005196EA /* AuthRoute.swift in Sources */,
 			);
