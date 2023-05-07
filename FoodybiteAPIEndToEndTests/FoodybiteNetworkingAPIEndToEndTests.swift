@@ -17,7 +17,6 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
             try await makeSUT().signUp(name: testingName,
                                        email: testingEmail,
                                        password: testingPassword,
-                                       confirmPassword: testingPassword,
                                        profileImage: testingProfileImage)
         })
     }
@@ -29,8 +28,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
     func test_3endToEndChangePassword_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().changePassword(currentPassword: testingPassword,
-                                                            newPassword: testingNewPassword,
-                                                            confirmPassword: testingNewPassword)
+                                                            newPassword: testingNewPassword)
         })
     }
 

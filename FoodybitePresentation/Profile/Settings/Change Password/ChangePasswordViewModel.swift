@@ -52,8 +52,7 @@ public final class ChangePasswordViewModel: ObservableObject {
     @MainActor private func makeRequest() async throws {
         do {
             try await changePasswordService.changePassword(currentPassword: currentPassword,
-                                                           newPassword: newPassword,
-                                                           confirmPassword: confirmPassword)
+                                                           newPassword: newPassword)
             result = .success
         } catch {
             throw ChangePasswordValidator.Error.serverError
