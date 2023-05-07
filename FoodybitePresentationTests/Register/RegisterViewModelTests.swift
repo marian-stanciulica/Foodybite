@@ -121,7 +121,6 @@ final class RegisterViewModelTests: XCTestCase {
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.confirmPassword), [validPassword()])
         XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.profileImage), [anyData()])
     }
 
@@ -231,10 +230,10 @@ final class RegisterViewModelTests: XCTestCase {
 
     private class SignUpServiceSpy: SignUpService {
         var errorToThrow: Error?
-        private(set) var capturedValues = [(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?)]()
+        private(set) var capturedValues = [(name: String, email: String, password: String, profileImage: Data?)]()
 
-        func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {
-            capturedValues.append((name, email, password, confirmPassword, profileImage))
+        func signUp(name: String, email: String, password: String, profileImage: Data?) async throws {
+            capturedValues.append((name, email, password, profileImage))
 
             if let errorToThrow = errorToThrow {
                 throw errorToThrow

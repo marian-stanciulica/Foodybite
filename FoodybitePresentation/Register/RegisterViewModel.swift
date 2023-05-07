@@ -57,7 +57,6 @@ public class RegisterViewModel: ObservableObject {
             try await signUpService.signUp(name: name,
                                            email: email,
                                            password: password,
-                                           confirmPassword: confirmPassword,
                                            profileImage: profileImage)
             registerResult = .success
             resetInputs()

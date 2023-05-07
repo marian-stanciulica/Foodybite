@@ -25,7 +25,6 @@ extension APIServiceTests {
             name: anyName(),
             email: anyEmail(),
             password: password,
-            confirmPassword: password,
             profileImage: anyData()
         )
 
@@ -34,17 +33,16 @@ extension APIServiceTests {
             urlRequest: sender.requests[0],
             path: "/auth/signup",
             method: .post,
-            body: makeSignUpRequestBody(password: hashedPassword, confirmPassword: hashedPassword))
+            body: makeSignUpRequestBody(password: hashedPassword))
     }
 
     // MARK: - Helpers
 
-    private func makeSignUpRequestBody(password: String, confirmPassword: String) -> SignUpRequestBody {
+    private func makeSignUpRequestBody(password: String) -> SignUpRequestBody {
         SignUpRequestBody(
             name: anyName(),
             email: anyEmail(),
             password: password,
-            confirmPassword: confirmPassword,
             profileImage: anyData()
         )
     }

@@ -67,6 +67,6 @@ final class RegisterViewSnapshotTests: XCTestCase {
     }
 
     private class EmptySignUpService: SignUpService {
-        func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws {}
+        func signUp(name: String, email: String, password: String, profileImage: Data?) async throws {}
     }
 }

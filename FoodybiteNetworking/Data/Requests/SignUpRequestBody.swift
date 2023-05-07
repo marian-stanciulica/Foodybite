@@ -11,14 +11,12 @@ struct SignUpRequestBody: Encodable, Equatable {
     let name: String
     let email: String
     let password: String
-    let confirmPassword: String
     let profileImage: Data?
 
     enum CodingKeys: String, CodingKey {
         case name
         case email
         case password
-        case confirmPassword = "confirm_password"
         case profileImage = "profile_image"
     }
 }
