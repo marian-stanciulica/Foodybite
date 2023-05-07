@@ -25,13 +25,9 @@ extension APIServiceTests {
         let newPassword = anyPassword()
         let hashedNewPassword = hash(password: newPassword)
 
-        let confirmPassword = anyPassword()
-        let hashedConfirmPassword = hash(password: confirmPassword)
-
         try await sut.changePassword(
             currentPassword: currentPassword,
-            newPassword: newPassword,
-            confirmPassword: confirmPassword
+            newPassword: newPassword
         )
 
         XCTAssertEqual(sender.requests.count, 1)
@@ -41,19 +37,17 @@ extension APIServiceTests {
             method: .post,
             body: makeChangePasswordRequestBody(
                 currentPassword: hashedCurrentPassword,
-                newPassword: hashedNewPassword,
-                confirmPassword: hashedConfirmPassword
+                newPassword: hashedNewPassword
             )
         )
     }
 
     // MARK: - Helpers
 
-    private func makeChangePasswordRequestBody(currentPassword: String, newPassword: String, confirmPassword: String) -> ChangePasswordRequestBody {
+    private func makeChangePasswordRequestBody(currentPassword: String, newPassword: String) -> ChangePasswordRequestBody {
         ChangePasswordRequestBody(
             currentPassword: currentPassword,
-            newPassword: newPassword,
-            confirmPassword: confirmPassword
+            newPassword: newPassword
         )
     }
 }

@@ -103,7 +103,6 @@ final class ChangePasswordViewModelTests: XCTestCase {
 
         XCTAssertEqual(serviceSpy.capturedValues.map(\.currentPassword), [firstCurrentPassword])
         XCTAssertEqual(serviceSpy.capturedValues.map(\.newPassword), [firstNewPassword])
-        XCTAssertEqual(serviceSpy.capturedValues.map(\.confirmPassword), [firstNewPassword])
 
         let secondCurrentPassword = validPassword()
         let secondNewPassword = validPassword()
@@ -116,7 +115,6 @@ final class ChangePasswordViewModelTests: XCTestCase {
 
         XCTAssertEqual(serviceSpy.capturedValues.map(\.currentPassword), [firstCurrentPassword, secondCurrentPassword])
         XCTAssertEqual(serviceSpy.capturedValues.map(\.newPassword), [firstNewPassword, secondNewPassword])
-        XCTAssertEqual(serviceSpy.capturedValues.map(\.confirmPassword), [firstNewPassword, secondNewPassword])
     }
 
     func test_changePassword_throwsErrorWhenChangePasswordServiceThrowsError() async {
@@ -196,10 +194,10 @@ final class ChangePasswordViewModelTests: XCTestCase {
 
     private class ChangePasswordServiceSpy: ChangePasswordService {
         var errorToThrow: Error?
-        private(set) var capturedValues = [(currentPassword: String, newPassword: String, confirmPassword: String)]()
+        private(set) var capturedValues = [(currentPassword: String, newPassword: String)]()
 
-        func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws {
-            capturedValues.append((currentPassword, newPassword, confirmPassword))
+        func changePassword(currentPassword: String, newPassword: String) async throws {
+            capturedValues.append((currentPassword, newPassword))
 
             if let errorToThrow = errorToThrow {
                 throw errorToThrow

@@ -8,5 +8,4 @@
 struct ChangePasswordRequestBody: Encodable, Equatable {
     let currentPassword: String
     let newPassword: String
-    let confirmPassword: String
 }

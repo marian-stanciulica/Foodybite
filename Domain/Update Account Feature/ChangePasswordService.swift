@@ -6,5 +6,5 @@
 //
 
 public protocol ChangePasswordService {
-    func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws
+    func changePassword(currentPassword: String, newPassword: String) async throws
 }

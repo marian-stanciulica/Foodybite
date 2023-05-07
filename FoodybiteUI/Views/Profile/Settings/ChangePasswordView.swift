@@ -82,8 +82,6 @@ struct ChangePassword_Previews: PreviewProvider {
     }
 
     private class PreviewChangePasswordService: ChangePasswordService {
-        func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws {
-
-        }
+        func changePassword(currentPassword: String, newPassword: String) async throws { }
     }
 }
