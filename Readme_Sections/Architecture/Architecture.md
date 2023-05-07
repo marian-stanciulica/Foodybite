@@ -48,7 +48,7 @@ public struct User: Equatable {
 
 ```swift
 public protocol SignUpService {
-    func signUp(name: String, email: String, password: String, confirmPassword: String, profileImage: Data?) async throws
+    func signUp(name: String, email: String, password: String, profileImage: Data?) async throws
 }
 
 public protocol LoginService {
@@ -69,7 +69,7 @@ public protocol AccountService {
 }
 
 public protocol ChangePasswordService {
-    func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) async throws
+    func changePassword(currentPassword: String, newPassword: String) async throws
 }
 ```
 
