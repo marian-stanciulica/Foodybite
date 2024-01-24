@@ -15,15 +15,13 @@ final class TabBarPageViewSnapshotTests: XCTestCase {
     func test_tabBarPageViewWithFocusOnHomeTab() {
         let sut = makeSUT(page: .home)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_tabBarPageViewWithFocusOnNewReviewTab() {
         let sut = makeSUT(page: .newReview, plusButtonActive: true)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

@@ -44,7 +44,7 @@ final class LocationProviderTests: XCTestCase {
         }
 
         task.cancel()
-        await waitForExpectations(timeout: 1.0)
+        await fulfillment(of: [exp], timeout: 1.0)
 
         XCTAssertEqual(locationManagerSpy.requestLocationCallCount, 1)
     }
