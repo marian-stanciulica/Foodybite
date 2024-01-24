@@ -45,6 +45,7 @@ final class APIServiceTests: XCTestCase {
         if let body = body {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
+            encoder.outputFormatting = .sortedKeys
 
             if let bodyData = try? encoder.encode(body) {
                 XCTAssertEqual(urlRequest.httpBody, bodyData, "HTTP Body is not correct", file: file, line: line)

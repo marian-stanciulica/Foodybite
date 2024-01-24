@@ -30,6 +30,7 @@ public extension Endpoint {
         if let encodable = body {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
+            encoder.outputFormatting = .sortedKeys
             urlRequest.httpBody = try? encoder.encode(encodable)
         }
 
