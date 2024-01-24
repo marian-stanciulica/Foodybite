@@ -16,8 +16,7 @@ final class ChangePasswordViewSnapshotTests: XCTestCase {
     func test_changePasswordViewIdleState() {
         let sut = makeSUT(state: .idle)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_changePasswordViewIsLoadingState() {
@@ -26,22 +25,19 @@ final class ChangePasswordViewSnapshotTests: XCTestCase {
                           confirmPassword: "12345678",
                           state: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_changePasswordViewFailureState() {
         let sut = makeSUT(state: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_changePasswordViewSuccessState() {
         let sut = makeSUT(state: .success)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

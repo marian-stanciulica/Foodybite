@@ -16,8 +16,7 @@ final class LoginViewSnapshotTests: XCTestCase {
     func test_loginViewIdleState() {
         let sut = makeSUT(state: .idle)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_loginViewIsLoadingState() {
@@ -25,15 +24,13 @@ final class LoginViewSnapshotTests: XCTestCase {
                           password: "12345678",
                           state: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_loginViewFailureState() {
         let sut = makeSUT(state: .failure(.serverError))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

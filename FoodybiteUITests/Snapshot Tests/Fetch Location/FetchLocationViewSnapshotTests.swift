@@ -17,29 +17,25 @@ final class FetchLocationViewSnapshotTests: XCTestCase {
     func test_locationServicesDisabledState() {
         let sut = makeSUT(locationServicesEnabled: false)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_locationServicesEnabledAndIsLoadingState() {
         let sut = makeSUT(state: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_locationServicesEnabledAndFailureState() {
         let sut = makeSUT(state: .failure(.unauthorized))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_locationServicesEnabledAndSuccessState() {
         let sut = makeSUT(state: .success(Location(latitude: 3.4, longitude: 7.6)))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

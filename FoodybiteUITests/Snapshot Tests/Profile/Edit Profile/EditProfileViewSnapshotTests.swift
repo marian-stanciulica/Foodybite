@@ -16,8 +16,7 @@ final class EditProfileViewSnapshotTests: XCTestCase {
     func test_editProfileViewIdleState() {
         let sut = makeSUT(state: .idle)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_editProfileViewIsLoadingState() {
@@ -26,22 +25,19 @@ final class EditProfileViewSnapshotTests: XCTestCase {
                           profileImage: UIImage.make(withColor: .red).pngData(),
                           state: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_editProfileViewFailureState() {
         let sut = makeSUT(state: .failure(.invalidEmail))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_editProfileViewSuccessState() {
         let sut = makeSUT(state: .success)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

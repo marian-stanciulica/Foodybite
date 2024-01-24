@@ -16,8 +16,7 @@ final class SearchCriteriaViewSnapshotTests: XCTestCase {
     func test_searchCriteriaView() {
         let sut = makeSUT(radius: 20, starsNumber: 4)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

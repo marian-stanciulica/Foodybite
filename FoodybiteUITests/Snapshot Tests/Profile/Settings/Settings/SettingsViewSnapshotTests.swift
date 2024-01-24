@@ -16,8 +16,7 @@ final class SettingsViewSnapshotTests: XCTestCase {
     func test_settingsViewIdleState() {
         let sut = makeSUT()
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

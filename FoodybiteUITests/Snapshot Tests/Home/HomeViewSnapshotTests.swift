@@ -16,45 +16,39 @@ final class HomeViewSnapshotTests: XCTestCase {
     func test_homeViewIdleState() {
         let sut = makeSUT(getNearbyRestaurantsState: .idle)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_homeViewLoadingState() {
         let sut = makeSUT(getNearbyRestaurantsState: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_homeViewFailureState() {
         let sut = makeSUT(getNearbyRestaurantsState: .failure(.serverError))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_homeViewSuccessState() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .failure)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .success(makePhotoData()))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_homeViewWhenSearchTextIsNotEmpty() {
@@ -63,8 +57,7 @@ final class HomeViewSnapshotTests: XCTestCase {
                           getNearbyRestaurantsState: .success(nearbyRestaurants),
                           fetchPhotoState: .success(makePhotoData()))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers

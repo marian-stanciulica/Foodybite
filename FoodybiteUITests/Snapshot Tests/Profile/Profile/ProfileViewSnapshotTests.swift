@@ -17,32 +17,28 @@ final class ProfileViewSnapshotTests: XCTestCase {
         let sut = makeSUT(user: makeUserWithoutProfileImage(),
                           getReviewsState: .idle)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .idle)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsIsLoading() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .failure(.serverError))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsIsLoading() {
@@ -50,8 +46,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsFailure() {
@@ -59,8 +54,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .failure(.serverError))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccess() {
@@ -69,8 +63,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .isLoading)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
@@ -79,8 +72,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
@@ -89,8 +81,7 @@ final class ProfileViewSnapshotTests: XCTestCase {
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
 
-        assertLightSnapshot(matching: sut, as: .image(on: .iPhone13))
-        assertDarkSnapshot(matching: sut, as: .image(on: .iPhone13))
+        assertLightAndDarkSnapshot(matching: sut)
     }
 
     // MARK: - Helpers
