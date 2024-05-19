@@ -44,11 +44,14 @@ struct ProfileImage: View {
             .frame(width: 180, height: 180)
         }
         .onChange(of: selectedItem) { newItem in
-            Task {
-                if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                    selectedImageData = data
+            newItem?.loadTransferable(type: Data.self, completionHandler: { result in
+                switch result {
+                case .success(let success):
+                    selectedImageData = success
+                default:
+                    break
                 }
-            }
+            })
         }
     }
 }

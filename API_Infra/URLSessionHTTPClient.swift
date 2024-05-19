@@ -9,7 +9,7 @@ import Foundation
 import FoodybiteNetworking
 import FoodybitePlaces
 
-public class URLSessionHTTPClient: FoodybitePlaces.HTTPClient, FoodybiteNetworking.HTTPClient {
+public final class URLSessionHTTPClient: FoodybitePlaces.HTTPClient, FoodybiteNetworking.HTTPClient {
     private let session: URLSession
 
     public init(session: URLSession = URLSession.shared) {

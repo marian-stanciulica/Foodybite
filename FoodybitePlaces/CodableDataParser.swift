@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CodableDataParser {
+final class CodableDataParser: Sendable {
     private let jsonDecoder = JSONDecoder()
 
     func decode<T: Decodable>(data: Data) throws -> T {

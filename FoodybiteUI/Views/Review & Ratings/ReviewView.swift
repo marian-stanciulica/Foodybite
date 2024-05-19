@@ -79,7 +79,7 @@ struct ReviewView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewReviewService: AddReviewService {
+    private final class PreviewReviewService: AddReviewService {
         func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {}
     }
 }

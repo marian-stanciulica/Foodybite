@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol AccountService {
+public protocol AccountService: Sendable {
     func updateAccount(name: String, email: String, profileImage: Data?) async throws
     func deleteAccount() async throws
 }

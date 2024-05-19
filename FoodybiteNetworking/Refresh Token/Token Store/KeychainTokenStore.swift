@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KeychainTokenStore: TokenStore {
+public final class KeychainTokenStore: TokenStore {
     private let service: String
     private let account: String
     private let codableDataParser = CodableDataParser()

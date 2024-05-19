@@ -179,12 +179,12 @@ struct ProfileView_Previews: PreviewProvider {
         )
     }
 
-    private class PreviewAccountService: AccountService {
+    private final class PreviewAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
     }
 
-    private class PreviewGetReviewsService: GetReviewsService {
+    private final class PreviewGetReviewsService: GetReviewsService {
         func getReviews(restaurantID: String?) async throws -> [Review] {
             [
                 Review(
@@ -200,7 +200,7 @@ struct ProfileView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewRestaurantDetailsService: RestaurantDetailsService {
+    private final class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 id: "place #1",
@@ -218,7 +218,7 @@ struct ProfileView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+    private final class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test", in: .current, with: nil)!.pngData()!
         }

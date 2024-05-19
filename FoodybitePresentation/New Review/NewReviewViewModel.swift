@@ -65,7 +65,8 @@ public final class NewReviewViewModel: ObservableObject {
         self.userPreferences = userPreferences
     }
 
-    @MainActor public func autocomplete() async {
+    @MainActor
+    public func autocomplete() async {
         getRestaurantDetailsState = .idle
 
         do {
@@ -77,7 +78,8 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
 
-    @MainActor public func getRestaurantDetails(restaurantID: String) async {
+    @MainActor
+    public func getRestaurantDetails(restaurantID: String) async {
         getRestaurantDetailsState = .isLoading
 
         do {
@@ -88,7 +90,8 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
 
-    @MainActor public func postReview() async {
+    @MainActor
+    public func postReview() async {
         guard postReviewEnabled else { return }
         postReviewState = .isLoading
 
@@ -107,7 +110,7 @@ public final class NewReviewViewModel: ObservableObject {
         }
     }
 
-    @MainActor private func resetState() {
+    private func resetState() {
         postReviewState = .idle
         getRestaurantDetailsState = .idle
         reviewText = ""

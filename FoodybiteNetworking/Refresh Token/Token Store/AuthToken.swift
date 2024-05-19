@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
-public struct AuthToken: Codable, Equatable {
+public struct AuthToken: Codable, Equatable, Sendable {
     public let accessToken: String
     public let refreshToken: String
 

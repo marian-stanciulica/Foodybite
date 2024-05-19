@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Location: Equatable, Hashable {
+public struct Location: Equatable, Hashable, Sendable {
     public let latitude: Double
     public let longitude: Double
 

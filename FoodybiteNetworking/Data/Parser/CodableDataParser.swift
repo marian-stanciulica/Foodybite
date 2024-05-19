@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CodableDataParser {
+final class CodableDataParser: Sendable {
     private let jsonDecoder = JSONDecoder()
     private let jsonEncoder = JSONEncoder()
 

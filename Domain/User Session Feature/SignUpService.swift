@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol SignUpService {
+public protocol SignUpService: Sendable {
     func signUp(name: String, email: String, password: String, profileImage: Data?) async throws
 }

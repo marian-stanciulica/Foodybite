@@ -9,9 +9,9 @@ import Domain
 
 public final class NearbyRestaurantsDAO: NearbyRestaurantsService, NearbyRestaurantsCache {
     private let store: LocalStore
-    private let getDistanceInKm: (Location, Location) -> Double
+    private let getDistanceInKm: @Sendable (Location, Location) -> Double
 
-    public init(store: LocalStore, getDistanceInKm: @escaping (Location, Location) -> Double) {
+    public init(store: LocalStore, getDistanceInKm: @Sendable @escaping (Location, Location) -> Double) {
         self.store = store
         self.getDistanceInKm = getDistanceInKm
     }

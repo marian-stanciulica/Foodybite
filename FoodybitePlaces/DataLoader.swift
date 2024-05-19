@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol DataLoader {
+public protocol DataLoader: Sendable {
     func getData(for urlRequest: URLRequest) async throws -> Data
 }

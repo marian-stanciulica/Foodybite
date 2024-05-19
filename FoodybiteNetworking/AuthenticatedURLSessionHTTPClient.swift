@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AuthenticatedURLSessionHTTPClient: HTTPClient {
+public final class AuthenticatedURLSessionHTTPClient: HTTPClient {
     private let decoratee: HTTPClient
     private let tokenRefresher: TokenRefresher
 

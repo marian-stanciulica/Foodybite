@@ -6,9 +6,9 @@
 //
 
 import Domain
-import CoreData
+@preconcurrency import CoreData
 
-public class CoreDataLocalStore: LocalStore {
+public final class CoreDataLocalStore: LocalStore {
     private let context: NSManagedObjectContext
 
     private struct CacheMissError: Error {}

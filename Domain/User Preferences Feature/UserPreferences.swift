@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
-public struct UserPreferences: Equatable {
+public struct UserPreferences: Equatable, Sendable {
     public let radius: Int
     public let starsNumber: Int
 

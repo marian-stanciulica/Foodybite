@@ -67,7 +67,7 @@ struct SeetingsView_Previews: PreviewProvider {
         )
     }
 
-    private class PreviewLogoutService: LogoutService {
+    private final class PreviewLogoutService: LogoutService {
         func logout() async throws {}
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public class APIService {
+public final class APIService {
     private let loader: ResourceLoader
     private let sender: ResourceSender
     private let tokenStore: TokenStore

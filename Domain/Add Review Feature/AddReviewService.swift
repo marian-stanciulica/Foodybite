@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol AddReviewService {
+public protocol AddReviewService: Sendable {
     func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws
 }

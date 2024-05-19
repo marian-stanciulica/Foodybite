@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 10.02.2023.
 //
 
-public struct AutocompletePrediction: Hashable {
+public struct AutocompletePrediction: Hashable, Sendable {
     public let restaurantPrediction: String
     public let restaurantID: String
 

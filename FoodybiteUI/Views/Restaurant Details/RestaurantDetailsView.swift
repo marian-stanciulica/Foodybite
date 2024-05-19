@@ -145,7 +145,7 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewNearbyRestaurantsService: RestaurantDetailsService {
+    private final class PreviewNearbyRestaurantsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 id: "place #1",
@@ -196,13 +196,13 @@ struct RestaurantDetailsView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+    private final class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test", in: .current, with: nil)!.pngData()!
         }
     }
 
-    private class PreviewGetReviewsService: GetReviewsService {
+    private final class PreviewGetReviewsService: GetReviewsService {
         func getReviews(restaurantID: String?) async throws -> [Review] {
             []
         }

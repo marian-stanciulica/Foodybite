@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public class PlacesService {
+public final class PlacesService {
     private let loader: ResourceLoader & DataLoader
     private struct StatusError: Error {}
 

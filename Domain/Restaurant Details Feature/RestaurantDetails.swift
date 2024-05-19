@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct RestaurantDetails: Equatable, Hashable {
+public struct RestaurantDetails: Equatable, Hashable, Sendable {
     public let id: String
     public let phoneNumber: String?
     public let name: String

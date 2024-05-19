@@ -139,7 +139,7 @@ struct NewReviewView_Previews: PreviewProvider {
         )
     }
 
-    private class PreviewAutocompletePlacesService: AutocompleteRestaurantsService {
+    private final class PreviewAutocompletePlacesService: AutocompleteRestaurantsService {
         func autocomplete(input: String, location: Location, radius: Int) async throws -> [AutocompletePrediction] {
             let predictions = [
                 AutocompletePrediction(restaurantPrediction: "Prediction 1", restaurantID: "place #1"),
@@ -150,7 +150,7 @@ struct NewReviewView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewRestaurantDetailsService: RestaurantDetailsService {
+    private final class PreviewRestaurantDetailsService: RestaurantDetailsService {
         func getRestaurantDetails(restaurantID: String) async throws -> RestaurantDetails {
             RestaurantDetails(
                 id: "place #1",
@@ -168,13 +168,13 @@ struct NewReviewView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+    private final class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test", in: .current, with: nil)!.pngData()!
         }
     }
 
-    private class PreviewAddReviewService: AddReviewService {
+    private final class PreviewAddReviewService: AddReviewService {
         func addReview(restaurantID: String, reviewText: String, starsNumber: Int, createdAt: Date) async throws {
 
         }

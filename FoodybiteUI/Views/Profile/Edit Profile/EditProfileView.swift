@@ -84,7 +84,7 @@ struct EditProfileView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewAccountService: AccountService {
+    private final class PreviewAccountService: AccountService {
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {}
         func deleteAccount() async throws {}
     }

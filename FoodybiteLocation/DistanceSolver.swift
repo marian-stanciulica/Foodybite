@@ -10,7 +10,7 @@ import CoreLocation
 
 public final class DistanceSolver {
 
-    public static func getDistanceInKm(from source: Location, to destination: Location) -> Double {
+    @Sendable public static func getDistanceInKm(from source: Location, to destination: Location) -> Double {
         let source = CLLocation(latitude: source.latitude, longitude: source.longitude)
         let destination = CLLocation(latitude: destination.latitude, longitude: destination.longitude)
 

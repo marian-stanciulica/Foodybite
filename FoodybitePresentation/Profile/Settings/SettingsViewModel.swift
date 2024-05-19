@@ -17,16 +17,13 @@ public final class SettingsViewModel {
         self.goToLogin = goToLogin
     }
 
+    @MainActor
     public func logout() async {
         do {
             try await logoutService.logout()
-            await goToLoginScreen()
-        } catch {
-            await goToLoginScreen()
-        }
-    }
+        } catch {}
 
-    @MainActor private func goToLoginScreen() {
         goToLogin()
     }
+
 }

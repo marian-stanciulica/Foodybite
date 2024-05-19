@@ -12,7 +12,7 @@ import FoodybiteUI
 
 struct AuthFlowView {
 
-    @ViewBuilder static func makeLoginView(
+    @MainActor @ViewBuilder static func makeLoginView(
         flow: Flow<AuthRoute>,
         loginService: LoginService,
         goToMainTab: @escaping (User) -> Void

@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol RestaurantPhotoService {
+public protocol RestaurantPhotoService: Sendable {
     func fetchPhoto(photoReference: String) async throws -> Data
 }

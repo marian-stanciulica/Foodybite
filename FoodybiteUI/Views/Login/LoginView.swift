@@ -99,7 +99,7 @@ struct LoginView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewLoginService: LoginService {
+    private final class PreviewLoginService: LoginService {
         func login(email: String, password: String) async throws -> User {
             throw LoginViewModel.LoginError.serverError
         }

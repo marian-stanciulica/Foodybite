@@ -99,7 +99,7 @@ struct HomeView_Previews: PreviewProvider {
         )
     }
 
-    private class PreviewNearbyRestaurantsService: NearbyRestaurantsService {
+    private final class PreviewNearbyRestaurantsService: NearbyRestaurantsService {
         func searchNearby(location: Location, radius: Int) async throws -> [NearbyRestaurant] {
             [
                 NearbyRestaurant(
@@ -130,7 +130,7 @@ struct HomeView_Previews: PreviewProvider {
         }
     }
 
-    private class PreviewFetchPlacePhotoService: RestaurantPhotoService {
+    private final class PreviewFetchPlacePhotoService: RestaurantPhotoService {
         func fetchPhoto(photoReference: String) async throws -> Data {
             UIImage(named: "restaurant_logo_test", in: .current, with: nil)!.pngData()!
         }

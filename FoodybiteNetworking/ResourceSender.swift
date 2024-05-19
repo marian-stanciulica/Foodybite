@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol ResourceSender {
+public protocol ResourceSender: Sendable {
     func post(to urlRequest: URLRequest) async throws
 }

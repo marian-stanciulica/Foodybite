@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public final class UserDAO {
+public final class UserDAO: Sendable {
     private let store: LocalStore
 
     private struct UserNotFound: Error {}

@@ -5,7 +5,7 @@
 //  Created by Marian Stanciulica on 02.01.2023.
 //
 
-public struct NearbyRestaurant: Equatable {
+public struct NearbyRestaurant: Equatable, Sendable {
     public let id: String
     public let name: String
     public let isOpen: Bool
