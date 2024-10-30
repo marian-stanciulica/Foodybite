@@ -5,33 +5,34 @@
 //  Created by Marian Stanciulica on 20.10.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSURLRequest
 @testable import FoodybiteNetworking
 
-final class RefreshTokenServiceTests: XCTestCase {
+struct RefreshTokenServiceTests {
 
-    func test_conformsToTokenRefresher() {
+    @Test func conformsToTokenRefresher() {
         let (sut, _, _) = makeSUT()
-        XCTAssertNotNil(sut as TokenRefresher)
+        #expect(sut as TokenRefresher != nil)
     }
 
-    func test_getLocalToken_returnsAuthTokenFromTokenStore() throws {
+    @Test func getLocalToken_returnsAuthTokenFromTokenStore() throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
         let receivedToken = try tokenStoreStub.read()
         let expectedToken = try sut.getLocalToken()
 
-        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
-        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+        #expect(expectedToken.accessToken == receivedToken.accessToken)
+        #expect(expectedToken.refreshToken == receivedToken.refreshToken)
     }
 
-    func test_fetchLocallyRemoteToken_usesRefreshTokenEndpointToCreateURLRequest() async throws {
+    @Test func fetchLocallyRemoteToken_usesRefreshTokenEndpointToCreateURLRequest() async throws {
         let (sut, loaderSpy, tokenStoreStub) = makeSUT()
         let authToken = try tokenStoreStub.read()
 
         try await sut.fetchLocallyRemoteToken()
 
-        XCTAssertEqual(loaderSpy.requests.count, 1)
+        #expect(loaderSpy.requests.count == 1)
         assertURLComponents(
             urlRequest: loaderSpy.requests[0],
             path: "/auth/accessToken",
@@ -39,42 +40,42 @@ final class RefreshTokenServiceTests: XCTestCase {
             body: RefreshTokenRequestBody(refreshToken: authToken.refreshToken))
     }
 
-    func test_fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
+    @Test func fetchLocallyRemoteToken_makesRefreshTokenRequestOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, loaderSpy, _) = makeSUT(authToken: makeRemoteAuthToken())
 
         await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
 
-        XCTAssertEqual(loaderSpy.requests.count, 1)
+        #expect(loaderSpy.requests.count == 1)
     }
 
-    func test_fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
+    @Test func fetchLocallyRemoteToken_receiveExpectedAuthTokenResponse() async throws {
         let expectedAuthToken = makeRemoteAuthToken()
         let (sut, _, _) = makeSUT(authToken: expectedAuthToken)
 
         try await sut.fetchLocallyRemoteToken()
         let receivedResponse = try sut.getLocalToken()
 
-        XCTAssertEqual(expectedAuthToken.accessToken, receivedResponse.accessToken)
-        XCTAssertEqual(expectedAuthToken.refreshToken, receivedResponse.refreshToken)
+        #expect(expectedAuthToken.accessToken == receivedResponse.accessToken)
+        #expect(expectedAuthToken.refreshToken == receivedResponse.refreshToken)
     }
 
-    func test_fetchLocallyRemoteToken_storesAuthTokenInTokenStore() async throws {
+    @Test func fetchLocallyRemoteToken_storesAuthTokenInTokenStore() async throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
         try await sut.fetchLocallyRemoteToken()
         let expectedToken = try sut.getLocalToken()
         let receivedToken = try tokenStoreStub.read()
 
-        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
-        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+        #expect(expectedToken.accessToken == receivedToken.accessToken)
+        #expect(expectedToken.refreshToken == receivedToken.refreshToken)
     }
 
-    func test_fetchLocallyRemoteToken_storesAuthTokenOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
+    @Test func fetchLocallyRemoteToken_storesAuthTokenOnlyOnceWhenCalledMultipleTimesInParallel() async throws {
         let (sut, _, tokenStoreStub) = makeSUT()
 
         await requestRemoteAuthTokenInParallel(on: sut, numberOfRequests: 10)
 
-        XCTAssertEqual(tokenStoreStub.writeCount, 1)
+        #expect(tokenStoreStub.writeCount == 1)
     }
 
     // MARK: - Helpers
@@ -94,29 +95,28 @@ final class RefreshTokenServiceTests: XCTestCase {
         path: String,
         method: FoodybiteNetworking.RequestMethod,
         body: Encodable? = nil,
-        file: StaticString = #filePath,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) {
         let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
 
-        XCTAssertEqual(urlComponents?.scheme, "http", file: file, line: line)
-        XCTAssertEqual(urlComponents?.port, 8080, file: file, line: line)
-        XCTAssertEqual(urlComponents?.host, "localhost", file: file, line: line)
-        XCTAssertEqual(urlComponents?.path, path, file: file, line: line)
-        XCTAssertNil(urlComponents?.queryItems, file: file, line: line)
-        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, file: file, line: line)
+        #expect(urlComponents?.scheme == "http", sourceLocation: sourceLocation)
+        #expect(urlComponents?.port == 8080, sourceLocation: sourceLocation)
+        #expect(urlComponents?.host == "localhost", sourceLocation: sourceLocation)
+        #expect(urlComponents?.path == path, sourceLocation: sourceLocation)
+        #expect(urlComponents?.queryItems == nil, sourceLocation: sourceLocation)
+        #expect(urlRequest.httpMethod == method.rawValue, sourceLocation: sourceLocation)
 
         if let body = body {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
 
             if let bodyData = try? encoder.encode(body) {
-                XCTAssertEqual(urlRequest.httpBody, bodyData, "HTTP Body is not correct", file: file, line: line)
+                #expect(urlRequest.httpBody == bodyData, "HTTP Body is not correct", sourceLocation: sourceLocation)
             } else {
-                XCTFail("Couldn't encode the body", file: file, line: line)
+                Issue.record("Couldn't encode the body", sourceLocation: sourceLocation)
             }
         } else if let httpBody = urlRequest.httpBody {
-            XCTFail("Body expected to be nil, got \(httpBody) instead")
+            Issue.record("Body expected to be nil, got \(httpBody) instead")
         }
     }
 

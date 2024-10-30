@@ -5,18 +5,18 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
 @testable import FoodybiteNetworking
 import Domain
 
 extension APIServiceTests {
 
-    func test_conformsToSignUpService() {
+    @Test func conformsToSignUpService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as SignUpService)
+        #expect(sut as SignUpService != nil)
     }
 
-    func test_signUp_usesSignUpEndpointToCreateURLRequest() async throws {
+    @Test func signUp_usesSignUpEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
         let password = anyPassword()
         let hashedPassword = hash(password: password)
@@ -28,7 +28,7 @@ extension APIServiceTests {
             profileImage: anyData()
         )
 
-        XCTAssertEqual(sender.requests.count, 1)
+        #expect(sender.requests.count == 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
             path: "/auth/signup",

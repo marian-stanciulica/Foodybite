@@ -5,42 +5,44 @@
 //  Created by Marian Stanciulica on 13.10.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
+import Foundation.NSData
 import FoodybiteNetworking
 
-final class RemoteStoreTests: XCTestCase {
+struct RemoteStoreTests {
 
-    func test_init_noRequestTriggered() {
+    @Test func init_noRequestTriggered() {
         let (_, client) = makeSUT()
 
-        XCTAssertEqual(client.urlRequests, [])
+        #expect(client.urlRequests.isEmpty)
     }
 
-    func test_get_requestDataForEndpoint() async {
+    @Test func get_requestDataForEndpoint() async {
         let urlRequest = anyUrlRequest()
         let (sut, client) = makeSUT()
 
         let _: [CodableMock]? = try? await sut.get(for: urlRequest)
 
-        XCTAssertEqual(client.urlRequests, [urlRequest])
+        #expect(client.urlRequests == [urlRequest])
     }
 
-    func test_get_requestsDataForEndpointTwice() async {
+    @Test func get_requestsDataForEndpointTwice() async {
         let urlRequest = anyUrlRequest()
         let (sut, client) = makeSUT()
 
         let _: [CodableMock]? = try? await sut.get(for: urlRequest)
         let _: [CodableMock]? = try? await sut.get(for: urlRequest)
 
-        XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
+        #expect(client.urlRequests == [urlRequest, urlRequest])
     }
 
-    func test_get_throwErrorOnClientError() async {
+    @Test func get_throwErrorOnClientError() async {
         await expectGet(forClientResult: .failure(anyError()),
                expected: .failure(.connectivity))
     }
 
-    func test_get_throwErrorOnNon2xxStatusCodeResponse() async {
+    @Test func get_throwErrorOnNon2xxStatusCodeResponse() async {
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 150))),
                      expected: .failure(.invalidRequest))
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 199))),
@@ -55,50 +57,50 @@ final class RemoteStoreTests: XCTestCase {
                      expected: .failure(.invalidRequest))
     }
 
-    func test_get_throwErrorOn2xxStatusCodeWithInvalidJSON() async {
+    @Test func get_throwErrorOn2xxStatusCodeWithInvalidJSON() async {
         await expectGet(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse())),
                expected: .failure(.invalidData))
     }
 
-    func test_get_returnsEmptyArrayOn2xxStatusWithEmptyJSONList() async {
+    @Test func get_returnsEmptyArrayOn2xxStatusWithEmptyJSONList() async {
         let emptyArrayData = "{\"mocks\":[]}".data(using: .utf8)!
 
         await expectGet(forClientResult: .success((data: emptyArrayData, response: anyHttpUrlResponse())),
                expected: .success([]))
     }
 
-    func test_get_returnsMocksArrayOn2xxStatusWithValidMocksJSONList() async throws {
+    @Test func get_returnsMocksArrayOn2xxStatusWithValidMocksJSONList() async throws {
         let anyMocks = try anyMocks()
 
         await expectGet(forClientResult: .success((data: anyMocks.data, response: anyHttpUrlResponse())),
                expected: .success(anyMocks.container.mocks))
     }
 
-    func test_post_requestDataForEndpoint() async {
+    @Test func post_requestDataForEndpoint() async {
         let urlRequest = anyUrlRequest()
         let (sut, client) = makeSUT()
 
         try? await sut.post(to: urlRequest)
 
-        XCTAssertEqual(client.urlRequests, [urlRequest])
+        #expect(client.urlRequests == [urlRequest])
     }
 
-    func test_post_requestsDataForEndpointTwice() async {
+    @Test func post_requestsDataForEndpointTwice() async {
         let urlRequest = anyUrlRequest()
         let (sut, client) = makeSUT()
 
         try? await sut.post(to: urlRequest)
         try? await sut.post(to: urlRequest)
 
-        XCTAssertEqual(client.urlRequests, [urlRequest, urlRequest])
+        #expect(client.urlRequests == [urlRequest, urlRequest])
     }
 
-    func test_post_throwErrorOnClientError() async {
+    @Test func post_throwErrorOnClientError() async {
         await expectPost(forClientResult: .failure(anyError()),
                          expectedError: .connectivity)
     }
 
-    func test_post_throwErrorOnNon2xxStatusCodeResponse() async {
+    @Test func post_throwErrorOnNon2xxStatusCodeResponse() async {
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 150))),
                          expectedError: .invalidRequest)
         await expectPost(forClientResult: .success((data: anyData(), response: anyHttpUrlResponse(code: 199))),
@@ -124,8 +126,7 @@ final class RemoteStoreTests: XCTestCase {
 
     private func expectGet(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
                            expected: Result<[CodableMock], RemoteStore.Error>,
-                           file: StaticString = #filePath,
-                           line: UInt = #line) async {
+                           sourceLocation: SourceLocation = #_sourceLocation) async {
         let (sut, client) = makeSUT()
         let urlRequest = anyUrlRequest()
         client.result = result
@@ -141,16 +142,15 @@ final class RemoteStoreTests: XCTestCase {
 
         switch expected {
         case let .success(expectedMocks):
-            XCTAssertEqual(receivedMocks?.mocks, expectedMocks, file: file, line: line)
+            #expect(receivedMocks?.mocks == expectedMocks, sourceLocation: sourceLocation)
         case let .failure(error):
-            XCTAssertEqual(receivedError, error as NSError, file: file, line: line)
+            #expect(receivedError == error as NSError, sourceLocation: sourceLocation)
         }
     }
 
     private func expectPost(forClientResult result: Result<(Data, HTTPURLResponse), NSError>,
                             expectedError: RemoteStore.Error?,
-                            file: StaticString = #filePath,
-                            line: UInt = #line) async {
+                            sourceLocation: SourceLocation = #_sourceLocation) async {
         let (sut, client) = makeSUT()
         let urlRequest = anyUrlRequest()
         client.result = result
@@ -163,7 +163,7 @@ final class RemoteStoreTests: XCTestCase {
             receivedError = error as NSError
         }
 
-        XCTAssertEqual(receivedError, expectedError as? NSError, file: file, line: line)
+        #expect(receivedError == expectedError as? NSError, sourceLocation: sourceLocation)
     }
 
     private func anyMocks() throws -> (container: CodableArrayMock, data: Data) {

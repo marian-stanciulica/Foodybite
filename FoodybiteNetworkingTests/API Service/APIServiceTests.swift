@@ -5,12 +5,13 @@
 //  Created by Marian Stanciulica on 15.10.2022.
 //
 
-import XCTest
+import Testing
 import CryptoKit
 import Domain
+import Foundation.NSURLRequest
 @testable import FoodybiteNetworking
 
-final class APIServiceTests: XCTestCase {
+struct APIServiceTests {
 
     func makeSUT(response: Decodable? = nil) -> (
         sut: APIService,
@@ -30,17 +31,16 @@ final class APIServiceTests: XCTestCase {
         path: String,
         method: FoodybiteNetworking.RequestMethod,
         body: Encodable? = nil,
-        file: StaticString = #filePath,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) {
         let urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: true)
 
-        XCTAssertEqual(urlComponents?.scheme, "http", "Scheme is not http", file: file, line: line)
-        XCTAssertEqual(urlComponents?.port, 8080, "Port is not 8080", file: file, line: line)
-        XCTAssertEqual(urlComponents?.host, "localhost", "Host is not localhost", file: file, line: line)
-        XCTAssertEqual(urlComponents?.path, path, "Path is not \(path)", file: file, line: line)
-        XCTAssertNil(urlComponents?.queryItems, "QueryItems are not nil", file: file, line: line)
-        XCTAssertEqual(urlRequest.httpMethod, method.rawValue, "Wrong \(method.rawValue)", file: file, line: line)
+        #expect(urlComponents?.scheme ==  "http", "Scheme is not http", sourceLocation: sourceLocation)
+        #expect(urlComponents?.port == 8080, "Port is not 8080", sourceLocation: sourceLocation)
+        #expect(urlComponents?.host == "localhost", "Host is not localhost", sourceLocation: sourceLocation)
+        #expect(urlComponents?.path == path, "Path is not \(path)", sourceLocation: sourceLocation)
+        #expect(urlComponents?.queryItems == nil, "QueryItems are not nil", sourceLocation: sourceLocation)
+        #expect(urlRequest.httpMethod == method.rawValue, "Wrong \(method.rawValue)", sourceLocation: sourceLocation)
 
         if let body = body {
             let encoder = JSONEncoder()
@@ -48,12 +48,12 @@ final class APIServiceTests: XCTestCase {
             encoder.outputFormatting = .sortedKeys
 
             if let bodyData = try? encoder.encode(body) {
-                XCTAssertEqual(urlRequest.httpBody, bodyData, "HTTP Body is not correct", file: file, line: line)
+                #expect(urlRequest.httpBody == bodyData, "HTTP Body is not correct", sourceLocation: sourceLocation)
             } else {
-                XCTFail("Couldn't encode the body", file: file, line: line)
+                Issue.record("Couldn't encode the body", sourceLocation: sourceLocation)
             }
         } else if let httpBody = urlRequest.httpBody {
-            XCTFail("Body expected to be nil, got \(httpBody) instead", file: file, line: line)
+            Issue.record("Body expected to be nil, got \(httpBody) instead", sourceLocation: sourceLocation)
         }
     }
 

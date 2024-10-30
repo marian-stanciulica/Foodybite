@@ -5,23 +5,23 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
 @testable import FoodybiteNetworking
 import Domain
 
 extension APIServiceTests {
 
-    func test_conformsToLogoutService() {
+    @Test func conformsToLogoutService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as LogoutService)
+        #expect(sut as LogoutService != nil)
     }
 
-    func test_logout_usesLogoutEndpointToCreateURLRequest() async throws {
+    @Test func logout_usesLogoutEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
 
         try await sut.logout()
 
-        XCTAssertEqual(sender.requests.count, 1)
+        #expect(sender.requests.count == 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
             path: "/auth/logout",

@@ -5,18 +5,19 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSUUID
 @testable import FoodybiteNetworking
 import Domain
 
 extension APIServiceTests {
 
-    func test_conformsToLoginService() {
+    @Test func conformsToLoginService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as LoginService)
+        #expect(sut as LoginService != nil)
     }
 
-    func test_login_usesLoginEndpointToCreateURLRequest() async throws {
+    @Test func login_usesLoginEndpointToCreateURLRequest() async throws {
         let email = anyEmail()
         let password = anyPassword()
         let hashedPassword = hash(password: password)
@@ -24,7 +25,7 @@ extension APIServiceTests {
 
         _ = try await sut.login(email: email, password: password)
 
-        XCTAssertEqual(loader.requests.count, 1)
+        #expect(loader.requests.count == 1)
         assertURLComponents(
             urlRequest: loader.requests[0],
             path: "/auth/login",
@@ -32,22 +33,22 @@ extension APIServiceTests {
             body: LoginRequestBody(email: email, password: hashedPassword))
     }
 
-    func test_login_receiveExpectedLoginResponse() async throws {
+    @Test func login_receiveExpectedLoginResponse() async throws {
         let expectedModel = anyLoginResponse()
         let (sut, _, _, _) = makeSUT(response: expectedModel)
 
         let receivedUser = try await sut.login(email: anyEmail(), password: anyPassword())
 
-        XCTAssertEqual(expectedModel.remoteUser.model, receivedUser)
+        #expect(expectedModel.remoteUser.model == receivedUser)
     }
 
-    func test_login_storesAuthTokenInKeychain() async throws {
+    @Test func login_storesAuthTokenInKeychain() async throws {
         let (sut, _, _, tokenStoreStub) = makeSUT(response: anyLoginResponse())
 
         _ = try await sut.login(email: anyEmail(), password: anyPassword())
         let receivedToken = try tokenStoreStub.read()
 
-        XCTAssertEqual(receivedToken, anyAuthToken())
+        #expect(receivedToken == anyAuthToken())
     }
 
     // MARK: - Helpers

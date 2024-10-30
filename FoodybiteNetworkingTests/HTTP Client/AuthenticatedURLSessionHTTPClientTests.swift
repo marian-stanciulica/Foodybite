@@ -6,26 +6,27 @@
 //
 
 import FoodybiteNetworking
-import XCTest
+import Testing
+import Foundation.NSURLRequest
 
-final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
+struct AuthenticatedURLSessionHTTPClientTests {
 
-    func test_init_conformsToHTTPClient() {
+    @Test func init_conformsToHTTPClient() {
         let (sut, _, _) = makeSUT()
-        XCTAssertNotNil(sut as HTTPClient)
+        #expect(sut as HTTPClient != nil)
     }
 
-    func test_send_performURLRequest() async throws {
+    @Test func send_performURLRequest() async throws {
         let urlRequest = anyUrlRequest()
         let (sut, httpClientSpy, tokenRefresherFake) = makeSUT()
 
         _ = try? await sut.send(urlRequest)
 
         let authRequest = try authorizeRequest(request: urlRequest, tokenRefresher: tokenRefresherFake)
-        XCTAssertEqual(httpClientSpy.urlRequests, [authRequest])
+        #expect(httpClientSpy.urlRequests == [authRequest])
     }
 
-    func test_send_throwsErrorOnRequestError() async {
+    @Test func send_throwsErrorOnRequestError() async {
         let urlRequest = anyUrlRequest()
         let (sut, httpClientSpy, _) = makeSUT()
 
@@ -34,13 +35,13 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
 
         do {
             _ = try await sut.send(urlRequest)
-            XCTFail("SUT should throw error on request error")
+            Issue.record("SUT should throw error on request error")
         } catch {
-            XCTAssertEqual(expectedError, error as NSError)
+            #expect(expectedError == error as NSError)
         }
     }
 
-    func test_send_triggersGetRemoteTokenMethodOn401StatusCodeResponse() async throws {
+    @Test func send_triggersGetRemoteTokenMethodOn401StatusCodeResponse() async throws {
         let urlRequest = anyUrlRequest()
         let anyData = anyData()
         let anyHttpUrlResponse = anyHttpUrlResponse(code: 401)
@@ -50,10 +51,10 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
 
         _ = try await sut.send(urlRequest)
 
-        XCTAssertEqual(tokenRefresher.getRemoteTokenCalledCount, 1)
+        #expect(tokenRefresher.getRemoteTokenCalledCount == 1)
     }
 
-    func test_send_resendRequestAgainSignedWithNewAccessTokenAfterReceiving401StatusCode() async throws {
+    @Test func send_resendRequestAgainSignedWithNewAccessTokenAfterReceiving401StatusCode() async throws {
         let urlRequest = anyUrlRequest()
         let anyData = anyData()
         let anyHttpUrlResponse = anyHttpUrlResponse(code: 401)
@@ -65,10 +66,10 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
         _ = try await sut.send(urlRequest)
         let requestSignedWithRemoteToken = try authorizeRequest(request: urlRequest, tokenRefresher: tokenRefresherFake)
 
-        XCTAssertEqual(httpClientSpy.urlRequests, [requestSignedWithLocalToken, requestSignedWithRemoteToken])
+        #expect(httpClientSpy.urlRequests == [requestSignedWithLocalToken, requestSignedWithRemoteToken])
     }
 
-    func test_send_succeedsOnHTTPUrlResponseWithData() async {
+    @Test func send_succeedsOnHTTPUrlResponseWithData() async {
         let urlRequest = anyUrlRequest()
         let anyData = anyData()
         let anyHttpUrlResponse = anyHttpUrlResponse()
@@ -78,11 +79,11 @@ final class AuthenticatedURLSessionHTTPClientTests: XCTestCase {
 
         do {
             let (receivedData, receivedResponse) = try await sut.send(urlRequest)
-            XCTAssertEqual(receivedData, anyData)
-            XCTAssertEqual(receivedResponse.url, anyHttpUrlResponse.url)
-            XCTAssertEqual(receivedResponse.statusCode, anyHttpUrlResponse.statusCode)
+            #expect(receivedData == anyData)
+            #expect(receivedResponse.url == anyHttpUrlResponse.url)
+            #expect(receivedResponse.statusCode == anyHttpUrlResponse.statusCode)
         } catch {
-            XCTFail("Should receive data and response, got \(error) instead")
+            Issue.record("Should receive data and response, got \(error) instead")
         }
     }
 

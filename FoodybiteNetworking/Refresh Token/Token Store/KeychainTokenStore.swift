@@ -12,7 +12,7 @@ public final class KeychainTokenStore: TokenStore {
     private let account: String
     private let codableDataParser = CodableDataParser()
 
-    private enum Error: Swift.Error {
+    enum Error: Swift.Error {
         case notFound
         case invalidData
         case writeFailed

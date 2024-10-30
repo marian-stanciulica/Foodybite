@@ -5,18 +5,18 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
 @testable import FoodybiteNetworking
 import Domain
 
 extension APIServiceTests {
 
-    func test_conformsToUpdateAccountService() {
+    @Test func conformsToUpdateAccountService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as AccountService)
+        #expect(sut as AccountService != nil)
     }
 
-    func test_updateAccount_usesUpdateAccountEndpointToCreateURLRequest() async throws {
+    @Test func updateAccount_usesUpdateAccountEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
 
         try await sut.updateAccount(
@@ -25,7 +25,7 @@ extension APIServiceTests {
             profileImage: anyData()
         )
 
-        XCTAssertEqual(sender.requests.count, 1)
+        #expect(sender.requests.count == 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
             path: "/auth/account",
@@ -33,12 +33,12 @@ extension APIServiceTests {
             body: makeUpdateAccountRequestBody())
     }
 
-    func test_deleteAccount_usesDeleteAccountEndpointToCreateURLRequest() async throws {
+    @Test func deleteAccount_usesDeleteAccountEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
 
         try await sut.deleteAccount()
 
-        XCTAssertEqual(sender.requests.count, 1)
+        #expect(sender.requests.count == 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
             path: "/auth/account",

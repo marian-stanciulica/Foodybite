@@ -5,18 +5,19 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSDate
 @testable import FoodybiteNetworking
 import Domain
 
 extension APIServiceTests {
 
-    func test_conformsToReviewService() {
+    @Test func conformsToReviewService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as AddReviewService)
+        #expect(sut as AddReviewService != nil)
     }
 
-    func test_addReview_usesAddReviewEndpointToCreateURLRequest() async throws {
+    @Test func addReview_usesAddReviewEndpointToCreateURLRequest() async throws {
         let restaurantID = anyRestaurantID()
         let reviewText = anyReviewText()
         let starsNumber = anyStarsNumber()
@@ -30,7 +31,7 @@ extension APIServiceTests {
             createdAt: createdAt
         )
 
-        XCTAssertEqual(sender.requests.count, 1)
+        #expect(sender.requests.count == 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
             path: "/review",
@@ -44,13 +45,13 @@ extension APIServiceTests {
         )
     }
 
-    func test_getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
+    @Test func getReviews_usesGetReviewsEndpointToCreateURLRequest() async throws {
         let (sut, loader, _, _) = makeSUT(response: anyGetReviews().response)
         let restaurantID = anyRestaurantID()
 
         _ = try await sut.getReviews(restaurantID: restaurantID)
 
-        XCTAssertEqual(loader.requests.count, 1)
+        #expect(loader.requests.count == 1)
         assertURLComponents(
             urlRequest: loader.requests[0],
             path: "/review/\(restaurantID)",
@@ -58,13 +59,13 @@ extension APIServiceTests {
             body: nil)
     }
 
-    func test_getReviews_returnsExpectedReviews() async throws {
+    @Test func getReviews_returnsExpectedReviews() async throws {
         let (response, expectedModel) = anyGetReviews()
         let (sut, _, _, _) = makeSUT(response: response)
 
         let receivedResponse = try await sut.getReviews()
 
-        XCTAssertEqual(expectedModel, receivedResponse)
+        #expect(expectedModel == receivedResponse)
     }
 
     // MARK: - Helpers

@@ -5,38 +5,41 @@
 //  Created by Marian Stanciulica on 16.10.2022.
 //
 
-import XCTest
-import FoodybiteNetworking
+import Testing
+@testable import FoodybiteNetworking
 
-final class KeychainTokenStoreTests: XCTestCase {
+@Suite(.serialized)
+final class KeychainTokenStoreTests {
 
-    override func setUpWithError() throws {
+    init() {
         try? makeSut().delete()
-        super.setUp()
     }
 
-    override func tearDownWithError() throws {
+    deinit {
         try? makeSut().delete()
-        super.tearDown()
     }
 
     // MARK: - Tests
 
-    func test_read_shouldThrowWhenNoTokenInStore() {
-        XCTAssertThrowsError(try makeSut().read())
+    @Test func read_shouldThrowWhenNoTokenInStore() {
+        #expect(throws: KeychainTokenStore.Error.notFound) {
+            try makeSut().read()
+        }
     }
 
-    func test_write_shouldNotThrowError() {
-        XCTAssertNoThrow(try writeDefaultToken(using: makeSut()))
+    @Test func write_shouldNotThrowError() {
+        #expect(throws: Never.self) {
+            try writeDefaultToken(using: makeSut())
+        }
     }
 
-    func test_read_shouldDeliverTokenAfterWrite() throws {
+    @Test func read_shouldDeliverTokenAfterWrite() throws {
         let expectedToken = AuthToken(accessToken: "access token",
                                       refreshToken: "refresh_token")
         try verifyWriteRead(given: makeSut(), for: expectedToken)
     }
 
-    func test_write_shouldUpdateValueWhenKeyAlreadyInKeychain() throws {
+    @Test func write_shouldUpdateValueWhenKeyAlreadyInKeychain() throws {
         let sut = makeSut()
 
         try writeDefaultToken(using: sut)
@@ -46,7 +49,7 @@ final class KeychainTokenStoreTests: XCTestCase {
         try verifyWriteRead(given: sut, for: expectedToken)
     }
 
-    func test_write_shouldDeliverTokenAfterWriteUsingAnotherInstance() throws {
+    @Test func write_shouldDeliverTokenAfterWriteUsingAnotherInstance() throws {
         try writeDefaultToken(using: makeSut())
 
         let expectedToken = AuthToken(accessToken: "expected access token",
@@ -70,13 +73,17 @@ final class KeychainTokenStoreTests: XCTestCase {
         try sut.write(firstToken)
     }
 
-    private func verifyWriteRead(given sut: KeychainTokenStore, for expectedToken: AuthToken) throws {
+    private func verifyWriteRead(
+        given sut: KeychainTokenStore,
+        for expectedToken: AuthToken,
+        sourceLocation: SourceLocation = #_sourceLocation
+    ) throws {
         try sut.write(expectedToken)
 
         let receivedToken = try sut.read()
 
-        XCTAssertEqual(expectedToken.accessToken, receivedToken.accessToken)
-        XCTAssertEqual(expectedToken.refreshToken, receivedToken.refreshToken)
+        #expect(expectedToken.accessToken == receivedToken.accessToken, sourceLocation: sourceLocation)
+        #expect(expectedToken.refreshToken == receivedToken.refreshToken, sourceLocation: sourceLocation)
     }
 
 }

@@ -5,18 +5,18 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
 @testable import FoodybiteNetworking
 import Domain
 
 extension APIServiceTests {
 
-    func test_conformsToChangePasswordService() {
+    @Test func conformsToChangePasswordService() {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertNotNil(sut as ChangePasswordService)
+        #expect(sut as ChangePasswordService != nil)
     }
 
-    func test_changePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
+    @Test func changePassword_usesChangePasswordEndpointToCreateURLRequest() async throws {
         let (sut, _, sender, _) = makeSUT()
 
         let currentPassword = anyPassword()
@@ -30,7 +30,7 @@ extension APIServiceTests {
             newPassword: newPassword
         )
 
-        XCTAssertEqual(sender.requests.count, 1)
+        #expect(sender.requests.count == 1)
         assertURLComponents(
             urlRequest: sender.requests[0],
             path: "/auth/changePassword",
