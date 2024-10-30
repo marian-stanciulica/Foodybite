@@ -5,13 +5,13 @@
 //  Created by Marian Stanciulica on 06.05.2023.
 //
 
-import XCTest
+import Testing
 import FoodybitePresentation
 
-final class ChangePasswordValidatorTests: XCTestCase {
+struct ChangePasswordValidatorTests {
 
-    func test_serverError_rawValueOfServerError() {
-        XCTAssertEqual(ChangePasswordValidator.Error.serverError.toString(), "Server error")
+    @Test func serverError_rawValueOfServerError() {
+        #expect(ChangePasswordValidator.Error.serverError.toString() == "Server error")
     }
 
 }

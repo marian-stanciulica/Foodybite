@@ -5,34 +5,35 @@
 //  Created by Marian Stanciulica on 29.01.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSUUID
 import Domain
 import FoodybitePresentation
 
-final class RestaurantCellViewModelTests: XCTestCase {
+struct RestaurantCellViewModelTests {
 
-    func test_rating_returnsFormattedRating() {
+    @Test func rating_returnsFormattedRating() {
         let sut = makeSUT()
 
-        XCTAssertEqual(sut.rating, rating().formatted)
+        #expect(sut.rating == rating().formatted)
     }
 
-    func test_distanceInKmFromCurrentLocation_computedCorrectly() {
+    @Test func distanceInKmFromCurrentLocation_computedCorrectly() {
         let sut = makeSUT()
 
-        XCTAssertEqual(sut.distance, "353.6")
+        #expect(sut.distance == "353.6")
     }
 
-    func test_isOpen_equalsNearbyRestaurantIsOpen() {
+    @Test func isOpen_equalsNearbyRestaurantIsOpen() {
         let sut = makeSUT()
 
-        XCTAssertEqual(sut.isOpen, isOpen())
+        #expect(sut.isOpen == isOpen())
     }
 
-    func test_restaurantName_equalsNearbyRestaurantName() {
+    @Test func restaurantName_equalsNearbyRestaurantName() {
         let sut = makeSUT()
 
-        XCTAssertEqual(sut.restaurantName, anyRestaurantName())
+        #expect(sut.restaurantName == anyRestaurantName())
     }
 
     // MARK: - Helpers

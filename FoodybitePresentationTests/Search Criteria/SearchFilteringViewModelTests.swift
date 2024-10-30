@@ -5,36 +5,36 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import FoodybitePresentation
 
-final class SearchCriteriaViewModelTests: XCTestCase {
+struct SearchCriteriaViewModelTests {
 
-    func test_init_setsRadiusAndStarsNumberByLoadingUserPreferences() {
+    @Test func init_setsRadiusAndStarsNumberByLoadingUserPreferences() {
         let radius = 123
         let starsNumber = 3
         let (sut, _) = makeSUT(stub: UserPreferences(radius: radius, starsNumber: starsNumber))
 
-        XCTAssertEqual(sut.radius, radius)
-        XCTAssertEqual(sut.starsNumber, starsNumber)
+        #expect(sut.radius == radius)
+        #expect(sut.starsNumber == starsNumber)
     }
 
-    func test_apply_savesUserPreferencesUsingUserPreferencesSaver() {
+    @Test func apply_savesUserPreferencesUsingUserPreferencesSaver() {
         let expectedUserPreferences = UserPreferences(radius: 123, starsNumber: 3)
         let (sut, userPreferencesSaverSpy) = makeSUT(stub: expectedUserPreferences)
 
         sut.apply()
 
-        XCTAssertEqual(userPreferencesSaverSpy.capturedValues, [expectedUserPreferences])
+        #expect(userPreferencesSaverSpy.capturedValues == [expectedUserPreferences])
     }
 
-    func test_reset_savesDefaultUserPreferences() {
+    @Test func reset_savesDefaultUserPreferences() {
         let (sut, userPreferencesSaverSpy) = makeSUT(stub: UserPreferences(radius: 123, starsNumber: 3))
 
         sut.reset()
 
-        XCTAssertEqual(userPreferencesSaverSpy.capturedValues, [.default])
+        #expect(userPreferencesSaverSpy.capturedValues == [.default])
     }
 
     // MARK: - Helpers

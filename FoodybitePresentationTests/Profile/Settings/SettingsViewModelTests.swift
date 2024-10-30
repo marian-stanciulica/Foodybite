@@ -5,13 +5,14 @@
 //  Created by Marian Stanciulica on 24.11.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
 import Domain
 import FoodybitePresentation
 
-final class SettingsViewModelTests: XCTestCase {
+struct SettingsViewModelTests {
 
-    func test_logout_callsGoToLoginWhenLogoutServiceThrowsError() async {
+    @Test func logout_callsGoToLoginWhenLogoutServiceThrowsError() async {
         var goToLoginCalled = false
         let (sut, logoutServiceSpy) = makeSUT {
             goToLoginCalled = true
@@ -22,10 +23,10 @@ final class SettingsViewModelTests: XCTestCase {
 
         await sut.logout()
 
-        XCTAssertTrue(goToLoginCalled)
+        #expect(goToLoginCalled)
     }
 
-    func test_logout_callsGoToLoginWhenLogoutServiceFinishedSuccessfully() async {
+    @Test func logout_callsGoToLoginWhenLogoutServiceFinishedSuccessfully() async {
         var goToLoginCalled = false
         let (sut, _) = makeSUT {
             goToLoginCalled = true
@@ -33,7 +34,7 @@ final class SettingsViewModelTests: XCTestCase {
 
         await sut.logout()
 
-        XCTAssertTrue(goToLoginCalled)
+        #expect(goToLoginCalled)
     }
 
     // MARK: - Helpers

@@ -5,37 +5,38 @@
 //  Created by Marian Stanciulica on 04.02.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
 import Domain
 import FoodybitePresentation
 
-final class ReviewViewModelTests: XCTestCase {
+struct ReviewViewModelTests {
 
-    func test_init_stateIsIdle() {
+    @Test func init_stateIsIdle() {
         let (sut, _) = makeSUT()
 
-        XCTAssertEqual(sut.state, .idle)
-        XCTAssertEqual(sut.reviewText, "")
-        XCTAssertEqual(sut.starsNumber, 0)
+        #expect(sut.state == .idle)
+        #expect(sut.reviewText == "")
+        #expect(sut.starsNumber == 0)
     }
 
-    func test_isLoading_isTrueOnlyWhenStateIsLoading() {
+    @Test func isLoading_isTrueOnlyWhenStateIsLoading() {
         let (sut, _) = makeSUT()
 
         sut.state = .idle
-        XCTAssertFalse(sut.isLoading)
+        #expect(sut.isLoading == false)
 
         sut.state = .isLoading
-        XCTAssertTrue(sut.isLoading)
+        #expect(sut.isLoading == true)
 
         sut.state = .failure(.serverError)
-        XCTAssertFalse(sut.isLoading)
+        #expect(sut.isLoading == false)
 
         sut.state = .success
-        XCTAssertFalse(sut.isLoading)
+        #expect(sut.isLoading == false)
     }
 
-    func test_postReview_sendsParametersCorrectlyToReviewService() async {
+    @Test func postReview_sendsParametersCorrectlyToReviewService() async {
         let expectedRestaurantID = anyRestaurantID()
         let (sut, reviewServiceSpy) = makeSUT(restaurantID: expectedRestaurantID)
         sut.reviewText = anyReviewText()
@@ -43,29 +44,29 @@ final class ReviewViewModelTests: XCTestCase {
 
         await sut.addReview()
 
-        XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.restaurantID, expectedRestaurantID)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
+        #expect(reviewServiceSpy.capturedValues.count == 1)
+        #expect(reviewServiceSpy.capturedValues.first?.restaurantID == expectedRestaurantID)
+        #expect(reviewServiceSpy.capturedValues.first?.reviewText == anyReviewText())
+        #expect(reviewServiceSpy.capturedValues.first?.starsNumber == anyStarsNumber())
     }
 
-    func test_postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {
+    @Test func postReview_setsStateToLoadingErrorWhenReviewServiceThrowsError() async {
         let (sut, reviewServiceSpy) = makeSUT()
         reviewServiceSpy.error = anyError()
         let stateSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
 
         await sut.addReview()
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
+        #expect(stateSpy.results == [.idle, .isLoading, .failure(.serverError)])
     }
 
-    func test_postReview_setsStateToRequestSucceededWhenReviewServiceReturnsSuccess() async {
+    @Test func postReview_setsStateToRequestSucceededWhenReviewServiceReturnsSuccess() async {
         let (sut, _) = makeSUT()
         let stateSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
 
         await sut.addReview()
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success])
+        #expect(stateSpy.results == [.idle, .isLoading, .success])
     }
 
     // MARK: - Helpers

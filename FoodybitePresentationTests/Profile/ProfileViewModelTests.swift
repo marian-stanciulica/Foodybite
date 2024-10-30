@@ -5,19 +5,21 @@
 //  Created by Marian Stanciulica on 25.11.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSURL
+import Foundation.NSData
 import Domain
 import FoodybitePresentation
 
-final class ProfileViewModelTests: XCTestCase {
+struct ProfileViewModelTests {
 
-    func test_init_getReviewsStateIsIdle() {
+    @Test func init_getReviewsStateIsIdle() {
         let (sut, _, _) = makeSUT()
 
-        XCTAssertEqual(sut.getReviewsState, .idle)
+        #expect(sut.getReviewsState == .idle)
     }
 
-    func test_deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
+    @Test func deleteAccount_setsErrorWhenAccountServiceThrowsError() async {
         let (sut, accountServiceSpy, _) = makeSUT()
 
         let expectedError = anyNSError()
@@ -26,7 +28,7 @@ final class ProfileViewModelTests: XCTestCase {
         await assertDeleteAccount(on: sut, withExpectedResult: .serverError)
     }
 
-    func test_deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
+    @Test func deleteAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
         var goToLoginCalled = false
         let (sut, _, _) = makeSUT {
             goToLoginCalled = true
@@ -34,29 +36,29 @@ final class ProfileViewModelTests: XCTestCase {
 
         await sut.deleteAccount()
 
-        XCTAssertTrue(goToLoginCalled)
+        #expect(goToLoginCalled)
     }
 
-    func test_getAllReviews_sendsNilRestaurantIDToGetReviewsService() async {
+    @Test func getAllReviews_sendsNilRestaurantIDToGetReviewsService() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
 
         await sut.getAllReviews()
 
-        XCTAssertEqual(getReviewsServiceSpy.capturedValues.count, 1)
-        XCTAssertNil(getReviewsServiceSpy.capturedValues[0])
+        #expect(getReviewsServiceSpy.capturedValues.count == 1)
+        #expect(getReviewsServiceSpy.capturedValues[0] == nil)
     }
 
-    func test_getAllReviews_setsStateToLoadingErrorWhenGetReviewsServiceThrowsError() async {
+    @Test func getAllReviews_setsStateToLoadingErrorWhenGetReviewsServiceThrowsError() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
         getReviewsServiceSpy.result = .failure(anyNSError())
         let stateSpy = PublisherSpy(sut.$getReviewsState.eraseToAnyPublisher())
 
         await sut.getAllReviews()
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
+        #expect(stateSpy.results == [.idle, .isLoading, .failure(.serverError)])
     }
 
-    func test_getAllReviews_setsStateToRequestSucceededWhenGetReviewsServiceReturnsSuccess() async {
+    @Test func getAllReviews_setsStateToRequestSucceededWhenGetReviewsServiceReturnsSuccess() async {
         let (sut, _, getReviewsServiceSpy) = makeSUT()
         let expectedReviews = anyReviews()
         getReviewsServiceSpy.result = .success(expectedReviews)
@@ -64,7 +66,7 @@ final class ProfileViewModelTests: XCTestCase {
 
         await sut.getAllReviews()
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedReviews)])
+        #expect(stateSpy.results == [.idle, .isLoading, .success(expectedReviews)])
     }
 
     // MARK: - Helpers
@@ -116,15 +118,14 @@ final class ProfileViewModelTests: XCTestCase {
 
     private func assertDeleteAccount(on sut: ProfileViewModel,
                                      withExpectedResult expectedResult: ProfileViewModel.DeleteAccountError,
-                                     file: StaticString = #file,
-                                     line: UInt = #line) async {
+                                     sourceLocation: SourceLocation = #_sourceLocation) async {
         let resultSpy = PublisherSpy(sut.$deleteAccountError.eraseToAnyPublisher())
 
-        XCTAssertEqual(resultSpy.results, [nil], file: file, line: line)
+        #expect(resultSpy.results == [nil], sourceLocation: sourceLocation)
 
         await sut.deleteAccount()
 
-        XCTAssertEqual(resultSpy.results, [nil, expectedResult], file: file, line: line)
+        #expect(resultSpy.results == [nil, expectedResult], sourceLocation: sourceLocation)
         resultSpy.cancel()
     }
 

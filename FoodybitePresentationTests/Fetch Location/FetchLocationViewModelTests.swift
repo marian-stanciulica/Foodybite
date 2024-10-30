@@ -5,52 +5,53 @@
 //  Created by Marian Stanciulica on 06.05.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
 import Domain
 import FoodybitePresentation
 
-final class FetchLocationViewModelTests: XCTestCase {
+struct FetchLocationViewModelTests {
 
-    func test_locationServicesEnabled_equalsToLocationProviderLocationServicesEnabled() {
+    @Test func locationServicesEnabled_equalsToLocationProviderLocationServicesEnabled() {
         let (sut, locationProviderSpy) = makeSUT()
 
         locationProviderSpy.locationServicesEnabled = false
-        XCTAssertFalse(sut.locationServicesEnabled)
+        #expect(sut.locationServicesEnabled == false)
 
         locationProviderSpy.locationServicesEnabled = true
-        XCTAssertTrue(sut.locationServicesEnabled)
+        #expect(sut.locationServicesEnabled == true)
     }
 
-    func test_state_initialStateIsLoading() async {
+    @Test func state_initialStateIsLoading() async {
         let (sut, _) = makeSUT()
 
-        XCTAssertEqual(sut.state, .isLoading)
+        #expect(sut.state == .isLoading)
     }
 
-    func test_getCurrentLocation_callsLocationProvider() async {
+    @Test func getCurrentLocation_callsLocationProvider() async {
         let (sut, locationProviderSpy) = makeSUT()
 
         await sut.getCurrentLocation()
 
-        XCTAssertEqual(locationProviderSpy.requestLocationCallCount, 1)
+        #expect(locationProviderSpy.requestLocationCallCount == 1)
     }
 
-    func test_getCurrentLocation_setsStateToErrorWhenLocationProviderThrowsError() async {
+    @Test func getCurrentLocation_setsStateToErrorWhenLocationProviderThrowsError() async {
         let (sut, locationProviderSpy) = makeSUT()
         locationProviderSpy.result = .failure(anyError())
 
         await sut.getCurrentLocation()
 
-        XCTAssertEqual(sut.state, .failure(.unauthorized))
+        #expect(sut.state == .failure(.unauthorized))
     }
 
-    func test_getCurrentLocation_setsStateToLoadedWhenLocationProviderReturnsLocation() async {
+    @Test func getCurrentLocation_setsStateToLoadedWhenLocationProviderReturnsLocation() async {
         let (sut, locationProviderSpy) = makeSUT()
         locationProviderSpy.result = .success(anyLocation())
 
         await sut.getCurrentLocation()
 
-        XCTAssertEqual(sut.state, .success(anyLocation()))
+        #expect(sut.state == .success(anyLocation()))
     }
 
     // MARK: - Helpers

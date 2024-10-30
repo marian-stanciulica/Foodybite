@@ -5,23 +5,24 @@
 //  Created by Marian Stanciulica on 10.02.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSData
 import Domain
 import FoodybitePresentation
 
-final class NewReviewViewModelTests: XCTestCase {
+struct NewReviewViewModelTests {
 
-    func test_init_stateIsIdle() {
+    @Test func init_stateIsIdle() {
         let (sut, _, _, _) = makeSUT()
 
-        XCTAssertEqual(sut.getRestaurantDetailsState, .idle)
-        XCTAssertEqual(sut.postReviewState, .idle)
-        XCTAssertEqual(sut.searchText, "")
-        XCTAssertEqual(sut.reviewText, "")
-        XCTAssertEqual(sut.starsNumber, 0)
+        #expect(sut.getRestaurantDetailsState == .idle)
+        #expect(sut.postReviewState == .idle)
+        #expect(sut.searchText == "")
+        #expect(sut.reviewText == "")
+        #expect(sut.starsNumber == 0)
     }
 
-    func test_autocomplete_sendsParametersCorrectlyToAutocompleteRestaurantsService() async {
+    @Test func autocomplete_sendsParametersCorrectlyToAutocompleteRestaurantsService() async {
         let location = anyLocation()
         let userPreferences = anyUserPreferences()
         let (sut, autocompleteSpy, _, _) = makeSUT(location: location, userPreferences: userPreferences)
@@ -29,65 +30,65 @@ final class NewReviewViewModelTests: XCTestCase {
 
         await sut.autocomplete()
 
-        XCTAssertEqual(autocompleteSpy.capturedValues.count, 1)
-        XCTAssertEqual(autocompleteSpy.capturedValues.first?.input, anySearchText())
-        XCTAssertEqual(autocompleteSpy.capturedValues.first?.location, location)
-        XCTAssertEqual(autocompleteSpy.capturedValues.first?.radius, userPreferences.radius)
+        #expect(autocompleteSpy.capturedValues.count == 1)
+        #expect(autocompleteSpy.capturedValues.first?.input == anySearchText())
+        #expect(autocompleteSpy.capturedValues.first?.location == location)
+        #expect(autocompleteSpy.capturedValues.first?.radius == userPreferences.radius)
     }
 
-    func test_autocomplete_setsResultsToEmptyWhenAutocompleteRestaurantsServiceThrowsError() async {
+    @Test func autocomplete_setsResultsToEmptyWhenAutocompleteRestaurantsServiceThrowsError() async {
         let (sut, autocompleteSpy, _, _) = makeSUT()
         autocompleteSpy.result = .failure(anyError())
 
-        XCTAssertTrue(sut.autocompleteResults.isEmpty)
+        #expect(sut.autocompleteResults.isEmpty == true)
 
         await sut.autocomplete()
-        XCTAssertTrue(sut.autocompleteResults.isEmpty)
+        #expect(sut.autocompleteResults.isEmpty == true)
     }
 
-    func test_autocomplete_setsResultsToReceivedResultsWhenAutocompleteRestaurantsServiceReturnsSuccessfully() async {
+    @Test func autocomplete_setsResultsToReceivedResultsWhenAutocompleteRestaurantsServiceReturnsSuccessfully() async {
         let (sut, autocompleteSpy, _, _) = makeSUT()
         let expectedResults = anyAutocompletePredictions()
 
         autocompleteSpy.result = .success(expectedResults)
         await sut.autocomplete()
-        XCTAssertEqual(sut.autocompleteResults, expectedResults)
+        #expect(sut.autocompleteResults == expectedResults)
 
         autocompleteSpy.result = .failure(anyError())
         await sut.autocomplete()
-        XCTAssertTrue(sut.autocompleteResults.isEmpty)
+        #expect(sut.autocompleteResults.isEmpty == true)
     }
 
-    func test_autocomplete_resetsStateForRestaurantDetails() async {
+    @Test func autocomplete_resetsStateForRestaurantDetails() async {
         let (sut, _, _, _) = makeSUT()
         sut.getRestaurantDetailsState = .isLoading
 
         await sut.autocomplete()
 
-        XCTAssertEqual(sut.getRestaurantDetailsState, .idle)
+        #expect(sut.getRestaurantDetailsState == .idle)
     }
 
-    func test_getRestaurantDetails_sendsInputsToRestaurantDetailsService() async {
+    @Test func getRestaurantDetails_sendsInputsToRestaurantDetailsService() async {
         let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
         let anyRestaurantID = anyRestaurantID()
 
         await sut.getRestaurantDetails(restaurantID: anyRestaurantID)
 
-        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(restaurantDetailsServiceSpy.capturedValues.first, anyRestaurantID)
+        #expect(restaurantDetailsServiceSpy.capturedValues.count == 1)
+        #expect(restaurantDetailsServiceSpy.capturedValues.first == anyRestaurantID)
     }
 
-    func test_getRestaurantDetails_setsGetRestaurantDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
+    @Test func getRestaurantDetails_setsGetRestaurantDetailsStateToLoadingErrorWhenRestaurantDetailsServiceThrowsError() async {
         let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
         restaurantDetailsServiceSpy.result = .failure(anyError())
         let stateSpy = PublisherSpy(sut.$getRestaurantDetailsState.eraseToAnyPublisher())
 
         await sut.getRestaurantDetails(restaurantID: anyRestaurantID())
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
+        #expect(stateSpy.results == [.idle, .isLoading, .failure(.serverError)])
     }
 
-    func test_getRestaurantDetails_setsGetRestaurantDetailsStateToRequestSucceeededWhenRestaurantDetailsServiceReturnsSuccessfully() async {
+    @Test func getRestaurantDetails_setsGetRestaurantDetailsStateToRequestSucceeededWhenRestaurantDetailsServiceReturnsSuccessfully() async {
         let (sut, _, restaurantDetailsServiceSpy, _) = makeSUT()
         let expectedRestaurantDetails = anyRestaurantDetails()
         restaurantDetailsServiceSpy.result = .success(expectedRestaurantDetails)
@@ -95,54 +96,54 @@ final class NewReviewViewModelTests: XCTestCase {
 
         await sut.getRestaurantDetails(restaurantID: anyRestaurantID())
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .success(expectedRestaurantDetails)])
+        #expect(stateSpy.results == [.idle, .isLoading, .success(expectedRestaurantDetails)])
     }
 
-    func test_postReviewEnabled_isTrueWhenRestaurantDetailsExistsStarsAreNotZeroAndReviewIsNotEmpty() async {
+    @Test func postReviewEnabled_isTrueWhenRestaurantDetailsExistsStarsAreNotZeroAndReviewIsNotEmpty() async {
         let (sut, _, _, _) = makeSUT()
-        XCTAssertFalse(sut.postReviewEnabled)
+        #expect(!sut.postReviewEnabled)
 
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
-        XCTAssertFalse(sut.postReviewEnabled)
+        #expect(!sut.postReviewEnabled)
 
         sut.starsNumber = 3
-        XCTAssertFalse(sut.postReviewEnabled)
+        #expect(!sut.postReviewEnabled)
 
         sut.reviewText = anyReviewText()
-        XCTAssertTrue(sut.postReviewEnabled)
+        #expect(sut.postReviewEnabled)
 
         sut.getRestaurantDetailsState = .idle
-        XCTAssertFalse(sut.postReviewEnabled)
+        #expect(!sut.postReviewEnabled)
 
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
         sut.starsNumber = 0
-        XCTAssertFalse(sut.postReviewEnabled)
+        #expect(!sut.postReviewEnabled)
 
         sut.starsNumber = 3
         sut.reviewText = ""
-        XCTAssertFalse(sut.postReviewEnabled)
+        #expect(!sut.postReviewEnabled)
     }
 
-    func test_postReview_isGuardedByPostReviewEnabled() async {
+    @Test func postReview_isGuardedByPostReviewEnabled() async {
         let (sut, _, _, reviewServiceSpy) = makeSUT()
 
         await sut.postReview()
-        XCTAssertTrue(reviewServiceSpy.capturedValues.isEmpty)
+        #expect(reviewServiceSpy.capturedValues.isEmpty)
 
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
         await sut.postReview()
-        XCTAssertTrue(reviewServiceSpy.capturedValues.isEmpty)
+        #expect(reviewServiceSpy.capturedValues.isEmpty)
 
         sut.starsNumber = 3
         await sut.postReview()
-        XCTAssertTrue(reviewServiceSpy.capturedValues.isEmpty)
+        #expect(reviewServiceSpy.capturedValues.isEmpty)
 
         sut.reviewText = anyReviewText()
         await sut.postReview()
-        XCTAssertFalse(reviewServiceSpy.capturedValues.isEmpty)
+        #expect(!reviewServiceSpy.capturedValues.isEmpty)
     }
 
-    func test_postReview_sendsParametersCorrectlyToAddReviewService() async {
+    @Test func postReview_sendsParametersCorrectlyToAddReviewService() async {
         let (sut, _, _, reviewServiceSpy) = makeSUT()
         let anyRestaurantDetails = anyRestaurantDetails()
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails)
@@ -151,13 +152,13 @@ final class NewReviewViewModelTests: XCTestCase {
 
         await sut.postReview()
 
-        XCTAssertEqual(reviewServiceSpy.capturedValues.count, 1)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.restaurantID, anyRestaurantDetails.id)
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.reviewText, anyReviewText())
-        XCTAssertEqual(reviewServiceSpy.capturedValues.first?.starsNumber, anyStarsNumber())
+        #expect(reviewServiceSpy.capturedValues.count == 1)
+        #expect(reviewServiceSpy.capturedValues.first?.restaurantID == anyRestaurantDetails.id)
+        #expect(reviewServiceSpy.capturedValues.first?.reviewText == anyReviewText())
+        #expect(reviewServiceSpy.capturedValues.first?.starsNumber == anyStarsNumber())
     }
 
-    func test_postReview_setsStateToLoadingErrorWhenAddReviewServiceThrowsError() async {
+    @Test func postReview_setsStateToLoadingErrorWhenAddReviewServiceThrowsError() async {
         let (sut, _, _, reviewServiceSpy) = makeSUT()
         sut.getRestaurantDetailsState = .success(anyRestaurantDetails())
         sut.reviewText = anyReviewText()
@@ -168,10 +169,10 @@ final class NewReviewViewModelTests: XCTestCase {
 
         await sut.postReview()
 
-        XCTAssertEqual(stateSpy.results, [.idle, .isLoading, .failure(.serverError)])
+        #expect(stateSpy.results == [.idle, .isLoading, .failure(.serverError)])
     }
 
-    func test_postReview_resetsStateForAllPublishedVariablesWhenReviewPostedSuccessfully() async {
+    @Test func postReview_resetsStateForAllPublishedVariablesWhenReviewPostedSuccessfully() async {
         let (sut, _, _, _) = makeSUT()
         let restaurantDetails = anyRestaurantDetails()
         sut.getRestaurantDetailsState = .success(restaurantDetails)
@@ -183,10 +184,10 @@ final class NewReviewViewModelTests: XCTestCase {
 
         await sut.postReview()
 
-        XCTAssertTrue(sut.reviewText.isEmpty)
-        XCTAssertEqual(sut.starsNumber, 0)
-        XCTAssertEqual(postReviewState.results, [.idle, .isLoading, .idle])
-        XCTAssertEqual(getRestaurantDetailsState.results, [.success(restaurantDetails), .idle])
+        #expect(sut.reviewText.isEmpty)
+        #expect(sut.starsNumber == 0)
+        #expect(postReviewState.results == [.idle, .isLoading, .idle])
+        #expect(getRestaurantDetailsState.results == [.success(restaurantDetails), .idle])
     }
 
     // MARK: - Helpers

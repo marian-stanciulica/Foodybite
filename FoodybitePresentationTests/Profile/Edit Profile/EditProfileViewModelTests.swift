@@ -5,42 +5,43 @@
 //  Created by Marian Stanciulica on 25.11.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSData
 import Domain
 import FoodybitePresentation
 
-final class EditProfileViewModelTests: XCTestCase {
+struct EditProfileViewModelTests {
 
-    func test_isLoading_isTrueOnlyWhenResultIsLoading() {
+    @Test func isLoading_isTrueOnlyWhenResultIsLoading() {
         let (sut, _) = makeSUT()
 
         sut.state = .idle
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
 
         sut.state = .isLoading
-        XCTAssertTrue(sut.isLoading)
+        #expect(sut.isLoading)
 
         sut.state = .failure(.serverError)
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
 
         sut.state = .success
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
     }
 
-    func test_updateAccount_triggerEmptyNameErrorOnEmptyNameTextField() async {
+    @Test func updateAccount_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
 
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyName))
     }
 
-    func test_updateAccount_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
+    @Test func updateAccount_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
 
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyEmail))
     }
 
-    func test_updateAccount_triggerInvalidFormatErrorOnInvalidEmail() async {
+    @Test func updateAccount_triggerInvalidFormatErrorOnInvalidEmail() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = invalidEmail()
@@ -48,23 +49,23 @@ final class EditProfileViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.invalidEmail))
     }
 
-    func test_updateAccount_sendsValidInputsToAccountService() async {
+    @Test func updateAccount_sendsValidInputsToAccountService() async {
         let (sut, accountServiceSpy) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
 
         await sut.updateAccount()
 
-        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.name), [validName()])
-        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.email), [validEmail()])
+        #expect(accountServiceSpy.capturedValues.map(\.name) == [validName()])
+        #expect(accountServiceSpy.capturedValues.map(\.email) == [validEmail()])
 
         await sut.updateAccount()
 
-        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.name), [validName(), validName()])
-        XCTAssertEqual(accountServiceSpy.capturedValues.map(\.email), [validEmail(), validEmail()])
+        #expect(accountServiceSpy.capturedValues.map(\.name) == [validName(), validName()])
+        #expect(accountServiceSpy.capturedValues.map(\.email) == [validEmail(), validEmail()])
     }
 
-    func test_updateAccount_throwsErrorWhenAccountServiceThrowsError() async {
+    @Test func updateAccount_throwsErrorWhenAccountServiceThrowsError() async {
         let (sut, signUpServiceSpy) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -75,7 +76,7 @@ final class EditProfileViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
     }
 
-    func test_updateAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
+    @Test func updateAccount_setsSuccessfulResultWhenAccountServiceReturnsSuccess() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -93,15 +94,14 @@ final class EditProfileViewModelTests: XCTestCase {
 
     private func assertRegister(on sut: EditProfileViewModel,
                                 withExpectedResult expectedResult: EditProfileViewModel.State,
-                                file: StaticString = #file,
-                                line: UInt = #line) async {
+                                sourceLocation: SourceLocation = #_sourceLocation) async {
         let resultSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
 
-        XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
+        #expect(resultSpy.results == [.idle], sourceLocation: sourceLocation)
 
         await sut.updateAccount()
 
-        XCTAssertEqual(resultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
+        #expect(resultSpy.results == [.idle, .isLoading, expectedResult], sourceLocation: sourceLocation)
         resultSpy.cancel()
     }
 
@@ -122,11 +122,17 @@ final class EditProfileViewModelTests: XCTestCase {
     }
 
     private class AccountServiceSpy: AccountService {
+        struct UpdateAccountParams {
+            let name: String
+            let email: String
+            let profileImage: Data?
+        }
+
         var errorToThrow: Error?
-        private(set) var capturedValues = [(name: String, email: String, profileImage: Data?)]()
+        private(set) var capturedValues = [UpdateAccountParams]()
 
         func updateAccount(name: String, email: String, profileImage: Data?) async throws {
-            capturedValues.append((name, email, profileImage))
+            capturedValues.append(UpdateAccountParams(name: name, email: email, profileImage: profileImage))
 
             if let errorToThrow = errorToThrow {
                 throw errorToThrow

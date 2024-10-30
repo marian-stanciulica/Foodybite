@@ -5,25 +5,25 @@
 //  Created by Marian Stanciulica on 12.11.2022.
 //
 
-import XCTest
+import Testing
 import FoodybitePresentation
 
-final class RegisterValidatorTests: XCTestCase {
+struct RegisterValidatorTests {
 
-    func test_registrationError_rawValueOfServerError() {
-        XCTAssertEqual(RegisterValidator.Error.serverError.toString(), "There was a problem with the account creation. Please try again later!")
+    @Test func registrationError_rawValueOfServerError() {
+        #expect(RegisterValidator.Error.serverError.toString() == "There was a problem with the account creation. Please try again later!")
     }
 
-    func test_registrationError_rawValueOfEmptyNameError() {
-        XCTAssertEqual(RegisterValidator.Error.emptyName.toString(), "Empty name")
+    @Test func registrationError_rawValueOfEmptyNameError() {
+        #expect(RegisterValidator.Error.emptyName.toString() == "Empty name")
     }
 
-    func test_registrationError_rawValueOfEmptyEmailError() {
-        XCTAssertEqual(RegisterValidator.Error.emptyEmail.toString(), "Empty email")
+    @Test func registrationError_rawValueOfEmptyEmailError() {
+        #expect(RegisterValidator.Error.emptyEmail.toString() == "Empty email")
     }
 
-    func test_registrationError_rawValueOfInvalidEmailError() {
-        XCTAssertEqual(RegisterValidator.Error.invalidEmail.toString(), "Invalid email")
+    @Test func registrationError_rawValueOfInvalidEmailError() {
+        #expect(RegisterValidator.Error.invalidEmail.toString() == "Invalid email")
     }
 
 }

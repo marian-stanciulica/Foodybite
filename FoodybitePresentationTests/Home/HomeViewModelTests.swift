@@ -5,42 +5,43 @@
 //  Created by Marian Stanciulica on 28.01.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
 import Domain
 import FoodybitePresentation
 
-final class HomeViewModelTests: XCTestCase {
+struct HomeViewModelTests {
 
-    func test_init_searchText() {
+    @Test func init_searchText() {
         let (sut, _) = makeSUT()
 
-        XCTAssertTrue(sut.searchText.isEmpty)
+        #expect(sut.searchText.isEmpty == true)
     }
 
-    func test_init_searchNearbyState() {
+    @Test func init_searchNearbyState() {
         let (sut, _) = makeSUT()
 
-        XCTAssertEqual(sut.searchNearbyState, .idle)
+        #expect(sut.searchNearbyState == .idle)
     }
 
-    func test_searchNearby_sendsInputToNearbyRestaurantsService() async {
+    @Test func searchNearby_sendsInputToNearbyRestaurantsService() async {
         let (sut, serviceSpy) = makeSUT()
 
         await sut.searchNearby()
 
-        XCTAssertEqual(serviceSpy.capturedValues.count, 1)
-        XCTAssertEqual(serviceSpy.capturedValues[0].location, anyLocation)
-        XCTAssertEqual(serviceSpy.capturedValues[0].radius, anyUserPreferences.radius)
+        #expect(serviceSpy.capturedValues.count == 1)
+        #expect(serviceSpy.capturedValues[0].location == anyLocation)
+        #expect(serviceSpy.capturedValues[0].radius == anyUserPreferences.radius)
     }
 
-    func test_searchNearby_setsErrorWhenNearbyRestaurantsServiceThrowsError() async {
+    @Test func searchNearby_setsErrorWhenNearbyRestaurantsServiceThrowsError() async {
         let (sut, serviceSpy) = makeSUT()
         serviceSpy.result = .failure(anyError)
 
         await assert(on: sut, withExpectedResult: .failure(.serverError))
     }
 
-    func test_searchNearby_updatesNearbyRestaurantsWhenNearbyRestaurantsServiceReturnsSuccessfully() async {
+    @Test func searchNearby_updatesNearbyRestaurantsWhenNearbyRestaurantsServiceReturnsSuccessfully() async {
         let (sut, serviceSpy) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         serviceSpy.result = .success(expectedNearbyRestaurants)
@@ -48,35 +49,35 @@ final class HomeViewModelTests: XCTestCase {
         await assert(on: sut, withExpectedResult: .success(expectedNearbyRestaurants))
     }
 
-    func test_filteredNearbyRestaurants_isEmptyWhenSearchNearbyStateIsNotSuccess() {
+    @Test func filteredNearbyRestaurants_isEmptyWhenSearchNearbyStateIsNotSuccess() {
         let (sut, _) = makeSUT()
 
         sut.searchNearbyState = .idle
-        XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
+        #expect(sut.filteredNearbyRestaurants.isEmpty == true)
 
         sut.searchNearbyState = .isLoading
-        XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
+        #expect(sut.filteredNearbyRestaurants.isEmpty == true)
 
         sut.searchNearbyState = .failure(.serverError)
-        XCTAssertTrue(sut.filteredNearbyRestaurants.isEmpty)
+        #expect(sut.filteredNearbyRestaurants.isEmpty == true)
     }
 
-    func test_filteredNearbyRestaurants_filtersNearbyRestaurantsUsingSearchText() {
+    @Test func filteredNearbyRestaurants_filtersNearbyRestaurantsUsingSearchText() {
         let (sut, _) = makeSUT()
         let nearbyRestaurants = makeNearbyRestaurants()
         sut.searchNearbyState = .success(nearbyRestaurants)
         sut.searchText = nearbyRestaurants[1].name
 
-        XCTAssertEqual(sut.filteredNearbyRestaurants, [nearbyRestaurants[1]])
+        #expect(sut.filteredNearbyRestaurants == [nearbyRestaurants[1]])
     }
 
-    func test_filteredNearbyRestaurants_equalsNearbyRestaurantsWhenSearchTextIsEmpty() {
+    @Test func filteredNearbyRestaurants_equalsNearbyRestaurantsWhenSearchTextIsEmpty() {
         let (sut, _) = makeSUT()
         let nearbyRestaurants = makeNearbyRestaurants()
         sut.searchNearbyState = .success(nearbyRestaurants)
         sut.searchText = ""
 
-        XCTAssertEqual(sut.filteredNearbyRestaurants, nearbyRestaurants)
+        #expect(sut.filteredNearbyRestaurants == nearbyRestaurants)
     }
 
     // MARK: - Helpers
@@ -89,15 +90,14 @@ final class HomeViewModelTests: XCTestCase {
 
     private func assert(on sut: HomeViewModel,
                         withExpectedResult expectedResult: HomeViewModel.State,
-                        file: StaticString = #file,
-                        line: UInt = #line) async {
+                        sourceLocation: SourceLocation = #_sourceLocation) async {
         let resultSpy = PublisherSpy(sut.$searchNearbyState.eraseToAnyPublisher())
 
-        XCTAssertEqual(resultSpy.results, [.idle], file: file, line: line)
+        #expect(resultSpy.results == [.idle], sourceLocation: sourceLocation)
 
         await sut.searchNearby()
 
-        XCTAssertEqual(resultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
+        #expect(resultSpy.results == [.idle, .isLoading, expectedResult], sourceLocation: sourceLocation)
         resultSpy.cancel()
     }
 

@@ -5,55 +5,56 @@
 //  Created by Marian Stanciulica on 12.11.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
 import Domain
 import FoodybitePresentation
 
-final class LoginViewModelTests: XCTestCase {
+struct LoginViewModelTests {
 
-    func test_loginError_rawValueOfServerError() {
-        XCTAssertEqual(LoginViewModel.LoginError.serverError.rawValue, "Invalid Credentials")
+    @Test func loginError_rawValueOfServerError() {
+        #expect(LoginViewModel.LoginError.serverError.rawValue == "Invalid Credentials")
     }
 
-    func test_state_initiallyIdle() {
+    @Test func state_initiallyIdle() {
         let (sut, _) = makeSUT()
 
-        XCTAssertEqual(sut.state, .idle)
+        #expect(sut.state == .idle)
     }
 
-    func test_isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
+    @Test func isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
         let (sut, _) = makeSUT()
 
         sut.state = .idle
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
 
         sut.state = .isLoading
-        XCTAssertTrue(sut.isLoading)
+        #expect(sut.isLoading)
 
         sut.state = .failure(.serverError)
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
 
         sut.state = .success
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
     }
 
-    func test_login_sendsInputsToLoginService() async {
+    @Test func login_sendsInputsToLoginService() async {
         let (sut, loginServiceSpy) = makeSUT()
         sut.email = anyEmail()
         sut.password = anyPassword()
 
         await sut.login()
 
-        XCTAssertEqual(loginServiceSpy.capturedValues.map(\.email), [anyEmail()])
-        XCTAssertEqual(loginServiceSpy.capturedValues.map(\.password), [anyPassword()])
+        #expect(loginServiceSpy.capturedValues.map(\.email) == [anyEmail()])
+        #expect(loginServiceSpy.capturedValues.map(\.password) == [anyPassword()])
 
         await sut.login()
 
-        XCTAssertEqual(loginServiceSpy.capturedValues.map(\.email), [anyEmail(), anyEmail()])
-        XCTAssertEqual(loginServiceSpy.capturedValues.map(\.password), [anyPassword(), anyPassword()])
+        #expect(loginServiceSpy.capturedValues.map(\.email) == [anyEmail(), anyEmail()])
+        #expect(loginServiceSpy.capturedValues.map(\.password) == [anyPassword(), anyPassword()])
     }
 
-    func test_login_throwsErrorWhenLoginServiceThrowsError() async {
+    @Test func login_throwsErrorWhenLoginServiceThrowsError() async {
         let (sut, loginServiceSpy) = makeSUT()
         sut.email = anyEmail()
         sut.password = anyPassword()
@@ -62,10 +63,10 @@ final class LoginViewModelTests: XCTestCase {
         loginServiceSpy.errorToThrow = expectedError
 
         await sut.login()
-        XCTAssertEqual(sut.state, .failure(.serverError))
+        #expect(sut.state == .failure(.serverError))
     }
 
-    func test_login_callsGoToMainTabWhenLoginServiceFinishedSuccessfully() async {
+    @Test func login_callsGoToMainTabWhenLoginServiceFinishedSuccessfully() async {
         var goToMainTabCalled = false
         let (sut, _) = makeSUT { _ in
             goToMainTabCalled = true
@@ -75,7 +76,7 @@ final class LoginViewModelTests: XCTestCase {
 
         await sut.login()
 
-        XCTAssertTrue(goToMainTabCalled)
+        #expect(goToMainTabCalled)
     }
 
     // MARK: - Helpers
@@ -88,15 +89,14 @@ final class LoginViewModelTests: XCTestCase {
 
     private func assertLogin(on sut: LoginViewModel,
                              withExpectedResult expectedResult: LoginViewModel.State,
-                             file: StaticString = #file,
-                             line: UInt = #line) async {
+                             sourceLocation: SourceLocation = #_sourceLocation) async {
         let registerResultSpy = PublisherSpy(sut.$state.eraseToAnyPublisher())
 
-        XCTAssertEqual(registerResultSpy.results, [.idle], file: file, line: line)
+        #expect(registerResultSpy.results == [.idle], sourceLocation: sourceLocation)
 
         await sut.login()
 
-        XCTAssertEqual(registerResultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
+        #expect(registerResultSpy.results == [.idle, .isLoading, expectedResult], sourceLocation: sourceLocation)
         registerResultSpy.cancel()
     }
 

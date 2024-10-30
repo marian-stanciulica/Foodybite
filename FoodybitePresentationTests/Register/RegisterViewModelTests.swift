@@ -5,48 +5,49 @@
 //  Created by Marian Stanciulica on 11.11.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSData
 import Domain
 import FoodybitePresentation
 
-final class RegisterViewModelTests: XCTestCase {
+struct RegisterViewModelTests {
 
-    func test_state_initiallyIdle() {
+    @Test func state_initiallyIdle() {
         let (sut, _) = makeSUT()
 
-        XCTAssertEqual(sut.registerResult, .idle)
+        #expect(sut.registerResult == .idle)
     }
 
-    func test_isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
+    @Test func isLoading_isTrueOnlyWhenRegisterResultIsLoading() {
         let (sut, _) = makeSUT()
 
         sut.registerResult = .idle
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
 
         sut.registerResult = .isLoading
-        XCTAssertTrue(sut.isLoading)
+        #expect(sut.isLoading)
 
         sut.registerResult = .failure(.serverError)
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
 
         sut.registerResult = .success
-        XCTAssertFalse(sut.isLoading)
+        #expect(!sut.isLoading)
     }
 
-    func test_register_triggerEmptyNameErrorOnEmptyNameTextField() async {
+    @Test func register_triggerEmptyNameErrorOnEmptyNameTextField() async {
         let (sut, _) = makeSUT()
 
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyName))
     }
 
-    func test_register_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
+    @Test func register_triggerEmptyEmailErrorOnEmptyEmailTextField() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
 
         await assertRegister(on: sut, withExpectedResult: .failure(.emptyEmail))
     }
 
-    func test_register_triggerInvalidFormatErrorOnInvalidEmail() async {
+    @Test func register_triggerInvalidFormatErrorOnInvalidEmail() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = invalidEmail()
@@ -54,7 +55,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.invalidEmail))
     }
 
-    func test_register_triggerTooShortPasswordErrorOnTooShortPassword() async {
+    @Test func register_triggerTooShortPasswordErrorOnTooShortPassword() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -63,7 +64,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.tooShortPassword)))
     }
 
-    func test_register_triggerPasswordDoesntContainUpperLetter() async {
+    @Test func register_triggerPasswordDoesntContainUpperLetter() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -72,7 +73,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainUpperLetter)))
     }
 
-    func test_register_triggerPasswordDoesntContainLowerLetter() async {
+    @Test func register_triggerPasswordDoesntContainLowerLetter() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -81,7 +82,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainLowerLetter)))
     }
 
-    func test_register_triggerPasswordDoesntContainDigits() async {
+    @Test func register_triggerPasswordDoesntContainDigits() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -90,7 +91,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainDigits)))
     }
 
-    func test_register_triggerPasswordDoesntContainSpecialCharacter() async {
+    @Test func register_triggerPasswordDoesntContainSpecialCharacter() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -99,7 +100,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
     }
 
-    func test_register_triggerPasswordsDontMatch() async {
+    @Test func register_triggerPasswordsDontMatch() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -108,7 +109,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.passwordError(.passwordsDontMatch)))
     }
 
-    func test_register_sendsValidInputsToSignUpService() async {
+    @Test func register_sendsValidInputsToSignUpService() async {
         let (sut, signUpServiceSpy) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -118,13 +119,13 @@ final class RegisterViewModelTests: XCTestCase {
 
         await sut.register()
 
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.name), [validName()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.email), [validEmail()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.password), [validPassword()])
-        XCTAssertEqual(signUpServiceSpy.capturedValues.map(\.profileImage), [anyData()])
+        #expect(signUpServiceSpy.capturedValues.map(\.name) == [validName()])
+        #expect(signUpServiceSpy.capturedValues.map(\.email) == [validEmail()])
+        #expect(signUpServiceSpy.capturedValues.map(\.password) == [validPassword()])
+        #expect(signUpServiceSpy.capturedValues.map(\.profileImage) == [anyData()])
     }
 
-    func test_register_throwsErrorWhenSignUpServiceThrowsError() async {
+    @Test func register_throwsErrorWhenSignUpServiceThrowsError() async {
         let (sut, signUpServiceSpy) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -137,7 +138,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .failure(.serverError))
     }
 
-    func test_register_setsSuccessfulResultWhenSignUpServiceReturnsSuccess() async {
+    @Test func register_setsSuccessfulResultWhenSignUpServiceReturnsSuccess() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -147,7 +148,7 @@ final class RegisterViewModelTests: XCTestCase {
         await assertRegister(on: sut, withExpectedResult: .success)
     }
 
-    func test_register_resetsInputsWhenSignUpServiceReturnsSuccess() async {
+    @Test func register_resetsInputsWhenSignUpServiceReturnsSuccess() async {
         let (sut, _) = makeSUT()
         sut.name = validName()
         sut.email = validEmail()
@@ -156,10 +157,10 @@ final class RegisterViewModelTests: XCTestCase {
 
         await sut.register()
 
-        XCTAssertTrue(sut.name.isEmpty)
-        XCTAssertTrue(sut.email.isEmpty)
-        XCTAssertTrue(sut.password.isEmpty)
-        XCTAssertTrue(sut.confirmPassword.isEmpty)
+        #expect(sut.name.isEmpty)
+        #expect(sut.email.isEmpty)
+        #expect(sut.password.isEmpty)
+        #expect(sut.confirmPassword.isEmpty)
     }
 
     // MARK: - Helpers
@@ -216,15 +217,14 @@ final class RegisterViewModelTests: XCTestCase {
 
     private func assertRegister(on sut: RegisterViewModel,
                                 withExpectedResult expectedResult: RegisterViewModel.State,
-                                file: StaticString = #file,
-                                line: UInt = #line) async {
+                                sourceLocation: SourceLocation = #_sourceLocation) async {
         let registerResultSpy = PublisherSpy(sut.$registerResult.eraseToAnyPublisher())
 
-        XCTAssertEqual(registerResultSpy.results, [.idle], file: file, line: line)
+        #expect(registerResultSpy.results == [.idle], sourceLocation: sourceLocation)
 
         await sut.register()
 
-        XCTAssertEqual(registerResultSpy.results, [.idle, .isLoading, expectedResult], file: file, line: line)
+        #expect(registerResultSpy.results == [.idle, .isLoading, expectedResult], sourceLocation: sourceLocation)
         registerResultSpy.cancel()
     }
 
