@@ -5,46 +5,46 @@
 //  Created by Marian Stanciulica on 08.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import FoodybitePersistence
 
-final class RestaurantDetailsDAOTests: XCTestCase {
+struct RestaurantDetailsDAOTests {
 
-    func test_getRestaurantDetails_throwsErrorWhenStoreThrowsError() async {
+    @Test func getRestaurantDetails_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readResult = .failure(anyError())
 
         do {
             let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant #1")
-            XCTFail("Expected to fail, received \(restaurantDetails) instead")
+            Issue.record("Expected to fail, received \(restaurantDetails) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getRestaurantDetails_returnsRestaurantDetailsForRestaurantIDWhenStoreContainsRestaurantDetails() async throws {
+    @Test func getRestaurantDetails_returnsRestaurantDetailsForRestaurantIDWhenStoreContainsRestaurantDetails() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         storeSpy.readAllResult = .success(makeRestaurantsDetailsArray() + [expectedRestaurantDetails])
 
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
-        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
+        #expect(receivedRestaurantDetails == expectedRestaurantDetails)
     }
 
-    func test_save_sendsRestaurantsDetailsToStore() async throws {
+    @Test func save_sendsRestaurantsDetailsToStore() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
 
         try await sut.save(restaurantDetails: expectedRestaurantDetails)
 
-        XCTAssertEqual(storeSpy.messages.count, 1)
+        #expect(storeSpy.messages.count == 1)
 
         if case let .write(receivedRestaurantDetails) = storeSpy.messages[0],
            let receivedRestaurantDetails = receivedRestaurantDetails as? RestaurantDetails {
-            XCTAssertEqual(expectedRestaurantDetails, receivedRestaurantDetails)
+            #expect(expectedRestaurantDetails == receivedRestaurantDetails)
         } else {
-            XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
+            Issue.record("Expected .write message, got \(storeSpy.messages[0]) instead")
         }
     }
 

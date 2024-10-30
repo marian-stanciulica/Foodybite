@@ -5,35 +5,35 @@
 //  Created by Marian Stanciulica on 24.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import FoodybitePersistence
 
-final class ReviewDAOTests: XCTestCase {
+struct ReviewDAOTests {
 
-    func test_getReviews_throwsErrorWhenStoreThrowsError() async {
+    @Test func getReviews_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readResult = .failure(anyError())
 
         do {
             let reviews = try await sut.getReviews()
-            XCTFail("Expected to fail, received \(reviews) instead")
+            Issue.record("Expected to fail, received \(reviews) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getReviews_returnsAllReviewsWhenStoreContainsReviews() async throws {
+    @Test func getReviews_returnsAllReviewsWhenStoreContainsReviews() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedReviews = makeReviews()
         storeSpy.readAllResult = .success(expectedReviews)
 
         let receivedReviews = try await sut.getReviews()
 
-        XCTAssertEqual(receivedReviews, expectedReviews)
+        #expect(receivedReviews == expectedReviews)
     }
 
-    func test_getReviews_returnsReviewsFromStoreForGivenRestaurantID() async  throws {
+    @Test func getReviews_returnsReviewsFromStoreForGivenRestaurantID() async  throws {
         let (sut, storeSpy) = makeSUT()
         let allReviews = makeReviews()
         let expectedReviews = [allReviews[1]]
@@ -41,22 +41,22 @@ final class ReviewDAOTests: XCTestCase {
 
         let receivedReviews = try await sut.getReviews(restaurantID: expectedReviews.first?.restaurantID)
 
-        XCTAssertEqual(receivedReviews, expectedReviews)
+        #expect(receivedReviews == expectedReviews)
     }
 
-    func test_save_sendsReviewsToStore() async throws {
+    @Test func save_sendsReviewsToStore() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedReviews = makeReviews()
 
         try await sut.save(reviews: expectedReviews)
 
-        XCTAssertEqual(storeSpy.messages.count, 1)
+        #expect(storeSpy.messages.count == 1)
 
         if case let .writeAll(receivedReviews) = storeSpy.messages[0],
            let receivedReviews = receivedReviews as? [Review] {
-            XCTAssertEqual(expectedReviews, receivedReviews)
+            #expect(expectedReviews == receivedReviews)
         } else {
-            XCTFail("Expected .write message, got \(storeSpy.messages[0]) instead")
+            Issue.record("Expected .write message, got \(storeSpy.messages[0]) instead")
         }
     }
 

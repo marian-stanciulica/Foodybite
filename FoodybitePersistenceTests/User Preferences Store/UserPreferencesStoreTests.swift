@@ -5,41 +5,42 @@
 //  Created by Marian Stanciulica on 03.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSData
 import FoodybitePersistence
 import Domain
 
-final class UserPreferencesLocalStoreTests: XCTestCase {
+final class UserPreferencesLocalStoreTests {
 
-    override func tearDown() {
+    deinit {
         _ = makeEmptyUserDefaults()
     }
 
-    func test_load_returnsDefaultUserPreferencesWhenEmptyStore() {
+    @Test func load_returnsDefaultUserPreferencesWhenEmptyStore() {
         let (sut, _) = makeSUT()
 
         let receivedUserPrefences = sut.load()
 
-        XCTAssertEqual(receivedUserPrefences, .default)
+        #expect(receivedUserPrefences == .default)
     }
 
-    func test_load_returnsDefaultUserPreferencesWhenDecodingFailed() {
+    @Test func load_returnsDefaultUserPreferencesWhenDecodingFailed() {
         let (sut, userDefaults) = makeSUT()
         userDefaults.set(Data(), forKey: UserPreferencesLocalStore.Keys.userPreferences.rawValue)
 
         let receivedUserPrefences = sut.load()
 
-        XCTAssertEqual(receivedUserPrefences, .default)
+        #expect(receivedUserPrefences == .default)
     }
 
-    func test_load_loadsStoredUserPreferences() {
+    @Test func load_loadsStoredUserPreferences() {
         let (sut, _) = makeSUT()
         let expectedUserPreferences = UserPreferences(radius: 123, starsNumber: 3)
         sut.save(expectedUserPreferences)
 
         let receivedUserPrefences = sut.load()
 
-        XCTAssertEqual(receivedUserPrefences, expectedUserPreferences)
+        #expect(receivedUserPrefences == expectedUserPreferences)
     }
 
     // MARK: - Helpers

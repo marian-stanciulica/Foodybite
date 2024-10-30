@@ -5,43 +5,44 @@
 //  Created by Marian Stanciulica on 14.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSUUID
 import Domain
 import FoodybitePersistence
 
-final class UserDAOTests: XCTestCase {
+struct UserDAOTests {
 
-    func test_getUser_throwsErrorWhenStoreThrowsError() async {
+    @Test func getUser_throwsErrorWhenStoreThrowsError() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readResult = .failure(anyError())
 
         do {
             let user = try await sut.getUser(id: UUID())
-            XCTFail("Expected to fail, received user \(user) instead")
+            Issue.record("Expected to fail, received user \(user) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getUser_throwsErrorWhenUserNotFound() async {
+    @Test func getUser_throwsErrorWhenUserNotFound() async {
         let (sut, storeSpy) = makeSUT()
         storeSpy.readAllResult = .success([makeUser(), makeUser(), makeUser()])
 
         do {
             let user = try await sut.getUser(id: UUID())
-            XCTFail("Expected to fail, received user \(user) instead")
+            Issue.record("Expected to fail, received user \(user) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getUser_returnsFoundUserWhenFoundInStore() async throws {
+    @Test func getUser_returnsFoundUserWhenFoundInStore() async throws {
         let (sut, storeSpy) = makeSUT()
         let expectedUser = makeUser()
         storeSpy.readAllResult = .success([makeUser(), makeUser()] + [expectedUser])
 
         let receivedUser = try await sut.getUser(id: expectedUser.id)
-        XCTAssertEqual(expectedUser, receivedUser)
+        #expect(expectedUser == receivedUser)
     }
 
     // MARK: - Helpers

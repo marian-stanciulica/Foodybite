@@ -5,25 +5,26 @@
 //  Created by Marian Stanciulica on 05.11.2022.
 //
 
-import XCTest
+import Testing
+import Foundation.NSUUID
 import Domain
 import FoodybitePersistence
 
-final class CoreDataLocalStoreTests: XCTestCase {
+struct CoreDataLocalStoreTests {
 
-    func test_read_deliversErrorOnCacheMiss() async throws {
+    @Test func read_deliversErrorOnCacheMiss() async throws {
         let sut = try makeSUT()
 
         await expectReadToFail(sut: sut)
     }
 
-    func test_read_hasNoSideEffectsOnCacheMiss() async throws {
+    @Test func read_hasNoSideEffectsOnCacheMiss() async throws {
         let sut = try makeSUT()
 
         await expectReadToFailTwice(sut: sut)
     }
 
-    func test_read_deliversResourceOnCacheHit() async throws {
+    @Test func read_deliversResourceOnCacheHit() async throws {
         let sut = try makeSUT()
 
         let expectedUser = anyUser()
@@ -32,7 +33,7 @@ final class CoreDataLocalStoreTests: XCTestCase {
         await expectReadToSucceed(sut: sut, withExpected: expectedUser)
     }
 
-    func test_read_hasNoSideEffectsOnCacheHit() async throws {
+    @Test func read_hasNoSideEffectsOnCacheHit() async throws {
         let sut = try makeSUT()
 
         let expectedUser = anyUser()
@@ -41,17 +42,17 @@ final class CoreDataLocalStoreTests: XCTestCase {
         await expectReadToSucceedTwice(sut: sut, withExpected: expectedUser)
     }
 
-    func test_write_deliversNoErrorOnEmptyCache() async throws {
+    @Test func write_deliversNoErrorOnEmptyCache() async throws {
         let sut = try makeSUT()
 
         do {
             try await sut.write(anyUser())
         } catch {
-            XCTFail("Write should succeed on empty cache, got \(error) instead")
+            Issue.record("Write should succeed on empty cache, got \(error) instead")
         }
     }
 
-    func test_write_deliversNoErrorOnNonEmptyCache() async throws {
+    @Test func write_deliversNoErrorOnNonEmptyCache() async throws {
         let sut = try makeSUT()
 
         try await sut.write(anyUser())
@@ -59,11 +60,11 @@ final class CoreDataLocalStoreTests: XCTestCase {
         do {
             try await sut.write(anyUser())
         } catch {
-            XCTFail("Write should succeed on non empty cache, got \(error) instead")
+            Issue.record("Write should succeed on non empty cache, got \(error) instead")
         }
     }
 
-    func test_write_updatesPreviouslyInsertedResource() async throws {
+    @Test func write_updatesPreviouslyInsertedResource() async throws {
         let sut = try makeSUT()
         let userID = UUID()
         let anyUser = anyUser(id: userID)
@@ -74,7 +75,7 @@ final class CoreDataLocalStoreTests: XCTestCase {
         try await sut.write(anyUser)
         let receivedUser: User = try await sut.read()
 
-        XCTAssertEqual(receivedUser, anyUser)
+        #expect(receivedUser == anyUser)
     }
 
     // MARK: - Helpers
@@ -85,42 +86,40 @@ final class CoreDataLocalStoreTests: XCTestCase {
         return try CoreDataLocalStore(storeURL: storeURL, bundle: storeBundle)
     }
 
-    private func expectReadToFail(sut: CoreDataLocalStore, file: StaticString = #file, line: UInt = #line) async {
+    private func expectReadToFail(sut: CoreDataLocalStore, sourceLocation: SourceLocation = #_sourceLocation) async {
         do {
             let _: User = try await sut.read()
-            XCTFail("Read method expected to fail when cache miss", file: file, line: line)
+            Issue.record("Read method expected to fail when cache miss", sourceLocation: sourceLocation)
         } catch {
-            XCTAssertNotNil(error, file: file, line: line)
+            #expect(error != nil, sourceLocation: sourceLocation)
         }
     }
 
-    private func expectReadToFailTwice(sut: CoreDataLocalStore, file: StaticString = #file, line: UInt = #line) async {
-        await expectReadToFail(sut: sut)
-        await expectReadToFail(sut: sut)
+    private func expectReadToFailTwice(sut: CoreDataLocalStore, sourceLocation: SourceLocation = #_sourceLocation) async {
+        await expectReadToFail(sut: sut, sourceLocation: sourceLocation)
+        await expectReadToFail(sut: sut, sourceLocation: sourceLocation)
     }
 
     private func expectReadToSucceed(
         sut: CoreDataLocalStore,
         withExpected expectedUser: User,
-        file: StaticString = #file,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) async {
         do {
             let receivedResource: User = try await sut.read()
-            XCTAssertEqual(receivedResource, expectedUser, file: file, line: line)
+            #expect(receivedResource == expectedUser, sourceLocation: sourceLocation)
         } catch {
-            XCTFail("Expected to receive a resource, got \(error) instead", file: file, line: line)
+            Issue.record("Expected to receive a resource, got \(error) instead", sourceLocation: sourceLocation)
         }
     }
 
     private func expectReadToSucceedTwice(
         sut: CoreDataLocalStore,
         withExpected expectedUser: User,
-        file: StaticString = #file,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) async {
-        await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
-        await expectReadToSucceed(sut: sut, withExpected: expectedUser, file: file, line: line)
+        await expectReadToSucceed(sut: sut, withExpected: expectedUser, sourceLocation: sourceLocation)
+        await expectReadToSucceed(sut: sut, withExpected: expectedUser, sourceLocation: sourceLocation)
     }
 
     private func anyUser(id: UUID = UUID()) -> User {
