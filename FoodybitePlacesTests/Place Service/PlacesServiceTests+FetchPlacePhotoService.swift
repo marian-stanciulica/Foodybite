@@ -5,25 +5,26 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSURLRequest
 @testable import FoodybitePlaces
 import Domain
 
 extension PlacesServiceTests {
 
-    func test_conformsToRestaurantPhotoService() {
+    @Test func conformsToRestaurantPhotoService() {
         let (sut, _) = makeSUT(response: anyData())
-        XCTAssertNotNil(sut as RestaurantPhotoService)
+        #expect(sut as RestaurantPhotoService != nil)
     }
 
-    func test_fetchPhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
+    @Test func fetchPhoto_usesGetPlacePhotoEndpointToCreateURLRequest() async throws {
         let photoReference = randomString()
         let (sut, loader) = makeSUT(response: anyData())
         let endpoint = GetPlacePhotoEndpoint(photoReference: photoReference)
 
         _ = try await sut.fetchPhoto(photoReference: photoReference)
 
-        XCTAssertEqual(loader.getDataRequests.count, 1)
+        #expect(loader.getDataRequests.count == 1)
         assertURLComponents(
             urlRequest: loader.getDataRequests[0],
             photoReference: photoReference,
@@ -31,7 +32,7 @@ extension PlacesServiceTests {
         )
     }
 
-    func test_fetchPhoto_receivesExpectedPlacePhotoResponse() async throws {
+    @Test func fetchPhoto_receivesExpectedPlacePhotoResponse() async throws {
         let response = anyData()
         let expectedData = anyData()
         let (sut, loader) = makeSUT(response: response)
@@ -39,7 +40,7 @@ extension PlacesServiceTests {
 
         let receivedResponse = try await sut.fetchPhoto(photoReference: randomString())
 
-        XCTAssertEqual(expectedData, receivedResponse)
+        #expect(expectedData == receivedResponse)
     }
 
     // MARK: - Helpers
@@ -48,8 +49,7 @@ extension PlacesServiceTests {
         urlRequest: URLRequest,
         photoReference: String,
         apiKey: String,
-        file: StaticString = #filePath,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) {
         let expectedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "key", value: apiKey),
@@ -61,8 +61,7 @@ extension PlacesServiceTests {
             urlRequest: urlRequest,
             path: "/maps/api/place/photo",
             expectedQueryItems: expectedQueryItems,
-            file: file,
-            line: line)
+            sourceLocation: sourceLocation)
     }
 
     private func anyData() -> Data {

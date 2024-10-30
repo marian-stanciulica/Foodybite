@@ -5,25 +5,26 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSURLRequest
 @testable import FoodybitePlaces
 import Domain
 
 extension PlacesServiceTests {
 
-    func test_conformsToRestaurantDetailsService() {
+    @Test func conformsToRestaurantDetailsService() {
         let (sut, _) = makeSUT(response: anyRestaurantDetailsResponse())
-        XCTAssertNotNil(sut as RestaurantDetailsService)
+        #expect(sut as RestaurantDetailsService != nil)
     }
 
-    func test_getRestaurantDetails_usesGetRestaurantDetailsEndpointToCreateURLRequest() async throws {
+    @Test func getRestaurantDetails_usesGetRestaurantDetailsEndpointToCreateURLRequest() async throws {
         let restaurantID = randomString()
         let (sut, loader) = makeSUT(response: anyRestaurantDetailsResponse())
         let endpoint = GetRestaurantDetailsEndpoint(restaurantID: restaurantID)
 
         _ = try await sut.getRestaurantDetails(restaurantID: restaurantID)
 
-        XCTAssertEqual(loader.getRequests.count, 1)
+        #expect(loader.getRequests.count == 1)
         assertURLComponents(
             urlRequest: loader.getRequests[0],
             restaurantID: restaurantID,
@@ -31,25 +32,25 @@ extension PlacesServiceTests {
         )
     }
 
-    func test_getRestaurantDetails_throwsErrorWhenStatusIsNotOK() async {
+    @Test func getRestaurantDetails_throwsErrorWhenStatusIsNotOK() async {
         let failedResponse = anyRestaurantDetailsResponse(status: .notFound)
         let (sut, _) = makeSUT(response: failedResponse)
 
         do {
             let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: failedResponse.result.placeID)
-            XCTFail("Expected to fail, got \(restaurantDetails) instead")
+            Issue.record("Expected to fail, got \(restaurantDetails) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getRestaurantDetails_receiveExpectedRestaurantDetailsResponse() async throws {
+    @Test func getRestaurantDetails_receiveExpectedRestaurantDetailsResponse() async throws {
         let successfulResponse = anyRestaurantDetailsResponse()
         let (sut, _) = makeSUT(response: successfulResponse)
 
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: randomString())
 
-        XCTAssertEqual(successfulResponse.restaurantDetails, receivedRestaurantDetails)
+        #expect(successfulResponse.restaurantDetails == receivedRestaurantDetails)
     }
 
     // MARK: - Helpers
@@ -58,8 +59,7 @@ extension PlacesServiceTests {
         urlRequest: URLRequest,
         restaurantID: String,
         apiKey: String,
-        file: StaticString = #filePath,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) {
         let expectedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "key", value: apiKey),
@@ -70,8 +70,7 @@ extension PlacesServiceTests {
             urlRequest: urlRequest,
             path: "/maps/api/place/details/json",
             expectedQueryItems: expectedQueryItems,
-            file: file,
-            line: line)
+            sourceLocation: sourceLocation)
     }
 
     private func anyRestaurantDetailsResponse(status: PlaceDetailsStatus = .okStatus) -> PlaceDetailsResponse {

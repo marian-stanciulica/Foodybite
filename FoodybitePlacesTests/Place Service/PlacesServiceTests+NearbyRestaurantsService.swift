@@ -5,18 +5,19 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSURLRequest
 @testable import FoodybitePlaces
 import Domain
 
 extension PlacesServiceTests {
 
-    func test_conformsToNearbyRestaurantsService() {
+    @Test func conformsToNearbyRestaurantsService() {
         let (sut, _) = makeSUT(response: anySearchNearbyResponse())
-        XCTAssertNotNil(sut as NearbyRestaurantsService)
+        #expect(sut as NearbyRestaurantsService != nil)
     }
 
-    func test_searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
+    @Test func searchNearby_usesSearchNearbyEndpointToCreateURLRequest() async throws {
         let location = Location(latitude: -33.8, longitude: 15.1)
         let radius = 15
         let (sut, loader) = makeSUT(response: anySearchNearbyResponse())
@@ -24,7 +25,7 @@ extension PlacesServiceTests {
 
         _ = try await searchNearby(on: sut, location: location, radius: radius)
 
-        XCTAssertEqual(loader.getRequests.count, 1)
+        #expect(loader.getRequests.count == 1)
         assertURLComponents(
             urlRequest: loader.getRequests[0],
             location: location,
@@ -33,24 +34,24 @@ extension PlacesServiceTests {
         )
     }
 
-    func test_searchNearby_throwsErrorWhenStatusIsNotOK() async {
+    @Test func searchNearby_throwsErrorWhenStatusIsNotOK() async {
         let failedResponse = anySearchNearbyResponse(status: .overQueryLimit)
         let (sut, _) = makeSUT(response: failedResponse)
 
         do {
             let nearbyRestaurants = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, got \(nearbyRestaurants) instead")
+            Issue.record("Expected to fail, got \(nearbyRestaurants) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_searchNearby_receiveExpectedSearchNearbyResponse() async throws {
+    @Test func searchNearby_receiveExpectedSearchNearbyResponse() async throws {
         let successfulResponse = anySearchNearbyResponse()
         let (sut, _) = makeSUT(response: successfulResponse)
 
         let receivedNearbyRestaurants = try await searchNearby(on: sut)
-        XCTAssertEqual(successfulResponse.nearbyRestaurants, receivedNearbyRestaurants)
+        #expect(successfulResponse.nearbyRestaurants == receivedNearbyRestaurants)
     }
 
     // MARK: - Helpers
@@ -67,8 +68,7 @@ extension PlacesServiceTests {
         location: Location,
         radius: Int,
         apiKey: String,
-        file: StaticString = #filePath,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) {
         let expectedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "key", value: apiKey),
@@ -81,8 +81,7 @@ extension PlacesServiceTests {
             urlRequest: urlRequest,
             path: "/maps/api/place/nearbysearch/json",
             expectedQueryItems: expectedQueryItems,
-            file: file,
-            line: line)
+            sourceLocation: sourceLocation)
     }
 
     private func anySearchNearbyResponse(status: SearchNearbyStatus = .okStatus) -> SearchNearbyResponse {

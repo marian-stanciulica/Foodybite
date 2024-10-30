@@ -5,18 +5,19 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSURLRequest
 @testable import FoodybitePlaces
 import Domain
 
 extension PlacesServiceTests {
 
-    func test_conformsToAutocompleteRestaurantsService() {
+    @Test func conformsToAutocompleteRestaurantsService() {
         let (sut, _) = makeSUT(response: anyData())
-        XCTAssertNotNil(sut as AutocompleteRestaurantsService)
+        #expect(sut as AutocompleteRestaurantsService != nil)
     }
 
-    func test_autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {
+    @Test func autocomplete_usesAutocompleteEndpointToCreateURLRequest() async throws {
         let input = "input"
         let location = Location(latitude: -33.8, longitude: 15.1)
         let radius = 15
@@ -26,7 +27,7 @@ extension PlacesServiceTests {
 
         _ = try await sut.autocomplete(input: input, location: location, radius: radius)
 
-        XCTAssertEqual(loader.getRequests.count, 1)
+        #expect(loader.getRequests.count == 1)
         assertURLComponents(
             urlRequest: loader.getRequests[0],
             input: input,
@@ -36,25 +37,25 @@ extension PlacesServiceTests {
         )
     }
 
-    func test_autocomplete_throwsErrorWhenStatusIsNotOK() async {
+    @Test func autocomplete_throwsErrorWhenStatusIsNotOK() async {
         let autocompleteResponse = anyAutocompleteResponse(status: .overQueryLimit)
         let (sut, _) = makeSUT(response: autocompleteResponse)
 
         do {
             let autocompletePredictions = try await autocomplete(on: sut)
-            XCTFail("Expected to fail, got \(autocompletePredictions) instead")
+            Issue.record("Expected to fail, got \(autocompletePredictions) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_autocomplete_receiveExpectedAutocompleteResponse() async throws {
+    @Test func autocomplete_receiveExpectedAutocompleteResponse() async throws {
         let expectedAutocompleteResponse = anyAutocompleteResponse()
         let (sut, _) = makeSUT(response: expectedAutocompleteResponse)
 
         let receivedAutocompletePredictions = try await autocomplete(on: sut)
 
-        XCTAssertEqual(expectedAutocompleteResponse.autocompletePredictions, receivedAutocompletePredictions)
+        #expect(expectedAutocompleteResponse.autocompletePredictions == receivedAutocompletePredictions)
     }
 
     // MARK: - Helpers
@@ -65,8 +66,7 @@ extension PlacesServiceTests {
         location: Location,
         radius: Int,
         apiKey: String,
-        file: StaticString = #filePath,
-        line: UInt = #line
+        sourceLocation: SourceLocation = #_sourceLocation
     ) {
         let expectedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "input", value: input),
@@ -80,8 +80,7 @@ extension PlacesServiceTests {
             urlRequest: urlRequest,
             path: "/maps/api/place/autocomplete/json",
             expectedQueryItems: expectedQueryItems,
-            file: file,
-            line: line)
+            sourceLocation: sourceLocation)
     }
 
     private func autocomplete(
