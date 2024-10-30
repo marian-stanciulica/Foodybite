@@ -5,28 +5,28 @@
 //  Created by Marian Stanciulica on 15.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation.NSError
 import API_Infra
 
-final class URLSessionHTTPClientTests: XCTestCase {
+@Suite(.serialized)
+final class URLSessionHTTPClientTests {
 
-    override func tearDown() {
-        super.tearDown()
-
+    deinit {
         URLProtocolStub.removeStub()
     }
 
-    func test_send_performURLRequest() async {
+    @Test func send_performURLRequest() async {
         let sut = makeSUT()
         let urlRequest = anyURLRequest()
         URLProtocolStub.stub(data: nil, response: nil, error: anyError())
 
         _ = try? await sut.send(urlRequest)
 
-        XCTAssertEqual(URLProtocolStub.capturedRequests, [urlRequest])
+        #expect(URLProtocolStub.capturedRequests == [urlRequest])
     }
 
-    func test_send_throwsErrorOnRequestError() async {
+    @Test func send_throwsErrorOnRequestError() async {
         let sut = makeSUT()
         let urlRequest = anyURLRequest()
         let expectedError = anyError()
@@ -34,27 +34,27 @@ final class URLSessionHTTPClientTests: XCTestCase {
 
         do {
             let result = try await sut.send(urlRequest)
-            XCTFail("Expected to throw error on request error, got \(result) instead")
+            Issue.record("Expected to throw error on request error, got \(result) instead")
         } catch let error as NSError {
-            XCTAssertEqual(expectedError.domain, error.domain)
-            XCTAssertEqual(expectedError.code, error.code)
+            #expect(expectedError.domain == error.domain)
+            #expect(expectedError.code == error.code)
         }
     }
 
-    func test_send_throwErrorOnInvalidCases() async {
+    @Test func send_throwErrorOnInvalidCases() async {
         let sut = makeSUT()
         let urlRequest = anyURLRequest()
         URLProtocolStub.stub(data: anyData(), response: anyUrlResponse(), error: nil)
 
         do {
             let result = try await sut.send(urlRequest)
-            XCTFail("Expected to throw error when response is URLResponse, got \(result) instead")
+            Issue.record("Expected to throw error when response is URLResponse, got \(result) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_send_succeedsOnHTTPUrlResponseWithData() async {
+    @Test func send_succeedsOnHTTPUrlResponseWithData() async {
         let sut = makeSUT()
         let urlRequest = anyURLRequest()
         let anyData = anyData()
@@ -63,11 +63,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
 
         do {
             let (receivedData, receivedResponse) = try await sut.send(urlRequest)
-            XCTAssertEqual(receivedData, anyData)
-            XCTAssertEqual(receivedResponse.url, anyHttpUrlResponse.url)
-            XCTAssertEqual(receivedResponse.statusCode, anyHttpUrlResponse.statusCode)
+            #expect(receivedData == anyData)
+            #expect(receivedResponse.url == anyHttpUrlResponse.url)
+            #expect(receivedResponse.statusCode == anyHttpUrlResponse.statusCode)
         } catch {
-            XCTFail("Should receive data and response, got \(error) instead")
+            Issue.record("Should receive data and response, got \(error) instead")
         }
     }
 
