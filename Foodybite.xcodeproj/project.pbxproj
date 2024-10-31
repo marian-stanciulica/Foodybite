@@ -209,10 +209,6 @@
 		0F215CB829826CF8000F88F4 /* RestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB5298265A0000F88F4 /* RestaurantDetails.swift */; };
 		0F215CB929826CF8000F88F4 /* NearbyRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F215CB4298265A0000F88F4 /* NearbyRestaurant.swift */; };
 		0F2555FA29DABDBA0044243A /* RestaurantDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */; };
-		0F26A35229DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */; };
-		0F26A35329DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */; };
-		0F26A35629DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35429DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png */; };
-		0F26A35729DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F26A35529DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png */; };
 		0F2A26AB2930D16000387A1C /* UpdateAccountRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */; };
 		0F2BACAB29829212006D4A7F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAA29829212006D4A7F /* Geometry.swift */; };
 		0F2BACAE2982922F006D4A7F /* RemoteLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BACAD2982922F006D4A7F /* RemoteLocation.swift */; };
@@ -414,6 +410,10 @@
 		0FDE6C4528FC6DB20080A7FD /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE6C4428FC6DB20080A7FD /* KeychainTokenStoreTests.swift */; };
 		0FE7F80829DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE7F80629DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.light.png */; };
 		0FE7F80929DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE7F80729DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.dark.png */; };
+		0FE8FD752CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8FD732CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.dark.png */; };
+		0FE8FD762CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8FD712CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.dark.png */; };
+		0FE8FD772CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8FD742CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.light.png */; };
+		0FE8FD782CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.light.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8FD722CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.light.png */; };
 		0FEF269B298EA84500994657 /* RemoteReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEF269A298EA84500994657 /* RemoteReview.swift */; };
 		0FF7C64E29B1DB3100622E9C /* AccountEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */; };
 		0FF7C65429B1E0EF00622E9C /* LogoutEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7C65329B1E0EF00622E9C /* LogoutEndpoint.swift */; };
@@ -786,10 +786,6 @@
 		0F215CB4298265A0000F88F4 /* NearbyRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyRestaurant.swift; sourceTree = "<group>"; };
 		0F215CB5298265A0000F88F4 /* RestaurantDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetails.swift; sourceTree = "<group>"; };
 		0F2555F929DABDBA0044243A /* RestaurantDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsService.swift; sourceTree = "<group>"; };
-		0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnHomeTab.light.png; sourceTree = "<group>"; };
-		0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnHomeTab.dark.png; sourceTree = "<group>"; };
-		0F26A35429DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnNewAccountTab.dark.png; sourceTree = "<group>"; };
-		0F26A35529DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_tabBarPageViewWithFocusOnNewAccountTab.light.png; sourceTree = "<group>"; };
 		0F2A26AA2930D16000387A1C /* UpdateAccountRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountRequestBody.swift; sourceTree = "<group>"; };
 		0F2A26AD2930D44A00387A1C /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		0F2A26B02930D91800387A1C /* EditProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModelTests.swift; sourceTree = "<group>"; };
@@ -1121,6 +1117,10 @@
 		0FE1E2F329C1B37200B33CF5 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		0FE7F80629DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.light.png; sourceTree = "<group>"; };
 		0FE7F80729DB314D000479ED /* test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_newReviewViewWhenGetRestaurantDetailsStateIsFailure.dark.png; sourceTree = "<group>"; };
+		0FE8FD712CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPageViewWithFocusOnHomeTab.dark.png; sourceTree = "<group>"; };
+		0FE8FD722CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPageViewWithFocusOnHomeTab.light.png; sourceTree = "<group>"; };
+		0FE8FD732CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPageViewWithFocusOnNewReviewTab.dark.png; sourceTree = "<group>"; };
+		0FE8FD742CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarPageViewWithFocusOnNewReviewTab.light.png; sourceTree = "<group>"; };
 		0FEF269A298EA84500994657 /* RemoteReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReview.swift; sourceTree = "<group>"; };
 		0FF4675F2930C6AD0094528E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		0FF7C64D29B1DB3100622E9C /* AccountEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpoint.swift; sourceTree = "<group>"; };
@@ -2716,7 +2716,7 @@
 		0FD2940A29DC0F3800311714 /* Snapshot Tests */ = {
 			isa = PBXGroup;
 			children = (
-				0FD2941329DC10AF00311714 /* __Snapshots__ */,
+				0FE8FD702CD374DD00545AFD /* __Snapshots__ */,
 				0FD2940D29DC0F7900311714 /* TabBarPageViewSnapshotTests.swift */,
 			);
 			path = "Snapshot Tests";
@@ -2727,25 +2727,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		0FD2941329DC10AF00311714 /* __Snapshots__ */ = {
-			isa = PBXGroup;
-			children = (
-				0FD2941429DC10AF00311714 /* TabBarPageViewSnapshotTests */,
-			);
-			path = __Snapshots__;
-			sourceTree = "<group>";
-		};
-		0FD2941429DC10AF00311714 /* TabBarPageViewSnapshotTests */ = {
-			isa = PBXGroup;
-			children = (
-				0F26A35129DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png */,
-				0F26A35029DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png */,
-				0F26A35429DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png */,
-				0F26A35529DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png */,
-			);
-			path = TabBarPageViewSnapshotTests;
 			sourceTree = "<group>";
 		};
 		0FD5E72A29AA4DA000C5C984 /* Snapshot Tests */ = {
@@ -2985,6 +2966,25 @@
 				0F3ABFBD29C8839E00AE8C11 /* URLProtocolStub.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0FE8FD6F2CD374DD00545AFD /* TabBarPageViewSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FE8FD712CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.dark.png */,
+				0FE8FD722CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.light.png */,
+				0FE8FD732CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.dark.png */,
+				0FE8FD742CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.light.png */,
+			);
+			path = TabBarPageViewSnapshotTests;
+			sourceTree = "<group>";
+		};
+		0FE8FD702CD374DD00545AFD /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				0FE8FD6F2CD374DD00545AFD /* TabBarPageViewSnapshotTests */,
+			);
+			path = __Snapshots__;
 			sourceTree = "<group>";
 		};
 		0FF4675C2930C6830094528E /* Edit Profile */ = {
@@ -3734,10 +3734,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F26A35729DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.light.png in Resources */,
-				0F26A35229DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.light.png in Resources */,
-				0F26A35329DC116F00BDF020 /* test_tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */,
-				0F26A35629DC169400BDF020 /* test_tabBarPageViewWithFocusOnNewAccountTab.dark.png in Resources */,
+				0FE8FD752CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.dark.png in Resources */,
+				0FE8FD762CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.dark.png in Resources */,
+				0FE8FD772CD3750A00545AFD /* tabBarPageViewWithFocusOnNewReviewTab.light.png in Resources */,
+				0FE8FD782CD3750A00545AFD /* tabBarPageViewWithFocusOnHomeTab.light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7145,7 +7145,7 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
 				kind = exactVersion;
-				version = 1.15.2;
+				version = 1.17.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

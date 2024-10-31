@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 25.02.2023.
 //
 
+import Testing
 import Foundation
 import SnapshotTesting
 import Domain
@@ -13,13 +14,13 @@ import FoodybiteUI
 
 struct ReviewViewSnapshotTests {
 
-    func test_reviewViewIdleState() {
+    @Test func reviewViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_reviewViewIsLoadingState() {
+    @Test func reviewViewIsLoadingState() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           state: .isLoading)
@@ -27,7 +28,7 @@ struct ReviewViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_reviewViewFailureState() {
+    @Test func reviewViewFailureState() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           state: .failure(.serverError))

@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 28.02.2023.
 //
 
+import Testing
 import CoreFoundation
 import SnapshotTesting
 import Domain
@@ -13,7 +14,7 @@ import FoodybiteUI
 
 struct SearchCriteriaViewSnapshotTests {
 
-    func test_searchCriteriaView() {
+    @Test func searchCriteriaView() {
         let sut = makeSUT(radius: 20, starsNumber: 4)
 
         assertLightAndDarkSnapshot(matching: sut)

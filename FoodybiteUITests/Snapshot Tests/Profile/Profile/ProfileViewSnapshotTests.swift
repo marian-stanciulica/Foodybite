@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 27.02.2023.
 //
 
+import Testing
 import UIKit
 import Foundation
 import SnapshotTesting
@@ -14,35 +15,35 @@ import FoodybiteUI
 
 struct ProfileViewSnapshotTests {
 
-    func test_profileViewWhenGetReviewsStateIsIdleForUserWithoutProfileImage() {
+    @Test func profileViewWhenGetReviewsStateIsIdleForUserWithoutProfileImage() {
         let sut = makeSUT(user: makeUserWithoutProfileImage(),
                           getReviewsState: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage() {
+    @Test func profileViewWhenGetReviewsStateIsIdleForUserWithProfileImage() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsIsLoading() {
+    @Test func profileViewWhenGetReviewsStateIsIsLoading() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsFailure() {
+    @Test func profileViewWhenGetReviewsStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsIsLoading() {
+    @Test func profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsIsLoading() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .isLoading)
@@ -50,7 +51,7 @@ struct ProfileViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsFailure() {
+    @Test func profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .failure(.serverError))
@@ -58,7 +59,7 @@ struct ProfileViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccess() {
+    @Test func profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
@@ -67,7 +68,7 @@ struct ProfileViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
+    @Test func profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
@@ -76,7 +77,7 @@ struct ProfileViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+    @Test func profileViewWhenGetReviewsStateIsSuccessAndGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(user: makeUserWithProfileImage(),
                           getReviewsState: .success(makeReviews()),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),

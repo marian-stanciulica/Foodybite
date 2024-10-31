@@ -141,6 +141,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "0F7137B62841F8340058757A"
+            BuildableName = "Foodybite.app"
+            BlueprintName = "Foodybite"
+            ReferencedContainer = "container:Foodybite.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

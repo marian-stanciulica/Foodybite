@@ -5,14 +5,15 @@
 //  Created by Marian Stanciulica on 26.01.2023.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Domain
 import API_Infra
 import FoodybiteNetworking
 
-final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
+struct FoodybiteNetworkingAPIEndToEndTests {
 
-    func test_1endToEndSignUp_returnsSuccesfully() async {
+    @Test func endToEndSignUp_returnsSuccesfully() async {
         await execute(action: {
             try await makeSUT().signUp(name: testingName,
                                        email: testingEmail,
@@ -21,24 +22,24 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
 
-    func test_2endToEndLogin_returnsExpectedUser() async {
+    @Test func endToEndLogin_returnsExpectedUser() async {
         await executeLogin()
     }
 
-    func test_3endToEndChangePassword_returnsSuccessfully() async {
+    @Test func endToEndChangePassword_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().changePassword(currentPassword: testingPassword,
                                                             newPassword: testingNewPassword)
         })
     }
 
-    func test_4endToEndLogout_returnsSuccessfully() async {
+    @Test func endToEndLogout_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().logout()
         })
     }
 
-    func test_5endToEndUpdateAccount_returnsSuccessfully() async {
+    @Test func endToEndUpdateAccount_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().updateAccount(name: testingNewName,
                                                            email: testingEmail,
@@ -46,7 +47,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
 
-    func test_6endToEndAddReview_returnsSuccessfully() async {
+    @Test func endToEndAddReview_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().addReview(
                 restaurantID: firstRestaurantID(),
@@ -57,7 +58,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         })
     }
 
-    func test_7endToEndGetReviews_returnsSuccessfully() async {
+    @Test func endToEndGetReviews_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().addReview(
                 restaurantID: secondRestaurantID(),
@@ -72,7 +73,7 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
         await executeGetReviews(expectedReviews: expectedAllReviews())
     }
 
-    func test_8endToEndDeleteAccount_returnsSuccessfully() async {
+    @Test func endToEndDeleteAccount_returnsSuccessfully() async {
         await execute(action: {
             try await makeAuthenticatedSUT().deleteAccount()
         })
@@ -106,29 +107,33 @@ final class FoodybiteNetworkingAPIEndToEndTests: XCTestCase {
                           tokenStore: tokenStore)
     }
 
-    private func execute(action: () async throws -> Void, file: StaticString = #filePath, line: UInt = #line) async {
+    private func execute(action: () async throws -> Void, sourceLocation: SourceLocation = #_sourceLocation) async {
         do {
             try await action()
         } catch {
-            XCTFail("Expected successful request, got \(error) instead", file: file, line: line)
+            Issue.record("Expected successful request, got \(error) instead", sourceLocation: sourceLocation)
         }
     }
 
-    private func executeLogin(file: StaticString = #filePath, line: UInt = #line) async {
+    private func executeLogin(sourceLocation: SourceLocation = #_sourceLocation) async {
         do {
             let receivedUser = try await makeSUT().login(email: testingEmail, password: testingPassword)
-            XCTAssertTrue(receivedUser.isEqual(to: expectedUser), file: file, line: line)
+            #expect(receivedUser.isEqual(to: expectedUser), sourceLocation: sourceLocation)
         } catch {
-            XCTFail("Expected successful login request, got \(error) instead", file: file, line: line)
+            Issue.record("Expected successful login request, got \(error) instead", sourceLocation: sourceLocation)
         }
     }
 
-    private func executeGetReviews(restaurantID: String? = nil, expectedReviews: [Review], file: StaticString = #filePath, line: UInt = #line) async {
+    private func executeGetReviews(
+        restaurantID: String? = nil,
+        expectedReviews: [Review],
+        sourceLocation: SourceLocation = #_sourceLocation
+    ) async {
         do {
             let receivedReviews = try await makeAuthenticatedSUT().getReviews(restaurantID: restaurantID)
-            XCTAssertTrue(receivedReviews.isEqual(to: expectedReviews), file: file, line: line)
+            #expect(receivedReviews.isEqual(to: expectedReviews), sourceLocation: sourceLocation)
         } catch {
-            XCTFail("Expected successful get reviews, got \(error) instead", file: file, line: line)
+            Issue.record("Expected successful get reviews, got \(error) instead", sourceLocation: sourceLocation)
         }
     }
 

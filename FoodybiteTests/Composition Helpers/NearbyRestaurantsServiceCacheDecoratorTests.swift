@@ -5,50 +5,50 @@
 //  Created by Marian Stanciulica on 07.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import Foodybite
 
-final class NearbyRestaurantsServiceCacheDecoratorTests: XCTestCase {
+struct NearbyRestaurantsServiceCacheDecoratorTests {
 
-    func test_searchNearby_throwsErrorWhenServiceThrowsError() async {
+    @Test func searchNearby_throwsErrorWhenServiceThrowsError() async {
         let (sut, serviceStub, _) = makeSUT()
         serviceStub.stub = .failure(anyError())
 
         do {
             let nearbyRestaurants = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, received \(nearbyRestaurants) instead")
+            Issue.record("Expected to fail, received \(nearbyRestaurants) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_searchNearby_returnsNearbyRestaurantsWhenServiceReturnsSuccessfully() async throws {
+    @Test func searchNearby_returnsNearbyRestaurantsWhenServiceReturnsSuccessfully() async throws {
         let (sut, serviceStub, _) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         serviceStub.stub = .success(expectedNearbyRestaurants)
 
         let receivedNearbyRestaurants = try await searchNearby(on: sut)
-        XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
+        #expect(receivedNearbyRestaurants == expectedNearbyRestaurants)
     }
 
-    func test_searchNearby_doesNotCacheWhenServiceThrowsError() async {
+    @Test func searchNearby_doesNotCacheWhenServiceThrowsError() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
 
         _ = try? await searchNearby(on: sut)
 
-        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+        #expect(cacheSpy.capturedValues.isEmpty)
     }
 
-    func test_searchNearby_cachesNearbyRestaurantsWhenServiceReturnsSuccessfully() async {
+    @Test func searchNearby_cachesNearbyRestaurantsWhenServiceReturnsSuccessfully() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         serviceStub.stub = .success(expectedNearbyRestaurants)
 
         _ = try? await searchNearby(on: sut)
 
-        XCTAssertEqual(cacheSpy.capturedValues, [expectedNearbyRestaurants])
+        #expect(cacheSpy.capturedValues == [expectedNearbyRestaurants])
     }
 
     // MARK: - Helpers

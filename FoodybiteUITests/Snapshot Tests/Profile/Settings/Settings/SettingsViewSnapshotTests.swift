@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 26.02.2023.
 //
 
+import Testing
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
@@ -12,7 +13,7 @@ import FoodybiteUI
 
 struct SettingsViewSnapshotTests {
 
-    func test_settingsViewIdleState() {
+    @Test func settingsViewIdleState() {
         let sut = makeSUT()
 
         assertLightAndDarkSnapshot(matching: sut)

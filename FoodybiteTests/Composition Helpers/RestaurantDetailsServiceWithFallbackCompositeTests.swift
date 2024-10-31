@@ -5,34 +5,34 @@
 //  Created by Marian Stanciulica on 08.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import Foodybite
 
-final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
+struct RestaurantDetailsServiceWithFallbackCompositeTests {
 
-    func test_getRestaurantDetails_returnsRestaurantDetailsWhenPrimaryReturnsSuccessfully() async throws {
+    @Test func getRestaurantDetails_returnsRestaurantDetailsWhenPrimaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, _) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         primaryStub.stub = .success(expectedRestaurantDetails)
 
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
 
-        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
+        #expect(receivedRestaurantDetails == expectedRestaurantDetails)
     }
 
-    func test_getRestaurantDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
+    @Test func getRestaurantDetails_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedRestaurantID = "restaurant id"
         primaryStub.stub = .failure(anyError())
 
         _ = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantID)
 
-        XCTAssertEqual(secondaryStub.capturedValues.count, 1)
-        XCTAssertEqual(secondaryStub.capturedValues[0], expectedRestaurantID)
+        #expect(secondaryStub.capturedValues.count == 1)
+        #expect(secondaryStub.capturedValues[0] == expectedRestaurantID)
     }
 
-    func test_getRestaurantDetails_returnsRestaurantDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+    @Test func getRestaurantDetails_returnsRestaurantDetailsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         primaryStub.stub = .failure(anyError())
@@ -40,19 +40,19 @@ final class RestaurantDetailsServiceWithFallbackCompositeTests: XCTestCase {
 
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
 
-        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
+        #expect(receivedRestaurantDetails == expectedRestaurantDetails)
     }
 
-    func test_getRestaurantDetails_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
+    @Test func getRestaurantDetails_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         primaryStub.stub = .failure(anyError())
         secondaryStub.stub = .failure(anyError())
 
         do {
             let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant id")
-            XCTFail("Expected to fail, got \(restaurantDetails) instead")
+            Issue.record("Expected to fail, got \(restaurantDetails) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 

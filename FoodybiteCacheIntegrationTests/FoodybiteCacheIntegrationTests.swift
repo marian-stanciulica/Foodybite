@@ -5,33 +5,30 @@
 //  Created by Marian Stanciulica on 06.03.2023.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Domain
 import FoodybitePersistence
 
-final class FoodybiteUserCacheIntegrationTests: XCTestCase {
+final class FoodybiteUserCacheIntegrationTests {
 
-    override func setUp() {
-        super.setUp()
-
+    init() {
         setupEmptyStoreState()
     }
 
-    override func tearDown() {
-        super.tearDown()
-
+    deinit {
         undoStoreSideEffects()
     }
 
-    func test_loadUser_deliversNilOnEmptyCache() async throws {
+    @Test func loadUser_deliversNilOnEmptyCache() async throws {
         let localStore = try makeLocalStore()
 
         let user: User? = try? await localStore.read()
 
-        XCTAssertEqual(user, nil)
+        #expect(user == nil)
     }
 
-    func test_loadUser_deliversUserSavedOnASeparateInstance() async throws {
+    @Test func loadUser_deliversUserSavedOnASeparateInstance() async throws {
         let localStoreToPerformSave = try makeLocalStore()
         let localStoreToPerformLoad = try makeLocalStore()
         let user = makeUser()
@@ -39,10 +36,10 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         try await localStoreToPerformSave.write(user)
 
         let receivedUser: User = try await localStoreToPerformLoad.read()
-        XCTAssertEqual(receivedUser, user)
+        #expect(receivedUser == user)
     }
 
-    func test_saveUser_updatesUserSavedOnASeparateInstance() async throws {
+    @Test func saveUser_updatesUserSavedOnASeparateInstance() async throws {
         let localStoreToPerformFirstSave = try makeLocalStore()
         let localStoreToPerformSecondSave = try makeLocalStore()
         let localStoreToPerformLoad = try makeLocalStore()
@@ -54,7 +51,7 @@ final class FoodybiteUserCacheIntegrationTests: XCTestCase {
         try await localStoreToPerformSecondSave.write(secondUser)
 
         let receivedUser: User = try await localStoreToPerformLoad.read()
-        XCTAssertEqual(receivedUser, secondUser)
+        #expect(receivedUser == secondUser)
     }
 
     // MARK: - Helpers

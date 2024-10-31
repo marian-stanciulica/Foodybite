@@ -5,37 +5,37 @@
 //  Created by Marian Stanciulica on 13.11.2022.
 //
 
-import XCTest
+import Testing
 @testable import Foodybite
 
-final class FlowTests: XCTestCase {
+struct FlowTests {
 
-    func test_authRoute_containsAllCases() {
-        XCTAssertEqual(AuthRoute.allCases, [.signUp])
+    @Test func authRoute_containsAllCases() {
+        #expect(AuthRoute.allCases == [.signUp])
     }
 
-    func test_append_appendsValueToNavigationPath() {
+    @Test func append_appendsValueToNavigationPath() {
         let sut = Flow<AuthRoute>()
 
-        XCTAssertEqual(sut.path.count, 0)
+        #expect(sut.path.count == 0)
 
         sut.append(.signUp)
-        XCTAssertEqual(sut.path.count, 1)
+        #expect(sut.path.count == 1)
     }
 
-    func test_navigateBack_removesLastValueFromNavigationPath() {
+    @Test func navigateBack_removesLastValueFromNavigationPath() {
         let sut = Flow<ProfileRoute>()
 
         sut.append(.settings)
-        XCTAssertEqual(sut.path, [.settings])
+        #expect(sut.path == [.settings])
 
         sut.append(.changePassword)
-        XCTAssertEqual(sut.path, [.settings, .changePassword])
+        #expect(sut.path == [.settings, .changePassword])
 
         sut.navigateBack()
-        XCTAssertEqual(sut.path, [.settings])
+        #expect(sut.path == [.settings])
 
         sut.navigateBack()
-        XCTAssertTrue(sut.path.isEmpty)
+        #expect(sut.path.isEmpty)
     }
 }

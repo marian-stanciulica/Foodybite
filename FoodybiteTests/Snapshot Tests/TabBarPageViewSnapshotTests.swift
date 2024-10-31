@@ -5,20 +5,20 @@
 //  Created by Marian Stanciulica on 04.04.2023.
 //
 
-import XCTest
+import Testing
 import SnapshotTesting
 import SwiftUI
 @testable import Foodybite
 
-final class TabBarPageViewSnapshotTests: XCTestCase {
+struct TabBarPageViewSnapshotTests {
 
-    func test_tabBarPageViewWithFocusOnHomeTab() {
+    @MainActor @Test func tabBarPageViewWithFocusOnHomeTab() {
         let sut = makeSUT(page: .home)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_tabBarPageViewWithFocusOnNewReviewTab() {
+    @MainActor @Test func tabBarPageViewWithFocusOnNewReviewTab() {
         let sut = makeSUT(page: .newReview, plusButtonActive: true)
 
         assertLightAndDarkSnapshot(matching: sut)

@@ -5,50 +5,50 @@
 //  Created by Marian Stanciulica on 08.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import Foodybite
 
-final class RestaurantDetailsServiceCacheDecoratorTests: XCTestCase {
+struct RestaurantDetailsServiceCacheDecoratorTests {
 
-    func test_getRestaurantDetails_throwsErrorWhenServiceThrowsError() async {
+    @Test func getRestaurantDetails_throwsErrorWhenServiceThrowsError() async {
         let (sut, serviceStub, _) = makeSUT()
         serviceStub.stub = .failure(anyError())
 
         do {
             let restaurantDetails = try await sut.getRestaurantDetails(restaurantID: "restaurant id")
-            XCTFail("Expected to fail, received \(restaurantDetails) instead")
+            Issue.record("Expected to fail, received \(restaurantDetails) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getRestaurantDetails_returnsRestaurantDetailsWhenServiceReturnsSuccessfully() async throws {
+    @Test func getRestaurantDetails_returnsRestaurantDetailsWhenServiceReturnsSuccessfully() async throws {
         let (sut, serviceStub, _) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         serviceStub.stub = .success(expectedRestaurantDetails)
 
         let receivedRestaurantDetails = try await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
-        XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
+        #expect(receivedRestaurantDetails == expectedRestaurantDetails)
     }
 
-    func test_getRestaurantDetails_doesNotCacheWhenRestaurantDetailsServiceThrowsError() async {
+    @Test func getRestaurantDetails_doesNotCacheWhenRestaurantDetailsServiceThrowsError() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
 
         _ = try? await sut.getRestaurantDetails(restaurantID: "restaurant id")
 
-        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+        #expect(cacheSpy.capturedValues.isEmpty)
     }
 
-    func test_getRestaurantDetails_cachesRestaurantDetailsWhenServiceReturnsSuccessfully() async {
+    @Test func getRestaurantDetails_cachesRestaurantDetailsWhenServiceReturnsSuccessfully() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         let expectedRestaurantDetails = makeRestaurantDetails()
         serviceStub.stub = .success(expectedRestaurantDetails)
 
         _ = try? await sut.getRestaurantDetails(restaurantID: expectedRestaurantDetails.id)
 
-        XCTAssertEqual(cacheSpy.capturedValues, [expectedRestaurantDetails])
+        #expect(cacheSpy.capturedValues == [expectedRestaurantDetails])
     }
 
     // MARK: - Helpers

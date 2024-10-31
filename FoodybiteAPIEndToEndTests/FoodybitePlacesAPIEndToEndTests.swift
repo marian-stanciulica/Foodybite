@@ -5,37 +5,38 @@
 //  Created by Marian Stanciulica on 26.01.2023.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Domain
 import API_Infra
 import FoodybitePlaces
 
-final class FoodybitePlacesAPIEndToEndTests: XCTestCase {
+struct FoodybitePlacesAPIEndToEndTests {
 
-    func test_endToEndSearchNearby_matchesFixedTestNearbyRestaurants() async {
+    @Test func endToEndSearchNearby_matchesFixedTestNearbyRestaurants() async {
         do {
             let receivedNearbyRestaurants = try await getNearbyRestaurants()
-            XCTAssertTrue(areEqual(first: receivedNearbyRestaurants, second: expectedNearbyRestaurants))
+            #expect(areEqual(first: receivedNearbyRestaurants, second: expectedNearbyRestaurants))
         } catch {
-            XCTFail("Expected successful nearby restaurants request, got \(error) instead")
+            Issue.record("Expected successful nearby restaurants request, got \(error) instead")
         }
     }
 
-    func test_endToEndGetRestaurantDetails_matchesFixedTestRestaurantDetails() async {
+    @Test func endToEndGetRestaurantDetails_matchesFixedTestRestaurantDetails() async {
         do {
             let receivedRestaurantDetails = try await getRestaurantDetails()
-            XCTAssertEqual(receivedRestaurantDetails, expectedRestaurantDetails)
+            #expect(receivedRestaurantDetails == expectedRestaurantDetails)
         } catch {
-            XCTFail("Expected successful restaurant details request, got \(error) instead")
+            Issue.record("Expected successful restaurant details request, got \(error) instead")
         }
     }
 
-    func test_endToEndAutocomplete_matchesFixedTestAutocompletePredictions() async {
+    @Test func endToEndAutocomplete_matchesFixedTestAutocompletePredictions() async {
         do {
             let receivedAutocompletePredictions = try await autocomplete()
-            XCTAssertEqual(Set(receivedAutocompletePredictions), expectedAutocompletePredictions)
+            #expect(Set(receivedAutocompletePredictions) == expectedAutocompletePredictions)
         } catch {
-            XCTFail("Expected successful autocomplete request, got \(error) instead")
+            Issue.record("Expected successful autocomplete request, got \(error) instead")
         }
     }
 

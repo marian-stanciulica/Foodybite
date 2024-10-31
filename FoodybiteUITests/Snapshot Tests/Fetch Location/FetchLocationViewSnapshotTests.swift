@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 06.05.2023.
 //
 
+import Testing
 import SnapshotTesting
 import FoodybiteUI
 import FoodybitePresentation
@@ -13,25 +14,25 @@ import SwiftUI
 
 struct FetchLocationViewSnapshotTests {
 
-    func test_locationServicesDisabledState() {
+    @Test func locationServicesDisabledState() {
         let sut = makeSUT(locationServicesEnabled: false)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_locationServicesEnabledAndIsLoadingState() {
+    @Test func locationServicesEnabledAndIsLoadingState() {
         let sut = makeSUT(state: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_locationServicesEnabledAndFailureState() {
+    @Test func locationServicesEnabledAndFailureState() {
         let sut = makeSUT(state: .failure(.unauthorized))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_locationServicesEnabledAndSuccessState() {
+    @Test func locationServicesEnabledAndSuccessState() {
         let sut = makeSUT(state: .success(Location(latitude: 3.4, longitude: 7.6)))
 
         assertLightAndDarkSnapshot(matching: sut)

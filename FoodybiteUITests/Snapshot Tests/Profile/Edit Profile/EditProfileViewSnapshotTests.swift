@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 27.02.2023.
 //
 
+import Testing
 import UIKit
 import Foundation
 import SnapshotTesting
@@ -14,13 +15,13 @@ import FoodybiteUI
 
 struct EditProfileViewSnapshotTests {
 
-    func test_editProfileViewIdleState() {
+    @Test func editProfileViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_editProfileViewIsLoadingState() {
+    @Test func editProfileViewIsLoadingState() {
         let sut = makeSUT(name: "Testing",
                           email: "testing@testing.com",
                           profileImage: UIImage.make(withColor: .red).pngData(),
@@ -29,13 +30,13 @@ struct EditProfileViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_editProfileViewFailureState() {
+    @Test func editProfileViewFailureState() {
         let sut = makeSUT(state: .failure(.invalidEmail))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_editProfileViewSuccessState() {
+    @Test func editProfileViewSuccessState() {
         let sut = makeSUT(state: .success)
 
         assertLightAndDarkSnapshot(matching: sut)

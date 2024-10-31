@@ -5,50 +5,50 @@
 //  Created by Marian Stanciulica on 14.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import Foodybite
 
-final class GetReviewsServiceCacheDecoratorTests: XCTestCase {
+struct GetReviewsServiceCacheDecoratorTests {
 
-    func test_getReviews_throwsErrorWhenGetReviewsServiceThrowsError() async {
+    @Test func getReviews_throwsErrorWhenGetReviewsServiceThrowsError() async {
         let (sut, serviceStub, _) = makeSUT()
         serviceStub.stub = .failure(anyError())
 
         do {
             let reviews = try await sut.getReviews()
-            XCTFail("Expected to fail, received \(reviews) instead")
+            Issue.record("Expected to fail, received \(reviews) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
-    func test_getReviews_returnsReviewsWhenGetReviewsServiceReturnsSuccessfully() async throws {
+    @Test func getReviews_returnsReviewsWhenGetReviewsServiceReturnsSuccessfully() async throws {
         let (sut, serviceStub, _) = makeSUT()
         let expectedReviews = makeReviews()
         serviceStub.stub = .success(expectedReviews)
 
         let receivedReviews = try await sut.getReviews()
-        XCTAssertEqual(receivedReviews, expectedReviews)
+        #expect(receivedReviews == expectedReviews)
     }
 
-    func test_getReviews_doesNotCacheWhenGetReviewsServiceThrowsError() async {
+    @Test func getReviews_doesNotCacheWhenGetReviewsServiceThrowsError() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         serviceStub.stub = .failure(anyError())
 
         _ = try? await sut.getReviews()
 
-        XCTAssertTrue(cacheSpy.capturedValues.isEmpty)
+        #expect(cacheSpy.capturedValues.isEmpty)
     }
 
-    func test_getReviews_cachesReviewsWhenGetReviewsServiceReturnsSuccessfully() async {
+    @Test func getReviews_cachesReviewsWhenGetReviewsServiceReturnsSuccessfully() async {
         let (sut, serviceStub, cacheSpy) = makeSUT()
         let expectedReviews = makeReviews()
         serviceStub.stub = .success(expectedReviews)
 
         _ = try? await sut.getReviews()
 
-        XCTAssertEqual(cacheSpy.capturedValues, [expectedReviews])
+        #expect(cacheSpy.capturedValues == [expectedReviews])
     }
 
     // MARK: - Helpers

@@ -8,6 +8,7 @@
 import SwiftUI
 import SnapshotTesting
 
+@MainActor
 func assertLightAndDarkSnapshot<SomeView: View>(
     matching value: SomeView,
     as snapshotting: Snapshotting<UIViewController, UIImage> = .image(on: .iPhone13),
@@ -20,6 +21,7 @@ func assertLightAndDarkSnapshot<SomeView: View>(
     assertDarkSnapshot(matching: value, as: snapshotting, record: recording, file: file, testName: testName, line: line)
 }
 
+@MainActor
 func assertLightSnapshot<SomeView: View>(
     matching value: SomeView,
     as snapshotting: Snapshotting<UIViewController, UIImage>,
@@ -30,7 +32,7 @@ func assertLightSnapshot<SomeView: View>(
     let trait = UITraitCollection(userInterfaceStyle: .light)
     let view = UIHostingController(rootView: value)
 
-    assertSnapshot(matching: view,
+    assertSnapshot(of: view,
                    as: .image(on: .iPhone13, perceptualPrecision: 0.99, traits: trait),
                    named: "light",
                    record: recording,
@@ -39,6 +41,7 @@ func assertLightSnapshot<SomeView: View>(
                    line: line)
 }
 
+@MainActor
 func assertDarkSnapshot<SomeView: View>(
     matching value: SomeView,
     as snapshotting: Snapshotting<UIViewController, UIImage>,
@@ -49,7 +52,7 @@ func assertDarkSnapshot<SomeView: View>(
     let trait = UITraitCollection(userInterfaceStyle: .dark)
     let view = UIHostingController(rootView: value)
 
-    assertSnapshot(matching: view,
+    assertSnapshot(of: view,
                    as: .image(on: .iPhone13, perceptualPrecision: 0.99, traits: trait),
                    named: "dark",
                    record: recording,

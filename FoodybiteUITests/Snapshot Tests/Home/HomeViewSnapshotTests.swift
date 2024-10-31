@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 01.03.2023.
 //
 
+import Testing
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
@@ -12,45 +13,45 @@ import FoodybiteUI
 
 struct HomeViewSnapshotTests {
 
-    func test_homeViewIdleState() {
+    @Test func homeViewIdleState() {
         let sut = makeSUT(getNearbyRestaurantsState: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_homeViewLoadingState() {
+    @Test func homeViewLoadingState() {
         let sut = makeSUT(getNearbyRestaurantsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_homeViewFailureState() {
+    @Test func homeViewFailureState() {
         let sut = makeSUT(getNearbyRestaurantsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_homeViewSuccessState() {
+    @Test func homeViewSuccessState() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure() {
+    @Test func homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .failure)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+    @Test func homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .success(makePhotoData()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_homeViewWhenSearchTextIsNotEmpty() {
+    @Test func homeViewWhenSearchTextIsNotEmpty() {
         let nearbyRestaurants = makeNearbyRestaurants()
         let sut = makeSUT(searchText: nearbyRestaurants[1].name,
                           getNearbyRestaurantsState: .success(nearbyRestaurants),

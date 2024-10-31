@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 27.02.2023.
 //
 
+import Testing
 import Foundation
 import SnapshotTesting
 import Domain
@@ -13,53 +14,53 @@ import FoodybiteUI
 
 struct NewReviewViewSnapshotTests {
 
-    func test_newReviewViewIdleState() {
+    @Test func newReviewViewIdleState() {
         let sut = makeSUT()
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewViewWithAutocompletePredictions() {
+    @Test func newReviewViewWithAutocompletePredictions() {
         let sut = makeSUT(searchText: "Pred",
                           autocompletePredictions: makeAutocompletePredictions())
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewViewWhenGetRestaurantDetailsStateIsIsLoading() {
+    @Test func newReviewViewWhenGetRestaurantDetailsStateIsIsLoading() {
         let sut = makeSUT(getRestaurantDetailsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewViewWhenGetRestaurantDetailsStateIsFailure() {
+    @Test func newReviewViewWhenGetRestaurantDetailsStateIsFailure() {
         let sut = makeSUT(getRestaurantDetailsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
+    @Test func newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewWhenFetchPhotoStateIsFailure() {
+    @Test func newReviewWhenFetchPhotoStateIsFailure() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewWhenFetchPhotoStateIsSuccess() {
+    @Test func newReviewWhenFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewWhenInputIsValidPostButtonIsEnabled() {
+    @Test func newReviewWhenInputIsValidPostButtonIsEnabled() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
@@ -68,7 +69,7 @@ struct NewReviewViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_newReviewWhenPostReviewStateIsIsLoading() {
+    @Test func newReviewWhenPostReviewStateIsIsLoading() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),

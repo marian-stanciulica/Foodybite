@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 25.02.2023.
 //
 
+import Testing
 import Foundation
 import SnapshotTesting
 import Domain
@@ -13,13 +14,13 @@ import FoodybiteUI
 
 struct LoginViewSnapshotTests {
 
-    func test_loginViewIdleState() {
+    @Test func loginViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_loginViewIsLoadingState() {
+    @Test func loginViewIsLoadingState() {
         let sut = makeSUT(email: "testing@testing.com",
                           password: "12345678",
                           state: .isLoading)
@@ -27,7 +28,7 @@ struct LoginViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_loginViewFailureState() {
+    @Test func loginViewFailureState() {
         let sut = makeSUT(state: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)

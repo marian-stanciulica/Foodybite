@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 26.02.2023.
 //
 
+import Testing
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
@@ -12,13 +13,13 @@ import FoodybiteUI
 
 struct ChangePasswordViewSnapshotTests {
 
-    func test_changePasswordViewIdleState() {
+    @Test func changePasswordViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_changePasswordViewIsLoadingState() {
+    @Test func changePasswordViewIsLoadingState() {
         let sut = makeSUT(currentPassword: "12345678",
                           newPassword: "12345678",
                           confirmPassword: "12345678",
@@ -27,13 +28,13 @@ struct ChangePasswordViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_changePasswordViewFailureState() {
+    @Test func changePasswordViewFailureState() {
         let sut = makeSUT(state: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_changePasswordViewSuccessState() {
+    @Test func changePasswordViewSuccessState() {
         let sut = makeSUT(state: .success)
 
         assertLightAndDarkSnapshot(matching: sut)

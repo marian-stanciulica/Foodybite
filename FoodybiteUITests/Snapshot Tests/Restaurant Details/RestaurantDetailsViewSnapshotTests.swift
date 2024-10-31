@@ -5,6 +5,7 @@
 //  Created by Marian Stanciulica on 01.03.2023.
 //
 
+import Testing
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
@@ -12,38 +13,38 @@ import FoodybiteUI
 
 struct RestaurantDetailsViewSnapshotTests {
 
-    func test_restaurantDetailsViewIdleState() {
+    @Test func restaurantDetailsViewIdleState() {
         let sut = makeSUT(getRestaurantDetailsState: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_restaurantDetailsViewIsLoadingState() {
+    @Test func restaurantDetailsViewIsLoadingState() {
         let sut = makeSUT(getRestaurantDetailsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_restaurantDetailsViewFailureState() {
+    @Test func restaurantDetailsViewFailureState() {
         let sut = makeSUT(getRestaurantDetailsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_restaurantDetailsViewSuccessState() {
+    @Test func restaurantDetailsViewSuccessState() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
+    @Test func restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    func test_restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+    @Test func restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
 

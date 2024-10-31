@@ -5,23 +5,23 @@
 //  Created by Marian Stanciulica on 08.03.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import Foodybite
 
-final class NearbyRestaurantsServiceWithFallbackCompositeTests: XCTestCase {
+struct NearbyRestaurantsServiceWithFallbackCompositeTests {
 
-    func test_searchNearby_returnsNearbyRestaurantsWhenPrimaryReturnsSuccessfully() async throws {
+    @Test func searchNearby_returnsNearbyRestaurantsWhenPrimaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, _) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         primaryStub.stub = .success(expectedNearbyRestaurants)
 
         let receivedNearbyRestaurants = try await searchNearby(on: sut)
 
-        XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
+        #expect(receivedNearbyRestaurants == expectedNearbyRestaurants)
     }
 
-    func test_searchNearby_callsSecondaryWhenPrimaryThrowsError() async throws {
+    @Test func searchNearby_callsSecondaryWhenPrimaryThrowsError() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedLocation = anyLocation()
         let expectedRadius = 100
@@ -29,12 +29,12 @@ final class NearbyRestaurantsServiceWithFallbackCompositeTests: XCTestCase {
 
         _ = try await searchNearby(on: sut, location: expectedLocation, radius: expectedRadius)
 
-        XCTAssertEqual(secondaryStub.capturedValues.count, 1)
-        XCTAssertEqual(secondaryStub.capturedValues[0].location, expectedLocation)
-        XCTAssertEqual(secondaryStub.capturedValues[0].radius, expectedRadius)
+        #expect(secondaryStub.capturedValues.count == 1)
+        #expect(secondaryStub.capturedValues[0].location == expectedLocation)
+        #expect(secondaryStub.capturedValues[0].radius == expectedRadius)
     }
 
-    func test_searchNearby_returnsNearbyRestaurantsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
+    @Test func searchNearby_returnsNearbyRestaurantsWhenPrimaryThrowsErrorAndSecondaryReturnsSuccessfully() async throws {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         let expectedNearbyRestaurants = makeNearbyRestaurants()
         primaryStub.stub = .failure(anyError())
@@ -42,19 +42,19 @@ final class NearbyRestaurantsServiceWithFallbackCompositeTests: XCTestCase {
 
         let receivedNearbyRestaurants = try await searchNearby(on: sut)
 
-        XCTAssertEqual(receivedNearbyRestaurants, expectedNearbyRestaurants)
+        #expect(receivedNearbyRestaurants == expectedNearbyRestaurants)
     }
 
-    func test_searchNearby_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
+    @Test func searchNearby_throwsErrorWhenPrimaryThrowsErrorAndSecondaryThrowsError() async {
         let (sut, primaryStub, secondaryStub) = makeSUT()
         primaryStub.stub = .failure(anyError())
         secondaryStub.stub = .failure(anyError())
 
         do {
             let nearbyRestaurants = try await searchNearby(on: sut)
-            XCTFail("Expected to fail, got \(nearbyRestaurants) instead")
+            Issue.record("Expected to fail, got \(nearbyRestaurants) instead")
         } catch {
-            XCTAssertNotNil(error)
+            #expect(error != nil)
         }
     }
 
