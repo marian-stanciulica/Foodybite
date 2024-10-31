@@ -13,13 +13,13 @@ import FoodybiteUI
 
 struct ChangePasswordViewSnapshotTests {
 
-    @Test func changePasswordViewIdleState() {
+    @MainActor @Test func changePasswordViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func changePasswordViewIsLoadingState() {
+    @MainActor @Test func changePasswordViewIsLoadingState() {
         let sut = makeSUT(currentPassword: "12345678",
                           newPassword: "12345678",
                           confirmPassword: "12345678",
@@ -28,13 +28,13 @@ struct ChangePasswordViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func changePasswordViewFailureState() {
+    @MainActor @Test func changePasswordViewFailureState() {
         let sut = makeSUT(state: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func changePasswordViewSuccessState() {
+    @MainActor @Test func changePasswordViewSuccessState() {
         let sut = makeSUT(state: .success)
 
         assertLightAndDarkSnapshot(matching: sut)

@@ -14,13 +14,13 @@ import FoodybiteUI
 
 struct ReviewViewSnapshotTests {
 
-    @Test func reviewViewIdleState() {
+    @MainActor @Test func reviewViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func reviewViewIsLoadingState() {
+    @MainActor @Test func reviewViewIsLoadingState() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           state: .isLoading)
@@ -28,7 +28,7 @@ struct ReviewViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func reviewViewFailureState() {
+    @MainActor @Test func reviewViewFailureState() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           state: .failure(.serverError))

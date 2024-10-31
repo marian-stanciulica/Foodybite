@@ -14,25 +14,25 @@ import SwiftUI
 
 struct FetchLocationViewSnapshotTests {
 
-    @Test func locationServicesDisabledState() {
+    @MainActor @Test func locationServicesDisabledState() {
         let sut = makeSUT(locationServicesEnabled: false)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func locationServicesEnabledAndIsLoadingState() {
+    @MainActor @Test func locationServicesEnabledAndIsLoadingState() {
         let sut = makeSUT(state: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func locationServicesEnabledAndFailureState() {
+    @MainActor @Test func locationServicesEnabledAndFailureState() {
         let sut = makeSUT(state: .failure(.unauthorized))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func locationServicesEnabledAndSuccessState() {
+    @MainActor @Test func locationServicesEnabledAndSuccessState() {
         let sut = makeSUT(state: .success(Location(latitude: 3.4, longitude: 7.6)))
 
         assertLightAndDarkSnapshot(matching: sut)

@@ -14,7 +14,7 @@ import FoodybiteUI
 
 struct SearchCriteriaViewSnapshotTests {
 
-    @Test func searchCriteriaView() {
+    @MainActor @Test func searchCriteriaView() {
         let sut = makeSUT(radius: 20, starsNumber: 4)
 
         assertLightAndDarkSnapshot(matching: sut)

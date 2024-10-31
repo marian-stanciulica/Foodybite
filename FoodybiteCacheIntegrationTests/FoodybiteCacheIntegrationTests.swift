@@ -10,6 +10,7 @@ import Foundation
 import Domain
 import FoodybitePersistence
 
+@Suite(.serialized)
 final class FoodybiteUserCacheIntegrationTests {
 
     init() {

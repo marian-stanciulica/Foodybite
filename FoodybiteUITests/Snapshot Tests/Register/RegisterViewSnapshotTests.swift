@@ -14,13 +14,13 @@ import FoodybiteUI
 
 struct RegisterViewSnapshotTests {
 
-    @Test func registerViewIdleState() {
+    @MainActor @Test func registerViewIdleState() {
         let sut = makeSUT(registerResult: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func registerViewIsLoadingState() {
+    @MainActor @Test func registerViewIsLoadingState() {
         let sut = makeSUT(name: "Testing",
                           email: "testing@testing.com",
                           password: "12345678",
@@ -31,13 +31,13 @@ struct RegisterViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func registerViewFailureState() {
+    @MainActor @Test func registerViewFailureState() {
         let sut = makeSUT(registerResult: .failure(.passwordError(.passwordDoesntContainSpecialCharacter)))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func registerViewSuccessState() {
+    @MainActor @Test func registerViewSuccessState() {
         let sut = makeSUT(registerResult: .success)
 
         assertLightAndDarkSnapshot(matching: sut)

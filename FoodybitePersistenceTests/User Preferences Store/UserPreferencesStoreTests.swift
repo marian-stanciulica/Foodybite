@@ -10,6 +10,7 @@ import Foundation.NSData
 import FoodybitePersistence
 import Domain
 
+@Suite(.serialized)
 final class UserPreferencesLocalStoreTests {
 
     deinit {

@@ -14,13 +14,13 @@ import FoodybiteUI
 
 struct LoginViewSnapshotTests {
 
-    @Test func loginViewIdleState() {
+    @MainActor @Test func loginViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func loginViewIsLoadingState() {
+    @MainActor @Test func loginViewIsLoadingState() {
         let sut = makeSUT(email: "testing@testing.com",
                           password: "12345678",
                           state: .isLoading)
@@ -28,7 +28,7 @@ struct LoginViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func loginViewFailureState() {
+    @MainActor @Test func loginViewFailureState() {
         let sut = makeSUT(state: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)

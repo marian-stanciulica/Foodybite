@@ -13,45 +13,45 @@ import FoodybiteUI
 
 struct HomeViewSnapshotTests {
 
-    @Test func homeViewIdleState() {
+    @MainActor @Test func homeViewIdleState() {
         let sut = makeSUT(getNearbyRestaurantsState: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func homeViewLoadingState() {
+    @MainActor @Test func homeViewLoadingState() {
         let sut = makeSUT(getNearbyRestaurantsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func homeViewFailureState() {
+    @MainActor @Test func homeViewFailureState() {
         let sut = makeSUT(getNearbyRestaurantsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func homeViewSuccessState() {
+    @MainActor @Test func homeViewSuccessState() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure() {
+    @MainActor @Test func homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .failure)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+    @MainActor @Test func homeViewWhenGetNearbyRestaurantsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getNearbyRestaurantsState: .success(makeNearbyRestaurants()),
                           fetchPhotoState: .success(makePhotoData()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func homeViewWhenSearchTextIsNotEmpty() {
+    @MainActor @Test func homeViewWhenSearchTextIsNotEmpty() {
         let nearbyRestaurants = makeNearbyRestaurants()
         let sut = makeSUT(searchText: nearbyRestaurants[1].name,
                           getNearbyRestaurantsState: .success(nearbyRestaurants),

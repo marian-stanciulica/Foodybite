@@ -13,7 +13,7 @@ import FoodybiteUI
 
 struct SettingsViewSnapshotTests {
 
-    @Test func settingsViewIdleState() {
+    @MainActor @Test func settingsViewIdleState() {
         let sut = makeSUT()
 
         assertLightAndDarkSnapshot(matching: sut)

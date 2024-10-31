@@ -13,38 +13,38 @@ import FoodybiteUI
 
 struct RestaurantDetailsViewSnapshotTests {
 
-    @Test func restaurantDetailsViewIdleState() {
+    @MainActor @Test func restaurantDetailsViewIdleState() {
         let sut = makeSUT(getRestaurantDetailsState: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func restaurantDetailsViewIsLoadingState() {
+    @MainActor @Test func restaurantDetailsViewIsLoadingState() {
         let sut = makeSUT(getRestaurantDetailsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func restaurantDetailsViewFailureState() {
+    @MainActor @Test func restaurantDetailsViewFailureState() {
         let sut = makeSUT(getRestaurantDetailsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func restaurantDetailsViewSuccessState() {
+    @MainActor @Test func restaurantDetailsViewSuccessState() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
+    @MainActor @Test func restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsFailure() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
+    @MainActor @Test func restaurantDetailsViewWhenGetRestaurantDetailsStateIsSuccessAndFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
 

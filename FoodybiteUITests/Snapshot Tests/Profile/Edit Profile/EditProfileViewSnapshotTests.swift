@@ -15,13 +15,13 @@ import FoodybiteUI
 
 struct EditProfileViewSnapshotTests {
 
-    @Test func editProfileViewIdleState() {
+    @MainActor @Test func editProfileViewIdleState() {
         let sut = makeSUT(state: .idle)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func editProfileViewIsLoadingState() {
+    @MainActor @Test func editProfileViewIsLoadingState() {
         let sut = makeSUT(name: "Testing",
                           email: "testing@testing.com",
                           profileImage: UIImage.make(withColor: .red).pngData(),
@@ -30,13 +30,13 @@ struct EditProfileViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func editProfileViewFailureState() {
+    @MainActor @Test func editProfileViewFailureState() {
         let sut = makeSUT(state: .failure(.invalidEmail))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func editProfileViewSuccessState() {
+    @MainActor @Test func editProfileViewSuccessState() {
         let sut = makeSUT(state: .success)
 
         assertLightAndDarkSnapshot(matching: sut)

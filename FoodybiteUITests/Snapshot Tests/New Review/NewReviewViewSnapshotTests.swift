@@ -14,53 +14,53 @@ import FoodybiteUI
 
 struct NewReviewViewSnapshotTests {
 
-    @Test func newReviewViewIdleState() {
+    @MainActor @Test func newReviewViewIdleState() {
         let sut = makeSUT()
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewViewWithAutocompletePredictions() {
+    @MainActor @Test func newReviewViewWithAutocompletePredictions() {
         let sut = makeSUT(searchText: "Pred",
                           autocompletePredictions: makeAutocompletePredictions())
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewViewWhenGetRestaurantDetailsStateIsIsLoading() {
+    @MainActor @Test func newReviewViewWhenGetRestaurantDetailsStateIsIsLoading() {
         let sut = makeSUT(getRestaurantDetailsState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewViewWhenGetRestaurantDetailsStateIsFailure() {
+    @MainActor @Test func newReviewViewWhenGetRestaurantDetailsStateIsFailure() {
         let sut = makeSUT(getRestaurantDetailsState: .failure(.serverError))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
+    @MainActor @Test func newReviewViewWhenGetRestaurantDetailsStateIsSuccess() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .isLoading)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewWhenFetchPhotoStateIsFailure() {
+    @MainActor @Test func newReviewWhenFetchPhotoStateIsFailure() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .failure)
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewWhenFetchPhotoStateIsSuccess() {
+    @MainActor @Test func newReviewWhenFetchPhotoStateIsSuccess() {
         let sut = makeSUT(getRestaurantDetailsState: .success(makeRestaurantDetails()),
                           fetchPhotoState: .success(makePhotoData()))
 
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewWhenInputIsValidPostButtonIsEnabled() {
+    @MainActor @Test func newReviewWhenInputIsValidPostButtonIsEnabled() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
@@ -69,7 +69,7 @@ struct NewReviewViewSnapshotTests {
         assertLightAndDarkSnapshot(matching: sut)
     }
 
-    @Test func newReviewWhenPostReviewStateIsIsLoading() {
+    @MainActor @Test func newReviewWhenPostReviewStateIsIsLoading() {
         let sut = makeSUT(starsNumber: 4,
                           reviewText: makeReviewText(),
                           getRestaurantDetailsState: .success(makeRestaurantDetails()),
