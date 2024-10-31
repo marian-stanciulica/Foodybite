@@ -5,14 +5,13 @@
 //  Created by Marian Stanciulica on 06.05.2023.
 //
 
-import XCTest
 import SnapshotTesting
 import FoodybiteUI
 import FoodybitePresentation
 import Domain
 import SwiftUI
 
-final class FetchLocationViewSnapshotTests: XCTestCase {
+struct FetchLocationViewSnapshotTests {
 
     func test_locationServicesDisabledState() {
         let sut = makeSUT(locationServicesEnabled: false)

@@ -5,13 +5,14 @@
 //  Created by Marian Stanciulica on 27.02.2023.
 //
 
-import XCTest
+import UIKit
+import Foundation
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
 import FoodybiteUI
 
-final class ProfileViewSnapshotTests: XCTestCase {
+struct ProfileViewSnapshotTests {
 
     func test_profileViewWhenGetReviewsStateIsIdleForUserWithoutProfileImage() {
         let sut = makeSUT(user: makeUserWithoutProfileImage(),

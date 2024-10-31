@@ -5,13 +5,13 @@
 //  Created by Marian Stanciulica on 25.02.2023.
 //
 
-import XCTest
+import Foundation
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
 import FoodybiteUI
 
-final class LoginViewSnapshotTests: XCTestCase {
+struct LoginViewSnapshotTests {
 
     func test_loginViewIdleState() {
         let sut = makeSUT(state: .idle)

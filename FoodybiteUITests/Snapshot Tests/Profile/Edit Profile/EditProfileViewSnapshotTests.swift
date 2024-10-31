@@ -5,13 +5,14 @@
 //  Created by Marian Stanciulica on 27.02.2023.
 //
 
-import XCTest
+import UIKit
+import Foundation
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
 import FoodybiteUI
 
-final class EditProfileViewSnapshotTests: XCTestCase {
+struct EditProfileViewSnapshotTests {
 
     func test_editProfileViewIdleState() {
         let sut = makeSUT(state: .idle)

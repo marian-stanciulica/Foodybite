@@ -5,13 +5,12 @@
 //  Created by Marian Stanciulica on 01.03.2023.
 //
 
-import XCTest
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
 import FoodybiteUI
 
-final class RestaurantDetailsViewSnapshotTests: XCTestCase {
+struct RestaurantDetailsViewSnapshotTests {
 
     func test_restaurantDetailsViewIdleState() {
         let sut = makeSUT(getRestaurantDetailsState: .idle)

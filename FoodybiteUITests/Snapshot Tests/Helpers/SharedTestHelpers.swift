@@ -5,7 +5,6 @@
 //  Created by Marian Stanciulica on 26.02.2023.
 //
 
-import XCTest
 import SwiftUI
 import SnapshotTesting
 

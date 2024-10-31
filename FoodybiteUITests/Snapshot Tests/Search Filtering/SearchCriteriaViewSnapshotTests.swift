@@ -5,13 +5,13 @@
 //  Created by Marian Stanciulica on 28.02.2023.
 //
 
-import XCTest
+import CoreFoundation
 import SnapshotTesting
 import Domain
 import FoodybitePresentation
 import FoodybiteUI
 
-final class SearchCriteriaViewSnapshotTests: XCTestCase {
+struct SearchCriteriaViewSnapshotTests {
 
     func test_searchCriteriaView() {
         let sut = makeSUT(radius: 20, starsNumber: 4)
