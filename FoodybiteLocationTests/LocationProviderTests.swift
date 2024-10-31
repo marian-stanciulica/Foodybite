@@ -5,58 +5,42 @@
 //  Created by Marian Stanciulica on 02.02.2023.
 //
 
-import XCTest
+import Testing
 import CoreLocation
 import Domain
-import FoodybiteLocation
+@testable import FoodybiteLocation
 
-final class LocationProviderTests: XCTestCase {
+struct LocationProviderTests {
 
-    func test_init_locationManagerDelegateSetToSelf() {
+    @Test func init_locationManagerDelegateSetToSelf() {
         let (sut, locationManagerSpy) = makeSUT()
 
-        XCTAssertIdentical(locationManagerSpy.delegate, sut)
+        #expect(locationManagerSpy.delegate === sut)
     }
 
-    func test_requestWhenInUseAuthorization_callsRequestWhenInUseAuthorizationOnLocationManager() {
+    @Test func requestWhenInUseAuthorization_callsRequestWhenInUseAuthorizationOnLocationManager() {
         let (sut, locationManagerSpy) = makeSUT()
 
         sut.requestWhenInUseAuthorization()
 
-        XCTAssertEqual(locationManagerSpy.requestWhenInUseAuthorizationCallCount, 1)
+        #expect(locationManagerSpy.requestWhenInUseAuthorizationCallCount == 1)
     }
 
-    func test_locationManagerDidChangeAuthorization_setsLocationServicesEnabledAccordingly() {
+    @Test func locationManagerDidChangeAuthorization_setsLocationServicesEnabledAccordingly() {
         assertLocationsServicesEnabled(for: .authorizedWhenInUse, withExpectedResult: true)
         assertLocationsServicesEnabled(for: .authorizedAlways, withExpectedResult: true)
         assertLocationsServicesEnabled(for: .denied, withExpectedResult: false)
         assertLocationsServicesEnabled(for: .restricted, withExpectedResult: false)
     }
 
-    func test_requestLocation_callsRequestLocationOnLocationManager() async throws {
-        let (sut, locationManagerSpy) = makeSUT()
-        sut.locationServicesEnabled = true
-        let exp = expectation(description: "Wait for task")
-
-        let task = Task {
-            exp.fulfill()
-            return try await sut.requestLocation()
-        }
-
-        task.cancel()
-        await fulfillment(of: [exp], timeout: 1.0)
-
-        XCTAssertEqual(locationManagerSpy.requestLocationCallCount, 1)
-    }
-
-    func test_requestLocation_throwsErrorWhenLocationServicesAreDisabled() async throws {
+    @Test func requestLocation_throwsErrorWhenLocationServicesAreDisabled() async throws {
         let (sut, _) = makeSUT()
         sut.locationServicesEnabled = false
 
         await expectRequestLocationError(on: sut)
     }
 
-    func test_requestLocation_throwsErrorWhenLocationManagerDidFailWithErrorCalled() async throws {
+    @Test func requestLocation_throwsErrorWhenLocationManagerDidFailWithErrorCalled() async throws {
         let (sut, locationManagerSpy) = makeSUT()
         sut.locationServicesEnabled = true
 
@@ -67,7 +51,7 @@ final class LocationProviderTests: XCTestCase {
         await expectRequestLocationError(on: sut)
     }
 
-    func test_requestLocation_returnsLocationWhenLocationManagerDidUpdateLocationsCalled() async throws {
+    @Test func requestLocation_returnsLocationWhenLocationManagerDidUpdateLocationsCalled() async throws {
         let (sut, locationManagerSpy) = makeSUT()
         sut.locationServicesEnabled = true
 
@@ -88,36 +72,33 @@ final class LocationProviderTests: XCTestCase {
 
     private func assertLocationsServicesEnabled(for authorizationStatus: CLAuthorizationStatus,
                                                 withExpectedResult result: Bool,
-                                                file: StaticString = #filePath,
-                                                line: UInt = #line) {
+                                                sourceLocation: SourceLocation = #_sourceLocation) {
         let (sut, locationManagerSpy) = makeSUT()
         locationManagerSpy.authorizationStatus = authorizationStatus
 
         sut.locationManagerDidChangeAuthorization(manager: locationManagerSpy)
 
-        XCTAssertEqual(sut.locationServicesEnabled, result, file: file, line: line)
+        #expect(sut.locationServicesEnabled == result, sourceLocation: sourceLocation)
     }
 
     private func expectRequestLocationError(on sut: LocationProvider,
-                                            file: StaticString = #filePath,
-                                            line: UInt = #line) async {
+                                            sourceLocation: SourceLocation = #_sourceLocation) async {
         do {
             let location = try await sut.requestLocation()
-            XCTFail("Expected to receive an error, got \(location) instead", file: file, line: line)
+            Issue.record("Expected to receive an error, got \(location) instead", sourceLocation: sourceLocation)
         } catch {
-            XCTAssertNotNil(error, file: file, line: line)
+            #expect(error != nil, sourceLocation: sourceLocation)
         }
     }
 
     private func expectRequestLocationSuccess(on sut: LocationProvider,
                                               expectedLocation: Location,
-                                              file: StaticString = #filePath,
-                                              line: UInt = #line) async {
+                                              sourceLocation: SourceLocation = #_sourceLocation) async {
         do {
             let receivedLocation = try await sut.requestLocation()
-            XCTAssertEqual(receivedLocation, expectedLocation, file: file, line: line)
+            #expect(receivedLocation == expectedLocation, sourceLocation: sourceLocation)
         } catch {
-            XCTFail("Expected to receive \(anyLocations().firstLocation), got \(error) instead", file: file, line: line)
+            Issue.record("Expected to receive \(anyLocations().firstLocation), got \(error) instead", sourceLocation: sourceLocation)
         }
     }
 

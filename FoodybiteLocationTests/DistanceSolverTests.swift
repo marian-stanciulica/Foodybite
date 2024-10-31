@@ -5,18 +5,18 @@
 //  Created by Marian Stanciulica on 28.01.2023.
 //
 
-import XCTest
+import Testing
 import Domain
 import FoodybiteLocation
 
-final class DistanceSolverTests: XCTestCase {
+struct DistanceSolverTests {
 
-    func test_getDistanceInKm_computesDistance() {
+    @Test func getDistanceInKm_computesDistance() {
         let source = Location(latitude: 4.5, longitude: 2.3)
         let destination = Location(latitude: 4.4, longitude: 2.3)
 
         let result = DistanceSolver.getDistanceInKm(from: source, to: destination)
-       XCTAssertEqual(result, 11.1)
+       #expect(result == 11.1)
     }
 
 }
